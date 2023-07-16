@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
 {
-    private string test1;
-    private int test1;
-    
     int direction; // direction
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -58,7 +55,6 @@ public class Controller : MonoBehaviour
 
     public float detect_range = 1.5f;
     public float moveSpeed = 5.0f;
-    public float test = 1.0f;
 
     private void FixedUpdate() // move
     {
