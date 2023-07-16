@@ -12,6 +12,10 @@ public class TimeManager : MonoBehaviour
     [SerializeField]
     private float float_RealTime;
 
+    //시간 배속
+    [SerializeField]
+    private int timeMultipleCation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,7 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float_RealTime += Time.deltaTime;
+        float_RealTime += Time.deltaTime * timeMultipleCation;
         text_TimeText.text = float_RealTime.ToString("F0");
     }
 }
