@@ -8,6 +8,7 @@ TagManager:
   - Item
   - LeftWall
   - RightWall
+  - NPC
   layers:
   - Default
   - TransparentFX
