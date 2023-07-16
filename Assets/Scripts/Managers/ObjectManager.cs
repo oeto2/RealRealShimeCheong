@@ -44,9 +44,6 @@ public class Clue
 
 public class ObjectManager : MonoBehaviour
 {
-    //외부 스크립트
-    public UIManager uiManagerScr;
-
     //Item
     #region 
     //아이템 데이터 값이 담긴 txt파일
@@ -250,9 +247,6 @@ public class ObjectManager : MonoBehaviour
                     usingImage[i].SetActive(curItemList[i].isUsing);
                 }
             }
-
-            //단서 버튼 어둡게
-            uiManagerScr.ClueButtonColorChange();
         }
         
         else if (curType == "Clue")
@@ -273,9 +267,6 @@ public class ObjectManager : MonoBehaviour
                     usingImage[i].SetActive(curClueList[i].isUsing);
                 }
             }
-
-            //아이템 버튼 어둡게
-            uiManagerScr.ItemButtonColorChange();
         }
     }
 

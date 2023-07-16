@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,24 +11,12 @@ public class UIManager : MonoBehaviour
     //옵션창 오브젝트
     public GameObject gameObject_Option;
 
-    //단서 버튼 이미지
-    public Image clueButtonImage;
-
-    //아이템 버튼 이미지
-    public Image itemButtonImage;
-
-
     //아이템 창이 실행중인지 확인하는 flag
     public bool isItemWindowLaunch;
     //지도가 실행중인지 확인 하는 flag
     public bool isMapWindowLaunch;
     //옵션창이 실행중인지 확인하는 flag
     public bool isOptionLaunch;
-
-    //어두운 색깔
-    private Color activefalseColor = new Color32(155, 155, 155, 255);
-    //원래 색깔
-    private Color originColor = new Color32(255, 255, 255, 255);
 
     // Update is called once per frame
     void Update()
@@ -122,8 +109,6 @@ public class UIManager : MonoBehaviour
         }
         #endregion
 
-
-        
     }
 
     //아이템 창 실행
@@ -168,20 +153,5 @@ public class UIManager : MonoBehaviour
     private void MapFalgFalse()
     {
         isMapWindowLaunch = false;
-    }
-
-    //아이템 버튼 색깔 어둡게
-    public void ItemButtonColorChange()
-    {
-        itemButtonImage.color = activefalseColor;
-        clueButtonImage.color = originColor;
-    }
-
-
-    //단서 버튼 색깔 어둡게
-    public void ClueButtonColorChange()
-    {
-        clueButtonImage.color = activefalseColor;
-        itemButtonImage.color = originColor;
     }
 }
