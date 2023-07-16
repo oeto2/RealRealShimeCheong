@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
 {
+    private string test1;
+
     int direction; // direction
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
