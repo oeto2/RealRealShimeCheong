@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class UIManager : MonoBehaviour
 {
@@ -17,6 +19,18 @@ public class UIManager : MonoBehaviour
     public bool isMapWindowLaunch;
     //옵션창이 실행중인지 확인하는 flag
     public bool isOptionLaunch;
+
+    //탭 버튼의 원래 색깔
+    private Color originColor = new Color32(255, 255, 255, 255);
+
+    //탭 버튼의 비활성화 색깔
+    private Color falseColor = new Color32(170, 170, 170, 255);
+
+    //Itme Tap Button Image
+    public Image itemTapImage;
+    
+    //Clue Tap Button Image
+    public Image clueTapImage;
 
     // Update is called once per frame
     void Update()
@@ -153,5 +167,19 @@ public class UIManager : MonoBehaviour
     private void MapFalgFalse()
     {
         isMapWindowLaunch = false;
+    }
+
+    //아이템 탭 버튼 색깔 변경
+    public void ChangeItemTapColor()
+    {
+        itemTapImage.color = falseColor;
+        clueTapImage.color = originColor;
+    }
+
+    //단서 탭 버튼 색깔 변경
+    public void ChangeClueTapColor()
+    {
+        clueTapImage.color = falseColor;
+        itemTapImage.color = originColor;
     }
 }
