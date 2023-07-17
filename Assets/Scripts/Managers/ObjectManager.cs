@@ -85,8 +85,14 @@ public class ObjectManager : MonoBehaviour
     //슬롯
     public GameObject[] slot;
 
+    //조합창 슬롯
+    public GameObject[] slot2;
+
     //사용중일때 이미지
     public GameObject[] usingImage;
+
+    //조합창 사용중일때 이미지
+    public GameObject[] usingImage2;
 
     //오브젝트 이미지
     public Image[] objectImage;
@@ -234,12 +240,14 @@ public class ObjectManager : MonoBehaviour
        
         if (curType == "Item")
         {
-            //Text보이기
+            //아이템 창 슬롯
             for (int i = 0; i < slot.Length; i++)
             {
                 //슬롯이 존재하는지 확인
                 bool isExist = i < curItemList.Count;
+                //없는 슬롯 비활성화
                 slot[i].SetActive(isExist);
+                //Text보이기
                 slot[i].GetComponentInChildren<Text>().text = isExist ? curItemList[i].name : "";
 
                 //슬롯이 존재한다면
@@ -251,18 +259,23 @@ public class ObjectManager : MonoBehaviour
                 }
             }
 
+            //조합창의 아이템 슬롯
+            
+
             //단서 버튼 이미지 어둡게
             uiManagerScr.ChangeClueTapColor();
         }
         
         else if (curType == "Clue")
         {
-            //Text보이기
+            
             for (int i = 0; i < slot.Length; i++)
             {
                 //슬롯이 존재하는지 확인
                 bool isExist = i < curClueList.Count;
+                //없는 슬롯 비활성화
                 slot[i].SetActive(isExist);
+                //Text보이기
                 slot[i].GetComponentInChildren<Text>().text = isExist ? curClueList[i].name : "";
 
                 //슬롯이 존재한다면
