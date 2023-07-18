@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     public GameObject gameObject_MapWindow;
     //옵션창 오브젝트
     public GameObject gameObject_Option;
+    //조합창 오브젝트
+    public GameObject gameObject_CombineWindow;
 
     //아이템 창이 실행중인지 확인하는 flag
     public bool isItemWindowLaunch;
@@ -19,6 +21,8 @@ public class UIManager : MonoBehaviour
     public bool isMapWindowLaunch;
     //옵션창이 실행중인지 확인하는 flag
     public bool isOptionLaunch;
+    //조합창이 실행중인지 확인하는 flag
+    public bool isCombineLaunch;
 
     //탭 버튼의 원래 색깔
     private Color originColor = new Color32(255, 255, 255, 255);
@@ -28,9 +32,12 @@ public class UIManager : MonoBehaviour
 
     //Itme Tap Button Image
     public Image itemTapImage;
-    
+    public Image itemTapImage2;
+
+
     //Clue Tap Button Image
     public Image clueTapImage;
+    public Image clueTapImage2;
 
     // Update is called once per frame
     void Update()
@@ -38,7 +45,7 @@ public class UIManager : MonoBehaviour
         //아이템 창 관련 코드
         #region
         //아이템 창 비활성화 상태에서 X키를 누를 경우
-        if (Input.GetKeyDown(KeyCode.X) && !gameObject_ItemWindow.activeSelf && !isMapWindowLaunch && !isOptionLaunch)
+        if (Input.GetKeyDown(KeyCode.X) && !gameObject_ItemWindow.activeSelf && !isMapWindowLaunch && !isOptionLaunch && !isCombineLaunch)
         {
             //아이템 창 실행
             ItemWindowLaunch();
@@ -68,7 +75,7 @@ public class UIManager : MonoBehaviour
         //맵 관련 코드
         #region
         //지도가 실행중이 아닌데 M키를 눌렀을 경우
-        if (Input.GetKeyDown(KeyCode.M) && !gameObject_MapWindow.activeSelf && !isItemWindowLaunch && !isOptionLaunch)
+        if (Input.GetKeyDown(KeyCode.M) && !gameObject_MapWindow.activeSelf && !isItemWindowLaunch && !isOptionLaunch && !isCombineLaunch)
         {
             //지도 오브젝트 활성화
             gameObject_MapWindow.SetActive(true);
@@ -98,7 +105,7 @@ public class UIManager : MonoBehaviour
         #region
 
         //아이템창 ,지도 ,옵션창이 실행중이지 않을때 ESC키를 눌렀을 경우
-        if (!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch && Input.GetKeyDown(KeyCode.Escape))
+        if (!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch && !isCombineLaunch && Input.GetKeyDown(KeyCode.Escape))
         {
             //옵션창 보여주기
             gameObject_Option.SetActive(true);
@@ -123,8 +130,31 @@ public class UIManager : MonoBehaviour
         }
         #endregion
 
-    }
+        //조합창 관련 코드
+        #region
+        //조합창이 실행중이라면
+        if(gameObject_CombineWindow.activeSelf)
+        {
+            isCombineLaunch = true;
+        }
 
+        //조합창이 실행중이지 않다면
+        if(!gameObject_CombineWindow.activeSelf)
+        {
+            Invoke("CombineFalgFalse", 0.2f);
+        }
+
+
+        //조합창이 실행중이고 ESC키를 눌렀을경우
+        if (isCombineLaunch && Input.GetKeyDown(KeyCode.Escape))
+        {
+            CombineWindowExit();
+        }
+        #endregion
+
+    }
+    //아이템,조합,단서창 껐다 켜기
+    #region
     //아이템 창 실행
     public void ItemWindowLaunch()
     {
@@ -157,6 +187,24 @@ public class UIManager : MonoBehaviour
         gameObject_Option.SetActive(false);
     }
 
+    //조합창 켜기
+    public void CombineWindowLaunch()
+    {
+        if(!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch)
+        {
+            gameObject_CombineWindow.SetActive(true);
+        }
+    }
+
+    //조합창 끄기
+    public void CombineWindowExit()
+    {
+        gameObject_CombineWindow.SetActive(false);
+    }
+    #endregion
+
+    //Falg 딜레이
+    #region
     //isItemWindowLaunch = false;
     private void itemFalgFalse()
     {
@@ -169,11 +217,27 @@ public class UIManager : MonoBehaviour
         isMapWindowLaunch = false;
     }
 
+    //isCombineLaunch = false;
+    private void CombineFalgFalse()
+    {
+        isCombineLaunch = false;
+    }
+    #endregion
+
+    //오브젝트 색깔 변경
+    #region
     //아이템 탭 버튼 색깔 변경
     public void ChangeItemTapColor()
     {
         itemTapImage.color = falseColor;
         clueTapImage.color = originColor;
+    }
+
+    //조합 아이템 탭 버튼 색깔 변경
+    public void ChangeCombineItemTapColor()
+    {
+        itemTapImage2.color = falseColor;
+        clueTapImage2.color = originColor;
     }
 
     //단서 탭 버튼 색깔 변경
@@ -182,4 +246,12 @@ public class UIManager : MonoBehaviour
         clueTapImage.color = falseColor;
         itemTapImage.color = originColor;
     }
+
+    //조합 단서 탭 버튼 색깔 변경
+    public void ChangeCombineClueTapColor()
+    {
+        clueTapImage2.color = falseColor;
+        itemTapImage2.color = originColor;
+    }
+    #endregion
 }
