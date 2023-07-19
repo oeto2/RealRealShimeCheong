@@ -9,6 +9,7 @@ TagManager:
   - LeftWall
   - RightWall
   - NPC
+  - Clue
   layers:
   - Default
   - TransparentFX

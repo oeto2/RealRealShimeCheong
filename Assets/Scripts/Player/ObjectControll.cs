@@ -32,11 +32,23 @@ public class ObjectControll : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Z) && isTriggerObject) 
         {
             Debug.Log("실행");
-            Debug.Log(objdataScr.id);
-            //오브젝트 추가
-            objectManagerScr.GetItem(objdataScr.id);
-            //오브젝트 SetActive false
-            gameobject_TargetObject.SetActive(false);
+            Debug.Log(objdataScr.key);
+
+            //아이템 오브젝트 추가
+            if(gameobject_TargetObject.CompareTag("Item"))
+            {
+                objectManagerScr.GetItem(objdataScr.key);
+                //오브젝트 SetActive false
+                gameobject_TargetObject.SetActive(false);
+            }
+
+            //단서 아이템 획득
+            else if (gameobject_TargetObject.CompareTag("Clue"))
+            {
+                objectManagerScr.GetClue(objdataScr.key);
+                //오브젝트 SetActive false
+                gameobject_TargetObject.SetActive(false);
+            }
         }
 
     }
@@ -55,14 +67,39 @@ public class ObjectControll : MonoBehaviour
             //아이템 내부의 Objdata를 가져옴
             objdataScr = gameobject_TargetObject.GetComponent<objdata>();
         }
+
+        //단서일 경우
+        else if(collision.CompareTag("Clue"))
+        {
+            //접촉한 오브젝트
+            gameobject_TargetObject = collision.gameObject;
+
+            isTriggerObject = true;
+
+            //아이템 내부의 Objdata를 가져옴
+            objdataScr = gameobject_TargetObject.GetComponent<objdata>();
+        }
     }
 
     //오브젝트 BoxCollider와 접촉중일경우
     private void OnTriggerStay2D(Collider2D collision)
     { 
+        //아이템일 경우
         if(collision.CompareTag("Item"))
         {
             isTriggerObject = true;
+        }
+
+        //단서일 경우
+        else if (collision.CompareTag("Clue"))
+        {
+            //접촉한 오브젝트
+            gameobject_TargetObject = collision.gameObject;
+
+            isTriggerObject = true;
+
+            //아이템 내부의 Objdata를 가져옴
+            objdataScr = gameobject_TargetObject.GetComponent<objdata>();
         }
     }
 

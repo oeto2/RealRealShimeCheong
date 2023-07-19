@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
             bool_isAction = true;
             scanObject = scan_obj;
             objdata obj_Data = scanObject.GetComponent<objdata>();
-            Dialog(obj_Data.id, obj_Data.bool_isNPC);
+            Dialog(obj_Data.key, obj_Data.bool_isNPC);
 
         }
 	}

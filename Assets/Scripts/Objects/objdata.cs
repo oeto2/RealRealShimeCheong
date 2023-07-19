@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class objdata : MonoBehaviour
 {
-	public int id;
+	public int key;
 	public bool bool_isNPC;
 }
