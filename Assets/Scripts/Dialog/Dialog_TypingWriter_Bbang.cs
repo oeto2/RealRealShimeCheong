@@ -93,7 +93,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     IEnumerator TextPractice()
     {
-        yield return StartCoroutine(NormalChat("»±´ö¾î¸Ø", "³ª´Â »±´ö¾î¸ØÀÔ´Ï´Ù"));
-        yield return StartCoroutine(NormalChat("»±´ö¾î¸Ø", "?¾È³çÇÏ¼¼¿ä, ¹Ý°©½À´Ï´Ù. ³ª´Â »±´ö¾î¸Ø"));
+        yield return StartCoroutine(NormalChat("»±´ö¾î¸Ø", "È£È£, ¹«½¼ ÀÏÀÌ½Å°¡¿ä?"));
+        yield return StartCoroutine(NormalChat("»±´ö¾î¸Ø", "ÀÌ¹ø¿¡ µé¿©¿Â ºñ³à°¡ ±×·¸°Ô ¿¹»Ú´øµ¥,,,"));
     }
 }
