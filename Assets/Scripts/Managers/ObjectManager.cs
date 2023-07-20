@@ -57,9 +57,6 @@ public class ObjectManager : MonoBehaviour
     //게임내에서 사용할 아이템 리스트 (아이템창 한정)
     public List<Item> myItemList;
 
-    //게임내에서 사용할 아이템 리스트 (조합창 한정)
-    public List<Item> combinItemList;
-
     //슬롯에서 보여줄 아이템 리스트 (현재 보유중)
     public List<Item> curItemList;
     //조합창에서 보여줄 아이템 리스트 (현재 보유중)
@@ -74,10 +71,6 @@ public class ObjectManager : MonoBehaviour
 
     //게임내에서 사용할 단서 리스트
     public List<Clue> myClueList;
-
-    //게임내에서 사용할 단서 리스트(조합창 한정)
-    public List<Clue> combineCluList;
-
 
     //슬롯에서 보여줄 단서 리스트(현재 보유중)
     public List<Clue> curClueList;
@@ -202,24 +195,16 @@ public class ObjectManager : MonoBehaviour
         Save();
         Load();
 
-        ////해당 키값을 가진 오브젝트 얻기
-        //GetItem(1000);
-        //GetItem(1001);
-        //GetItem(1002);
-
-        //GetClue(2003);
-        //GetClue(2002);
-        //GetClue(2001);
-        //GetClue(2000);
-
-        ////해당 키 값을 가진 오브젝트 제거
-        //RemoveClue(2000);
-        //RemoveItem(1000);
-
         //아이템 탭 기본으로 보여주기
         TabClick(curType);
         //조합창 아이템 탭 기본으로 보여주기
         TabClick2(curType);
+
+        //CurCobine 오브젝트 Info의 key값 초기화
+        //curCombineItem1Info.key = 1;
+        //curCombineItem2Info.key = 1;
+        //curCombineClue1Info.key = 1;
+        //curCombineClue2Info.key = 1;
     }
 
 
@@ -231,6 +216,9 @@ public class ObjectManager : MonoBehaviour
             //조합 슬롯 비우기
             EmptyCombineSlot();
         }
+
+        
+
     }
 
     //오브젝트 슬롯 클릭시 (아이템창 한정)
@@ -339,11 +327,11 @@ public class ObjectManager : MonoBehaviour
                 //조합창 슬롯 1의 아이템 이름 변경
                 combineSlot1Name.text = curItem2.name;
 
+                //curCombineClue1Info안의 Key값을 비움
+                curCombineClue1Info = null;
+
                 //curCombineItem1Info에 사용중인 아이템의 정보를 넘김
                 curCombineItem1Info = curItem2;
-
-                //curCombineClue1Info안의 정보를 비움
-                curCombineClue1Info = null;
             }
 
             //아이템 탭에서 조합창 2가 사용중일경우
@@ -354,11 +342,11 @@ public class ObjectManager : MonoBehaviour
                 //조합창 슬롯 2의 아이템 이름 변경
                 combineSlot2Name.text = curItem2.name;
 
+                //curCombineClue2Info안의 Key값을 비움
+                curCombineClue2Info = null;
+
                 //curCombineItem2Info에 사용중인 아이템의 정보를 넘김
                 curCombineItem2Info = curItem2;
-
-                //curCombineClue2Info안의 정보를 비움
-                curCombineClue2Info = null;
             }
 
             #endregion
@@ -399,11 +387,12 @@ public class ObjectManager : MonoBehaviour
                 image_CombineSlot1Item.sprite = clueSprite[curClue2.indexNum];
                 //조합창 슬롯 1의 단서 이름변경
                 combineSlot1Name.text = curClue2.name;
+
+                //curCombineItem1Info안의 key값을 비움
+                curCombineItem1Info = null;
+
                 //curCombineClue1Info에 사용중인 단서의 정보를 넘김
                 curCombineClue1Info = curClue2;
-
-                //curCombineItem1Info안의 정보를 비움
-                curCombineItem1Info = null;
             }
 
             //단서 탭에서 조합창 2가 사용중일경우
@@ -413,13 +402,65 @@ public class ObjectManager : MonoBehaviour
                 image_CombineSlot2Item.sprite = clueSprite[curClue2.indexNum];
                 //조합창 슬롯 2의 단서 이름변경
                 combineSlot2Name.text = curClue2.name;
+
+                //curCombineItem2Info안의 key값을 비움
+                curCombineItem2Info = null;
+
                 //curCombineClue2Info에 사용중인 단서의 정보를 넘김
                 curCombineClue2Info = curClue2;
-
-                //curCombineItem2Info안의 정보를 비움
-                curCombineItem2Info = null;
             }
             #endregion
+        }
+
+        //조합 슬롯1과 슬롯2 안의 아이템들이 존재하고.
+        if (curCombineItem1Info != null && curCombineItem2Info != null)
+        {
+            //1번 슬롯과 2번슬롯의 아이템이 같고 2번슬롯을 사용중이라면
+            if ((curCombineItem1Info.key == curCombineItem2Info.key) && combineSlot2_Using)
+            {
+                Debug.Log("1번슬롯 비우기");
+                //조합 슬롯 아이템 1번을 비운다.
+                EmptyCombineSlot1Item();
+            }
+        }
+
+        //조합 슬롯1과 슬롯2 안의 아이템들이 존재하고.
+        if (curCombineItem1Info != null && curCombineItem2Info != null)
+        {
+            //1번 슬롯과 2번슬롯의 아이템이 같고 1번슬롯을 사용중이라면
+            if ((curCombineItem1Info.key == curCombineItem2Info.key) && combineSlot1_Using)
+            {
+                Debug.Log("2번슬롯 비우기");
+
+                //조합 슬롯 아이템 2번을 비운다.
+                EmptyCombineSlot2Item();
+            }
+        }
+
+        //조합 슬롯1과 슬롯2 안의 단서들이 존재하고.
+        if (curCombineClue1Info != null && curCombineClue2Info != null)
+        {
+            //1번 슬롯과 2번슬롯의 단서가 같고 1번슬롯을 사용중이라면
+            if ((curCombineClue1Info.key == curCombineClue2Info.key) && combineSlot2_Using)
+            {
+                Debug.Log("1번슬롯 비우기");
+
+                //조합 슬롯 단서 2번을 비운다.
+                EmptyCombineSlot1Clue();
+            }
+        }
+
+        //조합 슬롯1과 슬롯2 안의 단서들이 존재하고.
+        if (curCombineClue1Info != null && curCombineClue2Info != null)
+        {
+            //1번 슬롯과 2번슬롯의 단서가 같고 1번슬롯을 사용중이라면
+            if ((curCombineClue1Info.key == curCombineClue2Info.key) && combineSlot1_Using)
+            {
+                Debug.Log("2번슬롯 비우기");
+
+                //조합 슬롯 단서 2번을 비운다.
+                EmptyCombineSlot2Clue();
+            }
         }
 
         Save();
@@ -566,9 +607,6 @@ public class ObjectManager : MonoBehaviour
         //아이템 Json파일로부터 데이터 역직렬화(Load)
         myItemList = JsonUtility.FromJson<Serialization<Item>>(jItemdata).target;
 
-        //Json파일로부터 아이템리스트 가져오기 (조합창 한정)
-        combinItemList = JsonUtility.FromJson<Serialization<Item>>(jItemdata).target;
-
         //현재 보유중인 아이템 리스트 불러오기
         TabClick(curType);
         //조합창에서 현재 보유중인 아이템 리스트 불러오기
@@ -578,15 +616,13 @@ public class ObjectManager : MonoBehaviour
         string jCluedata = File.ReadAllText(cluefilePath);
         //단서 Json파일로부터 데이터 역직렬화(Load)
         myClueList = JsonUtility.FromJson<Serialization<Clue>>(jCluedata).target;
-        //단서 Json파일로부터 단서리스트 가져오기 (조합창 한정)
-        combineCluList = JsonUtility.FromJson<Serialization<Clue>>(jCluedata).target;
     }
 
     //Key를 통해서 아이템 얻기
     public void GetItem(int _key)
     {
         //해당 Key를 가진 오브젝트가 존재하는 경우
-        if(myItemList.Find(x => x.key == _key) != null)
+        if (myItemList.Find(x => x.key == _key) != null)
         {
             curItemList.Add(myItemList.Find(x => x.key == _key));
             curItemList2.Add(myItemList.Find(x => x.key == _key));
@@ -599,7 +635,7 @@ public class ObjectManager : MonoBehaviour
     public void RemoveItem(int _key)
     {
         //해당 Key를 가진 오브젝트가 존재하는 경우
-        if(myItemList.Find(x => x.key == _key) != null)
+        if (myItemList.Find(x => x.key == _key) != null)
         {
             curItemList.Remove(myItemList.Find(x => x.key == _key));
             curItemList2.Remove(myItemList.Find(x => x.key == _key));
@@ -612,7 +648,7 @@ public class ObjectManager : MonoBehaviour
     public void GetClue(int _key)
     {
         //해당 Key를 가진 단서가 존재하는 경우
-        if(myClueList.Find(x => x.key == _key) != null)
+        if (myClueList.Find(x => x.key == _key) != null)
         {
             curClueList.Add(myClueList.Find(x => x.key == _key));
             curClueList2.Add(myClueList.Find(x => x.key == _key));
@@ -625,7 +661,7 @@ public class ObjectManager : MonoBehaviour
     public void RemoveClue(int _key)
     {
         //해당 Key를 가진 단서가 존재하는 경우
-        if(myClueList.Find(x => x.key == _key) != null)
+        if (myClueList.Find(x => x.key == _key) != null)
         {
             curClueList.Remove(myClueList.Find(x => x.key == _key));
             curClueList2.Remove(myClueList.Find(x => x.key == _key));
@@ -646,9 +682,9 @@ public class ObjectManager : MonoBehaviour
             image_CombineSlot2.sprite = sprite_Slot;
 
             ////1번 조합창 사용중
-            Invoke("CombineSlot1True",0.1f);
+            Invoke("CombineSlot1True", 0.1f);
             //2번 조합창 사용 취소
-            combineSlot2_Using = false; 
+            combineSlot2_Using = false;
         }
 
         //2번 슬롯이 사용중이지 않고 눌렀을 경우
@@ -666,7 +702,7 @@ public class ObjectManager : MonoBehaviour
         }
 
         //슬롯1이 사용중인데 한번 더 눌렀을 경우
-        if(slotNum == 1 && combineSlot1_Using)
+        if (slotNum == 1 && combineSlot1_Using)
         {
             //슬롯 1번 사용 취소
             combineSlot1_Using = false;
@@ -682,6 +718,8 @@ public class ObjectManager : MonoBehaviour
             //슬롯 2의 Sprite를 원래 이미지로 변경
             image_CombineSlot2.sprite = sprite_Slot;
         }
+
+       
     }
 
     //조합 버튼을 눌렀을 경우
@@ -689,136 +727,37 @@ public class ObjectManager : MonoBehaviour
     {
         //슬롯 1: Item, 슬롯 2: Item
         #region
-        if (curCombineItem1Info.key != 0 && curCombineItem2Info.key != 0)
+        if (curCombineItem1Info != null && curCombineItem2Info != null)
         {
-            //슬롯1,슬롯2의 Key의 합
-            int sumKeyValue = curCombineItem1Info.key + curCombineItem2Info.key;
-
-            //슬롯1,슬롯2의 Type의 합
-            string slotSumType = curCombineItem1Info.type + curCombineItem2Info.type;
-
-            //합쳐진 오브젝트의 Type
-            string sumObjectType = "";
-
-            //myItemList에서 해당 SumKey값을 가진 아이템이 있을경우
-            if (myItemList.Find(x => x.key == sumKeyValue) != null)
+            if (curCombineItem1Info.key != 0 && curCombineItem2Info.key != 0)
             {
-                Item sumItem = myItemList.Find(x => x.key == sumKeyValue);
-                //합쳐진 아이템의 Type
-                sumObjectType = sumItem.type;
-            }
+                Debug.Log("아이템끼리의 조합");
+                //슬롯1,슬롯2의 Key의 합
+                int sumKeyValue = curCombineItem1Info.key + curCombineItem2Info.key;
 
-            //Sumkey로 찾은 오브젝트의 타입이 슬롯창의 두 오브젝트의 타입을 더한 값과 같을경우.
-            if (sumObjectType == slotSumType)
-            {
-                //해당 Key값을 가진 아이템 획득
-                GetItem(sumKeyValue);
+                //슬롯1,슬롯2의 Type의 합
+                string slotSumType = curCombineItem1Info.type + curCombineItem2Info.type;
 
-                //조합에 사용된 오브젝트 제거
-                RemoveItem(curCombineItem1Info.key);
-                RemoveItem(curCombineItem2Info.key);
+                //합쳐진 오브젝트의 Type
+                string sumObjectType = "";
 
-                //슬롯 비우기
-                EmptyCombineSlot();
-
-                //조합창 Text표시
-                contentText2.text = "조합 성공!";
-            }
-
-            //조합된 아이템이 존재하지 않다면
-            else if (sumObjectType == "")
-            {
-                Debug.Log("텍스트 넣었음");
-
-                //조합 슬롯 비우기
-                EmptyCombineSlot();
-
-                contentText2.text = "조합 실패!";
-            }
-        }
-        #endregion
-
-        //슬롯 1: Clue, 슬롯 2: Clue
-        #region
-        else if (curCombineClue1Info.key != 0 && curCombineClue2Info.key != 0)
-        {
-            //슬롯1,슬롯2의 Key의 합
-            int sumKeyValue = curCombineClue1Info.key + curCombineClue2Info.key;
-
-            //슬롯1,슬롯2의 Type의 합
-            string slotSumType = curCombineClue1Info.type + curCombineClue2Info.type;
-
-            //합쳐진 오브젝트의 Type
-            string sumObjectType = "";
-
-            //myItemList에서 해당 SumKey값을 가진 단서 있을경우
-            if (myClueList.Find(x => x.key == sumKeyValue) != null)
-            {
-                Clue sumItem = myClueList.Find(x => x.key == sumKeyValue);
-                //합쳐진 단서의 Type
-                sumObjectType = sumItem.type;
-            }
-
-            //Sumkey로 찾은 오브젝트의 타입이 슬롯창의 두 오브젝트의 타입을 더한 값과 같을경우.
-            if (sumObjectType == slotSumType)
-            {
-                //해당 Key값을 가진 단서 획득
-                GetClue(sumKeyValue);
-
-                //조합에 사용된 단서 제거
-                RemoveClue(curCombineClue1Info.key);
-                RemoveClue(curCombineClue2Info.key);
-
-                //슬롯 비우기
-                EmptyCombineSlot();
-
-                //조합창 Text표시
-                contentText2.text = "조합 성공!";
-            }
-
-            //조합된 단서가 존재하지 않다면
-            else if (sumObjectType == "")
-            {
-                Debug.Log("텍스트 넣었음");
-
-                //조합 슬롯 비우기
-                EmptyCombineSlot();
-
-                contentText2.text = "조합 실패!";
-            }
-        }
-        #endregion
-
-        //슬롯 1: Item, 슬롯 2: Clue
-        #region
-        else if (curCombineItem1Info.key != 0 && curCombineClue2Info.key != 0)
-        {
-            //슬롯1,슬롯2의 Key의 합
-            int sumKeyValue = curCombineItem1Info.key + curCombineClue2Info.key;
-
-            //슬롯1,슬롯2의 Type의 합
-            string slotSumType = curCombineItem1Info.type + curCombineClue2Info.type;
-
-            //합쳐진 오브젝트의 Type
-            string sumObjectType = "";
-
-            //myItemList에서 해당 SumKey값을 가진 아이템 있을경우
-            if (myItemList.Find(x => x.key == sumKeyValue) != null)
-            {
-                Item sumItem = myItemList.Find(x => x.key == sumKeyValue);
-                //합쳐진 단서의 Type
-                sumObjectType = sumItem.type;
+                //myItemList에서 해당 SumKey값을 가진 아이템이 있을경우
+                if (myItemList.Find(x => x.key == sumKeyValue) != null)
+                {
+                    Item sumItem = myItemList.Find(x => x.key == sumKeyValue);
+                    //합쳐진 아이템의 Type
+                    sumObjectType = sumItem.type;
+                }
 
                 //Sumkey로 찾은 오브젝트의 타입이 슬롯창의 두 오브젝트의 타입을 더한 값과 같을경우.
-                if (sumObjectType == slotSumType && sumItem.key != 0)
+                if (sumObjectType == slotSumType)
                 {
-                    Debug.Log("아이템으로 생성됨");
-                    //해당 Key값을 가진 단서 획득
+                    //해당 Key값을 가진 아이템 획득
                     GetItem(sumKeyValue);
 
                     //조합에 사용된 오브젝트 제거
                     RemoveItem(curCombineItem1Info.key);
-                    RemoveClue (curCombineClue2Info.key);
+                    RemoveItem(curCombineItem2Info.key);
 
                     //슬롯 비우기
                     EmptyCombineSlot();
@@ -826,25 +765,54 @@ public class ObjectManager : MonoBehaviour
                     //조합창 Text표시
                     contentText2.text = "조합 성공!";
                 }
-            }
 
-            //myClueList에서 해당 SumKey값을 가진 단서가 있을경우
-            else if (myClueList.Find(x => x.key == sumKeyValue) != null)
+                //조합된 아이템이 존재하지 않다면
+                else if (sumObjectType == "")
+                {
+                    Debug.Log("텍스트 넣었음");
+
+                    //조합 슬롯 비우기
+                    EmptyCombineSlot();
+
+                    contentText2.text = "조합 실패!";
+                }
+            }
+        }
+        #endregion
+
+        //슬롯 1: Clue, 슬롯 2: Clue
+        #region
+        else if(curCombineClue1Info != null && curCombineClue2Info != null)
+        {
+            if (curCombineClue1Info.key != 0 && curCombineClue2Info.key != 0)
             {
-                Clue sumClue = myClueList.Find(x => x.key == sumKeyValue);
-                //합쳐진 단서의 Type
-                sumObjectType = sumClue.type;
+                Debug.Log("단서끼리의 조합");
+
+                //슬롯1,슬롯2의 Key의 합
+                int sumKeyValue = curCombineClue1Info.key + curCombineClue2Info.key;
+
+                //슬롯1,슬롯2의 Type의 합
+                string slotSumType = curCombineClue1Info.type + curCombineClue2Info.type;
+
+                //합쳐진 오브젝트의 Type
+                string sumObjectType = "";
+
+                //myItemList에서 해당 SumKey값을 가진 단서 있을경우
+                if (myClueList.Find(x => x.key == sumKeyValue) != null)
+                {
+                    Clue sumItem = myClueList.Find(x => x.key == sumKeyValue);
+                    //합쳐진 단서의 Type
+                    sumObjectType = sumItem.type;
+                }
 
                 //Sumkey로 찾은 오브젝트의 타입이 슬롯창의 두 오브젝트의 타입을 더한 값과 같을경우.
-                if (sumObjectType == slotSumType && sumClue.key != 0)
+                if (sumObjectType == slotSumType)
                 {
-                    Debug.Log("단서로 생성됨");
-
                     //해당 Key값을 가진 단서 획득
                     GetClue(sumKeyValue);
 
-                    //조합에 사용된 오브젝트 제거
-                    RemoveItem(curCombineItem1Info.key);
+                    //조합에 사용된 단서 제거
+                    RemoveClue(curCombineClue1Info.key);
                     RemoveClue(curCombineClue2Info.key);
 
                     //슬롯 비우기
@@ -853,100 +821,189 @@ public class ObjectManager : MonoBehaviour
                     //조합창 Text표시
                     contentText2.text = "조합 성공!";
                 }
+
+                //조합된 단서가 존재하지 않다면
+                else if (sumObjectType == "")
+                {
+                    Debug.Log("텍스트 넣었음");
+
+                    //조합 슬롯 비우기
+                    EmptyCombineSlot();
+
+                    contentText2.text = "조합 실패!";
+                }
             }
+        }
+        #endregion
 
-            //조합된 단서가 존재하지 않다면
-            if (sumObjectType == "")
+        //슬롯 1: Item, 슬롯 2: Clue
+        #region
+        else if(curCombineItem1Info != null && curCombineClue2Info !=null)
+        {
+            if (curCombineItem1Info.key != 0 && curCombineClue2Info.key != 0)
             {
-                Debug.Log("텍스트 넣었음");
+                Debug.Log("아이템과 단서의 조합");
 
-                //조합 슬롯 비우기
-                EmptyCombineSlot();
+                //슬롯1,슬롯2의 Key의 합
+                int sumKeyValue = curCombineItem1Info.key + curCombineClue2Info.key;
 
-                contentText2.text = "조합 실패!";
+                //슬롯1,슬롯2의 Type의 합
+                string slotSumType = curCombineItem1Info.type + curCombineClue2Info.type;
+
+                //합쳐진 오브젝트의 Type
+                string sumObjectType = "";
+
+                //myItemList에서 해당 SumKey값을 가진 아이템 있을경우
+                if (myItemList.Find(x => x.key == sumKeyValue) != null)
+                {
+                    Item sumItem = myItemList.Find(x => x.key == sumKeyValue);
+                    //합쳐진 단서의 Type
+                    sumObjectType = sumItem.type;
+
+                    //Sumkey로 찾은 오브젝트의 타입이 슬롯창의 두 오브젝트의 타입을 더한 값과 같을경우.
+                    if (sumObjectType == slotSumType && sumItem.key != 0)
+                    {
+                        Debug.Log("아이템으로 생성됨");
+                        //해당 Key값을 가진 단서 획득
+                        GetItem(sumKeyValue);
+
+                        //조합에 사용된 오브젝트 제거
+                        RemoveItem(curCombineItem1Info.key);
+                        RemoveClue(curCombineClue2Info.key);
+
+                        //슬롯 비우기
+                        EmptyCombineSlot();
+
+                        //조합창 Text표시
+                        contentText2.text = "조합 성공!";
+                    }
+                }
+
+                //myClueList에서 해당 SumKey값을 가진 단서가 있을경우
+                else if (myClueList.Find(x => x.key == sumKeyValue) != null)
+                {
+                    Clue sumClue = myClueList.Find(x => x.key == sumKeyValue);
+                    //합쳐진 단서의 Type
+                    sumObjectType = sumClue.type;
+
+                    //Sumkey로 찾은 오브젝트의 타입이 슬롯창의 두 오브젝트의 타입을 더한 값과 같을경우.
+                    if (sumObjectType == slotSumType && sumClue.key != 0)
+                    {
+                        Debug.Log("단서로 생성됨");
+
+                        //해당 Key값을 가진 단서 획득
+                        GetClue(sumKeyValue);
+
+                        //조합에 사용된 오브젝트 제거
+                        RemoveItem(curCombineItem1Info.key);
+                        RemoveClue(curCombineClue2Info.key);
+
+                        //슬롯 비우기
+                        EmptyCombineSlot();
+
+                        //조합창 Text표시
+                        contentText2.text = "조합 성공!";
+                    }
+                }
+
+                //조합된 단서가 존재하지 않다면
+                if (sumObjectType == "")
+                {
+                    Debug.Log("텍스트 넣었음");
+
+                    //조합 슬롯 비우기
+                    EmptyCombineSlot();
+
+                    contentText2.text = "조합 실패!";
+                }
             }
         }
         #endregion
 
         //슬롯 1: Clue, 슬롯 2: Item
         #region
-        else if (curCombineClue1Info.key != 0 && curCombineItem2Info.key != 0)
+        else if(curCombineClue1Info != null && curCombineItem2Info != null)
         {
-            //슬롯1,슬롯2의 Key의 합
-            int sumKeyValue = curCombineClue1Info.key + curCombineItem2Info.key;
-
-            //슬롯1,슬롯2의 Type의 합
-            string slotSumType = curCombineItem2Info.type + curCombineClue1Info.type ;
-
-            //합쳐진 오브젝트의 Type
-            string sumObjectType = "";
-
-            //myItemList에서 해당 SumKey값을 가진 아이템 있을경우
-            if (myItemList.Find(x => x.key == sumKeyValue) != null)
+            if (curCombineClue1Info.key != 0 && curCombineItem2Info.key != 0)
             {
-                Item sumItem = myItemList.Find(x => x.key == sumKeyValue);
-                //합쳐진 단서의 Type
-                sumObjectType = sumItem.type;
+                Debug.Log("단서와 아이템의 조합");
 
-                //Sumkey로 찾은 오브젝트의 타입이 슬롯창의 두 오브젝트의 타입을 더한 값과 같을경우.
-                if (sumObjectType == slotSumType && sumItem.key != 0)
+                //슬롯1,슬롯2의 Key의 합
+                int sumKeyValue = curCombineClue1Info.key + curCombineItem2Info.key;
+
+                //슬롯1,슬롯2의 Type의 합
+                string slotSumType = curCombineItem2Info.type + curCombineClue1Info.type;
+
+                //합쳐진 오브젝트의 Type
+                string sumObjectType = "";
+
+                //myItemList에서 해당 SumKey값을 가진 아이템 있을경우
+                if (myItemList.Find(x => x.key == sumKeyValue) != null)
                 {
-                    Debug.Log("아이템으로 생성됨");
-                    //해당 Key값을 가진 단서 획득
-                    GetItem(sumKeyValue);
+                    Item sumItem = myItemList.Find(x => x.key == sumKeyValue);
+                    //합쳐진 단서의 Type
+                    sumObjectType = sumItem.type;
 
-                    //조합에 사용된 오브젝트 제거
-                    RemoveClue(curCombineClue1Info.key);
-                    RemoveItem(curCombineItem2Info.key);
+                    //Sumkey로 찾은 오브젝트의 타입이 슬롯창의 두 오브젝트의 타입을 더한 값과 같을경우.
+                    if (sumObjectType == slotSumType && sumItem.key != 0)
+                    {
+                        Debug.Log("아이템으로 생성됨");
+                        //해당 Key값을 가진 단서 획득
+                        GetItem(sumKeyValue);
 
-                    //슬롯 비우기
+                        //조합에 사용된 오브젝트 제거
+                        RemoveClue(curCombineClue1Info.key);
+                        RemoveItem(curCombineItem2Info.key);
+
+                        //슬롯 비우기
+                        EmptyCombineSlot();
+
+                        //조합창 Text표시
+                        contentText2.text = "조합 성공!";
+                    }
+                }
+
+                //myClueList에서 해당 SumKey값을 가진 단서가 있을경우
+                else if (myClueList.Find(x => x.key == sumKeyValue) != null)
+                {
+                    Clue sumClue = myClueList.Find(x => x.key == sumKeyValue);
+                    //합쳐진 단서의 Type
+                    sumObjectType = sumClue.type;
+
+                    //Sumkey로 찾은 오브젝트의 타입이 슬롯창의 두 오브젝트의 타입을 더한 값과 같을경우.
+                    if (sumObjectType == slotSumType && sumClue.key != 0)
+                    {
+                        Debug.Log("단서로 생성됨");
+
+                        //해당 Key값을 가진 단서 획득
+                        GetClue(sumKeyValue);
+
+                        //조합에 사용된 오브젝트 제거
+                        RemoveClue(curCombineClue1Info.key);
+                        RemoveItem(curCombineItem2Info.key);
+
+                        //슬롯 비우기
+                        EmptyCombineSlot();
+
+                        //조합창 Text표시
+                        contentText2.text = "조합 성공!";
+                    }
+                }
+
+                //조합된 단서가 존재하지 않다면
+                if (sumObjectType == "")
+                {
+                    Debug.Log("텍스트 넣었음");
+
+                    //조합 슬롯 비우기
                     EmptyCombineSlot();
 
-                    //조합창 Text표시
-                    contentText2.text = "조합 성공!";
+                    contentText2.text = "조합 실패!";
                 }
-            }
-
-            //myClueList에서 해당 SumKey값을 가진 단서가 있을경우
-            else if (myClueList.Find(x => x.key == sumKeyValue) != null)
-            {
-                Clue sumClue = myClueList.Find(x => x.key == sumKeyValue);
-                //합쳐진 단서의 Type
-                sumObjectType = sumClue.type;
-
-                //Sumkey로 찾은 오브젝트의 타입이 슬롯창의 두 오브젝트의 타입을 더한 값과 같을경우.
-                if (sumObjectType == slotSumType && sumClue.key != 0)
-                {
-                    Debug.Log("단서로 생성됨");
-
-                    //해당 Key값을 가진 단서 획득
-                    GetClue(sumKeyValue);
-
-                    //조합에 사용된 오브젝트 제거
-                    RemoveClue(curCombineClue1Info.key);
-                    RemoveItem(curCombineItem2Info.key);
-
-                    //슬롯 비우기
-                    EmptyCombineSlot();
-
-                    //조합창 Text표시
-                    contentText2.text = "조합 성공!";
-                }
-            }
-
-            //조합된 단서가 존재하지 않다면
-            if (sumObjectType == "")
-            {
-                Debug.Log("텍스트 넣었음");
-
-                //조합 슬롯 비우기
-                EmptyCombineSlot();
-
-                contentText2.text = "조합 실패!";
             }
         }
+        
         #endregion
-      
     }
 
     //조합 슬롯 비우기
@@ -956,7 +1013,7 @@ public class ObjectManager : MonoBehaviour
         combineSlot1_Using = false;
         combineSlot2_Using = false;
 
-        //조합창 안의 정보들을 비워줌
+        //조합창 안의 정보들의 Key값을 비워줌
         curCombineItem1Info = null;
         curCombineItem2Info = null;
         curCombineClue1Info = null;
@@ -989,5 +1046,50 @@ public class ObjectManager : MonoBehaviour
     private void CombineSlot2True()
     {
         combineSlot2_Using = true;
+    }
+
+    
+    //조합슬롯 1번의 아이템을 비우는 메서드
+    private void EmptyCombineSlot1Item()
+    {
+        //1번 정보값을 지운다
+        curCombineItem1Info = null;
+        //1번 슬롯의 아이템 이미지를 지운다.
+        image_CombineSlot1Item.sprite = sprite_NoneImage;
+        //1번 슬롯의 아이템 이름을 지운다
+        combineSlot1Name.text = "";
+    }
+
+    //조합슬롯 2번의 아이템을 비우는 메서드
+    private void EmptyCombineSlot2Item()
+    {
+        //2번 정보값을 지운다
+        curCombineItem2Info = null;
+        //2번 슬롯의 아이템 이미지를 지운다.
+        image_CombineSlot2Item.sprite = sprite_NoneImage;
+        //2번 슬롯의 아이템 이름을 지운다
+        combineSlot2Name.text = "";
+    }
+
+    //조합슬롯 1번의 단서를 비우는 메서드
+    private void EmptyCombineSlot1Clue()
+    {
+        //1번 정보값을 지운다
+        curCombineClue1Info = null;
+        //1번 슬롯의 단서 이미지를 지운다.
+        image_CombineSlot1Item.sprite = sprite_NoneImage;
+        //1번 슬롯의 단서 이름을 지운다
+        combineSlot1Name.text = "";
+    }
+
+    //조합슬롯 2번의 단서를 비우는 메서드
+    private void EmptyCombineSlot2Clue()
+    {
+        //2번 정보값을 지운다
+        curCombineClue2Info = null;
+        //2번 슬롯의 단서 이미지를 지운다.
+        image_CombineSlot2Item.sprite = sprite_NoneImage;
+        //2번 슬롯의 단서 이름을 지운다
+        combineSlot2Name.text = "";
     }
 }

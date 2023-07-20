@@ -3435,7 +3435,7 @@ RectTransform:
   m_Father: {fileID: 1270090227}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0.4166667}
   m_AnchorMax: {x: 1, y: 0.99999994}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -17371,7 +17371,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 371772477}
   m_Direction: 2
   m_Value: 0.9999999
-  m_Size: 0
+  m_Size: 0.58333325
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17677,13 +17677,11 @@ MonoBehaviour:
   itemDataBase: {fileID: 4900000, guid: 0a43c4f441b44404fbf4da606eeedcce, type: 3}
   allItemList: []
   myItemList: []
-  combinItemList: []
   curItemList: []
   curItemList2: []
   clueDataBase: {fileID: 4900000, guid: 502e407eb5fdbc4439881a88a28cf919, type: 3}
   allClueList: []
   myClueList: []
-  combineCluList: []
   curClueList: []
   curClueList2: []
   itemfilePath: 
