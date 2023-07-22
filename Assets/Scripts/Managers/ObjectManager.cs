@@ -152,6 +152,10 @@ public class ObjectManager : MonoBehaviour
     //조합창 슬롯2에 선택된 단서의 정보
     public Clue curCombineClue2Info;
 
+    private void Awake()
+    {
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -217,7 +221,8 @@ public class ObjectManager : MonoBehaviour
             EmptyCombineSlot();
         }
 
-        
+        ////Debug Message
+        //NullDebugLog();
 
     }
 
@@ -719,12 +724,15 @@ public class ObjectManager : MonoBehaviour
             image_CombineSlot2.sprite = sprite_Slot;
         }
 
-       
+
     }
 
     //조합 버튼을 눌렀을 경우
     public void CombineButton()
     {
+        //Debug Checking
+        NullDebugLog();
+
         //슬롯 1: Item, 슬롯 2: Item
         #region
         if (curCombineItem1Info != null && curCombineItem2Info != null)
@@ -782,7 +790,7 @@ public class ObjectManager : MonoBehaviour
 
         //슬롯 1: Clue, 슬롯 2: Clue
         #region
-        else if(curCombineClue1Info != null && curCombineClue2Info != null)
+        if (curCombineClue1Info != null && curCombineClue2Info != null)
         {
             if (curCombineClue1Info.key != 0 && curCombineClue2Info.key != 0)
             {
@@ -838,7 +846,7 @@ public class ObjectManager : MonoBehaviour
 
         //슬롯 1: Item, 슬롯 2: Clue
         #region
-        else if(curCombineItem1Info != null && curCombineClue2Info !=null)
+        if (curCombineItem1Info != null && curCombineClue2Info != null)
         {
             if (curCombineItem1Info.key != 0 && curCombineClue2Info.key != 0)
             {
@@ -922,7 +930,7 @@ public class ObjectManager : MonoBehaviour
 
         //슬롯 1: Clue, 슬롯 2: Item
         #region
-        else if(curCombineClue1Info != null && curCombineItem2Info != null)
+        if (curCombineClue1Info != null && curCombineItem2Info != null)
         {
             if (curCombineClue1Info.key != 0 && curCombineItem2Info.key != 0)
             {
@@ -1002,7 +1010,7 @@ public class ObjectManager : MonoBehaviour
                 }
             }
         }
-        
+
         #endregion
     }
 
@@ -1048,7 +1056,7 @@ public class ObjectManager : MonoBehaviour
         combineSlot2_Using = true;
     }
 
-    
+
     //조합슬롯 1번의 아이템을 비우는 메서드
     private void EmptyCombineSlot1Item()
     {
@@ -1091,5 +1099,140 @@ public class ObjectManager : MonoBehaviour
         image_CombineSlot2Item.sprite = sprite_NoneImage;
         //2번 슬롯의 단서 이름을 지운다
         combineSlot2Name.text = "";
+    }
+
+    //조합 슬롯 1번에 오브젝트 넣기
+    public void InputCombinSlot1(int _slotNum)
+    {
+        //현재 Item Tap일 경우
+        if (curType == "Item")
+        {
+            //조합 슬롯 1번에 아이템 이미지 변경
+            image_CombineSlot1Item.sprite = itemSprite[curItemList2[_slotNum].indexNum];
+
+            //조합 슬롯 1번 이름 바꾸기
+            combineSlot1Name.text = curItemList2[_slotNum].name;
+
+            //조합 슬롯 1번에 정보 넣기
+            curCombineItem1Info = curItemList2[_slotNum];
+
+            //조합 단서 1번 정보 비우기
+            curCombineClue1Info = null;
+
+
+            if (curCombineItem1Info != null && curCombineItem2Info != null)
+            {
+                if (curCombineItem1Info.key == curCombineItem2Info.key)
+                {
+                    //2번 슬롯 아이템 비우기
+                    EmptyCombineSlot2Item();
+                }
+            }
+        }
+
+        //현재 Clue Tap일 경우
+        else if (curType == "Clue")
+        {
+            //조합 슬롯 1번에 단서 이미지 변경
+            image_CombineSlot1Item.sprite = clueSprite[curClueList2[_slotNum].indexNum];
+
+            //조합 슬롯 1번 이름 바꾸기
+            combineSlot1Name.text = curClueList2[_slotNum].name;
+
+            //조합 슬롯 1번에 정보 넣기
+            curCombineClue1Info = curClueList2[_slotNum];
+
+            //조합 아이템 1번 정보 비우기
+            curCombineItem1Info = null;
+
+            if (curCombineClue1Info != null && curCombineClue2Info != null)
+            {
+                //조합 슬롯 1번,2번의 단서가 같을 경우
+                if (curCombineClue1Info.key == curCombineClue2Info.key)
+                {
+                    //2번 슬롯 단서 비우기
+                    EmptyCombineSlot2Clue();
+                }
+            }
+        }
+    }
+
+    //조합 슬롯 2번에 오브젝트 넣기
+    public void InputCombinSlot2(int _slotNum)
+    {
+        if (curType == "Item")
+        {
+            //조합 슬롯 2번에 아이템 이미지 변경
+            image_CombineSlot2Item.sprite = itemSprite[curItemList2[_slotNum].indexNum];
+
+            //조합 슬롯 2번 이름 바꾸기
+            combineSlot2Name.text = curItemList2[_slotNum].name;
+
+            //조합 슬롯 2번에 정보 넣기
+            curCombineItem2Info = curItemList2[_slotNum];
+
+            //조합 단서 2번 정보 비우기
+            curCombineClue2Info = null;
+
+            if (curCombineItem1Info != null && curCombineItem2Info != null)
+            {
+                //조합 슬롯 1번,2번에 같은 아이템이 들어있을경우
+                if (curCombineItem1Info.key == curCombineItem2Info.key)
+                {
+                    //1번 슬롯 아이템 비우기
+                    EmptyCombineSlot1Item();
+                }
+            }
+        }
+
+        //현재 Clue Tap일 경우
+        else if (curType == "Clue")
+        {
+            //조합 슬롯 2번에 단서 이미지 변경
+            image_CombineSlot2Item.sprite = clueSprite[curClueList2[_slotNum].indexNum];
+
+            //조합 슬롯 2번 이름 바꾸기
+            combineSlot2Name.text = curClueList2[_slotNum].name;
+
+            //조합 슬롯 2번에 정보 넣기
+            curCombineClue2Info = curClueList2[_slotNum];
+
+            //조합 아이템 2번 정보 비우기
+            curCombineItem2Info = null;
+
+            if (curCombineClue1Info != null && curCombineClue2Info != null)
+            {
+                //조합 슬롯 1번,2번의 단서가 같을 경우
+                if (curCombineClue1Info.key == curCombineClue2Info.key)
+                {
+                    //1번 슬롯 단서 비우기
+                    EmptyCombineSlot1Clue();
+                }
+            }
+        }
+    }
+
+    //정보 값이 비워졌는지 체크하기위해 만든 메서스(Debug용)
+    private void NullDebugLog()
+    {
+        if (curCombineItem1Info == null)
+        {
+            Debug.Log("아이템 1번 정보 비워짐");
+        }
+
+        if (curCombineItem2Info == null)
+        {
+            Debug.Log("아이템 2번 정보 비워짐");
+        }
+
+        if (curCombineClue1Info == null)
+        {
+            Debug.Log("단서 1번 정보 비워짐");
+        }
+
+        if (curCombineClue2Info == null)
+        {
+            Debug.Log("단서 2번 정보 비워짐");
+        }
     }
 }
