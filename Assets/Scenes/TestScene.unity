@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -688,6 +688,13 @@ MonoBehaviour:
   CharacterName: {fileID: 46397390}
   skipButton: 20000000
   writerText: 
+  characternameText: 
+  bool_isNPC: 0
+  images_NPC: {fileID: 0}
+  images_NPC_portrait: {fileID: 0}
+  talkManager: {fileID: 0}
+  bool_isAction: 0
+  talkIndex: 0
 --- !u!114 &108964192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2992,6 +2999,8 @@ GameObject:
   - component: {fileID: 358651629}
   - component: {fileID: 358651628}
   - component: {fileID: 358651632}
+  - component: {fileID: 358651634}
+  - component: {fileID: 358651633}
   m_Layer: 0
   m_Name: BusinessMan
   m_TagString: Untagged
@@ -3026,7 +3035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uC7A5\uC0AC\uAFBC"
 --- !u!61 &358651629
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3051,8 +3060,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 4}
-  m_EdgeRadius: 4
+  m_Size: {x: 2.5, y: 4}
+  m_EdgeRadius: 0.5
 --- !u!212 &358651630
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3117,7 +3126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uC7A5\uC0AC\uAFBC"
 --- !u!95 &358651632
 Animator:
   serializedVersion: 5
@@ -3139,6 +3148,45 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &358651633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358651626}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07019bb0cabae1f4f8dea06bd73f07b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 20000000
+  writerText: 
+  bool_isBbang: 1
+  images_Bbang: {fileID: 1486878665}
+  images_NPC_portrait: {fileID: 2140373127, guid: bd70666d066e8164c9ff0f6867ed9e39, type: 3}
+--- !u!114 &358651634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358651626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 175fc74d91131d048894d562db73b741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 20000000
+  writerText: "\uBB50 \uC0B4 \uAC83 \uC788\uC18C?"
+  characternameText: "\uC7A5\uC0AC\uAFBC"
+  bool_isNPC: 1
+  images_NPC: {fileID: 1486878665}
+  images_NPC_portrait: {fileID: 2140373127, guid: bd70666d066e8164c9ff0f6867ed9e39, type: 3}
 --- !u!1 &359510315
 GameObject:
   m_ObjectHideFlags: 0
@@ -5418,8 +5466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 2001
-  bool_isNPC: 1
 --- !u!61 &476922398
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5967,7 +6013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &515062065
 Transform:
   m_ObjectHideFlags: 0
@@ -7681,7 +7727,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.6}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 1
 --- !u!114 &688575808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7725,8 +7771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  bool_isNPC: 1
 --- !u!212 &688575811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8761,8 +8805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 1001
-  bool_isNPC: 1
 --- !u!114 &804179095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10340,8 +10382,9 @@ MonoBehaviour:
   bool_isAction: 0
   scanObject: {fileID: 0}
   dialogText: {fileID: 0}
-  dialogManager: {fileID: 1092642524}
-  dialogIndex: 0
+  talkManager: {fileID: 0}
+  talkIndex: 0
+  talkPanel: {fileID: 0}
 --- !u!4 &905248353
 Transform:
   m_ObjectHideFlags: 0
@@ -10751,6 +10794,7 @@ GameObject:
   - component: {fileID: 928861244}
   - component: {fileID: 928861243}
   - component: {fileID: 928861247}
+  - component: {fileID: 928861248}
   m_Layer: 0
   m_Name: JangSeong
   m_TagString: Untagged
@@ -10785,7 +10829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uC7A5\uC2B9\uC0C1\uB301\uBD80\uC778"
 --- !u!61 &928861244
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10810,8 +10854,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 4}
-  m_EdgeRadius: 4
+  m_Size: {x: 3.5, y: 4}
+  m_EdgeRadius: 0.5
 --- !u!212 &928861245
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10898,6 +10942,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &928861248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928861241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e2e2166ddbe6f4f9bd4a110df502fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 20000000
+  writerText: "\uC5EC\uAE30\uB294 \uC5B4\uCA50 \uC77C\uC774\uC624?"
+  characternameText: "\uC7A5\uC2B9\uC0C1\uB301 \uBD80\uC778"
+  bool_isNPC: 1
+  images_NPC: {fileID: 1486878665}
+  images_NPC_portrait: {fileID: 256513075, guid: 20588bd86d08f3f439c8459db628c04e, type: 3}
 --- !u!1 &929113581
 GameObject:
   m_ObjectHideFlags: 0
@@ -12463,6 +12527,7 @@ GameObject:
   - component: {fileID: 1060148994}
   - component: {fileID: 1060148993}
   - component: {fileID: 1060148997}
+  - component: {fileID: 1060148998}
   m_Layer: 0
   m_Name: Guiduck
   m_TagString: Untagged
@@ -12497,7 +12562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uADC0\uB355\uC5B4\uBA48"
 --- !u!61 &1060148994
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12522,8 +12587,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 4}
-  m_EdgeRadius: 4
+  m_Size: {x: 3, y: 4}
+  m_EdgeRadius: 0.5
 --- !u!212 &1060148995
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12588,7 +12653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uADC0\uB355\uC5B4\uBA48"
 --- !u!95 &1060148997
 Animator:
   serializedVersion: 5
@@ -12610,6 +12675,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1060148998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060148991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df6325853a470940882a5e6b478d9e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 20000000
+  writerText: "\uD63C\uC790\uC11C\uB77C\uB3C4 \uAC70\uB72C\uD788 \uC0B4\uC544\uC57C
+    \uD558\uC624."
+  characternameText: "\uADC0\uB355\uC5B4\uBA48"
+  bool_isNPC: 1
+  images_NPC: {fileID: 1486878665}
+  images_NPC_portrait: {fileID: 957350385, guid: c4b92165159364e499205125782f02e7, type: 3}
 --- !u!1 &1075882280
 GameObject:
   m_ObjectHideFlags: 0
@@ -12737,8 +12823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  bool_isNPC: 1
 --- !u!212 &1075882287
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13621,6 +13705,13 @@ MonoBehaviour:
   CharacterName: {fileID: 46397390}
   skipButton: 20000000
   writerText: 
+  characternameText: 
+  bool_isNPC: 0
+  images_NPC: {fileID: 0}
+  images_NPC_portrait: {fileID: 0}
+  talkManager: {fileID: 0}
+  bool_isAction: 0
+  talkIndex: 0
 --- !u!1 &1154790012
 GameObject:
   m_ObjectHideFlags: 0
@@ -14808,8 +14899,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 1001
-  bool_isNPC: 1
 --- !u!61 &1248886864
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15260,8 +15349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 1002
-  bool_isNPC: 1
 --- !u!61 &1280023441
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18159,6 +18246,7 @@ GameObject:
   - component: {fileID: 1482299815}
   - component: {fileID: 1482299814}
   - component: {fileID: 1482299818}
+  - component: {fileID: 1482299819}
   m_Layer: 0
   m_Name: Songnara
   m_TagString: Untagged
@@ -18193,7 +18281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uC1A1\uB098\uB77C \uC0C1\uC778"
 --- !u!61 &1482299815
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18218,8 +18306,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 4}
-  m_EdgeRadius: 4
+  m_Size: {x: 2.5, y: 4}
+  m_EdgeRadius: 0.5
 --- !u!212 &1482299816
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18284,7 +18372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uC1A1\uB098\uB77C\uC0C1\uC778"
 --- !u!95 &1482299818
 Animator:
   serializedVersion: 5
@@ -18306,6 +18394,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1482299819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482299812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce19dbfc09257842858d8d1ea44aac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 20000000
+  writerText: "\uC2DC\uAC04\uC774 \uBA85\uC904\uC774\uC624! \uBE68\uB9AC \uC6C0\uC9C1\uC774\uC2ED\uC2DC\uC624!!(\uD37D
+    \uACB8\uC190\uD55C \uB9D0\uC528\uB85C \uBC14\uC090 \uC77C\uD55C\uB2E4.)"
+  characternameText: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+  bool_isNPC: 1
+  images_NPC: {fileID: 1486878665}
+  images_NPC_portrait: {fileID: -940151491, guid: d3894448d29a9784f8a6753dfa5469af, type: 3}
 --- !u!1 &1485747553
 GameObject:
   m_ObjectHideFlags: 0
@@ -18537,6 +18646,7 @@ GameObject:
   - component: {fileID: 1502069084}
   - component: {fileID: 1502069083}
   - component: {fileID: 1502069087}
+  - component: {fileID: 1502069088}
   m_Layer: 0
   m_Name: BoatMan
   m_TagString: Untagged
@@ -18571,7 +18681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uBC43\uC0AC\uACF5"
 --- !u!61 &1502069084
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18597,7 +18707,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 4}
-  m_EdgeRadius: 4
+  m_EdgeRadius: 0.5
 --- !u!212 &1502069085
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18662,7 +18772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uBC43\uC0AC"
 --- !u!95 &1502069087
 Animator:
   serializedVersion: 5
@@ -18684,6 +18794,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1502069088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502069081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca077347368808a4697ab69116b9f653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 20000000
+  writerText: "\uC624\uB79C\uB9CC\uC5D0 \uBC1F\uB294 \uB545\uC774\uC694. \uC26C\uACE0
+    \uC2F6\uC18C."
+  characternameText: "\uBC43\uC0AC\uACF5"
+  bool_isNPC: 1
+  images_NPC: {fileID: 1486878665}
+  images_NPC_portrait: {fileID: 1549160241, guid: 30b6cc192a4fdd9419ee8f11efb74c68, type: 3}
 --- !u!1 &1504203600
 GameObject:
   m_ObjectHideFlags: 0
@@ -19734,8 +19865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 2000
-  bool_isNPC: 1
 --- !u!61 &1580724731
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20469,7 +20598,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 4}
-  m_EdgeRadius: 4
+  m_EdgeRadius: 0.5
 --- !u!212 &1614491628
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20534,7 +20663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uC2EC\uCCAD\uC774"
 --- !u!95 &1614491630
 Animator:
   serializedVersion: 5
@@ -20966,6 +21095,7 @@ GameObject:
   - component: {fileID: 1657878951}
   - component: {fileID: 1657878950}
   - component: {fileID: 1657878954}
+  - component: {fileID: 1657878955}
   m_Layer: 0
   m_Name: Budhist
   m_TagString: Untagged
@@ -21000,7 +21130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uC2B9\uB824"
 --- !u!61 &1657878951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21026,7 +21156,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 4}
-  m_EdgeRadius: 4
+  m_EdgeRadius: 0.5
 --- !u!212 &1657878952
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21091,7 +21221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uC2B9\uB824"
 --- !u!95 &1657878954
 Animator:
   serializedVersion: 5
@@ -21113,6 +21243,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1657878955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657878948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd043b87b312c1449b441d48247b089d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 20000000
+  writerText: "\uBD80\uCC98\uAED8 \uC9C0\uC131\uC73C\uB85C \uBD88\uACF5\uB4DC\uB9B0\uB2E4\uBA74
+    \uADFC\uC2EC\uC774 \uC5C6\uC5B4\uC9C4\uB2F5\uB2C8\uB2E4."
+  characternameText: "\uC2B9\uB824"
+  bool_isNPC: 1
+  images_NPC: {fileID: 1486878665}
+  images_NPC_portrait:
+  - {fileID: 21300000, guid: 6f602fad575b4ca468cd0ef912e07cb1, type: 3}
 --- !u!1 &1658723608
 GameObject:
   m_ObjectHideFlags: 0
@@ -21703,8 +21855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 2001
-  bool_isNPC: 1
 --- !u!61 &1708105218
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24691,8 +24841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 2000
-  bool_isNPC: 1
 --- !u!61 &1916487848
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24923,6 +25071,7 @@ GameObject:
   - component: {fileID: 1939285205}
   - component: {fileID: 1939285204}
   - component: {fileID: 1939285208}
+  - component: {fileID: 1939285209}
   m_Layer: 0
   m_Name: Beggar
   m_TagString: Untagged
@@ -24957,7 +25106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uAC70\uC9C0"
 --- !u!61 &1939285205
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24982,8 +25131,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 4}
-  m_EdgeRadius: 4
+  m_Size: {x: 2.5, y: 3}
+  m_EdgeRadius: 0.3
 --- !u!212 &1939285206
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25048,7 +25197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
+  ChatText: "\uAC70\uC9C0"
 --- !u!95 &1939285208
 Animator:
   serializedVersion: 5
@@ -25070,6 +25219,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1939285209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939285202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2aa5e51b1bc3bb4090039124eefdc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 20000000
+  writerText: "(\uAF2C\uB974\uB975)...\uBC30\uACE0\uD504\uB2E4.."
+  characternameText: "\uAC70\uC9C0"
+  bool_isNPC: 1
+  images_NPC: {fileID: 1486878665}
+  images_NPC_portrait:
+  - {fileID: 21300000, guid: 238e9718555ebec48bc618dbcfc4788e, type: 3}
 --- !u!1 &1943741406
 GameObject:
   m_ObjectHideFlags: 0
@@ -25910,8 +26080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 1002
-  bool_isNPC: 1
 --- !u!61 &1999785779
 BoxCollider2D:
   m_ObjectHideFlags: 0
