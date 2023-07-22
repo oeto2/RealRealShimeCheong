@@ -10,6 +10,9 @@ public class Portal : MonoBehaviour
     //이동할 목적지(이동할 맵의 포탈)
     public Transform transform_Destination;
 
+    //포탈 이동시 플레이어의 위치값
+    public Transform transform_PlayerSpon;
+
     //Player가 포탈에 도착했는지 확인하는 flag
     [SerializeField] private bool isPlayerArrivePotal;
 
@@ -52,8 +55,8 @@ public class Portal : MonoBehaviour
     //목적지로 이동
     public void MoveToDestination()
     {
-        //Player의 위치값을 목적지의 위치값으로 변경
-        gameObject_Player.transform.position = transform_Destination.position;
+        //Player의 위치값을 목적 설정 값으로 변경
+        gameObject_Player.transform.position = transform_PlayerSpon.position;
         //카메라의 제한 구역을 맵 번호로 변경
         Camera.main.GetComponent<CameraMove>().ChangeLimit(int_MapNum);
     }
