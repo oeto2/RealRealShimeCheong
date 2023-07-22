@@ -67,7 +67,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("¿Ã∞« Touch! ¿ÂªÁ≤€!!!!");
+            Debug.Log("¿Ã∞« Touch! ¿ÂΩ¬ªÛ¥Ï∫Œ¿Œ!!!!");
             StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             if (bool_isNPC == true)

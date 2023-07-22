@@ -67,7 +67,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("이건 Touch! 장사꾼!!!!");
+            Debug.Log("이건 Touch! 뱃사공!!!!");
             StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             if (bool_isNPC == true)

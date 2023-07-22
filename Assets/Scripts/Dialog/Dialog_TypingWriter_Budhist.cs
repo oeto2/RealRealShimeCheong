@@ -65,7 +65,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("이건 Touch! 거지!!!!");
+            Debug.Log("이건 Touch! 승려!!!!");
             StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             if (bool_isNPC == true)
