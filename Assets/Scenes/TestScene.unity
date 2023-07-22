@@ -14787,9 +14787,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699b078d1cd3d1044bcc4c11bef029e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator_Celender: {fileID: 1307439882}
   text_TimeText: {fileID: 219243736}
   float_RealTime: 0
   timeMultipleCation: 1
+  int_DayMinute: 300
+  int_DayCount: 1
 --- !u!1 &1381241257
 GameObject:
   m_ObjectHideFlags: 0
@@ -21227,7 +21230,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -57.000122, y: -23}
+  m_AnchoredPosition: {x: -57.00006, y: -23}
   m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1851244458
