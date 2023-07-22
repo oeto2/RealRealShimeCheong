@@ -44,6 +44,9 @@ public class TalkManager : MonoBehaviour
 
     public string GetTalk(int id, int talkIndex) //Object의 id , string배열의 index
     {
+        if (talkIndex == talkData[id].Length)
+            return null;
+        else
         return talkData[id][talkIndex]; //해당 아이디의 해당
     }
 }

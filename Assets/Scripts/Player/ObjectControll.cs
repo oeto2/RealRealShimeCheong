@@ -9,7 +9,7 @@ public class ObjectControll : MonoBehaviour
 
     //오브젝트 데이터 스크립트
     [SerializeField]
-    private objdata objdataScr;
+    private Objdata objdataScr;
 
     //Player가 오브젝트와 접촉중인지 확인하는 flag
     [SerializeField]
@@ -65,7 +65,7 @@ public class ObjectControll : MonoBehaviour
             isTriggerObject = true;
 
             //아이템 내부의 Objdata를 가져옴
-            objdataScr = gameobject_TargetObject.GetComponent<objdata>();
+            objdataScr = gameobject_TargetObject.GetComponent<Objdata>();
         }
 
         //단서일 경우
@@ -77,7 +77,7 @@ public class ObjectControll : MonoBehaviour
             isTriggerObject = true;
 
             //아이템 내부의 Objdata를 가져옴
-            objdataScr = gameobject_TargetObject.GetComponent<objdata>();
+            objdataScr = gameobject_TargetObject.GetComponent<Objdata>();
         }
     }
 
@@ -99,7 +99,7 @@ public class ObjectControll : MonoBehaviour
             isTriggerObject = true;
 
             //아이템 내부의 Objdata를 가져옴
-            objdataScr = gameobject_TargetObject.GetComponent<objdata>();
+            objdataScr = gameobject_TargetObject.GetComponent<Objdata>();
         }
     }
 

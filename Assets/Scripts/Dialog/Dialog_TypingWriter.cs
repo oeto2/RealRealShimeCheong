@@ -68,6 +68,7 @@ public class Dialog_TypingWriter : MonoBehaviour
 
     void Dialog(int id, bool bool_isNPC)
     {
+        /*
         string dialogData = TalkManager.GetTalk(id, talkIndex);
 
         if (bool_isNPC)
@@ -80,6 +81,7 @@ public class Dialog_TypingWriter : MonoBehaviour
         {
             ChatText.text = dialogData;
         }
+        */
 
     }
 
@@ -87,7 +89,7 @@ public class Dialog_TypingWriter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("이건 Touch! Bbang!!!!");
+            Debug.Log("이건 Touch! 스님!!!!");
             StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             if (bool_isNPC == true)
@@ -114,8 +116,8 @@ public class Dialog_TypingWriter : MonoBehaviour
         //characternameText = narrator;
         writerText = "";
 
-        objdata obj_Data = GameObject.Find("NPC").GetComponent<objdata>();
-        Dialog(obj_Data.key, obj_Data.bool_isNPC);
+        Objdata obj_Data = GameObject.Find("NPC").GetComponent<Objdata>();
+        //Dialog(obj_Data.key, obj_Data.bool_isNPC);
 
         //narrator = CharacterName.text;
 

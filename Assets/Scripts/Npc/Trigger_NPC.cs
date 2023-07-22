@@ -14,12 +14,13 @@ public class Trigger_NPC : MonoBehaviour
     private GameObject Main;
     void Start()
     {
-        Main = GameObject.Find("DialogManager");
+        Main = GameObject.Find("TalkManager");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Touch!");
+        Debug.Log(ChatText);
         if (other.CompareTag("NPC"))
         {
             Main.GetComponent<MainScript>().NPCChatEnter(ChatText);
