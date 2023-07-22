@@ -16,7 +16,15 @@ public class Dialog_TypingWriter : MonoBehaviour
 
     public string writerText = "";
 
+    public string characternameText = "";
+
     bool isButtonClicked = false;
+
+    public bool bool_isNPC = false;
+
+    public GameObject images_NPC;
+
+    public GameObject images_NPC_portrait;
 
 
     //최초 클릭
@@ -25,6 +33,7 @@ public class Dialog_TypingWriter : MonoBehaviour
         //StartCoroutine(TextPractice());
         TextPractice();
         StopCoroutine(TextPractice());
+        CharacterName.text = "";
     }
 
 
@@ -57,16 +66,33 @@ public class Dialog_TypingWriter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("이건 Touch! Bbang!!!!");
             StartCoroutine(TextPractice());
-            StopCoroutine(TextPractice());
+            //bool_isBotjim = true;
+            if (bool_isNPC == true)
+            {
+                images_NPC.SetActive(true);
+                images_NPC_portrait.SetActive(true);
+                bool_isNPC = false;
+            }
+            else
+            {
+                images_NPC.SetActive(false);
+                images_NPC_portrait.SetActive(false);
+                bool_isNPC = true;
+                StopCoroutine(TextPractice());
+            }
         }
     }
 
     IEnumerator NormalChat(string narrator, string narration)
     {
         int a = 0;
-        CharacterName.text = narrator;
+        //CharacterName.text = narrator;
+        characternameText = narrator;
         writerText = "";
+
+        narrator = CharacterName.text;
 
         //텍스트 타이핑
         for (a = 0; a < narration.Length; a++)
@@ -94,7 +120,7 @@ public class Dialog_TypingWriter : MonoBehaviour
 
     IEnumerator TextPractice()
     {
-        yield return StartCoroutine(NormalChat("나는봇짐", "?이것은 봇짐이다 다음 대화 전환은 space"));
-        yield return StartCoroutine(NormalChat("나는봇짐", "?안녕하세요, 반갑습니다. 대화 전환 테스트입니다 이것은 테스트지? 그럼 테스트지 테스트야 테스트군 테스트"));
+        yield return StartCoroutine(NormalChat(characternameText, writerText));
+        //yield return StartCoroutine(NormalChat("나는봇짐", "?안녕하세요, 반갑습니다. 대화 전환 테스트입니다 이것은 테스트지? 그럼 테스트지 테스트야 테스트군 테스트"));
     }
 }
