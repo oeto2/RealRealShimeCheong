@@ -40,7 +40,7 @@ public class DialogManager : MonoBehaviour
 
 	void GenerateData()
 	{
-		DialogData.Add(1000, new string[] { "?이것은 테스트지?", "그럼 테스트지 테스트야 테스트군 테스트똻" });
+		DialogData.Add(5000, new string[] { "?이것은 테스트지?", "그럼 테스트지 테스트야 테스트군 테스트똻" });
 	}
 
 	public string GetTalk(int id, int idx_Dialog)

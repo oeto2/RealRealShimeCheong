@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialog_TypingWriter : MonoBehaviour
+public class Dialog_TypingWriter_Beggar : MonoBehaviour
 {
     // 실제 채팅이 나오는 텍스트
     public Text ChatText;
@@ -24,14 +24,8 @@ public class Dialog_TypingWriter : MonoBehaviour
 
     public GameObject images_NPC;
 
-    //public Sprite[] images_NPC_portrait;
-    public Sprite images_NPC_portrait;
+    public Sprite[] images_NPC_portrait;
 
-    public TalkManager talkManager;
-
-    public bool bool_isAction;
-
-    public int talkIndex;
 
     //최초 클릭
     void Start()
@@ -66,28 +60,12 @@ public class Dialog_TypingWriter : MonoBehaviour
                 }*/
     }
 
-    void Dialog(int id, bool bool_isNPC)
-    {
-        string dialogData = TalkManager.GetTalk(id, talkIndex);
-
-        if (bool_isNPC)
-        {
-            ChatText.text = dialogData;
-
-        }
-
-        else
-        {
-            ChatText.text = dialogData;
-        }
-
-    }
 
     public void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("이건 Touch! Bbang!!!!");
+            Debug.Log("이건 Touch! 거지!!!!");
             StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             if (bool_isNPC == true)
@@ -95,7 +73,7 @@ public class Dialog_TypingWriter : MonoBehaviour
                 images_NPC.SetActive(true);
                 bool_isNPC = false;
 
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait;
+                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
             }
             else
             {
@@ -114,16 +92,12 @@ public class Dialog_TypingWriter : MonoBehaviour
         //characternameText = narrator;
         writerText = "";
 
-        objdata obj_Data = GameObject.Find("NPC").GetComponent<objdata>();
-        Dialog(obj_Data.key, obj_Data.bool_isNPC);
-
         //narrator = CharacterName.text;
 
         //텍스트 타이핑
-        for (a = 0; a < narration.Length+1; a++)
-		{
+        for (a = 0; a < narration.Length; a++)
+        {
             writerText += narration[a];
-            //Dialog(obj_Data.key, obj_Data.bool_isNPC) += narration[a];
             ChatText.text = writerText;
 
             //텍스트 타이핑 시간 조절

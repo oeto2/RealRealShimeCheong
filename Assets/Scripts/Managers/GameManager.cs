@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
 {
     // 하나씩 추가하자
     public bool bool_isAction;
-    public GameObject scanObject;
+    //public GameObject scanObject;
     public Text dialogText;
     public DialogManager dialogManager;
     public int dialogIndex;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +34,8 @@ public class GameManager : MonoBehaviour
 		else
 		{
             bool_isAction = true;
-            scanObject = scan_obj;
-            objdata obj_Data = scanObject.GetComponent<objdata>();
+            //scanObject = scan_obj;
+            objdata obj_Data = GameObject.Find("Stage").GetComponent<objdata>();
             Dialog(obj_Data.key, obj_Data.bool_isNPC);
 
         }

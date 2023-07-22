@@ -10,6 +10,7 @@ TagManager:
   - RightWall
   - NPC
   - Clue
+  - Stage
   layers:
   - Default
   - TransparentFX
