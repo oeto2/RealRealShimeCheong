@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2271,7 +2271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 700}
+  m_AnchoredPosition: {x: 0, y: 700.0001}
   m_SizeDelta: {x: 0, y: 1200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &325732857
@@ -3286,7 +3286,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 0.99999994}
+  m_AnchorMax: {x: 1, y: 0.9999999}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4306,6 +4306,7 @@ GameObject:
   - component: {fileID: 432845155}
   - component: {fileID: 432845154}
   - component: {fileID: 432845156}
+  - component: {fileID: 432845157}
   m_Layer: 5
   m_Name: Object_Slot
   m_TagString: Untagged
@@ -4430,6 +4431,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &432845157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432845152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f9126c6874f324883f5dadaec2f932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drobAreaScr1: {fileID: 1571154806}
+  drobAreaScr2: {fileID: 1992602447}
+  objectManagerScr: {fileID: 1595965865}
+  image_combineSlot: {fileID: 432845154}
+  image_Object: {fileID: 1398335299}
+  int_SlotNum: 0
 --- !u!1 &439895666
 GameObject:
   m_ObjectHideFlags: 0
@@ -6389,6 +6408,7 @@ GameObject:
   - component: {fileID: 622007320}
   - component: {fileID: 622007319}
   - component: {fileID: 622007318}
+  - component: {fileID: 622007321}
   m_Layer: 5
   m_Name: Object_Slot (1)
   m_TagString: Untagged
@@ -6513,6 +6533,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622007316}
   m_CullTransparentMesh: 1
+--- !u!114 &622007321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622007316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f9126c6874f324883f5dadaec2f932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drobAreaScr1: {fileID: 1571154806}
+  drobAreaScr2: {fileID: 1992602447}
+  objectManagerScr: {fileID: 1595965865}
+  image_combineSlot: {fileID: 622007319}
+  image_Object: {fileID: 392718488}
+  int_SlotNum: 1
 --- !u!1 &636408696
 GameObject:
   m_ObjectHideFlags: 0
@@ -17199,7 +17237,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 371772478}
   m_HandleRect: {fileID: 371772477}
   m_Direction: 2
-  m_Value: 0.9999999
+  m_Value: 0.99999976
   m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -17255,6 +17293,7 @@ GameObject:
   - component: {fileID: 1571154804}
   - component: {fileID: 1571154803}
   - component: {fileID: 1571154805}
+  - component: {fileID: 1571154806}
   m_Layer: 5
   m_Name: CombinSlot1
   m_TagString: Untagged
@@ -17378,6 +17417,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1571154806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571154801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9797173cc5db4da4b8237086d7ebeefa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPointerEnter: 0
 --- !u!1 &1582291282
 GameObject:
   m_ObjectHideFlags: 0
@@ -22681,6 +22733,7 @@ GameObject:
   - component: {fileID: 1992602445}
   - component: {fileID: 1992602444}
   - component: {fileID: 1992602446}
+  - component: {fileID: 1992602447}
   m_Layer: 5
   m_Name: CombinSlot2
   m_TagString: Untagged
@@ -22804,6 +22857,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1992602447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992602442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9797173cc5db4da4b8237086d7ebeefa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPointerEnter: 0
 --- !u!1 &1993110128
 GameObject:
   m_ObjectHideFlags: 0
