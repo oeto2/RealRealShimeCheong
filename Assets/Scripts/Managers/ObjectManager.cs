@@ -204,11 +204,11 @@ public class ObjectManager : MonoBehaviour
         //조합창 아이템 탭 기본으로 보여주기
         TabClick2(curType);
 
-        //CurCobine 오브젝트 Info의 key값 초기화
-        //curCombineItem1Info.key = 1;
-        //curCombineItem2Info.key = 1;
-        //curCombineClue1Info.key = 1;
-        //curCombineClue2Info.key = 1;
+        GetItem(1001);
+        GetItem(1002);
+        GetClue(2001);
+        GetClue(2002);
+
     }
 
 
@@ -221,9 +221,12 @@ public class ObjectManager : MonoBehaviour
             EmptyCombineSlot();
         }
 
-        ////Debug Message
-        //NullDebugLog();
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log(GetEquipObjectKey());
+        }
 
+        
     }
 
     //오브젝트 슬롯 클릭시 (아이템창 한정)
@@ -730,8 +733,6 @@ public class ObjectManager : MonoBehaviour
     //조합 버튼을 눌렀을 경우
     public void CombineButton()
     {
-        //Debug Checking
-        NullDebugLog();
 
         //슬롯 1: Item, 슬롯 2: Item
         #region
@@ -1211,28 +1212,40 @@ public class ObjectManager : MonoBehaviour
             }
         }
     }
+   
 
-    //정보 값이 비워졌는지 체크하기위해 만든 메서스(Debug용)
-    private void NullDebugLog()
+    //장착한 오브젝트의 Key 값을 반환해주는 메서드 (값이 있으면 key값, 없으면 0)
+    public int GetEquipObjectKey()
     {
-        if (curCombineItem1Info == null)
+        //보유중인 아이템 리스트가 비어있지 않다면
+        if(curItemList != null)
         {
-            Debug.Log("아이템 1번 정보 비워짐");
+            //사용중인 아이템 클래스 넣기
+            Item usingItem = curItemList.Find(x => x.isUsing == true);
+
+            //사용중인 아이템이 있었다면
+            if(usingItem != null)
+            {
+                //사용중인 아이템 키값 반화
+                return usingItem.key;
+            }
         }
 
-        if (curCombineItem2Info == null)
+        //보유중인 단서 리스트가 비어있지 않다면
+        if (curClueList != null)
         {
-            Debug.Log("아이템 2번 정보 비워짐");
+            //사용중인 단서 클래스 넣기
+            Clue usingclue = curClueList.Find(x => x.isUsing == true);
+
+            //사용중인 단서가 있었다면
+            if (usingclue != null)
+            {
+                //사용중인 단서 키값 반화
+                return usingclue.key;
+            }
         }
 
-        if (curCombineClue1Info == null)
-        {
-            Debug.Log("단서 1번 정보 비워짐");
-        }
-
-        if (curCombineClue2Info == null)
-        {
-            Debug.Log("단서 2번 정보 비워짐");
-        }
+        //사용중인 아이템이 없을 경우
+        return 0;
     }
 }

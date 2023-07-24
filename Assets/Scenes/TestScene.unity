@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -632,6 +632,7 @@ MonoBehaviour:
   isMapWindowLaunch: 0
   isOptionLaunch: 0
   isCombineLaunch: 0
+  isMonuseOn: 0
   itemTapImage: {fileID: 1296248040}
   itemTapImage2: {fileID: 454576572}
   clueTapImage: {fileID: 2030025701}
@@ -8038,7 +8039,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 3
+  m_PointLightOuterRadius: 5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -13832,7 +13833,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1154790014}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 95288468}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1159711645
 GameObject:
   m_ObjectHideFlags: 0
@@ -27604,6 +27617,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6938847884951112621, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -338
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885108550666, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885108550666, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885108550666, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885108550666, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885108550667, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885108550667, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885108550667, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885108550667, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885108550667, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885108550667, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885108550667, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6938847885153175904, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_Name
       value: Canvas_Dialog_NPC_UI
@@ -27695,6 +27756,14 @@ PrefabInstance:
     - target: {fileID: 6938847885153175907, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885204364911, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -706
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885204364911, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -165
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}

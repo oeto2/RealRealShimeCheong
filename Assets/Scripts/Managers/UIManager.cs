@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     public bool isOptionLaunch;
     //조합창이 실행중인지 확인하는 flag
     public bool isCombineLaunch;
+    //마우스가 켜졌는지 확인하는 falg
+    public bool isMonuseOn;
 
     //탭 버튼의 원래 색깔
     private Color originColor = new Color32(255, 255, 255, 255);
@@ -39,9 +41,31 @@ public class UIManager : MonoBehaviour
     public Image clueTapImage;
     public Image clueTapImage2;
 
+    private void Awake()
+    {
+        //마우스 포인터 끄기
+        Cursor.visible = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        isMonuseOn = Cursor.visible;
+
+        //마우스 포인터를 켜는 조건
+        if (gameObject_CombineWindow.activeSelf || gameObject_ItemWindow.activeSelf || gameObject_Option.activeSelf || gameObject_MapWindow.activeSelf)
+        {
+            //마우스 포인터 켜기
+            Cursor.visible = true;
+        }
+
+        //마우스 포인터를 끄는 조건
+        if(!gameObject_CombineWindow.activeSelf && !gameObject_ItemWindow.activeSelf && !gameObject_Option.activeSelf && !gameObject_MapWindow.activeSelf)
+        {
+            //마우스 포인터 끄기
+            Cursor.visible = false;
+        }
+
         //아이템 창 관련 코드
         #region
         //아이템 창 비활성화 상태에서 X키를 누를 경우
@@ -49,6 +73,7 @@ public class UIManager : MonoBehaviour
         {
             //아이템 창 실행
             ItemWindowLaunch();
+            
         }
 
         //아이템 창 활성화 상태에서 X키 or ESC를 누를 경우
@@ -126,6 +151,8 @@ public class UIManager : MonoBehaviour
         //옵션창이 실행중이지 않을경우
         else if (!gameObject_Option.activeSelf)
         {
+            
+
             isOptionLaunch = false;
         }
         #endregion
@@ -151,10 +178,11 @@ public class UIManager : MonoBehaviour
             CombineWindowExit();
         }
         #endregion
-
     }
+
     //아이템,조합,단서창 껐다 켜기
     #region
+
     //아이템 창 실행
     public void ItemWindowLaunch()
     {
@@ -253,5 +281,17 @@ public class UIManager : MonoBehaviour
         clueTapImage2.color = falseColor;
         itemTapImage2.color = originColor;
     }
+    #endregion
+
+    //옵션창 구성
+    #region
+
+    //게임 종료 버튼
+    public void ExitButton()
+    {
+        //종료
+        Application.Quit();
+    }
+
     #endregion
 }
