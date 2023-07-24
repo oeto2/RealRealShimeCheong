@@ -225,8 +225,6 @@ public class ObjectManager : MonoBehaviour
         {
             Debug.Log(GetEquipObjectKey());
         }
-
-        
     }
 
     //오브젝트 슬롯 클릭시 (아이템창 한정)
@@ -239,6 +237,8 @@ public class ObjectManager : MonoBehaviour
             #region
             Item curItem = curItemList[slotNum];
             Item usingItem = curItemList.Find(x => x.isUsing == true);
+
+            
 
             //사용중인 아이템을 제외한 아이템들의 사용을 false로 바꿈
             if (usingItem != null) usingItem.isUsing = false;
@@ -260,6 +260,19 @@ public class ObjectManager : MonoBehaviour
             {
                 usingClue.isUsing = false;
             }
+            
+            //사용중인 아이템을 한번 더 클릭하면 false로 바꾸는 코드
+            if(usingItem != null)
+            {
+                if (usingItem.key == curItemList[slotNum].key)
+                {
+                    curItemList[slotNum].isUsing = false;
+                    
+                    //장착 오브젝트 이미지 없애기
+                    equitObjectSprite.sprite = sprite_NoneImage;
+                }
+            }
+
             #endregion
         }
 
@@ -290,6 +303,18 @@ public class ObjectManager : MonoBehaviour
             {
                 usingItem.isUsing = false;
             }
+
+            //사용중인 단서를 한번 더 클릭하면 false로 바꾸는 코드
+            if (usingClue != null)
+            {
+                if (usingClue.key == curClueList[slotNum].key)
+                {
+                    curClueList[slotNum].isUsing = false;
+
+                    //장착 오브젝트 이미지 없애기
+                    equitObjectSprite.sprite = sprite_NoneImage;
+                }
+            }
             #endregion
         }
         Save();
@@ -307,24 +332,10 @@ public class ObjectManager : MonoBehaviour
             Item usingItem2 = curItemList2.Find(x => x.isUsing == true);
 
             //사용중인 아이템을 제외한 아이템들의 사용을 false로 바꿈
-            if (usingItem2 != null) usingItem2.isUsing = false;
+            if (curItem2 != null)
             {
-                curItem2.isUsing = true;
-
                 //선택된 아이템안의 내용 표시하기
                 contentText2.text = curItem2.content;
-
-                //선택된 이미지 옮겨주기
-                equitObjectSprite.sprite = itemSprite[curItem2.indexNum];
-            }
-
-            //사용중인 단서가 있다면 usingClue에 담겠다.
-            Clue usingClue2 = curClueList2.Find(x => x.isUsing == true);
-
-            //만약 사용중인 단서가 있었다면 그 값을 false로 바꾸겠다.
-            if (usingClue2 != null)
-            {
-                usingClue2.isUsing = false;
             }
 
             //아이템 탭에서 조합창 1이 사용중일경우
@@ -368,24 +379,10 @@ public class ObjectManager : MonoBehaviour
             Clue curClue2 = curClueList2[slotNum];
             Clue usingClue2 = curClueList2.Find(x => x.isUsing == true);
 
-            if (usingClue2 != null) usingClue2.isUsing = false;
+            if (curClueList2 != null)
             {
-                curClue2.isUsing = true;
-
                 //선택된 단서안의 내용 표시하기
                 contentText2.text = curClue2.content;
-
-                //착용아이템을 현재 선택된 단서 이미지로 바꿔주기
-                equitObjectSprite.sprite = clueSprite[curClue2.indexNum];
-            }
-
-            //사용중인 아이템이 있다면 usingItem에 담겠다.
-            Item usingItem2 = curItemList2.Find(x => x.isUsing == true);
-
-            //만약 사용중인 아이템이 있었다면 그 아이템의 isUsing을 false로 바꾸겠다.
-            if (usingItem2 != null)
-            {
-                usingItem2.isUsing = false;
             }
 
             //단서 탭에서 조합창 1이 사용중일경우
@@ -393,6 +390,7 @@ public class ObjectManager : MonoBehaviour
             {
                 //조합창 슬롯 1의 이미지를 사용중인 단서의 이미지로 변경
                 image_CombineSlot1Item.sprite = clueSprite[curClue2.indexNum];
+
                 //조합창 슬롯 1의 단서 이름변경
                 combineSlot1Name.text = curClue2.name;
 
@@ -1226,7 +1224,7 @@ public class ObjectManager : MonoBehaviour
             //사용중인 아이템이 있었다면
             if(usingItem != null)
             {
-                //사용중인 아이템 키값 반화
+                //사용중인 아이템 키값 반환
                 return usingItem.key;
             }
         }
@@ -1240,12 +1238,12 @@ public class ObjectManager : MonoBehaviour
             //사용중인 단서가 있었다면
             if (usingclue != null)
             {
-                //사용중인 단서 키값 반화
+                //사용중인 단서 키값 반환
                 return usingclue.key;
             }
         }
 
-        //사용중인 아이템이 없을 경우
+        //사용중인 오브젝트가 없을 경우
         return 0;
     }
 }
