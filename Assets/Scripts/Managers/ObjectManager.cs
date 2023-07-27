@@ -51,15 +51,21 @@ public class ObjectManager : MonoBehaviour
     #region 
     //아이템 데이터 값이 담긴 txt파일
     public TextAsset itemDataBase;
+
     //Item 클래스 안의 아이템 데이터들을 리스트화 시킨 것
+    [Tooltip("모든 아이템 리스트")]
     public List<Item> allItemList;
 
     //게임내에서 사용할 아이템 리스트 (아이템창 한정)
+    [Tooltip("게임내에서 사용할 아이템 리스트")]
     public List<Item> myItemList;
 
     //슬롯에서 보여줄 아이템 리스트 (현재 보유중)
+    [Tooltip("게임내에서 획득한 아이템 리스트(인벤토리)")]
     public List<Item> curItemList;
+
     //조합창에서 보여줄 아이템 리스트 (현재 보유중)
+    [Tooltip("게임내에서 획득한 아이템 리스트(조합창)")]
     public List<Item> curItemList2;
     #endregion
 
@@ -67,14 +73,19 @@ public class ObjectManager : MonoBehaviour
     public TextAsset clueDataBase;
 
     //Clue 클래스 안의 단서 데이터들을 리스트화 시킨것
+    [Tooltip("모든 단서 리스트")]
     public List<Clue> allClueList;
 
     //게임내에서 사용할 단서 리스트
+    [Tooltip("게임내에서 사용할 단서 리스트")]
     public List<Clue> myClueList;
 
     //슬롯에서 보여줄 단서 리스트(현재 보유중)
+    [Tooltip("게임내에서 획득한 단서 리스트(인벤토리)")]
     public List<Clue> curClueList;
+
     //조합창 에보여줄 단서 리스트(현재 보유중)
+    [Tooltip("게임내에서 획득한 단서 리스트(조합창)")]
     public List<Clue> curClueList2;
 
     //아이템 Json이 저장될 위치

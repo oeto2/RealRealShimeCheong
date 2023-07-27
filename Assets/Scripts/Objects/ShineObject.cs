@@ -1,31 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShineObject : MonoBehaviour
 {
-    //원래 오브젝트
-    public GameObject gameObject_Origin;
+    //오브젝트의 SpriteRenderer
+    public SpriteRenderer objcetSpriteRender;
 
-    //빛날 오브젝트
-    public GameObject gameObject_Shine;
+    //오브젝트의 기본 이미지
+    public Sprite sprite_Origin;
+
+    //오브젝트의 빛나는 이미지
+    public Sprite sprite_Change;
 
     //오브젝트에 마우스를 올리고 있을경우
     private void OnMouseEnter()
     {
-        if (gameObject.CompareTag("Object"))
-        {
-            gameObject_Origin.SetActive(false);
-            gameObject_Shine.SetActive(true);
-        }
+
+        //빛나는 이미지로 변경
+        objcetSpriteRender.sprite = sprite_Change;
 
     }
 
     //오브젝트에 마우스가 벗어날 경우
     private void OnMouseExit()
     {
-        Debug.Log(gameObject.name + "벗어남");
-        gameObject_Origin.SetActive(true);
-        gameObject_Shine.SetActive(false);
+        //기본 이미지로 변경
+        objcetSpriteRender.sprite = sprite_Origin;
     }
 }

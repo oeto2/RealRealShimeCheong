@@ -12,6 +12,11 @@ public class Controller : MonoBehaviour
     //벽이 감지되었음 WallDetect에서 관리
     public bool detectWall;
 
+    //대화중인지 감지하는 Flag 외부 스크립트에서 관리
+    private bool isTalk;
+
+    //Player가 움직일 수 있는 상태인지 확인하는 falg(Animation 제어)
+    public bool canMove;
     
     // ray
     GameObject scanObject;
@@ -61,10 +66,16 @@ public class Controller : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        //Player의 이동조건
-        if(!detectWall)
+        //Player의 이동조건 
+        if(!detectWall && !isTalk)
         {
+            canMove = true;
             transform.position += new Vector3(h, 0, v) * moveSpeed * Time.deltaTime;
+        }
+
+        else
+        {
+            canMove = false;
         }
 
         //Debug용 Ray 그리기
@@ -88,5 +99,17 @@ public class Controller : MonoBehaviour
     {
         if (npc_collider.gameObject.name == "NPC")
             Debug.Log("Touch!");
+    }
+
+    //대화 시작
+    public void TalkStart()
+    {
+        isTalk = true;
+    }
+
+    //대화 끝
+    public void TalkEnd()
+    {
+        isTalk = false;
     }
 }
