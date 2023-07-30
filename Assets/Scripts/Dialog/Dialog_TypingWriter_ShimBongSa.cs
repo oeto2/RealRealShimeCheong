@@ -51,11 +51,14 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
     {
         //튜토리얼 대화 모음
         {
-            tutorial_SentenceList.Add(new TutorialSentence("심청이를 안본지 이틀이 지났다, 간만의 외출이니 나갈 채비를 해보자."));
+            tutorial_SentenceList.Add(new TutorialSentence("심청이를 안본지 이틀이 지났다, 간만의 외출이니 나갈 채비를 해보자."));//0
             tutorial_SentenceList.Add(new TutorialSentence(" Z를 누르면 주변의 물건과 상호작용할 수 있다."));
             tutorial_SentenceList.Add(new TutorialSentence("봇짐을 챙겼다. X를 눌러 봇짐을 열어볼 수 있다."));
-            tutorial_SentenceList.Add(new TutorialSentence("늘 나의 눈이 되어주는 지도도 챙겨야 한다."));
-            tutorial_SentenceList.Add(new TutorialSentence("채비가 끝났으니 심청이를 만나러 향리 댁으로 가자."));
+            tutorial_SentenceList.Add(new TutorialSentence("늘 나의 눈이 되어주는 지도도 챙겼다."));
+            tutorial_SentenceList.Add(new TutorialSentence("채비가 끝났으니 심청이를 만나러 향리 댁으로 가자.")); 
+            tutorial_SentenceList.Add(new TutorialSentence("아이템이나 단서를 장착 후 Z를 누르면 그에 따른 상호작용이 일어납니다.")); //5
+            tutorial_SentenceList.Add(new TutorialSentence("청이가 향리 댁에 오지 않았다고 한다"));
+            tutorial_SentenceList.Add(new TutorialSentence("어찌 된 일인지 주변을 수소문 해 보자."));
         }
     }
 
@@ -136,17 +139,83 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
         StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[0].sentence, true));
     }
 
+
     public void Start_Sentence1_2()
     {
         Debug.Log("다이얼로그 대화1_2");
 
-        if(isTalkEnd)
+        if (isTalkEnd)
         {
             //대화 실행시 다이얼로그창 띄우기
             gameObject_Dialougue.SetActive(true);
 
             StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[1].sentence, false));
         }
-        
+    }
+
+    //봇짐 획득 대사
+    public void Start_Sentence_GetBotzime()
+    {
+        Debug.Log("봇짐 획득 대화");
+
+        //대화 실행시 다이얼로그창 띄우기
+        gameObject_Dialougue.SetActive(true);
+
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[2].sentence, true));
+    }
+
+    //지도 획득 대사
+    public void Start_Sentence_GetMap()
+    {
+        Debug.Log("지도 획득 대화");
+
+        //대화 실행시 다이얼로그창 띄우기
+        gameObject_Dialougue.SetActive(true);
+
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[3].sentence, true));
+    }
+
+    //지도, 봇짐 둘다 획득 대사
+    public void Start_Sentence_GetObjcets()
+    {
+        Debug.Log("둘다 획득 대화");
+
+        //대화 실행시 다이얼로그창 띄우기
+        gameObject_Dialougue.SetActive(true);
+
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[4].sentence, true));
+    }
+
+    //뺑덕 어멈 대화 끝난뒤 대화
+    public void Start_Sentence_BbangEnd()
+    {
+        Debug.Log("뺑덕 대화 끝");
+
+        //대화 실행시 다이얼로그창 띄우기
+        gameObject_Dialougue.SetActive(true);
+
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[5].sentence, true));
+    }
+
+    //향리댁 대화 끝난뒤 대화
+    public void Start_Sentence_HyangEnd1()
+    {
+        Debug.Log("향리댁 대화 끝");
+
+        //대화 실행시 다이얼로그창 띄우기
+        gameObject_Dialougue.SetActive(true);
+
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[6].sentence, true));
+    }
+
+    //향리댁 대화 끝난뒤 대화
+    public void Start_Sentence_HyangEnd2()
+    {
+        Debug.Log("향리댁 대화 끝");
+
+        //대화 실행시 다이얼로그창 띄우기
+        gameObject_Dialougue.SetActive(true);
+
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[7].sentence, true));
     }
 }

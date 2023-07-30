@@ -69,13 +69,7 @@ public class Controller : MonoBehaviour
         //Player의 이동조건 
         if(!detectWall && !isTalk)
         {
-            canMove = true;
             transform.position += new Vector3(h, 0, v) * moveSpeed * Time.deltaTime;
-        }
-
-        else
-        {
-            canMove = false;
         }
 
         //Debug용 Ray 그리기
@@ -104,12 +98,16 @@ public class Controller : MonoBehaviour
     //대화 시작
     public void TalkStart()
     {
+        Debug.Log("TalkStar");
         isTalk = true;
+        canMove = true;
     }
 
     //대화 끝
     public void TalkEnd()
     {
+        Debug.Log("TalkEnd");
         isTalk = false;
+        canMove = false;
     }
 }

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class ObjectControll : MonoBehaviour
 {
-    //오브젝트 매니저 스크립트
+    //외부 스크립트 참조
     public ObjectManager objectManagerScr;
+    public Dialog_TypingWriter_ShimBongSa playerDialogueScr;
+    public TutorialManager tutorialManagerScr;
+    public Controller playerCtrlScr;
 
     //오브젝트 데이터 스크립트
     [SerializeField]
@@ -19,6 +22,18 @@ public class ObjectControll : MonoBehaviour
     [SerializeField]
     private GameObject gameobject_TargetObject;
 
+    //UI 봇짐 이미지
+    public GameObject gameObjcet_BotzimeImage;
+
+    //UI 지도 이미지
+    public GameObject gameObject_MapImage;
+
+    //봇짐을 획득 했는지
+    public bool getBotzime;
+
+    //맵을 획득 했는지
+    public bool getMap;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,13 +44,10 @@ public class ObjectControll : MonoBehaviour
     void Update()
     {
         //오브젝트 접촉후 Z키를 눌렀을 경우
-        if(Input.GetKeyDown(KeyCode.Z) && isTriggerObject) 
+        if (Input.GetKeyDown(KeyCode.Z) && isTriggerObject && tutorialManagerScr.setence1End)
         {
-            Debug.Log("실행");
-            Debug.Log(objdataScr.key);
-
             //아이템 오브젝트 추가
-            if(gameobject_TargetObject.CompareTag("Item"))
+            if (gameobject_TargetObject.CompareTag("Item"))
             {
                 objectManagerScr.GetItem(objdataScr.key);
                 //오브젝트 SetActive false
@@ -49,15 +61,32 @@ public class ObjectControll : MonoBehaviour
                 //오브젝트 SetActive false
                 gameobject_TargetObject.SetActive(false);
             }
-        }
 
+            //봇짐일 경우
+            else if (gameobject_TargetObject.CompareTag("Object") && gameobject_TargetObject.name == "Botzime")
+            {
+                //봇짐 이미지 보여주기
+                gameObjcet_BotzimeImage.SetActive(true);
+                GetBotzime(gameobject_TargetObject);
+            }
+
+            //맵일 경우
+            else if (gameobject_TargetObject.CompareTag("Object") && gameobject_TargetObject.name == "Map")
+            {
+                //지도 이미지 보여주기
+                gameObject_MapImage.SetActive(true);
+                GetMap(gameobject_TargetObject);
+            }
+        }
     }
 
     //오브젝트 BoxCollider와 접촉시
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //아이템일 경우
-        if(collision.CompareTag("Item"))
+        string objName = collision.name;
+
+        // 아이템일 경우
+        if (collision.CompareTag("Item"))
         {
             //접촉한 오브젝트
             gameobject_TargetObject = collision.gameObject;
@@ -79,13 +108,32 @@ public class ObjectControll : MonoBehaviour
             //아이템 내부의 Objdata를 가져옴
             objdataScr = gameobject_TargetObject.GetComponent<Objdata>();
         }
+
+        //봇짐과 닿았을 경우
+        else if(collision.CompareTag("Object") && objName == "Botzime")
+        {
+            gameobject_TargetObject = collision.gameObject;
+
+            isTriggerObject = true;
+        }
+
+        //맵이랑 닿았을 경우
+        else if (collision.CompareTag("Object") && objName == "Map")
+        {
+            gameobject_TargetObject = collision.gameObject;
+
+            isTriggerObject = true;
+        }
     }
 
     //오브젝트 BoxCollider와 접촉중일경우
     private void OnTriggerStay2D(Collider2D collision)
-    { 
-        //아이템일 경우
-        if(collision.CompareTag("Item"))
+    {
+        string objName = collision.name;
+
+
+        //봇짐일 경우
+        if (collision.CompareTag("Item"))
         {
             isTriggerObject = true;
         }
@@ -97,9 +145,18 @@ public class ObjectControll : MonoBehaviour
             gameobject_TargetObject = collision.gameObject;
 
             isTriggerObject = true;
+        }
 
-            //아이템 내부의 Objdata를 가져옴
-            objdataScr = gameobject_TargetObject.GetComponent<Objdata>();
+        //봇짐과 닿았을 경우
+        else if (collision.CompareTag("Object") && objName == "Botzime")
+        {
+            isTriggerObject = true;
+        }
+
+        //맵이랑 닿았을 경우
+        else if (collision.CompareTag("Object") && objName == "Map")
+        {
+            isTriggerObject = true;
         }
     }
 
@@ -109,5 +166,33 @@ public class ObjectControll : MonoBehaviour
         isTriggerObject = false;
     }
 
-    
+    //봇짐 획득
+    public void GetBotzime(GameObject _obj)
+    {
+        getBotzime = true;
+
+        //봇짐 획득 대화 실행
+        playerDialogueScr.Start_Sentence_GetBotzime();
+
+        //플레이어 이동 제한
+        playerCtrlScr.TalkStart();
+
+        //오브젝트 비활성화
+        _obj.SetActive(false);
+    }
+
+    //지도 획득
+    public void GetMap(GameObject _obj)
+    {
+        getMap = true;
+
+        //지도 획득 대화 실행
+        playerDialogueScr.Start_Sentence_GetMap();
+
+        //플레이어 이동제한
+        playerCtrlScr.TalkStart();
+
+        //오브젝트 비활성화
+        _obj.SetActive(false);
+    }
 }

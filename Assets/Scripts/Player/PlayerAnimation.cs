@@ -24,54 +24,55 @@ public class PlayerAnimation : MonoBehaviour
     {
         //Player Move Animation
         #region
-        if(playerCtrlScr.canMove)
+        //Player가 이동중인지 확인하는 조건
+        if (Input.GetAxisRaw("Horizontal") != 0)
         {
-            //Player가 이동중인지 확인하는 조건
-            if (Input.GetAxisRaw("Horizontal") != 0)
-            {
-                isMove = true;
+            Debug.Log("Player 이동중");
+            isMove = true;
+        }
 
-            }
+        //Player가 이동이 끝났는지 확인하는 조건
+        else if (Input.GetAxisRaw("Horizontal") == 0)
+        {
+            isMove = false;
 
-            //Player가 이동이 끝났는지 확인하는 조건
-            else if (Input.GetAxisRaw("Horizontal") == 0)
-            {
-                isMove = false;
+        }
 
-            }
-
-            //Player가 이동중이라면
-            if (isMove)
-            {
-                //이동애니메이션 시작
-                animator_Player.SetBool("moveStart", true);
-            }
-            //Player가 이동중이지 않다면
-            else if (!isMove)
-            {
-                //이동 애니메이션 종료
-                animator_Player.SetBool("moveStart", false);
-            }
+        //Player가 이동중이라면
+        if (isMove)
+        {
+            //이동애니메이션 시작
+            animator_Player.SetBool("moveStart", true);
+        }
+        //Player가 이동중이지 않다면
+        else if (!isMove)
+        {
+            //이동 애니메이션 종료
+            animator_Player.SetBool("moveStart", false);
         }
         #endregion
 
         //Player 이미지 회전 조건
         #region
+
+        if (Input.GetAxisRaw("Horizontal") == 1)
+        {
+            isFilp = false;
+            spriteRenderer_Player.flipX = isFilp;
+        }
+
+        else if (Input.GetAxisRaw("Horizontal") == -1)
+        {
+            isFilp = true;
+            spriteRenderer_Player.flipX = isFilp;
+        }
+        #endregion
+
+        //Player 이동 애니메이션 끄기
         if (playerCtrlScr.canMove)
         {
-            if (Input.GetAxisRaw("Horizontal") == 1)
-            {
-                isFilp = false;
-                spriteRenderer_Player.flipX = isFilp;
-            }
-
-            else if (Input.GetAxisRaw("Horizontal") == -1)
-            {
-                isFilp = true;
-                spriteRenderer_Player.flipX = isFilp;
-            }
-        }    
-        
-        #endregion
+            Debug.Log("이동 애니메이션 정지");
+            animator_Player.SetBool("moveStart", false);
+        }
     }
 }

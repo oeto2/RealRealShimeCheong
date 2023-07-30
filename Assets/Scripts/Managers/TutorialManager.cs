@@ -10,6 +10,7 @@ public class TutorialManager : MonoBehaviour
     public ObjectManager objectManagerScr;
     public Controller playerCtrlScr;
     public Dialog_TypingWriter_ShimBongSa playerDialogueScr;
+    public ObjectControll objCtrlScr;
 
     //나레이션 오브젝트
     public GameObject gameObject_NarationBG;
@@ -46,7 +47,20 @@ public class TutorialManager : MonoBehaviour
     private bool closeNote;
 
     //첫번째 대화 끝
-    private bool setence1End;
+    public bool setence1End;
+
+    //오브젝트 둘다 획득
+    public bool getObjects;
+
+    //뺑덕 대화 끝
+    public bool SentenceEnd_Bbang;
+    //향리댁 대화 끝
+    public bool SentenceEnd_Hyang;
+
+    //흐름 제어용 Flags
+    private bool BangtalkEnd;
+    private bool HyangTalkEnd1;
+    private bool HyangTalkEnd2;
 
     // Start is called before the first frame update
     void Start()
@@ -105,8 +119,8 @@ public class TutorialManager : MonoBehaviour
                 //메모 끄기
                 if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Space)) && !closeNote)
                 {
-                    //Player 이동제한 해제
-                    playerCtrlScr.TalkEnd();
+                    //Player 이동제한
+                    playerCtrlScr.TalkStart();
 
                     //메모 끄기
                     gameObject_shimeNote.SetActive(false);
@@ -119,8 +133,11 @@ public class TutorialManager : MonoBehaviour
             }
 
             //이어서 대화 시작
-            if (!setence1End&& playerDialogueScr.isTalkEnd && closeNote && Input.GetKeyDown(KeyCode.Z))
+            if (!setence1End && playerDialogueScr.isTalkEnd && closeNote && Input.GetKeyDown(KeyCode.Z))
             {
+                //Player 이동제한
+                playerCtrlScr.TalkStart();
+
                 playerDialogueScr.Start_Sentence1_2();
 
                 Invoke("Sentence1End", 0.2f);
@@ -128,12 +145,107 @@ public class TutorialManager : MonoBehaviour
         }
 
         //2번째 대화가 끝나고 Z키 누르면 다이얼로그창 끄기
-        if (setence1End && Input.GetKeyDown(KeyCode.Z))
+        if (setence1End && Input.GetKeyDown(KeyCode.Z) && !objCtrlScr.getBotzime && !objCtrlScr.getMap && playerDialogueScr.isTalkEnd)
         {
+            //Player 이동제한 해제
+            playerCtrlScr.TalkEnd();
+
+            //UI 캔버스 보이기
+            gameObject_UICanvas.SetActive(true);
+
             gameObject_Dialogue.SetActive(false);
         }
         #endregion
 
+        //오브젝트 획득 하기 튜토리얼
+        #region
+        if (setence1End && !getObjects)
+        {
+            //봇짐 획득 후 창끄기
+            if (setence1End && Input.GetKeyDown(KeyCode.Z) && objCtrlScr.getBotzime && playerDialogueScr.isTalkEnd)
+            {
+                //Player 이동제한 해제
+                playerCtrlScr.TalkEnd();
+
+                gameObject_Dialogue.SetActive(false);
+            }
+
+            //맵 획득 후 창끄기
+            if (setence1End && Input.GetKeyDown(KeyCode.Z) && objCtrlScr.getMap && playerDialogueScr.isTalkEnd)
+            {
+                //Player 이동제한 해제
+                playerCtrlScr.TalkEnd();
+
+                gameObject_Dialogue.SetActive(false);
+            }
+
+            if (!gameObject_Dialogue.activeSelf && objCtrlScr.getMap && objCtrlScr.getBotzime)
+            {
+                //둘다 획득 대화 실행
+                playerDialogueScr.Start_Sentence_GetObjcets();
+
+                //Player 이동제한
+                playerCtrlScr.TalkStart();
+
+                getObjects = true;
+            }
+        }
+        #endregion
+        {
+            if (setence1End && getObjects && Input.GetKeyDown(KeyCode.Z) && playerDialogueScr.isTalkEnd)
+            {
+                //Player 이동제한 해제
+                playerCtrlScr.TalkEnd();
+
+                gameObject_Dialogue.SetActive(false);
+            }
+
+            //뺑떡 어멈의 말이 끝났을 경우
+            if (setence1End && getObjects && SentenceEnd_Bbang && !BangtalkEnd)
+            {
+                Debug.Log("뺑떡이야기 후 대화 실행");
+                playerCtrlScr.TalkStart();
+                playerDialogueScr.Start_Sentence_BbangEnd();
+
+                BangtalkEnd = true;
+            }
+
+            //문장이 전부 출력이 되었다면 Z키를 눌러 다이얼로그 끄기
+            if (playerDialogueScr.isTalkEnd && Input.GetKeyDown(KeyCode.Z) && BangtalkEnd && !SentenceEnd_Hyang)
+            {
+                playerCtrlScr.TalkEnd();
+                gameObject_Dialogue.SetActive(false);
+            }
+
+            //향리댁 대화가 모두 끝났을 경우
+            if(getObjects && SentenceEnd_Bbang && SentenceEnd_Hyang && !HyangTalkEnd1 && !HyangTalkEnd2)
+            {
+                playerCtrlScr.TalkStart();
+                //향리댁 1번대화
+                playerDialogueScr.Start_Sentence_HyangEnd1();
+
+                HyangTalkEnd1 = true;
+            }
+
+            //1번대화가 모두 끝나고 Z키 누를경우
+            if(SentenceEnd_Hyang && HyangTalkEnd1 && playerDialogueScr.isTalkEnd && Input.GetKeyDown(KeyCode.Z) && !HyangTalkEnd2)
+            {
+                //향리댁 2번 대화
+                playerDialogueScr.Start_Sentence_HyangEnd2();
+
+                HyangTalkEnd2 = true;
+            }
+
+            //2번대화가 모두 끝나고 Z키를 누를경우
+            if(playerDialogueScr.isTalkEnd && HyangTalkEnd2 && Input.GetKeyDown(KeyCode.Z))
+            {
+                playerCtrlScr.TalkEnd();
+
+                //다이얼로그 종료
+                gameObject_Dialogue.SetActive(false);
+            }
+        }
+        
     }
 
     //나레이션 배경 끄기
@@ -156,5 +268,17 @@ public class TutorialManager : MonoBehaviour
     private void Sentence1End()
     {
         setence1End = true;
+    }
+
+    //튜토리얼 뺑덕 대화가 모두 마무리 되었는지
+    public void TutorialSenteceEnd_Bbang()
+    {
+        SentenceEnd_Bbang = true;
+    }
+
+    //튜토리얼 향리댁 대화가 모두 마무리 되었는지
+    public void TutorialSentenceEnd_Hyang()
+    {
+        SentenceEnd_Hyang = true;
     }
 }

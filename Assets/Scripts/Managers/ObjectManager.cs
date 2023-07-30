@@ -214,12 +214,6 @@ public class ObjectManager : MonoBehaviour
         TabClick(curType);
         //조합창 아이템 탭 기본으로 보여주기
         TabClick2(curType);
-
-        GetItem(1001);
-        GetItem(1002);
-        GetClue(2001);
-        GetClue(2002);
-
     }
 
 
