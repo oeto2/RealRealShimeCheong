@@ -5,11 +5,16 @@ using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
+    public TutorialManager tutorialManagerScr;
+
     //캘린더의 애니메이터
     public Animator animator_Celender;
 
     //시간을 표시할 텍스트
     public Text text_TimeText;
+
+    //날짜 UI
+    public GameObject gameObjcet_DayUI; 
 
     //실제 시간
     [SerializeField]
@@ -26,31 +31,35 @@ public class TimeManager : MonoBehaviour
     [SerializeField]
     private int int_DayCount = 1;
 
-    public float Timetiem;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //시간 멈추기
+    private bool timeStop;
 
     private void FixedUpdate()
     {
-        //실제 시간 = 시간 + 배속
-        float_RealTime += Time.deltaTime * timeMultipleCation;
-        text_TimeText.text = float_RealTime.ToString("F0");
-
-        //만약 int_DayMinute 만큼 시간이 진행되었을경우
-        if (int_DayMinute <= float_RealTime)
+        if (!timeStop)
         {
-            //날짜 증가
-            int_DayCount++;
+            //실제 시간 = 시간 + 배속
+            float_RealTime += Time.deltaTime * timeMultipleCation;
+            text_TimeText.text = float_RealTime.ToString("F0");
 
-            //시간 초기화
-            float_RealTime = 0;
+            //만약 하루가 지났을 경우
+            if (int_DayMinute <= float_RealTime)
+            {
+                //날짜 증가
+                int_DayCount++;
 
-            //캘린더 애니메이션 진행
-            NextDayAnimaton(int_DayCount);
+                //시간 리셋
+                ResetTime();
+
+                //캘린더 애니메이션 진행
+                NextDayAnimaton(int_DayCount);
+
+                //시간 정지
+                StopTime();
+
+                //하루가 지났음
+                tutorialManagerScr.PassDay();
+            }
         }
     }
 
@@ -59,5 +68,37 @@ public class TimeManager : MonoBehaviour
     {
         //캘린더 날짜 바꾸기
         animator_Celender.SetInteger("DayNum", _day);
+    }
+
+    //날짜 UI 보여주기
+    public void ShowDayUI()
+    {
+        gameObjcet_DayUI.SetActive(true);
+    }
+
+    //시간 리셋
+    public void ResetTime()
+    {
+        float_RealTime = 0f;
+        text_TimeText.text = float_RealTime.ToString("F0");
+    }
+
+    //시간 멈추기
+    public void StopTime()
+    {
+        timeStop = true;
+    }
+
+    //시간 계속가기
+    public void ContinueTime()
+    {
+        timeStop = false;
+    }
+
+    //하루 지난뒤 대화 완료
+    public void PassDaySentenceEnd()
+    {
+        //시간 계속 흐르기
+        ContinueTime();
     }
 }

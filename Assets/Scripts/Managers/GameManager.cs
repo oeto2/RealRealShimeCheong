@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    //외부 스크립트
+    public CameraMove cameraMoveScr;
+
     // 하나씩 추가하자
     public bool bool_isAction;
     public GameObject scanObject;
@@ -13,6 +16,12 @@ public class GameManager : MonoBehaviour
 
     public int talkIndex;
     public GameObject talkPanel;
+
+
+    //Player 오브젝트
+    public GameObject gameObjcet_Player;
+    //Player ReturnPos
+    public Transform transform_PlayerReturn;
 
     // Start is called before the first frame update
     void Start()
@@ -73,5 +82,15 @@ public class GameManager : MonoBehaviour
     void Dialog(int id, bool bool_isNPC)
 	{
 
+    }
+
+    //플레이어 귀환
+    public void ReturnPlayer()
+    {
+        //플레이어 포지션 값 변경
+        gameObjcet_Player.transform.position = new Vector3(transform_PlayerReturn.position.x,transform_PlayerReturn.position.y,0);
+
+        //카메라 영역제한 값 변경
+        cameraMoveScr.ChangeLimit(0);
     }
 }

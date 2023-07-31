@@ -57,8 +57,12 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
             tutorial_SentenceList.Add(new TutorialSentence("늘 나의 눈이 되어주는 지도도 챙겼다."));
             tutorial_SentenceList.Add(new TutorialSentence("채비가 끝났으니 심청이를 만나러 향리 댁으로 가자.")); 
             tutorial_SentenceList.Add(new TutorialSentence("아이템이나 단서를 장착 후 Z를 누르면 그에 따른 상호작용이 일어납니다.")); //5
-            tutorial_SentenceList.Add(new TutorialSentence("청이가 향리 댁에 오지 않았다고 한다"));
-            tutorial_SentenceList.Add(new TutorialSentence("어찌 된 일인지 주변을 수소문 해 보자."));
+            tutorial_SentenceList.Add(new TutorialSentence("청이가 향리 댁에 오지 않았다고 한다."));
+            tutorial_SentenceList.Add(new TutorialSentence(" 어찌 된 일인지 주변을 수소문 해 보자."));
+            tutorial_SentenceList.Add(new TutorialSentence(" 게임에서의 하루는 실제 시간의 5분입니다. 하루가 지나면 심학규의 집으로 귀환 됩니다."));
+            tutorial_SentenceList.Add(new TutorialSentence("사람들의 이야기를 들어보아도, 아무래도 청이는 누군가의 꾀임에 넘어갔음이 틀림없다."));
+            tutorial_SentenceList.Add(new TutorialSentence(" 청이를 데려간 범인을 알아내야 한다.")); //10
+            tutorial_SentenceList.Add(new TutorialSentence(" 이제까지 알아낸 정보를 조합해 새로운 단서를 만들 수 있다."));
         }
     }
 
@@ -128,6 +132,8 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
     //    //yield return StartCoroutine(NormalChat("뺑덕어멈", "이번에 들여온 비녀가 그렇게 예쁘던데,,,"));
     //}
 
+    //튜토리얼 대화 출력 메서드 모음
+    #region
     //1번 대화 실행 (Tutorial Manager에서 관리)
     public void Start_Sentence1()
     {
@@ -208,14 +214,59 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
         StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[6].sentence, true));
     }
 
-    //향리댁 대화 끝난뒤 대화
+    //향리댁 대화 끝난뒤 대화2
     public void Start_Sentence_HyangEnd2()
     {
-        Debug.Log("향리댁 대화 끝");
+        Debug.Log("향리댁 대화 끝2");
 
         //대화 실행시 다이얼로그창 띄우기
         gameObject_Dialougue.SetActive(true);
 
-        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[7].sentence, true));
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[7].sentence, false));
     }
+
+    //향리댁 대화 끝난뒤 대화3
+    public void Start_Sentence_HyangEnd3()
+    {
+        Debug.Log("향리댁 대화 끝3");
+
+        //대화 실행시 다이얼로그창 띄우기
+        gameObject_Dialougue.SetActive(true);
+
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[8].sentence, false));
+    }
+
+    //하루가 지난뒤 대화
+    public void Start_Sentence_PassDay()
+    {
+        Debug.Log("하루 지난뒤 대화");
+
+        //대화 실행시 다이얼로그창 띄우기
+        gameObject_Dialougue.SetActive(true);
+
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[9].sentence, true));
+    }
+
+    //하루가 지난뒤 대화
+    public void Start_Sentence_PassDay2()
+    {
+        Debug.Log("하루 지난뒤 대화2");
+
+        //대화 실행시 다이얼로그창 띄우기
+        gameObject_Dialougue.SetActive(true);
+
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[10].sentence, false));
+    }
+
+    //하루가 지난뒤 대화
+    public void Start_Sentence_PassDay3()
+    {
+        Debug.Log("하루 지난뒤 대화3");
+
+        //대화 실행시 다이얼로그창 띄우기
+        gameObject_Dialougue.SetActive(true);
+
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[11].sentence, false));
+    }
+    #endregion
 }

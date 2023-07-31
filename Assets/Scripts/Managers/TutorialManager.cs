@@ -11,6 +11,8 @@ public class TutorialManager : MonoBehaviour
     public Controller playerCtrlScr;
     public Dialog_TypingWriter_ShimBongSa playerDialogueScr;
     public ObjectControll objCtrlScr;
+    public TimeManager timeManagerScr;
+    public GameManager gameManagerScr;
 
     //나레이션 오브젝트
     public GameObject gameObject_NarationBG;
@@ -52,15 +54,24 @@ public class TutorialManager : MonoBehaviour
     //오브젝트 둘다 획득
     public bool getObjects;
 
+    //하루가 지났는지 확인하는 falg
+    public bool passDay; 
+
     //뺑덕 대화 끝
     public bool SentenceEnd_Bbang;
     //향리댁 대화 끝
     public bool SentenceEnd_Hyang;
+    //향리댁 대화 끝난뒤 심봉사 대화 끝
+    private bool SentenceEnd_HyangShim;
 
     //흐름 제어용 Flags
     private bool BangtalkEnd;
     private bool HyangTalkEnd1;
     private bool HyangTalkEnd2;
+    private bool HyangTalkEnd3;
+    private bool PassDayTalkEnd1;
+    private bool PassDayTalkEnd2;
+    private bool PassDayTalkEnd3;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +82,9 @@ public class TutorialManager : MonoBehaviour
         gameObject_UICanvas.SetActive(false);
         //Player 이동 제한
         playerCtrlScr.TalkStart();
+
+        //시간 멈추기
+        timeManagerScr.StopTime();
         #endregion
     }
 
@@ -237,16 +251,101 @@ public class TutorialManager : MonoBehaviour
             }
 
             //2번대화가 모두 끝나고 Z키를 누를경우
-            if(playerDialogueScr.isTalkEnd && HyangTalkEnd2 && Input.GetKeyDown(KeyCode.Z))
+            if(playerDialogueScr.isTalkEnd && HyangTalkEnd2 && Input.GetKeyDown(KeyCode.Z) && !HyangTalkEnd3)
             {
+                //향리댁 3번 대화
+                playerDialogueScr.Start_Sentence_HyangEnd3();
+
+                HyangTalkEnd3 = true;
+            }
+
+            //3번대화가 모두 끝나고 Z 키를 누를경우
+            if(playerDialogueScr.isTalkEnd && HyangTalkEnd1 && HyangTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && !SentenceEnd_HyangShim)
+            {
+                //대화 끝
                 playerCtrlScr.TalkEnd();
 
-                //다이얼로그 종료
+                //다이얼로그 끄기
                 gameObject_Dialogue.SetActive(false);
+
+                //시간 리셋
+                timeManagerScr.ResetTime();
+
+                //날짜 UI 보여주기
+                timeManagerScr.ShowDayUI();
+
+                //시간 흐르기
+                timeManagerScr.ContinueTime();
+
+                SentenceEnd_HyangShim = true;
             }
         }
         
+        //하루가 지났을 경우
+        if(passDay && !PassDayTalkEnd1)
+        {
+            //대화 시작
+            playerCtrlScr.TalkStart();
+
+            
+
+            //하루 지나고 대화 1
+            playerDialogueScr.Start_Sentence_PassDay();
+
+            PassDayTalkEnd1 = true;
+        }
+
+        if(playerDialogueScr.isTalkEnd && PassDayTalkEnd1 && !PassDayTalkEnd2 && Input.GetKeyDown(KeyCode.Z) && passDay)
+        {
+            //하루 지나고 대화 2
+            playerDialogueScr.Start_Sentence_PassDay2();
+
+            PassDayTalkEnd2 = true;
+        }
+
+        if (playerDialogueScr.isTalkEnd && PassDayTalkEnd2 && !PassDayTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && passDay)
+        {
+            //하루 지나고 대화 3
+            playerDialogueScr.Start_Sentence_PassDay3();
+
+            PassDayTalkEnd3 = true;
+        }
+
+        if(playerDialogueScr.isTalkEnd && PassDayTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && passDay)
+        {
+            //대화 끝
+            playerCtrlScr.TalkEnd();
+
+            //다이얼로그 창 끄기
+            gameObject_Dialogue.SetActive(false);
+
+            //플래그 초기화
+            passDay = false;
+
+            //시간 흐르기
+            timeManagerScr.PassDaySentenceEnd();
+        }
     }
+    
+    //하루가 지났는지(TimeManager에서 관리)
+    public void PassDay()
+    {
+        //Player 위치 초기화
+        gameManagerScr.ReturnPlayer();
+
+        //Player 움직임 정지
+        playerCtrlScr.TalkStart();
+
+        //심봉사 이동후 몇초뒤에 다이얼로그 띄울건지
+        Invoke("PassDayTrue", 1.5f);
+    }
+    
+    //PassDay Flag Dealy용
+    private void PassDayTrue()
+    {
+        passDay = true;
+    }
+    
 
     //나레이션 배경 끄기
     private void ActiveFalse_NarationBG()
@@ -265,6 +364,7 @@ public class TutorialManager : MonoBehaviour
         closeNote = true;
     }
 
+    //1번 대화가 끝났는지
     private void Sentence1End()
     {
         setence1End = true;
@@ -276,7 +376,7 @@ public class TutorialManager : MonoBehaviour
         SentenceEnd_Bbang = true;
     }
 
-    //튜토리얼 향리댁 대화가 모두 마무리 되었는지
+    //튜토리얼 향리댁이 말하는게 모두 끝났는지
     public void TutorialSentenceEnd_Hyang()
     {
         SentenceEnd_Hyang = true;

@@ -9,5 +9,12 @@ public class HyangTalkEnd : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         tutorialManagerScr.TutorialSentenceEnd_Hyang();
+
+        Invoke("SetActiveObjcet", 1f);
+    }
+
+    private void SetActiveObjcet()
+    {
+        gameObject.SetActive(false);
     }
 }
