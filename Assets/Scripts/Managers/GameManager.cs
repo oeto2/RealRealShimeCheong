@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
     }
 
     //Save Data
-    public void Save()
+    public void Save(int _slotNum)
     {
         Debug.Log("Save GameManagerData");
 
@@ -152,16 +152,16 @@ public class GameManager : MonoBehaviour
         string jSaveData = JsonUtility.ToJson(curGameSaveData);
 
         //데이터 파일 생성
-        File.WriteAllText(saveFilePath, jSaveData);
+        File.WriteAllText(saveFilePath + _slotNum.ToString(), jSaveData);
     }
 
     //데이터 로드
-    public void Load()
+    public void Load(int _slotNum)
     {
         Debug.Log("Load GameManagerData");
 
         //세이브 파일 읽어오기
-        string jLoadData = File.ReadAllText(saveFilePath);
+        string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
 
         //읽어온 파일 리스트에 저장
         curGameLoadData = JsonUtility.FromJson<GameLoadData>(jLoadData);

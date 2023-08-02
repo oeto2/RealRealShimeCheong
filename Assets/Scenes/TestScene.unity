@@ -918,7 +918,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 124630321}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 827801058}
+        m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
+        m_MethodName: LoadButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &124630321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7631,11 +7643,11 @@ MonoBehaviour:
       - m_Target: {fileID: 827801058}
         m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
         m_MethodName: SaveButton
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10926,10 +10938,10 @@ MonoBehaviour:
   gameObjcet_Player: {fileID: 1871036888}
   transform_PlayerReturn: {fileID: 1269727308}
   curGameSaveData:
-    playerTransform: {fileID: 0}
+    playerPos: {x: 0, y: 0, z: 0}
     limitCamera: 0
   curGameLoadData:
-    playerTransform: {fileID: 0}
+    playerPos: {x: 0, y: 0, z: 0}
     limitCamera: 0
 --- !u!4 &905248353
 Transform:
@@ -18733,7 +18745,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1391228645}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 827801058}
+        m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
+        m_MethodName: SaveButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1391228645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20141,11 +20165,11 @@ MonoBehaviour:
       - m_Target: {fileID: 827801058}
         m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
         m_MethodName: LoadButton
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -23587,7 +23611,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1653380291}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 827801058}
+        m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
+        m_MethodName: LoadButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1653380291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27916,7 +27952,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1935964670}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 827801058}
+        m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
+        m_MethodName: SaveButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1935964670
 MonoBehaviour:
   m_ObjectHideFlags: 0

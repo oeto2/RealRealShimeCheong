@@ -155,7 +155,7 @@ public class TimeManager : MonoBehaviour
 
 
     //데이터 저장
-    public void Save()
+    public void Save(int _slotNum)
     {
         Debug.Log("Save TimeManagerData");
 
@@ -166,16 +166,16 @@ public class TimeManager : MonoBehaviour
         string jSaveData = JsonUtility.ToJson(curTimeSaveData);
 
         //데이터 파일 생성
-        File.WriteAllText(saveFilePath, jSaveData);
+        File.WriteAllText(saveFilePath + _slotNum.ToString(), jSaveData);
     }
 
     //데이터 로드
-    public void Load()
+    public void Load(int _SlotNum)
     {
         Debug.Log("Load TimeManagerData");
 
         //세이브 파일 읽어오기
-        string jLoadData = File.ReadAllText(saveFilePath);
+        string jLoadData = File.ReadAllText(saveFilePath + _SlotNum.ToString());
 
         //읽어온 파일 리스트에 저장
         curTimeLoadData = JsonUtility.FromJson<TimeLoadData>(jLoadData);
