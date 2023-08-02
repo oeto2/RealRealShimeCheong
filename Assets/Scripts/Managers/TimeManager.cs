@@ -2,9 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+
+//저장할 데이터
+[System.Serializable]
+public class TimeSaveData
+{
+    //생성자
+    public TimeSaveData(float _Time, int _Day)
+    {
+        time = _Time; day = _Day;
+    }
+
+    //저장할 시간
+    public float time;
+
+    //저장할 날짜
+    public int day;
+}
+
+//불러올 데이터
+[System.Serializable]
+public class TimeLoadData
+{
+    //생성자
+    public TimeLoadData(float _Time, int _Day)
+    {
+        time = _Time; day = _Day;
+    }
+
+    //불러올 시간
+    public float time;
+
+    //불러올 날짜
+    public int day;
+}
 
 public class TimeManager : MonoBehaviour
 {
+    //외부 스크립트 참조
     public TutorialManager tutorialManagerScr;
 
     //캘린더의 애니메이터
@@ -33,6 +69,21 @@ public class TimeManager : MonoBehaviour
 
     //시간 멈추기
     private bool timeStop;
+
+    //저장할 데이터 클래스
+    public TimeSaveData curTimeSaveData;
+
+    //저장 파일 위치
+    private string saveFilePath;
+
+    //불러올 데이터 클래스
+    public TimeLoadData curTimeLoadData;
+
+    private void Start()
+    {
+        //저장 파일 위치
+        saveFilePath = Application.persistentDataPath + "/TimeDataText.txt";
+    }
 
     private void FixedUpdate()
     {
@@ -100,5 +151,39 @@ public class TimeManager : MonoBehaviour
     {
         //시간 계속 흐르기
         ContinueTime();
+    }
+
+
+    //데이터 저장
+    public void Save()
+    {
+        Debug.Log("Save TimeManagerData");
+
+        //저장할 데이터 넣기
+        curTimeSaveData = new TimeSaveData(float_RealTime, int_DayCount);
+
+        //세이브 데이터
+        string jSaveData = JsonUtility.ToJson(curTimeSaveData);
+
+        //데이터 파일 생성
+        File.WriteAllText(saveFilePath, jSaveData);
+    }
+
+    //데이터 로드
+    public void Load()
+    {
+        Debug.Log("Load TimeManagerData");
+
+        //세이브 파일 읽어오기
+        string jLoadData = File.ReadAllText(saveFilePath);
+
+        //읽어온 파일 리스트에 저장
+        curTimeLoadData = JsonUtility.FromJson<TimeLoadData>(jLoadData);
+
+        //시간 재설정
+        float_RealTime = curTimeLoadData.time;
+
+        //날짜 재설정
+        int_DayCount = curTimeLoadData.day;
     }
 }

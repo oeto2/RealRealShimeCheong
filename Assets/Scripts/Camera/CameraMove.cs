@@ -24,6 +24,9 @@ public class CameraMove : MonoBehaviour
     //화면의 가로 값
     private float width;
 
+    //현재 카메라 제한 구역번호
+    public int int_CurLimitNum;
+
     private void Start()
     {
         //hight = 카메라 화면의 세로크기 절반 값
@@ -32,6 +35,7 @@ public class CameraMove : MonoBehaviour
         width = hight * Screen.width / Screen.height;
         //기본 제한 구역 맵 번호
         ChangeLimit(0);
+        int_CurLimitNum = 0;
     }
     
     //제한 영역 바꾸기
@@ -39,6 +43,8 @@ public class CameraMove : MonoBehaviour
     {
         //카메라의 제한 범위 값 변경
         transform_CameraLimit = transform_Limits[x];
+
+        int_CurLimitNum = x;
     }
 
     // Update is called once per frame

@@ -14,6 +14,10 @@ public class UIManager : MonoBehaviour
     public GameObject gameObject_Option;
     //조합창 오브젝트
     public GameObject gameObject_CombineWindow;
+    //세이브창 오브젝트
+    public GameObject gameObject_SaveWindow;
+    //로드창 오브젝트
+    public GameObject gameObject_LoadWindow;
 
     //아이템 창이 실행중인지 확인하는 flag
     public bool isItemWindowLaunch;
@@ -53,14 +57,16 @@ public class UIManager : MonoBehaviour
         isMonuseOn = Cursor.visible;
 
         //마우스 포인터를 켜는 조건
-        if (gameObject_CombineWindow.activeSelf || gameObject_ItemWindow.activeSelf || gameObject_Option.activeSelf || gameObject_MapWindow.activeSelf)
+        if (gameObject_CombineWindow.activeSelf || gameObject_ItemWindow.activeSelf || gameObject_Option.activeSelf || gameObject_MapWindow.activeSelf
+            || gameObject_SaveWindow.activeSelf || gameObject_LoadWindow)
         {
             //마우스 포인터 켜기
             Cursor.visible = true;
         }
 
         //마우스 포인터를 끄는 조건
-        if(!gameObject_CombineWindow.activeSelf && !gameObject_ItemWindow.activeSelf && !gameObject_Option.activeSelf && !gameObject_MapWindow.activeSelf)
+        if(!gameObject_CombineWindow.activeSelf && !gameObject_ItemWindow.activeSelf && !gameObject_Option.activeSelf && !gameObject_MapWindow.activeSelf
+            && !gameObject_SaveWindow && !gameObject_LoadWindow )
         {
             //마우스 포인터 끄기
             Cursor.visible = false;
@@ -155,12 +161,30 @@ public class UIManager : MonoBehaviour
 
             isOptionLaunch = false;
         }
+
+        //세이브창이 실행중일때 ESC
+        if(gameObject_SaveWindow.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+            //세이브창 끄기
+            gameObject_SaveWindow.SetActive(false);
+            //옵션창 켜기
+            gameObject_Option.SetActive(true);
+        }
+
+        //로드창이 실행중일때 ESC
+        if (gameObject_LoadWindow.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+            //로드창 끄기
+            gameObject_LoadWindow.SetActive(false);
+            //옵션창 켜기
+            gameObject_Option.SetActive(true);
+        }
         #endregion
 
         //조합창 관련 코드
         #region
         //조합창이 실행중이라면
-        if(gameObject_CombineWindow.activeSelf)
+        if (gameObject_CombineWindow.activeSelf)
         {
             isCombineLaunch = true;
         }
@@ -293,5 +317,40 @@ public class UIManager : MonoBehaviour
         Application.Quit();
     }
 
+    //세이브창 띄우기
+    public void ShowSaveWindow()
+    {
+        //세이브창 띄우기
+        gameObject_SaveWindow.SetActive(true);
+        //옵션창 끄기
+        gameObject_Option.SetActive(false);
+    }
+
+    //로드창 띄우기
+    public void ShowLoadWindow()
+    {
+        //로드창 띄우기
+        gameObject_LoadWindow.SetActive(true);
+        //옵션창 끄기
+        gameObject_Option.SetActive(false);
+    }
+
+    //세이브창 끄기
+    public void ExitSaveWindow()
+    {
+        //세이브창 끄기
+        gameObject_SaveWindow.SetActive(false);
+        //옵션창 띄우기
+        gameObject_Option.SetActive(true);
+    }
+
+    //로드창 끄기
+    public void ExitLoadWindow()
+    {
+        //로드창 끄기
+        gameObject_LoadWindow.SetActive(false);
+        //옵션창 띄우기
+        gameObject_Option.SetActive(true);
+    }
     #endregion
 }

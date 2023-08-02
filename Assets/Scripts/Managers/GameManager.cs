@@ -2,6 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+
+//저장할 데이터 클래스
+[System.Serializable]
+public class GameSaveData
+{
+    //생성자
+    public GameSaveData(Vector3 _playerPos, int _LimitCamera)
+    {
+        playerPos = _playerPos; limitCamera = _LimitCamera;
+    }
+
+    //플레이어 위치값
+    public Vector3 playerPos;
+
+    //카메라 제한 영역
+    public int limitCamera;
+}
+
+
+//로드할 데이터 클래스
+[System.Serializable]
+public class GameLoadData
+{
+    //생성자
+    public GameLoadData(Vector3 _playerPos, int _LimitCamera)
+    {
+        playerPos = _playerPos; limitCamera = _LimitCamera;
+    }
+
+    //플레이어 위치값
+    public Vector3 playerPos;
+
+    //카메라 제한 영역
+    public int limitCamera;
+}
+
 
 public class GameManager : MonoBehaviour
 {
@@ -23,10 +60,18 @@ public class GameManager : MonoBehaviour
     //Player ReturnPos
     public Transform transform_PlayerReturn;
 
-    // Start is called before the first frame update
-    void Start()
+    //저장할 데이터 클래스
+    public GameSaveData curGameSaveData;
+
+    //불러올 데이터 클래스
+    public GameLoadData curGameLoadData;
+
+    //저장할 파일 위치
+    private string saveFilePath;
+
+    private void Start()
     {
-        
+        saveFilePath = Application.persistentDataPath + "/GameManagerDataText.txt";
     }
 
     // Update is called once per frame
@@ -92,5 +137,39 @@ public class GameManager : MonoBehaviour
 
         //카메라 영역제한 값 변경
         cameraMoveScr.ChangeLimit(0);
+    }
+
+    //Save Data
+    public void Save()
+    {
+        Debug.Log("Save GameManagerData");
+
+        //저장할 데이터 넣기
+        curGameSaveData = new GameSaveData(new Vector3(gameObjcet_Player.transform.position.x,gameObjcet_Player.transform.position.y,
+                          gameObjcet_Player.transform.position.z), cameraMoveScr.int_CurLimitNum);
+
+        //세이브 데이터
+        string jSaveData = JsonUtility.ToJson(curGameSaveData);
+
+        //데이터 파일 생성
+        File.WriteAllText(saveFilePath, jSaveData);
+    }
+
+    //데이터 로드
+    public void Load()
+    {
+        Debug.Log("Load GameManagerData");
+
+        //세이브 파일 읽어오기
+        string jLoadData = File.ReadAllText(saveFilePath);
+
+        //읽어온 파일 리스트에 저장
+        curGameLoadData = JsonUtility.FromJson<GameLoadData>(jLoadData);
+
+        //플레이어 위치 재설정
+        gameObjcet_Player.transform.position = curGameLoadData.playerPos;
+
+        //카메라 제한구역 재설정
+        cameraMoveScr.ChangeLimit(curGameLoadData.limitCamera);
     }
 }
