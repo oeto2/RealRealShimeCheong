@@ -90,9 +90,13 @@ public class ObjectManager : MonoBehaviour
 
     //아이템 Json이 저장될 위치
     public string itemfilePath;
+    //보유중인 아이템 Json이 저장될 위치
+    public string curItemfilePath;
 
     //단서 Json이 저장될 위치
     public string cluefilePath;
+    //보유중인 단서 Json이 저장될 위치
+    public string curCluefilePath;
 
     //처음에 적용할 오브젝트 타입
     public string curType = "Item";
@@ -165,6 +169,7 @@ public class ObjectManager : MonoBehaviour
 
     private void Awake()
     {
+
     }
 
     // Start is called before the first frame update
@@ -202,18 +207,32 @@ public class ObjectManager : MonoBehaviour
         #endregion
 
         //아이템 Json 파일이 저장될 위치
-        itemfilePath = Application.persistentDataPath + "/MyItemText.txt";
+        itemfilePath = Application.persistentDataPath + "/AllItemText.txt";
+
+        //보유중인 아이템 Json 파일이 저장될 위치
+        curItemfilePath = Application.persistentDataPath + "/CurItemText.txt";
 
         //단서 Json 파일이 저장될 위치
-        cluefilePath = Application.persistentDataPath + "/MyClueText.txt";
+        cluefilePath = Application.persistentDataPath + "/AllClueText.txt";
 
-        Save();
-        Load();
+        //보유중인 단서 Json 파일이 저장될 위치
+        curCluefilePath = Application.persistentDataPath + "/CurClueText.txt";
+
+        Save(100);
+        Load(100);
 
         //아이템 탭 기본으로 보여주기
         TabClick(curType);
         //조합창 아이템 탭 기본으로 보여주기
         TabClick2(curType);
+
+        GetItem(1000);
+        GetItem(1001);
+        GetClue(2000);
+        GetClue(2001);
+
+        
+
     }
 
 
@@ -229,6 +248,17 @@ public class ObjectManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log(GetEquipObjectKey());
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Debug.Log("1002 획득");
+            GetItem(1002);
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Debug.Log("1003 획득");
+            GetItem(1003);
         }
     }
 
@@ -322,7 +352,9 @@ public class ObjectManager : MonoBehaviour
             }
             #endregion
         }
-        Save();
+
+        TabClick(curType);
+        //Save();
     }
 
     //오브젝트 슬롯 클릭시(조합창 한정)
@@ -474,7 +506,8 @@ public class ObjectManager : MonoBehaviour
             }
         }
 
-        Save();
+        TabClick2(curType);
+        //Save();
     }
 
     //오브젝트 창에서의 Tab 클릭
@@ -589,19 +622,31 @@ public class ObjectManager : MonoBehaviour
     }
 
     //Data 저장
-    void Save()
+    public void Save(int _slotNum)
     {
         //Json 아이템 데이터 정의
         string jItemdata = JsonUtility.ToJson(new Serialization<Item>(allItemList));
 
         //json 아이템 파일 저장
-        File.WriteAllText(itemfilePath, jItemdata);
+        File.WriteAllText(itemfilePath + _slotNum.ToString(), jItemdata);
 
         //Json 단서 데이터 정의
         string jCluedata = JsonUtility.ToJson(new Serialization<Clue>(allClueList));
 
         //json 단서 파일 저장
-        File.WriteAllText(cluefilePath, jCluedata);
+        File.WriteAllText(cluefilePath + _slotNum.ToString(), jCluedata);
+
+        //현재 보유중인 아이템 리스트 Json
+        string jcurItmeData = JsonUtility.ToJson(new Serialization<Item>(curItemList));
+
+        //현재 보유중인 아이템 JsonData 파일 생성
+        File.WriteAllText(curItemfilePath + _slotNum.ToString(), jcurItmeData);
+
+        //현재 보유중인 단서 리스트 Json
+        string jcurClueData = JsonUtility.ToJson(new Serialization<Clue>(curClueList));
+
+        //현재 보유중인 단서 JsonData 파일 생성
+        File.WriteAllText(curCluefilePath + _slotNum.ToString(), jcurClueData);
 
         //현재 보유중인 아이템 리스트 불러오기
         TabClick(curType);
@@ -610,23 +655,35 @@ public class ObjectManager : MonoBehaviour
     }
 
     //Data 불러오기
-    void Load()
+    public void Load(int _slotNum)
     {
         //아이템 Json 데이터 정의
-        string jItemdata = File.ReadAllText(itemfilePath);
+        string jItemdata = File.ReadAllText(itemfilePath + _slotNum.ToString());
 
         //아이템 Json파일로부터 데이터 역직렬화(Load)
         myItemList = JsonUtility.FromJson<Serialization<Item>>(jItemdata).target;
+
+        //단서 Json 데이터 정의
+        string jCluedata = File.ReadAllText(cluefilePath + _slotNum.ToString());
+        //단서 Json파일로부터 데이터 역직렬화(Load)
+        myClueList = JsonUtility.FromJson<Serialization<Clue>>(jCluedata).target;
+
+        //보유중인 아이템 Json 읽어오기
+        string jcurItemData = File.ReadAllText(curItemfilePath + _slotNum.ToString());
+
+        //curItemList에 jcurItemData 갱신
+        curItemList = JsonUtility.FromJson<Serialization<Item>>(jcurItemData).target;
+
+        //보유중인 단서 Json 읽어오기
+        string jcurClueData = File.ReadAllText(curCluefilePath + _slotNum.ToString());
+
+        //curClueList에 jcurClueData 갱신
+        curClueList = JsonUtility.FromJson<Serialization<Clue>>(jcurClueData).target;
 
         //현재 보유중인 아이템 리스트 불러오기
         TabClick(curType);
         //조합창에서 현재 보유중인 아이템 리스트 불러오기
         TabClick2(curType);
-
-        //단서 Json 데이터 정의
-        string jCluedata = File.ReadAllText(cluefilePath);
-        //단서 Json파일로부터 데이터 역직렬화(Load)
-        myClueList = JsonUtility.FromJson<Serialization<Clue>>(jCluedata).target;
     }
 
     //Key를 통해서 아이템 얻기

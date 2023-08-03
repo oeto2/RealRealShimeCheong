@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     public GameObject gameObject_SaveWindow;
     //로드창 오브젝트
     public GameObject gameObject_LoadWindow;
+    //세이브 체크 오브젝트
+    public GameObject gameObject_SaveCheckWindow;
 
     //아이템 창이 실행중인지 확인하는 flag
     public bool isItemWindowLaunch;
@@ -352,5 +354,6 @@ public class UIManager : MonoBehaviour
         //옵션창 띄우기
         gameObject_Option.SetActive(true);
     }
+ 
     #endregion
 }
