@@ -43,6 +43,9 @@ public class DataManager : MonoBehaviour
         //ObjectManager Data 저장
         objectManagerScr.Save(int_SaveSlotNum);
 
+        //UiManager Data 저장
+        uiManagerScr.Save(int_SaveSlotNum);
+
         //세이브 확인창 끄기
         gameObject_SaveCheckWindow.SetActive(false);
     }
@@ -69,6 +72,9 @@ public class DataManager : MonoBehaviour
 
         //ObjectManager Data Load
         objectManagerScr.Load(int_LoadSlotNum);
+
+        //UiManager PlayTime Data Load
+        uiManagerScr.LoadPlayTime(int_LoadSlotNum);
     }
 
     //로드 No버튼

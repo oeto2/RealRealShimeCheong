@@ -18,7 +18,7 @@ public class GameSaveData
     public Vector3 playerPos;
 
     //카메라 제한 영역
-    public int limitCamera;
+    public int limitCamera;   
 }
 
 
@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
 {
     //외부 스크립트
     public CameraMove cameraMoveScr;
+    public UIManager uiManagerScr;
 
     // 하나씩 추가하자
     public bool bool_isAction;
@@ -69,18 +70,14 @@ public class GameManager : MonoBehaviour
     //저장할 파일 위치
     private string saveFilePath;
 
+    //현재 플레이가 위치한 장소 이름
+    private string curPlaceName;
+
     private void Start()
     {
         saveFilePath = Application.persistentDataPath + "/GameManagerDataText.txt";
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-        }
-    }
 
     public void Action(GameObject scan_obj)
 	{
@@ -144,6 +141,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Save GameManagerData");
 
+        //저장할 장소의 이름 구하기
+        GetPlaceName();
+
         //저장할 데이터 넣기
         curGameSaveData = new GameSaveData(new Vector3(gameObjcet_Player.transform.position.x,gameObjcet_Player.transform.position.y,
                           gameObjcet_Player.transform.position.z), cameraMoveScr.int_CurLimitNum);
@@ -171,5 +171,31 @@ public class GameManager : MonoBehaviour
 
         //카메라 제한구역 재설정
         cameraMoveScr.ChangeLimit(curGameLoadData.limitCamera);
+    }
+
+    //현재 장소 이름 구하는 메서드
+    public string GetPlaceName()
+    {
+        if (cameraMoveScr.int_CurLimitNum == 0)
+        {
+            curPlaceName = "장소: 안방";
+            return curPlaceName;
+        }
+
+        else if (cameraMoveScr.int_CurLimitNum == 1)
+        {
+            curPlaceName = "장소: 부엌";
+            return curPlaceName;
+        }
+
+        else if (cameraMoveScr.int_CurLimitNum == 2)
+        {
+            curPlaceName = "장소: 마당";
+            return curPlaceName;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

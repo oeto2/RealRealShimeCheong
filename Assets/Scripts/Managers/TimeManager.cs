@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System;
 
 //저장할 데이터
 [System.Serializable]
@@ -42,6 +43,7 @@ public class TimeManager : MonoBehaviour
 {
     //외부 스크립트 참조
     public TutorialManager tutorialManagerScr;
+    public UIManager uiManagerScr;
 
     //캘린더의 애니메이터
     public Animator animator_Celender;
@@ -50,7 +52,7 @@ public class TimeManager : MonoBehaviour
     public Text text_TimeText;
 
     //날짜 UI
-    public GameObject gameObjcet_DayUI; 
+    public GameObject gameObjcet_DayUI;
 
     //실제 시간
     [SerializeField]
@@ -64,11 +66,20 @@ public class TimeManager : MonoBehaviour
     public int int_DayMinute;
 
     //몇일 째인지 확인하는 변수
-    [SerializeField]
-    private int int_DayCount = 1;
+    public int int_DayCount = 1;
 
     //시간 멈추기
     private bool timeStop;
+
+    //플레이타임 시간
+    private float float_PlayTimeHour = 0;
+    //플레이타임 분
+    private float float_PlayTimeMinute = 0;
+    //플레이타임 초
+    public float float_PlayTimeSec = 0;
+
+    //누적 플레이 시간
+    public float float_SavePlayTime = 0;
 
     //저장할 데이터 클래스
     public TimeSaveData curTimeSaveData;
@@ -79,6 +90,9 @@ public class TimeManager : MonoBehaviour
     //불러올 데이터 클래스
     public TimeLoadData curTimeLoadData;
 
+    //플레이타임
+    private string playTime;
+
     private void Start()
     {
         //저장 파일 위치
@@ -87,6 +101,11 @@ public class TimeManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //플레이 타임 = 델타 타임
+        float_PlayTimeSec += Time.deltaTime;
+
+        //Debug.Log(float_PlayTimeSec);
+
         if (!timeStop)
         {
             //실제 시간 = 시간 + 배속
@@ -185,5 +204,63 @@ public class TimeManager : MonoBehaviour
 
         //날짜 재설정
         int_DayCount = curTimeLoadData.day;
+    }
+
+    //UI 슬롯에 표시할 날짜
+    public string GetDayCount()
+    {
+        return int_DayCount.ToString() + "일째";
+    }
+
+    //플레이 타임을 구하는 메서드
+    public string GetPlayTimeText()
+    {
+        //게임을 1분 이상 했다면
+        if (float_PlayTimeSec / 60 >= 1)
+        {
+            float_PlayTimeMinute = float_PlayTimeSec / 60;
+        }
+        //아니면 0
+        else
+        {
+            float_PlayTimeMinute = 0;
+        }
+
+        //게임을 60분 이상 했다면
+        if (float_PlayTimeSec / 3600 >= 1)
+        {
+            float_PlayTimeHour = float_PlayTimeSec / 3600;
+        }
+        //아니면 0
+        else
+        {
+            float_PlayTimeHour = 0;
+        }
+
+        playTime = "플레이타임 : " + MathF.Truncate(float_PlayTimeHour) + "시간 " + MathF.Truncate(float_PlayTimeMinute) + "분";
+
+        Debug.Log("playTimetext : " + playTime);
+
+        return playTime;
+    }
+
+    //넘겨줄 시간 값
+    public float GetPlayTimeSec(int _slotNum)
+    {
+        Debug.Log("넘겨준 플레이 타임 : " + float_PlayTimeSec);
+
+        //현재 플레이 타임 값을 넘겨줌
+        return float_PlayTimeSec;
+    }
+
+    //받아올 기존 플레이타임 값
+    public void SetPlayTimeSec(float _playTime)
+    {
+        Debug.Log("저장된 플레이 타임 : " + _playTime.ToString());
+
+        //누적 플레이 시간 받아오기
+        float_SavePlayTime = _playTime;
+        //현재 플레이 타임을 누적 플레이 타임 값으로 변경
+        float_PlayTimeSec = float_SavePlayTime;
     }
 }

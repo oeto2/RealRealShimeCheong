@@ -79,7 +79,6 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
         //StopCoroutine(TextPractice());
     }
   
-
     //대화 실행
     IEnumerator StartChat(string narrator, string narration, bool _clear)
     {

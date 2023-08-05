@@ -2,10 +2,66 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
+//저장할 UI 데이터들
+[System.Serializable]
+public class SaveUiData
+{
+    //생성자
+    public SaveUiData(string _placeName, string _day, string _playTimeText, float _playTimeSec)
+    {
+        placeName = _placeName;
+        day = _day;
+        playTimeText = _playTimeText;
+        playTimeSec = _playTimeSec;
+    }
+
+    //장소 이름
+    public string placeName;
+
+    //날짜
+    public string day;
+
+    //플레이 타임 텍스트
+    public string playTimeText;
+
+    //플레이 타임 시간
+    public float playTimeSec;
+}
+
+//불러올 UI 데이터들
+public class LoadUiData
+{
+    //생성자
+    public LoadUiData(string _placeName, string _day, string _playTimeText, float _playTimeSec)
+    {
+        placeName = _placeName;
+        day = _day;
+        playTimeText = _playTimeText;
+        playTimeSec = _playTimeSec;
+    }
+
+    //장소 이름
+    public string placeName;
+
+    //날짜
+    public string day;
+
+    //플레이 타임 텍스트
+    public string playTimeText;
+
+    //플레이 타임 시간
+    public float playTimeSec;
+}
 
 public class UIManager : MonoBehaviour
 {
+    //외부 스크립트
+    public CameraMove cameraMoveScr;
+    public GameManager gameManagerScr;
+    public TimeManager timeManagerScr;
+
     //아이템창 인터페이스 오브젝트
     public GameObject gameObject_ItemWindow;
     //지도 오브젝트
@@ -47,12 +103,53 @@ public class UIManager : MonoBehaviour
     public Image clueTapImage;
     public Image clueTapImage2;
 
+
+    //Save Slot Place Name text
+    public Text[] text_SavePlaceName;
+    //Load Slot Place Name Text
+    public Text[] text_LoadPlaceName;
+
+    //Save Slot DayCount text
+    public Text[] text_SaveDayCount;
+    //Load Slot DayCount Text
+    public Text[] text_LoadDayCount;
+
+    //Save Slot PlayTime text
+    public Text[] text_SavePlayTime;
+    //Load Slot PlayTime text
+    public Text[] text_LoadPlayTime;
+
+    //저장할 UI데이터 클래스
+    public SaveUiData curSaveUIData;
+
+    //저장 파일 위치
+    private string saveFilePath;
+
+    //슬롯의 총 갯수
+    public int totalSlotNum;
+
+    //로드할 데이터를 받아올 클래스
+    public LoadUiData curLoadUiData;
+
+    //플레이 타임값을 받아올 클래스
+    public LoadUiData curLoadUiData2;
+
     private void Awake()
     {
         //마우스 포인터 끄기
         Cursor.visible = false;
+
+        //저장 파일 위치
+        saveFilePath = Application.persistentDataPath + "/UiDataText.txt";
+
+        totalSlotNum = text_LoadPlaceName.Length;
     }
 
+    private void Start()
+    {
+        //슬롯에 UI 데이터 보여주기
+        ShowUiDataToSlot();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -67,8 +164,8 @@ public class UIManager : MonoBehaviour
         }
 
         //마우스 포인터를 끄는 조건
-        if(!gameObject_CombineWindow.activeSelf && !gameObject_ItemWindow.activeSelf && !gameObject_Option.activeSelf && !gameObject_MapWindow.activeSelf
-            && !gameObject_SaveWindow && !gameObject_LoadWindow )
+        if (!gameObject_CombineWindow.activeSelf && !gameObject_ItemWindow.activeSelf && !gameObject_Option.activeSelf && !gameObject_MapWindow.activeSelf
+            && !gameObject_SaveWindow && !gameObject_LoadWindow)
         {
             //마우스 포인터 끄기
             Cursor.visible = false;
@@ -81,7 +178,7 @@ public class UIManager : MonoBehaviour
         {
             //아이템 창 실행
             ItemWindowLaunch();
-            
+
         }
 
         //아이템 창 활성화 상태에서 X키 or ESC를 누를 경우
@@ -140,6 +237,8 @@ public class UIManager : MonoBehaviour
         //아이템창 ,지도 ,옵션창이 실행중이지 않을때 ESC키를 눌렀을 경우
         if (!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch && !isCombineLaunch && Input.GetKeyDown(KeyCode.Escape))
         {
+           
+
             //옵션창 보여주기
             gameObject_Option.SetActive(true);
         }
@@ -159,13 +258,13 @@ public class UIManager : MonoBehaviour
         //옵션창이 실행중이지 않을경우
         else if (!gameObject_Option.activeSelf)
         {
-            
+
 
             isOptionLaunch = false;
         }
 
         //세이브창이 실행중일때 ESC
-        if(gameObject_SaveWindow.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        if (gameObject_SaveWindow.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
             //세이브창 끄기
             gameObject_SaveWindow.SetActive(false);
@@ -192,7 +291,7 @@ public class UIManager : MonoBehaviour
         }
 
         //조합창이 실행중이지 않다면
-        if(!gameObject_CombineWindow.activeSelf)
+        if (!gameObject_CombineWindow.activeSelf)
         {
             Invoke("CombineFalgFalse", 0.2f);
         }
@@ -244,7 +343,7 @@ public class UIManager : MonoBehaviour
     //조합창 켜기
     public void CombineWindowLaunch()
     {
-        if(!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch)
+        if (!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch)
         {
             gameObject_CombineWindow.SetActive(true);
         }
@@ -354,6 +453,82 @@ public class UIManager : MonoBehaviour
         //옵션창 띄우기
         gameObject_Option.SetActive(true);
     }
- 
+
     #endregion
+
+
+    //UI 데이터 저장하기
+    public void Save(int _slotNum)
+    {
+        //Debug.Log("Save UIManagerData");
+
+        //저장할 데이터 넣기
+        curSaveUIData = new SaveUiData(gameManagerScr.GetPlaceName(),timeManagerScr.GetDayCount(),timeManagerScr.GetPlayTimeText(),timeManagerScr.GetPlayTimeSec(_slotNum));
+
+        //세이브 데이터
+        string jSaveData = JsonUtility.ToJson(curSaveUIData);
+
+        //데이터 파일 생성
+        File.WriteAllText(saveFilePath + _slotNum.ToString(), jSaveData);
+
+        //슬롯에 UI 데이터 보여주기
+        ShowUiDataToSlot();
+
+        //Debug.Log("TimeManager PlayeTime : " + timeManagerScr.GetPlayTimeText());
+    }
+
+    //슬롯에 UI 데이터 보여주기
+    public void ShowUiDataToSlot()
+    {
+        //Debug.Log("ShowUiDataToSlot");
+
+        if(text_LoadPlaceName != null)
+        {
+            for (int i = 0; i < text_SavePlaceName.Length; i++)
+            {
+                //만약 i번째 슬롯에 해당하는 SaveData jsonFile이 존재한다면
+                if (File.Exists(saveFilePath + i.ToString()) == true)
+                {
+                    Debug.Log("슬롯 Ui데이터 갱신" + i.ToString());
+
+                    //파일 읽어오기
+                    string jLoadData = File.ReadAllText(saveFilePath + i.ToString());
+
+                    //curLoadUiData에 역직렬화
+                    curLoadUiData = JsonUtility.FromJson<LoadUiData>(jLoadData);
+
+                    //저장슬롯의 장소 UI Text 변경
+                    text_SavePlaceName[i].text = curLoadUiData.placeName;
+                    //로드슬롯의 장소 UI Text 변경
+                    text_LoadPlaceName[i].text = curLoadUiData.placeName;
+
+                    //저장슬롯의 날짜 UI Text 변경
+                    text_SaveDayCount[i].text = curLoadUiData.day;
+                    //로드슬롯의 날짜 UI Text 변경
+                    text_LoadDayCount[i].text = curLoadUiData.day;
+
+                    //저장슬롯의 플레이타임 UI Text 변경
+                    text_SavePlayTime[i].text = curLoadUiData.playTimeText;
+                    //로드슬롯의 날짜 UI Text 변경
+                    text_LoadPlayTime[i].text = curLoadUiData.playTimeText;
+
+                    ////플레이타임 변경
+                    //timeManagerScr.SetPlayTimeSec(curLoadUiData.playTimeSec);
+                }
+            }
+        }
+    }
+
+    //플레이타임 불러오기
+    public void LoadPlayTime(int _slotNum)
+    {
+        //파일 읽어오기
+        string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
+
+        //curLoadUiData에 역직렬화
+        curLoadUiData2 = JsonUtility.FromJson<LoadUiData>(jLoadData);
+
+        //해당하는 슬롯에 플레이 타임값을 받아옴
+        timeManagerScr.SetPlayTimeSec(curLoadUiData2.playTimeSec);
+    }
 }
