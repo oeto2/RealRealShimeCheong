@@ -9,6 +9,9 @@ public class Controller : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
 
+    //외부 스크립트에서 사용하기 위한 용도(싱글톤패턴)
+    public static Controller instance;
+
     //벽이 감지되었음 WallDetect에서 관리
     public bool detectWall;
 
@@ -30,6 +33,11 @@ public class Controller : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+
+        if(Controller.instance == null)
+		{
+            Controller.instance = this;
+		}
     }
 
     // Update is called once per frame
@@ -98,7 +106,7 @@ public class Controller : MonoBehaviour
     //대화 시작
     public void TalkStart()
     {
-        Debug.Log("TalkStar");
+        Debug.Log("TalkStart");
         isTalk = true;
         canMove = true;
     }

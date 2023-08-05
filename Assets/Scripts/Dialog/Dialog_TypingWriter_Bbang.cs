@@ -22,6 +22,18 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     public GameObject images_Bbang;
 
+    //외부 스크립트에서 사용하기 위한 용도(싱글톤패턴)
+    public static Dialog_TypingWriter_Bbang instance;
+
+    private void Awake()
+	{
+
+        if (Dialog_TypingWriter_Bbang.instance == null)
+        {
+            Dialog_TypingWriter_Bbang.instance = this;
+        }
+    }
+
     void Update()
     {
 
@@ -31,15 +43,17 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             {
                 isButtonClicked = true;
             }
+            
         }
         StopCoroutine(TextPractice());
+
         /*if (Input.GetMouseButtonDown(0))
         {
             StartCoroutine(TextPractice());
         }*/
     }
 
-    public void OnMouseDown()
+    public void dialogstart()
     {
         if (Input.GetMouseButtonDown(0))
         {

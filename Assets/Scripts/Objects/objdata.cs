@@ -5,5 +5,5 @@ using UnityEngine;
 public class Objdata : MonoBehaviour
 {
 	public int key;
-	public bool bool_isNPC;
+	public bool bool_isNPC = false; 
 }

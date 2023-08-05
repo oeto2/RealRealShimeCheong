@@ -19,12 +19,13 @@ public class Trigger_NPC : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Touch!");
         Debug.Log(ChatText);
+        Controller.instance.TalkStart();
         if (other.CompareTag("NPC"))
         {
             Main.GetComponent<MainScript>().NPCChatEnter(ChatText);
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
