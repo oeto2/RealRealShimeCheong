@@ -17,9 +17,9 @@ public class MainScript : MonoBehaviour
         Dialog_Text_NPC.SetActive(false);
     }
 
-    public void NPCChatEnter(string text)
+    public void NPCChatEnter()
     {
-        //Dialog_Text_NPC.text = text;
+        //text = Dialog_Text_NPC.GetComponent<Text>();
         //Dialog_Text_Name.text = text;
         Dialog_Text_Name.SetActive(true);
         Dialog_Text_NPC.SetActive(true);
