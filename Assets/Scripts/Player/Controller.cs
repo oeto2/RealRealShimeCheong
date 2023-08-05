@@ -16,7 +16,7 @@ public class Controller : MonoBehaviour
     public bool detectWall;
 
     //대화중인지 감지하는 Flag 외부 스크립트에서 관리
-    private bool isTalk;
+    public bool isTalk;
 
     //Player가 움직일 수 있는 상태인지 확인하는 falg(Animation 제어)
     public bool canMove;

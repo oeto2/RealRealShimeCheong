@@ -317,6 +317,7 @@ public class TutorialManager : MonoBehaviour
 
         if (playerDialogueScr.isTalkEnd && PassDayTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && passDay)
         {
+            Debug.Log("튜토리얼 끝끝");
             //대화 끝
             playerCtrlScr.TalkEnd();
 
