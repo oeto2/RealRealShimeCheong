@@ -3132,7 +3132,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -3931,6 +3931,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uC7A5\uC0AC\uAFBC"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!61 &358651629
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4023,6 +4025,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uC7A5\uC0AC\uAFBC"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!95 &358651632
 Animator:
   serializedVersion: 5
@@ -6248,8 +6252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  bool_isNPC: 0
 --- !u!61 &476922398
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8851,6 +8853,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: Bbang
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!114 &688575810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8863,8 +8867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 5000
-  bool_isNPC: 0
 --- !u!212 &688575811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9984,8 +9986,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  bool_isNPC: 0
 --- !u!114 &804179095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10441,8 +10441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  bool_isNPC: 0
 --- !u!1 &826996565
 GameObject:
   m_ObjectHideFlags: 0
@@ -12056,6 +12054,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uC7A5\uC2B9\uC0C1\uB301\uBD80\uC778"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!61 &928861244
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12148,6 +12148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: 
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!95 &928861247
 Animator:
   serializedVersion: 5
@@ -14333,6 +14335,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uADC0\uB355\uC5B4\uBA48"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!61 &1060148994
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14425,6 +14429,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uADC0\uB355\uC5B4\uBA48"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!95 &1060148997
 Animator:
   serializedVersion: 5
@@ -14583,6 +14589,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uBE91\uB355\uC5B4\uBA48"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!114 &1075882286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14595,8 +14603,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 5000
-  bool_isNPC: 1
 --- !u!212 &1075882287
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16813,8 +16819,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  bool_isNPC: 0
 --- !u!61 &1248886864
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17376,8 +17380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  bool_isNPC: 0
 --- !u!61 &1280023441
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20670,7 +20672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1443931195}
   - component: {fileID: 1443931196}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: KitchenLimit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21246,6 +21248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uC1A1\uB098\uB77C \uC0C1\uC778"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!61 &1482299815
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21338,6 +21342,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uC1A1\uB098\uB77C\uC0C1\uC778"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!95 &1482299818
 Animator:
   serializedVersion: 5
@@ -21649,6 +21655,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uBC43\uC0AC\uACF5"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!61 &1502069084
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21741,6 +21749,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uBC43\uC0AC"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!95 &1502069087
 Animator:
   serializedVersion: 5
@@ -22265,6 +22275,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: 
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!61 &1516017849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22464,7 +22476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1537900815}
   - component: {fileID: 1537900816}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MadangMapLimit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22834,8 +22846,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  bool_isNPC: 0
 --- !u!61 &1580724731
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23764,6 +23774,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: 
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!61 &1614491627
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23856,6 +23868,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uC2EC\uCCAD\uC774"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!95 &1614491630
 Animator:
   serializedVersion: 5
@@ -24459,6 +24473,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uC2B9\uB824"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 1657878955}
 --- !u!61 &1657878951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24580,6 +24596,9 @@ MonoBehaviour:
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 6f602fad575b4ca468cd0ef912e07cb1, type: 3}
+  trigger_npc: {fileID: 1657878950}
+  isNPCTrigger: 0
+  controller_scr: {fileID: 1871036892}
 --- !u!1 &1658723608
 GameObject:
   m_ObjectHideFlags: 0
@@ -25304,8 +25323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  bool_isNPC: 0
 --- !u!61 &1708105218
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27918,6 +27935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectWall: 0
+  isTalk: 0
   canMove: 0
   detect_range: 1.5
   moveSpeed: 10
@@ -28298,8 +28316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  bool_isNPC: 0
 --- !u!61 &1916487848
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28704,6 +28720,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uAC70\uC9C0"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!61 &1939285205
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28796,6 +28814,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChatText: "\uAC70\uC9C0"
   isNPCTrigger: 0
+  controller: {fileID: 0}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!95 &1939285208
 Animator:
   serializedVersion: 5
@@ -29862,8 +29882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
-  bool_isNPC: 0
 --- !u!61 &1999785779
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31247,6 +31265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectWall: 0
+  isTalk: 0
   canMove: 0
   detect_range: 1.5
   moveSpeed: 5
