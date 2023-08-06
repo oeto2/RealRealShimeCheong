@@ -237,7 +237,7 @@ public class TimeManager : MonoBehaviour
             float_PlayTimeHour = 0;
         }
 
-        playTime = "플레이타임 : " + MathF.Truncate(float_PlayTimeHour) + "시간 " + MathF.Truncate(float_PlayTimeMinute) + "분";
+        playTime = "진행 시간 : " + MathF.Truncate(float_PlayTimeHour) + "시간 " + MathF.Truncate(float_PlayTimeMinute) + "분";
 
         Debug.Log("playTimetext : " + playTime);
 
