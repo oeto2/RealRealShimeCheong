@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9111,9 +9111,13 @@ MonoBehaviour:
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: "\uD638\uD638 \uBB34\uC2A8 \uC77C\uC774\uC2E0\uAC00\uC694?"
+  writerText: "\uD638\uD638\uD638 \uBB34\uC2A8 \uC77C\uC774\uC2E0\uAC00\uC694?"
   bool_isBbang: 0
   images_Bbang: {fileID: 1486878665}
+  images_NPC_portrait:
+  - {fileID: 21300000, guid: 736739ca216a124488b340c0e4d8e827, type: 3}
+  trigger_npc: {fileID: 688575809}
+  controller_scr: {fileID: 1871036892}
 --- !u!114 &688575809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15011,6 +15015,10 @@ MonoBehaviour:
   writerText: "\uD638\uD638\uD638 \uBB34\uC2A8 \uC77C\uC774\uC2E0\uAC00\uC694?"
   bool_isBbang: 0
   images_Bbang: {fileID: 1486878665}
+  images_NPC_portrait:
+  - {fileID: 21300000, guid: 736739ca216a124488b340c0e4d8e827, type: 3}
+  trigger_npc: {fileID: 1075882285}
+  controller_scr: {fileID: 1871036892}
 --- !u!114 &1075882285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27873,7 +27881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -56.999695, y: -23.000122}
+  m_AnchoredPosition: {x: -56.999634, y: -23.000122}
   m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1851244458

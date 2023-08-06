@@ -22,6 +22,12 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     public GameObject images_Bbang;
 
+    public Sprite[] images_NPC_portrait;
+
+    public Trigger_NPC trigger_npc;
+
+    public Controller controller_scr;
+
     //외부 스크립트에서 사용하기 위한 용도(싱글톤패턴)
     public static Dialog_TypingWriter_Bbang instance;
 
@@ -46,7 +52,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             
         }
         StopCoroutine(TextPractice());
-
+        dialogstart();
         /*if (Input.GetMouseButtonDown(0))
         {
             StartCoroutine(TextPractice());
@@ -55,20 +61,25 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     public void dialogstart()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
-            Debug.Log("이건 Touch! Bbang!!!!");
+            Debug.Log("z키 누름! Bbang!!!!");
             StartCoroutine(TextPractice());
+
+            controller_scr.TalkStart();
             //bool_isBotjim = true;
             if (bool_isBbang == true)
             {
+                trigger_npc.isNPCTrigger = true;
                 images_Bbang.SetActive(true);
                 bool_isBbang = false;
+                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
             }
             else
             {
                 images_Bbang.SetActive(false);
                 bool_isBbang = true;
+                trigger_npc.isNPCTrigger = false;
                 StopCoroutine(TextPractice());
             }
         }
