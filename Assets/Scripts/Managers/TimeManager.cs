@@ -178,6 +178,17 @@ public class TimeManager : MonoBehaviour
         ContinueTime();
     }
 
+    //하루 지나기
+    public void PassOneDay()
+    {
+        //하루 지나기
+        int_DayCount++;
+        //시간 0으로 초기화
+        float_RealTime = 0;
+        //캘린더 날짜 변경
+        NextDayAnimaton(int_DayCount);
+    }
+
 
     //데이터 저장
     public void Save(int _slotNum)
@@ -210,6 +221,9 @@ public class TimeManager : MonoBehaviour
 
         //날짜 재설정
         int_DayCount = curTimeLoadData.day;
+
+        //캘린더 날짜 변경
+        NextDayAnimaton(int_DayCount);
     }
 
     //UI 슬롯에 표시할 날짜

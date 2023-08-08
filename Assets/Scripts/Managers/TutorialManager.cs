@@ -185,7 +185,7 @@ public class TutorialManager : MonoBehaviour
 
             //Evnet 0 : 불을 키자
             //불이 켜졌을경우
-            if (turnOnLightScr.isTrunOnLight && !showNote)
+            if (turnOnLightScr.isTrunOnLight && !showNote && events == Events.TurnOnLights)
             {
                 Debug.Log("실행");
                 //1초뒤에 메모 등작
@@ -282,7 +282,7 @@ public class TutorialManager : MonoBehaviour
         }
         #endregion
 
-        if (setence1End && getObjects && Input.GetKeyDown(KeyCode.Z) && playerDialogueScr.isTalkEnd)
+        if (setence1End && getObjects && Input.GetKeyDown(KeyCode.Z) && playerDialogueScr.isTalkEnd && events == Events.GetItems)
         {
             //Player 이동제한 해제
             playerCtrlScr.TalkEnd();
@@ -308,7 +308,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //문장이 전부 출력이 되었다면 Z키를 눌러 다이얼로그 끄기
-        if (playerDialogueScr.isTalkEnd && Input.GetKeyDown(KeyCode.Z) && BangtalkEnd && !SentenceEnd_Hyang)
+        if (playerDialogueScr.isTalkEnd && Input.GetKeyDown(KeyCode.Z) && BangtalkEnd && !SentenceEnd_Hyang && events == Events.TalkToBBangDuck)
         {
             playerCtrlScr.TalkEnd();
 
@@ -352,7 +352,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //3번대화가 모두 끝나고 Z 키를 누를경우
-        if (playerDialogueScr.isTalkEnd && HyangTalkEnd1 && HyangTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && !SentenceEnd_HyangShim)
+        if (playerDialogueScr.isTalkEnd && HyangTalkEnd1 && HyangTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && !SentenceEnd_HyangShim && events == Events.TalkToHyang)
         {
             //대화 끝
             playerCtrlScr.TalkEnd();
@@ -405,7 +405,7 @@ public class TutorialManager : MonoBehaviour
             PassDayTalkEnd3 = true;
         }
 
-        if (playerDialogueScr.isTalkEnd && PassDayTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && passDay)
+        if (playerDialogueScr.isTalkEnd && PassDayTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && passDay && events == Events.PassOneDay)
         {
             Debug.Log("튜토리얼 끝");
             //대화 끝
@@ -418,7 +418,7 @@ public class TutorialManager : MonoBehaviour
             passDay = false;
 
             //시간 흐르기
-            timeManagerScr.PassDaySentenceEnd();
+            timeManagerScr.ContinueTime();
 
             //다음 이벤트
             tutorialEventNum = 5;
@@ -437,6 +437,8 @@ public class TutorialManager : MonoBehaviour
 
         //심봉사 이동후 몇초뒤에 다이얼로그 띄울건지
         Invoke("PassDayTrue", 1.5f);
+
+        
     }
 
     //PassDay Flag Dealy용
@@ -583,6 +585,11 @@ public class TutorialManager : MonoBehaviour
                     gameObject_UICanvas.SetActive(false);
                     //날짜 UI끄기
                     timeManagerScr.CloseDayUI();
+                    //시간 흐르기
+                    
+
+                    //플레이어 이동제어
+                    playerCtrlScr.TalkEnd();
                     break;
                 }
 
@@ -636,6 +643,8 @@ public class TutorialManager : MonoBehaviour
                     gameObject_UICanvas.SetActive(true);
                     //날짜 UI끄기
                     timeManagerScr.CloseDayUI();
+                    //플레이어 이동제어
+                    playerCtrlScr.TalkEnd();
                     break;
                 }
 
@@ -674,6 +683,8 @@ public class TutorialManager : MonoBehaviour
                     gameObject_UICanvas.SetActive(true);
                     //날짜 UI끄기
                     timeManagerScr.CloseDayUI();
+                    //플레이어 이동제어
+                    playerCtrlScr.TalkEnd();
                     break;
                 }
 
@@ -712,6 +723,8 @@ public class TutorialManager : MonoBehaviour
                     gameObject_UICanvas.SetActive(true);
                     //날짜 UI끄기
                     timeManagerScr.CloseDayUI();
+                    //플레이어 이동제어
+                    playerCtrlScr.TalkEnd();
                     break;
                 }
 
@@ -750,6 +763,10 @@ public class TutorialManager : MonoBehaviour
                     gameObject_UICanvas.SetActive(true);
                     //날짜 UI 켜기
                     timeManagerScr.ShowDayUI();
+                    //플레이어 이동제어
+                    playerCtrlScr.TalkEnd();
+                    //시간 흐르기
+                    timeManagerScr.ContinueTime();
                     break;
                 }
 
@@ -787,6 +804,10 @@ public class TutorialManager : MonoBehaviour
                     gameObject_UICanvas.SetActive(true);
                     //날짜 UI 켜기
                     timeManagerScr.ShowDayUI();
+                    //플레이어 이동제어
+                    playerCtrlScr.TalkEnd();
+                    //시간 흐르기
+                    timeManagerScr.ContinueTime();
                     break;
                 }
         }
