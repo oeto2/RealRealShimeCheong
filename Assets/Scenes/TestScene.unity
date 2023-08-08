@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3166,7 +3166,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -10940,6 +10940,7 @@ MonoBehaviour:
   timeManagerScr: {fileID: 1371449063}
   gameManagerScr: {fileID: 905248352}
   objectManagerScr: {fileID: 1595965865}
+  tutorialManagerScr: {fileID: 2057623165}
   int_LodingTime: 1
   gameObject_Loading: {fileID: 58801909}
   gameObject_SaveCheckWindow: {fileID: 936320460}
@@ -27881,7 +27882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -56.999634, y: -23.000122}
+  m_AnchoredPosition: {x: -56.999695, y: -23.000122}
   m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1851244458
@@ -28497,6 +28498,8 @@ MonoBehaviour:
   gameObject_MapImage: {fileID: 1485747553}
   getBotzime: 0
   getMap: 0
+  botzime: {fileID: 821866694}
+  map: {fileID: 45720220}
 --- !u!114 &1871036899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31332,6 +31335,16 @@ MonoBehaviour:
   passDay: 0
   SentenceEnd_Bbang: 0
   SentenceEnd_Hyang: 0
+  curTutorialSaveData:
+    tutoralEventNum: 0
+    getBotzime: 0
+    getMap: 0
+  curTutorialLoadData:
+    tutoralEventNum: 0
+    getBotzime: 0
+    getMap: 0
+  events: 0
+  tutorialEventNum: 0
 --- !u!1 &2063844033
 GameObject:
   m_ObjectHideFlags: 0
