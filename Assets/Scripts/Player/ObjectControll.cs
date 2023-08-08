@@ -34,6 +34,12 @@ public class ObjectControll : MonoBehaviour
     //¸ÊÀ» È¹µæ Çß´ÂÁö
     public bool getMap;
 
+    //º¿Áü ¿ÀºêÁ§Æ®
+    public GameObject botzime;
+
+    //Áöµµ ¿ÀºêÁ§Æ®
+    public GameObject map;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -194,5 +200,33 @@ public class ObjectControll : MonoBehaviour
 
         //¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
         _obj.SetActive(false);
+    }
+
+    //º¿Áü ¸®¼Â
+    public void ResetBotzime()
+    {
+        getBotzime = false;
+        botzime.SetActive(true);
+    }
+
+    //Áöµµ ¸®¼Â
+    public void ResetMap()
+    {
+        getMap = false;
+        map.SetActive(true);
+    }
+
+    //º¿Áü È¹µæ ÈÄ ·Îµå
+    public void LoadBotzime()
+    {
+        getBotzime = true;
+        botzime.SetActive(false);
+    }
+
+    //Áöµµ È¹µæ ÈÄ ·Îµå
+    public void LoadMap()
+    {
+        getMap = true;
+        map.SetActive(false);
     }
 }

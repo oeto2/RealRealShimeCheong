@@ -2,6 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+
+//저장할 튜토리얼 데이터
+[System.Serializable]
+public class TutorialSaveData
+{
+    //생성자
+    public TutorialSaveData(int _tutoralEventNum, bool _getBotzime, bool _getMap)
+    {
+        tutoralEventNum = _tutoralEventNum;
+        getBotzime = _getBotzime;
+        getMap = _getMap;
+    }
+
+    //튜토리얼 이벤트 번호
+    public int tutoralEventNum;
+    //봇짐 획득 여부
+    public bool getBotzime;
+    //지도 획득 여부
+    public bool getMap;
+}
+
+//저장할 튜토리얼 데이터
+[System.Serializable]
+public class TutorialLoadData
+{
+    //생성자
+    public TutorialLoadData(int _tutoralEventNum, bool _getBotzime, bool _getMap)
+    {
+        tutoralEventNum = _tutoralEventNum;
+        getBotzime = _getBotzime;
+        getMap = _getMap;
+    }
+
+    //튜토리얼 이벤트 번호
+    public int tutoralEventNum;
+    //봇짐 획득 여부
+    public bool getBotzime;
+    //지도 획득 여부
+    public bool getMap;
+}
+
+//Event
+public enum Events
+{
+    TurnOnLights = 0,
+    GetItems = 1,
+    TalkToBBangDuck = 2,
+    TalkToHyang = 3,
+    PassOneDay = 4,
+    Done
+
+}
 
 public class TutorialManager : MonoBehaviour
 {
@@ -73,13 +126,24 @@ public class TutorialManager : MonoBehaviour
     private bool PassDayTalkEnd2;
     private bool PassDayTalkEnd3;
 
-    public enum TutorialProgress
-    {
-    } 
+    //저장할 튜토리얼 데이터 클래스
+    public TutorialSaveData curTutorialSaveData;
+    //불러올 튜토리얼 데이터 클래스
+    public TutorialLoadData curTutorialLoadData;
+
+    private string saveFilePath;
+
+    //튜토리얼 이벤트
+    public Events events = Events.TurnOnLights;
+
+    //튜토리얼 이벤트 번호
+    public int tutorialEventNum = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        //세이브 데이터 파일 위치
+        saveFilePath = Application.persistentDataPath + "/TutorialDataText.txt";
         //튜토리얼 시작 전 사전 작업들
         #region
         ////UI Canvas OFF
@@ -102,6 +166,7 @@ public class TutorialManager : MonoBehaviour
             //스페이스 바를 눌러 독백 창 끄기
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z))
             {
+
                 //Player 이동 제한 해제
                 playerCtrlScr.TalkEnd();
 
@@ -118,6 +183,7 @@ public class TutorialManager : MonoBehaviour
                 Invoke("ActiveFalse_NarationBG", 1.5f);
             }
 
+            //Evnet 0 : 불을 키자
             //불이 켜졌을경우
             if (turnOnLightScr.isTrunOnLight && !showNote)
             {
@@ -129,6 +195,10 @@ public class TutorialManager : MonoBehaviour
                 playerCtrlScr.TalkStart();
 
                 showNote = true;
+
+                //다음 이벤트
+                tutorialEventNum = 1;
+                events = Events.GetItems;
             }
 
             //노트를 읽고 난 뒤 Z or Space를 누른다
@@ -171,6 +241,7 @@ public class TutorialManager : MonoBehaviour
             //UI 캔버스 보이기
             gameObject_UICanvas.SetActive(true);
 
+
             gameObject_Dialogue.SetActive(false);
         }
         #endregion
@@ -179,6 +250,7 @@ public class TutorialManager : MonoBehaviour
 
         if (setence1End && !getObjects)
         {
+            //Evnet 1 : 봇짐 또는 지도를 획득하자
             //봇짐 획득 후 창끄기
             if (setence1End && Input.GetKeyDown(KeyCode.Z) && objCtrlScr.getBotzime && playerDialogueScr.isTalkEnd)
             {
@@ -216,13 +288,20 @@ public class TutorialManager : MonoBehaviour
             playerCtrlScr.TalkEnd();
 
             gameObject_Dialogue.SetActive(false);
+
+            //다음 이벤트
+            tutorialEventNum = 2;
+            events = Events.TalkToBBangDuck;
         }
 
+        //Evnet 2 : 뺑떡 어멈과 대화하자
         //뺑떡 어멈의 말이 끝났을 경우
         if (setence1End && getObjects && SentenceEnd_Bbang && !BangtalkEnd)
         {
             Debug.Log("뺑떡이야기 후 대화 실행");
+
             playerCtrlScr.TalkStart();
+
             playerDialogueScr.Start_Sentence_BbangEnd();
 
             BangtalkEnd = true;
@@ -232,17 +311,26 @@ public class TutorialManager : MonoBehaviour
         if (playerDialogueScr.isTalkEnd && Input.GetKeyDown(KeyCode.Z) && BangtalkEnd && !SentenceEnd_Hyang)
         {
             playerCtrlScr.TalkEnd();
+
             gameObject_Dialogue.SetActive(false);
+
+            //다음 이벤트
+            tutorialEventNum = 3;
+            events = Events.TalkToHyang;
         }
 
+        //Evnet 3 : 향리댁과 대화하자
         //향리댁 대화가 모두 끝났을 경우
         if (getObjects && SentenceEnd_Bbang && SentenceEnd_Hyang && !HyangTalkEnd1 && !HyangTalkEnd2)
         {
             playerCtrlScr.TalkStart();
+
             //향리댁 1번대화
             playerDialogueScr.Start_Sentence_HyangEnd1();
 
             HyangTalkEnd1 = true;
+
+            
         }
 
         //1번대화가 모두 끝나고 Z키 누를경우
@@ -282,16 +370,18 @@ public class TutorialManager : MonoBehaviour
             timeManagerScr.ContinueTime();
 
             SentenceEnd_HyangShim = true;
+
+            //다음 이벤트
+            tutorialEventNum = 4;
+            events = Events.PassOneDay;
         }
 
-
+        //Evnet 4 : 하루를 보내자
         //하루가 지났을 경우
         if (passDay && !PassDayTalkEnd1)
         {
             //대화 시작
             playerCtrlScr.TalkStart();
-
-
 
             //하루 지나고 대화 1
             playerDialogueScr.Start_Sentence_PassDay();
@@ -317,7 +407,7 @@ public class TutorialManager : MonoBehaviour
 
         if (playerDialogueScr.isTalkEnd && PassDayTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && passDay)
         {
-            Debug.Log("튜토리얼 끝끝");
+            Debug.Log("튜토리얼 끝");
             //대화 끝
             playerCtrlScr.TalkEnd();
 
@@ -329,6 +419,10 @@ public class TutorialManager : MonoBehaviour
 
             //시간 흐르기
             timeManagerScr.PassDaySentenceEnd();
+
+            //다음 이벤트
+            tutorialEventNum = 5;
+            events = Events.Done;
         }
     }
 
@@ -385,5 +479,316 @@ public class TutorialManager : MonoBehaviour
     public void TutorialSentenceEnd_Hyang()
     {
         SentenceEnd_Hyang = true;
+    }
+
+    //Save Data
+    public void Save(int _slotNum)
+    {
+        Debug.Log("Save TutorialData");
+
+        //저장할 데이터 넣기
+        curTutorialSaveData = new TutorialSaveData(tutorialEventNum, objCtrlScr.getBotzime, objCtrlScr.getMap);
+
+        //세이브 데이터
+        string jSaveData = JsonUtility.ToJson(curTutorialSaveData);
+
+        //데이터 파일 생성
+        File.WriteAllText(saveFilePath + _slotNum.ToString(), jSaveData);
+    }
+
+    //데이터 로드
+    public void Load(int _slotNum)
+    {
+        Debug.Log("Load TutorialData");
+
+        //세이브 파일 읽어오기
+        string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
+
+        //읽어온 파일 리스트에 저장
+        curTutorialLoadData = JsonUtility.FromJson<TutorialLoadData>(jLoadData);
+
+        //저장된 EventNum 불러오기
+        tutorialEventNum = curTutorialLoadData.tutoralEventNum;
+
+        //Event 상태 세팅
+        EventsStateSetting();
+
+        //Event 세팅
+        EventSetting(curTutorialLoadData.getBotzime, curTutorialLoadData.getMap);
+    }
+
+    //Events State Setting
+    public void EventsStateSetting()
+    {
+        //(Enum)Events 값 세팅
+        switch (tutorialEventNum)
+        {
+            case 0:
+                events = Events.TurnOnLights;
+                break;
+            case 1:
+                events = Events.GetItems;
+                break;
+            case 2:
+                events = Events.TalkToBBangDuck;
+                break;
+            case 3:
+                events = Events.TalkToHyang;
+                break;
+            case 4:
+                events = Events.PassOneDay;
+                break;
+            case 5:
+                events = Events.Done;
+                break;
+        }
+    }
+
+    //이벤트 세팅
+    private void EventSetting(bool _getBotzime, bool _getMap)
+    {
+        switch (events)
+        {
+            //이벤트 0 : 불을 켜라
+            case Events.TurnOnLights:
+                {
+                    //Flag 설정
+                    showNote = false;
+                    closeNote = false;
+                    setence1End = false;
+                    getObjects = false;
+                    passDay = false;
+                    SentenceEnd_Bbang = false;
+                    SentenceEnd_Hyang = false;
+                    SentenceEnd_HyangShim = false;
+                    BangtalkEnd = false;
+                    HyangTalkEnd1 = false;
+                    HyangTalkEnd2 = false;
+                    HyangTalkEnd3 = false;
+                    PassDayTalkEnd1 = false;
+                    PassDayTalkEnd2 = false;
+                    PassDayTalkEnd3 = false;
+
+                    //Object 설정
+
+                    //등잔불 리셋
+                    turnOnLightScr.TurnOFFLights();
+                    //봇짐 리셋
+                    objCtrlScr.ResetBotzime();
+                    //지도 리셋
+                    objCtrlScr.ResetMap();
+
+                    //UI 설정
+                    //UI Canvas 끄기
+                    gameObject_UICanvas.SetActive(false);
+                    //날짜 UI끄기
+                    timeManagerScr.CloseDayUI();
+                    break;
+                }
+
+            //이벤트 1 : 아이템을 획득해라
+            case Events.GetItems:
+                {
+                    //Flag 설정
+                    showNote = true;
+                    closeNote = true;
+                    setence1End = true;
+                    getObjects = false;
+                    passDay = false;
+                    SentenceEnd_Bbang = false;
+                    SentenceEnd_Hyang = false;
+                    SentenceEnd_HyangShim = false;
+                    BangtalkEnd = false;
+                    HyangTalkEnd1 = false;
+                    HyangTalkEnd2 = false;
+                    HyangTalkEnd3 = false;
+                    PassDayTalkEnd1 = false;
+                    PassDayTalkEnd2 = false;
+                    PassDayTalkEnd3 = false;
+
+                    //Object 설정
+
+                    //등잔불 켜기
+                    turnOnLightScr.TurnOnLights();
+
+                    //봇짐만 획득 했다면
+                    if (_getBotzime && !_getMap)
+                    {
+                        objCtrlScr.LoadBotzime();
+                        objCtrlScr.ResetMap();
+                    }
+                    //지도만 획득 했다면
+                    else if (!_getBotzime && _getMap)
+                    {
+                        objCtrlScr.LoadMap();
+                        objCtrlScr.ResetBotzime();
+                    }
+                    else
+                    {
+                        //봇짐 리셋
+                        objCtrlScr.ResetBotzime();
+                        //지도 리셋
+                        objCtrlScr.ResetMap();
+                    }
+
+                    //UI 설정
+                    //UI Canvas 켜기
+                    gameObject_UICanvas.SetActive(true);
+                    //날짜 UI끄기
+                    timeManagerScr.CloseDayUI();
+                    break;
+                }
+
+            //이벤트 2 : 뺑떡과 대화
+            case Events.TalkToBBangDuck:
+                {
+                    //Flag 설정
+                    showNote = true;
+                    closeNote = true;
+                    setence1End = true;
+                    getObjects = true;
+                    passDay = false;
+                    SentenceEnd_Bbang = false;
+                    SentenceEnd_Hyang = false;
+                    SentenceEnd_HyangShim = false;
+                    BangtalkEnd = false;
+                    HyangTalkEnd1 = false;
+                    HyangTalkEnd2 = false;
+                    HyangTalkEnd3 = false;
+                    PassDayTalkEnd1 = false;
+                    PassDayTalkEnd2 = false;
+                    PassDayTalkEnd3 = false;
+
+                    //Object 설정
+
+                    //등잔불 켜기
+                    turnOnLightScr.TurnOnLights();
+
+                    //봇짐 획득
+                    objCtrlScr.LoadBotzime();
+                    //지도 획득
+                    objCtrlScr.LoadMap();
+
+                    //UI 설정
+                    //UI Canvas 켜기
+                    gameObject_UICanvas.SetActive(true);
+                    //날짜 UI끄기
+                    timeManagerScr.CloseDayUI();
+                    break;
+                }
+
+            //이벤트 3 : 향리댁과 대화
+            case Events.TalkToHyang:
+                {
+                    //Flag 설정
+                    showNote = true;
+                    closeNote = true;
+                    setence1End = true;
+                    getObjects = true;
+                    passDay = false;
+                    SentenceEnd_Bbang = true;
+                    SentenceEnd_Hyang = false;
+                    SentenceEnd_HyangShim = false;
+                    BangtalkEnd = true;
+                    HyangTalkEnd1 = false;
+                    HyangTalkEnd2 = false;
+                    HyangTalkEnd3 = false;
+                    PassDayTalkEnd1 = false;
+                    PassDayTalkEnd2 = false;
+                    PassDayTalkEnd3 = false;
+
+                    //Object 설정
+
+                    //등잔불 켜기
+                    turnOnLightScr.TurnOnLights();
+
+                    //봇짐 획득
+                    objCtrlScr.LoadBotzime();
+                    //지도 획득
+                    objCtrlScr.LoadMap();
+
+                    //UI 설정
+                    //UI Canvas 켜기
+                    gameObject_UICanvas.SetActive(true);
+                    //날짜 UI끄기
+                    timeManagerScr.CloseDayUI();
+                    break;
+                }
+
+            //이벤트 4 : 하루를 보내자
+            case Events.PassOneDay:
+                {
+                    //Flag 설정
+                    showNote = true;
+                    closeNote = true;
+                    setence1End = true;
+                    getObjects = true;
+                    passDay = false;
+                    SentenceEnd_Bbang = true;
+                    SentenceEnd_Hyang = true;
+                    SentenceEnd_HyangShim = true;
+                    BangtalkEnd = true;
+                    HyangTalkEnd1 = true;
+                    HyangTalkEnd2 = true;
+                    HyangTalkEnd3 = true;
+                    PassDayTalkEnd1 = false;
+                    PassDayTalkEnd2 = false;
+                    PassDayTalkEnd3 = false;
+
+                    //Object 설정
+
+                    //등잔불 켜기
+                    turnOnLightScr.TurnOnLights();
+
+                    //봇짐 획득
+                    objCtrlScr.LoadBotzime();
+                    //지도 획득
+                    objCtrlScr.LoadMap();
+
+                    //UI 설정
+                    //UI Canvas 켜기
+                    gameObject_UICanvas.SetActive(true);
+                    //날짜 UI 켜기
+                    timeManagerScr.ShowDayUI();
+                    break;
+                }
+
+            //이벤트 5 : 이벤트 끝
+            case Events.Done:
+                {
+                    //Flag 설정
+                    showNote = true;
+                    closeNote = true;
+                    setence1End = true;
+                    getObjects = true;
+                    passDay = true;
+                    SentenceEnd_Bbang = true;
+                    SentenceEnd_Hyang = true;
+                    SentenceEnd_HyangShim = true;
+                    BangtalkEnd = true;
+                    HyangTalkEnd1 = true;
+                    HyangTalkEnd2 = true;
+                    HyangTalkEnd3 = true;
+                    PassDayTalkEnd1 = true;
+                    PassDayTalkEnd2 = true;
+                    PassDayTalkEnd3 = true;
+
+                    //Object 설정
+
+                    //등잔불 켜기
+                    turnOnLightScr.TurnOnLights();
+                    //봇짐 획득
+                    objCtrlScr.LoadBotzime();
+                    //지도 획득
+                    objCtrlScr.LoadMap();
+
+                    //UI 설정
+                    //UI Canvas 켜기
+                    gameObject_UICanvas.SetActive(true);
+                    //날짜 UI 켜기
+                    timeManagerScr.ShowDayUI();
+                    break;
+                }
+        }
     }
 }

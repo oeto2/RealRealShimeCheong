@@ -146,6 +146,12 @@ public class TimeManager : MonoBehaviour
         gameObjcet_DayUI.SetActive(true);
     }
 
+    //날짜 UI 끄기
+    public void CloseDayUI()
+    {
+        gameObjcet_DayUI.SetActive(false);
+    }
+
     //시간 리셋
     public void ResetTime()
     {

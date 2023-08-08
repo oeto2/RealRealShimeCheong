@@ -47,4 +47,18 @@ public class TurnOnLight : MonoBehaviour
             isTouch = false;
         }
     }
+    //µÓ¿‹∫“ ƒ—±‚
+    public void TurnOnLights()
+    {
+        lightObject.SetActive(true);
+        isTrunOnLight = true;
+    }
+
+
+    //µÓ¿‹∫“ ≤Ù±‚
+    public void TurnOFFLights()
+    {
+        lightObject.SetActive(false);
+        isTrunOnLight = false;
+    }
 }

@@ -10,6 +10,7 @@ public class DataManager : MonoBehaviour
     public TimeManager timeManagerScr;
     public GameManager gameManagerScr;
     public ObjectManager objectManagerScr;
+    public TutorialManager tutorialManagerScr;
 
     //로딩 시간
     public int int_LodingTime;
@@ -46,6 +47,9 @@ public class DataManager : MonoBehaviour
         //UiManager Data 저장
         uiManagerScr.Save(int_SaveSlotNum);
 
+        //Tutorial Data 저장
+        tutorialManagerScr.Save(int_SaveSlotNum);
+
         //세이브 확인창 끄기
         gameObject_SaveCheckWindow.SetActive(false);
     }
@@ -75,6 +79,9 @@ public class DataManager : MonoBehaviour
 
         //UiManager PlayTime Data Load
         uiManagerScr.LoadPlayTime(int_LoadSlotNum);
+
+        //Tutorial Data Load
+        tutorialManagerScr.Load(int_LoadSlotNum);
     }
 
     //로드 No버튼
