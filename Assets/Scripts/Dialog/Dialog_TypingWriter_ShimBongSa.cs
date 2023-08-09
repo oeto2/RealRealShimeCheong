@@ -54,7 +54,7 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
             tutorial_SentenceList.Add(new TutorialSentence("심청이를 안본지 이틀이 지났다, 간만의 외출이니 나갈 채비를 해보자."));//0
             tutorial_SentenceList.Add(new TutorialSentence(" Z를 누르면 주변의 물건과 상호작용할 수 있다."));
             tutorial_SentenceList.Add(new TutorialSentence("봇짐을 챙겼다. X를 눌러 봇짐을 열어볼 수 있다."));
-            tutorial_SentenceList.Add(new TutorialSentence("늘 나의 눈이 되어주는 지도도 챙겼다."));
+            tutorial_SentenceList.Add(new TutorialSentence("늘 나의 눈이 되어주는 지도를 챙겼다."));
             tutorial_SentenceList.Add(new TutorialSentence("채비가 끝났으니 심청이를 만나러 향리 댁으로 가자.")); 
             tutorial_SentenceList.Add(new TutorialSentence("아이템이나 단서를 장착 후 Z를 누르면 그에 따른 상호작용이 일어납니다.")); //5
             tutorial_SentenceList.Add(new TutorialSentence("청이가 향리 댁에 오지 않았다고 한다."));
@@ -232,7 +232,7 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
         //대화 실행시 다이얼로그창 띄우기
         gameObject_Dialougue.SetActive(true);
 
-        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[8].sentence, false));
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[8].sentence, true));
     }
 
     //하루가 지난뒤 대화
@@ -254,7 +254,7 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
         //대화 실행시 다이얼로그창 띄우기
         gameObject_Dialougue.SetActive(true);
 
-        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[10].sentence, false));
+        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[10].sentence, true));
     }
 
     //하루가 지난뒤 대화
