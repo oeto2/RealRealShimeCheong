@@ -9,11 +9,12 @@ using System.IO;
 public class TutorialSaveData
 {
     //생성자
-    public TutorialSaveData(int _tutoralEventNum, bool _getBotzime, bool _getMap)
+    public TutorialSaveData(int _tutoralEventNum, bool _getBotzime, bool _getMap, bool _isLightsOn)
     {
         tutoralEventNum = _tutoralEventNum;
         getBotzime = _getBotzime;
         getMap = _getMap;
+        isLightsOn = _isLightsOn;
     }
 
     //튜토리얼 이벤트 번호
@@ -22,6 +23,8 @@ public class TutorialSaveData
     public bool getBotzime;
     //지도 획득 여부
     public bool getMap;
+    //불을 켰는지 안켰는지
+    public bool isLightsOn;
 }
 
 //저장할 튜토리얼 데이터
@@ -29,11 +32,12 @@ public class TutorialSaveData
 public class TutorialLoadData
 {
     //생성자
-    public TutorialLoadData(int _tutoralEventNum, bool _getBotzime, bool _getMap)
+    public TutorialLoadData(int _tutoralEventNum, bool _getBotzime, bool _getMap, bool _isLightsOn)
     {
         tutoralEventNum = _tutoralEventNum;
         getBotzime = _getBotzime;
         getMap = _getMap;
+        isLightsOn = _isLightsOn;
     }
 
     //튜토리얼 이벤트 번호
@@ -42,6 +46,8 @@ public class TutorialLoadData
     public bool getBotzime;
     //지도 획득 여부
     public bool getMap;
+    //불을 켰는지 안켰는지
+    public bool isLightsOn;
 }
 
 //Event
@@ -196,9 +202,7 @@ public class TutorialManager : MonoBehaviour
 
                 showNote = true;
 
-                //다음 이벤트
-                tutorialEventNum = 1;
-                events = Events.GetItems;
+                
             }
 
             //노트를 읽고 난 뒤 Z or Space를 누른다
@@ -243,6 +247,10 @@ public class TutorialManager : MonoBehaviour
 
 
             gameObject_Dialogue.SetActive(false);
+
+            //다음 이벤트
+            tutorialEventNum = 1;
+            events = Events.GetItems;
         }
         #endregion
 
@@ -489,7 +497,7 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("Save TutorialData");
 
         //저장할 데이터 넣기
-        curTutorialSaveData = new TutorialSaveData(tutorialEventNum, objCtrlScr.getBotzime, objCtrlScr.getMap);
+        curTutorialSaveData = new TutorialSaveData(tutorialEventNum, objCtrlScr.getBotzime, objCtrlScr.getMap, turnOnLightScr.isLightsOn);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curTutorialSaveData);
@@ -516,7 +524,7 @@ public class TutorialManager : MonoBehaviour
         EventsStateSetting();
 
         //Event 세팅
-        EventSetting(curTutorialLoadData.getBotzime, curTutorialLoadData.getMap);
+        EventSetting(curTutorialLoadData.getBotzime, curTutorialLoadData.getMap, curTutorialLoadData.isLightsOn);
     }
 
     //Events State Setting
@@ -547,7 +555,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     //이벤트 세팅
-    private void EventSetting(bool _getBotzime, bool _getMap)
+    private void EventSetting(bool _getBotzime, bool _getMap, bool _isLightsOn)
     {
         switch (events)
         {
@@ -615,8 +623,19 @@ public class TutorialManager : MonoBehaviour
 
                     //Object 설정
 
-                    //등잔불 켜기
-                    turnOnLightScr.TurnOnLights();
+                    //등잔불이 켜져있었다면
+                    if(_isLightsOn)
+                    {
+                        //등잔불 켜기
+                        turnOnLightScr.TurnOnLights();
+                    }
+
+                    //등잔불이 꺼져 있었다면
+                    else if (!_isLightsOn)
+                    {
+                        //등잔불 끄기
+                        turnOnLightScr.TurnOFFLights();
+                    }
 
                     //봇짐만 획득 했다면
                     if (_getBotzime && !_getMap)
@@ -670,8 +689,19 @@ public class TutorialManager : MonoBehaviour
 
                     //Object 설정
 
-                    //등잔불 켜기
-                    turnOnLightScr.TurnOnLights();
+                    //등잔불이 켜져있었다면
+                    if (_isLightsOn)
+                    {
+                        //등잔불 켜기
+                        turnOnLightScr.TurnOnLights();
+                    }
+
+                    //등잔불이 꺼져 있었다면
+                    else if (!_isLightsOn)
+                    {
+                        //등잔불 끄기
+                        turnOnLightScr.TurnOFFLights();
+                    }
 
                     //봇짐 획득
                     objCtrlScr.LoadBotzime();
@@ -710,8 +740,19 @@ public class TutorialManager : MonoBehaviour
 
                     //Object 설정
 
-                    //등잔불 켜기
-                    turnOnLightScr.TurnOnLights();
+                    //등잔불이 켜져있었다면
+                    if (_isLightsOn)
+                    {
+                        //등잔불 켜기
+                        turnOnLightScr.TurnOnLights();
+                    }
+
+                    //등잔불이 꺼져 있었다면
+                    else if (!_isLightsOn)
+                    {
+                        //등잔불 끄기
+                        turnOnLightScr.TurnOFFLights();
+                    }
 
                     //봇짐 획득
                     objCtrlScr.LoadBotzime();
@@ -750,8 +791,19 @@ public class TutorialManager : MonoBehaviour
 
                     //Object 설정
 
-                    //등잔불 켜기
-                    turnOnLightScr.TurnOnLights();
+                    //등잔불이 켜져있었다면
+                    if (_isLightsOn)
+                    {
+                        //등잔불 켜기
+                        turnOnLightScr.TurnOnLights();
+                    }
+
+                    //등잔불이 꺼져 있었다면
+                    else if (!_isLightsOn)
+                    {
+                        //등잔불 끄기
+                        turnOnLightScr.TurnOFFLights();
+                    }
 
                     //봇짐 획득
                     objCtrlScr.LoadBotzime();
@@ -792,8 +844,20 @@ public class TutorialManager : MonoBehaviour
 
                     //Object 설정
 
-                    //등잔불 켜기
-                    turnOnLightScr.TurnOnLights();
+                    //등잔불이 켜져있었다면
+                    if (_isLightsOn)
+                    {
+                        //등잔불 켜기
+                        turnOnLightScr.TurnOnLights();
+                    }
+
+                    //등잔불이 꺼져 있었다면
+                    else if (!_isLightsOn)
+                    {
+                        //등잔불 끄기
+                        turnOnLightScr.TurnOFFLights();
+                    }
+
                     //봇짐 획득
                     objCtrlScr.LoadBotzime();
                     //지도 획득

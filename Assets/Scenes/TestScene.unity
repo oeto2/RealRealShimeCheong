@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3168,6 +3168,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -14024,8 +14025,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3727ce713820d5f4482a0409dd00fb6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCtrlScr: {fileID: 1871036892}
+  tutorialManagerScr: {fileID: 2057623165}
   lightObject: {fileID: 1197621191}
   isTrunOnLight: 0
+  isLightsOn: 0
 --- !u!61 &986980361
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28613,6 +28617,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1851244458

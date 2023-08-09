@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class TurnOnLight : MonoBehaviour
 {
+    //외부 스크립트 참조
+    public Controller playerCtrlScr;
+    public TutorialManager tutorialManagerScr;
+
     //Spot Light Object
     public GameObject lightObject;
 
@@ -14,19 +18,34 @@ public class TurnOnLight : MonoBehaviour
     [Tooltip("등잔 불이 켜지면 True")]
     public bool isTrunOnLight;
 
+    //불이 켜졌는지 확인하는 변수
+    public bool isLightsOn;
+
     // Update is called once per frame
     void Update()
     {
-        if(isTouch && Input.GetKeyDown(KeyCode.Z))
+
+        //등잔불이 꺼졌는데 Z키를 눌렀을 경우
+        if (isTouch && !lightObject.activeSelf && Input.GetKeyDown(KeyCode.Z) && !isLightsOn)
         {
+            Debug.Log("불켜기");
             lightObject.SetActive(true);
             isTrunOnLight = true;
+            Invoke("isLightsOnTrue", 0.1f);
+        }
+
+        //등잔불이 켜진상태로 Z키를 눌렀을 경우
+        if (isTouch && lightObject.activeSelf && Input.GetKeyDown(KeyCode.Z) && isLightsOn && tutorialManagerScr.events != Events.TurnOnLights)
+        {
+            Debug.Log("불끄기");
+            lightObject.SetActive(false);
+            isLightsOn = false;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             isTouch = true;
         }
@@ -42,7 +61,7 @@ public class TurnOnLight : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             isTouch = false;
         }
@@ -60,5 +79,10 @@ public class TurnOnLight : MonoBehaviour
     {
         lightObject.SetActive(false);
         isTrunOnLight = false;
+    }
+
+    private void isLightsOnTrue()
+    {
+        isLightsOn = true;
     }
 }
