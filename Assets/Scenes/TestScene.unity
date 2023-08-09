@@ -900,6 +900,7 @@ MonoBehaviour:
   cameraMoveScr: {fileID: 1924761762}
   gameManagerScr: {fileID: 905248352}
   timeManagerScr: {fileID: 1371449063}
+  playerCtrlScr: {fileID: 1871036892}
   gameObject_ItemWindow: {fileID: 225938699}
   gameObject_MapWindow: {fileID: 487513804}
   gameObject_Option: {fileID: 1335073537}
@@ -32074,10 +32075,12 @@ MonoBehaviour:
     tutoralEventNum: 0
     getBotzime: 0
     getMap: 0
+    isLightsOn: 0
   curTutorialLoadData:
     tutoralEventNum: 0
     getBotzime: 0
     getMap: 0
+    isLightsOn: 0
   events: 0
   tutorialEventNum: 0
 --- !u!1 &2063844033

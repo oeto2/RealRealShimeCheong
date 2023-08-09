@@ -61,6 +61,7 @@ public class UIManager : MonoBehaviour
     public CameraMove cameraMoveScr;
     public GameManager gameManagerScr;
     public TimeManager timeManagerScr;
+    public Controller playerCtrlScr;
 
     //아이템창 인터페이스 오브젝트
     public GameObject gameObject_ItemWindow;
@@ -173,8 +174,8 @@ public class UIManager : MonoBehaviour
 
         //아이템 창 관련 코드
         #region
-        //아이템 창 비활성화 상태에서 X키를 누를 경우
-        if (Input.GetKeyDown(KeyCode.X) && !gameObject_ItemWindow.activeSelf && !isMapWindowLaunch && !isOptionLaunch && !isCombineLaunch)
+        //아이템 창을 켜는 조건
+        if (Input.GetKeyDown(KeyCode.X) && !gameObject_ItemWindow.activeSelf && !isMapWindowLaunch && !isOptionLaunch && !isCombineLaunch && !playerCtrlScr.isTalk)
         {
             //아이템 창 실행
             ItemWindowLaunch();
@@ -204,8 +205,8 @@ public class UIManager : MonoBehaviour
 
         //맵 관련 코드
         #region
-        //지도가 실행중이 아닌데 M키를 눌렀을 경우
-        if (Input.GetKeyDown(KeyCode.M) && !gameObject_MapWindow.activeSelf && !isItemWindowLaunch && !isOptionLaunch && !isCombineLaunch)
+        //지도를 펼치는 조건
+        if (Input.GetKeyDown(KeyCode.M) && !gameObject_MapWindow.activeSelf && !isItemWindowLaunch && !isOptionLaunch && !isCombineLaunch && !playerCtrlScr.isTalk)
         {
             //지도 오브젝트 활성화
             gameObject_MapWindow.SetActive(true);
@@ -234,11 +235,9 @@ public class UIManager : MonoBehaviour
         //옵션 관련 코드
         #region
 
-        //아이템창 ,지도 ,옵션창이 실행중이지 않을때 ESC키를 눌렀을 경우
-        if (!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch && !isCombineLaunch && Input.GetKeyDown(KeyCode.Escape))
+        //옵션창을 띄우는 조건
+        if (!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch && !isCombineLaunch && Input.GetKeyDown(KeyCode.Escape) && !playerCtrlScr.isTalk)
         {
-           
-
             //옵션창 보여주기
             gameObject_Option.SetActive(true);
         }
@@ -284,8 +283,8 @@ public class UIManager : MonoBehaviour
 
         //조합창 관련 코드
         #region
-        //조합창이 실행중이라면
-        if (gameObject_CombineWindow.activeSelf)
+        //조합창을 띄우는 조건
+        if (gameObject_CombineWindow.activeSelf && !playerCtrlScr.isTalk)
         {
             isCombineLaunch = true;
         }
