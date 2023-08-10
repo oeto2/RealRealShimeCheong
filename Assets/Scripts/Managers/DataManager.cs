@@ -78,7 +78,7 @@ public class DataManager : MonoBehaviour
         objectManagerScr.Load(int_LoadSlotNum);
 
         //UiManager PlayTime Data Load
-        uiManagerScr.LoadPlayTime(int_LoadSlotNum);
+        uiManagerScr.Load(int_LoadSlotNum);
 
         //Tutorial Data Load
         tutorialManagerScr.Load(int_LoadSlotNum);

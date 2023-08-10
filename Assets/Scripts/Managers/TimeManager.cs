@@ -194,6 +194,7 @@ public class TimeManager : MonoBehaviour
     public void Save(int _slotNum)
     {
         Debug.Log("Save TimeManagerData");
+        
 
         //저장할 데이터 넣기
         curTimeSaveData = new TimeSaveData(float_RealTime, int_DayCount);
@@ -283,4 +284,6 @@ public class TimeManager : MonoBehaviour
         //현재 플레이 타임을 누적 플레이 타임 값으로 변경
         float_PlayTimeSec = float_SavePlayTime;
     }
+
+   
 }

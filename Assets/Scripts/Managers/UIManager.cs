@@ -9,12 +9,13 @@ using System.IO;
 public class SaveUiData
 {
     //생성자
-    public SaveUiData(string _placeName, string _day, string _playTimeText, float _playTimeSec)
+    public SaveUiData(string _placeName, string _day, string _playTimeText, float _playTimeSec, int _sunClockNum)
     {
         placeName = _placeName;
         day = _day;
         playTimeText = _playTimeText;
         playTimeSec = _playTimeSec;
+        sunClockNum = _sunClockNum;
     }
 
     //장소 이름
@@ -28,18 +29,22 @@ public class SaveUiData
 
     //플레이 타임 시간
     public float playTimeSec;
+
+    //해시계 이미지 번호
+    public int sunClockNum;
 }
 
 //불러올 UI 데이터들
 public class LoadUiData
 {
     //생성자
-    public LoadUiData(string _placeName, string _day, string _playTimeText, float _playTimeSec)
+    public LoadUiData(string _placeName, string _day, string _playTimeText, float _playTimeSec, int _sunClockNum)
     {
         placeName = _placeName;
         day = _day;
         playTimeText = _playTimeText;
         playTimeSec = _playTimeSec;
+        sunClockNum = _sunClockNum;
     }
 
     //장소 이름
@@ -53,6 +58,9 @@ public class LoadUiData
 
     //플레이 타임 시간
     public float playTimeSec;
+
+    //해시계 이미지 번호
+    public int sunClockNum;
 }
 
 public class UIManager : MonoBehaviour
@@ -120,6 +128,11 @@ public class UIManager : MonoBehaviour
     //Load Slot PlayTime text
     public Text[] text_LoadPlayTime;
 
+    //Save Slot SunClock Image
+    public Image[] image_SaveSunClock;
+    //Load Slot SunClock Image
+    public Image[] image_LoadSunClock;
+
     //저장할 UI데이터 클래스
     public SaveUiData curSaveUIData;
 
@@ -134,6 +147,18 @@ public class UIManager : MonoBehaviour
 
     //플레이 타임값을 받아올 클래스
     public LoadUiData curLoadUiData2;
+
+    //현재 해시계 이미지
+    public Image image_CurSunClock;
+
+    //현재 해시계 스프라이트
+    public Sprite sprite_CurSundClock;
+
+    //해시계 스프라이트 모든 이미지들
+    public Sprite[] sprite_AllSunClock;
+
+    //해시계 이미지 번호
+    public int int_SunClockNum = 0;
 
     private void Awake()
     {
@@ -154,6 +179,8 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         isMonuseOn = Cursor.visible;
 
         //마우스 포인터를 켜는 조건
@@ -461,8 +488,14 @@ public class UIManager : MonoBehaviour
     {
         //Debug.Log("Save UIManagerData");
 
+        //현재 해시계 sprite구하기
+        GetCurSunClockSprite();
+
+        //해시계 이미지 번호 구하기
+        GetSunClockNum();
+
         //저장할 데이터 넣기
-        curSaveUIData = new SaveUiData(gameManagerScr.GetPlaceName(),timeManagerScr.GetDayCount(),timeManagerScr.GetPlayTimeText(),timeManagerScr.GetPlayTimeSec(_slotNum));
+        curSaveUIData = new SaveUiData(gameManagerScr.GetPlaceName(),timeManagerScr.GetDayCount(),timeManagerScr.GetPlayTimeText(),timeManagerScr.GetPlayTimeSec(_slotNum), int_SunClockNum);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curSaveUIData);
@@ -480,7 +513,6 @@ public class UIManager : MonoBehaviour
     public void ShowUiDataToSlot()
     {
         //Debug.Log("ShowUiDataToSlot");
-
         if(text_LoadPlaceName != null)
         {
             for (int i = 0; i < text_SavePlaceName.Length; i++)
@@ -511,6 +543,11 @@ public class UIManager : MonoBehaviour
                     //로드슬롯의 날짜 UI Text 변경
                     text_LoadPlayTime[i].text = curLoadUiData.playTimeText;
 
+                    //저장슬롯의 해시계 UI image 변경
+                    image_SaveSunClock[i].sprite = sprite_AllSunClock[curLoadUiData.sunClockNum];
+                    //로드슬롯의 해시계 Ui image 변경
+                    image_LoadSunClock[i].sprite = sprite_AllSunClock[curLoadUiData.sunClockNum];
+
                     ////플레이타임 변경
                     //timeManagerScr.SetPlayTimeSec(curLoadUiData.playTimeSec);
                 }
@@ -518,8 +555,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //플레이타임 불러오기
-    public void LoadPlayTime(int _slotNum)
+    //UI 데이터 불러오기(플레이임, 해시계 UI)
+    public void Load(int _slotNum)
     {
         //파일 읽어오기
         string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
@@ -529,5 +566,29 @@ public class UIManager : MonoBehaviour
 
         //해당하는 슬롯에 플레이 타임값을 받아옴
         timeManagerScr.SetPlayTimeSec(curLoadUiData2.playTimeSec);
+
+        //해시계 UI 이미지 변경
+        image_CurSunClock.sprite = sprite_AllSunClock[curLoadUiData2.sunClockNum];
+        Debug.Log($"해시계 이미지변경 : {curLoadUiData2.sunClockNum}");
+    }
+
+    //현재 해시계 이미지 구하기
+    public void GetCurSunClockSprite()
+    {
+        //현재 해시계 스프라이트 이미지 갱신
+        sprite_CurSundClock = image_CurSunClock.sprite;
+    }
+
+    //해시계 이미지 번호 구하기
+    public void GetSunClockNum()
+    {
+        for (int i = 0; i < sprite_AllSunClock.Length; i++)
+        {
+            //현재 해시계 이미지랑 같은 이미지의 인덱스 넘 구하기
+            if (sprite_AllSunClock[i] == sprite_CurSundClock)
+            {
+                int_SunClockNum = i;
+            }
+        }
     }
 }
