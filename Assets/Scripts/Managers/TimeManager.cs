@@ -93,6 +93,9 @@ public class TimeManager : MonoBehaviour
     //플레이타임
     private string playTime;
 
+    //해시계 이미지 번호
+    public int sunClcokImageNum;
+
     private void Start()
     {
         //저장 파일 위치
@@ -101,6 +104,9 @@ public class TimeManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //해시계 애니메이션
+        ChageSunClock();
+
         //플레이 타임 = 델타 타임
         float_PlayTimeSec += Time.deltaTime;
 
@@ -285,5 +291,10 @@ public class TimeManager : MonoBehaviour
         float_PlayTimeSec = float_SavePlayTime;
     }
 
-   
+    //해시계 UI 이미지 변경
+    public void ChageSunClock()
+    {
+        sunClcokImageNum = ((int)MathF.Truncate(float_RealTime) / 5);
+        uiManagerScr.ChangeSunClockImage(sunClcokImageNum);
+    }
 }

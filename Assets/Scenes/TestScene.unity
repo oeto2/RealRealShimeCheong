@@ -1001,6 +1001,24 @@ MonoBehaviour:
   - {fileID: -1986551891, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
   - {fileID: -1473639429, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
   - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
   int_SunClockNum: 0
 --- !u!1 &124630318
 GameObject:
@@ -12212,7 +12230,6 @@ GameObject:
   - component: {fileID: 901279653}
   - component: {fileID: 901279655}
   - component: {fileID: 901279654}
-  - component: {fileID: 901279656}
   m_Layer: 5
   m_Name: SunClock
   m_TagString: Untagged
@@ -12278,27 +12295,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901279652}
   m_CullTransparentMesh: 1
---- !u!95 &901279656
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 901279652}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 78a27e33a16fc12408ab8cbb3820888b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &905248351
 GameObject:
   m_ObjectHideFlags: 0
@@ -20272,6 +20268,7 @@ MonoBehaviour:
   curTimeLoadData:
     time: 0
     day: 0
+  sunClcokImageNum: 0
 --- !u!1 &1381241257
 GameObject:
   m_ObjectHideFlags: 0

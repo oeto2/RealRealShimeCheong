@@ -591,4 +591,11 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+    //해시계 이미지 변경 (TimeManager에서 관리)
+    public void ChangeSunClockImage(int _sunClockNum)
+    {
+        //해시계 스프라이트 이미지 변경
+        image_CurSunClock.sprite = sprite_AllSunClock[_sunClockNum];
+    }
 }
