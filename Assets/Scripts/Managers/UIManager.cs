@@ -70,6 +70,7 @@ public class UIManager : MonoBehaviour
     public GameManager gameManagerScr;
     public TimeManager timeManagerScr;
     public Controller playerCtrlScr;
+    public EffectSoundManager effectSoundManagerScr;
 
     //아이템창 인터페이스 오브젝트
     public GameObject gameObject_ItemWindow;
@@ -246,6 +247,9 @@ public class UIManager : MonoBehaviour
         {
             //지도 오브젝트 활성화
             gameObject_MapWindow.SetActive(true);
+
+            //효과음 출력
+            effectSoundManagerScr.PlayOpenMapSound();
         }
 
         //지도가 실행중인데 M키 or ESC키를 눌렀을경우
