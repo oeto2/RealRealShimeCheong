@@ -9,7 +9,7 @@ using System.IO;
 public class SaveUiData
 {
     //생성자
-    public SaveUiData(string _placeName, string _day, string _playTimeText, float _playTimeSec, int _sunClockNum)
+    public SaveUiData(string _placeName, int _day, string _playTimeText, float _playTimeSec, int _sunClockNum)
     {
         placeName = _placeName;
         day = _day;
@@ -22,7 +22,7 @@ public class SaveUiData
     public string placeName;
 
     //날짜
-    public string day;
+    public int day;
 
     //플레이 타임 텍스트
     public string playTimeText;
@@ -38,7 +38,7 @@ public class SaveUiData
 public class LoadUiData
 {
     //생성자
-    public LoadUiData(string _placeName, string _day, string _playTimeText, float _playTimeSec, int _sunClockNum)
+    public LoadUiData(string _placeName, int _day, string _playTimeText, float _playTimeSec, int _sunClockNum)
     {
         placeName = _placeName;
         day = _day;
@@ -51,7 +51,7 @@ public class LoadUiData
     public string placeName;
 
     //날짜
-    public string day;
+    public int day;
 
     //플레이 타임 텍스트
     public string playTimeText;
@@ -159,6 +159,15 @@ public class UIManager : MonoBehaviour
 
     //해시계 이미지 번호
     public int int_SunClockNum = 0;
+
+    //Save Slot UI 캘린더 이미지
+    public Image[] image_SaveUICalendar;
+
+    //Load Slot UI 캘린더 이미지
+    public Image[] image_LoadUICalendar;
+
+    //캘린더 스프라이트 모음
+    public Sprite[] sprite_AllCalendar;
 
     private void Awake()
     {
@@ -495,7 +504,7 @@ public class UIManager : MonoBehaviour
         GetSunClockNum();
 
         //저장할 데이터 넣기
-        curSaveUIData = new SaveUiData(gameManagerScr.GetPlaceName(),timeManagerScr.GetDayCount(),timeManagerScr.GetPlayTimeText(),timeManagerScr.GetPlayTimeSec(_slotNum), int_SunClockNum);
+        curSaveUIData = new SaveUiData(gameManagerScr.GetPlaceName(),timeManagerScr.GetDay(),timeManagerScr.GetPlayTimeText(),timeManagerScr.GetPlayTimeSec(_slotNum), int_SunClockNum);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curSaveUIData);
@@ -505,6 +514,9 @@ public class UIManager : MonoBehaviour
 
         //슬롯에 UI 데이터 보여주기
         ShowUiDataToSlot();
+
+        //세이브 슬롯 캘린더 UI 변경
+        ChangeSlotUICalendar(_slotNum, curSaveUIData.day - 1);
 
         //Debug.Log("TimeManager PlayeTime : " + timeManagerScr.GetPlayTimeText());
     }
@@ -533,10 +545,10 @@ public class UIManager : MonoBehaviour
                     //로드슬롯의 장소 UI Text 변경
                     text_LoadPlaceName[i].text = curLoadUiData.placeName;
 
-                    //저장슬롯의 날짜 UI Text 변경
-                    text_SaveDayCount[i].text = curLoadUiData.day;
-                    //로드슬롯의 날짜 UI Text 변경
-                    text_LoadDayCount[i].text = curLoadUiData.day;
+                    ////저장슬롯의 날짜 UI Text 변경
+                    //text_SaveDayCount[i].text = curLoadUiData.day;
+                    ////로드슬롯의 날짜 UI Text 변경
+                    //text_LoadDayCount[i].text = curLoadUiData.day;
 
                     //저장슬롯의 플레이타임 UI Text 변경
                     text_SavePlayTime[i].text = curLoadUiData.playTimeText;
@@ -547,6 +559,12 @@ public class UIManager : MonoBehaviour
                     image_SaveSunClock[i].sprite = sprite_AllSunClock[curLoadUiData.sunClockNum];
                     //로드슬롯의 해시계 Ui image 변경
                     image_LoadSunClock[i].sprite = sprite_AllSunClock[curLoadUiData.sunClockNum];
+
+                    //저장슬롯의 캘린더 UI image 변경
+                    image_SaveUICalendar[i].sprite = sprite_AllCalendar[curLoadUiData.day - 1];
+                    //로드슬롯의 캘린더 UI image 변경
+                    image_LoadUICalendar[i].sprite = sprite_AllCalendar[curLoadUiData.day - 1];
+
 
                     ////플레이타임 변경
                     //timeManagerScr.SetPlayTimeSec(curLoadUiData.playTimeSec);
@@ -598,4 +616,12 @@ public class UIManager : MonoBehaviour
         //해시계 스프라이트 이미지 변경
         image_CurSunClock.sprite = sprite_AllSunClock[_sunClockNum];
     }
+
+    //Slot UI 캘린더 스프라이트 이미지 변경
+    public void ChangeSlotUICalendar(int _slotNum, int _day)
+    {
+        image_SaveUICalendar[_slotNum].sprite = sprite_AllCalendar[_day];
+        image_LoadUICalendar[_slotNum].sprite = sprite_AllCalendar[_day];
+    }
+
 }

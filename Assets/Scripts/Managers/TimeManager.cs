@@ -233,8 +233,14 @@ public class TimeManager : MonoBehaviour
         NextDayAnimaton(int_DayCount);
     }
 
+    //넘겨줄 현재 날짜
+    public int GetDay()
+    {
+        return int_DayCount;
+    }
+    
     //UI 슬롯에 표시할 날짜
-    public string GetDayCount()
+    public string GetDayCountText()
     {
         return int_DayCount.ToString() + "일째";
     }
