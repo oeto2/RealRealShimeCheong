@@ -24,10 +24,13 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 
     public GameObject images_NPC;
 
-    //public Sprite[] images_NPC_portrait;
+    public Sprite[] images_NPC_portrait;
 
-    public Sprite images_NPC_portrait;
+    public Trigger_NPC trigger_npc;
 
+    public bool isNPCTrigger;
+
+    public Controller controller_scr;
 
     //ÃÖÃÊ Å¬¸¯
     void Start()
@@ -48,7 +51,31 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                 isButtonClicked = true;
             }
         }
-        TextPractice();
+
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
+        {
+            Debug.Log("zÅ° ´©¸§! ±Í´ö¾î¸Ø!!!!");
+            StartCoroutine(TextPractice());
+            //bool_isBotjim = true;
+            controller_scr.TalkStart();
+            if (bool_isNPC == false)
+            {
+                images_NPC.SetActive(true);
+                bool_isNPC = true;
+                Trigger_NPC.instance.isNPCTrigger = true;
+                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+            }
+            else
+            {
+                images_NPC.SetActive(false);
+                // images_NPC_portrait.SetActive(false);
+                bool_isNPC = false;
+                StopCoroutine(TextPractice());
+                Trigger_NPC.instance.isNPCTrigger = false;
+                //Controller.instance.TalkEnd();
+            }
+        }
+        //TextPractice();
         //StopCoroutine(TextPractice());
 
         /* if (Input.GetMouseButtonDown(0))
@@ -62,21 +89,20 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                 }*/
     }
 
-
-    public void OnMouseDown()
+    public void OnClickdown()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
             Debug.Log("ÀÌ°Ç Touch! ±Í´ö¾î¸Ø!!!!");
             StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             if (bool_isNPC == true)
             {
+                Controller.instance.TalkStart();
                 images_NPC.SetActive(true);
                 bool_isNPC = false;
 
-                //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait;
+                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
             }
             else
             {
@@ -84,6 +110,7 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                 // images_NPC_portrait.SetActive(false);
                 bool_isNPC = true;
                 StopCoroutine(TextPractice());
+                Controller.instance.TalkEnd();
             }
         }
     }

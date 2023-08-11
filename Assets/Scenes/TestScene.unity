@@ -15462,7 +15462,11 @@ MonoBehaviour:
   characternameText: "\uADC0\uB355\uC5B4\uBA48"
   bool_isNPC: 1
   images_NPC: {fileID: 1486878665}
-  images_NPC_portrait: {fileID: 957350385, guid: c4b92165159364e499205125782f02e7, type: 3}
+  images_NPC_portrait:
+  - {fileID: -857250674, guid: c4b92165159364e499205125782f02e7, type: 3}
+  trigger_npc: {fileID: 1060148996}
+  isNPCTrigger: 0
+  controller_scr: {fileID: 1871036892}
 --- !u!1 &1075882280
 GameObject:
   m_ObjectHideFlags: 0
@@ -23008,7 +23012,11 @@ MonoBehaviour:
   characternameText: "\uBC43\uC0AC\uACF5"
   bool_isNPC: 1
   images_NPC: {fileID: 1486878665}
-  images_NPC_portrait: {fileID: 1549160241, guid: 30b6cc192a4fdd9419ee8f11efb74c68, type: 3}
+  images_NPC_portrait:
+  - {fileID: 1549160241, guid: 30b6cc192a4fdd9419ee8f11efb74c68, type: 3}
+  trigger_npc: {fileID: 1502069086}
+  isNPCTrigger: 0
+  controller_scr: {fileID: 1871036892}
 --- !u!1 &1504203600
 GameObject:
   m_ObjectHideFlags: 0
@@ -30334,6 +30342,9 @@ MonoBehaviour:
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 238e9718555ebec48bc618dbcfc4788e, type: 3}
+  trigger_npc: {fileID: 1939285207}
+  isNPCTrigger: 0
+  controller_scr: {fileID: 1871036892}
 --- !u!1 &1943741406
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,6 +26,11 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
 
     public Sprite[] images_NPC_portrait;
 
+    public Trigger_NPC trigger_npc;
+
+    public bool isNPCTrigger;
+
+    public Controller controller_scr;
 
     //최초 클릭
     void Start()
@@ -46,7 +51,30 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
                 isButtonClicked = true;
             }
         }
-        TextPractice();
+
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
+        {
+            Debug.Log("z키 누름! 상거지다!!!!");
+            StartCoroutine(TextPractice());
+            //bool_isBotjim = true;
+            controller_scr.TalkStart();
+            if (bool_isNPC == false)
+            {
+                images_NPC.SetActive(true);
+                bool_isNPC = true;
+                Trigger_NPC.instance.isNPCTrigger = true;
+                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+            }
+            else
+            {
+                images_NPC.SetActive(false);
+                // images_NPC_portrait.SetActive(false);
+                bool_isNPC = false;
+                StopCoroutine(TextPractice());
+                Trigger_NPC.instance.isNPCTrigger = false;
+                //Controller.instance.TalkEnd();
+            }
+        }
         //StopCoroutine(TextPractice());
 
         /* if (Input.GetMouseButtonDown(0))
@@ -60,27 +88,39 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
                 }*/
     }
 
-
-    public void OnMouseDown()
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        if (Input.GetMouseButtonDown(0))
+        isNPCTrigger = true;
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("이건 Touch! 거지!!!!");
+            OnClickdown();
+        }
+    }
+
+    public void OnClickdown()
+    {
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
+        {
+            Debug.Log("이건 Touch! 상거지!!!!");
             StartCoroutine(TextPractice());
             //bool_isBotjim = true;
+            controller_scr.TalkStart();
             if (bool_isNPC == true)
             {
                 images_NPC.SetActive(true);
-                bool_isNPC = false;
+                bool_isNPC = true;
+                Trigger_NPC.instance.isNPCTrigger = true;
 
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
             }
             else
             {
                 images_NPC.SetActive(false);
-               // images_NPC_portrait.SetActive(false);
-                bool_isNPC = true;
+                // images_NPC_portrait.SetActive(false);
+                bool_isNPC = false;
                 StopCoroutine(TextPractice());
+                Trigger_NPC.instance.isNPCTrigger = false;
+                controller_scr.TalkEnd();
             }
         }
     }
