@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     public int talkIndex;
     public GameObject talkPanel;
 
+    //로딩 이미지 오브젝트
+    public GameObject gameObjcet_Loading;
 
     //Player 오브젝트
     public GameObject gameObjcet_Player;
@@ -73,11 +75,29 @@ public class GameManager : MonoBehaviour
     //현재 플레이가 위치한 장소 이름
     private string curPlaceName;
 
+    #region 퍼즐
+
+    //플레이어가 퍼즐중인지 확인하는 flag
+    public bool isPuzzleStart;
+
+    //Bead Puzzle Map Transform
+    public Transform transform_BeadPuzzleMap;
+
+    #endregion
+
     private void Start()
     {
         saveFilePath = Application.persistentDataPath + "/GameManagerDataText.txt";
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("구슬 퍼즐 시작");
+            PlayBeadPuzzle();
+        }
+    }
 
     public void Action(GameObject scan_obj)
 	{
@@ -197,5 +217,31 @@ public class GameManager : MonoBehaviour
         {
             return null;
         }
+    }
+
+    //구슬 퍼즐 시작
+    public void PlayBeadPuzzle()
+    {
+        //퍼즐 시작
+        isPuzzleStart = true;
+
+        //로딩 이미지 보여주기
+        StartCoroutine(ShowLoding());
+
+        //카메라 위치 변경
+        cameraMoveScr.CameraTransfer(transform_BeadPuzzleMap.position);
+    }
+
+    
+    //로딩 이미지 보여주기
+    IEnumerator ShowLoding()
+    {
+        //로딩 이미지 보여주기
+        gameObjcet_Loading.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        //로딩 이미지 끄기
+        gameObjcet_Loading.SetActive(false);
     }
 }
