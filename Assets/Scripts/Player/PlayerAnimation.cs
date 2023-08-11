@@ -71,7 +71,7 @@ public class PlayerAnimation : MonoBehaviour
         //Player 이동 애니메이션 끄기
         if (playerCtrlScr.canMove)
         {
-            Debug.Log("이동 애니메이션 정지");
+            //Debug.Log("이동 애니메이션 정지");
             animator_Player.SetBool("moveStart", false);
         }
     }
