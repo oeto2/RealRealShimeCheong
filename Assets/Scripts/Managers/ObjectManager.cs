@@ -98,6 +98,11 @@ public class ObjectManager : MonoBehaviour
     //보유중인 단서 Json이 저장될 위치
     public string curCluefilePath;
 
+    //다이얼로그 Json이 저장될 위치
+    public string dialogfilePath;
+    //다이얼로그 마지막 경로 Json이 저장될 위치
+    public string curDialogfilePath;
+
     //처음에 적용할 오브젝트 타입
     public string curType = "Item";
 
