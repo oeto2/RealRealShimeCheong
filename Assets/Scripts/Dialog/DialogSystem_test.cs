@@ -9,10 +9,10 @@ public class DialogSystem_test : MonoBehaviour
 	[System.Serializable]
 	public struct Speaker
 	{
-		public SpriteRenderer spriteRenderer; // 대사중인 NPC의 초상화
+		public Sprite spriteRenderer; // 대사중인 NPC의 초상화
 		public Image imageDialog;             // 대화나올 Image UI
-		public TextMeshProUGUI textName;      // 현재 대사중인 NPC 이름 출력 Text
-		public TextMeshProUGUI textDialogue;  // 대사 text
+		public Text textName;      // 현재 대사중인 NPC 이름 출력 Text
+		public Text textDialogue;  // 대사 text
 		public GameObject objectArrow;		  // 대사 완료되었을 경우 출력되는 임시 커서
 	}
 
@@ -28,7 +28,7 @@ public class DialogSystem_test : MonoBehaviour
 	[SerializeField]
 	private int index;
 	[SerializeField]
-	private S_NPCdatabase dialogdb;
+	private S_NPCdatabase_Yes dialogdb;
 	[SerializeField]
 	private Speaker[] speakers;
 	[SerializeField]
@@ -43,13 +43,13 @@ public class DialogSystem_test : MonoBehaviour
 
 	private void Awake()
 	{
-		int index = 0;
+		int index = 4999;
 
 		for(int i = 0; i < dialogdb.NPC_01.Count; ++i)
 		{
-			if(dialogdb.NPC_01[i].index == index)
+			if(dialogdb.NPC_01[i].index_num == index)
 			{
-				dialogs[index].name = dialogdb.NPC_01[i].name;
+				dialogs[index].name = dialogdb.NPC_01[i].npc_name;
 				dialogs[index].dialogue = dialogdb.NPC_01[i].comment;
 				index++;
 			}
@@ -65,7 +65,8 @@ public class DialogSystem_test : MonoBehaviour
 			SetActiveObjects(speakers[i], false);
 
 			// 초상화는 보이도록 설정
-			speakers[i].spriteRenderer.gameObject.SetActive(true);
+			//speakers[i].spriteRenderer.SetActive(true);
+			GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = speakers[i].spriteRenderer;
 		}
 	}
 
@@ -94,7 +95,7 @@ public class DialogSystem_test : MonoBehaviour
 				{
 					SetActiveObjects(speakers[i], false);
 
-					speakers[i].spriteRenderer.gameObject.SetActive(false);
+					//speakers[i].spriteRenderer.gameObject.SetActive(false);
 				}
 				return true;
 			}
@@ -130,8 +131,8 @@ public class DialogSystem_test : MonoBehaviour
 		speaker.objectArrow.SetActive(false);
 
 		// 초상화 투명화
-		Color color = speaker.spriteRenderer.color;
-		color.a = visible == true ? 1 : 0.2f;
-		speaker.spriteRenderer.color = color;
+		//Color color = speaker.spriteRenderer.color;
+		//color.a = visible == true ? 1 : 0.2f;
+		//speaker.spriteRenderer.color = color;
 	}
 }
