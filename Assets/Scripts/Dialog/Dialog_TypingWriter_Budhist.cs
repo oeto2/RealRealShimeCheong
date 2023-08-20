@@ -42,9 +42,9 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
     }
 
     [SerializeField]
-    private int index;
+    public int index;
     [SerializeField]
-    private S_NPCdatabase_Yes dialogdb;
+    public S_NPCdatabase_Yes dialogdb;
     [SerializeField]
     private DialogData[] dialogs;
 
@@ -57,8 +57,20 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         CharacterName.text="";
     }
 
+	private void Awake()
+	{
+        for (int i = 4999; i < dialogdb.NPC_01.Count; ++i)
+        {
+            if (dialogdb.NPC_01[i].index_num == index)
+            {
+                dialogs[index].name = dialogdb.NPC_01[i].npc_name;
+                dialogs[index].dialogue = dialogdb.NPC_01[i].comment;
+                index++;
+            }
+        }
+    }
 
-    void Update()
+	void Update()
     {
         foreach (var element in skipButton) // 버튼 검사
         {
@@ -83,6 +95,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
             Debug.Log("z키 누름! 승려!!!!");
+            //Debug.Log(dialogs[index].dialogue);
             StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             controller_scr.TalkStart();
@@ -139,12 +152,49 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         }
     }
 
-    IEnumerator NormalChat(string narrator, string narration)
+    IEnumerator NormalChat_4999(string narrator, string narration)
     {
         int a = 0;
-        CharacterName.text = narrator;
-        //characternameText = narrator;
-        writerText = "";
+        //CharacterName.text = narrator;
+        characternameText = dialogdb.NPC_01[0].npc_name;
+        writerText = dialogdb.NPC_01[0].comment;
+        Debug.Log(characternameText);
+        //writerText = "";
+
+        //narrator = CharacterName.text;
+
+        //텍스트 타이핑
+        //for (a = 0; a < narration.Length; a++)
+        for (a = 0; a < 62; a++)
+            {
+            writerText += narration[a];
+            ChatText.text = writerText;
+
+            //텍스트 타이핑 시간 조절
+            //yield return null;
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        //키(default : space)를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (isButtonClicked)
+            {
+                isButtonClicked = false;
+                break;
+            }
+            yield return null;
+        }
+    }
+
+    IEnumerator NormalChat_2(string narrator, string narration)
+    {
+        int a = 0;
+        //CharacterName.text = narrator;
+        characternameText = dialogdb.NPC_01[0].npc_name;
+        writerText = dialogdb.NPC_01[0].comment;
+        Debug.Log(writerText);
+        //writerText = "";
 
         //narrator = CharacterName.text;
 
@@ -173,7 +223,11 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
 
     IEnumerator TextPractice()
     {
-        yield return StartCoroutine(NormalChat(characternameText, writerText));
+        //yield return StartCoroutine(NormalChat(characternameText, writerText));
+        //if(index == 4999)
+        //{
+        yield return StartCoroutine(NormalChat_4999(characternameText, writerText)); 
+        //}
         //yield return StartCoroutine(NormalChat(characternameText, writerText));
         //yield return StartCoroutine(NormalChat("나는봇짐", "?안녕하세요, 반갑습니다. 대화 전환 테스트입니다 이것은 테스트지? 그럼 테스트지 테스트야 테스트군 테스트"));
     }
