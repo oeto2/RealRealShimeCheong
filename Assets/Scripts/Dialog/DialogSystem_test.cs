@@ -43,7 +43,7 @@ public class DialogSystem_test : MonoBehaviour
 
 	private void Awake()
 	{
-		int index = 4999;
+		int index = 0;
 
 		for(int i = 0; i < dialogdb.NPC_01.Count; ++i)
 		{
