@@ -157,6 +157,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         int a = 0;
         //CharacterName.text = narrator;
         characternameText = dialogdb.NPC_01[0].npc_name;
+        CharacterName.text = narrator;
         writerText = dialogdb.NPC_01[0].comment;
         Debug.Log(characternameText);
         //writerText = "";
