@@ -32,6 +32,22 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 
     public Controller controller_scr;
 
+    [System.Serializable]
+    public struct DialogData
+    {
+        public int speakerIndex;              // 이름과 대사를 출력할 현재 DialogSystem의 speaker 배열 순번
+        public string name;                   // NPC 이름
+        [TextArea(3, 5)]
+        public string dialogue;               // 대사
+    }
+
+    [SerializeField]
+    public int index;
+    [SerializeField]
+    public S_NPCdatabase_Yes dialogdb;
+    [SerializeField]
+    private DialogData[] dialogs;
+
     //최초 클릭
     void Start()
     {
