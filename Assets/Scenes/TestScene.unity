@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15569,7 +15569,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928861241}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -63.2065, y: -15.62, z: 0}
+  m_LocalPosition: {x: -69.11, y: -15.62, z: 0}
   m_LocalScale: {x: 0.40852, y: 0.40000004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15658,7 +15658,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 256513075, guid: 20588bd86d08f3f439c8459db628c04e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -18993,6 +18993,7 @@ GameObject:
   - component: {fileID: 1092642525}
   - component: {fileID: 1092642524}
   - component: {fileID: 1092642526}
+  - component: {fileID: 1092642527}
   m_Layer: 0
   m_Name: DialogManager
   m_TagString: Untagged
@@ -19039,6 +19040,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73923897061809041b607b9f76518ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1092642527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092642523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cec857fe2652843a0c6fb7b7a3d94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  speakers:
+  - spriteRenderer: {fileID: 0}
+    imageDialog: {fileID: 0}
+    textName: {fileID: 0}
+    textDialogue: {fileID: 0}
+    objectArrow: {fileID: 0}
+  dialogs:
+  - speakerIndex: 0
+    name: 
+    dialogue: 
+  isAutoStart: 0
 --- !u!1 &1103570410
 GameObject:
   m_ObjectHideFlags: 0
@@ -39463,7 +39489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2063844034
 MonoBehaviour:
   m_ObjectHideFlags: 0
