@@ -51,7 +51,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
     //최초 클릭
     void Start()
     {
-        StartCoroutine(TextPractice());
+        //StartCoroutine(TextPractice());
         //TextPractice();
         //StopCoroutine(TextPractice());
         CharacterName.text="";
@@ -131,7 +131,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
             Debug.Log("이건 Touch! 승려!!!!");
-            StartCoroutine(TextPractice());
+            //StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             if (bool_isNPC == true)
             {
@@ -165,16 +165,17 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         //narrator = CharacterName.text;
 
         //텍스트 타이핑
-        //for (a = 0; a < narration.Length; a++)
-        for (a = 0; a < 62; a++)
+        for (a = 0; a < narration.Length; a++)
+        //for (a = 0; a < 62; a++)
             {
             writerText += narration[a];
             ChatText.text = writerText;
 
             //텍스트 타이핑 시간 조절
             //yield return null;
-            yield return new WaitForSeconds(0.3f);
+            //        yield return new WaitForSeconds(0.02f);
         }
+        yield return new WaitForSeconds(0.02f);
 
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
