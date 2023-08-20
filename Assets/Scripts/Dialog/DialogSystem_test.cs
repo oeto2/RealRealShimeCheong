@@ -41,6 +41,7 @@ public class DialogSystem_test : MonoBehaviour
 	private float typingSpeed = 0.1f;       // text typing 재생 속도
 	private bool isTypingEffect = false;    // 현재 text typing 중인지 판별
 
+	/*
 	private void Awake()
 	{
 		int index = 0;
@@ -56,7 +57,7 @@ public class DialogSystem_test : MonoBehaviour
 		}
 		Setup();
 	}
-
+	*/
 	private void Setup()
 	{
 		// 모든 대화 관련 오브젝트 비활성화

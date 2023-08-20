@@ -32,6 +32,9 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
 
     public Controller controller_scr;
 
+    // 코루틴 제어 변수
+    private bool m_isBreak;
+
     [System.Serializable]
     public struct DialogData
     {
@@ -111,9 +114,9 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
                 bool_isNPC = false;
-                StopCoroutine(TextPractice());
                 Trigger_NPC.instance.isNPCTrigger = false;
                 //Controller.instance.TalkEnd();
+                StopCoroutine(TextPractice());
             }
         }
     }
@@ -146,7 +149,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
                 images_NPC.SetActive(false);
                // images_NPC_portrait.SetActive(false);
                 bool_isNPC = true;
-                StopCoroutine(TextPractice());
+                //StopCoroutine(TextPractice());
                 Controller.instance.TalkEnd();
             }
         }
@@ -155,27 +158,70 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
     IEnumerator NormalChat_4999(string narrator, string narration)
     {
         int a = 0;
+
+        // 글자색 설정 변수
+        bool t_white = false;
+        bool t_red = false;
+
+        // 글자색 설정 문자는 대사 출력 무시
+        bool t_ignore = false;
+
         //CharacterName.text = narrator;
         characternameText = dialogdb.NPC_01[0].npc_name;
-        CharacterName.text = narrator;
+        //CharacterName.text = narrator;
         writerText = dialogdb.NPC_01[0].comment;
-        Debug.Log(characternameText);
+        //Debug.Log(writerText);
         //writerText = "";
 
         //narrator = CharacterName.text;
-
+        //yield return null;
         //텍스트 타이핑
         for (a = 0; a < narration.Length; a++)
         //for (a = 0; a < 62; a++)
+        {
+            string t_letter = narration[a].ToString();
+            //string t_letter;
+            switch (narration[a])
             {
-            writerText += narration[a];
-            ChatText.text = writerText;
+                case 'ⓡ':
+                    t_white = false;
+                    t_red = true;
+                    t_ignore = true;
+                    break;
+                case 'ⓦ':
+                    t_white = true;
+                    t_red = false;
+                    t_ignore = true;
+                    break;
+            }
+            if (t_ignore==true)
+            {
+                if (t_white)
+                {
+                    t_letter = "<color=#ffffff>" + narration[a] + "</color>";    // HTML Tag
+                }
 
+                else if (t_red)
+                {
+                    t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                }
+                Debug.Log(writerText);
+                //ChatText.text = writerText;
+                //writerText += t_letter; // 특수문자가 아니라면 대사 출력
+                //writerText += narration[a];
+                //ChatText.text = writerText;
+                //t_ignore = false; // 한 글자 찍었으면 다시 false
+            }
+
+            //writerText += narration[a];
+            //ChatText.text += writerText;
+            t_ignore = false; // 한 글자 찍었으면 다시 false
+            //ChatText.text = t_letter;
+            writerText += t_letter; // 특수문자가 아니라면 대사 출력
+            ChatText.text = writerText;
             //텍스트 타이핑 시간 조절
-            //yield return null;
-            //        yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.07f);
         }
-        yield return new WaitForSeconds(0.02f);
 
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
@@ -229,6 +275,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         //if(index == 4999)
         //{
         yield return StartCoroutine(NormalChat_4999(characternameText, writerText)); 
+        //yield return StartCoroutine(NormalChat_2(characternameText, writerText));
         //}
         //yield return StartCoroutine(NormalChat(characternameText, writerText));
         //yield return StartCoroutine(NormalChat("나는봇짐", "?안녕하세요, 반갑습니다. 대화 전환 테스트입니다 이것은 테스트지? 그럼 테스트지 테스트야 테스트군 테스트"));
