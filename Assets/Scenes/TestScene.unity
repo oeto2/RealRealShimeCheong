@@ -634,6 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 48768033}
   transform_PlayerSpon: {fileID: 244989215}
@@ -1249,6 +1250,7 @@ MonoBehaviour:
   timeManagerScr: {fileID: 1371449063}
   playerCtrlScr: {fileID: 1871036892}
   effectSoundManagerScr: {fileID: 1377642334}
+  pinActionScr: {fileID: 1248421179}
   gameObject_ItemWindow: {fileID: 225938699}
   gameObject_MapWindow: {fileID: 487513804}
   gameObject_Option: {fileID: 1335073537}
@@ -8405,6 +8407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 488363541}
   transform_PlayerSpon: {fileID: 484110311}
@@ -9501,6 +9504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 546055925}
   transform_PlayerSpon: {fileID: 2042369907}
@@ -11173,6 +11177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 635726762}
   transform_PlayerSpon: {fileID: 708391309}
@@ -14457,7 +14462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847350726}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.61, y: -0.85, z: 0}
+  m_LocalPosition: {x: -2.51, y: -0.85, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14503,6 +14508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 1748726610}
   transform_PlayerSpon: {fileID: 1862805701}
@@ -15361,6 +15367,7 @@ MonoBehaviour:
     limitCamera: 0
   isPuzzleStart: 0
   transform_BeadPuzzleMap: {fileID: 1831607154}
+  int_PinPosNum: 0
 --- !u!4 &905248353
 Transform:
   m_ObjectHideFlags: 0
@@ -16621,7 +16628,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962230889}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.91, y: -1.09, z: 0}
+  m_LocalPosition: {x: -2.32, y: -1.09, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16641,6 +16648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 2010482428}
   transform_PlayerSpon: {fileID: 1540696240}
@@ -22102,6 +22110,7 @@ GameObject:
   - component: {fileID: 1248421177}
   - component: {fileID: 1248421176}
   - component: {fileID: 1248421178}
+  - component: {fileID: 1248421179}
   m_Layer: 5
   m_Name: MapPin
   m_TagString: Untagged
@@ -22126,7 +22135,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -410, y: 140}
+  m_AnchoredPosition: {x: -475, y: 130}
   m_SizeDelta: {x: 60, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1248421176
@@ -22188,6 +22197,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1248421179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248421174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dfadb39c13d1ad4b96727319974ede6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pinPos:
+  - {x: -475, y: 130}
+  - {x: -475, y: 130}
+  - {x: -475, y: 130}
+  - {x: -215, y: 115}
+  - {x: 40, y: -10}
+  - {x: 320, y: 150}
+  - {x: 530, y: -220}
 --- !u!1 &1248886860
 GameObject:
   m_ObjectHideFlags: 0
@@ -23363,7 +23392,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 843d0667f207b124ea91950c6354a335, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -23413,6 +23442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 1290293145}
   transform_PlayerSpon: {fileID: 1921399160}
@@ -29759,7 +29789,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: f9c5bbeebe7b5944cbdf81d20f17cf32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -29809,6 +29839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 1576897611}
   transform_PlayerSpon: {fileID: 1630343241}
@@ -34829,6 +34860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 847350728}
   transform_PlayerSpon: {fileID: 680720345}
@@ -34900,7 +34932,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: ec62fd2a1076f104eaa52575e3853e3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -36156,6 +36188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 1817398176}
   transform_PlayerSpon: {fileID: 2038013667}
@@ -37430,6 +37463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 1871344487}
   transform_PlayerSpon: {fileID: 856781670}
@@ -39230,6 +39264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 0}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 847350728}
   transform_PlayerSpon: {fileID: 0}
@@ -39282,6 +39317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c9e248a98c93143af147df020ca54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinActionScr: {fileID: 1248421179}
   gameObject_Player: {fileID: 1871036888}
   transform_Destination: {fileID: 962230890}
   transform_PlayerSpon: {fileID: 1652733940}
@@ -40531,7 +40567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2063844034
 MonoBehaviour:
   m_ObjectHideFlags: 0

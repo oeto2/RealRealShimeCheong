@@ -71,6 +71,7 @@ public class UIManager : MonoBehaviour
     public TimeManager timeManagerScr;
     public Controller playerCtrlScr;
     public EffectSoundManager effectSoundManagerScr;
+    public PinAction pinActionScr;
 
     //아이템창 인터페이스 오브젝트
     public GameObject gameObject_ItemWindow;
@@ -247,6 +248,9 @@ public class UIManager : MonoBehaviour
         {
             //지도 오브젝트 활성화
             gameObject_MapWindow.SetActive(true);
+
+            //지도의 Pin위치 값 변경
+            pinActionScr.PinPosChange(gameManagerScr.int_PinPosNum);
 
             //효과음 출력
             effectSoundManagerScr.PlayOpenMapSound();

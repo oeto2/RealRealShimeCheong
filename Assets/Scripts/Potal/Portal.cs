@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
+    //외부 스크립트 참조
+    public PinAction pinActionScr;
+
     //이동시킬 Player 오브젝트
     public GameObject gameObject_Player;
 
@@ -17,7 +20,7 @@ public class Portal : MonoBehaviour
     [SerializeField] private bool isPlayerArrivePotal;
 
     //맵 번호 설정
-    public int int_MapNum;
+    public int int_MapNum = 0;
 
     private void Update()
     {
@@ -59,5 +62,8 @@ public class Portal : MonoBehaviour
         gameObject_Player.transform.position = transform_PlayerSpon.position;
         //카메라의 제한 구역을 맵 번호로 변경
         Camera.main.GetComponent<CameraMove>().ChangeLimit(int_MapNum);
+
+        //GameManager의 PinPos값 변경
+        GameManager.instance.ChangePinPosNum(int_MapNum);
     }
 }

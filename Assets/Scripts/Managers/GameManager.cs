@@ -83,7 +83,29 @@ public class GameManager : MonoBehaviour
     //Bead Puzzle Map Transform
     public Transform transform_BeadPuzzleMap;
 
+    //맵의 핀위치 값
+    public int int_PinPosNum;
+
+    //싱글톤
+    public static GameManager instance = null;
+
     #endregion
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            if(instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
 
     private void Start()
     {
@@ -231,7 +253,6 @@ public class GameManager : MonoBehaviour
         //카메라 위치 변경
         cameraMoveScr.CameraTransfer(transform_BeadPuzzleMap.position);
     }
-
     
     //로딩 이미지 보여주기
     IEnumerator ShowLoding()
@@ -243,5 +264,11 @@ public class GameManager : MonoBehaviour
 
         //로딩 이미지 끄기
         gameObjcet_Loading.SetActive(false);
+    }
+
+    //PinPosNum값 변경
+    public void ChangePinPosNum(int _pinPosNum)
+    {
+        int_PinPosNum = _pinPosNum;
     }
 }
