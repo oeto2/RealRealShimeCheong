@@ -8,6 +8,8 @@ public class TurnOnLight : MonoBehaviour
     public Controller playerCtrlScr;
     public TutorialManager tutorialManagerScr;
 
+    public Animator animator_DeungJan;
+
     //Spot Light Object
     public GameObject lightObject;
 
@@ -32,6 +34,9 @@ public class TurnOnLight : MonoBehaviour
             lightObject.SetActive(true);
             isTrunOnLight = true;
             Invoke("isLightsOnTrue", 0.1f);
+
+            //애니메이션 켜기
+            animator_DeungJan.SetBool("LightOn", true);
         }
 
         //등잔불이 켜진상태로 Z키를 눌렀을 경우
@@ -40,6 +45,9 @@ public class TurnOnLight : MonoBehaviour
             Debug.Log("불끄기");
             lightObject.SetActive(false);
             isLightsOn = false;
+
+            //애니메이션 끄기
+            animator_DeungJan.SetBool("LightOn", false);
         }
     }
 
@@ -71,6 +79,9 @@ public class TurnOnLight : MonoBehaviour
     {
         lightObject.SetActive(true);
         isTrunOnLight = true;
+
+        //애니메이션 켜기
+        animator_DeungJan.SetBool("LightOn", true);
     }
 
 
@@ -79,6 +90,9 @@ public class TurnOnLight : MonoBehaviour
     {
         lightObject.SetActive(false);
         isTrunOnLight = false;
+
+        //애니메이션 끄기
+        animator_DeungJan.SetBool("LightOn", false);
     }
 
     private void isLightsOnTrue()
