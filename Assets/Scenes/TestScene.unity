@@ -1429,6 +1429,8 @@ MonoBehaviour:
   - {fileID: -1611449428, guid: de965b1d713005e479cbd93978e0e930, type: 3}
   - {fileID: -1326001569, guid: de965b1d713005e479cbd93978e0e930, type: 3}
   - {fileID: -715798771, guid: de965b1d713005e479cbd93978e0e930, type: 3}
+  cursorImage: {fileID: 2800000, guid: 846fd842428061b48b5385f948731ba4, type: 3}
+  cursorClickImg: {fileID: 2800000, guid: baa0366fa0c7dfb439603e395fce0f2a, type: 3}
 --- !u!1 &124630318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,7 +3470,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 90, y: 90, z: 90, w: 90}
+  m_RaycastPadding: {x: 80, y: 90, z: 80, w: 85}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4212,7 +4214,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1833412217}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6521739
+  m_Size: 0.65217394
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14184,11 +14186,11 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: -0.21, y: -0.33}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.125, y: 3.125}
+    oldSize: {x: 4.25, y: 1.96875}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -14238,7 +14240,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 96a55ad25882fdf4194c84395a666b9f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01924739fed9f4249ba1abb834838e8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
