@@ -188,6 +188,7 @@ public class ObjectControll : MonoBehaviour
     }
 
     //지도 획득
+    #region
     public void GetMap(GameObject _obj)
     {
         getMap = true;
@@ -201,6 +202,17 @@ public class ObjectControll : MonoBehaviour
         //오브젝트 비활성화
         _obj.SetActive(false);
     }
+    public void GetMap()
+    {
+        getMap = true;
+
+        //지도 획득 대화 실행
+        playerDialogueScr.Start_Sentence_GetMap();
+
+        //플레이어 이동제한
+        playerCtrlScr.TalkStart();
+    }
+    #endregion
 
     //봇짐 리셋
     public void ResetBotzime()
