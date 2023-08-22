@@ -71,6 +71,7 @@ public class UIManager : MonoBehaviour
     public TimeManager timeManagerScr;
     public Controller playerCtrlScr;
     public EffectSoundManager effectSoundManagerScr;
+    public PinAction pinActionScr;
 
     //아이템창 인터페이스 오브젝트
     public GameObject gameObject_ItemWindow;
@@ -170,6 +171,11 @@ public class UIManager : MonoBehaviour
     //캘린더 스프라이트 모음
     public Sprite[] sprite_AllCalendar;
 
+    //마우스 커서 이미지
+    public Texture2D cursorImage;
+    //마우스 클릭 커서 이미지
+    public Texture2D cursorClickImg;
+
     private void Awake()
     {
         //마우스 포인터 끄기
@@ -185,29 +191,54 @@ public class UIManager : MonoBehaviour
     {
         //슬롯에 UI 데이터 보여주기
         ShowUiDataToSlot();
+
+        //커서 이미지 변경
+        Cursor.SetCursor(cursorImage, new Vector2(10,0), CursorMode.ForceSoftware);
     }
     // Update is called once per frame
     void Update()
     {
-        
+        //마우스 좌 클릭시
+        if (Input.GetMouseButtonDown(0))
+        {
+            //커서 이미지 변경
+            Cursor.SetCursor(cursorClickImg, Vector2.zero, CursorMode.ForceSoftware);
+        }
 
+        //마우스 클릭 해제시
+        else if (Input.GetMouseButtonUp(0))
+        {
+            //커서 이미지 변경
+            Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.ForceSoftware);
+        }    
+
+        //마우스 포인터 
         isMonuseOn = Cursor.visible;
 
         //마우스 포인터를 켜는 조건
         if (gameObject_CombineWindow.activeSelf || gameObject_ItemWindow.activeSelf || gameObject_Option.activeSelf || gameObject_MapWindow.activeSelf
-            || gameObject_SaveWindow.activeSelf || gameObject_LoadWindow)
+            || gameObject_SaveWindow.activeSelf || gameObject_LoadWindow.activeSelf)
         {
+            Debug.Log("마우스 포인터 보이기");
             //마우스 포인터 켜기
             Cursor.visible = true;
         }
 
-        //마우스 포인터를 끄는 조건
-        if (!gameObject_CombineWindow.activeSelf && !gameObject_ItemWindow.activeSelf && !gameObject_Option.activeSelf && !gameObject_MapWindow.activeSelf
-            && !gameObject_SaveWindow && !gameObject_LoadWindow)
+        else
         {
+            Debug.Log("마우스 포인터 끄기");
             //마우스 포인터 끄기
             Cursor.visible = false;
         }
+
+        ////마우스 포인터를 끄는 조건
+        //if (!gameObject_CombineWindow.activeSelf && !gameObject_ItemWindow.activeSelf && !gameObject_Option.activeSelf && !gameObject_MapWindow.activeSelf
+        //    && !gameObject_SaveWindow && !gameObject_LoadWindow.activeSelf)
+        //{
+        //    Debug.Log("마우스 포인터 끄기");
+        //    마우스 포인터 끄기
+        //    Cursor.visible = false;
+        //}
 
         //아이템 창 관련 코드
         #region
@@ -247,6 +278,9 @@ public class UIManager : MonoBehaviour
         {
             //지도 오브젝트 활성화
             gameObject_MapWindow.SetActive(true);
+
+            //지도의 Pin위치 값 변경
+            pinActionScr.PinPosChange(gameManagerScr.int_PinPosNum);
 
             //효과음 출력
             effectSoundManagerScr.PlayOpenMapSound();
