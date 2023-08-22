@@ -19041,7 +19041,7 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   index: 0
-  dialogdb: {fileID: 0}
+  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
 --- !u!1 &1075882280
 GameObject:
