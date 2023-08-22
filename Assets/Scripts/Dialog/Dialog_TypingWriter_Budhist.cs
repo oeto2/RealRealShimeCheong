@@ -34,6 +34,8 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
 
     // 코루틴 제어 변수
     private bool m_isBreak;
+    Coroutine co_NormalChat_4999;
+    Coroutine co_end;
 
     [System.Serializable]
     public struct DialogData
@@ -57,7 +59,8 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         //StartCoroutine(TextPractice());
         //TextPractice();
         //StopCoroutine(TextPractice());
-        CharacterName.text="";
+        CharacterName.text = "";
+        ChatText.text = "";
     }
 
 	private void Awake()
@@ -73,7 +76,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         }
     }
 
-	void Update()
+	public void Update()
     {
         foreach (var element in skipButton) // 버튼 검사
         {
@@ -99,9 +102,11 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         {
             Debug.Log("z키 누름! 승려!!!!");
             //Debug.Log(dialogs[index].dialogue);
-            StartCoroutine(TextPractice());
+            //StartCoroutine(TextPractice());
+            co_NormalChat_4999 = StartCoroutine(TextPractice());
             //bool_isBotjim = true;
-            controller_scr.TalkStart();
+            //InvokeRepeating("Invoke_4999_test", 0f, 0.05f);
+			controller_scr.TalkStart();
             if (bool_isNPC == false)
             {
                 images_NPC.SetActive(true);
@@ -116,8 +121,10 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
                 bool_isNPC = false;
                 Trigger_NPC.instance.isNPCTrigger = false;
                 //Controller.instance.TalkEnd();
-                StopCoroutine(TextPractice());
+                //StopCoroutine("TextPractice");
+                StopCoroutine(co_NormalChat_4999);
             }
+            //co_NormalChat_4999 = StartCoroutine(TextPractice());
         }
     }
 
@@ -158,19 +165,19 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
     IEnumerator NormalChat_4999(string narrator, string narration)
     {
         int a = 0;
-
+        /*
         // 글자색 설정 변수
         bool t_white = false;
         bool t_red = false;
 
         // 글자색 설정 문자는 대사 출력 무시
         bool t_ignore = false;
-
+        */
         //CharacterName.text = narrator;
-        characternameText = dialogdb.NPC_01[0].npc_name;
+        narrator = characternameText = dialogdb.NPC_01[0].npc_name;
         //CharacterName.text = narrator;
         writerText = dialogdb.NPC_01[0].comment;
-        //Debug.Log(writerText);
+        Debug.Log(characternameText);
         //writerText = "";
 
         //narrator = CharacterName.text;
@@ -179,7 +186,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         for (a = 0; a < narration.Length; a++)
         //for (a = 0; a < 62; a++)
         {
-            string t_letter = narration[a].ToString();
+            /*string t_letter = narration[a].ToString();
             //string t_letter;
             switch (narration[a])
             {
@@ -188,10 +195,10 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
                     t_red = true;
                     t_ignore = true;
                     break;
-                case 'ⓦ':
-                    t_white = true;
-                    t_red = false;
-                    t_ignore = true;
+                //case 'ⓦ':
+                    //t_white = true;
+                    //t_red = false;
+                    //t_ignore = true;
                     break;
             }
             if (t_ignore==true)
@@ -199,11 +206,16 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
                 if (t_white)
                 {
                     t_letter = "<color=#ffffff>" + narration[a] + "</color>";    // HTML Tag
-                }
+					Debug.Log(t_letter);
+                    Debug.Log('1');
 
-                else if (t_red)
+				}
+
+				else if (t_red)
                 {
                     t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                    Debug.Log(t_letter);
+                    Debug.Log('2');
                 }
                 Debug.Log(writerText);
                 //ChatText.text = writerText;
@@ -211,17 +223,53 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
                 //writerText += narration[a];
                 //ChatText.text = writerText;
                 //t_ignore = false; // 한 글자 찍었으면 다시 false
-            }
+            }*/
 
-            //writerText += narration[a];
-            //ChatText.text += writerText;
-            t_ignore = false; // 한 글자 찍었으면 다시 false
-            //ChatText.text = t_letter;
-            writerText += t_letter; // 특수문자가 아니라면 대사 출력
+            writerText += narration[a];
             ChatText.text = writerText;
+            //t_ignore = false; // 한 글자 찍었으면 다시 false
+            //ChatText.text = t_letter;
+            //writerText += t_letter; // 특수문자가 아니라면 대사 출력
+            //ChatText.text = writerText;
             //텍스트 타이핑 시간 조절
             yield return new WaitForSeconds(0.07f);
         }
+        yield return null;
+        //키(default : space)를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (isButtonClicked)
+            {
+                isButtonClicked = false;
+                break;
+            }
+            yield return null;
+        }
+    }
+
+    IEnumerator NormalChat_4999_test(string narrator, string narration)
+    {
+        int a = 0;
+        //CharacterName.text = narrator;
+        narrator = characternameText  = CharacterName.text = dialogdb.NPC_01[0].npc_name;
+        narration = dialogdb.NPC_01[0].comment;
+        Debug.Log(writerText);
+        Debug.Log(narration);
+        writerText = "";
+
+        //narrator = CharacterName.text;
+
+        //텍스트 타이핑
+        for (a = 0; a < narration.Length; a++)
+        {
+            writerText += narration[a];
+            ChatText.text = writerText;
+
+            //텍스트 타이핑 시간 조절
+            //yield return null;
+            yield return new WaitForSeconds(0.01f);
+        }
+        //yield break;
 
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
@@ -239,7 +287,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
     {
         int a = 0;
         //CharacterName.text = narrator;
-        characternameText = dialogdb.NPC_01[0].npc_name;
+        narrator = characternameText = dialogdb.NPC_01[0].npc_name;
         writerText = dialogdb.NPC_01[0].comment;
         Debug.Log(writerText);
         //writerText = "";
@@ -274,7 +322,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         //yield return StartCoroutine(NormalChat(characternameText, writerText));
         //if(index == 4999)
         //{
-        yield return StartCoroutine(NormalChat_4999(characternameText, writerText)); 
+        yield return StartCoroutine(NormalChat_4999_test(characternameText, writerText)); 
         //yield return StartCoroutine(NormalChat_2(characternameText, writerText));
         //}
         //yield return StartCoroutine(NormalChat(characternameText, writerText));

@@ -28,15 +28,51 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     public Controller controller_scr;
 
+    // 랜덤 대사 출력 변수
+    private int RandomNum;
+
+    // 랜덤 대사 출력 저장 배열
+    public string[] Random_text_array;
+
+    [System.Serializable]
+    public struct DialogData
+    {
+        public int speakerIndex;              // 이름과 대사를 출력할 현재 DialogSystem의 speaker 배열 순번
+        public string name;                   // NPC 이름
+        [TextArea(3, 5)]
+        public string dialogue;               // 대사
+    }
+
+    [SerializeField]
+    public int index;
+    [SerializeField]
+    public S_NPCdatabase_Yes dialogdb;
+    [SerializeField]
+    private DialogData[] dialogs;
+
     //외부 스크립트에서 사용하기 위한 용도(싱글톤패턴)
     public static Dialog_TypingWriter_Bbang instance;
-
+    void Start()
+    {
+        CharacterName.text = "";
+        ChatText.text = "";
+    }
     private void Awake()
 	{
 
         if (Dialog_TypingWriter_Bbang.instance == null)
         {
             Dialog_TypingWriter_Bbang.instance = this;
+        }
+
+        for (int i = 4999; i < dialogdb.NPC_01.Count; ++i)
+        {
+            if (dialogdb.NPC_01[i].index_num == index)
+            {
+                dialogs[index].name = dialogdb.NPC_01[i].npc_name;
+                dialogs[index].dialogue = dialogdb.NPC_01[i].comment;
+                index++;
+            }
         }
     }
 
@@ -116,9 +152,47 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         }
     }
 
+    IEnumerator NormalChat_5000(string narrator, string narration)
+    {
+        int a = 0;
+        narrator = CharacterName.text = dialogdb.NPC_01[1].npc_name;
+        narration = dialogdb.NPC_01[1].comment;
+		//Random_text_array = { "문제다", "문제야", "문제쓰"};
+        Debug.Log(writerText);
+        Debug.Log(narration);
+        writerText = "";
+
+        //텍스트 타이핑
+        for (a = 0; a < narration.Length; a++)
+        //for (a = 0; a < textSpeed; a++)
+        {
+            writerText += narration[a];
+            //writerText += Random_text_array[a];
+            ChatText.text = writerText;
+
+            //텍스트 타이핑 시간 조절
+            //yield return null;
+            yield return new WaitForSeconds(0.05f);
+        }
+        yield return null;
+
+        //키(default : space)를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (isButtonClicked)
+            {
+                isButtonClicked = false;
+                break;
+            }
+            yield return null;
+        }
+    }
+
     IEnumerator TextPractice()
     {
+
         yield return StartCoroutine(NormalChat("뺑덕어멈", "호호, 무슨 일이신가요?"));
         yield return StartCoroutine(NormalChat("뺑덕어멈", "이번에 들여온 비녀가 그렇게 예쁘던데,,,"));
+        yield return StartCoroutine(NormalChat_5000(CharacterName.text, writerText));
     }
 }
