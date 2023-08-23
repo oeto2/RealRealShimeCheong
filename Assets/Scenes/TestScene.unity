@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3817,7 +3817,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -15433,9 +15433,11 @@ MonoBehaviour:
   curGameSaveData:
     playerPos: {x: 0, y: 0, z: 0}
     limitCamera: 0
+    mapPinNum: 0
   curGameLoadData:
     playerPos: {x: 0, y: 0, z: 0}
     limitCamera: 0
+    mapPinNum: 0
   isPuzzleStart: 0
   transform_BeadPuzzleMap: {fileID: 1831607154}
   int_PinPosNum: 0
@@ -40685,6 +40687,7 @@ MonoBehaviour:
   objCtrlScr: {fileID: 1871036898}
   timeManagerScr: {fileID: 1371449063}
   gameManagerScr: {fileID: 905248352}
+  boxActScr: {fileID: 51505325}
   gameObject_NarationBG: {fileID: 143840523}
   gameObject_UICanvas: {fileID: 1851244455}
   gameObject_Dialogue: {fileID: 1992085854}

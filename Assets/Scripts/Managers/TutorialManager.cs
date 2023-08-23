@@ -72,6 +72,7 @@ public class TutorialManager : MonoBehaviour
     public ObjectControll objCtrlScr;
     public TimeManager timeManagerScr;
     public GameManager gameManagerScr;
+    public BoxAction boxActScr;
 
     //나레이션 오브젝트
     public GameObject gameObject_NarationBG;
@@ -642,12 +643,17 @@ public class TutorialManager : MonoBehaviour
                     {
                         objCtrlScr.LoadBotzime();
                         objCtrlScr.ResetMap();
+                        boxActScr.isFirst = true;
+                        //닫힌 상자 이미지로 변경
+                        boxActScr.spriteRender.sprite = boxActScr.sprite_Box[0];
                     }
                     //지도만 획득 했다면
                     else if (!_getBotzime && _getMap)
                     {
                         objCtrlScr.LoadMap();
                         objCtrlScr.ResetBotzime();
+                        //열린 상자 이미지로 변경
+                        boxActScr.spriteRender.sprite = boxActScr.sprite_Box[1];
                     }
                     else
                     {
@@ -655,6 +661,9 @@ public class TutorialManager : MonoBehaviour
                         objCtrlScr.ResetBotzime();
                         //지도 리셋
                         objCtrlScr.ResetMap();
+                        boxActScr.isFirst = true;
+                        //닫힌 상자 이미지로 변경
+                        boxActScr.spriteRender.sprite = boxActScr.sprite_Box[0];
                     }
 
                     //UI 설정

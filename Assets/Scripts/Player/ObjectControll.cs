@@ -225,7 +225,7 @@ public class ObjectControll : MonoBehaviour
     public void ResetMap()
     {
         getMap = false;
-        map.SetActive(true);
+        //map.SetActive(true);
     }
 
     //º¿Áü È¹µæ ÈÄ ·Îµå
@@ -239,6 +239,6 @@ public class ObjectControll : MonoBehaviour
     public void LoadMap()
     {
         getMap = true;
-        map.SetActive(false);
+        //map.SetActive(false);
     }
 }

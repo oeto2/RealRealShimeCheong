@@ -9,16 +9,19 @@ using System.IO;
 public class GameSaveData
 {
     //생성자
-    public GameSaveData(Vector3 _playerPos, int _LimitCamera)
+    public GameSaveData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum)
     {
-        playerPos = _playerPos; limitCamera = _LimitCamera;
+        playerPos = _playerPos; limitCamera = _LimitCamera; mapPinNum = _mapPinNum;
     }
 
     //플레이어 위치값
     public Vector3 playerPos;
 
     //카메라 제한 영역
-    public int limitCamera;   
+    public int limitCamera;
+
+    //지도의 핀 위치값
+    public int mapPinNum;
 }
 
 
@@ -27,9 +30,9 @@ public class GameSaveData
 public class GameLoadData
 {
     //생성자
-    public GameLoadData(Vector3 _playerPos, int _LimitCamera)
+    public GameLoadData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum)
     {
-        playerPos = _playerPos; limitCamera = _LimitCamera;
+        playerPos = _playerPos; limitCamera = _LimitCamera; mapPinNum = _mapPinNum;
     }
 
     //플레이어 위치값
@@ -37,6 +40,9 @@ public class GameLoadData
 
     //카메라 제한 영역
     public int limitCamera;
+
+    //지도의 핀 위치값
+    public int mapPinNum;
 }
 
 
@@ -188,7 +194,7 @@ public class GameManager : MonoBehaviour
 
         //저장할 데이터 넣기
         curGameSaveData = new GameSaveData(new Vector3(gameObjcet_Player.transform.position.x,gameObjcet_Player.transform.position.y,
-                          gameObjcet_Player.transform.position.z), cameraMoveScr.int_CurLimitNum);
+                          gameObjcet_Player.transform.position.z), cameraMoveScr.int_CurLimitNum, int_PinPosNum);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curGameSaveData);
@@ -213,6 +219,10 @@ public class GameManager : MonoBehaviour
 
         //카메라 제한구역 재설정
         cameraMoveScr.ChangeLimit(curGameLoadData.limitCamera);
+
+        //지도 핀 위치 재설정
+        int_PinPosNum = curGameLoadData.mapPinNum;
+        //uiManagerScr.pinActionScr.PinPosChange(curGameLoadData.mapPinNum);
     }
 
     //현재 장소 이름 구하는 메서드
@@ -235,6 +245,25 @@ public class GameManager : MonoBehaviour
             curPlaceName = "장소: 마당";
             return curPlaceName;
         }
+
+        else if (cameraMoveScr.int_CurLimitNum == 3)
+        {
+            curPlaceName = "장소: 마을";
+            return curPlaceName;
+        }
+
+        else if (cameraMoveScr.int_CurLimitNum == 4)
+        {
+            curPlaceName = "장소: 장터";
+            return curPlaceName;
+        }
+
+        else if (cameraMoveScr.int_CurLimitNum == 5)
+        {
+            curPlaceName = "장소: 개울";
+            return curPlaceName;
+        }
+
         else
         {
             return null;

@@ -21,7 +21,7 @@ public class BoxAction : MonoBehaviour
     //첫번째 오픈인지 확인하는 flag
     public bool isFirst = true;
 
-    
+
 
     private void Update()
     {
@@ -29,7 +29,7 @@ public class BoxAction : MonoBehaviour
         if(tutorialManagerScr.events != Events.TurnOnLights)
         {
             //상자와 접촉후 Z키를 눌렀을 경우
-            if (isTouch && Input.GetKeyDown(KeyCode.Z) && isFirst)
+            if (isTouch && Input.GetKeyDown(KeyCode.Z) && isFirst && !objCtrlScr.getMap)
             {
                 //지도가 있는 상자로 변경
                 spriteRender.sprite = sprite_Box[2];
