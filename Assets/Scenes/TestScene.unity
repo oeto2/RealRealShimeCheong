@@ -3835,7 +3835,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -9248,8 +9248,8 @@ Transform:
   - {fileID: 95288467}
   - {fileID: 1595965864}
   - {fileID: 1371449062}
-  - {fileID: 2057623164}
   - {fileID: 827801057}
+  - {fileID: 2057623164}
   - {fileID: 1377642332}
   - {fileID: 1050156636}
   m_Father: {fileID: 0}
@@ -14156,7 +14156,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 537534573}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &827801058
 MonoBehaviour:
@@ -15720,7 +15720,7 @@ GameObject:
   - component: {fileID: 912044270}
   - component: {fileID: 912044271}
   m_Layer: 0
-  m_Name: Market_BG3
+  m_Name: Brook_BG3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18565,7 +18565,7 @@ GameObject:
   - component: {fileID: 1043305435}
   - component: {fileID: 1043305436}
   m_Layer: 0
-  m_Name: Market_BG
+  m_Name: Brook_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20226,7 +20226,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 188ceaebbff061347a2af07fafc95699, type: 3}
-  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -21886,7 +21886,7 @@ GameObject:
   - component: {fileID: 1223284493}
   - component: {fileID: 1223284494}
   m_Layer: 0
-  m_Name: Market_BG2
+  m_Name: Brook_BG2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25344,6 +25344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialManagerScr: {fileID: 2057623165}
   uiManagerScr: {fileID: 95288468}
+  moonlightScr: {fileID: 2032586399}
   animator_Celender: {fileID: 1307439882}
   text_TimeText: {fileID: 219243736}
   gameObjcet_DayUI: {fileID: 1429576755}
@@ -25360,6 +25361,50 @@ MonoBehaviour:
     time: 0
     day: 0
   sunClcokImageNum: 0
+  spriteRen_ObumbrateObj:
+  - {fileID: 1126123788}
+  - {fileID: 1586340831}
+  - {fileID: 2144240342}
+  - {fileID: 1748726613}
+  - {fileID: 898518726}
+  - {fileID: 1017795172}
+  - {fileID: 2141056614}
+  - {fileID: 1871344488}
+  - {fileID: 757507179}
+  - {fileID: 1283296210}
+  - {fileID: 1283296210}
+  - {fileID: 1524076302}
+  - {fileID: 37248219}
+  - {fileID: 370947221}
+  - {fileID: 1623755565}
+  - {fileID: 1807380859}
+  - {fileID: 1290293146}
+  - {fileID: 1576897612}
+  - {fileID: 214635107}
+  - {fileID: 1780407184}
+  - {fileID: 1371380719}
+  - {fileID: 201942873}
+  - {fileID: 777916580}
+  - {fileID: 464970108}
+  - {fileID: 1354577803}
+  - {fileID: 1635413883}
+  - {fileID: 1144953104}
+  - {fileID: 551518879}
+  - {fileID: 478938014}
+  - {fileID: 635726763}
+  - {fileID: 742272786}
+  - {fileID: 1690644533}
+  - {fileID: 1660791126}
+  - {fileID: 1111797234}
+  - {fileID: 145297583}
+  - {fileID: 1043305436}
+  - {fileID: 1223284494}
+  - {fileID: 912044271}
+  - {fileID: 488363542}
+  - {fileID: 1465884224}
+  - {fileID: 546055926}
+  - {fileID: 48768034}
+  minBrightness: 50
 --- !u!1 &1372273901
 GameObject:
   m_ObjectHideFlags: 0
@@ -30410,7 +30455,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 412c66889aa374648a0b4357691d1e48, type: 3}
-  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -40093,6 +40138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2032586397}
   - component: {fileID: 2032586398}
+  - component: {fileID: 2032586399}
   m_Layer: 0
   m_Name: Moon
   m_TagString: Untagged
@@ -40167,6 +40213,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2032586399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032586396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050f312249c6e3740a5e968cb00d8831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRen_Moon: {fileID: 2032586398}
 --- !u!1 &2035516031
 GameObject:
   m_ObjectHideFlags: 0
@@ -40721,7 +40780,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 537534573}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2057623165
 MonoBehaviour:
@@ -41708,7 +41767,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: ab42e61e45f94fb4486d279c0a467b76, type: 3}
-  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

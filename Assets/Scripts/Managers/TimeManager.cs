@@ -44,7 +44,8 @@ public class TimeManager : MonoBehaviour
     //외부 스크립트 참조
     public TutorialManager tutorialManagerScr;
     public UIManager uiManagerScr;
-
+    public MoonLight moonlightScr;
+    
     //캘린더의 애니메이터
     public Animator animator_Celender;
 
@@ -96,6 +97,12 @@ public class TimeManager : MonoBehaviour
     //해시계 이미지 번호
     public int sunClcokImageNum;
 
+    //어두워져야하는 오브젝트들
+    public SpriteRenderer[] spriteRen_ObumbrateObj;
+
+    //최소 밝기
+    public int minBrightness;
+
     private void Start()
     {
         //저장 파일 위치
@@ -106,6 +113,16 @@ public class TimeManager : MonoBehaviour
     {
         //해시계 애니메이션
         ChageSunClock();
+
+        
+        if((byte)MathF.Truncate(float_RealTime) % 2 == 0)
+        {
+            //달 밝기 바꾸기
+            moonlightScr.BrightenMoon((byte)MathF.Truncate(float_RealTime));
+
+            //오브젝트 밝기 바꾸기
+            ObumbrateObject((int)MathF.Truncate(float_RealTime));
+        }
 
         //플레이 타임 = 델타 타임
         float_PlayTimeSec += Time.deltaTime;
@@ -303,4 +320,47 @@ public class TimeManager : MonoBehaviour
         sunClcokImageNum = ((int)MathF.Truncate(float_RealTime) / 5);
         uiManagerScr.ChangeSunClockImage(sunClcokImageNum);
     }
+
+    //오브젝트 어둡게하기
+    public void ObumbrateObject(int _color)
+    {
+        //칼라 값
+        int colorValue;
+
+        //Debug.Log($"_Color : {_color}");
+
+        if(_color < 255)
+        {
+            colorValue = 255 - _color;
+        }
+        else
+        {
+            //Debug.Log("칼라값이 255보다 큼");
+            colorValue = minBrightness;
+        }
+
+
+        //Debug.Log($"colorValue : {colorValue}");
+
+
+        //최소 밝기보다 colorValue가 더 크다면
+        if(colorValue > minBrightness)
+        {
+            for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+            {
+                spriteRen_ObumbrateObj[i].color = new Color32((byte)colorValue, (byte)colorValue, (byte)colorValue, 255);
+            }
+        }
+
+        //최소 밝기보다 colorValue가 더 작다면
+        else if (colorValue <= minBrightness)
+        {
+            //최소 밝기로 설정
+            for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+            {
+                spriteRen_ObumbrateObj[i].color = new Color32((byte)minBrightness, (byte)minBrightness, (byte)minBrightness, 255);
+            }
+        }
+
+    }    
 }
