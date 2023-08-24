@@ -19213,7 +19213,7 @@ MonoBehaviour:
   controller_scr: {fileID: 1871036892}
   Random_text_array: []
   index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogdb: {fileID: 0}
   dialogs: []
 --- !u!114 &1075882285
 MonoBehaviour:
