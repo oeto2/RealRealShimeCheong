@@ -38267,7 +38267,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1939285203}
-  - component: {fileID: 1939285207}
   - component: {fileID: 1939285206}
   - component: {fileID: 1939285205}
   - component: {fileID: 1939285204}
@@ -38389,22 +38388,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1939285207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939285202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChatText: "\uAC70\uC9C0"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!95 &1939285208
 Animator:
   serializedVersion: 5
@@ -38447,7 +38430,7 @@ MonoBehaviour:
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 238e9718555ebec48bc618dbcfc4788e, type: 3}
-  trigger_npc: {fileID: 1939285207}
+  trigger_npc: {fileID: 1939285204}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}

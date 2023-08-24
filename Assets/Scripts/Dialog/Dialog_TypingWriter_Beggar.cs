@@ -37,10 +37,11 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
     //최초 클릭
     void Start()
     {
-        StartCoroutine(TextPractice());
+        //StartCoroutine(TextPractice());
         //TextPractice();
         //StopCoroutine(TextPractice());
         CharacterName.text="";
+        ChatText.text = "";
     }
 
 

@@ -37,10 +37,11 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
     //최초 클릭
     void Start()
     {
-        StartCoroutine(TextPractice());
+        //StartCoroutine(TextPractice());
         //TextPractice();
         //StopCoroutine(TextPractice());
-        CharacterName.text="";
+        CharacterName.text = "";
+        ChatText.text = "";
     }
 
 
@@ -71,6 +72,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             {
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
+                writerText = "";
                 StopAllCoroutines();
                 Trigger_NPC.instance.isNPCTrigger = false;
                 //Controller.instance.TalkEnd();
