@@ -103,12 +103,12 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
             Debug.Log("zÅ° ´©¸§! ½Â·Á!!!!");
             //Debug.Log(dialogs[index].dialogue);
             //StartCoroutine(TextPractice());
-            co_NormalChat_4999 = StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             //InvokeRepeating("Invoke_4999_test", 0f, 0.05f);
 			controller_scr.TalkStart();
             if (bool_isNPC == false)
             {
+                StartCoroutine(TextPractice());
                 images_NPC.SetActive(true);
                 bool_isNPC = true;
                 Trigger_NPC.instance.isNPCTrigger = true;
@@ -122,7 +122,8 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
                 Trigger_NPC.instance.isNPCTrigger = false;
                 //Controller.instance.TalkEnd();
                 //StopCoroutine("TextPractice");
-                StopCoroutine(co_NormalChat_4999);
+                writerText = "";
+                StopAllCoroutines();
             }
             //co_NormalChat_4999 = StartCoroutine(TextPractice());
         }
