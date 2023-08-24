@@ -57,64 +57,27 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
             Debug.Log("z키 누름! 뱃사공!!!!");
-            StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             controller_scr.TalkStart();
             if (bool_isNPC == false)
             {
+                StartCoroutine(TextPractice());
                 images_NPC.SetActive(true);
-                bool_isNPC = true;
                 Trigger_NPC.instance.isNPCTrigger = true;
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+                bool_isNPC = true;
             }
             else
             {
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
-                bool_isNPC = false;
-                StopCoroutine(TextPractice());
+                StopAllCoroutines();
                 Trigger_NPC.instance.isNPCTrigger = false;
                 //Controller.instance.TalkEnd();
-            }
-        }
-        //StopCoroutine(TextPractice());
-
-        /* if (Input.GetMouseButtonDown(0))
-         {
-             StartCoroutine(TextPractice());
-         }*/
-
-        /*if (Input.GetMouseButtonDown(1))
-                {
-                    StopCoroutine(TextPractice());
-                }*/
-    }
-
-
-    public void OnClickdown()
-    {
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
-        {
-            Debug.Log("이건 Touch! 뱃사공!!!!");
-            StartCoroutine(TextPractice());
-            //bool_isBotjim = true;
-            if (bool_isNPC == true)
-            {
-                Controller.instance.TalkStart();
-                images_NPC.SetActive(true);
                 bool_isNPC = false;
-
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-            }
-            else
-            {
-                images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
-                bool_isNPC = true;
-                StopCoroutine(TextPractice());
-                Controller.instance.TalkEnd();
             }
         }
+      
     }
 
     IEnumerator NormalChat(string narrator, string narration)

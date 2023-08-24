@@ -57,82 +57,39 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
             Debug.Log("z키 누름! 상거지다!!!!");
-            StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             controller_scr.TalkStart();
+
             if (bool_isNPC == false)
             {
                 images_NPC.SetActive(true);
-                bool_isNPC = true;
+                StartCoroutine(TextPractice());
                 Trigger_NPC.instance.isNPCTrigger = true;
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+                bool_isNPC = true;
             }
             else
             {
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
-                bool_isNPC = false;
-                StopCoroutine(TextPractice());
+                //대사 비우기
+                writerText = "";
+                StopAllCoroutines();
                 Trigger_NPC.instance.isNPCTrigger = false;
+                bool_isNPC = false;
                 //Controller.instance.TalkEnd();
             }
         }
-        //StopCoroutine(TextPractice());
-
-        /* if (Input.GetMouseButtonDown(0))
-         {
-             StartCoroutine(TextPractice());
-         }*/
-
-        /*if (Input.GetMouseButtonDown(1))
-                {
-                    StopCoroutine(TextPractice());
-                }*/
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        isNPCTrigger = true;
-        if (other.CompareTag("Player"))
-        {
-            OnClickdown();
-        }
-    }
-
-    public void OnClickdown()
-    {
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
-        {
-            Debug.Log("이건 Touch! 상거지!!!!");
-            StartCoroutine(TextPractice());
-            //bool_isBotjim = true;
-            controller_scr.TalkStart();
-            if (bool_isNPC == true)
-            {
-                images_NPC.SetActive(true);
-                bool_isNPC = true;
-                Trigger_NPC.instance.isNPCTrigger = true;
-
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-            }
-            else
-            {
-                images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
-                bool_isNPC = false;
-                StopCoroutine(TextPractice());
-                Trigger_NPC.instance.isNPCTrigger = false;
-                controller_scr.TalkEnd();
-            }
-        }
-    }
+  
 
     IEnumerator NormalChat(string narrator, string narration)
     {
         int a = 0;
         CharacterName.text = narrator;
         //characternameText = narrator;
-        writerText = "";
+        
 
         //narrator = CharacterName.text;
 
@@ -161,6 +118,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
 
     IEnumerator TextPractice()
     {
+        
         yield return StartCoroutine(NormalChat(npcDatabaseScr.NPC_01[6].npc_name, npcDatabaseScr.NPC_01[6].comment));
         //yield return StartCoroutine(NormalChat(characternameText, writerText));
         //yield return StartCoroutine(NormalChat("나는봇짐", "?안녕하세요, 반갑습니다. 대화 전환 테스트입니다 이것은 테스트지? 그럼 테스트지 테스트야 테스트군 테스트"));

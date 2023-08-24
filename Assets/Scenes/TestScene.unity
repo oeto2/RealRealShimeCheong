@@ -5005,7 +5005,6 @@ GameObject:
   - component: {fileID: 358651628}
   - component: {fileID: 358651632}
   - component: {fileID: 358651634}
-  - component: {fileID: 358651633}
   m_Layer: 0
   m_Name: BusinessMan
   m_TagString: Untagged
@@ -5159,25 +5158,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &358651633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358651626}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07019bb0cabae1f4f8dea06bd73f07b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
-  skipButton: 20000000
-  writerText: 
-  bool_isBbang: 1
-  images_Bbang: {fileID: 1486878665}
-  images_NPC_portrait: {fileID: 2140373127, guid: bd70666d066e8164c9ff0f6867ed9e39, type: 3}
 --- !u!114 &358651634
 MonoBehaviour:
   m_ObjectHideFlags: 0

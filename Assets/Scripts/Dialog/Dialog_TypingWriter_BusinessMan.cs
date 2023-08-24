@@ -46,7 +46,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(npcDatabaseScr.NPC_01[4].comment);
+        //Debug.Log(npcDatabaseScr.NPC_01[4].comment);
 
         foreach (var element in skipButton) // 버튼 검사
         {
@@ -55,74 +55,30 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
                 isButtonClicked = true;
             }
         }
-        //TextPractice();
-        //StopCoroutine(TextPractice());
-
-        /* if (Input.GetMouseButtonDown(0))
-         {
-             StartCoroutine(TextPractice());
-         }*/
-
-        /*if (Input.GetMouseButtonDown(1))
-                {
-                    StopCoroutine(TextPractice());
-                }*/
+        
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
             Debug.Log("z키 누름! 장사꾼!!!!");
-            StartCoroutine(TextPractice());
             //bool_isBotjim = true;
+
             controller_scr.TalkStart();
             if (bool_isNPC == false)
             {
+                StartCoroutine(TextPractice());
                 images_NPC.SetActive(true);
-                bool_isNPC = true;
                 Trigger_NPC.instance.isNPCTrigger = true;
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-            }
-            else
-            {
-                images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
-                bool_isNPC = false;
-                StopCoroutine(TextPractice());
-                Trigger_NPC.instance.isNPCTrigger = false;
-                //Controller.instance.TalkEnd();
-            }
-        }
-    }
-
-
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        isNPCTrigger = true;
-        if (other.CompareTag("Player"))
-        {
-            OnClickdown();
-        }
-    }
-    public void OnClickdown()
-    {
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
-        {
-            Debug.Log("이건 Touch! 장사꾼!!!!");
-            StartCoroutine(TextPractice());
-            //bool_isBotjim = true;
-            if (bool_isNPC == true)
-            {
-                Controller.instance.TalkStart();
-                images_NPC.SetActive(true);
-                bool_isNPC = false;
-
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-            }
-            else
-            {
-                images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
                 bool_isNPC = true;
-                StopCoroutine(TextPractice());
-                Controller.instance.TalkEnd();
+            }
+            else
+            {
+                images_NPC.SetActive(false);
+                // images_NPC_portrait.SetActive(false);
+                writerText = "";
+                StopAllCoroutines();
+                Trigger_NPC.instance.isNPCTrigger = false;
+                bool_isNPC = false;
+                //Controller.instance.TalkEnd();
             }
         }
     }
@@ -161,7 +117,6 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
 
     IEnumerator TextPractice()
     {
-        Debug.Log("상인 대사 출력");
         //yield return StartCoroutine(NormalChat(characternameText, writerText));
         yield return StartCoroutine(NormalChat(npcDatabaseScr.NPC_01[4].npc_name, npcDatabaseScr.NPC_01[4].comment));
         //yield return StartCoroutine(NormalChat(characternameText, writerText));

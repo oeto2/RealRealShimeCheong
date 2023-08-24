@@ -35,7 +35,6 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
 
     public S_NPCdatabase_Yes npcDatabaseScr;
 
-
     //최초 클릭
     void Start()
     {
@@ -55,76 +54,38 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
                 isButtonClicked = true;
             }
         }
-        //TextPractice();
-        //StopCoroutine(TextPractice());
-
-        /* if (Input.GetMouseButtonDown(0))
-         {
-             StartCoroutine(TextPractice());
-         }*/
-
-        /*if (Input.GetMouseButtonDown(1))
-                {
-                    StopCoroutine(TextPractice());
-                }*/
+   
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
-            Debug.Log("z키 누름! 송나라상인!!!!");
-            StartCoroutine(TextPractice());
+            
             //bool_isBotjim = true;
             controller_scr.TalkStart();
+
             if (bool_isNPC == false)
             {
+                //다이얼로그 보이기
                 images_NPC.SetActive(true);
-                bool_isNPC = true;
-                Trigger_NPC.instance.isNPCTrigger = true;
+                //대사 비우기
+                writerText = "";
+                //대사 출력
+                StartCoroutine(TextPractice());
+                //초상화 변경
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+                bool_isNPC = true;
             }
             else
             {
+                //다이얼로그 종료
                 images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
+                //대사 비우기
+                writerText = "";
+                //코루틴 중지
+                StopAllCoroutines();
                 bool_isNPC = false;
-                StopCoroutine(TextPractice());
-                Trigger_NPC.instance.isNPCTrigger = false;
-                //Controller.instance.TalkEnd();
             }
         }
     }
-
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        isNPCTrigger = true;
-        if (other.CompareTag("Player"))
-        {
-            OnClickdown();
-        }
-    }
-    public void OnClickdown()
-    {
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
-        {
-            Debug.Log("이건 Touch! 송나라 상인!!!!");
-            StartCoroutine(TextPractice());
-            //bool_isBotjim = true;
-            if (bool_isNPC == true)
-            {
-                Controller.instance.TalkStart();
-                images_NPC.SetActive(true);
-                bool_isNPC = false;
-
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-            }
-            else
-            {
-                images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
-                bool_isNPC = true;
-                StopCoroutine(TextPractice());
-                Controller.instance.TalkEnd();
-            }
-        }
-    }
+   
 
     IEnumerator NormalChat(string narrator, string narration)
     {
@@ -157,12 +118,10 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
             yield return null;
         }
     }
+    
 
     IEnumerator TextPractice()
     {
-        Debug.Log("송나라 대사 출력");
         yield return StartCoroutine(NormalChat(npcDatabaseScr.NPC_01[8].npc_name, npcDatabaseScr.NPC_01[8].comment));
-        //yield return StartCoroutine(NormalChat(characternameText, writerText));
-        //yield return StartCoroutine(NormalChat("나는봇짐", "?안녕하세요, 반갑습니다. 대화 전환 테스트입니다 이것은 테스트지? 그럼 테스트지 테스트야 테스트군 테스트"));
     }
 }
