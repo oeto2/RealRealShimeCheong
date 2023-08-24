@@ -5193,8 +5193,8 @@ MonoBehaviour:
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: "\uBB50 \uC0B4 \uAC83 \uC788\uC18C?"
-  characternameText: "\uC7A5\uC0AC\uAFBC"
+  writerText: 
+  characternameText: 
   bool_isNPC: 1
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
@@ -27998,7 +27998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482299812}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -41.37, y: -2.51, z: 0}
+  m_LocalPosition: {x: -42.94, y: -2.51, z: 0}
   m_LocalScale: {x: 0.40000004, y: 0.40000004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28151,9 +28151,8 @@ MonoBehaviour:
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: "\uC2DC\uAC04\uC774 \uBA85\uC904\uC774\uC624! \uBE68\uB9AC \uC6C0\uC9C1\uC774\uC2ED\uC2DC\uC624!!(\uD37D
-    \uACB8\uC190\uD55C \uB9D0\uC528\uB85C \uBC14\uC090 \uC77C\uD55C\uB2E4.)"
-  characternameText: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+  writerText: 
+  characternameText: 
   bool_isNPC: 1
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
@@ -28161,6 +28160,7 @@ MonoBehaviour:
   trigger_npc: {fileID: 1482299817}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
+  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
 --- !u!1 &1485747553
 GameObject:
   m_ObjectHideFlags: 0
@@ -28414,7 +28414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502069081}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.63, y: -2.59, z: 0}
+  m_LocalPosition: {x: -41.12, y: -2.59, z: 0}
   m_LocalScale: {x: 0.40000004, y: 0.40000004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28567,9 +28567,8 @@ MonoBehaviour:
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: "\uC624\uB79C\uB9CC\uC5D0 \uBC1F\uB294 \uB545\uC774\uC694. \uC26C\uACE0
-    \uC2F6\uC18C."
-  characternameText: "\uBC43\uC0AC\uACF5"
+  writerText: 
+  characternameText: 
   bool_isNPC: 1
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
@@ -28577,6 +28576,7 @@ MonoBehaviour:
   trigger_npc: {fileID: 1502069086}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
+  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
 --- !u!1 &1503348804
 GameObject:
   m_ObjectHideFlags: 0
@@ -31448,7 +31448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614491624}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -42.63, y: -2.61, z: 0}
+  m_LocalPosition: {x: -45.08, y: -2.61, z: 0}
   m_LocalScale: {x: 0.40000004, y: 0.40000004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38308,7 +38308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939285202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -46.34, y: -2.85, z: 0}
+  m_LocalPosition: {x: -46.95, y: -2.85, z: 0}
   m_LocalScale: {x: 0.40000004, y: 0.40000004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38461,8 +38461,8 @@ MonoBehaviour:
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: "(\uAF2C\uB974\uB975)...\uBC30\uACE0\uD504\uB2E4.."
-  characternameText: "\uAC70\uC9C0"
+  writerText: 
+  characternameText: 
   bool_isNPC: 1
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
@@ -38470,6 +38470,7 @@ MonoBehaviour:
   trigger_npc: {fileID: 1939285207}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
+  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
 --- !u!1 &1943741406
 GameObject:
   m_ObjectHideFlags: 0
