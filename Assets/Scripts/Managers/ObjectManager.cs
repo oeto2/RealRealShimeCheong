@@ -47,6 +47,9 @@ public class ObjectManager : MonoBehaviour
     //외부스크립트 참조
     public UIManager uiManagerScr;
 
+    //싱글톤
+    public static ObjectManager instance = null;
+
     //Item
     #region 
     //아이템 데이터 값이 담긴 txt파일
@@ -174,7 +177,19 @@ public class ObjectManager : MonoBehaviour
 
     private void Awake()
     {
-
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            if (instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+        
     }
 
     // Start is called before the first frame update
@@ -231,13 +246,12 @@ public class ObjectManager : MonoBehaviour
         //조합창 아이템 탭 기본으로 보여주기
         TabClick2(curType);
 
-        GetItem(1000);
-        GetItem(1001);
-        GetClue(2000);
-        GetClue(2001);
+        //모든 아이템 획득
+        GetAllItem();
 
-        
-
+        //모든 단서 획득
+        GetAllClue();
+      
     }
 
 
@@ -1312,5 +1326,23 @@ public class ObjectManager : MonoBehaviour
 
         //사용중인 오브젝트가 없을 경우
         return 0;
+    }
+
+    //모든 아이템 획득하기
+    public void GetAllItem()
+    {
+        for (int i = 0; i < allItemList.Count; i++)
+        {
+            GetItem(allItemList[i].key);
+        }
+    }
+
+    //모든 단서 획득하기
+    public void GetAllClue()
+    {
+        for (int i = 0; i < allClueList.Count; i++)
+        {
+            GetClue(allClueList[i].key);
+        }
     }
 }
