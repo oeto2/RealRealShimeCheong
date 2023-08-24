@@ -161,7 +161,8 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
 
     IEnumerator TextPractice()
     {
-        yield return StartCoroutine(NormalChat(characternameText, writerText));
+        //yield return StartCoroutine(NormalChat(characternameText, writerText));
+        yield return StartCoroutine(NormalChat(npcDatabaseScr.NPC_01[4].npc_name, npcDatabaseScr.NPC_01[4].comment));
         //yield return StartCoroutine(NormalChat(characternameText, writerText));
         //yield return StartCoroutine(NormalChat("나는봇짐", "?안녕하세요, 반갑습니다. 대화 전환 테스트입니다 이것은 테스트지? 그럼 테스트지 테스트야 테스트군 테스트"));
     }
