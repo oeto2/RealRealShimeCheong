@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18509,7 +18509,8 @@ MonoBehaviour:
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
   writerText: "\uD638\uD638\uD638 \uBB34\uC2A8 \uC77C\uC774\uC2E0\uAC00\uC694?"
-  bool_isBbang: 0
+  characternameText: 
+  bool_isNPC: 0
   images_Bbang: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 736739ca216a124488b340c0e4d8e827, type: 3}
@@ -28698,7 +28699,8 @@ MonoBehaviour:
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
   writerText: "\uD638\uD638\uD638 \uBB34\uC2A8 \uC77C\uC774\uC2E0\uAC00\uC694?"
-  bool_isBbang: 0
+  characternameText: 
+  bool_isNPC: 0
   images_Bbang: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 736739ca216a124488b340c0e4d8e827, type: 3}
@@ -59059,7 +59061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2063844034
 MonoBehaviour:
   m_ObjectHideFlags: 0
