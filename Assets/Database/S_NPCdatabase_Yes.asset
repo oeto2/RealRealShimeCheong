@@ -2953,18 +2953,90 @@ MonoBehaviour:
       \uBB3C\uC5B4\uBCFC \uC218 \uC5C6\uB2E4.)"
     isUsing_dialog_flag: 0
     index_num: 398
+  - key_index: 6500
+    object_type: NPC
+    npc_name: "\uBE91\uB355 \uC5B4\uBA48"
+    comment: "\uC774\uBC88\uC5D0 \uB4E4\uC5EC\uC628 \uBE44\uB140\uAC00 \uADF8\uB807\uAC8C
+      \uC608\uC058\uB358\uB370,,,"
+    isUsing_dialog_flag: 0
+    index_num: 399
+  - key_index: 6501
+    object_type: NPC
+    npc_name: "\uADC0\uB355 \uC5B4\uBA48"
+    comment: "\uC5B4\uB824\uC6C0 \uC788\uC73C\uBA74 \uB9D0\uD574\uBD05\uC138."
+    isUsing_dialog_flag: 0
+    index_num: 400
+  - key_index: 6502
+    object_type: NPC
+    npc_name: "\uD5A5\uB9AC \uB301 \uBD80\uC778"
+    comment: "(\uB178\uBE44\uC640 \uB300\uD654\uB97C \uB098\uB208\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 401
+  - key_index: 6503
+    object_type: NPC
+    npc_name: "\uC7A5\uC0AC\uAFBC"
+    comment: "\uC0B4 \uAC83 \uC5C6\uC73C\uBA74 \uC880 \uBE44\uD0A4\uC2DC\uC624! \uAC1D
+      \uCAD3\uACA0\uB124."
+    isUsing_dialog_flag: 0
+    index_num: 402
+  - key_index: 6504
+    object_type: NPC
+    npc_name: "\uAC70\uC9C0"
+    comment: "\uC800\uAC70 \uB9DB\uC788\uACA0\uB2E4.."
+    isUsing_dialog_flag: 0
+    index_num: 403
+  - key_index: 6505
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "(\uC8FC\uB9C9\uC5D0 \uC549\uC544\uC11C \uB298\uC5B4\uC9C0\uAC8C \uC26C\uACE0
+      \uC788\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 404
+  - key_index: 6506
+    object_type: NPC
+    npc_name: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+    comment: "(\uC774\uCABD\uC740 \uCCD0\uB2E4\uB3C4 \uBCF4\uC9C0 \uC54A\uB294\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 405
+  - key_index: 6507
+    object_type: NPC
+    npc_name: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+    comment: "(\uBAB9\uC2DC \uBC14\uBE60 \uBCF4\uC778\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 406
+  - key_index: 6508
+    object_type: NPC
+    npc_name: "\uC2B9\uB824"
+    comment: "\uB9C8\uC74C \uAE4A\uC774 \uBD88\uACF5\uB4DC\uB9AC\uBA74 \uC870\uB9CC\uAC04
+      \uBD80\uCC98\uC758 \uB355\uC73C\uB85C \uB208\uC744 \uB730 \uC218 \uC788\uC744
+      \uAC83\uC785\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 407
+  - key_index: 6509
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "(\uC8FC\uB9C9\uC5D0 \uC549\uC544\uC11C \uB298\uC5B4\uC9C0\uAC8C \uC26C\uACE0
+      \uC788\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 408
+  - key_index: 6510
+    object_type: NPC
+    npc_name: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+    comment: "(\uC774\uCABD\uC740 \uCCD0\uB2E4\uB3C4 \uBCF4\uC9C0 \uC54A\uB294\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 409
   - key_index: 7000
     object_type: NPC
     npc_name: "\uC7A5\uC0AC\uAFBC"
     comment: "'\uD0DC\uD615\uC5D0 \uCC98\uD560 \uC904 \uC544\uC2DC\uC624!!'"
     isUsing_dialog_flag: 0
-    index_num: 399
+    index_num: 410
   - key_index: 7001
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
     comment: "\uC7A5\uC0AC\uAFBC\uC774 \uC5F0\uC2E0 \uC18C\uB9AC\uCCE4\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 400
+    index_num: 411
   - key_index: 7002
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
@@ -2973,27 +3045,27 @@ MonoBehaviour:
       \uB0B4 \uBAB8\uD1B5\uC744 \uBB36\uC5C8\uACE0, \uB098\uB294 \uB04C\uB824\uAC00\uACE0
       \uC788\uC5C8\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 401
+    index_num: 412
   - key_index: 7003
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
-    comment: "<color=#B40404>\uB098\uC05C \uACB0\uB9D01 [\uC591\uC0C1\uAD70\uC790]</color>"
+    comment: "\uB098\uC05C \uACB0\uB9D01 [\uC591\uC0C1\uAD70\uC790]"
     isUsing_dialog_flag: 0
-    index_num: 402
+    index_num: 413
   - key_index: 7004
     object_type: NPC
     npc_name: "\uD5A5\uB9AC \uB301 \uBD80\uC778"
     comment: "\uB0B4\uAC00 \uB2E8\uB2E8\uD788 \uACBD\uACE0 \uD588\uC9C0\uC54A\uC18C?
       \uC790\uCD08\uD55C \uC904 \uC544\uC2DC\uC624."
     isUsing_dialog_flag: 0
-    index_num: 403
+    index_num: 414
   - key_index: 7005
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
     comment: "\uBD80\uC778\uC774 \uD558\uC778\uC758 \uD558\uC580 \uCC9C\uC744 \uAC77\uC5B4\uB0B4\uB354\uB2C8,
       \uADF8 \uC18D\uC5D0\uC11C \uCE7C\uC744 \uAEBC\uB0B4\uB4E4\uC5C8\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 404
+    index_num: 415
   - key_index: 7006
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
@@ -3001,41 +3073,41 @@ MonoBehaviour:
       \uC9C8\uB048 \uAC10\uC740 \uCC30\uB098, \uC774\uBBF8 \uBCF5\uBD80\uC5D0 \uB530\uB4EF\uD568\uC774
       \uD37C\uC84C\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 405
+    index_num: 416
   - key_index: 7007
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
     comment: "\uC0C1\uD669\uC744 \uD30C\uC545\uD558\uAE30\uB3C4 \uC804\uC5D0 \uB0B4
       \uBAB8\uC740 \uC800\uD0DD \uC548\uC73C\uB85C \uB04C\uB824\uAC00\uACE0 \uC788\uC5C8\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 406
+    index_num: 417
   - key_index: 7008
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
-    comment: "<color=#B40404>\uB098\uC05C \uACB0\uB9D02 [\uAD6C\uD654\uC9C0\uBB38]</color>"
+    comment: "\uB098\uC05C \uACB0\uB9D02 [\uAD6C\uD654\uC9C0\uBB38]"
     isUsing_dialog_flag: 0
-    index_num: 407
+    index_num: 418
   - key_index: 7009
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
     comment: "\uAFC0\uB5A1\uAFC0\uB5A1, \uC57D\uCD08\uBB3C\uC744 \uBAA8\uC870\uB9AC
       \uBAA9\uC73C\uB85C \uB118\uACBC\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 408
+    index_num: 419
   - key_index: 7010
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
     comment: "\uC5ED\uC2DC \uC774 \uC57D\uCD08\uAC00 \uB0B4 \uBAB8\uC5D0 \uC798 \uB9DE\uB294\uC9C0,
       \uBAB8\uC774 \uC88B\uC544\uC9C0\uB294 \uAE30\uBD84\uC774\uC5C8\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 409
+    index_num: 420
   - key_index: 7011
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
     comment: "\uB728\uB048\uD568\uC5D0 \uAE30\uBD84\uB3C4 \uB098\uB978\uD574\uC9C4
       \uCC30\uB098\uC600\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 410
+    index_num: 421
   - key_index: 7012
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
@@ -3043,27 +3115,27 @@ MonoBehaviour:
       \uC625\uC8C4\uC5B4\uC654\uACE0, \uC790\uAFB8\uB9CC \uD5DB\uAD6C\uC5ED\uC9C8\uC774
       \uB098\uC654\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 411
+    index_num: 422
   - key_index: 7013
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
     comment: "\uB0B4 \uBAB8\uC744 \uB258\uC778 \uBC14\uB2E5\uC740 \uC774\uC820 \uC548\uB77D\uD558\uAC8C\uB9CC
       \uB290\uAEF4\uC84C\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 412
+    index_num: 423
   - key_index: 7014
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
-    comment: "<color=#B40404>\uB098\uC05C \uACB0\uB9D03 [\uACFC\uC720\uBD88\uAE09]</color>"
+    comment: "\uB098\uC05C \uACB0\uB9D03 [\uACFC\uC720\uBD88\uAE09]"
     isUsing_dialog_flag: 0
-    index_num: 413
+    index_num: 424
   - key_index: 7015
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
     comment: "\uAC11\uC790\uAE30 \uB4A4\uD1B5\uC218\uC5D0 \uB454\uD0C1\uD55C \uC18C\uB9AC\uAC00
       \uC6B8\uB838\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 414
+    index_num: 425
   - key_index: 7016
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
@@ -3071,21 +3143,21 @@ MonoBehaviour:
       \uC55E\uC740 \uBCF4\uC774\uC9C0 \uC54A\uC558\uB2E4. \uADF8\uB54C, \uB204\uAD70\uAC00\uC758
       \uC911\uC5BC\uAC70\uB9BC\uC774 \uB4E4\uB838\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 415
+    index_num: 426
   - key_index: 7017
     object_type: NPC
     npc_name: ???
     comment: "........\uC5B4\uB450\uC6B4 \uC544\uBE44 \uB208\uC744 \uBC1D\uAC8C \uB744\uC6CC
       \uC8FC\uC635\uC18C\uC11C..."
     isUsing_dialog_flag: 0
-    index_num: 416
+    index_num: 427
   - key_index: 7018
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
     comment: "\uCCA8\uBC99 \uC18C\uB9AC\uAC00 \uB0AC\uACE0, \uB4A4\uC774\uC5B4 \uC6C5\uC131\uC774\uB294
       \uC18C\uB9AC\uAC00 \uADD3\uAC00\uC5D0 \uB4E4\uB824\uC654\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 417
+    index_num: 428
   - key_index: 7019
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
@@ -3094,13 +3166,13 @@ MonoBehaviour:
       \uB4A4\uB85C\uD558\uBA70 \uC3DF\uC544\uC9C0\uB294 \uC7A0\uC5D0 \uBAB8\uC744
       \uB9E1\uACBC\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 418
+    index_num: 429
   - key_index: 7020
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
-    comment: "<color=#B40404>\uB098\uC05C \uACB0\uB9D04 [\uCDE8\uC0DD\uBABD\uC0AC]</color>"
+    comment: "\uB098\uC05C \uACB0\uB9D04 [\uCDE8\uC0DD\uBABD\uC0AC]"
     isUsing_dialog_flag: 0
-    index_num: 419
+    index_num: 430
   - key_index: 7021
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
@@ -3108,20 +3180,20 @@ MonoBehaviour:
       \uC77C\uC778\uC9C0 \uAD81\uAE08\uD558\uC5EC \uD5A5\uB9AC \uB301\uC744 \uAC14\uC73C\uB098
       \uBD80\uC778\uC740 \uC628\uB370\uAC04\uB370\uC5C6\uC5C8\uB2E4.."
     isUsing_dialog_flag: 0
-    index_num: 420
+    index_num: 431
   - key_index: 7022
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
     comment: "\uB2E4\uC74C\uB0A0\uB3C4, \uB610 \uADF8 \uB2E4\uC74C\uB0A0\uC5D0\uB3C4."
     isUsing_dialog_flag: 0
-    index_num: 421
+    index_num: 432
   - key_index: 7023
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
     comment: "\uBD80\uC778\uC774 \uC5C6\uB294 \uD5A5\uB9AC \uB301\uC758 \uB300\uBB38\uC740
       \uADF8\uC800 \uCC99\uBC15\uD55C \uBAA8\uC591\uC0C8\uC600\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 422
+    index_num: 433
   - key_index: 7024
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
@@ -3130,10 +3202,10 @@ MonoBehaviour:
       \uB098\uB294 \uADF8\uC800 \uD558\uB9B4\uC5C6\uC774 \uCCAD\uC774\uB97C \uAE30\uB2E4\uB9B4
       \uBFD0\uC774\uC5C8\uB2E4."
     isUsing_dialog_flag: 0
-    index_num: 423
+    index_num: 434
   - key_index: 7025
     object_type: NPC
     npc_name: "\uC2EC\uD559\uADDC"
-    comment: "<color=#B4472C4>\uBCF4\uD1B5 \uACB0\uB9D01 [\uC5F0\uACBD\uD559\uB9DD]</color>"
+    comment: "\uBCF4\uD1B5 \uACB0\uB9D01 [\uC5F0\uACBD\uD559\uB9DD]"
     isUsing_dialog_flag: 0
-    index_num: 424
+    index_num: 435

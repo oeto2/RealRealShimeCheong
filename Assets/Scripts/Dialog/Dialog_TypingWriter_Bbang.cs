@@ -156,11 +156,10 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
     {
         int a = 0;
         narrator = CharacterName.text = dialogdb.NPC_01[1].npc_name;
-        narration = dialogdb.NPC_01[1].comment;
+        writerText = dialogdb.NPC_01[1].comment;
 		//Random_text_array = { "문제다", "문제야", "문제쓰"};
         Debug.Log(writerText);
-        Debug.Log(narration);
-        writerText = "";
+        //writerText = "";
 
         //텍스트 타이핑
         for (a = 0; a < narration.Length; a++)
@@ -190,7 +189,6 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     IEnumerator TextPractice()
     {
-
         yield return StartCoroutine(NormalChat("뺑덕어멈", "호호, 무슨 일이신가요?"));
         yield return StartCoroutine(NormalChat("뺑덕어멈", "이번에 들여온 비녀가 그렇게 예쁘던데,,,"));
         yield return StartCoroutine(NormalChat_5000(CharacterName.text, writerText));
