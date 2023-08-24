@@ -32,6 +32,8 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
 
     public Controller controller_scr;
 
+    public S_NPCdatabase_Yes npcDatabaseScr;
+
     //최초 클릭
     void Start()
     {
@@ -44,6 +46,8 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(npcDatabaseScr.NPC_01[4].comment);
+
         foreach (var element in skipButton) // 버튼 검사
         {
             if (Input.GetKeyDown(element))

@@ -25348,7 +25348,7 @@ MonoBehaviour:
   animator_Celender: {fileID: 1307439882}
   text_TimeText: {fileID: 219243736}
   gameObjcet_DayUI: {fileID: 1429576755}
-  float_RealTime: 0
+  float_RealTime: 255
   timeMultipleCation: 1
   int_DayMinute: 300
   int_DayCount: 1
