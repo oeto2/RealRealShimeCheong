@@ -161,6 +161,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
 
     IEnumerator TextPractice()
     {
+        Debug.Log("상인 대사 출력");
         //yield return StartCoroutine(NormalChat(characternameText, writerText));
         yield return StartCoroutine(NormalChat(npcDatabaseScr.NPC_01[4].npc_name, npcDatabaseScr.NPC_01[4].comment));
         //yield return StartCoroutine(NormalChat(characternameText, writerText));

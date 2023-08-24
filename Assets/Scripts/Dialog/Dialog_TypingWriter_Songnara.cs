@@ -22,6 +22,7 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
 
     public bool bool_isNPC = false;
 
+    //다이얼로그 UI
     public GameObject images_NPC;
 
     public Sprite[] images_NPC_portrait;
@@ -159,6 +160,7 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
 
     IEnumerator TextPractice()
     {
+        Debug.Log("송나라 대사 출력");
         yield return StartCoroutine(NormalChat(npcDatabaseScr.NPC_01[8].npc_name, npcDatabaseScr.NPC_01[8].comment));
         //yield return StartCoroutine(NormalChat(characternameText, writerText));
         //yield return StartCoroutine(NormalChat("나는봇짐", "?안녕하세요, 반갑습니다. 대화 전환 테스트입니다 이것은 테스트지? 그럼 테스트지 테스트야 테스트군 테스트"));

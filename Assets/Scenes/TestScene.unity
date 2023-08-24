@@ -5195,7 +5195,7 @@ MonoBehaviour:
   skipButton: 20000000
   writerText: 
   characternameText: 
-  bool_isNPC: 1
+  bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 2140373127, guid: bd70666d066e8164c9ff0f6867ed9e39, type: 3}
@@ -16282,7 +16282,7 @@ MonoBehaviour:
   skipButton: 20000000
   writerText: "\uC5EC\uAE30\uB294 \uC5B4\uCA50 \uC77C\uC774\uC624?"
   characternameText: "\uC7A5\uC2B9\uC0C1\uB301 \uBD80\uC778"
-  bool_isNPC: 1
+  bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 256513075, guid: 20588bd86d08f3f439c8459db628c04e, type: 3}
@@ -19091,7 +19091,7 @@ MonoBehaviour:
   writerText: "\uD63C\uC790\uC11C\uB77C\uB3C4 \uAC70\uB72C\uD788 \uC0B4\uC544\uC57C
     \uD558\uC624."
   characternameText: "\uADC0\uB355\uC5B4\uBA48"
-  bool_isNPC: 1
+  bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: -857250674, guid: c4b92165159364e499205125782f02e7, type: 3}
@@ -28153,7 +28153,7 @@ MonoBehaviour:
   skipButton: 20000000
   writerText: 
   characternameText: 
-  bool_isNPC: 1
+  bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: -1306965376, guid: d3894448d29a9784f8a6753dfa5469af, type: 3}
@@ -28569,7 +28569,7 @@ MonoBehaviour:
   skipButton: 20000000
   writerText: 
   characternameText: 
-  bool_isNPC: 1
+  bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 1549160241, guid: 30b6cc192a4fdd9419ee8f11efb74c68, type: 3}
@@ -32671,7 +32671,7 @@ MonoBehaviour:
   skipButton: 20000000
   writerText: 
   characternameText: 
-  bool_isNPC: 1
+  bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 6f602fad575b4ca468cd0ef912e07cb1, type: 3}
@@ -38463,7 +38463,7 @@ MonoBehaviour:
   skipButton: 20000000
   writerText: 
   characternameText: 
-  bool_isNPC: 1
+  bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 238e9718555ebec48bc618dbcfc4788e, type: 3}

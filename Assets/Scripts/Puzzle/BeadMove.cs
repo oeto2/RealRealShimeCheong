@@ -85,7 +85,7 @@ public class BeadMove : MonoBehaviour
         //위로 이동
         if ((Input.GetKeyDown(KeyCode.W) && !isMove && !upWall))
         {
-            Debug.Log("구슬 위로 이동");
+            //Debug.Log("구슬 위로 이동");
 
             //RayCast 방향 설정
             beadDir = BeadDirection.UP;
@@ -106,7 +106,7 @@ public class BeadMove : MonoBehaviour
         //아래로 이동
         else if ((Input.GetKeyDown(KeyCode.S) && !isMove && !downWall))
         {
-            Debug.Log("구슬 아래로 이동");
+            //Debug.Log("구슬 아래로 이동");
 
             //RayCast 방향 설정
             beadDir = BeadDirection.Down;
@@ -126,7 +126,7 @@ public class BeadMove : MonoBehaviour
         //왼쪽으로 이동
         else if ((Input.GetKeyDown(KeyCode.A) && !isMove && !leftWall))
         {
-            Debug.Log("구슬 왼쪽으로 이동");
+            //Debug.Log("구슬 왼쪽으로 이동");
 
             //RayCast 방향 설정
             beadDir = BeadDirection.Left;
@@ -146,7 +146,7 @@ public class BeadMove : MonoBehaviour
         //오른쪽 이동
         else if ((Input.GetKeyDown(KeyCode.D) && !isMove && !rightWall))
         {
-            Debug.Log("구슬 오른쪽로 이동");
+            //Debug.Log("구슬 오른쪽로 이동");
 
             //RayCast 방향 설정
             beadDir = BeadDirection.Right;
@@ -195,7 +195,7 @@ public class BeadMove : MonoBehaviour
             //벽이 위에 있다면
             if (beadDir == BeadDirection.UP && !Input.GetKeyDown(KeyCode.W))
             {
-                Debug.Log("위벽 감지");
+                //Debug.Log("위벽 감지");
 
                 //구슬 이동 정지
                 BeadMoveStop();
@@ -210,7 +210,7 @@ public class BeadMove : MonoBehaviour
             //벽이 아래에 있다면
             else if (beadDir == BeadDirection.Down && !Input.GetKeyDown(KeyCode.S))
             {
-                Debug.Log("아래벽 감지");
+                //Debug.Log("아래벽 감지");
                 //구슬 이동 정지
                 BeadMoveStop();
 
@@ -224,7 +224,7 @@ public class BeadMove : MonoBehaviour
             //벽이 왼쪽에 있다면
             else if (beadDir == BeadDirection.Left && !Input.GetKeyDown(KeyCode.A))
             {
-                Debug.Log("왼쪽 감지");
+                //Debug.Log("왼쪽 감지");
 
                 //구슬 이동 정지
                 BeadMoveStop();
@@ -239,7 +239,7 @@ public class BeadMove : MonoBehaviour
             //벽이 오른쪽에 있다면
             else if (beadDir == BeadDirection.Right && !Input.GetKeyDown(KeyCode.D))
             {
-                Debug.Log("오른쪽 감지");
+                //Debug.Log("오른쪽 감지");
 
                 //구슬 이동 정지
                 BeadMoveStop();
@@ -296,7 +296,7 @@ public class BeadMove : MonoBehaviour
     //구슬 이동 정지
     public void BeadMoveStop()
     {
-        Debug.Log("구슬 정지");
+        //Debug.Log("구슬 정지");
 
         rigid.velocity = Vector3.zero;
     }
