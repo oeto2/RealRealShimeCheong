@@ -2301,6 +2301,7 @@ MonoBehaviour:
   - {fileID: -715798771, guid: de965b1d713005e479cbd93978e0e930, type: 3}
   cursorImage: {fileID: 2800000, guid: 846fd842428061b48b5385f948731ba4, type: 3}
   cursorClickImg: {fileID: 2800000, guid: baa0366fa0c7dfb439603e395fce0f2a, type: 3}
+  cursorScale: 1
 --- !u!1 &124630318
 GameObject:
   m_ObjectHideFlags: 0
@@ -37145,6 +37146,7 @@ MonoBehaviour:
   - {fileID: 546055926}
   - {fileID: 48768034}
   minBrightness: 50
+  startRGBValue: 145
 --- !u!1 &1372273901
 GameObject:
   m_ObjectHideFlags: 0

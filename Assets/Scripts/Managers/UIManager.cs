@@ -176,6 +176,9 @@ public class UIManager : MonoBehaviour
     //마우스 클릭 커서 이미지
     public Texture2D cursorClickImg;
 
+    //마우스 커서 크기
+    [Range(1,100)]public float cursorScale;
+
     private void Awake()
     {
         //마우스 포인터 끄기
@@ -193,16 +196,19 @@ public class UIManager : MonoBehaviour
         ShowUiDataToSlot();
 
         //커서 이미지 변경
-        Cursor.SetCursor(cursorImage, new Vector2(10,0), CursorMode.ForceSoftware);
+        Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.ForceSoftware);
     }
     // Update is called once per frame
     void Update()
     {
+        
+
         //마우스 좌 클릭시
         if (Input.GetMouseButtonDown(0))
         {
             //커서 이미지 변경
             Cursor.SetCursor(cursorClickImg, Vector2.zero, CursorMode.ForceSoftware);
+            //Cursor.SetCursor(cursorClickImg, Vector2.zero, CursorMode.ForceSoftware);
         }
 
         //마우스 클릭 해제시
@@ -210,7 +216,8 @@ public class UIManager : MonoBehaviour
         {
             //커서 이미지 변경
             Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.ForceSoftware);
-        }    
+            //Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.ForceSoftware);
+        }
 
         //마우스 포인터 
         isMonuseOn = Cursor.visible;
@@ -231,14 +238,6 @@ public class UIManager : MonoBehaviour
             Cursor.visible = false;
         }
 
-        ////마우스 포인터를 끄는 조건
-        //if (!gameObject_CombineWindow.activeSelf && !gameObject_ItemWindow.activeSelf && !gameObject_Option.activeSelf && !gameObject_MapWindow.activeSelf
-        //    && !gameObject_SaveWindow && !gameObject_LoadWindow.activeSelf)
-        //{
-        //    Debug.Log("마우스 포인터 끄기");
-        //    마우스 포인터 끄기
-        //    Cursor.visible = false;
-        //}
 
         //아이템 창 관련 코드
         #region
