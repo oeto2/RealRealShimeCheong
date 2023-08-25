@@ -82,6 +82,7 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
                 writerText = "";
                 //코루틴 중지
                 StopAllCoroutines();
+
                 controller_scr.TalkEnd();
                 bool_isNPC = false;
             }
