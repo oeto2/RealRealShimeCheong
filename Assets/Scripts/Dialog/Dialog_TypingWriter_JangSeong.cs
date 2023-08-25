@@ -131,7 +131,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
     IEnumerator NormalChat()
     {
         int a = 0;
-        string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[1].npc_name;
+        string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[3].npc_name;
         string narration = dialogdb.NPC_01[3].comment;
         string narration_2 = dialogdb.NPC_01[401].comment;
         RandomNum = Random.Range(0, 2);

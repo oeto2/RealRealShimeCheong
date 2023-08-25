@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18509,7 +18509,7 @@ MonoBehaviour:
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: "\uD638\uD638\uD638 \uBB34\uC2A8 \uC77C\uC774\uC2E0\uAC00\uC694?"
+  writerText: 
   characternameText: 
   bool_isNPC: 0
   images_Bbang: {fileID: 1486878665}
@@ -18517,7 +18517,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 736739ca216a124488b340c0e4d8e827, type: 3}
   trigger_npc: {fileID: 688575809}
   controller_scr: {fileID: 1871036892}
-  Random_text_array: []
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
@@ -24162,7 +24161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928861241}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -63.7, y: -15.62, z: 0}
+  m_LocalPosition: {x: -63.79, y: -15.62, z: 0}
   m_LocalScale: {x: 0.40852, y: 0.40000004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24315,8 +24314,8 @@ MonoBehaviour:
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: "\uC5EC\uAE30\uB294 \uC5B4\uCA50 \uC77C\uC774\uC624?"
-  characternameText: "\uC7A5\uC2B9\uC0C1\uB301 \uBD80\uC778"
+  writerText: 
+  characternameText: 
   bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
@@ -24324,6 +24323,9 @@ MonoBehaviour:
   trigger_npc: {fileID: 928861246}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
+  index: 0
+  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogs: []
 --- !u!1 &933551566
 GameObject:
   m_ObjectHideFlags: 0
@@ -28583,9 +28585,8 @@ MonoBehaviour:
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: "\uD63C\uC790\uC11C\uB77C\uB3C4 \uAC70\uB72C\uD788 \uC0B4\uC544\uC57C
-    \uD558\uC624."
-  characternameText: "\uADC0\uB355\uC5B4\uBA48"
+  writerText: 
+  characternameText: 
   bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
@@ -28699,7 +28700,7 @@ MonoBehaviour:
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: "\uD638\uD638\uD638 \uBB34\uC2A8 \uC77C\uC774\uC2E0\uAC00\uC694?"
+  writerText: 
   characternameText: 
   bool_isNPC: 0
   images_Bbang: {fileID: 1486878665}
@@ -28707,9 +28708,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 736739ca216a124488b340c0e4d8e827, type: 3}
   trigger_npc: {fileID: 1075882285}
   controller_scr: {fileID: 1871036892}
-  Random_text_array: []
   index: 0
-  dialogdb: {fileID: 0}
+  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
 --- !u!114 &1075882285
 MonoBehaviour:
@@ -29438,7 +29438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogdb: {fileID: 0}
   speakers:
   - spriteRenderer: {fileID: 0}
     imageDialog: {fileID: 0}
@@ -37145,8 +37145,13 @@ MonoBehaviour:
   - {fileID: 1465884224}
   - {fileID: 546055926}
   - {fileID: 48768034}
+  curObjectRGB:
+    serializedVersion: 2
+    rgba: 0
   minBrightness: 50
-  startRGBValue: 145
+  startRGBValue:
+    serializedVersion: 2
+    rgba: 0
 --- !u!1 &1372273901
 GameObject:
   m_ObjectHideFlags: 0
@@ -59063,7 +59068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2063844034
 MonoBehaviour:
   m_ObjectHideFlags: 0
