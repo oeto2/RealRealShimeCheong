@@ -76,6 +76,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
                 StopAllCoroutines();
                 Trigger_NPC.instance.isNPCTrigger = false;
                 //Controller.instance.TalkEnd();
+                controller_scr.TalkEnd();
                 bool_isNPC = false;
             }
         }

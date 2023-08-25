@@ -78,6 +78,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
                 writerText = "";
                 StopAllCoroutines();
                 Trigger_NPC.instance.isNPCTrigger = false;
+                controller_scr.TalkEnd();
                 bool_isNPC = false;
                 //Controller.instance.TalkEnd();
             }
