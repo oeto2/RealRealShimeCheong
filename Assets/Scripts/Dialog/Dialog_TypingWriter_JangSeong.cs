@@ -32,15 +32,31 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
     public Controller controller_scr;
 
+    // 랜덤 대사 출력 변수
+    private int RandomNum;
+
+    [System.Serializable]
+    public struct DialogData
+    {
+        public int speakerIndex;              // 이름과 대사를 출력할 현재 DialogSystem의 speaker 배열 순번
+        public string name;                   // NPC 이름
+        [TextArea(3, 5)]
+        public string dialogue;               // 대사
+    }
+
+    [SerializeField]
+    public int index;
+    [SerializeField]
+    public S_NPCdatabase_Yes dialogdb;
+    [SerializeField]
+    private DialogData[] dialogs;
+
     //최초 클릭
     void Start()
     {
-        StartCoroutine(TextPractice());
-        //TextPractice();
-        //StopCoroutine(TextPractice());
-        CharacterName.text="";
+        CharacterName.text = "";
+        ChatText.text = "";
     }
-
 
     void Update()
     {
@@ -51,26 +67,15 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 isButtonClicked = true;
             }
         }
-        //TextPractice();
-        //StopCoroutine(TextPractice());
 
-        /* if (Input.GetMouseButtonDown(0))
-         {
-             StartCoroutine(TextPractice());
-         }*/
-
-        /*if (Input.GetMouseButtonDown(1))
-                {
-                    StopCoroutine(TextPractice());
-                }*/
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
             Debug.Log("z키 누름! 장승상댁!!!!");
-            StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             controller_scr.TalkStart();
             if (bool_isNPC == false)
             {
+                StartCoroutine(TextPractice());
                 images_NPC.SetActive(true);
                 bool_isNPC = true;
                 Trigger_NPC.instance.isNPCTrigger = true;
@@ -79,16 +84,15 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             else
             {
                 images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
                 bool_isNPC = false;
-                StopCoroutine(TextPractice());
-                Trigger_NPC.instance.isNPCTrigger = false;
-                //Controller.instance.TalkEnd();
+                trigger_npc.isNPCTrigger = false;
+
+                writerText = "";
+                StopAllCoroutines();
             }
         }
     }
-
-
+    /*
     public void OnTriggerEnter2D(Collider2D other)
     {
         isNPCTrigger = true;
@@ -97,6 +101,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             OnClickdown();
         }
     }
+    
     public void OnClickdown()
     {
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
@@ -121,9 +126,62 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 Controller.instance.TalkEnd();
             }
         }
+    }*/
+
+    IEnumerator NormalChat()
+    {
+        int a = 0;
+        string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[1].npc_name;
+        string narration = dialogdb.NPC_01[3].comment;
+        string narration_2 = dialogdb.NPC_01[401].comment;
+        RandomNum = Random.Range(0, 2);
+
+        //narrator = CharacterName.text;
+
+        //텍스트 타이핑
+        if (RandomNum == 0)
+        {
+            for (a = 0; a < narration.Length; a++)
+            //for (a = 0; a < textSpeed; a++)
+            {
+                writerText += narration[a];
+                ChatText.text = writerText;
+
+                //텍스트 타이핑 시간 조절
+                //yield return null;
+                yield return new WaitForSeconds(0.05f);
+            }
+            yield return null;
+        }
+        else if (RandomNum == 1)
+        {
+            for (a = 0; a < narration_2.Length; a++)
+            //for (a = 0; a < textSpeed; a++)
+            {
+                writerText += narration_2[a];
+                ChatText.text = writerText;
+
+                //텍스트 타이핑 시간 조절
+                //yield return null;
+                yield return new WaitForSeconds(0.05f);
+            }
+            yield return null;
+        }
+        Debug.Log(writerText);
+
+        //키(default : space)를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (isButtonClicked)
+            {
+                isButtonClicked = false;
+                break;
+            }
+            yield return null;
+        }
     }
 
-    IEnumerator NormalChat(string narrator, string narration)
+    IEnumerator ItemClueChat(string narrator, string narration)
     {
         int a = 0;
         CharacterName.text = narrator;
@@ -157,8 +215,165 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
     IEnumerator TextPractice()
     {
-        yield return StartCoroutine(NormalChat(characternameText, writerText));
-        //yield return StartCoroutine(NormalChat(characternameText, writerText));
-        //yield return StartCoroutine(NormalChat("나는봇짐", "?안녕하세요, 반갑습니다. 대화 전환 테스트입니다 이것은 테스트지? 그럼 테스트지 테스트야 테스트군 테스트"));
+        #region 단서
+        //2000 : 승상댁의 수양딸
+        if (ObjectManager.instance.GetEquipObjectKey() == 2000)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[11].npc_name, dialogdb.NPC_01[11].comment));
+        }
+        //2001 : 청이의 거짓말
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2001)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[24].npc_name, dialogdb.NPC_01[24].comment));
+        }
+        //2002 : 청이의 행방
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2002)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[32].npc_name, dialogdb.NPC_01[32].comment));
+        }
+        //2003 : 청이와 장터
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2003)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[40].npc_name, dialogdb.NPC_01[40].comment));
+        }
+        //2004 : 청이와 사내
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2004)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[48].npc_name, dialogdb.NPC_01[48].comment));
+        }
+        //2005 : 누군가의 아들
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2005)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[59].npc_name, dialogdb.NPC_01[59].comment));
+        }
+        //2006 : 송나라 상인과 청이
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2006)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[67].npc_name, dialogdb.NPC_01[67].comment));
+        }
+        //2007 : 승려와 청이
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2007)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[80].npc_name, dialogdb.NPC_01[80].comment));
+        }
+        //2008 : 승려의 마음
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2008)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[88].npc_name, dialogdb.NPC_01[88].comment));
+        }
+        //2009 : 청이의 도움
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2009)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[96].npc_name, dialogdb.NPC_01[96].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[102].npc_name, dialogdb.NPC_01[102].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[103].npc_name, dialogdb.NPC_01[103].comment));
+        }
+        //2010 : 공양미 삼백 석
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2010)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[106].npc_name, dialogdb.NPC_01[106].comment));
+        }
+        //2011 : 공양미의 출처
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2011)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[115].npc_name, dialogdb.NPC_01[115].comment));
+        }
+        //2012 : 청이의 거래
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2012)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[123].npc_name, dialogdb.NPC_01[123].comment));
+        }
+        //2013 : 향리 댁 셋째 아들
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2013)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[131].npc_name, dialogdb.NPC_01[131].comment));
+        }
+        //2014 : 잠잠해져야 할 물살
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2014)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[139].npc_name, dialogdb.NPC_01[139].comment));
+        }
+        //2015 : 청이가 사간 것
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2015)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[147].npc_name, dialogdb.NPC_01[147].comment));
+        }
+        //2016 : 짚신을 사간 청이
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2016)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[157].npc_name, dialogdb.NPC_01[157].comment));
+        }
+        //2017 : 배의 출항
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2017)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[167].npc_name, dialogdb.NPC_01[167].comment));
+        }
+        //2018 : 노점의 단골
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2018)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[184].npc_name, dialogdb.NPC_01[184].comment));
+        }
+        //2019 : 뜨지 않는 배
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2019)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[192].npc_name, dialogdb.NPC_01[192].comment));
+        }
+        //2020 : 사공에게 있었던 일
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2020)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[201].npc_name, dialogdb.NPC_01[201].comment));
+        }
+        //2021 : 사공의 물건
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2021)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[207].npc_name, dialogdb.NPC_01[207].comment));
+        }
+        //2022 : 뱃길을 잠재울 방법
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2022)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[223].npc_name, dialogdb.NPC_01[223].comment));
+        }
+        //2023 : 3월 보름날
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[231].npc_name, dialogdb.NPC_01[231].comment));
+        }
+        #endregion
+
+        #region 아이템
+        //1000 : 쌀
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1000)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[285].npc_name, dialogdb.NPC_01[285].comment));
+        }
+        //1005 : 주먹밥
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1005)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[294].npc_name, dialogdb.NPC_01[294].comment));
+        }
+        //1007 : 먹
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1007)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[309].npc_name, dialogdb.NPC_01[309].comment));
+        }
+        //1009 : 꽃
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1009)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[324].npc_name, dialogdb.NPC_01[324].comment));
+        }
+        //1011 : 사공의 물건
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1011)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[340].npc_name, dialogdb.NPC_01[340].comment));
+        }
+
+        #endregion
+
+        #region 기본 대사
+        else
+        {
+            yield return StartCoroutine(NormalChat());
+        }
+        #endregion
     }
 }
