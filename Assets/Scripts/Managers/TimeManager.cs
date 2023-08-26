@@ -45,7 +45,7 @@ public class TimeManager : MonoBehaviour
     public TutorialManager tutorialManagerScr;
     public UIManager uiManagerScr;
     public MoonLight moonlightScr;
-    
+
     //캘린더의 애니메이터
     public Animator animator_Celender;
 
@@ -106,9 +106,18 @@ public class TimeManager : MonoBehaviour
     //최소 밝기
     public int minBrightness;
 
-    //오브젝트들의 시작 RGB값
+    //오브젝트들의 아침 RGB값
     public Color32 startRGBValue;
-    
+
+    //오브젝트들의 밤 RGB값
+    public Color32 nightRGBValue;
+
+    //오브젝트 밝기 세팅이 끝났는지 
+    private bool isSettingEnd;
+
+    //1초 코루틴이 실행중인지
+    private bool isOneSecStart;
+
 
     private void Start()
     {
@@ -122,17 +131,26 @@ public class TimeManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
 
         //오브젝트들 밝기 설정
-        ObjectStartRGB_Value(startRGBValue.r);
+        if (!isSettingEnd)
+        {
+            ObjectStartRGB_Value(startRGBValue.r);
+        }
+
+
+        //오브젝트 밝기 조절
+        if (!isOneSecStart)
+        {
+            StartCoroutine(OneSecStartCoroutine());
+        }
 
 
         //해시계 애니메이션
         ChageSunClock();
-        
-        //2초에 한번 배경 바꿈
-        if((int)MathF.Truncate(float_RealTime) % 2 == 0)
+
+        //2초에 한번 달 밝기 조절
+        if ((int)MathF.Truncate(float_RealTime) % 2 == 0)
         {
             //달 밝기 바꾸기
             moonlightScr.BrightenMoon((byte)MathF.Truncate(float_RealTime));
@@ -234,7 +252,7 @@ public class TimeManager : MonoBehaviour
     public void Save(int _slotNum)
     {
         Debug.Log("Save TimeManagerData");
-        
+
 
         //저장할 데이터 넣기
         curTimeSaveData = new TimeSaveData(float_RealTime, int_DayCount);
@@ -272,7 +290,7 @@ public class TimeManager : MonoBehaviour
     {
         return int_DayCount;
     }
-    
+
     //UI 슬롯에 표시할 날짜
     public string GetDayCountText()
     {
@@ -346,71 +364,124 @@ public class TimeManager : MonoBehaviour
         {
             spriteRen_ObumbrateObj[i].color = new Color32((byte)_rgb, (byte)_rgb, (byte)_rgb, 255);
         }
+
+        isSettingEnd = true;
     }
 
 
     //오브젝트 어둡게하기
     public void ObumbrateObject(Color32 _curObjectColor)
     {
-        
-        //칼라 값
-        int colorValue;
 
         //아침에 증가되야하는 값 = (255 - 시작 RGB값) / 아침시간
-        int pluseValue_moring = (int)MathF.Truncate((255 - startRGBValue.r) /35);
+        int pluseValue_moring = (int)MathF.Truncate((255 - startRGBValue.r) / 35);
 
-        Debug.Log(pluseValue_moring);
+        //밤에 줄어들어야하는 값 = (255 - 밤 RGB값) / 밤 시간
+        int minusValeue_night = (int)MathF.Truncate((255 - nightRGBValue.r) / 60);
 
-        ////만약 아침일 경우(0 ~ 35초) = 초당 3씩 밝아짐
-        //if((int)MathF.Truncate(float_RealTime) >= 0 && (int)MathF.Truncate(float_RealTime) <= 35)
-        //{
-            
-        //    for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
-        //    {
-        //        //색깔 변경
-        //        spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curRGB + pluseValue_moring), (byte)(_curRGB + pluseValue_moring), (byte)(_curRGB + pluseValue_moring),255);
-        //    }
+        //만약 다음날이 되었을경우
+        if ((int)MathF.Truncate(float_RealTime) == 0)
+        {
+            for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+            {
+                //색깔 변경 (시작 값)
+                spriteRen_ObumbrateObj[i].color = startRGBValue;
+            }
+        }
 
-        //    //현재 오브젝트 RGB값 갱신
-        //    curObjectRGB = new Color32((byte)(_curRGB + pluseValue_moring), (byte)(_curRGB + pluseValue_moring), (byte)(_curRGB + pluseValue_moring), 255);
-        //}
+        //만약 아침일 경우(0 ~ 35초) = 초당 3씩 밝아짐
+        else if ((int)MathF.Truncate(float_RealTime) > 0 && (int)MathF.Truncate(float_RealTime) <= 35)
+        {
+
+            for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+            {
+                //색깔 변경
+                spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), 255);
+            }
+
+            //현재 오브젝트 RGB값 갱신
+            curObjectRGB = new Color32((byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), 255);
+        }
+
+        //만약 낮이 되었을 경우 (35 ~ 150초)
+        else if ((int)MathF.Truncate(float_RealTime) >= 35 && (int)MathF.Truncate(float_RealTime) <= 150)
+        {
+            if (curObjectRGB.r < 255)
+            {
+                if (curObjectRGB.r < 250)
+                {
+                    for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+                    {
+                        //색깔 변경
+                        spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), 255);
+                    }
+
+                    //현재 오브젝트 RGB값 갱신
+                    curObjectRGB = new Color32((byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), 255);
+                }
+
+                else if (curObjectRGB.r > 250)
+                {
+                    for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+                    {
+                        //색깔 변경
+                        spriteRen_ObumbrateObj[i].color = new Color32(255, 255, 255, 255);
+                    }
+
+                    //현재 오브젝트 RGB값 갱신
+                    curObjectRGB = new Color32((byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), 255);
+                }
+
+            }
+        }
 
 
+        // 만약 밤이 되었을 경우 (150 ~ 210)
+        else if ((int)MathF.Truncate(float_RealTime) > 150 && (int)MathF.Truncate(float_RealTime) <= 210)
+        {
+            //현재 맵의 밝기가 밤의 밝기보다 밝다면
+            if(curObjectRGB.r >= nightRGBValue.r)
+            {
+                for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+                {
+                    //색깔 변경
+                    spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), 255);
+                }
+
+                //현재 오브젝트 RGB값 갱신
+                curObjectRGB = new Color32((byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), 255);
+            }
+        }
+
+        //야간 (210 ~ 300)
+        else if(((int)MathF.Truncate(float_RealTime) > 210 && (int)MathF.Truncate(float_RealTime) <= 300))
+        {
+            //현재 맵의 밝기가 밤의 밝기보다 밝다면
+            if (curObjectRGB.r >= nightRGBValue.r)
+            {
+                for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+                {
+                    //색깔 변경
+                    spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), 255);
+                }
+
+                //현재 오브젝트 RGB값 갱신
+                curObjectRGB = new Color32((byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), 255);
+            }
+        }
+    }
 
 
+    //1초에 한번 실행하는 코루틴
+    IEnumerator OneSecStartCoroutine()
+    {
+        isOneSecStart = true;
+        yield return new WaitForSeconds(1f);
 
-        //if (_color < 255)
-        //{
-        //    colorValue = 255 - _color;
-        //}
-        //else
-        //{
-        //    //Debug.Log("칼라값이 255보다 큼");
-        //    colorValue = minBrightness;
-        //}
+        Debug.Log("배경 밝기 조절");
+        //오브젝트 밝기 바꾸기
+        ObumbrateObject(curObjectRGB);
 
-
-        ////Debug.Log($"colorValue : {colorValue}");
-
-
-        ////최소 밝기보다 colorValue가 더 크다면
-        //if(colorValue > minBrightness)
-        //{
-        //    for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
-        //    {
-        //        spriteRen_ObumbrateObj[i].color = new Color32((byte)colorValue, (byte)colorValue, (byte)colorValue, 255);
-        //    }
-        //}
-
-        ////최소 밝기보다 colorValue가 더 작다면
-        //else if (colorValue <= minBrightness)
-        //{
-        //    //최소 밝기로 설정
-        //    for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
-        //    {
-        //        spriteRen_ObumbrateObj[i].color = new Color32((byte)minBrightness, (byte)minBrightness, (byte)minBrightness, 255);
-        //    }
-        //}
-
-    }    
+        isOneSecStart = false;
+    }
 }

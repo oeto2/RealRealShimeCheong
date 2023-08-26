@@ -34412,7 +34412,7 @@ MonoBehaviour:
   sprite_Click: {fileID: 21300000, guid: baa0366fa0c7dfb439603e395fce0f2a, type: 3}
   sprite_None: {fileID: 21300000, guid: dd3556056374256478d4fd6cca6f8653, type: 3}
   xPos: 21
-  yPos: 0
+  yPos: -30
 --- !u!1 &1286641018
 GameObject:
   m_ObjectHideFlags: 0
@@ -37592,13 +37592,17 @@ MonoBehaviour:
   - {fileID: 1465884224}
   - {fileID: 546055926}
   - {fileID: 48768034}
+  - {fileID: 565309245}
   curObjectRGB:
     serializedVersion: 2
     rgba: 0
   minBrightness: 50
   startRGBValue:
     serializedVersion: 2
-    rgba: 0
+    rgba: 4287730065
+  nightRGBValue:
+    serializedVersion: 2
+    rgba: 4281479730
 --- !u!1 &1372273901
 GameObject:
   m_ObjectHideFlags: 0
