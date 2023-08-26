@@ -46544,6 +46544,7 @@ MonoBehaviour:
   trigger_npc: {fileID: 1657878950}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
+  isNPC_Start: 1
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
