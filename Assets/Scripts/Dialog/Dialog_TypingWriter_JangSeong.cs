@@ -35,6 +35,9 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
     // 랜덤 대사 출력 변수
     private int RandomNum;
 
+    // 선택지 UI 출력
+    public GameObject Canvas_Selection_UI;
+
     [System.Serializable]
     public struct DialogData
     {
@@ -201,6 +204,13 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
 
+        if (ObjectManager.instance.GetEquipObjectKey() == 2000) //test용
+        //if (ObjectManager.instance.GetEquipObjectKey() == 2023)
+		{
+            Canvas_Selection_UI.SetActive(true);
+
+        }
+
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
         {
@@ -211,6 +221,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             }
             yield return null;
         }
+
     }
 
     IEnumerator TextPractice()
