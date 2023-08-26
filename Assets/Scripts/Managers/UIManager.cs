@@ -72,6 +72,7 @@ public class UIManager : MonoBehaviour
     public Controller playerCtrlScr;
     public EffectSoundManager effectSoundManagerScr;
     public PinAction pinActionScr;
+    public CursorCtrl cursorCtrlScr;
 
     //아이템창 인터페이스 오브젝트
     public GameObject gameObject_ItemWindow;
@@ -171,19 +172,8 @@ public class UIManager : MonoBehaviour
     //캘린더 스프라이트 모음
     public Sprite[] sprite_AllCalendar;
 
-    //마우스 커서 이미지
-    public Texture2D cursorImage;
-    //마우스 클릭 커서 이미지
-    public Texture2D cursorClickImg;
-
-    //마우스 커서 크기
-    [Range(1,100)]public float cursorScale;
-
     private void Awake()
     {
-        //마우스 포인터 끄기
-        Cursor.visible = false;
-
         //저장 파일 위치
         saveFilePath = Application.persistentDataPath + "/UiDataText.txt";
 
@@ -194,51 +184,10 @@ public class UIManager : MonoBehaviour
     {
         //슬롯에 UI 데이터 보여주기
         ShowUiDataToSlot();
-
-        //커서 이미지 변경
-        Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.ForceSoftware);
     }
     // Update is called once per frame
     void Update()
     {
-        
-
-        //마우스 좌 클릭시
-        if (Input.GetMouseButtonDown(0))
-        {
-            //커서 이미지 변경
-            Cursor.SetCursor(cursorClickImg, Vector2.zero, CursorMode.ForceSoftware);
-            //Cursor.SetCursor(cursorClickImg, Vector2.zero, CursorMode.ForceSoftware);
-        }
-
-        //마우스 클릭 해제시
-        else if (Input.GetMouseButtonUp(0))
-        {
-            //커서 이미지 변경
-            Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.ForceSoftware);
-            //Cursor.SetCursor(cursorImage, Vector2.zero, CursorMode.ForceSoftware);
-        }
-
-        //마우스 포인터 
-        isMonuseOn = Cursor.visible;
-
-        //마우스 포인터를 켜는 조건
-        if (gameObject_CombineWindow.activeSelf || gameObject_ItemWindow.activeSelf || gameObject_Option.activeSelf || gameObject_MapWindow.activeSelf
-            || gameObject_SaveWindow.activeSelf || gameObject_LoadWindow.activeSelf)
-        {
-            Debug.Log("마우스 포인터 보이기");
-            //마우스 포인터 켜기
-            Cursor.visible = true;
-        }
-
-        else
-        {
-            Debug.Log("마우스 포인터 끄기");
-            //마우스 포인터 끄기
-            Cursor.visible = false;
-        }
-
-
         //아이템 창 관련 코드
         #region
         //아이템 창을 켜는 조건
@@ -247,6 +196,8 @@ public class UIManager : MonoBehaviour
             //아이템 창 실행
             ItemWindowLaunch();
 
+            //커서 이미지 변경
+            cursorCtrlScr.ChangeCursor(cursorCtrlScr.sprite_idle);
         }
 
         //아이템 창 활성화 상태에서 X키 or ESC를 누를 경우
@@ -283,6 +234,9 @@ public class UIManager : MonoBehaviour
 
             //효과음 출력
             effectSoundManagerScr.PlayOpenMapSound();
+
+            //커서 이미지 변경
+            cursorCtrlScr.ChangeCursor(cursorCtrlScr.sprite_idle);
         }
 
         //지도가 실행중인데 M키 or ESC키를 눌렀을경우
@@ -313,6 +267,9 @@ public class UIManager : MonoBehaviour
         {
             //옵션창 보여주기
             gameObject_Option.SetActive(true);
+
+            //커서 이미지 변경
+            cursorCtrlScr.ChangeCursor(cursorCtrlScr.sprite_idle);
         }
 
         //옵션창이 실행중일때 ESC를 눌렀을 경우
@@ -357,9 +314,12 @@ public class UIManager : MonoBehaviour
         //조합창 관련 코드
         #region
         //조합창을 띄우는 조건
-        if (gameObject_CombineWindow.activeSelf && !playerCtrlScr.isTalk)
+        if (!gameObject_CombineWindow.activeSelf && !playerCtrlScr.isTalk && Input.GetKeyDown(KeyCode.Z))
         {
             isCombineLaunch = true;
+
+            //커서 이미지 변경
+            cursorCtrlScr.ChangeCursor(cursorCtrlScr.sprite_idle);
         }
 
         //조합창이 실행중이지 않다면
@@ -661,4 +621,18 @@ public class UIManager : MonoBehaviour
         image_LoadUICalendar[_slotNum].sprite = sprite_AllCalendar[_day];
     }
 
+
+    //UI가 실행중인지 확인할수있는 메서드
+    public bool GetUiVisible()
+    {
+        if(gameObject_ItemWindow.activeSelf || gameObject_CombineWindow.activeSelf || gameObject_LoadWindow.activeSelf || gameObject_MapWindow.activeSelf ||
+            gameObject_Option.activeSelf || gameObject_SaveWindow.activeSelf)
+        {
+            return true;
+        }
+        else
+        {
+            return false; 
+        }
+    }
 }
