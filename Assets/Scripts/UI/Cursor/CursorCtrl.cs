@@ -41,7 +41,7 @@ public class CursorCtrl : MonoBehaviour
         //만약 UI가 실행중이라면
         if (uimangerScr.GetUiVisible())
         {
-            Debug.Log("UI실행중");
+            //Debug.Log("UI실행중");
             //기본 커서 안보이기
             Cursor.visible = false;
 
@@ -49,7 +49,7 @@ public class CursorCtrl : MonoBehaviour
             //마우스 좌클릭 시
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("좌클릭했음");
+                //Debug.Log("좌클릭했음");
                 //커서 이미지 변경
                 ChangeCursor(sprite_Click);
             }
