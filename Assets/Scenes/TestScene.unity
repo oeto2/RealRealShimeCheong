@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12686,6 +12686,7 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  isSelection: 0
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
@@ -21326,8 +21327,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1184890471}
-  - {fileID: 1486878666}
   - {fileID: 1992085858}
+  - {fileID: 1486878666}
   - {fileID: 86507577}
   - {fileID: 2063844037}
   - {fileID: 2089243227}
@@ -24802,6 +24803,7 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  isSelection: 0
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
@@ -26588,6 +26590,7 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  isSelection: 0
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
@@ -30098,7 +30101,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1092642525}
   - component: {fileID: 1092642524}
-  - component: {fileID: 1092642526}
   - component: {fileID: 1092642527}
   m_Layer: 0
   m_Name: DialogManager
@@ -30134,18 +30136,6 @@ Transform:
   m_Father: {fileID: 537534573}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1092642526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092642523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73923897061809041b607b9f76518ed1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1092642527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30159,7 +30149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  dialogdb: {fileID: 0}
+  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   speakers:
   - spriteRenderer: {fileID: 0}
     imageDialog: {fileID: 0}
@@ -44902,7 +44892,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB300\uC0AC \uC774\uC804\uC5D0 \uC774\uC57C\uAE30\uB97C \uAEBC\uB0BC\uAE4C\uC694?"
+  m_Text: "\uC774\uC57C\uAE30\uB97C \uAEBC\uB0BC\uAE4C\uC694?"
 --- !u!222 &1591885872
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -47731,6 +47721,8 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   isNPC_Start: 1
+  isSentenceEnd: 0
+  remainSentence: 0
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
@@ -57925,7 +57917,7 @@ RectTransform:
   - {fileID: 1210045795}
   - {fileID: 1116108370}
   m_Father: {fileID: 796727923}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -60358,7 +60350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2063844034
 MonoBehaviour:
   m_ObjectHideFlags: 0

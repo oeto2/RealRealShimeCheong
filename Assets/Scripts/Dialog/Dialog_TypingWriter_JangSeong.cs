@@ -38,6 +38,12 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
     // 선택지 UI 출력
     public GameObject Canvas_Selection_UI;
 
+    // 선택지 확인 변수
+    public bool isSelection_yes = false;
+    public bool isSelection_no = false;
+
+    public bool isSelection_2023;
+
     [System.Serializable]
     public struct DialogData
     {
@@ -79,13 +85,27 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             if (bool_isNPC == false)
             {
                 StartCoroutine(TextPractice());
+
+                Canvas_Selection_UI.SetActive(false);
                 images_NPC.SetActive(true);
                 bool_isNPC = true;
                 Trigger_NPC.instance.isNPCTrigger = true;
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+
+                if (ObjectManager.instance.GetEquipObjectKey() == 2023 && isSelection_2023 == false)
+                {
+                    Canvas_Selection_UI.SetActive(true);
+                    isSelection_2023 = true;
+
+                    images_NPC.SetActive(false);
+                    bool_isNPC = true;
+                    trigger_npc.isNPCTrigger = false;
+                }
             }
             else
             {
+                isSelection_2023 = false;
+
                 images_NPC.SetActive(false);
                 bool_isNPC = false;
                 trigger_npc.isNPCTrigger = false;
@@ -205,12 +225,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         }
 
         //if (ObjectManager.instance.GetEquipObjectKey() == 2000) //test용
-        if (ObjectManager.instance.GetEquipObjectKey() == 2023)
-		{
-            yield return new WaitForSeconds(0.5f);
-            Canvas_Selection_UI.SetActive(true);
 
-        }
 
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
@@ -227,24 +242,33 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
     public void onClick_yes()
 	{
-        Canvas_Selection_UI.SetActive(false);
+        if (isSelection_2023 == true)
+        {
+            Canvas_Selection_UI.SetActive(false);
 
-        images_NPC.SetActive(false);
-        bool_isNPC = false;
-        trigger_npc.isNPCTrigger = false;
+            isSelection_yes = true;
+            isSelection_no = false;
+            isSelection_2023 = false;
 
-        writerText = "";
+            images_NPC.SetActive(true);
+            bool_isNPC = true;
+            Trigger_NPC.instance.isNPCTrigger = true;
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+        }
     }
 
     public void onClick_no()
-	{
+    {
         Canvas_Selection_UI.SetActive(false);
 
-        images_NPC.SetActive(false);
-        bool_isNPC = false;
-        trigger_npc.isNPCTrigger = false;
+        isSelection_yes = false;
+        isSelection_no = true;
 
-        writerText = "";
+        images_NPC.SetActive(true);
+        bool_isNPC = true;
+        Trigger_NPC.instance.isNPCTrigger = true;
+        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+
     }
 
     IEnumerator TextPractice()
@@ -371,6 +395,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[231].npc_name, dialogdb.NPC_01[231].comment));
+            isSelection_2023 = true;
         }
         #endregion
 
