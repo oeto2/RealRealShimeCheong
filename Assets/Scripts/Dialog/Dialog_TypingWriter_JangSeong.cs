@@ -204,9 +204,10 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
 
-        if (ObjectManager.instance.GetEquipObjectKey() == 2000) //test¿ë
-        //if (ObjectManager.instance.GetEquipObjectKey() == 2023)
+        //if (ObjectManager.instance.GetEquipObjectKey() == 2000) //test¿ë
+        if (ObjectManager.instance.GetEquipObjectKey() == 2023)
 		{
+            yield return new WaitForSeconds(0.5f);
             Canvas_Selection_UI.SetActive(true);
 
         }
@@ -222,6 +223,28 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    public void onClick_yes()
+	{
+        Canvas_Selection_UI.SetActive(false);
+
+        images_NPC.SetActive(false);
+        bool_isNPC = false;
+        trigger_npc.isNPCTrigger = false;
+
+        writerText = "";
+    }
+
+    public void onClick_no()
+	{
+        Canvas_Selection_UI.SetActive(false);
+
+        images_NPC.SetActive(false);
+        bool_isNPC = false;
+        trigger_npc.isNPCTrigger = false;
+
+        writerText = "";
     }
 
     IEnumerator TextPractice()
