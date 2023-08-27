@@ -58,6 +58,7 @@ public class TimeManager : MonoBehaviour
     //실제 시간
     [SerializeField]
     private float float_RealTime;
+    private int int_RealTime;
 
     //시간 배속
     [SerializeField]
@@ -118,6 +119,14 @@ public class TimeManager : MonoBehaviour
     //1초 코루틴이 실행중인지
     private bool isOneSecStart;
 
+    //주막의 스프라이트 렌더
+    public SpriteRenderer spriteRen_Joomack;
+
+    //주막의 스파라이트 이미지들
+    public Sprite[] sprite_Joomacks;
+
+    
+
 
     private void Start()
     {
@@ -131,6 +140,8 @@ public class TimeManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //float RealTime을 int로 변환후 프레임당 갱신
+        int_RealTime = (int)MathF.Truncate(float_RealTime);
 
         //오브젝트들 밝기 설정
         if (!isSettingEnd)
@@ -188,6 +199,65 @@ public class TimeManager : MonoBehaviour
                 //하루가 지났음
                 tutorialManagerScr.PassDay();
             }
+
+
+            #region 주막 이미지변경
+
+            //0 ~ 49초
+            else if(int_RealTime >= 0 && int_RealTime <50)
+            {
+                if(spriteRen_Joomack.sprite != sprite_Joomacks[0])
+                {
+                    ChageJoomack(sprite_Joomacks[0]);
+                }
+            }
+
+            //50 ~ 99초
+            else if (int_RealTime >= 50 && int_RealTime < 100)
+            {
+                if (spriteRen_Joomack.sprite != sprite_Joomacks[1])
+                {
+                    ChageJoomack(sprite_Joomacks[1]);
+                }
+            }
+
+            //100 ~ 149초
+            else if (int_RealTime >= 100 && int_RealTime < 149)
+            {
+                if (spriteRen_Joomack.sprite != sprite_Joomacks[2])
+                {
+                    ChageJoomack(sprite_Joomacks[2]);
+                }
+            }
+
+            //150 ~ 199초
+            else if (int_RealTime >= 150 && int_RealTime < 199)
+            {
+                if (spriteRen_Joomack.sprite != sprite_Joomacks[3])
+                {
+                    ChageJoomack(sprite_Joomacks[3]);
+                }
+            }
+
+            //200 ~ 250초
+            else if (int_RealTime >= 200 && int_RealTime < 250)
+            {
+                if (spriteRen_Joomack.sprite != sprite_Joomacks[4])
+                {
+                    ChageJoomack(sprite_Joomacks[4]);
+                }
+            }
+
+            //250 ~ 299초
+            else if (int_RealTime >= 250 && int_RealTime < 300)
+            {
+                if (spriteRen_Joomack.sprite != sprite_Joomacks[5])
+                {
+                    ChageJoomack(sprite_Joomacks[5]);
+                }
+            }
+
+            #endregion
         }
     }
 
@@ -483,5 +553,12 @@ public class TimeManager : MonoBehaviour
         ObumbrateObject(curObjectRGB);
 
         isOneSecStart = false;
+    }
+
+
+    //주막 이미지 변경
+    public void ChageJoomack(Sprite _sprite)
+    {
+        spriteRen_Joomack.sprite = _sprite;
     }
 }
