@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,13 +37,19 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
     // 랜덤 대사 출력 변수
     private int RandomNum;
 
+    //대화가 전부 출력 되었는지
+    public bool isSentenceEnd = false;
+
+    //남은 대화가 더 있는지
+    public bool remainSentence = false;
+
     //최초 클릭
     void Start()
     {
         //StartCoroutine(TextPractice());
         //TextPractice();
         //StopCoroutine(TextPractice());
-        CharacterName.text="";
+        CharacterName.text = "";
         ChatText.text = "";
     }
 
@@ -64,15 +70,19 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             //bool_isBotjim = true;
             controller_scr.TalkStart();
 
-            if (bool_isNPC == false)
+            if (bool_isNPC == false && !remainSentence)
             {
+                Debug.Log("대화 실행");
                 images_NPC.SetActive(true);
                 StartCoroutine(TextPractice());
                 Trigger_NPC.instance.isNPCTrigger = true;
+                //초상화 변경
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-                bool_isNPC = true;
+                //bool_isNPC = true;
             }
-            else
+
+            //대화가 끝났을 경우
+            else if (isSentenceEnd)
             {
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
@@ -83,6 +93,10 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
                 bool_isNPC = false;
                 //Controller.instance.TalkEnd();
                 controller_scr.TalkEnd();
+                //남은대화 없음
+                remainSentence = false;
+                //대화 끝
+                isSentenceEnd = false;
             }
         }
     }
@@ -108,6 +122,15 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
 
                 //텍스트 타이핑 시간 조절
                 //yield return null;
+
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+                }
+
                 yield return new WaitForSeconds(0.02f);
             }
             yield return null;
@@ -120,13 +143,28 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
                 writerText += narration_2[a];
                 ChatText.text = writerText;
 
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+                }
+
                 //텍스트 타이핑 시간 조절
                 //yield return null;
                 yield return new WaitForSeconds(0.02f);
+
             }
             yield return null;
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //대화 끝
+            isSentenceEnd = true;
+        }
+
         Debug.Log(writerText);
         //writerText = "";
 
@@ -159,12 +197,26 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
 
     IEnumerator ItemClueChat(string narrator, string narration)
     {
+        //남은대화 있음
+        remainSentence = true;
+
+        Debug.Log(narration);
         int a = 0;
         CharacterName.text = narrator;
         //characternameText = narrator;
-        
-
         //narrator = CharacterName.text;
+
+        //심학규의 대사일경우
+        if (narrator == "심학규")
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
+        }
+        else
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+        }
 
         //텍스트 타이핑
         for (a = 0; a < narration.Length; a++)
@@ -172,21 +224,122 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             writerText += narration[a];
             ChatText.text = writerText;
 
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                //남은대화 없음
+                remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
+            }
+
             //텍스트 타이핑 시간 조절
             //yield return null;
+
             yield return new WaitForSeconds(0.02f);
         }
 
-        //키(default : space)를 다시 누를 때까지 무한정 대기
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //대화 끝
+            isSentenceEnd = true;
+        }
+
+        //Z키를 다시 누를 때까지 무한정 대기
         while (true)
         {
-            if (isButtonClicked)
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                isButtonClicked = false;
+                //남은대화 없음
+                remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
                 break;
             }
             yield return null;
         }
+
+        ////키(default : space)를 다시 누를 때까지 무한정 대기
+        //while (true)
+        //{
+        //    if (isButtonClicked)
+        //    {
+        //        isButtonClicked = false;
+        //        break;
+        //    }
+        //    yield return null;
+        //}
+    }
+
+    //오버로드
+    IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
+    {
+        //심학규의 대사일경우
+        if (narrator == "심학규")
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
+        }
+        else
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+        }
+
+        //남은 대화가 있을경우
+        if (_remainSentence == true)
+        {
+            //남은대화 있음
+            remainSentence = true;
+
+            Debug.Log(narration);
+            int a = 0;
+            CharacterName.text = narrator;
+            //characternameText = narrator;
+
+
+            //narrator = CharacterName.text;
+
+            //텍스트 타이핑
+            for (a = 0; a < narration.Length; a++)
+            {
+                writerText += narration[a];
+                ChatText.text = writerText;
+
+                //텍스트 타이핑 시간 조절
+                //yield return null;
+                yield return new WaitForSeconds(0.02f);
+
+                //중간에 Z키를 누르면
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    break;
+                }
+            }
+
+            //Z키를 다시 누를 때까지 무한정 대기
+            while (true)
+            {
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //Text 비우기
+                    writerText = "";
+                    break;
+                }
+                yield return null;
+            }
+        }
+
+        ////키(default : space)를 다시 누를 때까지 무한정 대기
+        //while (true)
+        //{
+        //    if (isButtonClicked)
+        //    {
+        //        isButtonClicked = false;
+        //        break;
+        //    }
+        //    yield return null;
+        //}
+
     }
 
     IEnumerator TextPractice()
@@ -196,7 +349,8 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         //2000 : 승상댁의 수양딸
         if (ObjectManager.instance.GetEquipObjectKey() == 2000)
         {
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[14].npc_name, npcDatabaseScr.NPC_01[14].comment));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[14].npc_name, npcDatabaseScr.NPC_01[14].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[17].npc_name, npcDatabaseScr.NPC_01[17].comment));
         }
 
         //2001 : 청이의 거짓말
@@ -325,6 +479,15 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         else if (ObjectManager.instance.GetEquipObjectKey() == 1000)
         {
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[288].npc_name, npcDatabaseScr.NPC_01[288].comment));
+        }
+
+        //1005 : 주먹밥
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1005)
+        {
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[18].npc_name, npcDatabaseScr.NPC_01[18].comment,true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[19].npc_name, npcDatabaseScr.NPC_01[19].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[20].npc_name, npcDatabaseScr.NPC_01[20].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[21].npc_name, npcDatabaseScr.NPC_01[21].comment));
         }
 
         //1006 : 비녀

@@ -216,7 +216,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[60].npc_name, npcDatabaseScr.NPC_01[60].comment));
         }
 
-        //2006 : 송나라 상인과 청이 (추가 대사 있음)
+        //2006 : 송나라 상인과 청이
         else if (ObjectManager.instance.GetEquipObjectKey() == 2006)
         {
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[68].npc_name, npcDatabaseScr.NPC_01[68].comment));
