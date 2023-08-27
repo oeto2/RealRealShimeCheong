@@ -38,6 +38,12 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
     // 랜덤 대사 출력 변수
     private int RandomNum;
 
+    //대화가 전부 출력 되었는지
+    public bool isSentenceEnd = false;
+
+    //남은 대화가 더 있는지
+    public bool remainSentence = false;
+
     //최초 클릭
     void Start()
     {
@@ -58,39 +64,44 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
                 isButtonClicked = true;
             }
         }
-   
+
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
-            
+            Debug.Log("z키 누름! 송나라!!!!");
             //bool_isBotjim = true;
             controller_scr.TalkStart();
 
-            if (bool_isNPC == false)
+            if (bool_isNPC == false && !remainSentence)
             {
-                //다이얼로그 보이기
+                Debug.Log("대화 실행");
                 images_NPC.SetActive(true);
-                //대사 비우기
-                writerText = "";
-                //대사 출력
                 StartCoroutine(TextPractice());
+                Trigger_NPC.instance.isNPCTrigger = true;
                 //초상화 변경
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-                bool_isNPC = true;
+                //bool_isNPC = true;
             }
-            else
+
+            //대화가 끝났을 경우
+            else if (isSentenceEnd)
             {
-                //다이얼로그 종료
                 images_NPC.SetActive(false);
+                // images_NPC_portrait.SetActive(false);
                 //대사 비우기
                 writerText = "";
-                //코루틴 중지
                 StopAllCoroutines();
-
-                controller_scr.TalkEnd();
+                Trigger_NPC.instance.isNPCTrigger = false;
                 bool_isNPC = false;
+                //Controller.instance.TalkEnd();
+                controller_scr.TalkEnd();
+                //남은대화 없음
+                remainSentence = false;
+                //대화 끝
+                isSentenceEnd = false;
             }
         }
     }
+
 
     IEnumerator NormalChat()
     {
@@ -99,6 +110,7 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
         string narration = npcDatabaseScr.NPC_01[8].comment;
         string narration_2 = npcDatabaseScr.NPC_01[405].comment;
         string narration_3 = npcDatabaseScr.NPC_01[406].comment;
+
 
         RandomNum = Random.Range(0, 3);
         Debug.Log(RandomNum);
@@ -113,6 +125,15 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
 
                 //텍스트 타이핑 시간 조절
                 //yield return null;
+
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+                }
+
                 yield return new WaitForSeconds(0.02f);
             }
             yield return null;
@@ -125,12 +146,22 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
                 writerText += narration_2[a];
                 ChatText.text = writerText;
 
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+                }
+
                 //텍스트 타이핑 시간 조절
                 //yield return null;
                 yield return new WaitForSeconds(0.02f);
+
             }
             yield return null;
         }
+
         else if (RandomNum == 2)
         {
             for (a = 0; a < narration_3.Length; a++)
@@ -139,12 +170,28 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
                 writerText += narration_3[a];
                 ChatText.text = writerText;
 
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+                }
+
                 //텍스트 타이핑 시간 조절
                 //yield return null;
                 yield return new WaitForSeconds(0.02f);
+
             }
             yield return null;
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //대화 끝
+            isSentenceEnd = true;
+        }
+
         Debug.Log(writerText);
         //writerText = "";
 
@@ -175,15 +222,28 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
         }
     }
 
-
     IEnumerator ItemClueChat(string narrator, string narration)
     {
+        //남은대화 있음
+        remainSentence = true;
+
+        Debug.Log(narration);
         int a = 0;
         CharacterName.text = narrator;
         //characternameText = narrator;
-        writerText = "";
-
         //narrator = CharacterName.text;
+
+        //심학규의 대사일경우
+        if (narrator == "심학규")
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
+        }
+        else
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+        }
 
         //텍스트 타이핑
         for (a = 0; a < narration.Length; a++)
@@ -191,23 +251,124 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
             writerText += narration[a];
             ChatText.text = writerText;
 
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                //남은대화 없음
+                remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
+            }
+
             //텍스트 타이핑 시간 조절
             //yield return null;
+
             yield return new WaitForSeconds(0.02f);
         }
 
-        //키(default : space)를 다시 누를 때까지 무한정 대기
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //대화 끝
+            isSentenceEnd = true;
+        }
+
+        //Z키를 다시 누를 때까지 무한정 대기
         while (true)
         {
-            if (isButtonClicked)
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                isButtonClicked = false;
+                //남은대화 없음
+                remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
                 break;
             }
             yield return null;
         }
+
+        ////키(default : space)를 다시 누를 때까지 무한정 대기
+        //while (true)
+        //{
+        //    if (isButtonClicked)
+        //    {
+        //        isButtonClicked = false;
+        //        break;
+        //    }
+        //    yield return null;
+        //}
     }
-    
+
+    //오버로드
+    IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
+    {
+        //심학규의 대사일경우
+        if (narrator == "심학규")
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
+        }
+        else
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+        }
+
+        //남은 대화가 있을경우
+        if (_remainSentence == true)
+        {
+            //남은대화 있음
+            remainSentence = true;
+
+            Debug.Log(narration);
+            int a = 0;
+            CharacterName.text = narrator;
+            //characternameText = narrator;
+
+
+            //narrator = CharacterName.text;
+
+            //텍스트 타이핑
+            for (a = 0; a < narration.Length; a++)
+            {
+                writerText += narration[a];
+                ChatText.text = writerText;
+
+                //텍스트 타이핑 시간 조절
+                //yield return null;
+                yield return new WaitForSeconds(0.02f);
+
+                //중간에 Z키를 누르면
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    break;
+                }
+            }
+
+            //Z키를 다시 누를 때까지 무한정 대기
+            while (true)
+            {
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //Text 비우기
+                    writerText = "";
+                    break;
+                }
+                yield return null;
+            }
+        }
+
+        ////키(default : space)를 다시 누를 때까지 무한정 대기
+        //while (true)
+        //{
+        //    if (isButtonClicked)
+        //    {
+        //        isButtonClicked = false;
+        //        break;
+        //    }
+        //    yield return null;
+        //}
+
+    }
+
 
     IEnumerator TextPractice()
     {
