@@ -376,9 +376,42 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
         #endregion
 
+        #region 조합 단서
+        //4023 : 공양미를 구한 방법
+        else if (ObjectManager.instance.GetEquipObjectKey() == 4023)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[349].npc_name, dialogdb.NPC_01[349].comment));
+        }
+        //4015 : 청이가 사라진 날
+        else if (ObjectManager.instance.GetEquipObjectKey() == 4015)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[357].npc_name, dialogdb.NPC_01[357].comment));
+        }
+        //4017 : 청이와 그의 관계
+        else if (ObjectManager.instance.GetEquipObjectKey() == 4017)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[365].npc_name, dialogdb.NPC_01[365].comment));
+        }
+        //8032 : 함께 사라진 두 사람
+        else if (ObjectManager.instance.GetEquipObjectKey() == 8032)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[373].npc_name, dialogdb.NPC_01[373].comment));
+        }
+        //4033 : 무역의 중단
+        else if (ObjectManager.instance.GetEquipObjectKey() == 4033)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[381].npc_name, dialogdb.NPC_01[381].comment));
+        }
+        //4018 : 청이의 가출
+        else if (ObjectManager.instance.GetEquipObjectKey() == 4018)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[391].npc_name, dialogdb.NPC_01[391].comment));
+        }
+        #endregion
+
         #region 기본 대사
         else
-		{
+        {
             yield return StartCoroutine(NormalChat());
         }
         #endregion
