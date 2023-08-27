@@ -459,7 +459,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[220].npc_name, npcDatabaseScr.NPC_01[220].comment));
         }
 
-        //2023 : 뱃길을 잠재울 방법 (이후 대사 있음)
+        //2023 : 3월보름날
         else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
         {
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[232].npc_name, npcDatabaseScr.NPC_01[232].comment));
@@ -506,26 +506,26 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
         #endregion
 
         #region 조합 단서
-        //3001 : 공양미를 구한 방법
-        else if (ObjectManager.instance.GetEquipObjectKey() == 3001)
+        //4023 : 공양미를 구한 방법
+        else if (ObjectManager.instance.GetEquipObjectKey() == 4023)
         {
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[352].npc_name, npcDatabaseScr.NPC_01[352].comment));
         }
 
-        //3004 : 사라진 두사람
-        else if (ObjectManager.instance.GetEquipObjectKey() == 3004)
+        //8032 : 사라진 두사람
+        else if (ObjectManager.instance.GetEquipObjectKey() == 8032)
         {
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[376].npc_name, npcDatabaseScr.NPC_01[376].comment));
         }
 
-        //3005 : 무역의 중단
-        else if (ObjectManager.instance.GetEquipObjectKey() == 3005)
+        //4033 : 무역의 중단
+        else if (ObjectManager.instance.GetEquipObjectKey() == 4033)
         {
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[384].npc_name, npcDatabaseScr.NPC_01[384].comment));
         }
 
-        //3006 : 청이의 가출
-        else if (ObjectManager.instance.GetEquipObjectKey() == 3006)
+        //4018 : 청이의 가출
+        else if (ObjectManager.instance.GetEquipObjectKey() == 4018)
         {
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[394].npc_name, npcDatabaseScr.NPC_01[394].comment));
         }
