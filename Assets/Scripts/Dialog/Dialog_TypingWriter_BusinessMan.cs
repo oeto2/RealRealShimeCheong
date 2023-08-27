@@ -37,6 +37,12 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
     // 랜덤 대사 출력 변수
     private int RandomNum;
 
+    //대화가 전부 출력 되었는지
+    public bool isSentenceEnd = false;
+
+    //남은 대화가 더 있는지
+    public bool remainSentence = false;
+
     //최초 클릭
     void Start()
     {
@@ -50,8 +56,6 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(npcDatabaseScr.NPC_01[4].comment);
-
         foreach (var element in skipButton) // 버튼 검사
         {
             if (Input.GetKeyDown(element))
@@ -59,34 +63,44 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
                 isButtonClicked = true;
             }
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
             Debug.Log("z키 누름! 장사꾼!!!!");
             //bool_isBotjim = true;
-
             controller_scr.TalkStart();
-            if (bool_isNPC == false)
+
+            if (bool_isNPC == false && !remainSentence)
             {
-                StartCoroutine(TextPractice());
+                Debug.Log("대화 실행");
                 images_NPC.SetActive(true);
+                StartCoroutine(TextPractice());
                 Trigger_NPC.instance.isNPCTrigger = true;
+                //초상화 변경
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-                bool_isNPC = true;
+                //bool_isNPC = true;
             }
-            else
+
+            //대화가 끝났을 경우
+            else if (isSentenceEnd)
             {
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
+                //대사 비우기
                 writerText = "";
                 StopAllCoroutines();
                 Trigger_NPC.instance.isNPCTrigger = false;
-                controller_scr.TalkEnd();
                 bool_isNPC = false;
                 //Controller.instance.TalkEnd();
+                controller_scr.TalkEnd();
+                //남은대화 없음
+                remainSentence = false;
+                //대화 끝
+                isSentenceEnd = false;
             }
         }
     }
+
 
     IEnumerator NormalChat()
     {
@@ -108,6 +122,15 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
 
                 //텍스트 타이핑 시간 조절
                 //yield return null;
+
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+                }
+
                 yield return new WaitForSeconds(0.02f);
             }
             yield return null;
@@ -120,12 +143,28 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
                 writerText += narration_2[a];
                 ChatText.text = writerText;
 
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+                }
+
                 //텍스트 타이핑 시간 조절
                 //yield return null;
                 yield return new WaitForSeconds(0.02f);
+
             }
             yield return null;
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //대화 끝
+            isSentenceEnd = true;
+        }
+
         Debug.Log(writerText);
         //writerText = "";
 
@@ -156,15 +195,28 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
         }
     }
 
-
     IEnumerator ItemClueChat(string narrator, string narration)
     {
+        //남은대화 있음
+        remainSentence = true;
+
+        Debug.Log(narration);
         int a = 0;
         CharacterName.text = narrator;
         //characternameText = narrator;
-        writerText = "";
-
         //narrator = CharacterName.text;
+
+        //심학규의 대사일경우
+        if (narrator == "심학규")
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
+        }
+        else
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+        }
 
         //텍스트 타이핑
         for (a = 0; a < narration.Length; a++)
@@ -172,21 +224,122 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             writerText += narration[a];
             ChatText.text = writerText;
 
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                //남은대화 없음
+                remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
+            }
+
             //텍스트 타이핑 시간 조절
             //yield return null;
+
             yield return new WaitForSeconds(0.02f);
         }
 
-        //키(default : space)를 다시 누를 때까지 무한정 대기
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //대화 끝
+            isSentenceEnd = true;
+        }
+
+        //Z키를 다시 누를 때까지 무한정 대기
         while (true)
         {
-            if (isButtonClicked)
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                isButtonClicked = false;
+                //남은대화 없음
+                remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
                 break;
             }
             yield return null;
         }
+
+        ////키(default : space)를 다시 누를 때까지 무한정 대기
+        //while (true)
+        //{
+        //    if (isButtonClicked)
+        //    {
+        //        isButtonClicked = false;
+        //        break;
+        //    }
+        //    yield return null;
+        //}
+    }
+
+    //오버로드
+    IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
+    {
+        //심학규의 대사일경우
+        if (narrator == "심학규")
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
+        }
+        else
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+        }
+
+        //남은 대화가 있을경우
+        if (_remainSentence == true)
+        {
+            //남은대화 있음
+            remainSentence = true;
+
+            Debug.Log(narration);
+            int a = 0;
+            CharacterName.text = narrator;
+            //characternameText = narrator;
+
+
+            //narrator = CharacterName.text;
+
+            //텍스트 타이핑
+            for (a = 0; a < narration.Length; a++)
+            {
+                writerText += narration[a];
+                ChatText.text = writerText;
+
+                //텍스트 타이핑 시간 조절
+                //yield return null;
+                yield return new WaitForSeconds(0.02f);
+
+                //중간에 Z키를 누르면
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    break;
+                }
+            }
+
+            //Z키를 다시 누를 때까지 무한정 대기
+            while (true)
+            {
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //Text 비우기
+                    writerText = "";
+                    break;
+                }
+                yield return null;
+            }
+        }
+
+        ////키(default : space)를 다시 누를 때까지 무한정 대기
+        //while (true)
+        //{
+        //    if (isButtonClicked)
+        //    {
+        //        isButtonClicked = false;
+        //        break;
+        //    }
+        //    yield return null;
+        //}
+
     }
 
     IEnumerator TextPractice()
@@ -297,7 +450,13 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
         //2021 : 사공의 물건 (구슬 퍼즐? 대사 추가)
         else if (ObjectManager.instance.GetEquipObjectKey() == 2021)
         {
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[210].npc_name, npcDatabaseScr.NPC_01[210].comment));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[210].npc_name, npcDatabaseScr.NPC_01[210].comment,true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[215].npc_name, npcDatabaseScr.NPC_01[215].comment,true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[216].npc_name, npcDatabaseScr.NPC_01[216].comment,true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[217].npc_name, npcDatabaseScr.NPC_01[217].comment,true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[218].npc_name, npcDatabaseScr.NPC_01[218].comment,true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[219].npc_name, npcDatabaseScr.NPC_01[219].comment,true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[220].npc_name, npcDatabaseScr.NPC_01[220].comment));
         }
 
         //2023 : 뱃길을 잠재울 방법 (이후 대사 있음)
@@ -338,7 +497,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[325].npc_name, npcDatabaseScr.NPC_01[325].comment));
         }
 
-        //1011 : 사공의 물건 (이후 대사 추가)
+        //1011 : 사공의 물건 (이후대사 추가)
         else if (ObjectManager.instance.GetEquipObjectKey() == 1011)
         {
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[341].npc_name, npcDatabaseScr.NPC_01[341].comment));
