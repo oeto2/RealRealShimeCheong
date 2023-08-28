@@ -46,6 +46,7 @@ public class ObjectManager : MonoBehaviour
 {
     //외부스크립트 참조
     public UIManager uiManagerScr;
+    public ToastMessage toastMessageScr;
 
     //싱글톤
     public static ObjectManager instance = null;
@@ -189,7 +190,7 @@ public class ObjectManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-        
+
     }
 
     // Start is called before the first frame update
@@ -246,12 +247,12 @@ public class ObjectManager : MonoBehaviour
         //조합창 아이템 탭 기본으로 보여주기
         TabClick2(curType);
 
-        //모든 아이템 획득
-        GetAllItem();
+        ////모든 아이템 획득
+        //GetAllItem();
 
-        //모든 단서 획득
-        GetAllClue();
-      
+        ////모든 단서 획득
+        //GetAllClue();
+
     }
 
 
@@ -264,7 +265,7 @@ public class ObjectManager : MonoBehaviour
             EmptyCombineSlot();
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log(GetEquipObjectKey());
         }
@@ -292,7 +293,7 @@ public class ObjectManager : MonoBehaviour
             Item curItem = curItemList[slotNum];
             Item usingItem = curItemList.Find(x => x.isUsing == true);
 
-            
+
 
             //사용중인 아이템을 제외한 아이템들의 사용을 false로 바꿈
             if (usingItem != null) usingItem.isUsing = false;
@@ -314,14 +315,14 @@ public class ObjectManager : MonoBehaviour
             {
                 usingClue.isUsing = false;
             }
-            
+
             //사용중인 아이템을 한번 더 클릭하면 false로 바꾸는 코드
-            if(usingItem != null)
+            if (usingItem != null)
             {
                 if (usingItem.key == curItemList[slotNum].key)
                 {
                     curItemList[slotNum].isUsing = false;
-                    
+
                     //장착 오브젝트 이미지 없애기
                     equitObjectSprite.sprite = sprite_NoneImage;
                 }
@@ -715,6 +716,14 @@ public class ObjectManager : MonoBehaviour
             curItemList2.Add(myItemList.Find(x => x.key == _key));
             TabClick(curType);
             TabClick2(curType);
+
+            Item GetItem = curItemList.Find(x => x.key == _key);
+
+            //토스트 메세지 실행
+            toastMessageScr.ToastMessageStart();
+
+            //토스트 메세지 정보값 넘겨주기
+            toastMessageScr.ToastMessageInfo_Chage($"{GetItem.name} 획득", itemSprite[GetItem.indexNum], GetItem.name);
         }
     }
 
@@ -1291,19 +1300,19 @@ public class ObjectManager : MonoBehaviour
             }
         }
     }
-   
+
 
     //장착한 오브젝트의 Key 값을 반환해주는 메서드 (값이 있으면 key값, 없으면 0)
     public int GetEquipObjectKey()
     {
         //보유중인 아이템 리스트가 비어있지 않다면
-        if(curItemList != null)
+        if (curItemList != null)
         {
             //사용중인 아이템 클래스 넣기
             Item usingItem = curItemList.Find(x => x.isUsing == true);
 
             //사용중인 아이템이 있었다면
-            if(usingItem != null)
+            if (usingItem != null)
             {
                 //사용중인 아이템 키값 반환
                 return usingItem.key;
