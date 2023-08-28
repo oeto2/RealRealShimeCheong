@@ -709,6 +709,7 @@ public class ObjectManager : MonoBehaviour
     //Key를 통해서 아이템 얻기
     public void GetItem(int _key)
     {
+
         //해당 Key를 가진 오브젝트가 존재하는 경우
         if (myItemList.Find(x => x.key == _key) != null)
         {

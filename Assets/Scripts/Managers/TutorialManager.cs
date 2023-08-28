@@ -212,6 +212,8 @@ public class TutorialManager : MonoBehaviour
                 //메모 끄기
                 if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Space)) && !closeNote)
                 {
+                    
+
                     //Player 이동제한
                     playerCtrlScr.TalkStart();
 
@@ -238,8 +240,11 @@ public class TutorialManager : MonoBehaviour
         }
 
         //2번째 대화가 끝나고 Z키 누르면 다이얼로그창 끄기
-        if (setence1End && Input.GetKeyDown(KeyCode.Z) && !objCtrlScr.getBotzime && !objCtrlScr.getMap && playerDialogueScr.isTalkEnd)
+        if (setence1End && Input.GetKeyDown(KeyCode.Z) && !objCtrlScr.getBotzime && !objCtrlScr.getMap && playerDialogueScr.isTalkEnd && events == Events.TurnOnLights)
         {
+            //단서 획득
+            objectManagerScr.GetClue(2000);
+
             //Player 이동제한 해제
             playerCtrlScr.TalkEnd();
 
