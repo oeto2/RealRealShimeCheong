@@ -750,6 +750,15 @@ public class ObjectManager : MonoBehaviour
             curClueList2.Add(myClueList.Find(x => x.key == _key));
             TabClick(curType);
             TabClick2(curType);
+
+
+            Clue GetClue = curClueList.Find(x => x.key == _key);
+
+            //토스트 메세지 실행
+            toastMessageScr.ToastMessageStart();
+
+            //토스트 메세지 정보값 넘겨주기
+            toastMessageScr.ToastMessageInfo_Chage($"{GetClue.name} 획득", clueSprite[GetClue.indexNum], GetClue.name);
         }
     }
 
