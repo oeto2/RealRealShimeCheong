@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2113,7 +2113,7 @@ RectTransform:
   - {fileID: 762517195}
   - {fileID: 1125754045}
   m_Father: {fileID: 796727923}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12686,7 +12686,9 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
-  isSelection: 0
+  isSelection_yes: 0
+  isSelection_no: 0
+  isSelection_2023: 0
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
@@ -21326,12 +21328,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 86507577}
   - {fileID: 1184890471}
   - {fileID: 1992085858}
   - {fileID: 1486878666}
-  - {fileID: 86507577}
-  - {fileID: 2063844037}
   - {fileID: 2089243227}
+  - {fileID: 2063844037}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23585,7 +23587,7 @@ GameObject:
   - component: {fileID: 900858108}
   - component: {fileID: 900858107}
   m_Layer: 5
-  m_Name: Text (Leg (1)
+  m_Name: name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23608,7 +23610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 131, y: -90}
+  m_AnchoredPosition: {x: 4, y: -76}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &900858107
@@ -23638,7 +23640,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -24803,7 +24805,9 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
-  isSelection: 0
+  isSelection_yes: 0
+  isSelection_no: 0
+  isSelection_2023: 0
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
@@ -26590,7 +26594,9 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
-  isSelection: 0
+  isSelection_yes: 0
+  isSelection_no: 0
+  isSelection_2023: 0
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
@@ -28140,7 +28146,7 @@ GameObject:
   - component: {fileID: 1000271689}
   - component: {fileID: 1000271688}
   m_Layer: 5
-  m_Name: Text (Leg
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30820,7 +30826,7 @@ GameObject:
   - component: {fileID: 1125754047}
   - component: {fileID: 1125754046}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ToastMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30846,7 +30852,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 770, y: -814}
+  m_AnchoredPosition: {x: 770, y: -734}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1125754046
@@ -35153,7 +35159,7 @@ GameObject:
   - component: {fileID: 1289393049}
   - component: {fileID: 1289393048}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ObjImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46105,7 +46111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3611427039464493525, guid: 1b10f9876e0609f4dbafe8974e884c99, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3611427039464493525, guid: 1b10f9876e0609f4dbafe8974e884c99, type: 3}
       propertyPath: m_AnchorMax.x
@@ -46178,6 +46184,18 @@ PrefabInstance:
     - target: {fileID: 3611427039464493525, guid: 1b10f9876e0609f4dbafe8974e884c99, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611427039464493544, guid: 1b10f9876e0609f4dbafe8974e884c99, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1924761760}
+    - target: {fileID: 3611427039464493544, guid: 1b10f9876e0609f4dbafe8974e884c99, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611427039464493544, guid: 1b10f9876e0609f4dbafe8974e884c99, type: 3}
+      propertyPath: m_SortingOrder
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6098102836371834767, guid: 1b10f9876e0609f4dbafe8974e884c99, type: 3}
       propertyPath: m_IsActive
@@ -57889,8 +57907,8 @@ Canvas:
   m_GameObject: {fileID: 1992085854}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1924761760}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -57899,7 +57917,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 80
   m_TargetDisplay: 0
 --- !u!224 &1992085858
 RectTransform:
@@ -57917,7 +57935,7 @@ RectTransform:
   - {fileID: 1210045795}
   - {fileID: 1116108370}
   m_Father: {fileID: 796727923}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -60427,7 +60445,7 @@ RectTransform:
   - {fileID: 143840524}
   - {fileID: 1353974486}
   m_Father: {fileID: 796727923}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -60919,7 +60937,7 @@ RectTransform:
   - {fileID: 975648057}
   - {fileID: 482821290}
   m_Father: {fileID: 796727923}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -60975,8 +60993,8 @@ Canvas:
   m_GameObject: {fileID: 2089243226}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1924761760}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -60985,7 +61003,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 85
   m_TargetDisplay: 0
 --- !u!1 &2099687687
 GameObject:
@@ -62447,7 +62465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6938847885153175907, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6938847885153175907, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_AnchorMax.x
@@ -62520,6 +62538,18 @@ PrefabInstance:
     - target: {fileID: 6938847885153175907, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885153175908, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1924761760}
+    - target: {fileID: 6938847885153175908, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885153175908, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_SortingOrder
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6938847885188490016, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_FontData.m_RichText
