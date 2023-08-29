@@ -40,11 +40,25 @@ public class ObjectControll : MonoBehaviour
     //¡ˆµµ ø¿∫Í¡ß∆Æ
     public GameObject map;
 
+    //ΩÃ±€≈Ê
+    public static ObjectControll instance = null;
+
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            if (instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
+    
 
     // Update is called once per frame
     void Update()

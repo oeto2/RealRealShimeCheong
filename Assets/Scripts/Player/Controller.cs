@@ -75,7 +75,7 @@ public class Controller : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         //Player의 이동조건 
-        if(!detectWall && !isTalk)
+        if(!detectWall && !isTalk && !GameManager.instance.isPuzzleStart)
         {
             transform.position += new Vector3(h, 0, v) * moveSpeed * Time.deltaTime;
         }

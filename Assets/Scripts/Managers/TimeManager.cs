@@ -520,7 +520,7 @@ public class TimeManager : MonoBehaviour
 
                 //현재 오브젝트 RGB값 갱신
                 curObjectRGB = new Color32((byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), 255);
-            }
+            }   
         }
 
         //야간 (210 ~ 300)

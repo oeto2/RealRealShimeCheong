@@ -60,11 +60,15 @@ public class BeadMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //비드 움직이기
-        BeadMoveCtrl();
+        //퍼즐 시작중일때만
+        if(GameManager.instance.isPuzzleStart)
+        {
+            //비드 움직이기
+            BeadMoveCtrl();
 
-        //RayCast 방향설정
-        RayCastDirection();
+            //RayCast 방향설정
+            RayCastDirection();
+        }
     }
 
     //구슬의 움직임 구현 메서드

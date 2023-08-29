@@ -253,6 +253,9 @@ public class ObjectManager : MonoBehaviour
         ////모든 단서 획득
         //GetAllClue();
 
+        //부싯돌 획득
+        GetItem(1002);
+
     }
 
 
@@ -709,7 +712,6 @@ public class ObjectManager : MonoBehaviour
     //Key를 통해서 아이템 얻기
     public void GetItem(int _key)
     {
-
         //해당 Key를 가진 오브젝트가 존재하는 경우
         if (myItemList.Find(x => x.key == _key) != null)
         {
@@ -720,11 +722,16 @@ public class ObjectManager : MonoBehaviour
 
             Item GetItem = curItemList.Find(x => x.key == _key);
 
-            //토스트 메세지 실행
-            toastMessageScr.ToastMessageStart();
+            //봇짐을 획득한 상태라면
+            if(ObjectControll.instance.getBotzime)
+            {
+                Debug.Log("토스트메세지 실행");
+                //토스트 메세지 실행
+                toastMessageScr.ToastMessageStart();
 
-            //토스트 메세지 정보값 넘겨주기
-            toastMessageScr.ToastMessageInfo_Chage($"{GetItem.name} 획득", itemSprite[GetItem.indexNum], GetItem.name);
+                //토스트 메세지 정보값 넘겨주기
+                toastMessageScr.ToastMessageInfo_Chage($"{GetItem.name} 획득", itemSprite[GetItem.indexNum], GetItem.name);
+            }
         }
     }
 
