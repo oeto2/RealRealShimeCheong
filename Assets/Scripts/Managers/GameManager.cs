@@ -83,11 +83,17 @@ public class GameManager : MonoBehaviour
 
     #region 퍼즐
 
-    //플레이어가 퍼즐중인지 확인하는 flag
-    public bool isPuzzleStart;
+    //플레이어가 구슬 퍼즐중인지 확인하는 flag
+    public bool isBeadPuzzleStart;
+
+    //플레이어가 주막 퍼즐중인지 확인하는 flag
+    public bool isJoomackPuzzleStart;
 
     //Bead Puzzle Map Transform
     public Transform transform_BeadPuzzleMap;
+
+    //Joomack Puzzle Map Transform
+    public Transform transform_JoomackMap;
 
     //맵의 핀위치 값
     public int int_PinPosNum;
@@ -134,6 +140,13 @@ public class GameManager : MonoBehaviour
             Debug.Log("구슬 퍼즐 시작");
             PlayBeadPuzzle();
         }
+
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log("주막 퍼즐 시작");
+            JoomackPuzzleStart();
+        }
+        
     }
 
     public void Action(GameObject scan_obj)
@@ -283,7 +296,7 @@ public class GameManager : MonoBehaviour
     public void PlayBeadPuzzle()
     {
         //퍼즐 시작
-        isPuzzleStart = true;
+        isBeadPuzzleStart = true;
 
 
         //로딩 이미지 보여주기
@@ -303,7 +316,7 @@ public class GameManager : MonoBehaviour
     public void BeadPuzzleEnd()
     {
         //퍼즐 시작
-        isPuzzleStart = false;
+        isBeadPuzzleStart = false;
 
         //로딩 이미지 보여주기
         StartCoroutine(ShowLoding());
@@ -316,6 +329,16 @@ public class GameManager : MonoBehaviour
 
         //다이얼로그 보여주기
         gameObjcet_dialogueNPC.SetActive(true);
+    }
+
+    //주막 퍼즐 시작
+    public void JoomackPuzzleStart()
+    {
+        isJoomackPuzzleStart = true;
+
+        //카메라 위치 변경
+        cameraMoveScr.CameraTransfer(transform_JoomackMap.position);
+
     }
 
     //로딩 이미지 보여주기

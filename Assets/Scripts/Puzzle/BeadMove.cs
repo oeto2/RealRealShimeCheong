@@ -68,7 +68,7 @@ public class BeadMove : MonoBehaviour
     void Update()
     {
         //퍼즐 시작중일때만
-        if(GameManager.instance.isPuzzleStart)
+        if(GameManager.instance.isBeadPuzzleStart)
         {
             //비드 움직이기
             BeadMoveCtrl();
