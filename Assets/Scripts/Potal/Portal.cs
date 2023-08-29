@@ -25,7 +25,7 @@ public class Portal : MonoBehaviour
     private void Update()
     {
         //포탈 앞에서 W키 혹은 위 방향키를 눌렀을 경우
-        if(isPlayerArrivePotal && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+        if(isPlayerArrivePotal && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && !GameManager.instance.isPuzzleStart)
         {
             //목적지 이동
             MoveToDestination();

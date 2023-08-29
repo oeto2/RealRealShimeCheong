@@ -256,6 +256,9 @@ public class ObjectManager : MonoBehaviour
         //ºÎ½Ëµ¹ È¹µæ
         GetItem(1002);
 
+        //»ç°ø ´Ü¼­ È¹µæ
+        GetClue(2021);
+            
     }
 
 
@@ -715,6 +718,7 @@ public class ObjectManager : MonoBehaviour
         //ÇØ´ç Key¸¦ °¡Áø ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â °æ¿ì
         if (myItemList.Find(x => x.key == _key) != null)
         {
+            Debug.Log($"{_key}¹ø ¾ÆÀÌÅÛ È¹µæ");
             curItemList.Add(myItemList.Find(x => x.key == _key));
             curItemList2.Add(myItemList.Find(x => x.key == _key));
             TabClick(curType);

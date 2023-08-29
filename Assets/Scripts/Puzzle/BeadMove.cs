@@ -49,7 +49,11 @@ public class BeadMove : MonoBehaviour
     public bool leftMove;
     public bool rightMove;
 
+    //구슬 퍼즐을 클리어했는지 확인하는 flag
+    public bool isClear;
 
+    //퍼즐 종료중인지
+    private bool isExitStart;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +72,14 @@ public class BeadMove : MonoBehaviour
 
             //RayCast 방향설정
             RayCastDirection();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Goal") && !isExitStart)
+        {
+            StartCoroutine(BeadPuzzleExit());
         }
     }
 
@@ -303,5 +315,15 @@ public class BeadMove : MonoBehaviour
         //Debug.Log("구슬 정지");
 
         rigid.velocity = Vector3.zero;
+    }
+
+    //구슬 퍼즐 종료
+    IEnumerator BeadPuzzleExit()
+    {
+        isExitStart = true;
+        //구슬 퍼즐 종료
+        GameManager.instance.BeadPuzzleEnd();
+        yield return new WaitForSeconds(0.2f);
+        isClear = true;
     }
 }

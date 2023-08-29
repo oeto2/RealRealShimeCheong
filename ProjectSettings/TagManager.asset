@@ -12,6 +12,7 @@ TagManager:
   - Clue
   - Stage
   - TalkManager
+  - Goal
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - UI
   - Wall
   - OverUI
-  - 
+  - Goal
   - 
   - 
   - 

@@ -95,6 +95,15 @@ public class GameManager : MonoBehaviour
     //싱글톤
     public static GameManager instance = null;
 
+    //NPC 다이얼로그 이미지
+    public GameObject gameObjcet_dialogueNPC;
+
+    //인게임 UI 
+    public GameObject gameObject_gameUI;
+
+    //시간 UI
+    public GameObject gameObjcet_timeUI;
+
     #endregion
 
     private void Awake()
@@ -276,20 +285,46 @@ public class GameManager : MonoBehaviour
         //퍼즐 시작
         isPuzzleStart = true;
 
+
         //로딩 이미지 보여주기
         StartCoroutine(ShowLoding());
 
         //카메라 위치 변경
         cameraMoveScr.CameraTransfer(transform_BeadPuzzleMap.position);
+
+        //게임 UI 숨기기
+        gameObject_gameUI.SetActive(false);
+
+        //시간 UI 숨기기
+        gameObjcet_timeUI.SetActive(false);
     }
-    
+
+    //구슬 퍼즐 끝
+    public void BeadPuzzleEnd()
+    {
+        //퍼즐 시작
+        isPuzzleStart = false;
+
+        //로딩 이미지 보여주기
+        StartCoroutine(ShowLoding());
+
+        //게임 UI 보이기
+        gameObject_gameUI.SetActive(true);
+
+        //시간 UI 보이기
+        gameObjcet_timeUI.SetActive(true);
+
+        //다이얼로그 보여주기
+        gameObjcet_dialogueNPC.SetActive(true);
+    }
+
     //로딩 이미지 보여주기
     IEnumerator ShowLoding()
     {
         //로딩 이미지 보여주기
         gameObjcet_Loading.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         //로딩 이미지 끄기
         gameObjcet_Loading.SetActive(false);

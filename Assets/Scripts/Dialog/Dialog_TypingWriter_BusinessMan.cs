@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
 {
+    //외부 스크립트 참조
+    public BeadMove beadmoveScr;
+
     // 실제 채팅이 나오는 텍스트
     public Text ChatText;
 
@@ -230,6 +233,9 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
                 remainSentence = true;
                 //대화 끝
                 isSentenceEnd = true;
+
+                //사공의 물건 획득
+                ObjectManager.instance.GetItem(1011);
             }
 
             //텍스트 타이핑 시간 조절
@@ -242,6 +248,12 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
         {
             //대화 끝
             isSentenceEnd = true;
+
+            if (narration == npcDatabaseScr.NPC_01[220].comment)
+            {
+                //사공의 물건 획득
+                ObjectManager.instance.GetItem(1011);
+            }
         }
 
         //Z키를 다시 누를 때까지 무한정 대기
@@ -253,6 +265,13 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
                 remainSentence = true;
                 //대화 끝
                 isSentenceEnd = true;
+
+                if (narration == npcDatabaseScr.NPC_01[220].comment)
+                {
+                    //사공의 물건 획득
+                    ObjectManager.instance.GetItem(1011);
+                }
+
                 break;
             }
             yield return null;
@@ -341,6 +360,27 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
         //}
 
     }
+
+    //구슬 퍼즐 시작
+    IEnumerator BeadPuzzlePlay()
+    {
+        //다이얼로그 창 종료
+        images_NPC.SetActive(false); 
+
+        //구슬 퍼즐 시작
+        GameManager.instance.PlayBeadPuzzle();
+
+        //퍼즐 클리어 전까지 무한 대기
+        while(true)
+        {
+            if(beadmoveScr.isClear)
+            {
+                break;
+            }
+            yield return null;
+        }
+    }
+
 
     IEnumerator TextPractice()
     {
@@ -453,10 +493,13 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[210].npc_name, npcDatabaseScr.NPC_01[210].comment,true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[215].npc_name, npcDatabaseScr.NPC_01[215].comment,true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[216].npc_name, npcDatabaseScr.NPC_01[216].comment,true));
+            //퍼즐 시작
+            yield return StartCoroutine(BeadPuzzlePlay());
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[217].npc_name, npcDatabaseScr.NPC_01[217].comment,true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[218].npc_name, npcDatabaseScr.NPC_01[218].comment,true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[219].npc_name, npcDatabaseScr.NPC_01[219].comment,true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[220].npc_name, npcDatabaseScr.NPC_01[220].comment));
+            
         }
 
         //2023 : 3월보름날
