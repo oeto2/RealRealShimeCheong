@@ -172,6 +172,9 @@ public class UIManager : MonoBehaviour
     //캘린더 스프라이트 모음
     public Sprite[] sprite_AllCalendar;
 
+    //커서 불빛 오브젝트
+    public GameObject gameObjcet_CursorLights;
+
     private void Awake()
     {
         //저장 파일 위치
@@ -626,7 +629,7 @@ public class UIManager : MonoBehaviour
     public bool GetUiVisible()
     {
         if(gameObject_ItemWindow.activeSelf || gameObject_CombineWindow.activeSelf || gameObject_LoadWindow.activeSelf || gameObject_MapWindow.activeSelf ||
-            gameObject_Option.activeSelf || gameObject_SaveWindow.activeSelf)
+            gameObject_Option.activeSelf || gameObject_SaveWindow.activeSelf || gameManagerScr.isJoomackPuzzleStart)
         {
             return true;
         }
@@ -634,5 +637,29 @@ public class UIManager : MonoBehaviour
         {
             return false; 
         }
+    }
+
+    //커서 이미지 보여주기
+    public void ShowCursor()
+    {
+        cursorCtrlScr.ChangeCursor(cursorCtrlScr.sprite_idle);
+    }
+
+    //커서 끄기
+    public void BlindCursor()
+    {
+        cursorCtrlScr.ChangeCursor(cursorCtrlScr.sprite_None);
+    }
+
+    //커서 불빛 켜기
+    public void ShowCursorLight()
+    {
+        gameObjcet_CursorLights.SetActive(true);
+    }
+
+    //커서 불빛 끄기
+    public void BlindCursorLight()
+    {
+        gameObjcet_CursorLights.SetActive(false);
     }
 }

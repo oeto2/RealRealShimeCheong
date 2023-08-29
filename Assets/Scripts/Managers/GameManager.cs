@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     //외부 스크립트
     public CameraMove cameraMoveScr;
     public UIManager uiManagerScr;
+    public JoomackPuzzle joomackScr;
 
     // 하나씩 추가하자
     public bool bool_isAction;
@@ -335,6 +336,18 @@ public class GameManager : MonoBehaviour
     public void JoomackPuzzleStart()
     {
         isJoomackPuzzleStart = true;
+
+        //로딩 이미지 보여주기
+        StartCoroutine(ShowLoding());
+
+        //커서 보여주기
+        uiManagerScr.ShowCursor();
+
+        //커서 불빛 끄기
+        uiManagerScr.BlindCursorLight();
+
+        //주막 퍼즐 UI 보이기
+        joomackScr.ShowJoomackUI();
 
         //카메라 위치 변경
         cameraMoveScr.CameraTransfer(transform_JoomackMap.position);
