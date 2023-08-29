@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12830,6 +12830,8 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text1: {fileID: 0}
+  Selection_Text2: {fileID: 0}
   isSelection_yes: 0
   isSelection_no: 0
   isSelection_2023: 0
@@ -20736,7 +20738,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uB2C8\uC624"
+  m_Text: 
 --- !u!222 &775504645
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25167,6 +25169,8 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text1: {fileID: 2064643417}
+  Selection_Text2: {fileID: 775504644}
   isSelection_yes: 0
   isSelection_no: 0
   isSelection_2023: 0
@@ -26956,6 +26960,8 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text1: {fileID: 0}
+  Selection_Text2: {fileID: 0}
   isSelection_yes: 0
   isSelection_no: 0
   isSelection_2023: 0
@@ -31220,7 +31226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 40, y: -470}
+  m_AnchoredPosition: {x: 40.00006, y: -470}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1125754046
@@ -42727,6 +42733,12 @@ MonoBehaviour:
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   isSentenceEnd: 0
   remainSentence: 0
+  Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text1: {fileID: 2064643417}
+  Selection_Text2: {fileID: 775504644}
+  isSelection_yes: 0
+  isSelection_no: 0
+  isSelection_5136: 0
 --- !u!1 &1503348804
 GameObject:
   m_ObjectHideFlags: 0
@@ -60817,7 +60829,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC608"
+  m_Text: 
 --- !u!222 &2064643418
 CanvasRenderer:
   m_ObjectHideFlags: 0
