@@ -43,6 +43,21 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
     //남은 대화가 더 있는지
     public bool remainSentence = false;
 
+    // 선택지 UI 출력
+    public GameObject Canvas_Selection_UI;
+
+    // 선택지 1 대사 텍스트
+    public Text Selection_Text1;
+
+    // 선택지 2 대사 텍스트
+    public Text Selection_Text2;
+
+    // 선택지 확인 변수
+    public bool isSelection_yes = false;
+    public bool isSelection_no = false;
+
+    public bool isSelection_5136;
+
     //최초 클릭
     void Start()
     {
@@ -51,8 +66,10 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         //StopCoroutine(TextPractice());
         CharacterName.text = "";
         ChatText.text = "";
-    }
 
+        Selection_Text1.text = "내가 청이 아비 되는 사람이오. 솔직하게 말해주시오.";
+        Selection_Text2.text = "나도 그 이야기라면 들었소. 송 사람들이 너무하던데 말이오!";
+    }
 
     void Update()
     {
@@ -66,7 +83,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
-            Debug.Log("z키 누름! 장사꾼!!!!");
+            Debug.Log("z키 누름! 뱃사공!!!!");
             //bool_isBotjim = true;
             controller_scr.TalkStart();
 
@@ -79,11 +96,23 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
                 //초상화 변경
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
                 //bool_isNPC = true;
+
+                if (ObjectManager.instance.GetEquipObjectKey() == 5136 && isSelection_5136 == false)
+                {
+                    Canvas_Selection_UI.SetActive(true);
+                    isSelection_5136 = true;
+
+                    images_NPC.SetActive(false);
+                    bool_isNPC = true;
+                    trigger_npc.isNPCTrigger = false;
+                }
             }
 
             //대화가 끝났을 경우
             else if (isSentenceEnd)
             {
+                isSelection_5136 = false;
+
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
                 //대사 비우기
@@ -339,6 +368,37 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         //    }
         //    yield return null;
         //}
+
+    }
+
+    public void onClick_yes()
+    {
+        if (isSelection_5136 == true)
+        {
+            Canvas_Selection_UI.SetActive(false);
+
+            isSelection_yes = true;
+            isSelection_no = false;
+            isSelection_5136 = false;
+
+            images_NPC.SetActive(true);
+            bool_isNPC = true;
+            Trigger_NPC.instance.isNPCTrigger = true;
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+        }
+    }
+
+    public void onClick_no()
+    {
+        Canvas_Selection_UI.SetActive(false);
+
+        isSelection_yes = false;
+        isSelection_no = true;
+
+        images_NPC.SetActive(true);
+        bool_isNPC = true;
+        Trigger_NPC.instance.isNPCTrigger = true;
+        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
 
     }
 
