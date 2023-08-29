@@ -257,8 +257,10 @@ public class ObjectManager : MonoBehaviour
         GetItem(1002);
 
         //»ç°ø ´Ü¼­ È¹µæ
-        GetClue(2021);
-            
+        //GetClue(2021);
+        GetClue(2006);
+
+        
     }
 
 
