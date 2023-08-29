@@ -55,6 +55,9 @@ public class BeadMove : MonoBehaviour
     //퍼즐 종료중인지
     private bool isExitStart;
 
+    //구슬 애니메이터
+    public Animator aniamtor_Bead;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,10 +93,12 @@ public class BeadMove : MonoBehaviour
         if (rigid.velocity != Vector2.zero)
         {
             isMove = true;
+            BeadAnimationStart();
         }
         else
         {
             isMove = false;
+            BeadAnimationStop();
         }
 
         #region 방향키에 따른 구슬 이동 로직
@@ -221,6 +226,7 @@ public class BeadMove : MonoBehaviour
                 downWall = false;
                 leftWall = false;
                 rightWall = false;
+
             }
 
             //벽이 아래에 있다면
@@ -259,6 +265,7 @@ public class BeadMove : MonoBehaviour
 
                 //구슬 이동 정지
                 BeadMoveStop();
+
 
                 //벽감지
                 upWall = false;
@@ -325,5 +332,20 @@ public class BeadMove : MonoBehaviour
         GameManager.instance.BeadPuzzleEnd();
         yield return new WaitForSeconds(0.2f);
         isClear = true;
+    }
+
+    //구슬 애니메이션 시작
+    public void BeadAnimationStart()
+    {
+        Debug.Log("애니메이션 시작");
+
+        aniamtor_Bead.speed = 1f;
+    }
+
+    //구슬 애니메이션 정지
+    public void BeadAnimationStop()
+    {
+        Debug.Log("애니메이션 정지");
+        aniamtor_Bead.speed = 0f;
     }
 }
