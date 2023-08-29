@@ -12886,6 +12886,8 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text1: {fileID: 0}
+  Selection_Text2: {fileID: 0}
   isSelection_yes: 0
   isSelection_no: 0
   isSelection_2023: 0
@@ -20928,7 +20930,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uB2C8\uC624"
+  m_Text: 
 --- !u!222 &775504645
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25278,6 +25280,8 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text1: {fileID: 2064643417}
+  Selection_Text2: {fileID: 775504644}
   isSelection_yes: 0
   isSelection_no: 0
   isSelection_2023: 0
@@ -27067,6 +27071,8 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text1: {fileID: 0}
+  Selection_Text2: {fileID: 0}
   isSelection_yes: 0
   isSelection_no: 0
   isSelection_2023: 0
@@ -42900,9 +42906,9 @@ MonoBehaviour:
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   isSentenceEnd: 0
   remainSentence: 0
-  Canvas_Selection_UI: {fileID: 0}
-  Selection_Text1: {fileID: 0}
-  Selection_Text2: {fileID: 0}
+  Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text1: {fileID: 2064643417}
+  Selection_Text2: {fileID: 775504644}
   isSelection_yes: 0
   isSelection_no: 0
   isSelection_5136: 0
@@ -61210,7 +61216,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC608"
+  m_Text: 
 --- !u!222 &2064643418
 CanvasRenderer:
   m_ObjectHideFlags: 0

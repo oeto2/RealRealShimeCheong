@@ -38,6 +38,12 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
     // 선택지 UI 출력
     public GameObject Canvas_Selection_UI;
 
+    // 선택지 1 대사 텍스트
+    public Text Selection_Text1;
+
+    // 선택지 2 대사 텍스트
+    public Text Selection_Text2;
+
     // 선택지 확인 변수
     public bool isSelection_yes = false;
     public bool isSelection_no = false;
@@ -65,6 +71,9 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
     {
         CharacterName.text = "";
         ChatText.text = "";
+
+        Selection_Text1.text = "내가 청이 아비 되는 사람이오. 솔직하게 말해주시오.";
+        Selection_Text2.text = "나도 그 이야기라면 들었소. 송 사람들이 너무하던데 말이오!";
     }
 
     void Update()
