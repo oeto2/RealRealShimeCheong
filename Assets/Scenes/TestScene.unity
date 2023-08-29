@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8219,8 +8219,8 @@ MonoBehaviour:
   bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
-  - {fileID: 2140373127, guid: bd70666d066e8164c9ff0f6867ed9e39, type: 3}
-  - {fileID: 1017585218, guid: 475b66802684efb4e905df1969bf177c, type: 3}
+  - {fileID: 21300000, guid: e7aa9c89fe54e8d40b51f1fc7cc85bae, type: 3}
+  - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
   trigger_npc: {fileID: 358651631}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
@@ -12684,6 +12684,7 @@ GameObject:
   - component: {fileID: 482821291}
   - component: {fileID: 482821293}
   - component: {fileID: 482821294}
+  - component: {fileID: 482821295}
   m_Layer: 5
   m_Name: Selection_02
   m_TagString: Untagged
@@ -12794,8 +12795,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 482821294}
-        m_TargetAssemblyTypeName: Dialog_TypingWriter_JangSeong, Assembly-CSharp
+      - m_Target: {fileID: 482821295}
+        m_TargetAssemblyTypeName: Dialog_TypingWriter_BoatMan, Assembly-CSharp
         m_MethodName: onClick_no
         m_Mode: 1
         m_Arguments:
@@ -12813,7 +12814,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482821289}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28e2e2166ddbe6f4f9bd4a110df502fd, type: 3}
   m_Name: 
@@ -12830,6 +12831,7 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text_Name: {fileID: 0}
   Selection_Text1: {fileID: 0}
   Selection_Text2: {fileID: 0}
   isSelection_yes: 0
@@ -12838,6 +12840,39 @@ MonoBehaviour:
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
+--- !u!114 &482821295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482821289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca077347368808a4697ab69116b9f653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 
+  writerText: 
+  characternameText: 
+  bool_isNPC: 0
+  images_NPC: {fileID: 1486878665}
+  images_NPC_portrait: []
+  trigger_npc: {fileID: 1502069086}
+  isNPCTrigger: 0
+  controller_scr: {fileID: 1871036892}
+  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  isSentenceEnd: 0
+  remainSentence: 0
+  Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text_Name: {fileID: 1591885871}
+  Selection_Text1: {fileID: 2064643417}
+  Selection_Text2: {fileID: 775504644}
+  isSelection_yes: 0
+  isSelection_no: 0
+  isSelection_5136: 0
 --- !u!1 &484110310
 GameObject:
   m_ObjectHideFlags: 0
@@ -18959,7 +18994,7 @@ MonoBehaviour:
   bool_isNPC: 0
   images_Bbang: {fileID: 1486878665}
   images_NPC_portrait:
-  - {fileID: 21300000, guid: 736739ca216a124488b340c0e4d8e827, type: 3}
+  - {fileID: 21300000, guid: 2bddb3c6ccdfd724eb610c4339e60988, type: 3}
   trigger_npc: {fileID: 688575809}
   controller_scr: {fileID: 1871036892}
   index: 0
@@ -25164,11 +25199,12 @@ MonoBehaviour:
   bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
-  - {fileID: 256513075, guid: 20588bd86d08f3f439c8459db628c04e, type: 3}
+  - {fileID: 21300000, guid: 3905155e4b7cfea4eb80baeaf0d2aa73, type: 3}
   trigger_npc: {fileID: 928861246}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text_Name: {fileID: 0}
   Selection_Text1: {fileID: 2064643417}
   Selection_Text2: {fileID: 775504644}
   isSelection_yes: 0
@@ -26814,6 +26850,7 @@ GameObject:
   - component: {fileID: 975648058}
   - component: {fileID: 975648060}
   - component: {fileID: 975648061}
+  - component: {fileID: 975648062}
   m_Layer: 5
   m_Name: Selection_01
   m_TagString: Untagged
@@ -26924,8 +26961,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 975648061}
-        m_TargetAssemblyTypeName: Dialog_TypingWriter_JangSeong, Assembly-CSharp
+      - m_Target: {fileID: 975648062}
+        m_TargetAssemblyTypeName: Dialog_TypingWriter_BoatMan, Assembly-CSharp
         m_MethodName: onClick_yes
         m_Mode: 1
         m_Arguments:
@@ -26943,7 +26980,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975648056}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28e2e2166ddbe6f4f9bd4a110df502fd, type: 3}
   m_Name: 
@@ -26960,6 +26997,7 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text_Name: {fileID: 0}
   Selection_Text1: {fileID: 0}
   Selection_Text2: {fileID: 0}
   isSelection_yes: 0
@@ -26968,6 +27006,39 @@ MonoBehaviour:
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
+--- !u!114 &975648062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975648056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca077347368808a4697ab69116b9f653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 
+  writerText: 
+  characternameText: 
+  bool_isNPC: 0
+  images_NPC: {fileID: 1486878665}
+  images_NPC_portrait: []
+  trigger_npc: {fileID: 1502069086}
+  isNPCTrigger: 0
+  controller_scr: {fileID: 1871036892}
+  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  isSentenceEnd: 0
+  remainSentence: 0
+  Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text_Name: {fileID: 1591885871}
+  Selection_Text1: {fileID: 2064643417}
+  Selection_Text2: {fileID: 775504644}
+  isSelection_yes: 0
+  isSelection_no: 0
+  isSelection_5136: 0
 --- !u!1 &977144836
 GameObject:
   m_ObjectHideFlags: 0
@@ -29776,7 +29847,7 @@ MonoBehaviour:
   bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
-  - {fileID: -857250674, guid: c4b92165159364e499205125782f02e7, type: 3}
+  - {fileID: 21300000, guid: a261ff852c438b64ea203fd02aee8e11, type: 3}
   trigger_npc: {fileID: 1060148996}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
@@ -31210,7 +31281,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 40.00006, y: -470.00003}
+  m_AnchoredPosition: {x: 40.00006, y: -470}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1125754046
@@ -42213,7 +42284,7 @@ MonoBehaviour:
   bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
-  - {fileID: -1306965376, guid: d3894448d29a9784f8a6753dfa5469af, type: 3}
+  - {fileID: 21300000, guid: c3be3c400a824154fa3df1f4b58c0779, type: 3}
   trigger_npc: {fileID: 1482299817}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
@@ -42711,7 +42782,7 @@ MonoBehaviour:
   bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
-  - {fileID: 1549160241, guid: 30b6cc192a4fdd9419ee8f11efb74c68, type: 3}
+  - {fileID: 21300000, guid: 9b9dc2523cc03cd44b968d424e4c1454, type: 3}
   trigger_npc: {fileID: 1502069086}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
@@ -42719,6 +42790,7 @@ MonoBehaviour:
   isSentenceEnd: 0
   remainSentence: 0
   Canvas_Selection_UI: {fileID: 2089243226}
+  Selection_Text_Name: {fileID: 1591885871}
   Selection_Text1: {fileID: 2064643417}
   Selection_Text2: {fileID: 775504644}
   isSelection_yes: 0
@@ -45217,7 +45289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -45237,7 +45309,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC774\uC57C\uAE30\uB97C \uAEBC\uB0BC\uAE4C\uC694?"
+  m_Text: 
 --- !u!222 &1591885872
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -48078,7 +48150,7 @@ MonoBehaviour:
   bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
-  - {fileID: 21300000, guid: 6f602fad575b4ca468cd0ef912e07cb1, type: 3}
+  - {fileID: 21300000, guid: 25c68fb334cd163498e7c06fd241006a, type: 3}
   trigger_npc: {fileID: 1657878950}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
@@ -60659,7 +60731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2063844034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62836,6 +62908,22 @@ PrefabInstance:
     - target: {fileID: 95283417651686755, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -169.12201
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847884951112621, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 431.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847884951112621, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 498.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847884951112621, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -602.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847884951112621, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -338.38
       objectReference: {fileID: 0}
     - target: {fileID: 6938847885108550667, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_AnchoredPosition.x

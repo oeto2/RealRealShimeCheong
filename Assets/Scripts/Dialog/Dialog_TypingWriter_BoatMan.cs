@@ -46,6 +46,9 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
     // 선택지 UI 출력
     public GameObject Canvas_Selection_UI;
 
+    // 선택지 발생!
+    public Text Selection_Text_Name;
+
     // 선택지 1 대사 텍스트
     public Text Selection_Text1;
 
@@ -67,6 +70,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         CharacterName.text = "";
         ChatText.text = "";
 
+        Selection_Text_Name.text = "선택지 발생!";
         Selection_Text1.text = "내가 청이 아비 되는 사람이오. 솔직하게 말해주시오.";
         Selection_Text2.text = "나도 그 이야기라면 들었소. 송 사람들이 너무하던데 말이오!";
     }
@@ -97,14 +101,12 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
                 //bool_isNPC = true;
 
-                if (ObjectManager.instance.GetEquipObjectKey() == 5136 && isSelection_5136 == false)
+                if (ObjectManager.instance.GetEquipObjectKey() == 2006 && isSelection_5136 == false ||!ObjectManager.instance.isGetClue)
                 {
-                    Canvas_Selection_UI.SetActive(true);
                     isSelection_5136 = true;
-
-                    images_NPC.SetActive(false);
-                    bool_isNPC = true;
-                    trigger_npc.isNPCTrigger = false;
+                    isSelection_yes = true;
+                    //StartCoroutine(ItemClueChat_select());
+                    //StartCoroutine(TextPractice());
                 }
             }
 
@@ -371,10 +373,83 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
 
     }
 
+    IEnumerator ItemClueChat2(string narrator, string narration, bool _remainSentence)
+    {
+        //남은 대화가 있을경우
+        if (_remainSentence == true)
+        {
+            //남은대화 있음
+            remainSentence = true;
+
+            Debug.Log(narration);
+            int a = 0;
+            CharacterName.text = narrator;
+            //characternameText = narrator;
+
+
+            //narrator = CharacterName.text;
+
+            //텍스트 타이핑
+            for (a = 0; a < narration.Length; a++)
+            {
+                writerText += narration[a];
+                ChatText.text = writerText;
+
+                //텍스트 타이핑 시간 조절
+                //yield return null;
+                yield return new WaitForSeconds(0.02f);
+
+                //중간에 Z키를 누르면
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    break;
+                }
+            }
+
+            //Z키를 다시 누를 때까지 무한정 대기
+            while (true)
+            {
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //Text 비우기
+                    writerText = "";
+                    break;
+                }
+                yield return null;
+            }
+        }
+
+        ////키(default : space)를 다시 누를 때까지 무한정 대기
+        //while (true)
+        //{
+        //    if (isButtonClicked)
+        //    {
+        //        isButtonClicked = false;
+        //        break;
+        //    }
+        //    yield return null;
+        //}
+
+    }
+
+    IEnumerator ItemClueChat_select()
+    {
+        //2006 : 송나라 상인과 청이 (추가 대사 있음)
+        if (ObjectManager.instance.GetEquipObjectKey() == 2006)
+        {
+            images_NPC.SetActive(false);
+            Canvas_Selection_UI.SetActive(true);
+
+
+        }
+        yield return null;
+    }
+
     public void onClick_yes()
     {
-        if (isSelection_5136 == true)
-        {
+        //StartCoroutine(TextPractice_2());
+        //Canvas_Selection_UI.SetActive(false);
+        //images_NPC.SetActive(true);
             Canvas_Selection_UI.SetActive(false);
 
             isSelection_yes = true;
@@ -384,8 +459,8 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             images_NPC.SetActive(true);
             bool_isNPC = true;
             Trigger_NPC.instance.isNPCTrigger = true;
-            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-        }
+        //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+
     }
 
     public void onClick_no()
@@ -398,7 +473,15 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         images_NPC.SetActive(true);
         bool_isNPC = true;
         Trigger_NPC.instance.isNPCTrigger = true;
-        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+
+        //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+
+    }
+
+    IEnumerator TextPractice_2()
+    {
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[73].npc_name, npcDatabaseScr.NPC_01[73].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[74].npc_name, npcDatabaseScr.NPC_01[74].comment, true));
 
     }
 
@@ -433,6 +516,22 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         else if (ObjectManager.instance.GetEquipObjectKey() == 2006)
         {
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[71].npc_name, npcDatabaseScr.NPC_01[71].comment,true));
+            /*
+            if(isSelection_yes == true)
+			{
+                //선택지 1대사
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[73].npc_name, npcDatabaseScr.NPC_01[73].comment, true));
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[74].npc_name, npcDatabaseScr.NPC_01[74].comment, true));
+            }
+            else if (isSelection_no == true)
+            {
+                //선택지 2대사
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[75].npc_name, npcDatabaseScr.NPC_01[75].comment, true));
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[76].npc_name, npcDatabaseScr.NPC_01[76].comment, true));
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[77].npc_name, npcDatabaseScr.NPC_01[77].comment));
+            }*/
+
+            yield return StartCoroutine(ItemClueChat_select());
             //선택지 1대사
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[73].npc_name, npcDatabaseScr.NPC_01[73].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[74].npc_name, npcDatabaseScr.NPC_01[74].comment, true));
@@ -440,7 +539,23 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[75].npc_name, npcDatabaseScr.NPC_01[75].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[76].npc_name, npcDatabaseScr.NPC_01[76].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[77].npc_name, npcDatabaseScr.NPC_01[77].comment));
+            
         }
+        /*
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2006 && isSelection_yes == true)
+        {
+            //선택지 1대사
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[73].npc_name, npcDatabaseScr.NPC_01[73].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[74].npc_name, npcDatabaseScr.NPC_01[74].comment, true));
+        }
+
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2006 && isSelection_no == true)
+        {
+            //선택지 2대사
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[75].npc_name, npcDatabaseScr.NPC_01[75].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[76].npc_name, npcDatabaseScr.NPC_01[76].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[77].npc_name, npcDatabaseScr.NPC_01[77].comment));
+        }*/
 
         //2007 : 승려와 청이
         else if (ObjectManager.instance.GetEquipObjectKey() == 2007)

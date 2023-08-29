@@ -176,6 +176,8 @@ public class ObjectManager : MonoBehaviour
     //조합창 슬롯2에 선택된 단서의 정보
     public Clue curCombineClue2Info;
 
+    // GetClue 확인 여부
+    public bool isGetClue = false;
     private void Awake()
     {
         if (instance == null)
@@ -767,6 +769,7 @@ public class ObjectManager : MonoBehaviour
 
 
             Clue GetClue = curClueList.Find(x => x.key == _key);
+            isGetClue = true;
 
             //토스트 메세지 실행
             toastMessageScr.ToastMessageStart();
