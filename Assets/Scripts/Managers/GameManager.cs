@@ -299,6 +299,8 @@ public class GameManager : MonoBehaviour
         //퍼즐 시작
         isBeadPuzzleStart = true;
 
+        //커서 불빛 끄기
+        uiManagerScr.BlindCursorLight();
 
         //로딩 이미지 보여주기
         StartCoroutine(ShowLoding());
@@ -319,6 +321,9 @@ public class GameManager : MonoBehaviour
         //퍼즐 시작
         isBeadPuzzleStart = false;
 
+        //커서 불빛 켜기
+        uiManagerScr.ShowCursorLight();
+
         //로딩 이미지 보여주기
         StartCoroutine(ShowLoding());
 
@@ -336,6 +341,12 @@ public class GameManager : MonoBehaviour
     public void JoomackPuzzleStart()
     {
         isJoomackPuzzleStart = true;
+
+        //게임 UI 숨기기
+        gameObject_gameUI.SetActive(false);
+
+        //시간 UI 숨기기
+        gameObjcet_timeUI.SetActive(false);
 
         //로딩 이미지 보여주기
         StartCoroutine(ShowLoding());
