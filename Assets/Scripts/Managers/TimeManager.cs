@@ -452,6 +452,7 @@ public class TimeManager : MonoBehaviour
         //만약 다음날이 되었을경우
         if ((int)MathF.Truncate(float_RealTime) == 0)
         {
+            Debug.Log("0시");
             for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
             {
                 //색깔 변경 (시작 값)
@@ -462,6 +463,8 @@ public class TimeManager : MonoBehaviour
         //만약 아침일 경우(0 ~ 35초) = 초당 3씩 밝아짐
         else if ((int)MathF.Truncate(float_RealTime) > 0 && (int)MathF.Truncate(float_RealTime) <= 35)
         {
+
+            Debug.Log("아침");
 
             for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
             {
@@ -476,6 +479,8 @@ public class TimeManager : MonoBehaviour
         //만약 낮이 되었을 경우 (35 ~ 150초)
         else if ((int)MathF.Truncate(float_RealTime) >= 35 && (int)MathF.Truncate(float_RealTime) <= 150)
         {
+            Debug.Log("낮");
+
             if (curObjectRGB.r < 255)
             {
                 if (curObjectRGB.r < 250)
@@ -509,8 +514,10 @@ public class TimeManager : MonoBehaviour
         // 만약 밤이 되었을 경우 (150 ~ 210)
         else if ((int)MathF.Truncate(float_RealTime) > 150 && (int)MathF.Truncate(float_RealTime) <= 210)
         {
+            Debug.Log("밤");
+
             //현재 맵의 밝기가 밤의 밝기보다 밝다면
-            if(curObjectRGB.r >= nightRGBValue.r)
+            if (curObjectRGB.r >= nightRGBValue.r)
             {
                 for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
                 {
@@ -526,6 +533,8 @@ public class TimeManager : MonoBehaviour
         //야간 (210 ~ 300)
         else if(((int)MathF.Truncate(float_RealTime) > 210 && (int)MathF.Truncate(float_RealTime) <= 300))
         {
+            Debug.Log("한밤중");
+
             //현재 맵의 밝기가 밤의 밝기보다 밝다면
             if (curObjectRGB.r >= nightRGBValue.r)
             {

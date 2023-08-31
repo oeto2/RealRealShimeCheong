@@ -107,7 +107,7 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
 
             //텍스트 타이핑 시간 조절
             //yield return null;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.03f);
         }
 
         isTalkEnd = true;
