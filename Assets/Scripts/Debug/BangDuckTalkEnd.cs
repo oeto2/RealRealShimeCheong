@@ -6,12 +6,16 @@ public class BangDuckTalkEnd : MonoBehaviour
 {
     public TutorialManager tutorialManagerScr;
 
+    private bool isFirst;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Æ©Åä¸®¾ó »±¶± flag ture
-        tutorialManagerScr.TutorialSenteceEnd_Bbang();
-
-        Invoke("SetActiveFalse", 1f);
+        if(!isFirst)
+        {
+            //Æ©Åä¸®¾ó »±¶± flag ture
+            tutorialManagerScr.TutorialSenteceEnd_Bbang();
+            isFirst = true;
+        }
     }
 
     private void SetActiveFalse()

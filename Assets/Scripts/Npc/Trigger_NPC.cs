@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class Trigger_NPC : MonoBehaviour
 {
-    
-
-    /*
-	void OnTriggerEnter2D(Collider2D npc_collider)
-	{
-		
-	}
-    */
     public string ChatText = "";
     private GameObject Main;
     public bool isNPCTrigger;
@@ -55,11 +47,7 @@ public class Trigger_NPC : MonoBehaviour
             Debug.Log(ChatText + "NPC 터치했다");
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                //controller.TalkStart();
                 Debug.Log(ChatText + "z 눌렀다");
-                //dialog_TypingWriter_Budhist.trigger_npc = test1.GetComponent<Dialog_TypingWriter_Budhist>().OnClickdown();
-                //Main.GetComponent<MainScript>().NPCChatEnter();
-                //Controller.instance.TalkEnd();
             }
         }
     }
@@ -73,7 +61,6 @@ public class Trigger_NPC : MonoBehaviour
         test1 = other.gameObject;
         if (other.CompareTag("Player"))
         {
-            //Main.GetComponent<MainScript>().NPCChatExit();
         }
     }
 

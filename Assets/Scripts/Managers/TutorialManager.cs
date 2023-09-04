@@ -202,8 +202,6 @@ public class TutorialManager : MonoBehaviour
                 playerCtrlScr.TalkStart();
 
                 showNote = true;
-
-                
             }
 
             //노트를 읽고 난 뒤 Z or Space를 누른다
