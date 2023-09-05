@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12766,7 +12766,7 @@ MonoBehaviour:
   isSelection_no: 0
   isSelection_2023: 0
   index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogdb: {fileID: 0}
   dialogs: []
 --- !u!114 &482821295
 MonoBehaviour:
@@ -12791,7 +12791,7 @@ MonoBehaviour:
   trigger_npc: {fileID: 1502069086}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
-  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  npcDatabaseScr: {fileID: 0}
   isSentenceEnd: 0
   remainSentence: 0
   Canvas_Selection_UI: {fileID: 2089243226}
@@ -26946,7 +26946,7 @@ MonoBehaviour:
   isSelection_no: 0
   isSelection_2023: 0
   index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogdb: {fileID: 0}
   dialogs: []
 --- !u!114 &975648062
 MonoBehaviour:
@@ -26971,7 +26971,7 @@ MonoBehaviour:
   trigger_npc: {fileID: 1502069086}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
-  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  npcDatabaseScr: {fileID: 0}
   isSentenceEnd: 0
   remainSentence: 0
   Canvas_Selection_UI: {fileID: 2089243226}
@@ -29907,7 +29907,7 @@ MonoBehaviour:
   trigger_npc: {fileID: 1075882285}
   controller_scr: {fileID: 1871036892}
   index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogdb: {fileID: 0}
   dialogs: []
 --- !u!114 &1075882285
 MonoBehaviour:
@@ -30524,7 +30524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogdb: {fileID: 0}
   speakers:
   - spriteRenderer: {fileID: 0}
     imageDialog: {fileID: 0}
@@ -31223,7 +31223,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 40, y: -470}
+  m_AnchoredPosition: {x: 40.00006, y: -470}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1125754046
