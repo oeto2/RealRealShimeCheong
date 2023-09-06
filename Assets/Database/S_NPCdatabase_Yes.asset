@@ -4302,3 +4302,1137 @@ MonoBehaviour:
     comment: "\uB178 \uC813\uAE30\uB97C \uB3C4\uC640\uC900\uB2E4."
     isUsing_dialog_flag: 0
     index_num: 604
+  - key_index: 7195
+    object_type: NPC
+    npc_name: "\uBE91\uB355 \uC5B4\uBA48"
+    comment: "(\uB2E8\uC11C\uB97C \uB354 \uC870\uD569\uD574 \uBCF4\uC790.)"
+    isUsing_dialog_flag: 0
+    index_num: 605
+  - key_index: 7196
+    object_type: NPC
+    npc_name: "\uADC0\uB355 \uC5B4\uBA48"
+    comment: "(\uB2E8\uC11C\uB97C \uB354 \uC870\uD569\uD574 \uBCF4\uC790.)"
+    isUsing_dialog_flag: 0
+    index_num: 606
+  - key_index: 7197
+    object_type: NPC
+    npc_name: "\uD5A5\uB9AC \uB301 \uBD80\uC778"
+    comment: "(\uB2E8\uC11C\uB97C \uB354 \uC870\uD569\uD574 \uBCF4\uC790.)"
+    isUsing_dialog_flag: 0
+    index_num: 607
+  - key_index: 7198
+    object_type: NPC
+    npc_name: "\uC7A5\uC0AC\uAFBC"
+    comment: "(\uB2E8\uC11C\uB97C \uB354 \uC870\uD569\uD574 \uBCF4\uC790.)"
+    isUsing_dialog_flag: 0
+    index_num: 608
+  - key_index: 7199
+    object_type: NPC
+    npc_name: "\uC2B9\uB824"
+    comment: "(\uB2E8\uC11C\uB97C \uB354 \uC870\uD569\uD574 \uBCF4\uC790.)"
+    isUsing_dialog_flag: 0
+    index_num: 609
+  - key_index: 7200
+    object_type: NPC
+    npc_name: "\uAC70\uC9C0"
+    comment: "(\uB2E8\uC11C\uB97C \uB354 \uC870\uD569\uD574 \uBCF4\uC790.)"
+    isUsing_dialog_flag: 0
+    index_num: 610
+  - key_index: 7201
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "(\uB2E8\uC11C\uB97C \uB354 \uC870\uD569\uD574 \uBCF4\uC790.)"
+    isUsing_dialog_flag: 0
+    index_num: 611
+  - key_index: 7202
+    object_type: NPC
+    npc_name: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+    comment: "(\uB2E8\uC11C\uB97C \uB354 \uC870\uD569\uD574 \uBCF4\uC790.)"
+    isUsing_dialog_flag: 0
+    index_num: 612
+  - key_index: 7203
+    object_type: NPC
+    npc_name: "\uBE91\uB355 \uC5B4\uBA48"
+    comment: "\uC5B4\uC81C \uBC18\uCC2C\uB3C4 \uAE30\uC5B5\uC774 \uC548 \uB098\uB294\uB370
+      \uADF8\uB54C \uC77C\uC774 \uAE30\uC5B5\uC774 \uB098\uACA0\uC5B4\uC694?"
+    isUsing_dialog_flag: 0
+    index_num: 613
+  - key_index: 7204
+    object_type: NPC
+    npc_name: "\uADC0\uB355 \uC5B4\uBA48"
+    comment: "\uADF8\uB0A0\uC774\uC5C8\uB098,, \uBC43\uC0AC\uACF5\uC774 \uD070 \uC18C\uB9AC\uB97C
+      \uCCE4\uB358 \uC77C\uC774 \uC788\uC18C. \uC0AC\uACF5\uC5D0\uAC8C \uD55C\uBC88
+      \uAC00\uBCF4\uC2DC\uC624."
+    isUsing_dialog_flag: 0
+    index_num: 614
+  - key_index: 7205
+    object_type: NPC
+    npc_name: "\uD5A5\uB9AC \uB301 \uBD80\uC778"
+    comment: "\uC14B\uC9F8\uAC00 \uC774\uD2C0 \uC804\uC5D0 \uD0DC\uC758\uAC10\uC73C\uB85C
+      \uD5A5\uD588\uC9C0.. \uB610 \uBB34\uC2A8 \uC77C\uC774 \uC788\uC5C8\uC18C?"
+    isUsing_dialog_flag: 0
+    index_num: 615
+  - key_index: 7206
+    object_type: NPC
+    npc_name: "\uC7A5\uC0AC\uAFBC"
+    comment: "\uBB50 \uC0B4 \uAC83 \uC788\uC18C?;\uC0B4 \uAC83 \uC5C6\uC73C\uBA74
+      \uC880 \uBE44\uD0A4\uC2DC\uC624! \uAC1D \uCAD3\uACA0\uB124."
+    isUsing_dialog_flag: 0
+    index_num: 616
+  - key_index: 7207
+    object_type: NPC
+    npc_name: "\uC2B9\uB824"
+    comment: "\uBD80\uCC98\uAED8 \uC9C0\uC131\uC73C\uB85C \uBD88\uACF5\uB4DC\uB9B0\uB2E4\uBA74
+      \uADFC\uC2EC\uC774 \uC5C6\uC5B4\uC9C4\uB2F5\uB2C8\uB2E4.;\uB9C8\uC74C \uAE4A\uC774
+      \uBD88\uACF5\uB4DC\uB9AC\uBA74 \uC870\uB9CC\uAC04 \uBD80\uCC98\uC758 \uB355\uC73C\uB85C
+      \uB208\uC744 \uB730 \uC218 \uC788\uC744 \uAC83\uC785\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 617
+  - key_index: 7208
+    object_type: NPC
+    npc_name: "\uAC70\uC9C0"
+    comment: ",,,\uC8FC\uB9C9\uC774 \uC18C\uB780\uC2A4\uB7EC\uC6E0\uB358 \uAC78\uB85C
+      \uAE30\uC5B5\uD574\uC694. \uC790\uC138\uD788\uB294 \uBAA8\uB974\uB2C8 \uC8FC\uB9C9\uC73C\uB85C
+      \uAC00\uBCF4\uC138\uC694."
+    isUsing_dialog_flag: 0
+    index_num: 618
+  - key_index: 7209
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uC2E0\uACBD \uC4F0\uACE0 \uC2F6\uC9C0 \uC54A\uC18C. \uC800\uB9AC \uAC00\uC2DC\uC624."
+    isUsing_dialog_flag: 0
+    index_num: 619
+  - key_index: 7210
+    object_type: NPC
+    npc_name: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+    comment: "\uC2DC\uAC04\uC774 \uBA85\uC904\uC774\uC624! \uBE68\uB9AC \uC6C0\uC9C1\uC774\uC2ED\uC2DC\uC624!!(\uD37D
+      \uACB8\uC190\uD55C \uB9D0\uC528\uB85C \uBC14\uC090 \uC77C\uD55C\uB2E4.);(\uC774\uCABD\uC740
+      \uCCD0\uB2E4\uB3C4 \uBCF4\uC9C0 \uC54A\uB294\uB2E4.);(\uBAB9\uC2DC \uBC14\uBE60
+      \uBCF4\uC778\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 620
+  - key_index: 7211
+    object_type: NPC
+    npc_name: "\uBE91\uB355 \uC5B4\uBA48"
+    comment: "\uB0A8\uB140 \uB458\uC774 \uCE5C\uD558\uBA74 \uD558\uB098 \uBC16\uC5D0
+      \uC5C6\uC9C0. \uBA85\uC57D\uAD00\uD654\uC694."
+    isUsing_dialog_flag: 0
+    index_num: 621
+  - key_index: 7212
+    object_type: NPC
+    npc_name: "\uADC0\uB355 \uC5B4\uBA48"
+    comment: "\uADF8 \uB458\uC774 \uD568\uAED8 \uC788\uB294\uAC78 \uB098\uB3C4 \uBCF4\uAE34
+      \uBD24\uC18C. \uADF8\uC800 \uCE5C\uC6B0 \uC0AC\uC774 \uC544\uB2C8\uC624?"
+    isUsing_dialog_flag: 0
+    index_num: 622
+  - key_index: 7213
+    object_type: NPC
+    npc_name: "\uD5A5\uB9AC \uB301 \uBD80\uC778"
+    comment: "\uC9C0\uAE08 \uC6B0\uB9AC \uC544\uB4E4\uC774\uB791 \uADF8 \uB301 \uB530\uB2D8\uD558\uACE0
+      \uC5EE\uB294 \uAC83\uC774\uC624?? \uC2E4\uB840\uB77C\uB294 \uC0DD\uAC01\uC740
+      \uC548\uB4DC\uC2DC\uC624?"
+    isUsing_dialog_flag: 0
+    index_num: 623
+  - key_index: 7214
+    object_type: NPC
+    npc_name: "\uC7A5\uC0AC\uAFBC"
+    comment: "\uBB50 \uC0B4 \uAC83 \uC788\uC18C?;\uC0B4 \uAC83 \uC5C6\uC73C\uBA74
+      \uC880 \uBE44\uD0A4\uC2DC\uC624! \uAC1D \uCAD3\uACA0\uB124."
+    isUsing_dialog_flag: 0
+    index_num: 624
+  - key_index: 7215
+    object_type: NPC
+    npc_name: "\uC2B9\uB824"
+    comment: "\uBD80\uCC98\uAED8 \uC9C0\uC131\uC73C\uB85C \uBD88\uACF5\uB4DC\uB9B0\uB2E4\uBA74
+      \uADFC\uC2EC\uC774 \uC5C6\uC5B4\uC9C4\uB2F5\uB2C8\uB2E4.;\uB9C8\uC74C \uAE4A\uC774
+      \uBD88\uACF5\uB4DC\uB9AC\uBA74 \uC870\uB9CC\uAC04 \uBD80\uCC98\uC758 \uB355\uC73C\uB85C
+      \uB208\uC744 \uB730 \uC218 \uC788\uC744 \uAC83\uC785\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 625
+  - key_index: 7216
+    object_type: NPC
+    npc_name: "\uAC70\uC9C0"
+    comment: "\uB458\uC774 \uCE5C\uC6B0\uBCF4\uB2E4\uB294 \uAC00\uAE4C\uC6CC \uBCF4\uC600\uC5B4\uC694."
+    isUsing_dialog_flag: 0
+    index_num: 626
+  - key_index: 7217
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uADF8 \uB458\uC774 \uCE5C\uD55C \uAC83\uACFC \uB0B4\uAC8C \uC9C8\uBB38\uC744
+      \uD558\uB294 \uAC83\uC774 \uBB34\uC2A8 \uAD00\uACC4\uAC00 \uC788\uC18C?"
+    isUsing_dialog_flag: 0
+    index_num: 627
+  - key_index: 7218
+    object_type: NPC
+    npc_name: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+    comment: "\uC2DC\uAC04\uC774 \uBA85\uC904\uC774\uC624! \uBE68\uB9AC \uC6C0\uC9C1\uC774\uC2ED\uC2DC\uC624!!(\uD37D
+      \uACB8\uC190\uD55C \uB9D0\uC528\uB85C \uBC14\uC090 \uC77C\uD55C\uB2E4.);(\uC774\uCABD\uC740
+      \uCCD0\uB2E4\uB3C4 \uBCF4\uC9C0 \uC54A\uB294\uB2E4.);(\uBAB9\uC2DC \uBC14\uBE60
+      \uBCF4\uC778\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 628
+  - key_index: 7219
+    object_type: NPC
+    npc_name: "\uBE91\uB355 \uC5B4\uBA48"
+    comment: "\uB458 \uB2E4 \uC774\uD2C0 \uC804\uC5D0 \uC0AC\uB77C\uC84C\uB2E4\uACE0\uC694?
+      \uB09C\uB9AC\uB0AC\uB124."
+    isUsing_dialog_flag: 0
+    index_num: 629
+  - key_index: 7220
+    object_type: NPC
+    npc_name: "\uADC0\uB355 \uC5B4\uBA48"
+    comment: "\uCCAD\uC774\uC640 \uD5A5\uB9AC \uB301 \uB9C9\uB0B4\uC544\uB4E4\uC774
+      \uD568\uAED8 \uC0AC\uB77C\uC84C\uB2E8 \uB9D0\uC774\uC2DC\uC624? \uB9D0\uC5D0
+      \uC5B4\uD3D0\uAC00 \uC788\uC18C. \uC5B4\uB514 \uAC00\uC11C \uADF8\uB7F0 \uC18C\uB9AC
+      \uD558\uB2E4\uAC00 \uBD09\uBCC0 \uB2F9\uD558\uAE30 \uB531 \uC88B\uACA0\uC18C.
+      \uC870\uC2EC\uD558\uC2DC\uC624."
+    isUsing_dialog_flag: 0
+    index_num: 630
+  - key_index: 7221
+    object_type: NPC
+    npc_name: "\uD5A5\uB9AC \uB301 \uBD80\uC778"
+    comment: "\uC6B0\uB9AC \uC14B\uC9F8\uB294 \uBD84\uBA85\uD788 \uD0DC\uC758\uAC10\uC73C\uB85C
+      \uAC14\uC18C. \uB610 \uD5C8\uD2BC \uC18C\uB9AC \uD558\uB2E4\uAC04 \uBE44\uBA85\uD6A1\uC0AC\uD560
+      \uC904 \uC544\uC2DC\uC624."
+    isUsing_dialog_flag: 0
+    index_num: 631
+  - key_index: 7222
+    object_type: NPC
+    npc_name: "\uC7A5\uC0AC\uAFBC"
+    comment: "\uB098\uB294 \uAD00\uC2EC \uC5C6\uC73C\uB2C8 \uC7A5\uC0AC \uBC29\uD574
+      \uB9D0\uACE0 \uC800\uB9AC \uBE44\uD0A4\uC2ED\uC1FC."
+    isUsing_dialog_flag: 0
+    index_num: 632
+  - key_index: 7223
+    object_type: NPC
+    npc_name: "\uC2B9\uB824"
+    comment: "\uBD80\uCC98\uAED8 \uC9C0\uC131\uC73C\uB85C \uBD88\uACF5\uB4DC\uB9B0\uB2E4\uBA74
+      \uADFC\uC2EC\uC774 \uC5C6\uC5B4\uC9C4\uB2F5\uB2C8\uB2E4.;\uB9C8\uC74C \uAE4A\uC774
+      \uBD88\uACF5\uB4DC\uB9AC\uBA74 \uC870\uB9CC\uAC04 \uBD80\uCC98\uC758 \uB355\uC73C\uB85C
+      \uB208\uC744 \uB730 \uC218 \uC788\uC744 \uAC83\uC785\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 633
+  - key_index: 7224
+    object_type: NPC
+    npc_name: "\uAC70\uC9C0"
+    comment: "\uC800\uB294 \uBAA8\uB974\uACA0\uC5B4\uC694."
+    isUsing_dialog_flag: 0
+    index_num: 634
+  - key_index: 7225
+    object_type: NPC
+    npc_name: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+    comment: "\uC2EC\uCCAD \uC544\uAE30\uC528\uC640 \uADF8 \uB301 \uB3C4\uB839\uC774
+      \uD568\uAED8 \uC0AC\uB77C\uC84C\uB2E4\uB294 \uB9D0\uC500\uC774\uC2ED\uB2C8\uAE4C?
+      \uC544\uB2D9\uB2C8\uB2E4. \uC2EC\uCCAD \uC544\uAC00\uC528\uB294 \uBC18\uB4DC\uC2DC
+      \uB3CC\uC544\uC62C \uAC83\uC785\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 635
+  - key_index: 7226
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uC624\uB79C\uB9CC\uC5D0 \uBC1F\uB294 \uB545\uC774\uC694. \uC26C\uACE0
+      \uC2F6\uC18C.;(\uC8FC\uB9C9\uC5D0 \uC549\uC544\uC11C \uB298\uC5B4\uC9C0\uAC8C
+      \uC26C\uACE0 \uC788\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 636
+  - key_index: 7227
+    object_type: NPC
+    npc_name: "\uBE91\uB355 \uC5B4\uBA48"
+    comment: "\uC634\uB9C8, \uC9C0\uAE08 \uBB34\uC5ED\uC774 \uC911\uB2E8 \uB418\uC5C8\uB2E4\uB294
+      \uB9D0\uC500\uC774\uC2DC\uC624? \uADF8\uB7FC \uB2F9\uBD84\uAC04 \uBE44\uB2E8\uC740
+      \uBABB \uBCF4\uACA0\uB124.."
+    isUsing_dialog_flag: 0
+    index_num: 637
+  - key_index: 7228
+    object_type: NPC
+    npc_name: "\uADC0\uB355 \uC5B4\uBA48"
+    comment: "\uC5B4\uCA50\uC9C0, \uBC43\uC0AC\uB78C\uB4E4\uC774 \uC8FC\uB9C9\uC5D0
+      \uC624\uB798 \uBA38\uBB34\uB978\uB2E4\uB354\uB2C8,,, \uADF8\uB7F0 \uC5F0\uC720\uC600\uAD6C\uB9CC.."
+    isUsing_dialog_flag: 0
+    index_num: 638
+  - key_index: 7229
+    object_type: NPC
+    npc_name: "\uD5A5\uB9AC \uB301 \uBD80\uC778"
+    comment: "\uD55C\uB3D9\uC548 \uC0AC\uC808\uC740 \uC548 \uC624\uACA0\uAD70.."
+    isUsing_dialog_flag: 0
+    index_num: 639
+  - key_index: 7230
+    object_type: NPC
+    npc_name: "\uC7A5\uC0AC\uAFBC"
+    comment: "\uBB34\uC5ED\uC774 \uC911\uB2E8 \uB41C \uC9C0\uB294 \uC5BC\uB9C8\uB418\uC9C0\uC54A\uC558\uC2B5\uC8E0.
+      \uD55C \uC0AC\uD758\uC740 \uB418\uC5C8\uB098? \uBB3C\uAC74\uC744 \uB0B4\uB9AC\uB290\uB77C
+      \uC0C1\uC778\uB4E4\uC774 \uB9C8\uC744\uC5D0 \uC790\uC8FC \uC635\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 640
+  - key_index: 7231
+    object_type: NPC
+    npc_name: "\uAC70\uC9C0"
+    comment: "\uBB34\uC2A8 \uB9D0\uC778\uC9C0 \uC798 \uBAA8\uB974\uACA0\uC5B4\uC694.."
+    isUsing_dialog_flag: 0
+    index_num: 641
+  - key_index: 7232
+    object_type: NPC
+    npc_name: "\uC2B9\uB824"
+    comment: "\uB2E4 \uBD80\uCC98\uC758 \uB73B\uC77C \uAC81\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 642
+  - key_index: 7233
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uADF8\uAC74 \uB610 \uC5B4\uB514\uC11C \uC804\uD574\uB4E4\uC740 \uAC83\uC774\uC624?
+      ..\uC54C\uACE0 \uC654\uC73C\uB2C8 \uC598\uAE30\uD574\uC918\uC57C\uACA0\uAD70. "
+    isUsing_dialog_flag: 0
+    index_num: 643
+  - key_index: 7234
+    object_type: NPC
+    npc_name: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+    comment: "\uBB34\uC5ED\uC774 \uC911\uB2E8\uB41C \uC77C\uC744 \uC5B4\uB5BB\uAC8C
+      \uC544\uC2DC\uB098\uC694? \uADF8\uB7EC\uB098 \uC870\uB9CC\uAC04 \uB2E4\uC2DC
+      \uC7AC\uAC1C\uB420 \uAC83 \uC785\uB2C8\uB2E4. \uAC71\uC815\uB9C8\uC138\uC694."
+    isUsing_dialog_flag: 0
+    index_num: 644
+  - key_index: 7235
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uB9E4\uD574 \uC774\uB9D8\uB54C, \uC1A1\uC5D0\uC11C \uC624\uAC00\uB294
+      \uBC43\uAE38\uC774 \uAC70\uC138\uC9C0\uAE30\uC5D0 \uBB34\uC5ED\uC774 \uC911\uB2E8\uB418\uC5C8\uC18C.
+      \uADF8\uB7EC\uB098 \uC1A1\uB098\uB77C \uC0AC\uB78C\uB4E4\uC774 \uBC43\uAE38\uC744
+      \uC7A0\uC7A0\uD558\uAC8C \uB9CC\uB4DC\uB294 \uBC95\uC744 \uC548\uB2E4\uB354\uAD70."
+    isUsing_dialog_flag: 0
+    index_num: 645
+  - key_index: 7236
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uADF8\uB4E4\uC774 \uC54C\uC544\uC11C \uD558\uACA0\uC9C0. \uC774\uC81C
+      \uB098\uB791\uC740 \uC0C1\uAD00\uC5C6\uB2E4\uB124."
+    isUsing_dialog_flag: 0
+    index_num: 646
+  - key_index: 7237
+    object_type: NPC
+    npc_name: "\uBE91\uB355 \uC5B4\uBA48"
+    comment: "(\uB9C8\uC74C\uC774 \uC218\uCE58\uC2A4\uB7EC\uC6CC \uC5B4\uB514\uC5D0\uB3C4
+      \uBB3C\uC5B4\uBCFC \uC218 \uC5C6\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 647
+  - key_index: 7238
+    object_type: NPC
+    npc_name: "\uADC0\uB355 \uC5B4\uBA48"
+    comment: "(\uB9C8\uC74C\uC774 \uC218\uCE58\uC2A4\uB7EC\uC6CC \uC5B4\uB514\uC5D0\uB3C4
+      \uBB3C\uC5B4\uBCFC \uC218 \uC5C6\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 648
+  - key_index: 7239
+    object_type: NPC
+    npc_name: "\uD5A5\uB9AC \uB301 \uBD80\uC778"
+    comment: "(\uB9C8\uC74C\uC774 \uC218\uCE58\uC2A4\uB7EC\uC6CC \uC5B4\uB514\uC5D0\uB3C4
+      \uBB3C\uC5B4\uBCFC \uC218 \uC5C6\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 649
+  - key_index: 7240
+    object_type: NPC
+    npc_name: "\uC7A5\uC0AC\uAFBC"
+    comment: "(\uB9C8\uC74C\uC774 \uC218\uCE58\uC2A4\uB7EC\uC6CC \uC5B4\uB514\uC5D0\uB3C4
+      \uBB3C\uC5B4\uBCFC \uC218 \uC5C6\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 650
+  - key_index: 7241
+    object_type: NPC
+    npc_name: "\uAC70\uC9C0"
+    comment: "(\uB9C8\uC74C\uC774 \uC218\uCE58\uC2A4\uB7EC\uC6CC \uC5B4\uB514\uC5D0\uB3C4
+      \uBB3C\uC5B4\uBCFC \uC218 \uC5C6\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 651
+  - key_index: 7242
+    object_type: NPC
+    npc_name: "\uC2B9\uB824"
+    comment: "(\uB9C8\uC74C\uC774 \uC218\uCE58\uC2A4\uB7EC\uC6CC \uC5B4\uB514\uC5D0\uB3C4
+      \uBB3C\uC5B4\uBCFC \uC218 \uC5C6\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 652
+  - key_index: 7243
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "(\uB9C8\uC74C\uC774 \uC218\uCE58\uC2A4\uB7EC\uC6CC \uC5B4\uB514\uC5D0\uB3C4
+      \uBB3C\uC5B4\uBCFC \uC218 \uC5C6\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 653
+  - key_index: 7244
+    object_type: NPC
+    npc_name: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+    comment: "(\uB9C8\uC74C\uC774 \uC218\uCE58\uC2A4\uB7EC\uC6CC \uC5B4\uB514\uC5D0\uB3C4
+      \uBB3C\uC5B4\uBCFC \uC218 \uC5C6\uB2E4.)"
+    isUsing_dialog_flag: 0
+    index_num: 654
+  - key_index: 7245
+    object_type: NPC
+    npc_name: "\uC7A5\uC0AC\uAFBC"
+    comment: "'\uD0DC\uD615\uC5D0 \uCC98\uD560 \uC904 \uC544\uC2DC\uC624!!'"
+    isUsing_dialog_flag: 0
+    index_num: 655
+  - key_index: 7246
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC7A5\uC0AC\uAFBC\uC774 \uC5F0\uC2E0 \uC18C\uB9AC\uCCE4\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 656
+  - key_index: 7247
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC7A5\uC0AC\uAFBC\uC5D0\uAC8C \uD314\uB69D\uC744 \uBD99\uC7A1\uD600
+      \uC788\uB294 \uC0C8\uC5D0, \uAD70\uC778\uB4E4\uC774 \uB2EC\uB824\uC640 \uB048\uC73C\uB85C
+      \uB0B4 \uBAB8\uD1B5\uC744 \uBB36\uC5C8\uACE0, \uB098\uB294 \uB04C\uB824\uAC00\uACE0
+      \uC788\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 657
+  - key_index: 7248
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "[\uC591\uC0C1\uAD70\uC790]"
+    isUsing_dialog_flag: 0
+    index_num: 658
+  - key_index: 7249
+    object_type: NPC
+    npc_name: "\uD5A5\uB9AC \uB301 \uBD80\uC778"
+    comment: "\uB0B4\uAC00 \uB2E8\uB2E8\uD788 \uACBD\uACE0 \uD588\uC9C0\uC54A\uC18C?
+      \uC790\uCD08\uD55C \uC904 \uC544\uC2DC\uC624."
+    isUsing_dialog_flag: 0
+    index_num: 659
+  - key_index: 7250
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uBD80\uC778\uC774 \uD558\uC778\uC758 \uD558\uC580 \uCC9C\uC744 \uAC77\uC5B4\uB0B4\uB354\uB2C8,
+      \uADF8 \uC18D\uC5D0\uC11C \uCE7C\uC744 \uAEBC\uB0B4\uB4E4\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 660
+  - key_index: 7251
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCE7C\uB0A0\uC5D0 \uBC18\uC0AC\uB41C \uBE5B\uC774 \uB208\uC5D0 \uB4E4\uC5B4\uC640
+      \uC9C8\uB048 \uAC10\uC740 \uCC30\uB098, \uC774\uBBF8 \uBCF5\uBD80\uC5D0 \uB530\uB4EF\uD568\uC774
+      \uD37C\uC84C\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 661
+  - key_index: 7252
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC0C1\uD669\uC744 \uD30C\uC545\uD558\uAE30\uB3C4 \uC804\uC5D0 \uB0B4
+      \uBAB8\uC740 \uC800\uD0DD \uC548\uC73C\uB85C \uB04C\uB824\uAC00\uACE0 \uC788\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 662
+  - key_index: 7253
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "[\uAD6C\uD654\uC9C0\uBB38]"
+    isUsing_dialog_flag: 0
+    index_num: 663
+  - key_index: 7254
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uAFC0\uB5A1\uAFC0\uB5A1, \uC57D\uCD08\uBB3C\uC744 \uBAA8\uC870\uB9AC
+      \uBAA9\uC73C\uB85C \uB118\uACBC\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 664
+  - key_index: 7255
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC5ED\uC2DC \uC774 \uC57D\uCD08\uAC00 \uB0B4 \uBAB8\uC5D0 \uC798 \uB9DE\uB294\uC9C0,
+      \uBAB8\uC774 \uC88B\uC544\uC9C0\uB294 \uAE30\uBD84\uC774\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 665
+  - key_index: 7256
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB728\uB048\uD568\uC5D0 \uAE30\uBD84\uB3C4 \uB098\uB978\uD574\uC9C4
+      \uCC30\uB098\uC600\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 666
+  - key_index: 7257
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uBAB8\uC774 \uACC4\uC18D \uB728\uAC70\uC6CC\uC9C0\uBA70 \uC228\uC774
+      \uC625\uC8C4\uC5B4\uC654\uACE0, \uC790\uAFB8\uB9CC \uD5DB\uAD6C\uC5ED\uC9C8\uC774
+      \uB098\uC654\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 667
+  - key_index: 7258
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB0B4 \uBAB8\uC744 \uB258\uC778 \uBC14\uB2E5\uC740 \uC774\uC820 \uC548\uB77D\uD558\uAC8C\uB9CC
+      \uB290\uAEF4\uC84C\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 668
+  - key_index: 7259
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "[\uACFC\uC720\uBD88\uAE09]"
+    isUsing_dialog_flag: 0
+    index_num: 669
+  - key_index: 7260
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uAC11\uC790\uAE30 \uB4A4\uD1B5\uC218\uC5D0 \uB454\uD0C1\uD55C \uC18C\uB9AC\uAC00
+      \uC6B8\uB838\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 670
+  - key_index: 7261
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC815\uC2E0\uC744 \uCC28\uB9AC\uB2C8 \uBAB8\uC740 \uAF41\uAF41 \uBB36\uC5EC\uC788\uC5C8\uACE0
+      \uC55E\uC740 \uBCF4\uC774\uC9C0 \uC54A\uC558\uB2E4. \uADF8\uB54C, \uB204\uAD70\uAC00\uC758
+      \uC911\uC5BC\uAC70\uB9BC\uC774 \uB4E4\uB838\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 671
+  - key_index: 7262
+    object_type: NPC
+    npc_name: ???
+    comment: "........\uC5B4\uB450\uC6B4 \uC544\uBE44 \uB208\uC744 \uBC1D\uAC8C \uB744\uC6CC
+      \uC8FC\uC635\uC18C\uC11C..."
+    isUsing_dialog_flag: 0
+    index_num: 672
+  - key_index: 7263
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCCA8\uBC99 \uC18C\uB9AC\uAC00 \uB0AC\uACE0, \uB4A4\uC774\uC5B4 \uC6C5\uC131\uC774\uB294
+      \uC18C\uB9AC\uAC00 \uADD3\uAC00\uC5D0 \uB4E4\uB824\uC654\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 673
+  - key_index: 7264
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC0DD\uC0DD\uD55C \uD749\uBABD\uC784\uC5D0 \uD2C0\uB9BC\uC5C6\uB2E4.
+      \uACE0\uC57D\uD558\uAC8C \uD48D\uAE30\uB294 \uBB3C \uBE44\uB9B0\uB0B4\uB97C
+      \uB4A4\uB85C\uD558\uBA70 \uC3DF\uC544\uC9C0\uB294 \uC7A0\uC5D0 \uBAB8\uC744
+      \uB9E1\uACBC\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 674
+  - key_index: 7265
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "[\uCDE8\uC0DD\uBABD\uC0AC]"
+    isUsing_dialog_flag: 0
+    index_num: 675
+  - key_index: 7266
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "3\uC6D4 \uBCF4\uB984\uB0A0\uC774 \uBC1D\uC558\uB2E4. \uC5B4\uCC0C \uB41C
+      \uC77C\uC778\uC9C0 \uAD81\uAE08\uD558\uC5EC \uD5A5\uB9AC \uB301\uC744 \uAC14\uC73C\uB098
+      \uBD80\uC778\uC740 \uC628\uB370\uAC04\uB370\uC5C6\uC5C8\uB2E4.."
+    isUsing_dialog_flag: 0
+    index_num: 676
+  - key_index: 7267
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB2E4\uC74C\uB0A0\uB3C4, \uB610 \uADF8 \uB2E4\uC74C\uB0A0\uC5D0\uB3C4."
+    isUsing_dialog_flag: 0
+    index_num: 677
+  - key_index: 7268
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uBD80\uC778\uC774 \uC5C6\uB294 \uD5A5\uB9AC \uB301\uC758 \uB300\uBB38\uC740
+      \uADF8\uC800 \uCC99\uBC15\uD55C \uBAA8\uC591\uC0C8\uC600\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 678
+  - key_index: 7269
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC774\uC73D\uACE0, \uB0A8\uC544\uC788\uB358 \uC1A1\uB098\uB77C \uC0C1\uC778\uB4E4\uB3C4
+      \uBAA8\uB450 \uB9C8\uC744\uC744 \uB5B4\uACE0, \uACE0\uC694\uD568 \uC18D\uC5D0\uC11C
+      \uB098\uB294 \uADF8\uC800 \uD558\uB9B4\uC5C6\uC774 \uCCAD\uC774\uB97C \uAE30\uB2E4\uB9B4
+      \uBFD0\uC774\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 679
+  - key_index: 7270
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "[\uC5F0\uACBD\uD559\uB9DD]"
+    isUsing_dialog_flag: 0
+    index_num: 680
+  - key_index: 7271
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uC774 \uC815\uB3C4 \uAC70\uB9AC\uBA74 \uC800\uCABD\uC5D0\uC11C \uBCF4\uC774\uC9C0
+      \uC54A\uC744 \uAC83\uC774\uC624."
+    isUsing_dialog_flag: 0
+    index_num: 681
+  - key_index: 7272
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uAC70\uB9AC\uB97C \uB450\uC5B4 \uC1A1 \uC0C1\uC778\uB4E4\uC758 \uBC30\uB97C
+      \uC887\uACE0 \uC788\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 682
+  - key_index: 7273
+    object_type: NPC
+    npc_name: "\uC7A5\uC9C0\uC5B8"
+    comment: "\uB3DB\uC744 \uC811\uACE0 \uB2FB\uC744 \uB0B4\uB9AC\uB294 \uAC83 \uAC19\uC2B5\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 683
+  - key_index: 7274
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uC774\uC81C \uBC30\uB97C \uBD99\uC774\uACA0\uC18C."
+    isUsing_dialog_flag: 0
+    index_num: 684
+  - key_index: 7275
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC0AC\uACF5\uACFC \uC9C0\uC5B8\uC758 \uC774\uC57C\uAE30\uB85C \uC0C1\uD669\uC744
+      \uAC00\uB2A0\uD558\uB294 \uCC30\uB098, \uBC30\uAC00 \uB2E4\uC2DC \uCD9C\uB801\uC600\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 685
+  - key_index: 7276
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCEE4\uB2E4\uB780 \uC1A1\uB098\uB77C \uC0C1\uC778\uB4E4\uC758 \uBC30\uC5D0
+      \uB531 \uBD99\uC5B4 \uC788\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 686
+  - key_index: 7277
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uBFCC\uC5F0 \uC2DC\uC57C \uB05D\uC5D0 \uAC70\uB300\uD55C \uBB34\uC5B8\uAC00\uAC00
+      \uC788\uB2E4\uB294 \uAC74 \uD655\uC2E4\uD558\uAC8C \uB290\uAEF4\uC84C\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 687
+  - key_index: 7278
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uAC70\uC13C \uB108\uC6B8\uC5D0 \uBC30\uAC00 \uC790\uAFB8\uB9CC \uD718\uCCAD\uAC70\uB838\uACE0
+      \uADF8\uBCF4\uB2E4 \uAC70\uCE5C \uBC14\uB78C\uC5D0 \uB208\uC740 \uB728\uC9C0\uB3C4
+      \uBABB\uD558\uC600\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 688
+  - key_index: 7279
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uADD3\uAC00\uB97C \uAC15\uD558\uAC8C \uB54C\uB9AC\uB294 \uBC14\uB78C
+      \uC18C\uB9AC \uC0AC\uC774\uC5D0, \uD76C\uBBF8\uD558\uAC8C \uBD81\uC18C\uB9AC\uAC00
+      \uB465\uB465\uB465 \uC6B8\uB838\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 689
+  - key_index: 7280
+    object_type: NPC
+    npc_name: "\uC1A1\uB098\uB77C \uC0C1\uC778"
+    comment: "\uC2DC\uAC01\uC774 \uAE09\uD558\uB2C8 \uC5B4\uC11C \uBC14\uC090 \uBB3C\uC5D0
+      \uB4E4\uC5B4\uAC00\uC2ED\uC2DC\uC624."
+    isUsing_dialog_flag: 0
+    index_num: 690
+  - key_index: 7281
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB4E4\uB9AC\uB294 \uC18C\uB9AC\uC5D0 \uC758\uD558\uC5EC \uCCAD\uC774\uAC00
+      \uBB3C\uC5D0 \uB4E4\uAE38 \uC8FC\uC800\uD558\uB294 \uB4EF\uC2F6\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 691
+  - key_index: 7282
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uBE44\uB098\uC774\uB2E4, \uBE44\uB098\uC774\uB2E4. \uC8FD\uB294 \uC77C\uC740
+      \uCD94\uD638\uB77C\uB3C4 \uC11C\uB7FD\uC9C0 \uC544\uB2C8\uD558\uC5EC\uB3C4,
+      \uC544\uBC84\uC9C0 \uAE4A\uC740 \uD55C\uC744 \uD480\uB824 \uC774 \uC8FD\uC74C\uC744
+      \uB2F9\uD558\uC624\uB2C8 \uBD80\uCC98\uAED8\uC11C \uAC10\uB3D9 \uD558\uC0AC
+      \uC5B4\uB450\uC6B4 \uC544\uBE44 \uB208\uC744 \uBC1D\uAC8C \uB744\uC6CC \uC8FC\uC635\uC18C\uC11C."
+    isUsing_dialog_flag: 0
+    index_num: 692
+  - key_index: 7283
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uBC30\uB97C \uC880 \uB354 \uBD99\uC774\uACA0\uC18C."
+    isUsing_dialog_flag: 0
+    index_num: 693
+  - key_index: 7284
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC0AC\uACF5\uC774 \uB098\uB8FB\uBC30\uB97C \uCCAD\uC774\uAC00 \uC788\uB294
+      \uCABD\uC73C\uB85C \uBD99\uC5EC\uAC14\uACE0, \uCCAD\uC774\uC758 \uBAA9\uC18C\uB9AC\uAC00
+      \uC810\uC810 \uD06C\uAC8C \uB4E4\uB824\uC654\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 694
+  - key_index: 7285
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uACE0\uAC1C\uB97C \uCCD0\uB4DC\uB2C8 \uCCAD\uC774\uC758 \uD754\uC801\uC774
+      \uB290\uAEF4\uC84C\uB2E4. \uB2F7\uC0C8 \uB9CC\uC5D0 \uBCF4\uB294 \uCCAD\uC774\uC758
+      \uC778\uC601\uC740 \uAD49\uC7A5\uD788 \uD640\uCB49\uD574\uC838\uC788\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 695
+  - key_index: 7286
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uAC70\uC138\uAC8C \uCE58\uB294 \uD48D\uB791 \uC704\uC5D0\uC11C \uCCAD\uC774\uC758
+      \uAE4A\uC740 \uD55C\uC228 \uC18C\uB9AC, \uCE58\uB9C8\uD3ED\uC774 \uC4F8\uB9AC\uB294
+      \uC18C\uB9AC\uAC00 \uC605\uAC8C \uB4E4\uB838\uACE0 \uCF54\uC55E\uC5D0\uC11C\uC758
+      \uD48D\uB369 \uC18C\uB9AC\uAC00 \uC815\uC2E0\uC744 \uC7A1\uC544\uBA39\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 696
+  - key_index: 7287
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uAE30\uBD84 \uB098\uC05C \uC608\uAC10\uC774 \uAD00\uC790\uB180\uC774\uC5D0
+      \uC2A4\uBA70\uB4E4\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 697
+  - key_index: 7288
+    object_type: NPC
+    npc_name: "\uC7A5\uC9C0\uC5B8"
+    comment: "\uC544\uBC84\uB2D8!!!"
+    isUsing_dialog_flag: 0
+    index_num: 698
+  - key_index: 7289
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uACE0\uBBFC\uD560 \uC0C8\uB3C4 \uC5C6\uC774 \uBC14\uB2E4\uC5D0 \uB6F0\uC5B4\uB4E4\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 699
+  - key_index: 7290
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC815\uC2E0\uC5C6\uC774 \uD314\uC744 \uD718\uC801\uC774\uB2C8 \uC190\uBAA9\uC5D0
+      \uBB34\uC5B8\uAC00 \uD718\uAC10\uACBC\uACE0, \uC788\uB294 \uD798\uC744 \uB2E4\uD574
+      \uADF8\uAC83\uC744 \uC218\uBA74 \uC704\uB85C \uB04C\uC5B4\uB2F9\uACBC\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 700
+  - key_index: 7291
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB2F9\uAE34 \uBB3C\uCCB4\uAC00 \uCCAD\uC774\uC5C8\uAE30\uB97C \uAE30\uB3C4\uD558\uBA70
+      \uB0B4 \uBAB8\uC740 \uD798\uC5C6\uC774 \uAE4A\uC740 \uACF3\uC73C\uB85C \uAC00\uB77C\uC549\uC558\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 701
+  - key_index: 7292
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "[\uBD84\uACE8\uC1C4\uC2E0]"
+    isUsing_dialog_flag: 0
+    index_num: 702
+  - key_index: 7293
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC9C0\uC5B8\uC774 \uB2E8\uB2E8\uD788 \uC77C\uB7EC\uB454 \uB300\uB85C
+      \uB098\uB8FB\uBC30 \uB044\uD2B8\uBA38\uB9AC\uC5D0\uC11C \uB5A8\uC5B4\uC9C0\uC9C0
+      \uC54A\uC558\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 703
+  - key_index: 7294
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uBC30\uC5D0 \uC788\uB358 \uB204\uAD70\uAC00\uAC00 \uBC14\uB2F7\uBB3C\uB85C
+      \uB6F0\uC5B4\uB4E4\uC5C8\uACE0 \uADF8 \uBC18\uB3D9\uC73C\uB85C \uBC30\uB294
+      \uD06C\uAC8C \uAE30\uC6B8\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 704
+  - key_index: 7295
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC9C0\uC5B8\uACFC \uB098\uB294 \uCE68\uBB35 \uC18D\uC5D0\uC11C \uC0AC\uACF5\uC744
+      \uAE30\uB2E4\uB838\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 705
+  - key_index: 7296
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC5BC\uB9C8 \uB3D9\uC548\uC758 \uC2DC\uAC04\uC774 \uD758\uB800\uC744\uAE4C,
+      \uACE7\uC774\uC5B4 \uCCAD\uC774\uAC00 \uBA3C\uC800 \uB098\uB8FB\uBC30\uC5D0
+      \uC62C\uB790\uACE0, \uC0AC\uACF5\uB3C4 \uBB34\uC0AC\uD788 \uC62C\uB790\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 706
+  - key_index: 7297
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCCAD\uC774\uAC00 \uB3CC\uC544\uC654\uB2E4\uB294 \uAC83\uC744 \uB4E3\uC790\uB9C8\uC790
+      \uB538\uC544\uC774\uB97C \uC548\uC558\uB2E4. \uAC00\uAE4C\uC774\uC11C \uBCF8
+      \uCCAD\uC774\uB294 \uD55C\uAECF \uD30C\uB9AC\uD55C \uC548\uC0C9\uC774\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 707
+  - key_index: 7298
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uC544\uBC84\uC9C0\uAC00 \uC65C \uC5EC\uAE30\uC5D0..."
+    isUsing_dialog_flag: 0
+    index_num: 708
+  - key_index: 7299
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCCAD\uC774\uAC00 \uB0B4 \uD314\uC744 \uBFCC\uB9AC\uCE58\uBA70 \uC751\uC5BC\uB314\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 709
+  - key_index: 7300
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uC544\uBC84\uC9C0\uAED8\uC120 \uC5ED\uC2DC \uC81C\uAC00 \uC5B4\uB5A4
+      \uC0DD\uAC01\uC744 \uD558\uB294\uC9C0\uB294 \uC548\uC911\uC5D0\uB3C4 \uC5C6\uC73C\uC2ED\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 710
+  - key_index: 7301
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCCAD\uC774\uB294 \uC124\uD54F \uC6C3\uC5B4 \uBCF4\uC774\uB354\uB2C8,
+      \uACF5\uD5C8\uD55C \uB208\uC73C\uB85C \uB098\uB97C \uC3D8\uC544\uBCF4\uC558\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 711
+  - key_index: 7302
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uB418\uB824 \uD3B8\uD569\uB2C8\uB2E4. \uC544\uBC84\uC9C0."
+    isUsing_dialog_flag: 0
+    index_num: 712
+  - key_index: 7303
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uB208\uC744 \uB728\uC2DC\uC5B4 \uBC1D\uC740 \uC138\uC0C1 \uBCF4\uC2DC\uACE0,
+      \uCC29\uD55C \uC0AC\uB78C \uAD6C\uD558\uC154\uC11C \uD6C4\uC0AC\uB97C \uC804\uD558\uC5EC
+      \uC624\uB798\uC624\uB798 \uD3C9\uC548\uD788 \uACC4\uC2ED\uC2DC\uC624."
+    isUsing_dialog_flag: 0
+    index_num: 713
+  - key_index: 7304
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCC98\uC74C \uBCF4\uB294 \uCCAD\uC774\uC758 \uBE44\uB9BF\uD55C \uD45C\uC815\uC5D0
+      \uBA4D\uD574\uC838\uC788\uB358 \uCC30\uB098\uC600\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 714
+  - key_index: 7305
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCCAD\uC774\uB294 \uB208\uC744 \uAC10\uACE0 \uBC14\uB2E4\uC5D0 \uB204\uC6E0\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 715
+  - key_index: 7306
+    object_type: NPC
+    npc_name: "\uC7A5\uC9C0\uC5B8"
+    comment: "\uCCAD\uC544!!"
+    isUsing_dialog_flag: 0
+    index_num: 716
+  - key_index: 7307
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uC774\uBCF4\uAC8C!!"
+    isUsing_dialog_flag: 0
+    index_num: 717
+  - key_index: 7308
+    object_type: NPC
+    npc_name: "\uC7A5\uC9C0\uC5B8"
+    comment: "\uC774\uBCF4\uC2DC\uC624, \uC0AC\uACF5 \uC591\uBC18!! \uC5B4\uB5BB\uAC8C\uB4E0
+      \uD574\uBCF4\uC2DC\uC624! \uB098\uB294 \uC218\uC601\uC744 \uBAA8\uB978\uB2E8
+      \uB9D0\uC774\uC624!!"
+    isUsing_dialog_flag: 0
+    index_num: 718
+  - key_index: 7309
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uB098\uB3C4 \uBC29\uAE08\uAE4C\uC9C0 \uBB3C\uC5D0 \uC788\uC5C8\uC18C!!
+      \uC774\uC81C \uAE30\uC6B4\uC774 \uBC14\uB2E5\uB0AC\uB2E8 \uB9D0\uC774\uC624!
+      \uC0AC\uB78C \uAD6C\uD558\uB824\uB2E4 \uB098\uB3C4 \uC8FD\uAC8C \uC0DD\uACBC\uC18C!"
+    isUsing_dialog_flag: 0
+    index_num: 719
+  - key_index: 7310
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC2B9\uAC15\uC774\uB97C \uD558\uB294 \uB458\uC758 \uC0AC\uC774\uC5D0\uC11C
+      \uB098\uB294 \uADF8\uC800 \uD5C8\uB9DD\uD560 \uBFD0\uC774\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 720
+  - key_index: 7311
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB9C8\uC74C\uB9C8\uC800 \uAE5C\uAE5C\uD574\uC84C\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 721
+  - key_index: 7312
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB9C8\uC744\uB85C \uB2E4\uC2DC \uB3CC\uC544\uAC00\uB294 \uBC43\uAE38\uC5D0
+      \uACB0\uAD6D \uD6C4\uD68C\uB9CC \uAC00\uB4DD\uD588\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 722
+  - key_index: 7313
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC5EC\uD0DC\uAECF \uB538\uC758 \uB9D8\uC744 \uC54C\uC544\uC8FC\uC9C0
+      \uBABB\uD55C \uB098 \uC790\uC2E0\uC774 \uBBF8\uC6CC, \uC0AC\uC8C4\uB97C \uBC49\uC5B4\uB0C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 723
+  - key_index: 7314
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "....\uC544\uBC84\uC9C0"
+    isUsing_dialog_flag: 0
+    index_num: 724
+  - key_index: 7315
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCCAD\uC774\uB294 \uACF5\uD5C8\uD55C \uB208\uC73C\uB85C \uB098\uB97C
+      \uC3D8\uC544\uBCF4\uC558\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 725
+  - key_index: 7316
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uC544\uBC84\uC9C0\uAED8 \uC0AC\uACFC\uB97C \uBC1B\uB294\uB2E4\uBA74
+      \uB9C8\uC74C\uC774 \uD3B8\uD574\uC9C0\uB9AC\uB77C \uBBFF\uC5B4\uC654\uB294\uB370,
+      \uC624\uD788\uB824 \uB5AB\uC2B5\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 726
+  - key_index: 7317
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uC774\uBBF8 \uB3CC\uC774\uD0AC \uC218 \uC5C6\uC774 \uBA40\uB9AC\uC654\uB098\uBD05\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 727
+  - key_index: 7318
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uB208\uC744 \uB728\uC2DC\uC5B4 \uBC1D\uC740 \uC138\uC0C1 \uBCF4\uC2DC\uACE0,
+      \uC88B\uC740 \uC0AC\uB78C \uAD6C\uD558\uC154\uC11C \uD6C4\uC0AC\uB97C \uC804\uD558\uC2DC\uACE0,
+      \uC624\uB798\uC624\uB798 \uD3C9\uC548\uD558\uC2ED\uC2DC\uC624."
+    isUsing_dialog_flag: 0
+    index_num: 728
+  - key_index: 7319
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB2E4\uC2DC \uD55C\uBC88 \uCCAD\uC774\uB97C \uC548\uC73C\uB824 \uD314\uC744
+      \uD718\uB458\uB800\uC9C0\uB9CC, \uCCAD\uC774\uB294 \uC774\uBBF8 \uBC14\uB2F7\uC18D\uC73C\uB85C
+      \uC0AC\uB77C\uC9C0\uACE0 \uB09C \uB4A4\uC600\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 729
+  - key_index: 7320
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCCAD\uC774\uB294 \uB208\uC744 \uAC10\uACE0 \uBC14\uB2E4\uC5D0 \uB204\uC6E0\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 730
+  - key_index: 7321
+    object_type: NPC
+    npc_name: "\uC7A5\uC9C0\uC5B8"
+    comment: "\uCCAD\uC544!!"
+    isUsing_dialog_flag: 0
+    index_num: 731
+  - key_index: 7322
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uC774\uBCF4\uAC8C!!"
+    isUsing_dialog_flag: 0
+    index_num: 732
+  - key_index: 7323
+    object_type: NPC
+    npc_name: "\uC7A5\uC9C0\uC5B8"
+    comment: "\uC774\uBCF4\uC2DC\uC624, \uC0AC\uACF5 \uC591\uBC18!! \uC5B4\uB5BB\uAC8C\uB4E0
+      \uD574\uBCF4\uC2DC\uC624! \uB098\uB294 \uC218\uC601\uC744 \uBAA8\uB978\uB2E8
+      \uB9D0\uC774\uC624!!"
+    isUsing_dialog_flag: 0
+    index_num: 733
+  - key_index: 7324
+    object_type: NPC
+    npc_name: "\uBC43\uC0AC\uACF5"
+    comment: "\uB098\uB3C4 \uBC29\uAE08\uAE4C\uC9C0 \uBB3C\uC5D0 \uC788\uC5C8\uC18C!!
+      \uC774\uC81C \uAE30\uC6B4\uC774 \uBC14\uB2E5\uB0AC\uB2E8 \uB9D0\uC774\uC624!
+      \uC0AC\uB78C \uAD6C\uD558\uB824\uB2E4 \uB098\uB3C4 \uC8FD\uAC8C \uC0DD\uACBC\uC18C!"
+    isUsing_dialog_flag: 0
+    index_num: 734
+  - key_index: 7325
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC2B9\uAC15\uC774\uB97C \uD558\uB294 \uB458\uC758 \uC0AC\uC774\uC5D0\uC11C
+      \uB098\uB294 \uADF8\uC800 \uD5C8\uB9DD\uD560 \uBFD0\uC774\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 735
+  - key_index: 7326
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB9C8\uC74C\uB9C8\uC800 \uAE5C\uAE5C\uD574\uC84C\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 736
+  - key_index: 7327
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB9C8\uC744\uB85C \uB2E4\uC2DC \uB3CC\uC544\uAC00\uB294 \uBC43\uAE38\uC5D0
+      \uACB0\uAD6D \uD6C4\uD68C\uB9CC \uAC00\uB4DD\uD588\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 737
+  - key_index: 7328
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB098\uB294 \uC544\uBB34 \uB9D0\uB3C4 \uD560 \uC218 \uC5C6\uC5B4 \uCE68\uBB35\uC744
+      \uC9C0\uCF30\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 738
+  - key_index: 7329
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uC65C \uC544\uBB34 \uB9D0\uC500\uB3C4 \uC5C6\uC73C\uC2E0\uC9C0\uC694."
+    isUsing_dialog_flag: 0
+    index_num: 739
+  - key_index: 7330
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB054\uBC85\uB054\uBC85\uD558\uBA70 \uCCAD\uC774\uB294 \uB098\uB97C
+      \uBC14\uB77C\uBCF4\uC558\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 740
+  - key_index: 7331
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCCAD\uC774\uC758 \uBAA8\uB4E0 \uD589\uB3D9\uC5D0, \uC774\uC720\uAC00
+      \uC788\uC5C8\uC744 \uD14C\uACE0."
+    isUsing_dialog_flag: 0
+    index_num: 741
+  - key_index: 7332
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCCAD\uC774\uB97C \uADF8\uB807\uAC8C \uBAB0\uC544\uB123\uC740 \uAC74
+      \uBC14\uB85C \uB098 \uC790\uC2E0\uC77C \uD14C\uB2C8."
+    isUsing_dialog_flag: 0
+    index_num: 742
+  - key_index: 7333
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC785\uC774 \uB5A8\uC5B4\uC9C0\uC9C0 \uC54A\uC558\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 743
+  - key_index: 7334
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uB9D0\uB3C4 \uC783\uC73C\uC168\uC2B5\uB2C8\uAE4C? \uBB34\uC2A8 \uB9D0\uC774\uB77C\uB3C4
+      \uD574\uBCF4\uC2ED\uC2DC\uC624, \uC544\uBC84\uC9C0!!"
+    isUsing_dialog_flag: 0
+    index_num: 744
+  - key_index: 7335
+    object_type: NPC
+    npc_name: "\uC7A5\uC9C0\uC5B8"
+    comment: "\uCCAD\uC544. \uC9C4\uC815\uD558\uAC70\uB77C."
+    isUsing_dialog_flag: 0
+    index_num: 745
+  - key_index: 7336
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB0A0 \uBD99\uC7A1\uACE0 \uD754\uB4DC\uB294 \uCCAD\uC774\uB97C \uC9C0\uC5B8\uC774
+      \uB9C9\uC544\uC130\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 746
+  - key_index: 7337
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC9C0\uC5B8\uC774 \uCCAD\uC774\uC758 \uC591\uC5B4\uAE68\uB97C \uAF2C\uC625
+      \uAC10\uC2F8 \uC548\uC73C\uB2C8, \uCCAD\uC774\uB294 \uC810\uCC28 \uC9C4\uC815\uD558\uC600\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 747
+  - key_index: 7338
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCCAD\uC774\uB294 \uAE34\uC7A5\uC774 \uD480\uB9AC\uC790\uB9C8\uC790
+      \uBC14\uB2E4\uC5D0 \uBA87 \uBC88\uC774\uACE0 \uC18D\uC744 \uAC8C\uC6CC\uB0C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 748
+  - key_index: 7339
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB2EC\uBC24\uC774 \uC9C0\uB098 \uC0C8\uBCBD\uC774 \uC624\uB294 \uD558\uB298\uB9CC
+      \uBC14\uB77C\uBCF4\uB2E4 \uCCAD\uC774\uAC00 \uC785\uC744 \uC5F4\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 749
+  - key_index: 7340
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uCC98\uC74C\uC5D4 \uB2E4\uB978 \uC9D1 \uADDC\uC218\uB4E4\uACFC\uB294
+      \uB2EC\uB9AC \uD749\uD55C \uC190\uC774 \uBBF8\uC6E0\uC2B5\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 750
+  - key_index: 7341
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uC88B\uC740 \uC74C\uC2DD, \uBB3C\uAC74\uC744 \uBD10\uB3C4 \uC148\uC774
+      \uBA3C\uC800\uC778 \uC81C \uBA38\uB9AC\uAC00 \uC2EB\uC5C8\uC2B5\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 751
+  - key_index: 7342
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uADF8\uC800 \uC138\uC0C1\uBAA8\uB974\uAC8C \uC77C\uB9CC \uD558\uB294
+      \uC81C \uC790\uC2E0\uC774 \uC2EB\uC5C8\uC2B5\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 752
+  - key_index: 7343
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uADF8\uB7EC\uB2E4 \uC5B4\uB290\uC0C8, \uC81C\uAC00 \uC2EB\uC5B4\uC9C4
+      \uB9CC\uD07C \uC544\uBC84\uC9C0\uAC00 \uC6D0\uB9DD\uC2A4\uB7EC\uC6E0\uC2B5\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 753
+  - key_index: 7344
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uB3C4\uD654\uCD0C\uC5D0 \uB3CC\uC544\uAC00\uBA74.. \uC9C0\uC5B8\uACFC
+      \uD568\uAED8 \uB5A0\uB0A0 \uC791\uC815\uC785\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 754
+  - key_index: 7345
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uC5B4\uB290 \uB0A0, \uAE68\uB057\uD55C \uB9C8\uC74C\uC774 \uB4E4 \uB54C.
+      \uADF8\uB54C \uBD48\uB7EC \uC624\uACA0\uC2B5\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 755
+  - key_index: 7346
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uADF8\uB798\uB3C4 \uC774\uC81C\uAECF \uD0A4\uC6CC\uC8FC\uC2E0 \uC740\uD61C
+      \uB355\uC5D0 \uC5F4\uC2EC\uD788 \uC77C\uD560 \uC218 \uC788\uC5C8\uC2B5\uB2C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 756
+  - key_index: 7347
+    object_type: NPC
+    npc_name: "\uC2EC\uCCAD"
+    comment: "\uAC10\uC0AC\uD569\uB2C8\uB2E4. \uC544\uBC84\uC9C0."
+    isUsing_dialog_flag: 0
+    index_num: 757
+  - key_index: 7348
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uBAA8\uB450\uAC00 \uC774\uC57C\uAE30\uB97C \uC7A0\uC790\uCF54 \uB4E3\uACE0
+      \uC788\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 758
+  - key_index: 7349
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uCD08\uC5F0\uD55C \uCCAD\uC774\uC758 \uD45C\uC815\uC5D0, \uB098\uB294
+      \uADF8\uC800 \uACE0\uAC1C\uB97C \uB044\uB355\uC77C \uC218\uBC16\uC5D0 \uC5C6\uC5C8\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 759
+  - key_index: 7350
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB3C4\uD654\uCD0C\uC73C\uB85C \uB3CC\uC544\uC628 \uB4A4, \uCCAD\uC774\uC640
+      \uC9C0\uC5B8\uC740 \uB3C4\uD654\uCD0C\uC744 \uB5A0\uB0AC\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 760
+  - key_index: 7351
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uC790\uC758\uC600\uB4E0, \uD0C0\uC758\uC600\uB4E0. \uBD80\uBAA8 \uADF8\uB298\uC5D0
+      \uB208\uC774 \uAC00\uB824\uC84C\uB358 \uC9C0\uB09C\uB0A0\uC774 \uD37D \uC544\uC26C\uC6CC
+      \uBCF4\uC600\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 761
+  - key_index: 7352
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uBA87 \uB2EC\uC774 \uC9C0\uB098\uACE0, \uADC0\uB355 \uC5B4\uBA48\uC774
+      \uC774\uB974\uAE30\uB97C \uC1A1\uB098\uB77C \uC0C1\uC778\uB4E4\uC774 \uC0BC\uC6D4
+      \uD48D\uB791\uC5D0 \uB3CC\uC544\uC624\uC9C0 \uBABB\uD588\uB2E4\uACE0 \uD55C\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 762
+  - key_index: 7353
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB300\uC2E0 \uBCF4\uBD80\uC0C1\uB4E4\uC774 \uC7A5\uD130 \uC790\uB9AC\uB97C
+      \uAFF0\uCC3C\uACE0 \uC774\uC804\uBCF4\uB2E4 \uB354 \uD65C\uAE30\uCC28\uC84C\uB2E4."
+    isUsing_dialog_flag: 0
+    index_num: 763
+  - key_index: 7354
+    object_type: NPC
+    npc_name: "\uC2EC\uD559\uADDC"
+    comment: "\uB2E8\uC11C\uC5D0 \uB300\uD574 \uD5A5\uB9AC \uB301 \uBD80\uC778\uACFC
+      \uB300\uD654\uB97C \uD574\uBCF4\uC790."
+    isUsing_dialog_flag: 0
+    index_num: 764
