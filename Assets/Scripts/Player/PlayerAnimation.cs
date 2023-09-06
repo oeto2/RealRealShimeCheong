@@ -27,7 +27,6 @@ public class PlayerAnimation : MonoBehaviour
         //Player가 이동중인지 확인하는 조건
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
-            Debug.Log("Player 이동중");
             isMove = true;
         }
 

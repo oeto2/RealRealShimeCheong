@@ -26,7 +26,7 @@ public class BoxAction : MonoBehaviour
     private void Update()
     {
         //TurnOnLights 이벤트 이후만 동작하게 설정
-        if(tutorialManagerScr.events != Events.TurnOnLights)
+        if(tutorialManagerScr.events != TutorialEvents.TurnOnLights)
         {
             //상자와 접촉후 Z키를 눌렀을 경우
             if (isTouch && Input.GetKeyDown(KeyCode.Z) && isFirst && !objCtrlScr.getMap)

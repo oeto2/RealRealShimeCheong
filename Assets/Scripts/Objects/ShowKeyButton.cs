@@ -27,7 +27,7 @@ public class ShowKeyButton : MonoBehaviour
         else
         {
             //튜토리얼 0번 이벤트 이후 보여주기
-            if (collision.CompareTag("Player") && tutorialManagerScr.events != Events.TurnOnLights)
+            if (collision.CompareTag("Player") && tutorialManagerScr.events != TutorialEvents.TurnOnLights)
             {
                 gameObject_Keybutton.SetActive(true);
 
@@ -50,7 +50,7 @@ public class ShowKeyButton : MonoBehaviour
         else
         {
             //튜토리얼 0번 이벤트 이후 보여주기
-            if (collision.CompareTag("Player") && tutorialManagerScr.events != Events.TurnOnLights)
+            if (collision.CompareTag("Player") && tutorialManagerScr.events != TutorialEvents.TurnOnLights)
             {
                 gameObject_Keybutton.SetActive(false);
 

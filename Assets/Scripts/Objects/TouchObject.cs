@@ -17,7 +17,7 @@ public class TouchObject : MonoBehaviour
     //마우스 접촉시
     private void OnMouseEnter()
     {
-        if (tutorialManagerScr.events != Events.TurnOnLights)
+        if (tutorialManagerScr.events != TutorialEvents.TurnOnLights)
         {
             spriteRen_targetObject.color = color32_touch;
         }
@@ -26,7 +26,7 @@ public class TouchObject : MonoBehaviour
     //마우스 벗어난뒤
     private void OnMouseExit()
     {
-        if (tutorialManagerScr.events != Events.TurnOnLights)
+        if (tutorialManagerScr.events != TutorialEvents.TurnOnLights)
         {
             spriteRen_targetObject.color = new Color32(255, 255, 255, 255);
         }

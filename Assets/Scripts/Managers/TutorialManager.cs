@@ -51,7 +51,7 @@ public class TutorialLoadData
 }
 
 //Event
-public enum Events
+public enum TutorialEvents
 {
     TurnOnLights = 0,
     GetItems = 1,
@@ -141,7 +141,7 @@ public class TutorialManager : MonoBehaviour
     private string saveFilePath;
 
     //튜토리얼 이벤트
-    public Events events = Events.TurnOnLights;
+    public TutorialEvents events = TutorialEvents.TurnOnLights;
 
     //튜토리얼 이벤트 번호
     public int tutorialEventNum = 0;
@@ -192,7 +192,7 @@ public class TutorialManager : MonoBehaviour
 
             //Evnet 0 : 불을 키자
             //불이 켜졌을경우
-            if (turnOnLightScr.isTrunOnLight && !showNote && events == Events.TurnOnLights)
+            if (turnOnLightScr.isTrunOnLight && !showNote && events == TutorialEvents.TurnOnLights)
             {
                 Debug.Log("실행");
                 //1초뒤에 메모 등작
@@ -238,7 +238,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //2번째 대화가 끝나고 Z키 누르면 다이얼로그창 끄기
-        if (setence1End && Input.GetKeyDown(KeyCode.Z) && !objCtrlScr.getBotzime && !objCtrlScr.getMap && playerDialogueScr.isTalkEnd && events == Events.TurnOnLights)
+        if (setence1End && Input.GetKeyDown(KeyCode.Z) && !objCtrlScr.getBotzime && !objCtrlScr.getMap && playerDialogueScr.isTalkEnd && events == TutorialEvents.TurnOnLights)
         {
             //단서 획득
             objectManagerScr.GetClue(2000);
@@ -254,7 +254,7 @@ public class TutorialManager : MonoBehaviour
 
             //다음 이벤트
             tutorialEventNum = 1;
-            events = Events.GetItems;
+            events = TutorialEvents.GetItems;
         }
         #endregion
 
@@ -294,7 +294,7 @@ public class TutorialManager : MonoBehaviour
         }
         #endregion
 
-        if (setence1End && getObjects && Input.GetKeyDown(KeyCode.Z) && playerDialogueScr.isTalkEnd && events == Events.GetItems)
+        if (setence1End && getObjects && Input.GetKeyDown(KeyCode.Z) && playerDialogueScr.isTalkEnd && events == TutorialEvents.GetItems)
         {
             //Player 이동제한 해제
             playerCtrlScr.TalkEnd();
@@ -303,7 +303,7 @@ public class TutorialManager : MonoBehaviour
 
             //다음 이벤트
             tutorialEventNum = 2;
-            events = Events.TalkToBBangDuck;
+            events = TutorialEvents.TalkToBBangDuck;
         }
 
         //Evnet 2 : 뺑떡 어멈과 대화하자
@@ -320,7 +320,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //문장이 전부 출력이 되었다면 Z키를 눌러 다이얼로그 끄기
-        if (playerDialogueScr.isTalkEnd && Input.GetKeyDown(KeyCode.Z) && BangtalkEnd && !SentenceEnd_Hyang && events == Events.TalkToBBangDuck)
+        if (playerDialogueScr.isTalkEnd && Input.GetKeyDown(KeyCode.Z) && BangtalkEnd && !SentenceEnd_Hyang && events == TutorialEvents.TalkToBBangDuck)
         {
             playerCtrlScr.TalkEnd();
 
@@ -328,7 +328,7 @@ public class TutorialManager : MonoBehaviour
 
             //다음 이벤트
             tutorialEventNum = 3;
-            events = Events.TalkToHyang;
+            events = TutorialEvents.TalkToHyang;
         }
 
         //Evnet 3 : 향리댁과 대화하자
@@ -364,7 +364,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //3번대화가 모두 끝나고 Z 키를 누를경우
-        if (playerDialogueScr.isTalkEnd && HyangTalkEnd1 && HyangTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && !SentenceEnd_HyangShim && events == Events.TalkToHyang)
+        if (playerDialogueScr.isTalkEnd && HyangTalkEnd1 && HyangTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && !SentenceEnd_HyangShim && events == TutorialEvents.TalkToHyang)
         {
             //대화 끝
             playerCtrlScr.TalkEnd();
@@ -385,7 +385,7 @@ public class TutorialManager : MonoBehaviour
 
             //다음 이벤트
             tutorialEventNum = 4;
-            events = Events.PassOneDay;
+            events = TutorialEvents.PassOneDay;
         }
 
         //Evnet 4 : 하루를 보내자
@@ -417,7 +417,7 @@ public class TutorialManager : MonoBehaviour
             PassDayTalkEnd3 = true;
         }
 
-        if (playerDialogueScr.isTalkEnd && PassDayTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && passDay && events == Events.PassOneDay)
+        if (playerDialogueScr.isTalkEnd && PassDayTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && passDay && events == TutorialEvents.PassOneDay)
         {
             Debug.Log("튜토리얼 끝");
             //대화 끝
@@ -434,7 +434,7 @@ public class TutorialManager : MonoBehaviour
 
             //다음 이벤트
             tutorialEventNum = 5;
-            events = Events.Done;
+            events = TutorialEvents.Done;
         }
     }
 
@@ -538,22 +538,22 @@ public class TutorialManager : MonoBehaviour
         switch (tutorialEventNum)
         {
             case 0:
-                events = Events.TurnOnLights;
+                events = TutorialEvents.TurnOnLights;
                 break;
             case 1:
-                events = Events.GetItems;
+                events = TutorialEvents.GetItems;
                 break;
             case 2:
-                events = Events.TalkToBBangDuck;
+                events = TutorialEvents.TalkToBBangDuck;
                 break;
             case 3:
-                events = Events.TalkToHyang;
+                events = TutorialEvents.TalkToHyang;
                 break;
             case 4:
-                events = Events.PassOneDay;
+                events = TutorialEvents.PassOneDay;
                 break;
             case 5:
-                events = Events.Done;
+                events = TutorialEvents.Done;
                 break;
         }
     }
@@ -564,7 +564,7 @@ public class TutorialManager : MonoBehaviour
         switch (events)
         {
             //이벤트 0 : 불을 켜라
-            case Events.TurnOnLights:
+            case TutorialEvents.TurnOnLights:
                 {
                     //Flag 설정
                     showNote = false;
@@ -606,7 +606,7 @@ public class TutorialManager : MonoBehaviour
                 }
 
             //이벤트 1 : 아이템을 획득해라
-            case Events.GetItems:
+            case TutorialEvents.GetItems:
                 {
                     //Flag 설정
                     showNote = true;
@@ -680,7 +680,7 @@ public class TutorialManager : MonoBehaviour
                 }
 
             //이벤트 2 : 뺑떡과 대화
-            case Events.TalkToBBangDuck:
+            case TutorialEvents.TalkToBBangDuck:
                 {
                     //Flag 설정
                     showNote = true;
@@ -731,7 +731,7 @@ public class TutorialManager : MonoBehaviour
                 }
 
             //이벤트 3 : 향리댁과 대화
-            case Events.TalkToHyang:
+            case TutorialEvents.TalkToHyang:
                 {
                     //Flag 설정
                     showNote = true;
@@ -782,7 +782,7 @@ public class TutorialManager : MonoBehaviour
                 }
 
             //이벤트 4 : 하루를 보내자
-            case Events.PassOneDay:
+            case TutorialEvents.PassOneDay:
                 {
                     //Flag 설정
                     showNote = true;
@@ -835,7 +835,7 @@ public class TutorialManager : MonoBehaviour
                 }
 
             //이벤트 5 : 이벤트 끝
-            case Events.Done:
+            case TutorialEvents.Done:
                 {
                     //Flag 설정
                     showNote = true;

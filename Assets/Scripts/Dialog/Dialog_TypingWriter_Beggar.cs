@@ -76,8 +76,8 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
                 images_NPC.SetActive(true);
                 StartCoroutine(TextPractice());
                 Trigger_NPC.instance.isNPCTrigger = true;
-                //초상화 변경
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+                ////초상화 변경
+                //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
                 //bool_isNPC = true;
             }
 
@@ -281,6 +281,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         }
         else
         {
+            Debug.Log("거지 초상화 변경");
             //초상화 변경
             GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
         }
@@ -349,6 +350,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         //2000 : 승상댁의 수양딸
         if (ObjectManager.instance.GetEquipObjectKey() == 2000)
         {
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[532].npc_name, npcDatabaseScr.NPC_01[532].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[14].npc_name, npcDatabaseScr.NPC_01[14].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[17].npc_name, npcDatabaseScr.NPC_01[17].comment));
         }

@@ -40,7 +40,7 @@ public class TurnOnLight : MonoBehaviour
         }
 
         //등잔불이 켜진상태로 Z키를 눌렀을 경우
-        if (isTouch && lightObject.activeSelf && Input.GetKeyDown(KeyCode.Z) && isLightsOn && tutorialManagerScr.events != Events.TurnOnLights)
+        if (isTouch && lightObject.activeSelf && Input.GetKeyDown(KeyCode.Z) && isLightsOn && tutorialManagerScr.events != TutorialEvents.TurnOnLights)
         {
             Debug.Log("불끄기");
             lightObject.SetActive(false);
