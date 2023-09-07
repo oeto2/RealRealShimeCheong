@@ -18,6 +18,7 @@ public class GetItem : MonoBehaviour
 
     private void Update()
     {
+        //아이템은 봇짐을 얻은 이후에만 획득할 수 있음
         if(ObjectControll.instance.getBotzime)
         {
             //오브젝트와 접촉후 Z키를 눌러 해당 Key값에 아이템을 획득할 수 있다.

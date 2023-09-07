@@ -18,9 +18,10 @@ public enum Events
 {
     JoomuckBab,
     binyeo,
-    flwoer,
+    flower,
     muck,
-    boridduck
+    boridduck,
+    Lenght
 }
 
 
@@ -31,6 +32,9 @@ public class EventManager : MonoBehaviour
 
     //이벤트 체크
     public EventCheck eventCheck;
+
+    //이벤트 리스트
+    public List<EventCheck> eventList;
 
     private void Awake()
     {
@@ -50,6 +54,72 @@ public class EventManager : MonoBehaviour
         #endregion
     }
 
+
+    //이벤트가 활성화 중인지 확인후 bool 값을 리턴해주는 메서드
+    public bool GetEventBool(Events _eventName)
+    {
+        //반환해줄 리턴값
+        bool retrunValue = false;
+
+        switch(_eventName)
+        {
+            case Events.binyeo:
+                if(eventCheck.binyeo == true)
+                {
+                    retrunValue = true;
+                    break;
+                }
+                else
+                {
+                    retrunValue = false;
+                    break;
+                }
+
+            case Events.boridduck:
+                if (eventCheck.boridduck == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            case Events.flower:
+                if (eventCheck.flower == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            case Events.JoomuckBab:
+                if (eventCheck.joomackBab == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            case Events.muck:
+                if (eventCheck.muck == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+        }
+
+        return retrunValue;
+    }
+
+
     //이벤트 활성화 메서드
     public void EventActive(Events _eventName)
     {
@@ -66,7 +136,7 @@ public class EventManager : MonoBehaviour
                 break;
 
             //꽃 이벤트 활성화
-            case Events.flwoer:
+            case Events.flower:
                 eventCheck.flower = true;
                 break;
             

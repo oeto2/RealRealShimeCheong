@@ -350,6 +350,10 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         //2000 : ½Â»ó´ìÀÇ ¼ö¾çµþ
         if (ObjectManager.instance.GetEquipObjectKey() == 2000)
         {
+            //ÁÖ¸Ô¹ä ÀÌº¥Æ® È°¼ºÈ­
+            EventManager.instance.EventActive(Events.JoomuckBab);
+
+            //´ëÈ­ ÁøÇà
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[532].npc_name, npcDatabaseScr.NPC_01[532].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[14].npc_name, npcDatabaseScr.NPC_01[14].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[17].npc_name, npcDatabaseScr.NPC_01[17].comment));
