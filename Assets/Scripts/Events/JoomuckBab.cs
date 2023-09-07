@@ -14,10 +14,11 @@ public class JoomuckBab : MonoBehaviour
             //주먹밥 이벤트가 활성화 중이라면
             if(EventManager.instance.GetEventBool(Events.JoomuckBab))
             {
-                
+                //아궁이에 장작을 넣었다
+                DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(519), true);
             }
         }
-    }
+    }   
 
     //오브젝트 접촉시
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,5 +34,4 @@ public class JoomuckBab : MonoBehaviour
     {
         isTouch = false;
     }
-
 }

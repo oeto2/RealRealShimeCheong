@@ -5565,6 +5565,7 @@ MonoBehaviour:
     flower: 0
     muck: 0
     boridduck: 0
+  eventList: []
 --- !u!1 &226251995
 GameObject:
   m_ObjectHideFlags: 0
@@ -15979,6 +15980,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586240110}
   m_CullTransparentMesh: 1
+--- !u!114 &589999028 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6938847884951112620, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+  m_PrefabInstance: {fileID: 6938847883954847401}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &593379673
 GameObject:
   m_ObjectHideFlags: 0
@@ -17494,6 +17506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb10ecd72ef57fb47936a75c21cf58a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTouch: 0
 --- !u!1 &638634634
 GameObject:
   m_ObjectHideFlags: 0
@@ -30618,6 +30631,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836fb5131df966b4e9230bc3577506bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  Dialouge_System: {fileID: 1486878665}
+  ChatText: {fileID: 2081460924}
+  System_Portrait: {fileID: 589999028}
+  sprites:
+  - {fileID: 21300000, guid: 9670a3acca94eac45b3470c6b6e1ea35, type: 3}
+  writerText: 
 --- !u!4 &1092642525
 Transform:
   m_ObjectHideFlags: 0
@@ -63104,6 +63124,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6938847885188490016, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885765766160, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6938847885765766165, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
