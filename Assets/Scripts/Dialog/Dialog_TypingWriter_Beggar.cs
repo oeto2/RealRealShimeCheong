@@ -355,6 +355,8 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
 
             //대화 진행
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[532].npc_name, npcDatabaseScr.NPC_01[532].comment, true));
+            //청이의 행방 단서 획득
+            ObjectManager.instance.GetClue(2002);
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[14].npc_name, npcDatabaseScr.NPC_01[14].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[17].npc_name, npcDatabaseScr.NPC_01[17].comment));
         }

@@ -724,25 +724,32 @@ public class ObjectManager : MonoBehaviour
         //해당 Key를 가진 오브젝트가 존재하는 경우
         if (myItemList.Find(x => x.key == _key) != null)
         {
-            Debug.Log($"{_key}번 아이템 획득");
-            curItemList.Add(myItemList.Find(x => x.key == _key));
-            curItemList2.Add(myItemList.Find(x => x.key == _key));
-            TabClick(curType);
-            TabClick2(curType);
+            Item GetItem = myItemList.Find(x => x.key == _key);
+            Item CheckItem = curItemList.Find(x => x.key == _key);
 
-            Item GetItem = curItemList.Find(x => x.key == _key);
-
-            //봇짐을 획득한 상태라면
-            if(ObjectControll.instance.getBotzime)
+            //해당 아이템을 보유중이지 않다면
+            if(CheckItem == null)
             {
-                Debug.Log("토스트메세지 실행");
-                //토스트 메세지 실행
-                toastMessageScr.ToastMessageStart();
+                Debug.Log($"{_key}번 아이템 획득");
+                curItemList.Add(myItemList.Find(x => x.key == _key));
+                curItemList2.Add(myItemList.Find(x => x.key == _key));
+                TabClick(curType);
+                TabClick2(curType);
 
-                //토스트 메세지 정보값 넘겨주기
-                toastMessageScr.ToastMessageInfo_Chage($"{GetItem.name} 획득", itemSprite[GetItem.indexNum], GetItem.name);
+
+                //봇짐을 획득한 상태라면
+                if (ObjectControll.instance.getBotzime)
+                {
+                    Debug.Log("토스트메세지 실행");
+                    //토스트 메세지 실행
+                    toastMessageScr.ToastMessageStart();
+
+                    //토스트 메세지 정보값 넘겨주기
+                    toastMessageScr.ToastMessageInfo_Chage($"{GetItem.name} 획득", itemSprite[GetItem.indexNum], GetItem.name);
+                }
             }
         }
+            
     }
 
     //Key를 통해서 아이템 삭제
@@ -775,20 +782,26 @@ public class ObjectManager : MonoBehaviour
         //해당 Key를 가진 단서가 존재하는 경우
         if (myClueList.Find(x => x.key == _key) != null)
         {
-            curClueList.Add(myClueList.Find(x => x.key == _key));
-            curClueList2.Add(myClueList.Find(x => x.key == _key));
-            TabClick(curType);
-            TabClick2(curType);
+            Clue GetClue = myClueList.Find(x => x.key == _key);
+            Clue CheckClue = curClueList.Find(x => x.key == _key);
 
+            //만약 해당 단서를 보유중이지 않다면
+            if (CheckClue == null)
+            {
+                curClueList.Add(myClueList.Find(x => x.key == _key));
+                curClueList2.Add(myClueList.Find(x => x.key == _key));
+                TabClick(curType);
+                TabClick2(curType);
 
-            Clue GetClue = curClueList.Find(x => x.key == _key);
-            isGetClue = true;
+                isGetClue = true;
 
-            //토스트 메세지 실행
-            toastMessageScr.ToastMessageStart();
+                //토스트 메세지 실행
+                toastMessageScr.ToastMessageStart();
 
-            //토스트 메세지 정보값 넘겨주기
-            toastMessageScr.ToastMessageInfo_Chage($"{GetClue.name} 획득", clueSprite[GetClue.indexNum], GetClue.name);
+                //토스트 메세지 정보값 넘겨주기
+                toastMessageScr.ToastMessageInfo_Chage($"{GetClue.name} 획득", clueSprite[GetClue.indexNum], GetClue.name);
+            }
+          
         }
     }
 
@@ -863,8 +876,6 @@ public class ObjectManager : MonoBehaviour
             //슬롯 2의 Sprite를 원래 이미지로 변경
             image_CombineSlot2.sprite = sprite_Slot;
         }
-
-
     }
 
     //조합 버튼을 눌렀을 경우
