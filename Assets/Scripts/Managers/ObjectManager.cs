@@ -749,10 +749,11 @@ public class ObjectManager : MonoBehaviour
     public void RemoveItem(int _key)
     {
         //해당 Key를 가진 오브젝트가 존재하는 경우
-        if (myItemList.Find(x => x.key == _key) != null)
+        if (curItemList.Find(x => x.key == _key) != null)
         {
-            curItemList.Remove(myItemList.Find(x => x.key == _key));
-            curItemList2.Remove(myItemList.Find(x => x.key == _key));
+            Debug.Log($"{_key} 아이템 삭제");
+            curItemList.Remove(curItemList.Find(x => x.key == _key));
+            curItemList2.Remove(curItemList2.Find(x => x.key == _key));
             TabClick(curType);
             TabClick2(curType);
         }
@@ -785,10 +786,10 @@ public class ObjectManager : MonoBehaviour
     public void RemoveClue(int _key)
     {
         //해당 Key를 가진 단서가 존재하는 경우
-        if (myClueList.Find(x => x.key == _key) != null)
+        if (curClueList.Find(x => x.key == _key) != null)
         {
-            curClueList.Remove(myClueList.Find(x => x.key == _key));
-            curClueList2.Remove(myClueList.Find(x => x.key == _key));
+            curClueList.Remove(curClueList.Find(x => x.key == _key));
+            curClueList2.Remove(curClueList2.Find(x => x.key == _key));
             TabClick(curType);
             TabClick2(curType);
         }
