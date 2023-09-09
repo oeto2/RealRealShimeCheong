@@ -751,11 +751,21 @@ public class ObjectManager : MonoBehaviour
         //해당 Key를 가진 오브젝트가 존재하는 경우
         if (curItemList.Find(x => x.key == _key) != null)
         {
+            //제거할 아이템
+            Item Item = curItemList.Find(x => x.key == _key);
+
             Debug.Log($"{_key} 아이템 삭제");
             curItemList.Remove(curItemList.Find(x => x.key == _key));
             curItemList2.Remove(curItemList2.Find(x => x.key == _key));
             TabClick(curType);
             TabClick2(curType);
+
+            //장착중인 아이템을 제거했을경우
+            if(equitObjectSprite.sprite == itemSprite[Item.indexNum])
+            {
+                //장착중인 아이템 이미지 비우기
+                equitObjectSprite.sprite = sprite_NoneImage;
+            }
         }
     }
 
@@ -788,10 +798,20 @@ public class ObjectManager : MonoBehaviour
         //해당 Key를 가진 단서가 존재하는 경우
         if (curClueList.Find(x => x.key == _key) != null)
         {
+            //제거할 단서
+            Clue clue = curClueList.Find(x => x.key == _key);
+
             curClueList.Remove(curClueList.Find(x => x.key == _key));
             curClueList2.Remove(curClueList2.Find(x => x.key == _key));
             TabClick(curType);
             TabClick2(curType);
+
+            //제거할 단서를 장착중일 경우
+            if(equitObjectSprite.sprite == clueSprite[clue.indexNum])
+            {
+                //장착중인 단서 이미지 제거
+                equitObjectSprite.sprite = sprite_NoneImage;
+            }
         }
     }
 

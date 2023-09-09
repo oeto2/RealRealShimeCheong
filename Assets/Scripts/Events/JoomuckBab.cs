@@ -22,11 +22,23 @@ public class JoomuckBab : MonoBehaviour
             {
                 //아궁이에 장작을 넣었다
                 DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(519), true);
+                
                 //장작 오브젝트 활성화
                 gameObject_JangJack.SetActive(true);
+
                 //장작 아이템 제거
                 objectManagerScr.RemoveItem(1001);
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            objectManagerScr.GetClue(2001);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            objectManagerScr.RemoveClue(2001);
         }
     }   
 
