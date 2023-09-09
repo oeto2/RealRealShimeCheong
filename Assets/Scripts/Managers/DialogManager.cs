@@ -162,4 +162,21 @@ public class DialogManager : MonoBehaviour
             StartCoroutine(SystemMessage(_narration, _exit));
         }
     }
+
+    //시스템 메세지가 끝나면 true, 아니면 false 반환)
+    public bool IsSystemMessageEnd()
+    {
+        //다이얼로그 창이 종료 되었다면
+        if(Dialouge_System.activeSelf == false)
+        {
+            return true;
+        }
+
+        //아니면
+        else
+        {
+            return false;
+        }
+    }
+
 }

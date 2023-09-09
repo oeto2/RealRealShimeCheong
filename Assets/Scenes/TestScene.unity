@@ -10803,7 +10803,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: a8c3356719873684fba77cf9bd748935, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7c9c043678122e94887af9d1b3c81fab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -17581,6 +17581,8 @@ MonoBehaviour:
   objectManagerScr: {fileID: 1595965865}
   gameObject_JangJack: {fileID: 985923484}
   gameobjcet_Fire: {fileID: 489833835}
+  gameObjcet_GamasotNomal: {fileID: 417309422}
+  gameObjcet_GamasotUsing: {fileID: 1241857467}
   isTouch: 0
   makeJoomuckBab: 0
 --- !u!1 &638634634
