@@ -17508,7 +17508,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectManagerScr: {fileID: 1595965865}
   gameObject_JangJack: {fileID: 985923484}
+  gameobjcet_Fire: {fileID: 489833835}
   isTouch: 0
+  makeJoomuckBab: 0
 --- !u!1 &638634634
 GameObject:
   m_ObjectHideFlags: 0
