@@ -490,9 +490,17 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         //1005 : ¡÷∏‘π‰
         else if (ObjectManager.instance.GetEquipObjectKey() == 1005)
         {
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[18].npc_name, npcDatabaseScr.NPC_01[18].comment,true));
+            //Ω√Ω∫≈€ ∏ﬁºº¡ˆ
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[525].npc_name, npcDatabaseScr.NPC_01[525].comment, true));
+            //¡÷∏‘π‰ æ∆¿Ã≈€ ¡¶∞≈
+            ObjectManager.instance.RemoveItem(1005);
+            
+            //¥Î»≠
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[18].npc_name, npcDatabaseScr.NPC_01[18].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[19].npc_name, npcDatabaseScr.NPC_01[19].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[20].npc_name, npcDatabaseScr.NPC_01[20].comment, true));
+            //√ª¿ÃøÕ ªÁ≥ª ¥‹º≠ »πµÊ
+            ObjectManager.instance.GetClue(2004);
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[21].npc_name, npcDatabaseScr.NPC_01[21].comment));
         }
 
