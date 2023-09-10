@@ -106,6 +106,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 Trigger_NPC.instance.isNPCTrigger = true;
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
 
+                //선택지 보이기
                 if (ObjectManager.instance.GetEquipObjectKey() == 2023 && isSelection_2023 == false)
                 {
                     Canvas_Selection_UI.SetActive(true);
@@ -116,8 +117,13 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                     trigger_npc.isNPCTrigger = false;
                 }
             }
+            
+            //대화 종료
             else
             {
+                //플레이어 이동제한 해제
+                controller_scr.TalkEnd();
+
                 isSelection_2023 = false;
 
                 images_NPC.SetActive(false);
@@ -129,41 +135,6 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             }
         }
     }
-    /*
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        isNPCTrigger = true;
-        if (other.CompareTag("Player"))
-        {
-            OnClickdown();
-        }
-    }
-    
-    public void OnClickdown()
-    {
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
-        {
-            Debug.Log("이건 Touch! 장승상댁 부인!!!!");
-            StartCoroutine(TextPractice());
-            //bool_isBotjim = true;
-            if (bool_isNPC == true)
-            {
-                Controller.instance.TalkStart();
-                images_NPC.SetActive(true);
-                bool_isNPC = false;
-
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-            }
-            else
-            {
-                images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
-                bool_isNPC = true;
-                StopCoroutine(TextPractice());
-                Controller.instance.TalkEnd();
-            }
-        }
-    }*/
 
     IEnumerator NormalChat()
     {
@@ -291,6 +262,8 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         //2000 : 승상댁의 수양딸
         if (ObjectManager.instance.GetEquipObjectKey() == 2000)
         {
+            //단서획득
+            ObjectManager.instance.GetClue(2001);
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[11].npc_name, dialogdb.NPC_01[11].comment));
         }
         //2001 : 청이의 거짓말

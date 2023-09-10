@@ -456,6 +456,8 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         if (isNPC_Start==true)
         {
             Debug.Log("½Â·Á 1È¸ ´ë»ç Ãâ·Â");
+            //°ø¾ç¹Ì »ï¹é¼® ´Ü¼­ È¹µæ
+            ObjectManager.instance.GetClue(2010);
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[0].npc_name, dialogdb.NPC_01[0].comment));
             //yield return StartCoroutine(ItemClueChat("11","2222"));
         }
