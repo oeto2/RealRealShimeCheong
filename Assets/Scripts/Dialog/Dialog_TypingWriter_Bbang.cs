@@ -112,6 +112,9 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             }
             else
             {
+                //플레이어 이동제한 해제
+                controller_scr.TalkEnd();
+
                 images_Bbang.SetActive(false);
                 bool_isNPC = false;
                 trigger_npc.isNPCTrigger = false;
@@ -259,6 +262,9 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         //2007 : 승려와 청이
         else if (ObjectManager.instance.GetEquipObjectKey() == 2007)
         {
+            //승려의 마음 단서 획득
+            ObjectManager.instance.GetClue(2008);
+
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[78].npc_name, dialogdb.NPC_01[78].comment));
         }
         //2008 : 승려의 마음

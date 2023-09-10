@@ -234,8 +234,11 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
                 //대화 끝
                 isSentenceEnd = true;
 
-                //사공의 물건 획득
-                ObjectManager.instance.GetItem(1011);
+                if(narration == npcDatabaseScr.NPC_01[220].comment)
+                {
+                    //사공의 물건 획득
+                    ObjectManager.instance.GetItem(1011);
+                }
             }
 
             //텍스트 타이핑 시간 조절
@@ -400,6 +403,9 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
         //2003 : 청이와 장터
         else if (ObjectManager.instance.GetEquipObjectKey() == 2003)
         {
+            //청이가 사간것 획득
+            ObjectManager.instance.GetClue(2015);
+
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[41].npc_name, npcDatabaseScr.NPC_01[41].comment));
         }
 
@@ -442,6 +448,9 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
         //2013 : 향리집 셋째아들
         else if (ObjectManager.instance.GetEquipObjectKey() == 2013)
         {
+            //노점의 단골 단서 획득
+            ObjectManager.instance.GetClue(2018);
+
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[132].npc_name, npcDatabaseScr.NPC_01[132].comment));
         }
 

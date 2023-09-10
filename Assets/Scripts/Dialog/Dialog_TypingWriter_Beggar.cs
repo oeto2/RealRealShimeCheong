@@ -355,6 +355,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
 
             //대화 진행
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[532].npc_name, npcDatabaseScr.NPC_01[532].comment, true));
+
             //청이의 행방 단서 획득
             ObjectManager.instance.GetClue(2002);
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[14].npc_name, npcDatabaseScr.NPC_01[14].comment, true));
@@ -382,6 +383,9 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         //2004 : 청이와 남자
         else if (ObjectManager.instance.GetEquipObjectKey() == 2004)
         {
+            //누군가의 아들 단서 획득
+            ObjectManager.instance.GetClue(2005);
+
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[51].npc_name, npcDatabaseScr.NPC_01[51].comment));
         }
 

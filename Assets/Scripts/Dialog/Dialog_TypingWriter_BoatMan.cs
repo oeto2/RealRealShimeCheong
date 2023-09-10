@@ -596,6 +596,9 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         //2014 : 잠잠해져야할 물살
         else if (ObjectManager.instance.GetEquipObjectKey() == 2014)
         {
+            //뜨지않는 배 단서 획득
+            ObjectManager.instance.GetClue(2019);
+
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[143].npc_name, npcDatabaseScr.NPC_01[143].comment));
         }
 

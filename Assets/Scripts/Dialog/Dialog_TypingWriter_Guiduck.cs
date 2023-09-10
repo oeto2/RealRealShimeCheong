@@ -84,6 +84,9 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
             }
             else
             {
+                //캐릭터 이동제한 해제
+                controller_scr.TalkEnd();
+
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
                 bool_isNPC = false;
@@ -234,6 +237,9 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 		//2002 : 청이의 행방
 		else if (ObjectManager.instance.GetEquipObjectKey() == 2002)
 		{
+            //청이와 장터 획득
+            ObjectManager.instance.GetClue(2003);
+
 			yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[31].npc_name, dialogdb.NPC_01[31].comment));
 		}
 		//2003 : 청이와 장터
@@ -244,6 +250,9 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 		//2004 : 청이와 사내
 		else if (ObjectManager.instance.GetEquipObjectKey() == 2004)
 		{
+            //승려와 청이
+            ObjectManager.instance.GetClue(2007);
+
 			yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[47].npc_name, dialogdb.NPC_01[47].comment));
 		}
 		//2005 : 누군가의 아들
@@ -274,6 +283,9 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 		//2010 : 공양미 삼백 석
 		else if (ObjectManager.instance.GetEquipObjectKey() == 2010)
 		{
+            //공양미의 출처 단서 획득
+            ObjectManager.instance.GetClue(2011);
+
 			yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[105].npc_name, dialogdb.NPC_01[105].comment));
 		}
 		//2011 : 공양미의 출처

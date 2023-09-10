@@ -289,6 +289,9 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         //2005 : 누군가의 아들
         else if (ObjectManager.instance.GetEquipObjectKey() == 2005)
         {
+            //향리댁 셋째 아들 단서 획득
+            ObjectManager.instance.GetClue(2013);
+
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[59].npc_name, dialogdb.NPC_01[59].comment));
         }
         //2006 : 송나라 상인과 청이

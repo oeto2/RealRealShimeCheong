@@ -373,6 +373,16 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
     IEnumerator TextPractice()
     {
         #region 단서
+
+        //2005 : 누군가의 아들
+        if (ObjectManager.instance.GetEquipObjectKey() == 2005)
+        {
+            //잠잠해져야할 물살 단서 획득
+            ObjectManager.instance.GetClue(2014);
+
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[64].npc_name, npcDatabaseScr.NPC_01[64].comment));
+        }
+
         //2006 : 송나라 상인과 청이
         if (ObjectManager.instance.GetEquipObjectKey() == 2006)
         {
