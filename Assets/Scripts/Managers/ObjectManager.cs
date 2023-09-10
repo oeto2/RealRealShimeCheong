@@ -262,9 +262,6 @@ public class ObjectManager : MonoBehaviour
         //GetClue(2021);
         GetClue(2011);
         GetClue(2012);
-
-
-
     }
 
 

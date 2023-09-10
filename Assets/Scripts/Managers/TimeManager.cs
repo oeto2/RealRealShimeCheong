@@ -540,8 +540,12 @@ public class TimeManager : MonoBehaviour
             {
                 for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
                 {
-                    //색깔 변경
-                    spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), 255);
+                    //만약 색을 바꿀 오브젝트가 존재한다면
+                    if(spriteRen_ObumbrateObj[i] != null )
+                    {
+                        //색깔 변경
+                        spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), 255);
+                    }
                 }
 
                 //현재 오브젝트 RGB값 갱신
