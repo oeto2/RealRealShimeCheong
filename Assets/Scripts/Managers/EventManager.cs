@@ -1,6 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+
+//세이브할 데이터
+public class EventSaveData
+{
+    //생성자
+    public EventSaveData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck)
+    {
+        joomuckBob = _joomuckBob;
+        binyeo = _binyeo;
+        flower = _flower;
+        muck = _muck;
+        boridduck = _boridduck;
+    }
+
+    //이벤트 활성화 여부
+    public bool joomuckBob;
+    public bool binyeo;
+    public bool flower;
+    public bool muck;
+    public bool boridduck;
+}
+
+//로드할 데이터
+public class EventLoadData
+{
+    //생성자
+    public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck)
+    {
+        joomuckBob = _joomuckBob;
+        binyeo = _binyeo;
+        flower = _flower;
+        muck = _muck;
+        boridduck = _boridduck;
+    }
+
+    //이벤트 활성화 여부
+    public bool joomuckBob;
+    public bool binyeo;
+    public bool flower;
+    public bool muck;
+    public bool boridduck;
+}
+
 
 //게임내에 이벤트의 발생 체크
 [System.Serializable]
@@ -36,6 +80,15 @@ public class EventManager : MonoBehaviour
     //이벤트 리스트
     public List<EventCheck> eventList;
 
+    //저장할 데이터 클래스
+    public EventSaveData curEventSaveData;
+
+    //저장 파일 위치
+    public string saveFilePath;
+
+    //불러올 데이터 클래스
+    public EventLoadData curEventLoadData;
+
     private void Awake()
     {
         #region 싱글톤
@@ -52,6 +105,9 @@ public class EventManager : MonoBehaviour
             }
         }
         #endregion
+
+        //저장 파일 위치
+        saveFilePath = Application.persistentDataPath + "/EventSaveText.txt";
     }
 
 
@@ -151,4 +207,40 @@ public class EventManager : MonoBehaviour
                 break;
         }
     }
+
+    //데이터 저장
+    public void Save(int _slotNum)
+    {
+        Debug.Log("Save EventData");
+
+        //저장할 데이터 넣기
+        curEventSaveData = new EventSaveData(eventCheck.joomackBab, eventCheck.binyeo, 
+            eventCheck.flower, eventCheck.muck, eventCheck.boridduck);
+
+        //세이브 데이터
+        string jSaveData = JsonUtility.ToJson(curEventSaveData);
+
+        //데이터 파일 생성
+        File.WriteAllText(saveFilePath + _slotNum.ToString(), jSaveData);
+    }
+    
+    //데이터 로드
+    public void Load(int _SlotNum)
+    {
+        Debug.Log("Load EventLoadData");
+
+        //세이브 파일 읽어오기
+        string jLoadData = File.ReadAllText(saveFilePath + _SlotNum.ToString());
+
+        //읽어온 파일 리스트에 저장
+        curEventLoadData = JsonUtility.FromJson<EventLoadData>(jLoadData);
+
+        //이벤트 초기화
+        eventCheck.joomackBab = curEventLoadData.joomuckBob;
+        eventCheck.binyeo = curEventLoadData.binyeo;
+        eventCheck.boridduck = curEventLoadData.boridduck;
+        eventCheck.flower = curEventLoadData.flower;
+        eventCheck.muck = curEventLoadData.muck;
+    }
+
 }

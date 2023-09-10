@@ -5638,6 +5638,10 @@ MonoBehaviour:
     muck: 0
     boridduck: 0
   eventList: []
+  saveFilePath: 
+  curEventLoadData:
+    time: 0
+    day: 0
 --- !u!1 &226251995
 GameObject:
   m_ObjectHideFlags: 0
@@ -22732,6 +22736,7 @@ MonoBehaviour:
   gameManagerScr: {fileID: 905248352}
   objectManagerScr: {fileID: 1595965865}
   tutorialManagerScr: {fileID: 2057623165}
+  eventManagerScr: {fileID: 226038820}
   int_LodingTime: 1
   gameObject_Loading: {fileID: 58801909}
   gameObject_SaveCheckWindow: {fileID: 936320460}
