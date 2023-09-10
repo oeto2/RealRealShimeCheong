@@ -36,7 +36,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
     private int RandomNum;
 
     //최초에만 출력되도록 하는 확인용
-    public bool isNPC_Start;
+    public bool isNPC_Start = true;
 
     //대화가 전부 출력 되었는지
     public bool isSentenceEnd = false;
@@ -103,7 +103,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
                 Trigger_NPC.instance.isNPCTrigger = true;
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
             }
-            else if(!isSentenceEnd)
+            else if(isSentenceEnd)
             {
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
@@ -243,6 +243,8 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
 
     IEnumerator NormalChat()
     {
+        
+
         int a = 0;
         string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[5].npc_name;
         string narration = dialogdb.NPC_01[5].comment;
@@ -322,6 +324,12 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
     //오버로드
     IEnumerator ItemClueChat(string narrator, string narration)
     {
+        //다이얼로그창 띄우기
+        images_NPC.SetActive(true);
+
+        //첫대사 플래그 false
+        isNPC_Start = false;
+
         //남은대화 있음
         remainSentence = true;
 
@@ -447,8 +455,9 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         // 최초 1회 출력
         if (isNPC_Start==true)
         {
+            Debug.Log("승려 1회 대사 출력");
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[0].npc_name, dialogdb.NPC_01[0].comment));
-            isNPC_Start = false;
+            //yield return StartCoroutine(ItemClueChat("11","2222"));
         }
 
         #region 단서
