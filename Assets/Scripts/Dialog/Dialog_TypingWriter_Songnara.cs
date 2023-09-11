@@ -371,6 +371,9 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
         //2006 : 송나라 상인과 청이
         if (ObjectManager.instance.GetEquipObjectKey() == 2006)
         {
+            //청이의 도움 단서 획득
+            ObjectManager.instance.GetClue(2009);
+
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[72].npc_name, npcDatabaseScr.NPC_01[72].comment));
         }
 
