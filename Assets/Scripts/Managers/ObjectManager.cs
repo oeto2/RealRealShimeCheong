@@ -949,17 +949,34 @@ public class ObjectManager : MonoBehaviour
                 int sumKeyValue = curCombineClue1Info.key + curCombineClue2Info.key;
 
                 //슬롯1,슬롯2의 Type의 합
-                string slotSumType = curCombineClue1Info.type + curCombineClue2Info.type;
+                string slotSumType = "";
+
+                //만약 조합슬롯 1번,2번의 단서의 Type이 ClueClue 라면
+                if (curCombineClue1Info.type == "ClueClue" && curCombineClue2Info.type == "ClueClue")
+                {
+                    //슬롯1,슬롯2의 Type의 합
+                    slotSumType = "ClueClue";
+                }
+                else
+                {
+                    //슬롯1,슬롯2의 Type의 합
+                    slotSumType = curCombineClue1Info.type + curCombineClue2Info.type;
+                }
 
                 //합쳐진 오브젝트의 Type
                 string sumObjectType = "";
 
+                Debug.Log($"조합된 단서의 키값 {sumKeyValue}");
+                Debug.Log($"조합된 단서의 타입값 {slotSumType}");
+
                 //myItemList에서 해당 SumKey값을 가진 단서 있을경우
                 if (myClueList.Find(x => x.key == sumKeyValue) != null)
                 {
+                    Debug.Log("해당 단서가 데이터에 있음");
                     Clue sumItem = myClueList.Find(x => x.key == sumKeyValue);
                     //합쳐진 단서의 Type
                     sumObjectType = sumItem.type;
+                    Debug.Log($"합쳐진 단서의 Type: {sumObjectType}");
                 }
 
                 //Sumkey로 찾은 오브젝트의 타입이 슬롯창의 두 오브젝트의 타입을 더한 값과 같을경우.
@@ -968,9 +985,9 @@ public class ObjectManager : MonoBehaviour
                     //해당 Key값을 가진 단서 획득
                     GetClue(sumKeyValue);
 
-                    //조합에 사용된 단서 제거
-                    RemoveClue(curCombineClue1Info.key);
-                    RemoveClue(curCombineClue2Info.key);
+                    ////조합에 사용된 단서 제거
+                    //RemoveClue(curCombineClue1Info.key);
+                    //RemoveClue(curCombineClue2Info.key);
 
                     //슬롯 비우기
                     EmptyCombineSlot();
