@@ -702,12 +702,15 @@ public class ObjectManager : MonoBehaviour
 
         //curItemList에 jcurItemData 갱신
         curItemList = JsonUtility.FromJson<Serialization<Item>>(jcurItemData).target;
+        curItemList2 = JsonUtility.FromJson<Serialization<Item>>(jcurItemData).target;
 
         //보유중인 단서 Json 읽어오기
         string jcurClueData = File.ReadAllText(curCluefilePath + _slotNum.ToString());
 
         //curClueList에 jcurClueData 갱신
         curClueList = JsonUtility.FromJson<Serialization<Clue>>(jcurClueData).target;
+        curClueList2 = JsonUtility.FromJson<Serialization<Clue>>(jcurClueData).target;
+
 
         //현재 보유중인 아이템 리스트 불러오기
         TabClick(curType);
