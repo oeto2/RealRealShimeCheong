@@ -258,6 +258,8 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
     IEnumerator TextPractice()
     {
+        
+
         #region ´Ü¼­
         //2000 : ½Â»ó´ìÀÇ ¼ö¾çµþ
         if (ObjectManager.instance.GetEquipObjectKey() == 2000)
@@ -403,6 +405,13 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         //1007 : ¸Ô
         else if (ObjectManager.instance.GetEquipObjectKey() == 1007)
         {
+            //¸Ô ¾ÆÀÌÅÛ Á¦°Å
+            ObjectManager.instance.RemoveItem(1007);
+            //¸Ô Àü´Þ ¿Ï·á
+            EventManager.instance.eventProgress.deliveryMuck = true;
+            //¸Ô Àü´Þ ÀÌº¥Æ® ¿Ï·á
+            EventManager.instance.eventEndCheck.muckEvent_End = true;
+
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[309].npc_name, dialogdb.NPC_01[309].comment));
         }
         //1009 : ²É

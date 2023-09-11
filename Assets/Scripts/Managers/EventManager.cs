@@ -7,13 +7,15 @@ using UnityEngine;
 public class EventSaveData
 {
     //생성자
-    public EventSaveData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck)
+    public EventSaveData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck, bool _deliveryMuck, bool _muckEvent_End)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
         flower = _flower;
         muck = _muck;
         boridduck = _boridduck;
+        deliveryMuck = _deliveryMuck;
+        muckEvent_End = _muckEvent_End;
     }
 
     //이벤트 활성화 여부
@@ -22,19 +24,27 @@ public class EventSaveData
     public bool flower;
     public bool muck;
     public bool boridduck;
+
+    //먹을 전달 했는지 여부
+    public bool deliveryMuck;
+
+    //먹 이벤트를 완료했는지
+    public bool muckEvent_End;
 }
 
 //로드할 데이터
 public class EventLoadData
 {
     //생성자
-    public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck)
+    public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck, bool _deliveryMuck, bool _muckEvent_End)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
         flower = _flower;
         muck = _muck;
         boridduck = _boridduck;
+        deliveryMuck = _deliveryMuck;
+        muckEvent_End = _muckEvent_End;
     }
 
     //이벤트 활성화 여부
@@ -43,10 +53,16 @@ public class EventLoadData
     public bool flower;
     public bool muck;
     public bool boridduck;
+
+    //먹을 전달 했는지 여부
+    public bool deliveryMuck;
+
+    //먹 이벤트를 완료했는지
+    public bool muckEvent_End;
 }
 
 
-//게임내에 이벤트의 발생 체크
+//게임내의 이벤트의 발생 체크
 [System.Serializable]
 public class EventCheck
 {
@@ -55,6 +71,22 @@ public class EventCheck
     public bool flower;
     public bool muck;
     public bool boridduck;
+}
+
+//게임내의 이벤트 진행사항 체크
+[System.Serializable]
+public class EventProgress
+{
+    //먹을 전달 했는지 여부
+    public bool deliveryMuck;
+}
+
+//이벤트를 마무리했는지 체크
+[System.Serializable]
+public class EventEndCheck
+{
+    //먹 이벤트를 완료했는지
+    public bool muckEvent_End;
 }
 
 //이벤트 목록
@@ -76,6 +108,12 @@ public class EventManager : MonoBehaviour
 
     //이벤트 체크
     public EventCheck eventCheck;
+
+    //이벤트 진행 체크
+    public EventProgress eventProgress;
+
+    //이벤트 완료 체크
+    public EventEndCheck eventEndCheck;
 
     //이벤트 리스트
     public List<EventCheck> eventList;
@@ -215,7 +253,7 @@ public class EventManager : MonoBehaviour
 
         //저장할 데이터 넣기
         curEventSaveData = new EventSaveData(eventCheck.joomackBab, eventCheck.binyeo, 
-            eventCheck.flower, eventCheck.muck, eventCheck.boridduck);
+            eventCheck.flower, eventCheck.muck, eventCheck.boridduck, eventProgress.deliveryMuck, eventEndCheck.muckEvent_End);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curEventSaveData);
@@ -235,12 +273,18 @@ public class EventManager : MonoBehaviour
         //읽어온 파일 리스트에 저장
         curEventLoadData = JsonUtility.FromJson<EventLoadData>(jLoadData);
 
-        //이벤트 초기화
+        //이벤트 발생 초기화
         eventCheck.joomackBab = curEventLoadData.joomuckBob;
         eventCheck.binyeo = curEventLoadData.binyeo;
         eventCheck.boridduck = curEventLoadData.boridduck;
         eventCheck.flower = curEventLoadData.flower;
         eventCheck.muck = curEventLoadData.muck;
+
+        //이벤트 진행 상황 초기화
+        eventProgress.deliveryMuck = curEventLoadData.deliveryMuck;
+
+        //이벤트 완료 상황 초기화
+        eventEndCheck.muckEvent_End = curEventLoadData.muckEvent_End;
     }
 
 }
