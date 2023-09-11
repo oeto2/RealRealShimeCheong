@@ -195,21 +195,6 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
         Debug.Log(writerText);
         //writerText = "";
 
-        /*
-        //텍스트 타이핑
-        for (a = 0; a < narration.Length; a++)
-        //for (a = 0; a < textSpeed; a++)
-        {
-            writerText += narration[a];
-            ChatText.text = writerText;
-
-            //텍스트 타이핑 시간 조절
-            //yield return null;
-            yield return new WaitForSeconds(0.05f);
-        }
-        yield return null;
-        */
-
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
         {
