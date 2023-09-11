@@ -963,6 +963,14 @@ public class ObjectManager : MonoBehaviour
                     slotSumType = curCombineClue1Info.type + curCombineClue2Info.type;
                 }
 
+                //만약 조합슬롯 1번의,2번의 단서가 2001 또는 2016일 경우
+                if((curCombineClue1Info.key == 2001 || curCombineClue1Info.key == 2016) && 
+                    (curCombineClue2Info.key == 2001 || curCombineClue2Info.key == 2016))
+                {
+                    //조합 키 값은 9000
+                    sumKeyValue = 9000;
+                }
+
                 //합쳐진 오브젝트의 Type
                 string sumObjectType = "";
 
