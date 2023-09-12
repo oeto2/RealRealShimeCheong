@@ -725,7 +725,10 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         {
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[387].npc_name, npcDatabaseScr.NPC_01[387].comment,true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[389].npc_name, npcDatabaseScr.NPC_01[389].comment, true));
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[390].npc_name, npcDatabaseScr.NPC_01[390].comment, true));
+
+            //¹î±æÀ» ÀáÀç¿ï ¹æ¹ý ´Ü¼­È¹µæ
+            ObjectManager.instance.GetClue(2022);
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[390].npc_name, npcDatabaseScr.NPC_01[390].comment));
 
         }
 
