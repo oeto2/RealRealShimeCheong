@@ -403,6 +403,9 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
         //4015 : 청이가 사라진 날
         else if (ObjectManager.instance.GetEquipObjectKey() == 4015)
         {
+            //사공에게 있었던일 단서 획득
+            ObjectManager.instance.GetClue(2020);
+
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[358].npc_name, dialogdb.NPC_01[358].comment));
         }
         //4017 : 청이와 그의 관계
