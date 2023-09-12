@@ -57,7 +57,7 @@ public class EventLoadData
     //먹을 전달 했는지 여부
     public bool deliveryMuck;
 
-    //먹 이벤트를 완료했는지
+    //이벤트 완려 여부
     public bool muckEvent_End;
 }
 

@@ -629,6 +629,9 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         //2020 : 사공에게 있었던 일
         else if (ObjectManager.instance.GetEquipObjectKey() == 2020)
         {
+            //사공의 물건 단서 획득
+            ObjectManager.instance.GetClue(2021);
+
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[205].npc_name, npcDatabaseScr.NPC_01[205].comment));
         }
 
