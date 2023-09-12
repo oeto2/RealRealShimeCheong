@@ -951,12 +951,24 @@ public class ObjectManager : MonoBehaviour
                 //슬롯1,슬롯2의 Type의 합
                 string slotSumType = "";
 
+                #region 예외처리
+                //만약 조합슬롯 1번,2번의 키값이 2022,4023이라면
+                if((curCombineClue1Info.key == 2022 || curCombineClue1Info.key == 4023) && 
+                    (curCombineClue2Info.key == 2022 || curCombineClue2Info.key == 4023))
+                {
+                    Debug.Log("바다에 빠진 청이");
+                    //슬롯1, 슬롯2의 Type의 합
+                    slotSumType = "ClueClue";
+                }
+
                 //만약 조합슬롯 1번,2번의 단서의 Type이 ClueClue 라면
-                if (curCombineClue1Info.type == "ClueClue" && curCombineClue2Info.type == "ClueClue")
+                else if (curCombineClue1Info.type == "ClueClue" && curCombineClue2Info.type == "ClueClue")
                 {
                     //슬롯1,슬롯2의 Type의 합
                     slotSumType = "ClueClue";
                 }
+
+                //그외의 경우
                 else
                 {
                     //슬롯1,슬롯2의 Type의 합
@@ -970,6 +982,7 @@ public class ObjectManager : MonoBehaviour
                     //조합 키 값은 9000
                     sumKeyValue = 9000;
                 }
+                #endregion
 
                 //합쳐진 오브젝트의 Type
                 string sumObjectType = "";
@@ -981,9 +994,9 @@ public class ObjectManager : MonoBehaviour
                 if (myClueList.Find(x => x.key == sumKeyValue) != null)
                 {
                     Debug.Log("해당 단서가 데이터에 있음");
-                    Clue sumItem = myClueList.Find(x => x.key == sumKeyValue);
+                    Clue sumClue = myClueList.Find(x => x.key == sumKeyValue);
                     //합쳐진 단서의 Type
-                    sumObjectType = sumItem.type;
+                    sumObjectType = sumClue.type;
                     Debug.Log($"합쳐진 단서의 Type: {sumObjectType}");
                 }
 
