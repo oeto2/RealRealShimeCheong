@@ -13038,6 +13038,8 @@ MonoBehaviour:
   trigger_npc: {fileID: 928861246}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
+  isSentenceEnd: 0
+  remainSentence: 0
   Canvas_Selection_UI: {fileID: 2089243226}
   Selection_Text_Name: {fileID: 0}
   Selection_Text1: {fileID: 0}
@@ -25690,9 +25692,12 @@ MonoBehaviour:
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 3905155e4b7cfea4eb80baeaf0d2aa73, type: 3}
+  - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
   trigger_npc: {fileID: 928861246}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
+  isSentenceEnd: 0
+  remainSentence: 0
   Canvas_Selection_UI: {fileID: 2089243226}
   Selection_Text_Name: {fileID: 0}
   Selection_Text1: {fileID: 2064643417}
@@ -27505,6 +27510,8 @@ MonoBehaviour:
   trigger_npc: {fileID: 928861246}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
+  isSentenceEnd: 0
+  remainSentence: 0
   Canvas_Selection_UI: {fileID: 2089243226}
   Selection_Text_Name: {fileID: 0}
   Selection_Text1: {fileID: 0}

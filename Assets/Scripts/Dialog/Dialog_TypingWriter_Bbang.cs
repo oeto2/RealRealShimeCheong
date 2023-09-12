@@ -36,7 +36,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
     //대화가 전부 출력 되었는지
     public bool isSentenceEnd = false;
 
-    //남은 대화가 더 있는지
+    //남은 대화가 더 있는지 (true일경우 다이얼로그를 종료하지않고 내용을 비워서 다음 대사를 출력함)
     public bool remainSentence = false;
 
     [System.Serializable]

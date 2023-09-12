@@ -32,6 +32,12 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
     public Controller controller_scr;
 
+    //대화가 전부 출력 되었는지
+    public bool isSentenceEnd = false;
+
+    //남은 대화가 더 있는지
+    public bool remainSentence = false;
+
     // 랜덤 대사 출력 변수
     private int RandomNum;
 
@@ -95,20 +101,30 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         {
             Debug.Log("z키 누름! 장승상댁!!!!");
             //bool_isBotjim = true;
+            //플레이어 이동제한
             controller_scr.TalkStart();
-            if (bool_isNPC == false)
+
+            if (bool_isNPC == false && !remainSentence)
             {
+
+                //선택지 UI
+                Canvas_Selection_UI.SetActive(false);
+
+                //다이얼로그 UI
+                images_NPC.SetActive(true);
+
+                //대사 출력
                 StartCoroutine(TextPractice());
 
-                Canvas_Selection_UI.SetActive(false);
-                images_NPC.SetActive(true);
-                bool_isNPC = true;
-                Trigger_NPC.instance.isNPCTrigger = true;
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+                //bool_isNPC = true;
+                //Trigger_NPC.instance.isNPCTrigger = true;
+                //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
 
                 //선택지 보이기
                 if (ObjectManager.instance.GetEquipObjectKey() == 2023 && isSelection_2023 == false)
                 {
+                    Debug.Log("향리댁 선택지 ON");
+
                     Canvas_Selection_UI.SetActive(true);
                     isSelection_2023 = true;
 
@@ -119,7 +135,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             }
             
             //대화 종료
-            else
+            else if (isSentenceEnd)
             {
                 //플레이어 이동제한 해제
                 controller_scr.TalkEnd();
@@ -132,12 +148,21 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
                 writerText = "";
                 StopAllCoroutines();
+                
+
+                 //남은대화 없음
+                remainSentence = false;
+                //대화 끝
+                isSentenceEnd = false;
             }
         }
     }
 
     IEnumerator NormalChat()
     {
+        //초상화 변경
+        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+
         int a = 0;
         string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[3].npc_name;
         string narration = dialogdb.NPC_01[3].comment;
@@ -155,6 +180,14 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 writerText += narration[a];
                 ChatText.text = writerText;
 
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+                }
+
                 //텍스트 타이핑 시간 조절
                 //yield return null;
                 yield return new WaitForSeconds(0.05f);
@@ -168,6 +201,14 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             {
                 writerText += narration_2[a];
                 ChatText.text = writerText;
+
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+                }
 
                 //텍스트 타이핑 시간 조절
                 //yield return null;
@@ -191,6 +232,13 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
     IEnumerator ItemClueChat(string narrator, string narration)
     {
+        //남은대화 있음
+        remainSentence = true;
+
+        //초상화 변경
+        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+
+
         int a = 0;
         CharacterName.text = narrator;
         //characternameText = narrator;
@@ -204,6 +252,14 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             writerText += narration[a];
             ChatText.text = writerText;
 
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                //남은대화 없음
+                remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
+            }
+
             //텍스트 타이핑 시간 조절
             //yield return null;
             yield return new WaitForSeconds(0.02f);
@@ -211,6 +267,13 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
         //if (ObjectManager.instance.GetEquipObjectKey() == 2000) //test용
 
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //남은대화 없음
+            remainSentence = true;
+            //대화 끝
+            isSentenceEnd = true;
+        }
 
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
@@ -222,6 +285,81 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             }
             yield return null;
         }
+
+    }
+
+    //오버로드
+    IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
+    {
+
+        //심학규의 대사일경우
+        if (narrator == "심학규")
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
+        }
+        else
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+        }
+
+        //남은 대화가 있을경우
+        if (_remainSentence == true)
+        {
+
+
+            //남은대화 있음
+            remainSentence = true;
+
+            Debug.Log(narration);
+            int a = 0;
+            CharacterName.text = narrator;
+            //characternameText = narrator;
+
+
+            //narrator = CharacterName.text;
+
+            //텍스트 타이핑
+            for (a = 0; a < narration.Length; a++)
+            {
+                writerText += narration[a];
+                ChatText.text = writerText;
+
+                //텍스트 타이핑 시간 조절
+                //yield return null;
+                yield return new WaitForSeconds(0.02f);
+
+                //중간에 Z키를 누르면
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    break;
+                }
+            }
+
+            //Z키를 다시 누를 때까지 무한정 대기
+            while (true)
+            {
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //Text 비우기
+                    writerText = "";
+                    break;
+                }
+                yield return null;
+            }
+        }
+
+        ////키(default : space)를 다시 누를 때까지 무한정 대기
+        //while (true)
+        //{
+        //    if (isButtonClicked)
+        //    {
+        //        isButtonClicked = false;
+        //        break;
+        //    }
+        //    yield return null;
+        //}
 
     }
 
@@ -314,8 +452,12 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         //2009 : 청이의 도움
         else if (ObjectManager.instance.GetEquipObjectKey() == 2009)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[96].npc_name, dialogdb.NPC_01[96].comment));
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[102].npc_name, dialogdb.NPC_01[102].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[96].npc_name, dialogdb.NPC_01[96].comment, true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[102].npc_name, dialogdb.NPC_01[102].comment, true));
+
+            //배의 출항 단서획득
+            ObjectManager.instance.GetClue(2017);
+
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[103].npc_name, dialogdb.NPC_01[103].comment));
         }
         //2010 : 공양미 삼백 석
