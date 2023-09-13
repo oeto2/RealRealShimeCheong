@@ -132,7 +132,6 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         }
     }
 
-
     IEnumerator NormalChat()
     {
         int a = 0;
