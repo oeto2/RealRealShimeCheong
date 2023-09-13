@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     public CameraMove cameraMoveScr;
     public UIManager uiManagerScr;
     public JoomackPuzzle joomackScr;
+    public Dialog_TypingWriter_Guiduck dialogGuiduckScr;
 
     // 하나씩 추가하자
     public bool bool_isAction;
@@ -136,18 +137,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("구슬 퍼즐 시작");
             PlayBeadPuzzle();
         }
 
-        if(Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             Debug.Log("주막 퍼즐 시작");
             JoomackPuzzleStart();
         }
-        
+
     }
 
     public void Action(GameObject scan_obj)
@@ -362,7 +363,39 @@ public class GameManager : MonoBehaviour
 
         //카메라 위치 변경
         cameraMoveScr.CameraTransfer(transform_JoomackMap.position);
+    }
 
+    //주막 퍼즐 끝
+    public void JoomackPuzzleClear()
+    {
+        isJoomackPuzzleStart = false;
+
+        //게임 UI 보이기
+        gameObject_gameUI.SetActive(true);
+
+        //시간 UI 보이기
+        gameObjcet_timeUI.SetActive(true);
+
+        //로딩 이미지 보여주기
+        StartCoroutine(ShowLoding());
+
+        ////커서 보여주기
+        //uiManagerScr.ShowCursor();
+
+        //커서 불빛 켜기
+        uiManagerScr.ShowCursorLight();
+
+        //주막 퍼즐 UI 끄기
+        joomackScr.JoomackUIClose();
+
+        //다이얼로그 보이기
+        dialogGuiduckScr.images_NPC.SetActive(true);
+
+        //주막 퍼즐 클리어
+        EventManager.instance.eventProgress.joomackPuzzle_Clear = true;
+
+        //대화 실행
+        dialogGuiduckScr.StartDialogSentence();
     }
 
     //로딩 이미지 보여주기

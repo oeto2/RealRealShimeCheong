@@ -7,7 +7,8 @@ using UnityEngine;
 public class EventSaveData
 {
     //생성자
-    public EventSaveData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck, bool _deliveryMuck, bool _muckEvent_End)
+    public EventSaveData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck,
+        bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -16,6 +17,7 @@ public class EventSaveData
         boridduck = _boridduck;
         deliveryMuck = _deliveryMuck;
         muckEvent_End = _muckEvent_End;
+        joomackPuzzle_End = _joomackPuzzle_End;
     }
 
     //이벤트 활성화 여부
@@ -28,15 +30,17 @@ public class EventSaveData
     //먹을 전달 했는지 여부
     public bool deliveryMuck;
 
-    //먹 이벤트를 완료했는지
+    //이벤트 완료 여부
     public bool muckEvent_End;
+    public bool joomackPuzzle_End;
 }
 
 //로드할 데이터
 public class EventLoadData
 {
     //생성자
-    public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck, bool _deliveryMuck, bool _muckEvent_End)
+    public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck, 
+        bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -45,6 +49,7 @@ public class EventLoadData
         boridduck = _boridduck;
         deliveryMuck = _deliveryMuck;
         muckEvent_End = _muckEvent_End;
+        joomackPuzzle_End = _joomackPuzzle_End;
     }
 
     //이벤트 활성화 여부
@@ -57,8 +62,9 @@ public class EventLoadData
     //먹을 전달 했는지 여부
     public bool deliveryMuck;
 
-    //이벤트 완려 여부
+    //이벤트 완료 여부
     public bool muckEvent_End;
+    public bool joomackPuzzle_End;
 }
 
 
@@ -79,6 +85,8 @@ public class EventProgress
 {
     //먹을 전달 했는지 여부
     public bool deliveryMuck;
+    //주막 퍼즐을 클리어 했는지 여부
+    public bool joomackPuzzle_Clear;
 }
 
 //이벤트를 마무리했는지 체크
@@ -253,7 +261,8 @@ public class EventManager : MonoBehaviour
 
         //저장할 데이터 넣기
         curEventSaveData = new EventSaveData(eventCheck.joomackBab, eventCheck.binyeo, 
-            eventCheck.flower, eventCheck.muck, eventCheck.boridduck, eventProgress.deliveryMuck, eventEndCheck.muckEvent_End);
+            eventCheck.flower, eventCheck.muck, eventCheck.boridduck, eventProgress.deliveryMuck, eventEndCheck.muckEvent_End
+            , eventProgress.joomackPuzzle_Clear);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curEventSaveData);
@@ -282,6 +291,7 @@ public class EventManager : MonoBehaviour
 
         //이벤트 진행 상황 초기화
         eventProgress.deliveryMuck = curEventLoadData.deliveryMuck;
+        eventProgress.joomackPuzzle_Clear = curEventLoadData.joomackPuzzle_End;
 
         //이벤트 완료 상황 초기화
         eventEndCheck.muckEvent_End = curEventLoadData.muckEvent_End;

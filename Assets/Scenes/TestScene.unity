@@ -5734,6 +5734,7 @@ MonoBehaviour:
     boridduck: 0
   eventProgress:
     deliveryMuck: 0
+    joomackPuzzle_Clear: 0
   eventEndCheck:
     muckEvent_End: 0
   eventList: []
@@ -6153,7 +6154,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 232789311}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 629768810}
+        m_TargetAssemblyTypeName: JoomackPuzzle, Assembly-CSharp
+        m_MethodName: AnswerButton2_Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &232789311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12928,7 +12941,7 @@ GameObject:
   - component: {fileID: 471851942}
   - component: {fileID: 471851941}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: AnswerText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12976,7 +12989,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 2
+    m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
@@ -14730,7 +14743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &531256307
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15153,7 +15166,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 543295910}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 629768810}
+        m_TargetAssemblyTypeName: JoomackPuzzle, Assembly-CSharp
+        m_MethodName: EnterButton_Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &543295910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17828,6 +17853,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameObject_JoomackUI: {fileID: 531256306}
+  text_Answer1: {fileID: 2002492916}
+  text_Answer2: {fileID: 471851941}
+  int_Answer1Value: 1
+  int_Answer2Value: 1
+  isClear: 0
 --- !u!1 &631970260
 GameObject:
   m_ObjectHideFlags: 0
@@ -25241,6 +25271,7 @@ MonoBehaviour:
   cameraMoveScr: {fileID: 1924761762}
   uiManagerScr: {fileID: 95288468}
   joomackScr: {fileID: 629768810}
+  dialogGuiduckScr: {fileID: 1060148998}
   bool_isAction: 0
   scanObject: {fileID: 0}
   dialogText: {fileID: 2081460924}
@@ -30606,7 +30637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060148991}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.68, y: 42.53, z: -0.19449317}
+  m_LocalPosition: {x: 21.49, y: 42.53, z: -0.19449317}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30765,9 +30796,12 @@ MonoBehaviour:
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait:
   - {fileID: 21300000, guid: a261ff852c438b64ea203fd02aee8e11, type: 3}
+  - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
   trigger_npc: {fileID: 1060148996}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
+  isSentenceEnd: 0
+  remainSentence: 0
   index: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   dialogs: []
@@ -33311,7 +33345,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1158689081}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 629768810}
+        m_TargetAssemblyTypeName: JoomackPuzzle, Assembly-CSharp
+        m_MethodName: Answer1Button_Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1158689081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35000,7 +35046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -377.76}
+  m_AnchoredPosition: {x: -6, y: -370}
   m_SizeDelta: {x: 800, y: 167.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1233257642
@@ -49310,7 +49356,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657878948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -48, y: 42.6, z: -0.19449317}
+  m_LocalPosition: {x: -37.49, y: 42.6, z: -0.19449317}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58193,7 +58239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924761758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -470, y: 0.73, z: -10}
+  m_LocalPosition: {x: -196, y: 0.73, z: -10}
   m_LocalScale: {x: 0.90000004, y: 0.90000004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -58502,7 +58548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939285202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.88, y: 41.68, z: -0.19449317}
+  m_LocalPosition: {x: 47.75, y: 41.68, z: -0.19449317}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60454,7 +60500,7 @@ GameObject:
   - component: {fileID: 2002492917}
   - component: {fileID: 2002492916}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: AnswerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60502,11 +60548,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 2
+    m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 230
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -62443,7 +62489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2063844034
 MonoBehaviour:
   m_ObjectHideFlags: 0
