@@ -343,6 +343,9 @@ public class GameManager : MonoBehaviour
     {
         isJoomackPuzzleStart = true;
 
+        //다이얼로그 끄기
+        gameObjcet_dialogueNPC.SetActive(false);
+
         //게임 UI 숨기기
         gameObject_gameUI.SetActive(false);
 

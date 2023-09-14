@@ -221,9 +221,12 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
         {
-            if (isButtonClicked)
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                isButtonClicked = false;
+                //남은대화 없음
+                remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
                 break;
             }
             yield return null;
@@ -278,11 +281,15 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
         {
-            if (isButtonClicked)
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                isButtonClicked = false;
+                //남은대화 없음
+                remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
                 break;
             }
+
             yield return null;
         }
 

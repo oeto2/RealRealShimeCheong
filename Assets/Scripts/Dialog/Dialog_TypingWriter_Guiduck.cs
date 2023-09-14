@@ -74,14 +74,16 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && !GameManager.instance.isJoomackPuzzleStart)
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
             Debug.Log("z키 누름! 귀덕어멈!!!!");
 
             //bool_isBotjim = true;
             controller_scr.TalkStart();
-            if (bool_isNPC == false)
+
+            if (bool_isNPC == false && !remainSentence)
             {
+                Debug.Log("귀덕어멈 대화 시작");
                 images_NPC.SetActive(true);
                 bool_isNPC = true;
                 StartCoroutine(TextPractice());
@@ -92,6 +94,8 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 
             else if(isSentenceEnd)
             {
+                Debug.Log("귀덕어멈 대화 끝");
+
                 //캐릭터 이동제한 해제
                 controller_scr.TalkEnd();
 
@@ -103,12 +107,10 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                 writerText = "";
                 StopAllCoroutines();
 
-                //배의 출항 단서 장착 시
-                if (ObjectManager.instance.GetEquipObjectKey() == 2017 && !EventManager.instance.eventProgress.joomackPuzzle_Clear)
-                {
-                    //주막퍼즐 시작
-                    GameManager.instance.JoomackPuzzleStart();
-                }
+                //남은대화 없음
+                remainSentence = false;
+                //대화 끝
+                isSentenceEnd = false;
             }
         }
     }
@@ -138,13 +140,11 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    //남은대화 없음
-                    remainSentence = true;
                     //대화 끝
                     isSentenceEnd = true;
                 }
 
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.02f);
             }
             yield return null;
         }
@@ -161,13 +161,11 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    //남은대화 없음
-                    remainSentence = true;
                     //대화 끝
                     isSentenceEnd = true;
                 }
 
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.02f);
             }
             yield return null;
         }
@@ -175,8 +173,6 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            //남은대화 없음
-            remainSentence = true;
             //대화 끝
             isSentenceEnd = true;
         }
@@ -184,11 +180,13 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
         {
-            if (isButtonClicked)
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                isButtonClicked = false;
+                //대화 끝
+                isSentenceEnd = true;
                 break;
             }
+
             yield return null;
         }
     }
@@ -213,8 +211,6 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                //남은대화 없음
-                remainSentence = true;
                 //대화 끝
                 isSentenceEnd = true;
             }
@@ -224,8 +220,6 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            //남은대화 없음
-            remainSentence = true;
             //대화 끝
             isSentenceEnd = true;
         }
@@ -233,9 +227,10 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
         {
-            if (isButtonClicked)
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                isButtonClicked = false;
+                //대화 끝
+                isSentenceEnd = true;
                 break;
             }
             yield return null;
@@ -281,12 +276,6 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                 //텍스트 타이핑 시간 조절
                 //yield return null;
                 yield return new WaitForSeconds(0.02f);
-
-                //중간에 Z키를 누르면
-                if (Input.GetKeyDown(KeyCode.Z))
-                {
-                    break;
-                }
             }
 
             //Z키를 다시 누를 때까지 무한정 대기
@@ -413,18 +402,25 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
         {
             ////주막퍼즐 시작
             //GameManager.instance.JoomackPuzzleStart();
+            Debug.Log("배의 출항 대사 실행");
 
             //주막 퍼즐을 클리어 했다면
             if (EventManager.instance.eventProgress.joomackPuzzle_Clear)
             {
-                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[170].npc_name, dialogdb.NPC_01[171].comment, true));
-                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[171].npc_name, dialogdb.NPC_01[172].comment));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[171].npc_name, dialogdb.NPC_01[171].comment, true));
+                //보리떡 획득
+                ObjectManager.instance.GetItem(1008);
+                //보리떡 전달 이벤트 시작
+                EventManager.instance.EventActive(Events.boridduck);
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[172].npc_name, dialogdb.NPC_01[172].comment));
             }
 
             else
             {
                 //주막 퍼즐을 클리어하지 못했다면
-                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[164].npc_name, dialogdb.NPC_01[164].comment));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[164].npc_name, dialogdb.NPC_01[164].comment, true));
+                //주막 퍼즐 시작
+                GameManager.instance.JoomackPuzzleStart();
             }    
         }
         //2018 : 노점의 단골

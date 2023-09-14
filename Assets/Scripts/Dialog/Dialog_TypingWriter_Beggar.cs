@@ -516,10 +516,21 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[304].npc_name, npcDatabaseScr.NPC_01[304].comment));
         }
 
-        //1008 : º¸¸®¶±
-        else if (ObjectManager.instance.GetEquipObjectKey() == 1008)
+        //1007 : ¸Ô
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1007)
         {
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[312].npc_name, npcDatabaseScr.NPC_01[312].comment));
+        }
+
+        //1008 : º¸¸®¶±
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1008) 
+        {
+            //º¸¸®¶± Á¦°Å
+            ObjectManager.instance.RemoveItem(1008);
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[173].npc_name, npcDatabaseScr.NPC_01[173].comment,true));
+            //²É È¹µæ
+            ObjectManager.instance.GetItem(1009);
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[174].npc_name, npcDatabaseScr.NPC_01[174].comment));
         }
 
         //1009 : ²É
