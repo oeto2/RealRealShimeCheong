@@ -489,7 +489,14 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
         //1009 : ≤…
         else if (ObjectManager.instance.GetEquipObjectKey() == 1009)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[323].npc_name, dialogdb.NPC_01[323].comment));
+            //≤… æ∆¿Ã≈€¡¶∞≈
+            ObjectManager.instance.RemoveItem(1009);
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[175].npc_name, dialogdb.NPC_01[175].comment,true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[176].npc_name, dialogdb.NPC_01[176].comment, true));
+
+            //æ‡√  æ∆¿Ã≈€ »πµÊ
+            ObjectManager.instance.GetItem(1010);
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[177].npc_name, dialogdb.NPC_01[177].comment));
         }
         //1011 : ªÁ∞¯¿« π∞∞«
         else if (ObjectManager.instance.GetEquipObjectKey() == 1011)

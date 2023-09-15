@@ -103,6 +103,9 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
 
                 if (ObjectManager.instance.GetEquipObjectKey() == 2006 && isSelection_5136 == false ||!ObjectManager.instance.isGetClue)
                 {
+                    //선택지 시작
+                    EventManager.instance.SelectStart("뱃사공");
+
                     isSelection_5136 = true;
                     isSelection_yes = true;
                     //StartCoroutine(ItemClueChat_select());
@@ -444,7 +447,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         yield return null;
     }
 
-    public void onClick_yes()
+    public void onClick_Selet1()
     {
         //StartCoroutine(TextPractice_2());
         //Canvas_Selection_UI.SetActive(false);
@@ -459,10 +462,9 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             bool_isNPC = true;
             Trigger_NPC.instance.isNPCTrigger = true;
         //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-
     }
 
-    public void onClick_no()
+    public void onClick_Selet2()
     {
         Canvas_Selection_UI.SetActive(false);
 
@@ -477,6 +479,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
 
     }
 
+    //선택지 이후 대사
     IEnumerator TextPractice_2()
     {
         yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[73].npc_name, npcDatabaseScr.NPC_01[73].comment, true));

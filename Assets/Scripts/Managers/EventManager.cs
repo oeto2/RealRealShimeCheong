@@ -297,4 +297,52 @@ public class EventManager : MonoBehaviour
         eventEndCheck.muckEvent_End = curEventLoadData.muckEvent_End;
     }
 
+    //선택지 시작
+    public void SelectStart(string _npcName)
+    {
+        //선택지 UI 띄우기
+
+        switch(_npcName)
+        {
+            case "뺑덕":
+                //선택지 1번 Text값 변경
+
+                //선택지 2번 Text값 변경
+
+                
+                break;
+        }
+    }
+
+    //선택지 1번 선택
+    public void SelectNum1_Click(string _npcName)
+    {
+        //1번지 클릭했을 때 동작하는 기능들
+
+        switch (_npcName)
+        {
+            case "뺑덕":
+                //선택지 1번 Text값 변경
+
+                //선택지 2번 Text값 변경
+                break;
+        }
+    }
+
+    //선택지 2번 선택
+    public void SelectNum2_Click(string _npcName)
+    {
+        //1번지 클릭했을 때 동작하는 기능들
+
+        switch (_npcName)
+        {
+            case "뺑덕":
+                //선택지 1번 Text값 변경
+
+                //선택지 2번 Text값 변경
+
+
+                break;
+        }
+    }
 }
