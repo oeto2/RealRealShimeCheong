@@ -325,14 +325,6 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[181].npc_name, dialogdb.NPC_01[181].comment));
             }
 
-            //주막 퍼즐 미완료 후 꽃 전달을 완료 했을 경우
-            else if(!EventManager.instance.eventProgress.joomackPuzzle_Clear && EventManager.instance.eventProgress.giveFlowerEnd
-                && ObjectManager.instance.GetEquipObjectKey() != 2017)
-            {
-                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[178].npc_name, dialogdb.NPC_01[178].comment, true));
-                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[179].npc_name, dialogdb.NPC_01[179].comment));
-            }
-
             //배의 출항 단서로 대화시
             else if(ObjectManager.instance.GetEquipObjectKey() == 2017)
             {
@@ -357,6 +349,13 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                     //주막 퍼즐 시작
                     GameManager.instance.JoomackPuzzleStart();
                 }
+            }
+
+            //주막 퍼즐 미완료 후 꽃 전달을 완료 했을 경우
+            else
+            {
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[178].npc_name, dialogdb.NPC_01[178].comment, true));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[179].npc_name, dialogdb.NPC_01[179].comment));
             }
         }
 
