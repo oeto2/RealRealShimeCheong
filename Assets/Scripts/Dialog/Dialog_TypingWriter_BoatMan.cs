@@ -43,23 +43,29 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
     //남은 대화가 더 있는지
     public bool remainSentence = false;
 
-    // 선택지 UI 출력
-    public GameObject Canvas_Selection_UI;
+    //송나라 상인과 청이 선택지 값
+    public int int_Select2006Num = 0;
 
-    // 선택지 발생!
-    public Text Selection_Text_Name;
+    //2006번 선택지 고른 날짜
+    public int int_select2006Day = 0;
 
-    // 선택지 1 대사 텍스트
-    public Text Selection_Text1;
+    //// 선택지 UI 출력
+    //public GameObject Canvas_Selection_UI;
 
-    // 선택지 2 대사 텍스트
-    public Text Selection_Text2;
+    //// 선택지 발생!
+    //public Text Selection_Text_Name;
 
-    // 선택지 확인 변수
-    public bool isSelection_yes = false;
-    public bool isSelection_no = false;
+    //// 선택지 1 대사 텍스트
+    //public Text Selection_Text1;
 
-    public bool isSelection_5136;
+    //// 선택지 2 대사 텍스트
+    //public Text Selection_Text2;
+
+    //// 선택지 확인 변수
+    //public bool isSelection_yes = false;
+    //public bool isSelection_no = false;
+
+    //public bool isSelection_5136;
 
     //최초 클릭
     void Start()
@@ -70,9 +76,9 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         CharacterName.text = "";
         ChatText.text = "";
 
-        Selection_Text_Name.text = "선택지 발생!";
-        Selection_Text1.text = "내가 청이 아비 되는 사람이오. 솔직하게 말해주시오.";
-        Selection_Text2.text = "나도 그 이야기라면 들었소. 송 사람들이 너무하던데 말이오!";
+        //Selection_Text_Name.text = "선택지 발생!";
+        //Selection_Text1.text = "내가 청이 아비 되는 사람이오. 솔직하게 말해주시오.";
+        //Selection_Text2.text = "나도 그 이야기라면 들었소. 송 사람들이 너무하던데 말이오!";
     }
 
     void Update()
@@ -100,23 +106,12 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
                 //초상화 변경
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
                 //bool_isNPC = true;
-
-                if (ObjectManager.instance.GetEquipObjectKey() == 2006 && isSelection_5136 == false ||!ObjectManager.instance.isGetClue)
-                {
-                    //선택지 시작
-                    EventManager.instance.SelectStart("뱃사공");
-
-                    isSelection_5136 = true;
-                    isSelection_yes = true;
-                    //StartCoroutine(ItemClueChat_select());
-                    //StartCoroutine(TextPractice());
-                }
             }
 
             //대화가 끝났을 경우
             else if (isSentenceEnd)
             {
-                isSelection_5136 = false;
+                //isSelection_5136 = false;
 
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
@@ -434,58 +429,51 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
 
     }
 
-    IEnumerator ItemClueChat_select()
-    {
-        //2006 : 송나라 상인과 청이 (추가 대사 있음)
-        if (ObjectManager.instance.GetEquipObjectKey() == 2006)
-        {
-            images_NPC.SetActive(false);
-            Canvas_Selection_UI.SetActive(true);
+    //IEnumerator ItemClueChat_select()
+    //{
+    //    //2006 : 송나라 상인과 청이 (추가 대사 있음)
+    //    if (ObjectManager.instance.GetEquipObjectKey() == 2006)
+    //    {
+    //        images_NPC.SetActive(false);
+    //        Canvas_Selection_UI.SetActive(true);
+    //    }
+    //    yield return null;
+    //}
+
+    //public void onClick_Selet1()
+    //{
+    //    //StartCoroutine(TextPractice_2());
+    //    //Canvas_Selection_UI.SetActive(false);
+    //    //images_NPC.SetActive(true);
+    //        Canvas_Selection_UI.SetActive(false);
+
+    //        isSelection_yes = true;
+    //        isSelection_no = false;
+    //        isSelection_5136 = false;
+
+    //        images_NPC.SetActive(true);
+    //        bool_isNPC = true;
+    //        Trigger_NPC.instance.isNPCTrigger = true;
+    //    //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+    //}
+
+    //public void onClick_Selet2()
+    //{
+    //    Canvas_Selection_UI.SetActive(false);
+
+    //    isSelection_yes = false;
+    //    isSelection_no = true;
+
+    //    images_NPC.SetActive(true);
+    //    bool_isNPC = true;
+    //    Trigger_NPC.instance.isNPCTrigger = true;
+
+    //    //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+
+    //}
 
 
-        }
-        yield return null;
-    }
-
-    public void onClick_Selet1()
-    {
-        //StartCoroutine(TextPractice_2());
-        //Canvas_Selection_UI.SetActive(false);
-        //images_NPC.SetActive(true);
-            Canvas_Selection_UI.SetActive(false);
-
-            isSelection_yes = true;
-            isSelection_no = false;
-            isSelection_5136 = false;
-
-            images_NPC.SetActive(true);
-            bool_isNPC = true;
-            Trigger_NPC.instance.isNPCTrigger = true;
-        //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-    }
-
-    public void onClick_Selet2()
-    {
-        Canvas_Selection_UI.SetActive(false);
-
-        isSelection_yes = false;
-        isSelection_no = true;
-
-        images_NPC.SetActive(true);
-        bool_isNPC = true;
-        Trigger_NPC.instance.isNPCTrigger = true;
-
-        //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-
-    }
-
-    //선택지 이후 대사
-    IEnumerator TextPractice_2()
-    {
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[73].npc_name, npcDatabaseScr.NPC_01[73].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[74].npc_name, npcDatabaseScr.NPC_01[74].comment, true));
-
-    }
+  
 
     IEnumerator TextPractice()
     {
@@ -517,47 +505,37 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         //2006 : 송나라 상인과 청이 (추가 대사 있음)
         else if (ObjectManager.instance.GetEquipObjectKey() == 2006)
         {
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[71].npc_name, npcDatabaseScr.NPC_01[71].comment,true));
-            /*
-            if(isSelection_yes == true)
-			{
-                //선택지 1대사
-                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[73].npc_name, npcDatabaseScr.NPC_01[73].comment, true));
-                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[74].npc_name, npcDatabaseScr.NPC_01[74].comment, true));
-            }
-            else if (isSelection_no == true)
+            //선택지를 고르지 않았다면
+            if(!EventManager.instance.selectEndCheck.select2006_End)
             {
-                //선택지 2대사
-                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[75].npc_name, npcDatabaseScr.NPC_01[75].comment, true));
-                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[76].npc_name, npcDatabaseScr.NPC_01[76].comment, true));
-                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[77].npc_name, npcDatabaseScr.NPC_01[77].comment));
-            }*/
-
-            yield return StartCoroutine(ItemClueChat_select());
-            //선택지 1대사
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[73].npc_name, npcDatabaseScr.NPC_01[73].comment, true));
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[74].npc_name, npcDatabaseScr.NPC_01[74].comment, true));
-            //선택지 2대사
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[75].npc_name, npcDatabaseScr.NPC_01[75].comment, true));
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[76].npc_name, npcDatabaseScr.NPC_01[76].comment, true));
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[77].npc_name, npcDatabaseScr.NPC_01[77].comment));
-            
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[71].npc_name, npcDatabaseScr.NPC_01[71].comment, true));
+                EventManager.instance.SelectStart(NPCName.boatman, 2006);
+            }
+            else
+            {
+                //선택지 1번을 골랐을 경우
+                if(int_Select2006Num == 1)
+                {
+                    yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[73].npc_name, npcDatabaseScr.NPC_01[73].comment, true));
+                    //청이의 거래 단서 획득
+                    ObjectManager.instance.GetClue(2012);
+                    yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[74].npc_name, npcDatabaseScr.NPC_01[74].comment));
+                }
+                else
+                {
+                    //만약 하루가 지났다면
+                    if(int_select2006Day < TimeManager.instance.int_DayCount)
+                    {
+                        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[71].npc_name, npcDatabaseScr.NPC_01[71].comment, true));
+                        EventManager.instance.SelectStart(NPCName.boatman, 2006);
+                    }
+                    else
+                    {
+                        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[77].npc_name, npcDatabaseScr.NPC_01[77].comment));
+                    }
+                }
+            }
         }
-        /*
-        else if (ObjectManager.instance.GetEquipObjectKey() == 2006 && isSelection_yes == true)
-        {
-            //선택지 1대사
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[73].npc_name, npcDatabaseScr.NPC_01[73].comment, true));
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[74].npc_name, npcDatabaseScr.NPC_01[74].comment, true));
-        }
-
-        else if (ObjectManager.instance.GetEquipObjectKey() == 2006 && isSelection_no == true)
-        {
-            //선택지 2대사
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[75].npc_name, npcDatabaseScr.NPC_01[75].comment, true));
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[76].npc_name, npcDatabaseScr.NPC_01[76].comment, true));
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[77].npc_name, npcDatabaseScr.NPC_01[77].comment));
-        }*/
 
         //2007 : 승려와 청이
         else if (ObjectManager.instance.GetEquipObjectKey() == 2007)
@@ -748,5 +726,33 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         }
         //yield return StartCoroutine(NormalChat(characternameText, writerText));
         //yield return StartCoroutine(NormalChat("나는봇짐", "?안녕하세요, 반갑습니다. 대화 전환 테스트입니다 이것은 테스트지? 그럼 테스트지 테스트야 테스트군 테스트"));
+    }
+
+    //송나라 상인과 청이 1번 대사
+    IEnumerator Select2006_Sentence1()
+    {
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[73].npc_name, npcDatabaseScr.NPC_01[73].comment, true));
+        //청이의 거래 단서 획득
+        ObjectManager.instance.GetClue(2012);
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[74].npc_name, npcDatabaseScr.NPC_01[74].comment));
+    }
+
+    //송나라 상인과 청이 2번 대사
+    IEnumerator Select2006_Sentence2()
+    {
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[75].npc_name, npcDatabaseScr.NPC_01[75].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[76].npc_name, npcDatabaseScr.NPC_01[76].comment));
+    }
+
+    //송나라 상인과 청이 선택지 1번 대사 출력
+    public void PrintSelect2006_Sentence1()
+    {
+        StartCoroutine(Select2006_Sentence1());
+    }
+
+    //송나라 상인과 청이 선택지 2번 대사 출력
+    public void PrintSelect2006_Sentence2()
+    {
+        StartCoroutine(Select2006_Sentence2());
     }
 }

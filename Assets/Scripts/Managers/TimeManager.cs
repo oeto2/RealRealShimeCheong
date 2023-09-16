@@ -125,7 +125,24 @@ public class TimeManager : MonoBehaviour
     //주막의 스파라이트 이미지들
     public Sprite[] sprite_Joomacks;
 
-    
+    //싱글톤 패턴
+    public static TimeManager instance = null;
+
+    public void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            if(instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
 
 
     private void Start()
