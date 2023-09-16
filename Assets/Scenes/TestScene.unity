@@ -5735,8 +5735,11 @@ MonoBehaviour:
   eventProgress:
     deliveryMuck: 0
     joomackPuzzle_Clear: 0
+    giveFlowerEnd: 0
+    day15ClueStart: 0
   eventEndCheck:
     muckEvent_End: 0
+    day15ClueGet: 0
   eventList: []
   saveFilePath: 
 --- !u!1 &226251995
@@ -62490,7 +62493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2063844034
 MonoBehaviour:
   m_ObjectHideFlags: 0

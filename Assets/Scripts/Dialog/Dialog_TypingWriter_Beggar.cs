@@ -527,6 +527,8 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         {
             //º¸¸®¶± Á¦°Å
             ObjectManager.instance.RemoveItem(1008);
+            //º¸¸®¶± Àü´Þ ¿Ï·á
+            EventManager.instance.eventEndCheck.giveBoridduck_End = true;
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[173].npc_name, npcDatabaseScr.NPC_01[173].comment,true));
             //²É È¹µæ
             ObjectManager.instance.GetItem(1009);

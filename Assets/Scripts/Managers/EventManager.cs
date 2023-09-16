@@ -8,7 +8,7 @@ public class EventSaveData
 {
     //생성자
     public EventSaveData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck,
-        bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End)
+        bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End, bool _giveFlower, bool _day15ClueTalk, bool _day15ClueGet, bool _giveBoridduck_End)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -18,6 +18,10 @@ public class EventSaveData
         deliveryMuck = _deliveryMuck;
         muckEvent_End = _muckEvent_End;
         joomackPuzzle_End = _joomackPuzzle_End;
+        giveFlower = _giveFlower;
+        day15ClueTalk = _day15ClueTalk;
+        day15ClueGet = _day15ClueGet;
+        giveBoridduck_End = _giveBoridduck_End;
     }
 
     //이벤트 활성화 여부
@@ -26,13 +30,21 @@ public class EventSaveData
     public bool flower;
     public bool muck;
     public bool boridduck;
+    //3월 보름날 이벤트
+    public bool day15ClueTalk;
+
 
     //먹을 전달 했는지 여부
     public bool deliveryMuck;
+    //꽃을 전달 했는지 여부
+    public bool giveFlower;
 
     //이벤트 완료 여부
     public bool muckEvent_End;
     public bool joomackPuzzle_End;
+    public bool day15ClueGet;
+    public bool giveBoridduck_End;
+
 }
 
 //로드할 데이터
@@ -40,7 +52,7 @@ public class EventLoadData
 {
     //생성자
     public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck, 
-        bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End)
+        bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End, bool _giveFlower, bool _day15ClueTalk, bool _day15ClueGet, bool _giveBoridduck_End)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -50,6 +62,10 @@ public class EventLoadData
         deliveryMuck = _deliveryMuck;
         muckEvent_End = _muckEvent_End;
         joomackPuzzle_End = _joomackPuzzle_End;
+        giveFlower = _giveFlower;
+        day15ClueTalk = _day15ClueTalk;
+        day15ClueGet = _day15ClueGet;
+        giveBoridduck_End = _giveBoridduck_End;
     }
 
     //이벤트 활성화 여부
@@ -58,13 +74,19 @@ public class EventLoadData
     public bool flower;
     public bool muck;
     public bool boridduck;
+    //3월 보름날 이벤트
+    public bool day15ClueTalk;
 
     //먹을 전달 했는지 여부
     public bool deliveryMuck;
+    //꽃을 전달 했는지 여부
+    public bool giveFlower;
 
     //이벤트 완료 여부
     public bool muckEvent_End;
     public bool joomackPuzzle_End;
+    public bool day15ClueGet;
+    public bool giveBoridduck_End;
 }
 
 
@@ -87,6 +109,10 @@ public class EventProgress
     public bool deliveryMuck;
     //주막 퍼즐을 클리어 했는지 여부
     public bool joomackPuzzle_Clear;
+    //꽃을 전달했는지 여부
+    public bool giveFlowerEnd;
+    //3월 보름날 단서 대화를 시작했는지 여부
+    public bool day15ClueStart;
 }
 
 //이벤트를 마무리했는지 체크
@@ -95,6 +121,10 @@ public class EventEndCheck
 {
     //먹 이벤트를 완료했는지
     public bool muckEvent_End;
+    //보리떡 전달을 완료헀는지
+    public bool giveBoridduck_End;
+    //3월 보름날 단서를 획득 했는지 여부
+    public bool day15ClueGet;
 }
 
 //이벤트 목록
@@ -262,7 +292,7 @@ public class EventManager : MonoBehaviour
         //저장할 데이터 넣기
         curEventSaveData = new EventSaveData(eventCheck.joomackBab, eventCheck.binyeo, 
             eventCheck.flower, eventCheck.muck, eventCheck.boridduck, eventProgress.deliveryMuck, eventEndCheck.muckEvent_End
-            , eventProgress.joomackPuzzle_Clear);
+            , eventProgress.joomackPuzzle_Clear,eventProgress.giveFlowerEnd,eventProgress.day15ClueStart, eventEndCheck.day15ClueGet, eventEndCheck.giveBoridduck_End);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curEventSaveData);
@@ -292,6 +322,7 @@ public class EventManager : MonoBehaviour
         //이벤트 진행 상황 초기화
         eventProgress.deliveryMuck = curEventLoadData.deliveryMuck;
         eventProgress.joomackPuzzle_Clear = curEventLoadData.joomackPuzzle_End;
+        eventProgress.giveFlowerEnd = curEventLoadData.giveFlower;
 
         //이벤트 완료 상황 초기화
         eventEndCheck.muckEvent_End = curEventLoadData.muckEvent_End;
@@ -340,7 +371,6 @@ public class EventManager : MonoBehaviour
                 //선택지 1번 Text값 변경
 
                 //선택지 2번 Text값 변경
-
 
                 break;
         }
