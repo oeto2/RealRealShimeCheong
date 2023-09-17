@@ -123,37 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &143141251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 143141252}
-  m_Layer: 0
-  m_Name: Test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &143141252
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143141251}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -67.168625, y: -61.15533, z: -10.940235}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &202468511
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +880,8 @@ GameObject:
   - component: {fileID: 1398570025}
   - component: {fileID: 1398570023}
   - component: {fileID: 1398570026}
+  - component: {fileID: 1398570027}
+  - component: {fileID: 1398570028}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -925,7 +896,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398570021}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1015,6 +986,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b99e92e76f0f8341992fce73e820aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1398570027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398570021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebe9a335e4fd6648ae1172824d83b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text_ChangeColor: {fileID: 384813860}
+  color32_Origin:
+    serializedVersion: 2
+    rgba: 4294967295
+  color_Change:
+    serializedVersion: 2
+    rgba: 4284769380
+--- !u!61 &1398570028
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398570021}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 500, y: 100}
+  m_EdgeRadius: 0
 --- !u!1 &1833022068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1042,8 @@ GameObject:
   - component: {fileID: 1833022069}
   - component: {fileID: 1833022072}
   - component: {fileID: 1833022070}
+  - component: {fileID: 1833022073}
+  - component: {fileID: 1833022074}
   m_Layer: 5
   m_Name: LoadButton
   m_TagString: Untagged
@@ -1106,6 +1124,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833022068}
   m_CullTransparentMesh: 1
+--- !u!114 &1833022073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833022068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebe9a335e4fd6648ae1172824d83b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text_ChangeColor: {fileID: 2006708706}
+  color32_Origin:
+    serializedVersion: 2
+    rgba: 4294967295
+  color_Change:
+    serializedVersion: 2
+    rgba: 4284769380
+--- !u!61 &1833022074
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833022068}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 500, y: 100}
+  m_EdgeRadius: 0
 --- !u!1 &1931562329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,6 +1181,8 @@ GameObject:
   - component: {fileID: 1931562333}
   - component: {fileID: 1931562331}
   - component: {fileID: 1931562334}
+  - component: {fileID: 1931562335}
+  - component: {fileID: 1931562336}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -1222,6 +1287,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f605b5ebb3391d4ea030aa3102beb18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1931562335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931562329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebe9a335e4fd6648ae1172824d83b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text_ChangeColor: {fileID: 1356894901}
+  color32_Origin:
+    serializedVersion: 2
+    rgba: 4294967295
+  color_Change:
+    serializedVersion: 2
+    rgba: 4284769380
+--- !u!61 &1931562336
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931562329}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 500, y: 100}
+  m_EdgeRadius: 0
 --- !u!1 &2006708704
 GameObject:
   m_ObjectHideFlags: 0
