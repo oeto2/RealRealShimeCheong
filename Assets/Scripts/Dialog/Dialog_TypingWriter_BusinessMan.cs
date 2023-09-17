@@ -560,7 +560,21 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             //1006 : 비녀 (이벤트?)
             else if (ObjectManager.instance.GetEquipObjectKey() == 1006)
             {
-                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[302].npc_name, npcDatabaseScr.NPC_01[302].comment));
+                //베드엔딩1 양상군자
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[302].npc_name, npcDatabaseScr.NPC_01[302].comment,true));
+
+                //배경 이미지 변경
+                EndingManager.instance.ShowEndingBG();
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[410].npc_name, npcDatabaseScr.NPC_01[410].comment, true));
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[411].npc_name, npcDatabaseScr.NPC_01[411].comment, true));
+
+                //베드엔딩 컬러로 변경
+                EndingManager.instance.ChangeToBadEndingBG();
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[412].npc_name, npcDatabaseScr.NPC_01[412].comment, true));
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[413].npc_name, npcDatabaseScr.NPC_01[413].comment, true));
+                //타이틀 이동
+                EndingManager.instance.LoadTitleScene();
+
             }
 
             //1007 : 먹

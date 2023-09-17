@@ -53,11 +53,14 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
     // 선택지 2 대사 텍스트
     public Text Selection_Text2;
 
-    // 선택지 확인 변수
-    public bool isSelection_yes = false;
-    public bool isSelection_no = false;
+    //함께 사라진 두 사람 대화를 했는지 체크 (대화시 True)
+    public bool clue8032Talk;
 
-    public bool isSelection_2023;
+    //// 선택지 확인 변수
+    //public bool isSelection_yes = false;
+    //public bool isSelection_no = false;
+
+    //public bool isSelection_2023;
 
     [System.Serializable]
     public struct DialogData
@@ -119,28 +122,15 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 //bool_isNPC = true;
                 //Trigger_NPC.instance.isNPCTrigger = true;
                 //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-
-                //선택지 보이기
-                if (ObjectManager.instance.GetEquipObjectKey() == 2023 && isSelection_2023 == false)
-                {
-                    Debug.Log("향리댁 선택지 ON");
-
-                    Canvas_Selection_UI.SetActive(true);
-                    isSelection_2023 = true;
-
-                    images_NPC.SetActive(false);
-                    bool_isNPC = true;
-                    trigger_npc.isNPCTrigger = false;
-                }
             }
-            
+
             //대화 종료
             else if (isSentenceEnd)
             {
                 //플레이어 이동제한 해제
                 controller_scr.TalkEnd();
 
-                isSelection_2023 = false;
+                //isSelection_2023 = false;
 
                 images_NPC.SetActive(false);
                 bool_isNPC = false;
@@ -148,9 +138,9 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
                 writerText = "";
                 StopAllCoroutines();
-                
 
-                 //남은대화 없음
+
+                //남은대화 없음
                 remainSentence = false;
                 //대화 끝
                 isSentenceEnd = false;
@@ -370,40 +360,10 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
     }
 
-    public void onClick_yes()
-	{
-        if (isSelection_2023 == true)
-        {
-            Canvas_Selection_UI.SetActive(false);
-
-            isSelection_yes = true;
-            isSelection_no = false;
-            isSelection_2023 = false;
-
-            images_NPC.SetActive(true);
-            bool_isNPC = true;
-            Trigger_NPC.instance.isNPCTrigger = true;
-            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-        }
-    }
-
-    public void onClick_no()
-    {
-        Canvas_Selection_UI.SetActive(false);
-
-        isSelection_yes = false;
-        isSelection_no = true;
-
-        images_NPC.SetActive(true);
-        bool_isNPC = true;
-        Trigger_NPC.instance.isNPCTrigger = true;
-        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-
-    }
 
     IEnumerator TextPractice()
     {
-        
+
 
         #region 단서
         //2000 : 승상댁의 수양딸
@@ -536,7 +496,6 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[231].npc_name, dialogdb.NPC_01[231].comment));
-            isSelection_2023 = true;
         }
         #endregion
 
@@ -595,7 +554,32 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         //8032 : 함께 사라진 두 사람
         else if (ObjectManager.instance.GetEquipObjectKey() == 8032)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[375].npc_name, dialogdb.NPC_01[375].comment));
+            //첫번째 대화 시
+            if (!clue8032Talk)
+            {
+                clue8032Talk = true;
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[375].npc_name, dialogdb.NPC_01[375].comment));
+            }
+            else
+            {
+                //베드엔딩2 구화지문
+
+                //엔딩 배경 보이기
+                EndingManager.instance.ShowEndingBG();
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[414].npc_name, dialogdb.NPC_01[414].comment, true));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[415].npc_name, dialogdb.NPC_01[415].comment, true));
+
+                //베드엔딩 이미지로 변경
+                EndingManager.instance.ChangeToBadEndingBG();
+
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[416].npc_name, dialogdb.NPC_01[416].comment, true));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[417].npc_name, dialogdb.NPC_01[417].comment, true));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[418].npc_name, dialogdb.NPC_01[418].comment, true));
+
+                //타이틀로 이동
+                EndingManager.instance.LoadTitleScene();
+            }
+
         }
         //4033 : 무역의 중단
         else if (ObjectManager.instance.GetEquipObjectKey() == 4033)

@@ -446,7 +446,23 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
         //2023 : 3월 보름날
         else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
         {
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[248].npc_name, npcDatabaseScr.NPC_01[248].comment));
+            //베드엔딩4 취생몽사
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[248].npc_name, npcDatabaseScr.NPC_01[248].comment,true));
+
+            //엔딩 배경 ON
+            EndingManager.instance.ShowEndingBG();
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[425].npc_name, npcDatabaseScr.NPC_01[425].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[426].npc_name, npcDatabaseScr.NPC_01[426].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[427].npc_name, npcDatabaseScr.NPC_01[427].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[428].npc_name, npcDatabaseScr.NPC_01[428].comment, true));
+
+            //베드엔딩 배경 보이기
+            EndingManager.instance.ChangeToBadEndingBG();
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[429].npc_name, npcDatabaseScr.NPC_01[429].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[430].npc_name, npcDatabaseScr.NPC_01[430].comment, true));
+
+            //타이틀로 이동
+            EndingManager.instance.LoadTitleScene();
         }
         #endregion
 

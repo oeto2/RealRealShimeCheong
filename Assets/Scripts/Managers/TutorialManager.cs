@@ -55,9 +55,8 @@ public enum TutorialEvents
 {
     TurnOnLights = 0,
     GetItems = 1,
-    TalkToBBangDuck = 2,
-    TalkToHyang = 3,
-    PassOneDay = 4,
+    TalkToHyang = 2,
+    PassOneDay = 3,
     Done
 
 }
@@ -151,6 +150,7 @@ public class TutorialManager : MonoBehaviour
     {
         //세이브 데이터 파일 위치
         saveFilePath = Application.persistentDataPath + "/TutorialDataText.txt";
+
         //튜토리얼 시작 전 사전 작업들
         #region
         ////UI Canvas OFF
@@ -303,35 +303,11 @@ public class TutorialManager : MonoBehaviour
 
             //다음 이벤트
             tutorialEventNum = 2;
-            events = TutorialEvents.TalkToBBangDuck;
-        }
-
-        //Evnet 2 : 뺑떡 어멈과 대화하자
-        //뺑떡 어멈의 말이 끝났을 경우
-        if (setence1End && getObjects && SentenceEnd_Bbang && !BangtalkEnd)
-        {
-            Debug.Log("뺑떡이야기 후 대화 실행");
-
-            playerCtrlScr.TalkStart();
-
-            playerDialogueScr.Start_Sentence_BbangEnd();
-
-            BangtalkEnd = true;
-        }
-
-        //문장이 전부 출력이 되었다면 Z키를 눌러 다이얼로그 끄기
-        if (playerDialogueScr.isTalkEnd && Input.GetKeyDown(KeyCode.Z) && BangtalkEnd && !SentenceEnd_Hyang && events == TutorialEvents.TalkToBBangDuck)
-        {
-            playerCtrlScr.TalkEnd();
-
-            gameObject_Dialogue.SetActive(false);
-
-            //다음 이벤트
-            tutorialEventNum = 3;
+            //향리댁 대화이벤트
             events = TutorialEvents.TalkToHyang;
         }
 
-        //Evnet 3 : 향리댁과 대화하자
+        //Evnet 2 : 향리댁과 대화하자
         //향리댁 대화가 모두 끝났을 경우
         if (getObjects && SentenceEnd_Bbang && SentenceEnd_Hyang && !HyangTalkEnd1 && !HyangTalkEnd2)
         {
@@ -544,15 +520,12 @@ public class TutorialManager : MonoBehaviour
                 events = TutorialEvents.GetItems;
                 break;
             case 2:
-                events = TutorialEvents.TalkToBBangDuck;
-                break;
-            case 3:
                 events = TutorialEvents.TalkToHyang;
                 break;
-            case 4:
+            case 3:
                 events = TutorialEvents.PassOneDay;
                 break;
-            case 5:
+            case 4:
                 events = TutorialEvents.Done;
                 break;
         }
@@ -679,58 +652,7 @@ public class TutorialManager : MonoBehaviour
                     break;
                 }
 
-            //이벤트 2 : 뺑떡과 대화
-            case TutorialEvents.TalkToBBangDuck:
-                {
-                    //Flag 설정
-                    showNote = true;
-                    closeNote = true;
-                    setence1End = true;
-                    getObjects = true;
-                    passDay = false;
-                    SentenceEnd_Bbang = false;
-                    SentenceEnd_Hyang = false;
-                    SentenceEnd_HyangShim = false;
-                    BangtalkEnd = false;
-                    HyangTalkEnd1 = false;
-                    HyangTalkEnd2 = false;
-                    HyangTalkEnd3 = false;
-                    PassDayTalkEnd1 = false;
-                    PassDayTalkEnd2 = false;
-                    PassDayTalkEnd3 = false;
-
-                    //Object 설정
-
-                    //등잔불이 켜져있었다면
-                    if (_isLightsOn)
-                    {
-                        //등잔불 켜기
-                        turnOnLightScr.TurnOnLights();
-                    }
-
-                    //등잔불이 꺼져 있었다면
-                    else if (!_isLightsOn)
-                    {
-                        //등잔불 끄기
-                        turnOnLightScr.TurnOFFLights();
-                    }
-
-                    //봇짐 획득
-                    objCtrlScr.LoadBotzime();
-                    //지도 획득
-                    objCtrlScr.LoadMap();
-
-                    //UI 설정
-                    //UI Canvas 켜기
-                    gameObject_UICanvas.SetActive(true);
-                    //날짜 UI끄기
-                    timeManagerScr.CloseDayUI();
-                    //플레이어 이동제어
-                    playerCtrlScr.TalkEnd();
-                    break;
-                }
-
-            //이벤트 3 : 향리댁과 대화
+            //이벤트 2 : 향리댁과 대화
             case TutorialEvents.TalkToHyang:
                 {
                     //Flag 설정
