@@ -319,22 +319,20 @@ public class UIManager : MonoBehaviour
         //조합창을 띄우는 조건
         if (!gameObject_CombineWindow.activeSelf && !playerCtrlScr.isTalk && Input.GetKeyDown(KeyCode.Z))
         {
-            isCombineLaunch = true;
-
             //커서 이미지 변경
             cursorCtrlScr.ChangeCursor(cursorCtrlScr.sprite_idle);
         }
 
-        //조합창이 실행중이지 않다면
-        if (!gameObject_CombineWindow.activeSelf)
-        {
-            Invoke("CombineFalgFalse", 0.2f);
-        }
-
+        ////조합창이 실행중이지 않다면
+        //if (!gameObject_CombineWindow.activeSelf)
+        //{
+        //    Invoke("CombineFalgFalse", 0.2f);
+        //}
 
         //조합창이 실행중이고 ESC키를 눌렀을경우
         if (isCombineLaunch && Input.GetKeyDown(KeyCode.Escape))
         {
+            Debug.Log("조합창 닫기");
             CombineWindowExit();
         }
         #endregion
@@ -380,6 +378,8 @@ public class UIManager : MonoBehaviour
     {
         if (!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch)
         {
+            isCombineLaunch = true;
+
             //시간 정지
             TimeManager.instance.StopTime();
             gameObject_CombineWindow.SetActive(true);
@@ -389,6 +389,8 @@ public class UIManager : MonoBehaviour
     //조합창 끄기
     public void CombineWindowExit()
     {
+        isCombineLaunch = false;
+
         //시간 흐르기
         TimeManager.instance.ContinueTime();
         gameObject_CombineWindow.SetActive(false);
