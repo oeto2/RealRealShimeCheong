@@ -106,6 +106,8 @@ public class Controller : MonoBehaviour
     //대화 시작
     public void TalkStart()
     {
+        //시간 정지
+        TimeManager.instance.StopTime();
         Debug.Log("TalkStart");
         isTalk = true;
         canMove = true;
@@ -114,6 +116,8 @@ public class Controller : MonoBehaviour
     //대화 끝
     public void TalkEnd()
     {
+        //시간 흐르기
+        TimeManager.instance.ContinueTime();
         Debug.Log("TalkEnd");
         isTalk = false;
         canMove = false;

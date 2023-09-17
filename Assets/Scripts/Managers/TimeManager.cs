@@ -211,7 +211,10 @@ public class TimeManager : MonoBehaviour
                 NextDayAnimaton(int_DayCount);
 
                 //시간 정지
-                StopTime();
+                if(int_DayCount == 2)
+                {
+                    StopTime();
+                }
 
                 //하루가 지났음
                 tutorialManagerScr.PassDay();

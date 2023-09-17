@@ -390,11 +390,14 @@ public class TutorialManager : MonoBehaviour
         //Player 위치 초기화
         gameManagerScr.ReturnPlayer();
 
-        //Player 움직임 정지
-        playerCtrlScr.TalkStart();
+        if(TimeManager.instance.int_DayCount == 2)
+        {
+            //Player 움직임 정지
+            playerCtrlScr.TalkStart();
 
-        //심봉사 이동후 몇초뒤에 다이얼로그 띄울건지
-        Invoke("PassDayTrue", 1.5f);
+            //심봉사 이동후 몇초뒤에 다이얼로그 띄울건지
+            Invoke("PassDayTrue", 1.5f);
+        }
     }
 
     //PassDay Flag Dealy용
