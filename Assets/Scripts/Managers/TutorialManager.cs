@@ -72,6 +72,7 @@ public class TutorialManager : MonoBehaviour
     public TimeManager timeManagerScr;
     public GameManager gameManagerScr;
     public BoxAction boxActScr;
+    public Dialog_TypingWriter_JangSeong dialogueHyangScr;
 
     //나레이션 오브젝트
     public GameObject gameObject_NarationBG;
@@ -124,16 +125,14 @@ public class TutorialManager : MonoBehaviour
     private bool SentenceEnd_HyangShim;
 
     //흐름 제어용 Flags
-    private bool BangtalkEnd;
-    private bool HyangTalkEnd1;
-    private bool HyangTalkEnd2;
-    private bool HyangTalkEnd3;
+    public bool HyangTalkEnd;
     private bool PassDayTalkEnd1;
     private bool PassDayTalkEnd2;
     private bool PassDayTalkEnd3;
 
     //저장할 튜토리얼 데이터 클래스
     public TutorialSaveData curTutorialSaveData;
+
     //불러올 튜토리얼 데이터 클래스
     public TutorialLoadData curTutorialLoadData;
 
@@ -161,6 +160,7 @@ public class TutorialManager : MonoBehaviour
         //시간 멈추기
         timeManagerScr.StopTime();
         #endregion
+
     }
 
     // Update is called once per frame
@@ -173,7 +173,6 @@ public class TutorialManager : MonoBehaviour
             //스페이스 바를 눌러 독백 창 끄기
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z))
             {
-
                 //Player 이동 제한 해제
                 playerCtrlScr.TalkEnd();
 
@@ -210,8 +209,6 @@ public class TutorialManager : MonoBehaviour
                 //메모 끄기
                 if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Space)) && !closeNote)
                 {
-                    
-
                     //Player 이동제한
                     playerCtrlScr.TalkStart();
 
@@ -263,7 +260,8 @@ public class TutorialManager : MonoBehaviour
         if (setence1End && !getObjects)
         {
             //Evnet 1 : 봇짐 또는 지도를 획득하자
-            //봇짐 획득 후 창끄기
+
+            //봇짐 획득 후 창 끄기
             if (setence1End && Input.GetKeyDown(KeyCode.Z) && objCtrlScr.getBotzime && playerDialogueScr.isTalkEnd)
             {
                 //Player 이동제한 해제
@@ -272,7 +270,7 @@ public class TutorialManager : MonoBehaviour
                 gameObject_Dialogue.SetActive(false);
             }
 
-            //맵 획득 후 창끄기
+            //맵 획득 후 창 끄기
             if (setence1End && Input.GetKeyDown(KeyCode.Z) && objCtrlScr.getMap && playerDialogueScr.isTalkEnd)
             {
                 //Player 이동제한 해제
@@ -303,50 +301,23 @@ public class TutorialManager : MonoBehaviour
 
             //다음 이벤트
             tutorialEventNum = 2;
+
             //향리댁 대화이벤트
             events = TutorialEvents.TalkToHyang;
         }
 
         //Evnet 2 : 향리댁과 대화하자
-        //향리댁 대화가 모두 끝났을 경우
-        if (getObjects && SentenceEnd_Bbang && SentenceEnd_Hyang && !HyangTalkEnd1 && !HyangTalkEnd2)
-        {
-            playerCtrlScr.TalkStart();
-
-            //향리댁 1번대화
-            playerDialogueScr.Start_Sentence_HyangEnd1();
-
-            HyangTalkEnd1 = true;
-
-            
-        }
-
-        //1번대화가 모두 끝나고 Z키 누를경우
-        if (SentenceEnd_Hyang && HyangTalkEnd1 && playerDialogueScr.isTalkEnd && Input.GetKeyDown(KeyCode.Z) && !HyangTalkEnd2)
-        {
-            //향리댁 2번 대화
-            playerDialogueScr.Start_Sentence_HyangEnd2();
-
-            HyangTalkEnd2 = true;
-        }
-
-        //2번대화가 모두 끝나고 Z키를 누를경우
-        if (playerDialogueScr.isTalkEnd && HyangTalkEnd2 && Input.GetKeyDown(KeyCode.Z) && !HyangTalkEnd3)
-        {
-            //향리댁 3번 대화
-            playerDialogueScr.Start_Sentence_HyangEnd3();
-
-            HyangTalkEnd3 = true;
-        }
-
-        //3번대화가 모두 끝나고 Z 키를 누를경우
-        if (playerDialogueScr.isTalkEnd && HyangTalkEnd1 && HyangTalkEnd3 && Input.GetKeyDown(KeyCode.Z) && !SentenceEnd_HyangShim && events == TutorialEvents.TalkToHyang)
+        //향리댁 대화가 모두 끝나고 Z 키를 누를경우
+        if (events == TutorialEvents.TalkToHyang && HyangTalkEnd && Input.GetKeyDown(KeyCode.Z))
         {
             //대화 끝
             playerCtrlScr.TalkEnd();
 
             //다이얼로그 끄기
             gameObject_Dialogue.SetActive(false);
+            DialogManager.instance.Dialouge_System.SetActive(false);
+            //향리댁 SentenceEnd
+            dialogueHyangScr.isSentenceEnd = true;
 
             //시간 리셋
             timeManagerScr.ResetTime();
@@ -356,15 +327,14 @@ public class TutorialManager : MonoBehaviour
 
             //시간 흐르기
             timeManagerScr.ContinueTime();
-
             SentenceEnd_HyangShim = true;
 
             //다음 이벤트
-            tutorialEventNum = 4;
+            tutorialEventNum = 3;
             events = TutorialEvents.PassOneDay;
         }
 
-        //Evnet 4 : 하루를 보내자
+        //Evnet 3 : 하루를 보내자
         //하루가 지났을 경우
         if (passDay && !PassDayTalkEnd1)
         {
@@ -425,8 +395,6 @@ public class TutorialManager : MonoBehaviour
 
         //심봉사 이동후 몇초뒤에 다이얼로그 띄울건지
         Invoke("PassDayTrue", 1.5f);
-
-        
     }
 
     //PassDay Flag Dealy용
@@ -548,10 +516,7 @@ public class TutorialManager : MonoBehaviour
                     SentenceEnd_Bbang = false;
                     SentenceEnd_Hyang = false;
                     SentenceEnd_HyangShim = false;
-                    BangtalkEnd = false;
-                    HyangTalkEnd1 = false;
-                    HyangTalkEnd2 = false;
-                    HyangTalkEnd3 = false;
+                    HyangTalkEnd = false;
                     PassDayTalkEnd1 = false;
                     PassDayTalkEnd2 = false;
                     PassDayTalkEnd3 = false;
@@ -570,8 +535,6 @@ public class TutorialManager : MonoBehaviour
                     gameObject_UICanvas.SetActive(false);
                     //날짜 UI끄기
                     timeManagerScr.CloseDayUI();
-                    //시간 흐르기
-                    
 
                     //플레이어 이동제어
                     playerCtrlScr.TalkEnd();
@@ -590,10 +553,7 @@ public class TutorialManager : MonoBehaviour
                     SentenceEnd_Bbang = false;
                     SentenceEnd_Hyang = false;
                     SentenceEnd_HyangShim = false;
-                    BangtalkEnd = false;
-                    HyangTalkEnd1 = false;
-                    HyangTalkEnd2 = false;
-                    HyangTalkEnd3 = false;
+                    HyangTalkEnd = false;
                     PassDayTalkEnd1 = false;
                     PassDayTalkEnd2 = false;
                     PassDayTalkEnd3 = false;
@@ -664,10 +624,7 @@ public class TutorialManager : MonoBehaviour
                     SentenceEnd_Bbang = true;
                     SentenceEnd_Hyang = false;
                     SentenceEnd_HyangShim = false;
-                    BangtalkEnd = true;
-                    HyangTalkEnd1 = false;
-                    HyangTalkEnd2 = false;
-                    HyangTalkEnd3 = false;
+                    HyangTalkEnd = false;
                     PassDayTalkEnd1 = false;
                     PassDayTalkEnd2 = false;
                     PassDayTalkEnd3 = false;
@@ -703,7 +660,7 @@ public class TutorialManager : MonoBehaviour
                     break;
                 }
 
-            //이벤트 4 : 하루를 보내자
+            //이벤트 3: 하루를 보내자
             case TutorialEvents.PassOneDay:
                 {
                     //Flag 설정
@@ -715,10 +672,7 @@ public class TutorialManager : MonoBehaviour
                     SentenceEnd_Bbang = true;
                     SentenceEnd_Hyang = true;
                     SentenceEnd_HyangShim = true;
-                    BangtalkEnd = true;
-                    HyangTalkEnd1 = true;
-                    HyangTalkEnd2 = true;
-                    HyangTalkEnd3 = true;
+                    HyangTalkEnd = true;
                     PassDayTalkEnd1 = false;
                     PassDayTalkEnd2 = false;
                     PassDayTalkEnd3 = false;
@@ -756,7 +710,7 @@ public class TutorialManager : MonoBehaviour
                     break;
                 }
 
-            //이벤트 5 : 이벤트 끝
+            //이벤트 4: 이벤트 끝
             case TutorialEvents.Done:
                 {
                     //Flag 설정
@@ -768,10 +722,7 @@ public class TutorialManager : MonoBehaviour
                     SentenceEnd_Bbang = true;
                     SentenceEnd_Hyang = true;
                     SentenceEnd_HyangShim = true;
-                    BangtalkEnd = true;
-                    HyangTalkEnd1 = true;
-                    HyangTalkEnd2 = true;
-                    HyangTalkEnd3 = true;
+                    HyangTalkEnd = true;
                     PassDayTalkEnd1 = true;
                     PassDayTalkEnd2 = true;
                     PassDayTalkEnd3 = true;

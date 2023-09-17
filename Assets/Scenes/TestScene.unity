@@ -13334,6 +13334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e2e2166ddbe6f4f9bd4a110df502fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialManagerScr: {fileID: 0}
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 
@@ -26108,6 +26109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e2e2166ddbe6f4f9bd4a110df502fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialManagerScr: {fileID: 2057623165}
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 20000000
@@ -27922,6 +27924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e2e2166ddbe6f4f9bd4a110df502fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialManagerScr: {fileID: 0}
   ChatText: {fileID: 2081460924}
   CharacterName: {fileID: 1522015625}
   skipButton: 
@@ -32269,7 +32272,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 40, y: -470.00003}
+  m_AnchoredPosition: {x: 40, y: -470}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1125754046
@@ -62447,6 +62450,7 @@ MonoBehaviour:
   timeManagerScr: {fileID: 1371449063}
   gameManagerScr: {fileID: 905248352}
   boxActScr: {fileID: 51505325}
+  dialogueHyangScr: {fileID: 928861248}
   gameObject_NarationBG: {fileID: 143840523}
   gameObject_UICanvas: {fileID: 1851244455}
   gameObject_Dialogue: {fileID: 1992085854}
@@ -62462,6 +62466,7 @@ MonoBehaviour:
   passDay: 0
   SentenceEnd_Bbang: 0
   SentenceEnd_Hyang: 0
+  HyangTalkEnd: 0
   curTutorialSaveData:
     tutoralEventNum: 0
     getBotzime: 0

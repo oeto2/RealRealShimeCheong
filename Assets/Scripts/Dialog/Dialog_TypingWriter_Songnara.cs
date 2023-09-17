@@ -357,6 +357,7 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
 
     IEnumerator TextPractice()
     {
+
         #region 단서
 
         //2005 : 누군가의 아들
