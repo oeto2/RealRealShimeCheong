@@ -380,6 +380,8 @@ public class UIManager : MonoBehaviour
     {
         if (!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch)
         {
+            //시간 정지
+            TimeManager.instance.StopTime();
             gameObject_CombineWindow.SetActive(true);
         }
     }
@@ -387,6 +389,8 @@ public class UIManager : MonoBehaviour
     //조합창 끄기
     public void CombineWindowExit()
     {
+        //시간 흐르기
+        TimeManager.instance.ContinueTime();
         gameObject_CombineWindow.SetActive(false);
     }
     #endregion

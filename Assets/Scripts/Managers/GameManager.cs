@@ -297,6 +297,9 @@ public class GameManager : MonoBehaviour
     //구슬 퍼즐 시작
     public void PlayBeadPuzzle()
     {
+        //시간정지
+        TimeManager.instance.StopTime();
+
         //퍼즐 시작
         isBeadPuzzleStart = true;
 
@@ -319,6 +322,9 @@ public class GameManager : MonoBehaviour
     //구슬 퍼즐 끝
     public void BeadPuzzleEnd()
     {
+        //시간 흐르기
+        TimeManager.instance.ContinueTime();
+
         //퍼즐 시작
         isBeadPuzzleStart = false;
 
@@ -341,6 +347,9 @@ public class GameManager : MonoBehaviour
     //주막 퍼즐 시작
     public void JoomackPuzzleStart()
     {
+        //시간 정지
+        TimeManager.instance.StopTime();
+
         isJoomackPuzzleStart = true;
 
         //다이얼로그 끄기
@@ -371,6 +380,9 @@ public class GameManager : MonoBehaviour
     //주막 퍼즐 끝
     public void JoomackPuzzleClear()
     {
+        //시간 흐르기
+        TimeManager.instance.ContinueTime();
+
         isJoomackPuzzleStart = false;
 
         //게임 UI 보이기
