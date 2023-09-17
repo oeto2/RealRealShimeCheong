@@ -449,9 +449,12 @@ public class TimeManager : MonoBehaviour
         //시작 RGB값으로 변경
         for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
         {
-            spriteRen_ObumbrateObj[i].color = new Color32((byte)_rgb, (byte)_rgb, (byte)_rgb, 255);
+            //만약 색을 바꿀 오브젝트가 존재한다면
+            if (spriteRen_ObumbrateObj[i] != null)
+            {
+                spriteRen_ObumbrateObj[i].color = new Color32((byte)_rgb, (byte)_rgb, (byte)_rgb, 255);
+            }
         }
-
         isSettingEnd = true;
     }
 
@@ -472,8 +475,12 @@ public class TimeManager : MonoBehaviour
             Debug.Log("0시");
             for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
             {
-                //색깔 변경 (시작 값)
-                spriteRen_ObumbrateObj[i].color = startRGBValue;
+                //만약 색을 바꿀 오브젝트가 존재한다면
+                if (spriteRen_ObumbrateObj[i] != null)
+                {
+                    //색깔 변경 (시작 값)
+                    spriteRen_ObumbrateObj[i].color = startRGBValue;
+                }
             }
         }
 
@@ -485,8 +492,12 @@ public class TimeManager : MonoBehaviour
 
             for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
             {
-                //색깔 변경
-                spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), 255);
+                //만약 색을 바꿀 오브젝트가 존재한다면
+                if (spriteRen_ObumbrateObj[i] != null)
+                {
+                    //색깔 변경
+                    spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), 255);
+                }
             }
 
             //현재 오브젝트 RGB값 갱신
@@ -504,8 +515,12 @@ public class TimeManager : MonoBehaviour
                 {
                     for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
                     {
-                        //색깔 변경
-                        spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), 255);
+                        //만약 색을 바꿀 오브젝트가 존재한다면
+                        if (spriteRen_ObumbrateObj[i] != null)
+                        {
+                            //색깔 변경
+                            spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), (byte)(_curObjectColor.r + pluseValue_moring), 255);
+                        }
                     }
 
                     //현재 오브젝트 RGB값 갱신
@@ -516,8 +531,12 @@ public class TimeManager : MonoBehaviour
                 {
                     for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
                     {
-                        //색깔 변경
-                        spriteRen_ObumbrateObj[i].color = new Color32(255, 255, 255, 255);
+                        //만약 색을 바꿀 오브젝트가 존재한다면
+                        if (spriteRen_ObumbrateObj[i] != null)
+                        {
+                            //색깔 변경
+                            spriteRen_ObumbrateObj[i].color = new Color32(255, 255, 255, 255);
+                        }
                     }
 
                     //현재 오브젝트 RGB값 갱신
@@ -538,8 +557,12 @@ public class TimeManager : MonoBehaviour
             {
                 for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
                 {
-                    //색깔 변경
-                    spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), 255);
+                    //만약 색을 바꿀 오브젝트가 존재한다면
+                    if (spriteRen_ObumbrateObj[i] != null)
+                    {
+                        //색깔 변경
+                        spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), 255);
+                    }
                 }
 
                 //현재 오브젝트 RGB값 갱신
