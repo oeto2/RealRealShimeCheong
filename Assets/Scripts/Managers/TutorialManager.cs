@@ -160,7 +160,7 @@ public class TutorialManager : MonoBehaviour
         //시간 멈추기
         timeManagerScr.StopTime();
         #endregion
-
+       
     }
 
     // Update is called once per frame
@@ -173,6 +173,8 @@ public class TutorialManager : MonoBehaviour
             //스페이스 바를 눌러 독백 창 끄기
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z))
             {
+               
+
                 //Player 이동 제한 해제
                 playerCtrlScr.TalkEnd();
 

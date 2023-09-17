@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
 {
+    //외부스크립트 참조
+    public TutorialManager tutorialManagerScr;
+
     int direction; // direction
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -116,8 +119,12 @@ public class Controller : MonoBehaviour
     //대화 끝
     public void TalkEnd()
     {
-        //시간 흐르기
-        TimeManager.instance.ContinueTime();
+
+        if(tutorialManagerScr.events == TutorialEvents.PassOneDay || tutorialManagerScr.events == TutorialEvents.Done)
+        {
+            //시간 흐르기
+            TimeManager.instance.ContinueTime();
+        }
         Debug.Log("TalkEnd");
         isTalk = false;
         canMove = false;

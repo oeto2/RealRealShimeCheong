@@ -6407,7 +6407,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.039215688, g: 0.039215688, b: 0.039215688, a: 1}
+  m_Color: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -39899,7 +39899,7 @@ MonoBehaviour:
   animator_Celender: {fileID: 1307439882}
   text_TimeText: {fileID: 219243736}
   gameObjcet_DayUI: {fileID: 1429576755}
-  float_RealTime: 255
+  float_RealTime: 0
   timeMultipleCation: 1
   int_DayMinute: 300
   int_DayCount: 1
@@ -56668,6 +56668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97a6bab37098924c8ea9f55d5d755af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialManagerScr: {fileID: 2057623165}
   detectWall: 0
   isTalk: 0
   canMove: 0
@@ -64644,6 +64645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97a6bab37098924c8ea9f55d5d755af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialManagerScr: {fileID: 0}
   detectWall: 0
   isTalk: 0
   canMove: 0

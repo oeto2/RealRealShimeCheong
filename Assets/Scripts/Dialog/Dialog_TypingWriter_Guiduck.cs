@@ -196,6 +196,9 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
 
     IEnumerator ItemClueChat(string narrator, string narration)
     {
+        //초상화 변경
+        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+
         int a = 0;
         CharacterName.text = narrator;
         //characternameText = narrator;

@@ -310,12 +310,14 @@ public class TimeManager : MonoBehaviour
     //시간 멈추기
     public void StopTime()
     {
+        //시간 멈추기
         timeStop = true;
     }
 
     //시간 계속가기
     public void ContinueTime()
     {
+        //시간 흐르기
         timeStop = false;
     }
 
