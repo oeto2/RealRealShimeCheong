@@ -18,9 +18,9 @@ public class CursorCtrl : MonoBehaviour
     public Sprite sprite_None;
 
     //커서 x축 위치 조절
-    [Range(0, 30f)] public float xPos;
+    [Range(0, 100f)] public float xPos;
     //커서 y축 위치 조절
-    [Range(-30f, 0)] public float yPos;
+    [Range(-100f, 0)] public float yPos;
 
     private void Awake()
     {
