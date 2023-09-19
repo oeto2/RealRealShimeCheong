@@ -56672,6 +56672,9 @@ MonoBehaviour:
   detectWall: 0
   isTalk: 0
   canMove: 0
+  dialogueOn: 0
+  gameObject_PlayerDialogue: {fileID: 1992085854}
+  gameObject_NpcDialogue: {fileID: 1486878665}
   detect_range: 1.5
   moveSpeed: 10
 --- !u!61 &1871036893
@@ -62531,7 +62534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2063844034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64649,6 +64652,9 @@ MonoBehaviour:
   detectWall: 0
   isTalk: 0
   canMove: 0
+  dialogueOn: 0
+  gameObject_PlayerDialogue: {fileID: 0}
+  gameObject_NpcDialogue: {fileID: 0}
   detect_range: 1.5
   moveSpeed: 5
 --- !u!1001 &6938847883954847401

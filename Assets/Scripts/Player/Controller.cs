@@ -23,7 +23,16 @@ public class Controller : MonoBehaviour
 
     //Player가 움직일 수 있는 상태인지 확인하는 falg(Animation 제어)
     public bool canMove;
-    
+
+    //다이얼로그 오브젝트가 켜져있는지 확인하는 flag
+    public bool dialogueOn;
+
+    //플레이어 다이얼로그
+    public GameObject gameObject_PlayerDialogue;
+
+    //NPC 다이얼로그
+    public GameObject gameObject_NpcDialogue;
+
     // ray
     GameObject scanObject;
 
@@ -46,6 +55,17 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //다이얼로그가 켜져있는지 감지
+        if (gameObject_NpcDialogue.activeSelf || gameObject_PlayerDialogue.activeSelf)
+        {
+            dialogueOn = true;
+        }
+        else
+        {
+            dialogueOn = false;
+        }
+
+
         //Direction Sprite
         if (Input.GetButton("Horizontal"))
         {
@@ -78,7 +98,7 @@ public class Controller : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         //Player의 이동조건 
-        if(!detectWall && !isTalk && !GameManager.instance.isBeadPuzzleStart)
+        if(!detectWall && !isTalk && !GameManager.instance.isBeadPuzzleStart && !dialogueOn)
         {
             transform.position += new Vector3(h, 0, v) * moveSpeed * Time.deltaTime;
         }
