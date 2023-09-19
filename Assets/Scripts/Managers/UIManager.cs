@@ -73,6 +73,7 @@ public class UIManager : MonoBehaviour
     public EffectSoundManager effectSoundManagerScr;
     public PinAction pinActionScr;
     public CursorCtrl cursorCtrlScr;
+    public ObjectControll objectCtrlScr;
 
     //아이템창 인터페이스 오브젝트
     public GameObject gameObject_ItemWindow;
@@ -194,7 +195,8 @@ public class UIManager : MonoBehaviour
         //아이템 창 관련 코드
         #region
         //아이템 창을 켜는 조건
-        if (Input.GetKeyDown(KeyCode.X) && !gameObject_ItemWindow.activeSelf && !isMapWindowLaunch && !isOptionLaunch && !isCombineLaunch && !playerCtrlScr.isTalk)
+        if (Input.GetKeyDown(KeyCode.X) && !gameObject_ItemWindow.activeSelf && !isMapWindowLaunch && !isOptionLaunch && 
+            !isCombineLaunch && !playerCtrlScr.isTalk && objectCtrlScr.getBotzime)
         {
             //아이템 창 실행
             ItemWindowLaunch();
@@ -227,7 +229,8 @@ public class UIManager : MonoBehaviour
         //맵 관련 코드
         #region
         //지도를 펼치는 조건
-        if (Input.GetKeyDown(KeyCode.M) && !gameObject_MapWindow.activeSelf && !isItemWindowLaunch && !isOptionLaunch && !isCombineLaunch && !playerCtrlScr.isTalk)
+        if (Input.GetKeyDown(KeyCode.M) && !gameObject_MapWindow.activeSelf && !isItemWindowLaunch && !isOptionLaunch &&
+            !isCombineLaunch && !playerCtrlScr.isTalk && objectCtrlScr.getMap)
         {
             //지도 오브젝트 활성화
             gameObject_MapWindow.SetActive(true);
