@@ -7,6 +7,12 @@ public class PlayerAnimation : MonoBehaviour
     //Player의 Animator
     public Animator animator_Player;
 
+    //Player의 기본 Animator
+    public Animator animator_PlayerNomal;
+
+    //Player 봇짐 Animator
+    public Animator animator_PalyerBotzime;
+
     //외부 스크립트
     public Controller playerCtrlScr;
 
@@ -18,6 +24,11 @@ public class PlayerAnimation : MonoBehaviour
 
     //player의 SpriteRenderer
     public SpriteRenderer spriteRenderer_Player;
+
+    private void Awake()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
@@ -73,5 +84,17 @@ public class PlayerAnimation : MonoBehaviour
             //Debug.Log("이동 애니메이션 정지");
             animator_Player.SetBool("moveStart", false);
         }
+    }
+
+    //기본 애니메이션으로 변경
+    public void ChangeAnimationNomal()
+    {
+        animator_Player = animator_PlayerNomal;
+    }
+
+    //봇짐 애니메이션으로 변경
+    public void ChangeAnimationBotzime()
+    {
+        animator_Player = animator_PalyerBotzime;
     }
 }
