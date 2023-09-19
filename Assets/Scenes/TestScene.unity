@@ -56779,6 +56779,7 @@ MonoBehaviour:
   playerDialogueScr: {fileID: 1871036901}
   tutorialManagerScr: {fileID: 2057623165}
   playerCtrlScr: {fileID: 1871036892}
+  playerAnimationScr: {fileID: 1871036897}
   objdataScr: {fileID: 0}
   isTriggerObject: 0
   gameobject_TargetObject: {fileID: 0}
@@ -62456,6 +62457,7 @@ MonoBehaviour:
   gameManagerScr: {fileID: 905248352}
   boxActScr: {fileID: 51505325}
   dialogueHyangScr: {fileID: 928861248}
+  playerAnimationScr: {fileID: 1871036897}
   gameObject_NarationBG: {fileID: 143840523}
   gameObject_UICanvas: {fileID: 1851244455}
   gameObject_Dialogue: {fileID: 1992085854}

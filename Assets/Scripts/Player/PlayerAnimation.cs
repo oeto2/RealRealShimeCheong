@@ -7,12 +7,6 @@ public class PlayerAnimation : MonoBehaviour
     //Player의 Animator
     public Animator animator_Player;
 
-    //Player의 기본 Animator
-    public Animator animator_PlayerNomal;
-
-    //Player 봇짐 Animator
-    public Animator animator_PalyerBotzime;
-
     //외부 스크립트
     public Controller playerCtrlScr;
 
@@ -85,16 +79,16 @@ public class PlayerAnimation : MonoBehaviour
             animator_Player.SetBool("moveStart", false);
         }
     }
+  
+    //봇짐 애니메이션으로 변경
+    public void ChangeAnimationBotzime()
+    {
+        animator_Player.SetBool("getBotzime", true);        
+    }
 
     //기본 애니메이션으로 변경
     public void ChangeAnimationNomal()
     {
-        animator_Player = animator_PlayerNomal;
-    }
-
-    //봇짐 애니메이션으로 변경
-    public void ChangeAnimationBotzime()
-    {
-        animator_Player = animator_PalyerBotzime;
+        animator_Player.SetBool("getBotzime", false);
     }
 }

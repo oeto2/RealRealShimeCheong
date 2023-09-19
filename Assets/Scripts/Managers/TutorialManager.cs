@@ -73,6 +73,7 @@ public class TutorialManager : MonoBehaviour
     public GameManager gameManagerScr;
     public BoxAction boxActScr;
     public Dialog_TypingWriter_JangSeong dialogueHyangScr;
+    public PlayerAnimation playerAnimationScr;
 
     //나레이션 오브젝트
     public GameObject gameObject_NarationBG;
@@ -173,8 +174,6 @@ public class TutorialManager : MonoBehaviour
             //스페이스 바를 눌러 독백 창 끄기
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z))
             {
-               
-
                 //Player 이동 제한 해제
                 playerCtrlScr.TalkEnd();
 
@@ -526,14 +525,18 @@ public class TutorialManager : MonoBehaviour
                     PassDayTalkEnd2 = false;
                     PassDayTalkEnd3 = false;
 
+                    //Player 기본애니메이션으로 변경
+                    playerAnimationScr.ChangeAnimationNomal();
+                    
                     //Object 설정
-
                     //등잔불 리셋
                     turnOnLightScr.TurnOFFLights();
                     //봇짐 리셋
                     objCtrlScr.ResetBotzime();
                     //지도 리셋
                     objCtrlScr.ResetMap();
+
+                    
 
                     //UI 설정
                     //UI Canvas 끄기
@@ -585,19 +588,29 @@ public class TutorialManager : MonoBehaviour
                         objCtrlScr.LoadBotzime();
                         objCtrlScr.ResetMap();
                         boxActScr.isFirst = true;
+
+                        //Player 봇짐 애니메이션으로 변경
+                        playerAnimationScr.ChangeAnimationBotzime();
+
                         //닫힌 상자 이미지로 변경
                         boxActScr.spriteRender.sprite = boxActScr.sprite_Box[0];
                     }
                     //지도만 획득 했다면
                     else if (!_getBotzime && _getMap)
                     {
+                        //Player 기본애니메이션으로 변경
+                        playerAnimationScr.ChangeAnimationNomal();
                         objCtrlScr.LoadMap();
                         objCtrlScr.ResetBotzime();
+
                         //열린 상자 이미지로 변경
                         boxActScr.spriteRender.sprite = boxActScr.sprite_Box[1];
                     }
                     else
                     {
+                        //Player 봇짐 애니메이션으로 변경
+                        playerAnimationScr.ChangeAnimationBotzime();
+
                         //봇짐 리셋
                         objCtrlScr.ResetBotzime();
                         //지도 리셋
@@ -650,6 +663,8 @@ public class TutorialManager : MonoBehaviour
                         turnOnLightScr.TurnOFFLights();
                     }
 
+                    //Player 봇짐 애니메이션으로 변경
+                    playerAnimationScr.ChangeAnimationBotzime();
                     //봇짐 획득
                     objCtrlScr.LoadBotzime();
                     //지도 획득
@@ -698,6 +713,8 @@ public class TutorialManager : MonoBehaviour
                         turnOnLightScr.TurnOFFLights();
                     }
 
+                    //Player 봇짐 애니메이션으로 변경
+                    playerAnimationScr.ChangeAnimationBotzime();
                     //봇짐 획득
                     objCtrlScr.LoadBotzime();
                     //지도 획득
@@ -748,6 +765,8 @@ public class TutorialManager : MonoBehaviour
                         turnOnLightScr.TurnOFFLights();
                     }
 
+                    //Player 봇짐 애니메이션으로 변경
+                    playerAnimationScr.ChangeAnimationBotzime();
                     //봇짐 획득
                     objCtrlScr.LoadBotzime();
                     //지도 획득

@@ -9,6 +9,7 @@ public class ObjectControll : MonoBehaviour
     public Dialog_TypingWriter_ShimBongSa playerDialogueScr;
     public TutorialManager tutorialManagerScr;
     public Controller playerCtrlScr;
+    public PlayerAnimation playerAnimationScr;
 
     //ø¿∫Í¡ß∆Æ µ•¿Ã≈Õ Ω∫≈©∏≥∆Æ
     [SerializeField]
@@ -191,6 +192,9 @@ public class ObjectControll : MonoBehaviour
     {
         getBotzime = true;
 
+        //∫ø¡¸ æ÷¥œ∏ﬁ¿Ãº« ∫Ø∞Ê
+        playerAnimationScr.ChangeAnimationBotzime();
+
         //∫ø¡¸ »πµÊ ¥Î»≠ Ω««‡
         playerDialogueScr.Start_Sentence_GetBotzime();
 
@@ -246,6 +250,10 @@ public class ObjectControll : MonoBehaviour
     public void LoadBotzime()
     {
         getBotzime = true;
+
+        //∫ø¡¸ æ÷¥œ∏ﬁ¿Ãº« ∫Ø∞Ê
+        playerAnimationScr.ChangeAnimationBotzime();
+
         botzime.SetActive(false);
     }
 
