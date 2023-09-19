@@ -104,6 +104,9 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
 
     IEnumerator NormalChat()
     {
+        //초상화 변경
+        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+
         int a = 0;
         string narrator = characternameText = CharacterName.text = npcDatabaseScr.NPC_01[6].npc_name;
         string narration = npcDatabaseScr.NPC_01[6].comment;
