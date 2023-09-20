@@ -93,8 +93,6 @@ public class TutorialManager : MonoBehaviour
     //심청이의 메모
     public GameObject gameObject_shimeNote;
 
-    //봇짐 UI 오브젝트
-    public GameObject gameObject_BotzimeUI;
 
     //나레이션 BackGround Image
     public Image image_NarationBG;

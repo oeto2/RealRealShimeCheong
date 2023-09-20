@@ -19,17 +19,20 @@ public class PinAction : MonoBehaviour
         rectTransform = this.GetComponent<RectTransform>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
+        //핀 위치 변경
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            PinPosChange(GameManager.instance.int_PinPosNum);
+        }
     }
 
     public void PinPosChange(int _posNum)
     {
         Debug.Log($"_PosNum : {_posNum}");
+
         //Pin 오브젝트의 위치값 변경
         rectTransform.anchoredPosition = pinPos[_posNum];
-
     }
 }

@@ -276,12 +276,18 @@ public class UIManager : MonoBehaviour
 
             //커서 이미지 변경
             cursorCtrlScr.ChangeCursor(cursorCtrlScr.sprite_idle);
+
+            //플레이어 이동제한
+            playerCtrlScr.PlayerMoveStop();
         }
 
         //옵션창이 실행중일때 ESC를 눌렀을 경우
         else if (isOptionLaunch && Input.GetKeyDown(KeyCode.Escape))
         {
             gameObject_Option.SetActive(false);
+
+            //플레이어 이동제한 해제
+            playerCtrlScr.PlayerMoveStart();
         }
 
         //옵션창이 실행중일경우
@@ -293,8 +299,6 @@ public class UIManager : MonoBehaviour
         //옵션창이 실행중이지 않을경우
         else if (!gameObject_Option.activeSelf)
         {
-
-
             isOptionLaunch = false;
         }
 
@@ -373,6 +377,9 @@ public class UIManager : MonoBehaviour
     //옵션창 끄기
     public void OptionExit()
     {
+        //플레이어 이동제한 해제
+        playerCtrlScr.PlayerMoveStart();
+
         gameObject_Option.SetActive(false);
     }
 
@@ -386,6 +393,9 @@ public class UIManager : MonoBehaviour
             //시간 정지
             TimeManager.instance.StopTime();
             gameObject_CombineWindow.SetActive(true);
+
+            //플레이어 이동제한
+            playerCtrlScr.PlayerMoveStop();
         }
     }
 
@@ -397,6 +407,9 @@ public class UIManager : MonoBehaviour
         //시간 흐르기
         TimeManager.instance.ContinueTime();
         gameObject_CombineWindow.SetActive(false);
+
+        //플레이어 이동제한 해제
+        playerCtrlScr.PlayerMoveStart();
     }
     #endregion
 

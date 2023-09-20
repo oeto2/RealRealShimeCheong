@@ -7,6 +7,7 @@ public class CameraMove : MonoBehaviour
     //외부 스크립트
     public WallDetect wallDetectScr;
     public GameManager gameManagerScr;
+    public PinAction pinActionScr;
 
     //카메라가 추적할 오브젝트의 Transform값
     public Transform transform_TrargetObject;
@@ -36,6 +37,7 @@ public class CameraMove : MonoBehaviour
         width = hight * Screen.width / Screen.height;
         //기본 제한 구역 맵 번호
         ChangeLimit(0);
+
         int_CurLimitNum = 0;
     }
 
@@ -76,5 +78,7 @@ public class CameraMove : MonoBehaviour
     public void CameraTransfer(Vector2 _pos)
     {
         this.gameObject.transform.position = new Vector3(_pos.x, _pos.y, this.transform.position.z);
+
+     
     }
 }

@@ -42,10 +42,8 @@ public class ObjectControll : MonoBehaviour
     //ΩÃ±€≈Ê
     public static ObjectControll instance = null;
 
-
     //∫ø¡¸ UI ø¿∫Í¡ß∆Æ
     public GameObject gameObject_BotzimeUI;
-
 
     // Start is called before the first frame update
     private void Awake()

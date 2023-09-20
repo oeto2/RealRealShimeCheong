@@ -27,6 +27,9 @@ public class Controller : MonoBehaviour
     //다이얼로그 오브젝트가 켜져있는지 확인하는 flag
     public bool dialogueOn;
 
+    //UI창이 켜져있는지 확인하는 flag
+    public bool moveStop;
+
     //플레이어 다이얼로그
     public GameObject gameObject_PlayerDialogue;
 
@@ -64,6 +67,7 @@ public class Controller : MonoBehaviour
         {
             dialogueOn = false;
         }
+       
 
         //scan object
         if (Input.GetButtonDown("Jump") && scanObject != null) // space
@@ -78,7 +82,7 @@ public class Controller : MonoBehaviour
     private void FixedUpdate() // move
     {
         //Direction Sprite
-        if (Input.GetButton("Horizontal"))
+        if (Input.GetButton("Horizontal") )
         {
             if (Input.GetAxisRaw("Horizontal") == -1)
             {
@@ -100,7 +104,7 @@ public class Controller : MonoBehaviour
         //float v = Input.GetAxisRaw("Vertical");
 
         //Player의 이동조건 
-        if (!detectWall && !isTalk && !GameManager.instance.isBeadPuzzleStart && !dialogueOn)
+        if (!detectWall && !isTalk && !GameManager.instance.isBeadPuzzleStart && !dialogueOn && !moveStop)
         {
             ////플리에어 이동로직
             //transform.position += new Vector3(h, 0, v) * moveSpeed * Time.deltaTime;
@@ -154,5 +158,17 @@ public class Controller : MonoBehaviour
         Debug.Log("TalkEnd");
         isTalk = false;
         canMove = false;
+    }
+
+    //Player 이동 제한
+    public void PlayerMoveStop()
+    {
+        moveStop = true;
+    }
+
+    //Player 이동 제한 해제
+    public void PlayerMoveStart()
+    {
+        moveStop = false;
     }
 }

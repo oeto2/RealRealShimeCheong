@@ -21,7 +21,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Awake()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -45,8 +45,12 @@ public class PlayerAnimation : MonoBehaviour
         //Player가 이동중이라면
         if (isMove)
         {
-            //이동애니메이션 시작
-            animator_Player.SetBool("moveStart", true);
+            if (!playerCtrlScr.detectWall && !playerCtrlScr.isTalk &&
+            !GameManager.instance.isBeadPuzzleStart && !playerCtrlScr.dialogueOn && !playerCtrlScr.moveStop)
+            {
+                //이동 애니메이션 시작
+                animator_Player.SetBool("moveStart", true);
+            }
         }
         //Player가 이동중이지 않다면
         else if (!isMove)
@@ -59,13 +63,15 @@ public class PlayerAnimation : MonoBehaviour
         //Player 이미지 회전 조건
         #region
 
-        if (Input.GetAxisRaw("Horizontal") == 1)
+        if (Input.GetAxisRaw("Horizontal") == 1 && !playerCtrlScr.detectWall && !playerCtrlScr.isTalk &&
+            !GameManager.instance.isBeadPuzzleStart && !playerCtrlScr.dialogueOn && !playerCtrlScr.moveStop)
         {
             isFilp = false;
             spriteRenderer_Player.flipX = isFilp;
         }
 
-        else if (Input.GetAxisRaw("Horizontal") == -1)
+        else if (Input.GetAxisRaw("Horizontal") == -1 && !playerCtrlScr.detectWall && !playerCtrlScr.isTalk &&
+            !GameManager.instance.isBeadPuzzleStart && !playerCtrlScr.dialogueOn && !playerCtrlScr.moveStop)
         {
             isFilp = true;
             spriteRenderer_Player.flipX = isFilp;
@@ -79,11 +85,11 @@ public class PlayerAnimation : MonoBehaviour
             animator_Player.SetBool("moveStart", false);
         }
     }
-  
+
     //봇짐 애니메이션으로 변경
     public void ChangeAnimationBotzime()
     {
-        animator_Player.SetBool("getBotzime", true);        
+        animator_Player.SetBool("getBotzime", true);
     }
 
     //기본 애니메이션으로 변경
