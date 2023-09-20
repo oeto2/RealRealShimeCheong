@@ -97,13 +97,16 @@ public class Controller : MonoBehaviour
         //float v = Input.GetAxis("Vertical");
 
         float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        //float v = Input.GetAxisRaw("Vertical");
 
         //Player의 이동조건 
         if (!detectWall && !isTalk && !GameManager.instance.isBeadPuzzleStart && !dialogueOn)
         {
+            ////플리에어 이동로직
+            //transform.position += new Vector3(h, 0, v) * moveSpeed * Time.deltaTime;
+
             //플리에어 이동로직
-            transform.position += new Vector3(h, 0, v) * moveSpeed * Time.deltaTime;
+            transform.position += new Vector3(h, 0, 0) * moveSpeed * Time.deltaTime;
         }
 
         //Debug용 Ray 그리기
