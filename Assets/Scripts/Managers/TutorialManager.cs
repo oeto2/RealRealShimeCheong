@@ -93,6 +93,9 @@ public class TutorialManager : MonoBehaviour
     //심청이의 메모
     public GameObject gameObject_shimeNote;
 
+    //봇짐 UI 오브젝트
+    public GameObject gameObject_BotzimeUI;
+
     //나레이션 BackGround Image
     public Image image_NarationBG;
 
@@ -592,6 +595,8 @@ public class TutorialManager : MonoBehaviour
                         //Player 봇짐 애니메이션으로 변경
                         playerAnimationScr.ChangeAnimationBotzime();
 
+                 
+
                         //닫힌 상자 이미지로 변경
                         boxActScr.spriteRender.sprite = boxActScr.sprite_Box[0];
                     }
@@ -618,6 +623,8 @@ public class TutorialManager : MonoBehaviour
                         boxActScr.isFirst = true;
                         //닫힌 상자 이미지로 변경
                         boxActScr.spriteRender.sprite = boxActScr.sprite_Box[0];
+
+            
                     }
 
                     //UI 설정
@@ -670,6 +677,8 @@ public class TutorialManager : MonoBehaviour
                     //지도 획득
                     objCtrlScr.LoadMap();
 
+
+
                     //UI 설정
                     //UI Canvas 켜기
                     gameObject_UICanvas.SetActive(true);
@@ -719,6 +728,8 @@ public class TutorialManager : MonoBehaviour
                     objCtrlScr.LoadBotzime();
                     //지도 획득
                     objCtrlScr.LoadMap();
+
+        
 
                     //UI 설정
                     //UI Canvas 켜기
@@ -771,6 +782,8 @@ public class TutorialManager : MonoBehaviour
                     objCtrlScr.LoadBotzime();
                     //지도 획득
                     objCtrlScr.LoadMap();
+
+            
 
                     //UI 설정
                     //UI Canvas 켜기

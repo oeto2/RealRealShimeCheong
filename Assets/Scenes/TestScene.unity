@@ -6756,8 +6756,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1833412218}
   m_HandleRect: {fileID: 1833412217}
   m_Direction: 2
-  m_Value: 0.99999994
-  m_Size: 0.24456519
+  m_Value: 1
+  m_Size: 0.2445652
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12269,7 +12269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &454061958
 RectTransform:
   m_ObjectHideFlags: 0
@@ -56789,6 +56789,7 @@ MonoBehaviour:
   getMap: 0
   botzime: {fileID: 821866694}
   map: {fileID: 0}
+  gameObject_BotzimeUI: {fileID: 1791878073}
 --- !u!114 &1871036899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62464,6 +62465,7 @@ MonoBehaviour:
   gameObject_InputKeyText: {fileID: 1051663932}
   gameObject_DeungJanLight: {fileID: 986980357}
   gameObject_shimeNote: {fileID: 1353974485}
+  gameObject_BotzimeUI: {fileID: 1646020398}
   image_NarationBG: {fileID: 143840525}
   text_Naration: {fileID: 198657485}
   animator_NarationBG: {fileID: 143840527}

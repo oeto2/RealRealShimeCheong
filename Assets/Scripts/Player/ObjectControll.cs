@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectControll : MonoBehaviour
@@ -43,6 +41,11 @@ public class ObjectControll : MonoBehaviour
 
     //ΩÃ±€≈Ê
     public static ObjectControll instance = null;
+
+
+    //∫ø¡¸ UI ø¿∫Í¡ß∆Æ
+    public GameObject gameObject_BotzimeUI;
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -251,9 +254,11 @@ public class ObjectControll : MonoBehaviour
     {
         getBotzime = true;
 
+        //∫ø¡¸ UI ¿ÃπÃ¡ˆ ∫∏¿Ã±‚
+        gameObject_BotzimeUI.SetActive(true);
+
         //∫ø¡¸ æ÷¥œ∏ﬁ¿Ãº« ∫Ø∞Ê
         playerAnimationScr.ChangeAnimationBotzime();
-
         botzime.SetActive(false);
     }
 

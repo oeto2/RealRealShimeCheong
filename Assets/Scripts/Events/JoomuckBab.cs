@@ -54,7 +54,7 @@ public class JoomuckBab : MonoBehaviour
             {
                 switch(makeJoomuckBab)
                 {
-                    //장작 만들기
+                    //장작 넣기
                     case MakeJoomuckBab.PushJangJack:
                         StartCoroutine(PushJangJack());
                         break;
@@ -139,6 +139,10 @@ public class JoomuckBab : MonoBehaviour
             //물든 바가지 아이템 제거
             ObjectManager.instance.RemoveItem(1004);
 
+            //바가지 아이템 획득
+            ObjectManager.instance.GetItem(1003);
+
+
             //다음 이벤트로 이동
             makeJoomuckBab = MakeJoomuckBab.FillWaterDone;
         }
@@ -202,6 +206,9 @@ public class JoomuckBab : MonoBehaviour
 
             //물이든 바가지 아이템 제거
             ObjectManager.instance.RemoveItem(1004);
+
+            //바가지 아이템 획득
+            ObjectManager.instance.GetItem(1003);
 
             //가마솥 사용 시작
             UsingGamasot();
