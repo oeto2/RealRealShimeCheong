@@ -544,7 +544,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         //1001 : ¿Â¿€
         else if (ObjectManager.instance.GetEquipObjectKey() == 1001)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[78].npc_name, dialogdb.NPC_01[78].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[249].npc_name, dialogdb.NPC_01[78].comment));
         }
         //1005 : ¡÷∏‘π‰
         else if (ObjectManager.instance.GetEquipObjectKey() == 1005)
