@@ -65,7 +65,18 @@ public class Controller : MonoBehaviour
             dialogueOn = false;
         }
 
+        //scan object
+        if (Input.GetButtonDown("Jump") && scanObject != null) // space
+        {
+            Debug.Log("오 스페이스 누름! This is :" + scanObject.name);
+        }
+    }
 
+    public float detect_range = 1.5f;
+    public float moveSpeed = 5.0f;
+
+    private void FixedUpdate() // move
+    {
         //Direction Sprite
         if (Input.GetButton("Horizontal"))
         {
@@ -82,24 +93,16 @@ public class Controller : MonoBehaviour
             }
         }
 
-        //scan object
-        if (Input.GetButtonDown("Jump") && scanObject != null) // space
-        {
-            Debug.Log("오 스페이스 누름! This is :" + scanObject.name);
-        }
-    }
+        //float h = Input.GetAxis("Horizontal");
+        //float v = Input.GetAxis("Vertical");
 
-    public float detect_range = 1.5f;
-    public float moveSpeed = 5.0f;
-
-    private void FixedUpdate() // move
-    {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
 
         //Player의 이동조건 
-        if(!detectWall && !isTalk && !GameManager.instance.isBeadPuzzleStart && !dialogueOn)
+        if (!detectWall && !isTalk && !GameManager.instance.isBeadPuzzleStart && !dialogueOn)
         {
+            //플리에어 이동로직
             transform.position += new Vector3(h, 0, v) * moveSpeed * Time.deltaTime;
         }
 
