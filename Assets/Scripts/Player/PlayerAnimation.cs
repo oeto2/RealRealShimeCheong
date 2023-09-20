@@ -45,7 +45,7 @@ public class PlayerAnimation : MonoBehaviour
         //Player가 이동중이라면
         if (isMove)
         {
-            if (!playerCtrlScr.detectWall && !playerCtrlScr.isTalk &&
+            if (!playerCtrlScr.isTalk &&
             !GameManager.instance.isBeadPuzzleStart && !playerCtrlScr.dialogueOn && !playerCtrlScr.moveStop)
             {
                 //이동 애니메이션 시작
@@ -63,14 +63,14 @@ public class PlayerAnimation : MonoBehaviour
         //Player 이미지 회전 조건
         #region
 
-        if (Input.GetAxisRaw("Horizontal") == 1 && !playerCtrlScr.detectWall && !playerCtrlScr.isTalk &&
+        if (Input.GetAxisRaw("Horizontal") == 1 && !playerCtrlScr.isTalk &&
             !GameManager.instance.isBeadPuzzleStart && !playerCtrlScr.dialogueOn && !playerCtrlScr.moveStop)
         {
             isFilp = false;
             spriteRenderer_Player.flipX = isFilp;
         }
 
-        else if (Input.GetAxisRaw("Horizontal") == -1 && !playerCtrlScr.detectWall && !playerCtrlScr.isTalk &&
+        else if (Input.GetAxisRaw("Horizontal") == -1 && !playerCtrlScr.isTalk &&
             !GameManager.instance.isBeadPuzzleStart && !playerCtrlScr.dialogueOn && !playerCtrlScr.moveStop)
         {
             isFilp = true;

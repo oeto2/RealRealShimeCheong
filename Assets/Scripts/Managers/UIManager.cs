@@ -279,6 +279,9 @@ public class UIManager : MonoBehaviour
 
             //플레이어 이동제한
             playerCtrlScr.PlayerMoveStop();
+
+            //시간 정지
+            timeManagerScr.StopTime();
         }
 
         //옵션창이 실행중일때 ESC를 눌렀을 경우
@@ -288,6 +291,9 @@ public class UIManager : MonoBehaviour
 
             //플레이어 이동제한 해제
             playerCtrlScr.PlayerMoveStart();
+
+            //시간 정지 해제
+            timeManagerScr.ContinueTime();
         }
 
         //옵션창이 실행중일경우
@@ -379,6 +385,9 @@ public class UIManager : MonoBehaviour
     {
         //플레이어 이동제한 해제
         playerCtrlScr.PlayerMoveStart();
+
+        //시간 정지 해제
+        timeManagerScr.ContinueTime();
 
         gameObject_Option.SetActive(false);
     }
