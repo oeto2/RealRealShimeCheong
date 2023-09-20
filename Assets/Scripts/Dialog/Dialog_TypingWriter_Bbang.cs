@@ -22,6 +22,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     public bool bool_isNPC = false;
 
+    //다이얼로그 UI
     public GameObject images_Bbang;
 
     public Sprite[] images_NPC_portrait;
@@ -36,7 +37,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
     //대화가 전부 출력 되었는지
     public bool isSentenceEnd = false;
 
-    //남은 대화가 더 있는지 (true일경우 다이얼로그를 종료하지않고 내용을 비워서 다음 대사를 출력함)
+    //남은 대화가 더 있는지 (true일 경우 다이얼로그를 종료하지 않고 내용을 비워서 다음 대사를 출력함)
     public bool remainSentence = false;
 
     [System.Serializable]
@@ -62,28 +63,9 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         CharacterName.text = "";
         ChatText.text = "";
     }
-    private void Awake()
-    {
-
-        if (Dialog_TypingWriter_Bbang.instance == null)
-        {
-            Dialog_TypingWriter_Bbang.instance = this;
-        }
-
-        for (int i = 4999; i < dialogdb.NPC_01.Count; ++i)
-        {
-            if (dialogdb.NPC_01[i].index_num == index)
-            {
-                dialogs[index].name = dialogdb.NPC_01[i].npc_name;
-                dialogs[index].dialogue = dialogdb.NPC_01[i].comment;
-                index++;
-            }
-        }
-    }
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.B))
         {
             ObjectManager.instance.GetItem(1006);
@@ -100,7 +82,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
-            Debug.Log("z키 누름! 송나라!!!!");
+            Debug.Log("z키 누름! 뺑덕!!!!");
             //bool_isBotjim = true;
             controller_scr.TalkStart();
 
@@ -173,6 +155,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[1].npc_name;
         string narration = dialogdb.NPC_01[1].comment;
         string narration_2 = dialogdb.NPC_01[399].comment;
+
         RandomNum = Random.Range(0, 2);
         Debug.Log(RandomNum);
 
@@ -223,6 +206,12 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             yield return null;
         }
         Debug.Log(writerText);
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //대화 끝
+            isSentenceEnd = true;
+        }
 
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)

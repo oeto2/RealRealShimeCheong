@@ -231,16 +231,22 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         //남은대화 있음
         remainSentence = true;
 
-        //초상화 변경
-        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-
-
+        Debug.Log(narration);
         int a = 0;
         CharacterName.text = narrator;
-        //characternameText = narrator;
-        writerText = "";
 
-        //narrator = CharacterName.text;
+        //심학규의 대사일 경우
+        if (narrator == "심학규")
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
+        }
+        //향리댁 부인의 대사일 경우
+        else
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+        }
 
         //텍스트 타이핑
         for (a = 0; a < narration.Length; a++)
@@ -317,7 +323,6 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             CharacterName.text = narrator;
             //characternameText = narrator;
 
-
             //narrator = CharacterName.text;
 
             //텍스트 타이핑
@@ -362,7 +367,6 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         //}
 
     }
-
 
     IEnumerator TextPractice()
     {
