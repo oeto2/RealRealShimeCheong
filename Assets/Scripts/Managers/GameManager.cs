@@ -429,5 +429,8 @@ public class GameManager : MonoBehaviour
     public void ChangePinPosNum(int _pinPosNum)
     {
         int_PinPosNum = _pinPosNum;
+
+        //Ω√∞£ »Â∏£±‚
+        TimeManager.instance.ContinueTime();
     }
 }

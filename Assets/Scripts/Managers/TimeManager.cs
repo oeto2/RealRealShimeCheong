@@ -45,6 +45,7 @@ public class TimeManager : MonoBehaviour
     public TutorialManager tutorialManagerScr;
     public UIManager uiManagerScr;
     public MoonLight moonlightScr;
+    public CameraMove cameraMoveScr;
 
     //캘린더의 애니메이터
     public Animator animator_Celender;
@@ -155,8 +156,20 @@ public class TimeManager : MonoBehaviour
         curObjectRGB = startRGBValue;
     }
 
+    private void Update()
+    {
+        //플레이어가 집 안에 있을 경우 시간 정지
+        if (cameraMoveScr.int_CurLimitNum == 0 || cameraMoveScr.int_CurLimitNum == 1)
+        {
+            TimeManager.instance.StopTime();
+        }
+    }
+
     private void FixedUpdate()
     {
+
+
+
         //float RealTime을 int로 변환후 프레임당 갱신
         int_RealTime = (int)MathF.Truncate(float_RealTime);
 
@@ -278,6 +291,9 @@ public class TimeManager : MonoBehaviour
             }
 
             #endregion
+
+
+            
         }
     }
 

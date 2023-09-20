@@ -39898,6 +39898,7 @@ MonoBehaviour:
   tutorialManagerScr: {fileID: 2057623165}
   uiManagerScr: {fileID: 95288468}
   moonlightScr: {fileID: 2032586399}
+  cameraMoveScr: {fileID: 1924761762}
   animator_Celender: {fileID: 1307439882}
   text_TimeText: {fileID: 219243736}
   gameObjcet_DayUI: {fileID: 1429576755}
@@ -56675,6 +56676,7 @@ MonoBehaviour:
   isTalk: 0
   canMove: 0
   dialogueOn: 0
+  moveStop: 0
   gameObject_PlayerDialogue: {fileID: 1992085854}
   gameObject_NpcDialogue: {fileID: 1486878665}
   detect_range: 1.5
@@ -64658,6 +64660,7 @@ MonoBehaviour:
   isTalk: 0
   canMove: 0
   dialogueOn: 0
+  moveStop: 0
   gameObject_PlayerDialogue: {fileID: 0}
   gameObject_NpcDialogue: {fileID: 0}
   detect_range: 1.5
