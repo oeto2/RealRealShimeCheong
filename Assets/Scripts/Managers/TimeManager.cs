@@ -159,7 +159,8 @@ public class TimeManager : MonoBehaviour
     private void Update()
     {
         //플레이어가 집 안에 있을 경우 시간 정지
-        if (cameraMoveScr.int_CurLimitNum == 0 || cameraMoveScr.int_CurLimitNum == 1)
+        if (cameraMoveScr.int_CurLimitNum == 0 || cameraMoveScr.int_CurLimitNum == 1 || tutorialManagerScr.events == TutorialEvents.TurnOnLights
+            || tutorialManagerScr.events == TutorialEvents.GetItems || tutorialManagerScr.events == TutorialEvents.TalkToHyang)
         {
             TimeManager.instance.StopTime();
         }
