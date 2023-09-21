@@ -176,6 +176,9 @@ public class UIManager : MonoBehaviour
     //커서 불빛 오브젝트
     public GameObject gameObjcet_CursorLights;
 
+    //게임 종료 확인 창
+    public GameObject gameObject_ExitCheckWindow;
+
     private void Awake()
     {
         //저장 파일 위치
@@ -287,6 +290,8 @@ public class UIManager : MonoBehaviour
         //옵션창이 실행중일때 ESC를 눌렀을 경우
         else if (isOptionLaunch && Input.GetKeyDown(KeyCode.Escape))
         {
+            gameObject_ExitCheckWindow.SetActive(false);
+
             gameObject_Option.SetActive(false);
 
             //플레이어 이동제한 해제
@@ -389,6 +394,8 @@ public class UIManager : MonoBehaviour
         //시간 정지 해제
         timeManagerScr.ContinueTime();
 
+        gameObject_ExitCheckWindow.SetActive(false);
+
         gameObject_Option.SetActive(false);
     }
 
@@ -477,9 +484,23 @@ public class UIManager : MonoBehaviour
     //옵션창 구성
     #region
 
+    //게임 종료 확인 창 띄우기
+    public void ExitCheckWindow_Active()
+    {
+        gameObject_ExitCheckWindow.SetActive(true);
+    }
+    
+    //게임 종료 확인 창 끄기
+    public void ExitCheckWindow_Close()
+    {
+        gameObject_ExitCheckWindow.SetActive(false);
+    }
+
+
     //게임 종료 버튼
     public void ExitButton()
     {
+        Debug.Log("게임종료");
         //종료
         Application.Quit();
     }
