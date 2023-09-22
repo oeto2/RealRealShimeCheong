@@ -381,7 +381,7 @@ public class TutorialManager : MonoBehaviour
             timeManagerScr.ContinueTime();
 
             //다음 이벤트
-            tutorialEventNum = 5;
+            tutorialEventNum = 4;
             events = TutorialEvents.Done;
         }
     }

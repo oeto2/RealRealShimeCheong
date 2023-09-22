@@ -406,6 +406,9 @@ public class TimeManager : MonoBehaviour
         //날짜 재설정
         int_DayCount = curTimeLoadData.day;
 
+        //시간 Text 변경
+        text_TimeText.text = float_RealTime.ToString("F0");
+
         //컬러값 재설정
         curObjectRGB = new Color32(curTimeLoadData.curColorValue, curTimeLoadData.curColorValue, 
             curTimeLoadData.curColorValue,255);

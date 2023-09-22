@@ -89,6 +89,8 @@ public class UIManager : MonoBehaviour
     public GameObject gameObject_LoadWindow;
     //세이브 체크 오브젝트
     public GameObject gameObject_SaveCheckWindow;
+    //Sleep Check Window
+    public GameObject gameObject_SleepCheckWindow;
 
     //아이템 창이 실행중인지 확인하는 flag
     public bool isItemWindowLaunch;
@@ -198,8 +200,8 @@ public class UIManager : MonoBehaviour
         //아이템 창 관련 코드
         #region
         //아이템 창을 켜는 조건
-        if (Input.GetKeyDown(KeyCode.X) && !gameObject_ItemWindow.activeSelf && !isMapWindowLaunch && !isOptionLaunch && 
-            !isCombineLaunch && !playerCtrlScr.isTalk && objectCtrlScr.getBotzime)
+        if (Input.GetKeyDown(KeyCode.X) && !gameObject_ItemWindow.activeSelf && !isMapWindowLaunch && !isOptionLaunch &&
+            !isCombineLaunch && !playerCtrlScr.isTalk && objectCtrlScr.getBotzime && !gameObject_SleepCheckWindow.activeSelf)
         {
             //아이템 창 실행
             ItemWindowLaunch();
@@ -233,7 +235,7 @@ public class UIManager : MonoBehaviour
         #region
         //지도를 펼치는 조건
         if (Input.GetKeyDown(KeyCode.M) && !gameObject_MapWindow.activeSelf && !isItemWindowLaunch && !isOptionLaunch &&
-            !isCombineLaunch && !playerCtrlScr.isTalk && objectCtrlScr.getMap)
+            !isCombineLaunch && !playerCtrlScr.isTalk && objectCtrlScr.getMap && !gameObject_SleepCheckWindow.activeSelf)
         {
             //지도 오브젝트 활성화
             gameObject_MapWindow.SetActive(true);
@@ -272,7 +274,8 @@ public class UIManager : MonoBehaviour
         #region
 
         //옵션창을 띄우는 조건
-        if (!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch && !isCombineLaunch && Input.GetKeyDown(KeyCode.Escape) && !playerCtrlScr.isTalk)
+        if (!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch && !isCombineLaunch && Input.GetKeyDown(KeyCode.Escape) &&
+           !playerCtrlScr.isTalk)
         {
             //옵션창 보여주기
             gameObject_Option.SetActive(true);
@@ -489,7 +492,7 @@ public class UIManager : MonoBehaviour
     {
         gameObject_ExitCheckWindow.SetActive(true);
     }
-    
+
     //게임 종료 확인 창 끄기
     public void ExitCheckWindow_Close()
     {
@@ -556,7 +559,7 @@ public class UIManager : MonoBehaviour
         GetSunClockNum();
 
         //저장할 데이터 넣기
-        curSaveUIData = new SaveUiData(gameManagerScr.GetPlaceName(),timeManagerScr.GetDay(),timeManagerScr.GetPlayTimeText(),timeManagerScr.GetPlayTimeSec(_slotNum), int_SunClockNum);
+        curSaveUIData = new SaveUiData(gameManagerScr.GetPlaceName(), timeManagerScr.GetDay(), timeManagerScr.GetPlayTimeText(), timeManagerScr.GetPlayTimeSec(_slotNum), int_SunClockNum);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curSaveUIData);
@@ -577,7 +580,7 @@ public class UIManager : MonoBehaviour
     public void ShowUiDataToSlot()
     {
         //Debug.Log("ShowUiDataToSlot");
-        if(text_LoadPlaceName != null)
+        if (text_LoadPlaceName != null)
         {
             for (int i = 0; i < text_SavePlaceName.Length; i++)
             {
@@ -680,14 +683,15 @@ public class UIManager : MonoBehaviour
     //UI가 실행중인지 확인할수있는 메서드
     public bool GetUiVisible()
     {
-        if(gameObject_ItemWindow.activeSelf || gameObject_CombineWindow.activeSelf || gameObject_LoadWindow.activeSelf || gameObject_MapWindow.activeSelf ||
-            gameObject_Option.activeSelf || gameObject_SaveWindow.activeSelf || gameManagerScr.isJoomackPuzzleStart)
+        if (gameObject_ItemWindow.activeSelf || gameObject_CombineWindow.activeSelf || gameObject_LoadWindow.activeSelf || gameObject_MapWindow.activeSelf ||
+            gameObject_Option.activeSelf || gameObject_SaveWindow.activeSelf || gameManagerScr.isJoomackPuzzleStart ||
+            gameObject_SleepCheckWindow.activeSelf)
         {
             return true;
         }
         else
         {
-            return false; 
+            return false;
         }
     }
 

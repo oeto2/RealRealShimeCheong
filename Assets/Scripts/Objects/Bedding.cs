@@ -7,6 +7,8 @@ public class Bedding : MonoBehaviour
     //외부 스크립트 참조
     public TimeManager timeManagerScr;
     public TutorialManager tutorialManagerScr;
+    public UIManager uiManagerScr;
+    public Controller playerCtrlScr;
 
     //Sleep Ui 오브젝트
     public GameObject gameObjcet_SleepUI;
@@ -25,6 +27,25 @@ public class Bedding : MonoBehaviour
         {
             //Sleep UI 보여주기
             gameObjcet_SleepUI.SetActive(true);
+
+            //플레이어 이동제한
+            playerCtrlScr.PlayerMoveStop();
+        }
+
+        //창이 활성화된 상태에서 ESC키를 눌렀을 경우
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(gameObjcet_SleepUI.activeSelf)
+            {
+                //Sleep UI 끄기
+                gameObjcet_SleepUI.SetActive(false);
+
+                //옵션창 UI 끄기
+                uiManagerScr.gameObject_Option.SetActive(false);
+
+                //플레이어 이동제한 해제
+                playerCtrlScr.PlayerMoveStart();
+            }
         }
     }
 
@@ -86,5 +107,10 @@ public class Bedding : MonoBehaviour
     public void CloseSleepBG()
     {
         gameObject_SleepBG.SetActive(false);
+    }
+
+    public void CloseButtonClick()
+    {
+        gameObjcet_SleepUI.SetActive(false);
     }
 }
