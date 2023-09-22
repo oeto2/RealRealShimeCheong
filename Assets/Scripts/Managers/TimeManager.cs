@@ -10,9 +10,11 @@ using System;
 public class TimeSaveData
 {
     //생성자
-    public TimeSaveData(float _Time, int _Day)
+    public TimeSaveData(float _Time, int _Day, byte _curColorValue)
     {
-        time = _Time; day = _Day;
+        time = _Time;
+        day = _Day; 
+        curColorValue = _curColorValue;
     }
 
     //저장할 시간
@@ -20,6 +22,9 @@ public class TimeSaveData
 
     //저장할 날짜
     public int day;
+
+    //현재 배경의 컬러값
+    public byte curColorValue;
 }
 
 //불러올 데이터
@@ -27,9 +32,11 @@ public class TimeSaveData
 public class TimeLoadData
 {
     //생성자
-    public TimeLoadData(float _Time, int _Day)
+    public TimeLoadData(float _Time, int _Day, byte _curColorValue)
     {
-        time = _Time; day = _Day;
+        time = _Time;
+        day = _Day;
+        curColorValue = _curColorValue;
     }
 
     //불러올 시간
@@ -37,6 +44,9 @@ public class TimeLoadData
 
     //불러올 날짜
     public int day;
+
+    //현재 배경의 컬러값
+    public byte curColorValue;
 }
 
 public class TimeManager : MonoBehaviour
@@ -128,6 +138,9 @@ public class TimeManager : MonoBehaviour
 
     //싱글톤 패턴
     public static TimeManager instance = null;
+
+    //시간이 정지 되었는지 확인하는 flag
+    public bool isTimeStop;
 
     public void Awake()
     {
@@ -327,6 +340,7 @@ public class TimeManager : MonoBehaviour
     //시간 멈추기
     public void StopTime()
     {
+        isTimeStop = true;
         //시간 멈추기
         timeStop = true;
     }
@@ -334,6 +348,8 @@ public class TimeManager : MonoBehaviour
     //시간 계속가기
     public void ContinueTime()
     {
+        isTimeStop = false;
+
         //시간 흐르기
         timeStop = false;
     }
@@ -364,7 +380,7 @@ public class TimeManager : MonoBehaviour
 
 
         //저장할 데이터 넣기
-        curTimeSaveData = new TimeSaveData(float_RealTime, int_DayCount);
+        curTimeSaveData = new TimeSaveData(float_RealTime, int_DayCount, curObjectRGB.r);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curTimeSaveData);
@@ -389,6 +405,20 @@ public class TimeManager : MonoBehaviour
 
         //날짜 재설정
         int_DayCount = curTimeLoadData.day;
+
+        //컬러값 재설정
+        curObjectRGB = new Color32(curTimeLoadData.curColorValue, curTimeLoadData.curColorValue, 
+            curTimeLoadData.curColorValue,255);
+
+        for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+        {
+            //만약 색을 바꿀 오브젝트가 존재한다면
+            if (spriteRen_ObumbrateObj[i] != null)
+            {
+                //색깔 변경
+                spriteRen_ObumbrateObj[i].color = curObjectRGB;
+            }
+        }
 
         //캘린더 날짜 변경
         NextDayAnimaton(int_DayCount);
@@ -491,25 +521,24 @@ public class TimeManager : MonoBehaviour
         //밤에 줄어들어야하는 값 = (255 - 밤 RGB값) / 밤 시간
         int minusValeue_night = (int)MathF.Truncate((255 - nightRGBValue.r) / 60);
 
-        //만약 다음날이 되었을경우
-        if ((int)MathF.Truncate(float_RealTime) == 0)
-        {
-            Debug.Log("0시");
-            for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
-            {
-                //만약 색을 바꿀 오브젝트가 존재한다면
-                if (spriteRen_ObumbrateObj[i] != null)
-                {
-                    //색깔 변경 (시작 값)
-                    spriteRen_ObumbrateObj[i].color = startRGBValue;
-                }
-            }
-        }
+        ////만약 다음날이 되었을경우
+        //if ((int)MathF.Truncate(float_RealTime) == 0)
+        //{
+        //    Debug.Log("0시");
+        //    for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+        //    {
+        //        //만약 색을 바꿀 오브젝트가 존재한다면
+        //        if (spriteRen_ObumbrateObj[i] != null)
+        //        {
+        //            //색깔 변경 (시작 값)
+        //            spriteRen_ObumbrateObj[i].color = startRGBValue;
+        //        }
+        //    }
+        //}
 
         //만약 아침일 경우(0 ~ 35초) = 초당 3씩 밝아짐
-        else if ((int)MathF.Truncate(float_RealTime) > 0 && (int)MathF.Truncate(float_RealTime) <= 35)
+        if ((int)MathF.Truncate(float_RealTime) > 0 && (int)MathF.Truncate(float_RealTime) <= 35)
         {
-
             Debug.Log("아침");
 
             for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
@@ -624,8 +653,12 @@ public class TimeManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         Debug.Log("배경 밝기 조절");
-        //오브젝트 밝기 바꾸기
-        ObumbrateObject(curObjectRGB);
+
+        if(!timeStop)
+        {
+            //오브젝트 밝기 바꾸기
+            ObumbrateObject(curObjectRGB);
+        }
 
         isOneSecStart = false;
     }
@@ -635,5 +668,19 @@ public class TimeManager : MonoBehaviour
     public void ChageJoomack(Sprite _sprite)
     {
         spriteRen_Joomack.sprite = _sprite;
+    }
+
+    //배경 컬러 초기값으로 변경
+    public void ResetBGColor()
+    {
+        for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+        {
+            //만약 색을 바꿀 오브젝트가 존재한다면
+            if (spriteRen_ObumbrateObj[i] != null)
+            {
+                //색깔 변경 (시작 값)
+                spriteRen_ObumbrateObj[i].color = startRGBValue;
+            }
+        }
     }
 }

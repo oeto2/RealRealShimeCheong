@@ -400,6 +400,12 @@ public class TutorialManager : MonoBehaviour
             //심봉사 이동후 몇초뒤에 다이얼로그 띄울건지
             Invoke("PassDayTrue", 1.5f);
         }
+
+        //배경 밝기 초기화
+        timeManagerScr.ResetBGColor();
+
+        //배경의 현재 컬러값 변경
+        timeManagerScr.curObjectRGB = timeManagerScr.startRGBValue;
     }
 
     //PassDay Flag Dealy용

@@ -178,6 +178,8 @@ public class ObjectManager : MonoBehaviour
 
     // GetClue 확인 여부
     public bool isGetClue = false;
+
+
     private void Awake()
     {
         if (instance == null)
