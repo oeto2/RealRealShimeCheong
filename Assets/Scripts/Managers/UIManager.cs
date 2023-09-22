@@ -74,6 +74,7 @@ public class UIManager : MonoBehaviour
     public PinAction pinActionScr;
     public CursorCtrl cursorCtrlScr;
     public ObjectControll objectCtrlScr;
+    public TutorialManager tutorialManagerScr;
 
     //아이템창 인터페이스 오브젝트
     public GameObject gameObject_ItemWindow;
@@ -337,7 +338,7 @@ public class UIManager : MonoBehaviour
 
         //조합창 관련 코드
         #region
-        //조합창을 띄우는 조건
+        //조합창을 띄우는 조건 (튜토리얼이 끝나야함)
         if (!gameObject_CombineWindow.activeSelf && !playerCtrlScr.isTalk && Input.GetKeyDown(KeyCode.Z))
         {
             //커서 이미지 변경

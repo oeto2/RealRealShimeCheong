@@ -2363,6 +2363,7 @@ MonoBehaviour:
   pinActionScr: {fileID: 1248421179}
   cursorCtrlScr: {fileID: 1285786388}
   objectCtrlScr: {fileID: 1871036898}
+  tutorialManagerScr: {fileID: 2057623165}
   gameObject_ItemWindow: {fileID: 225938699}
   gameObject_MapWindow: {fileID: 487513804}
   gameObject_Option: {fileID: 1335073537}

@@ -13,7 +13,8 @@ public class CombineCtrl : MonoBehaviour
     private void Update()
     {
         //오브젝트와 충돌중이고 Z키를 눌렀을경우
-        if(isCloser && Input.GetKeyDown(KeyCode.Z))
+        if(isCloser && Input.GetKeyDown(KeyCode.Z) && 
+            (uimanagerScr.tutorialManagerScr.events == TutorialEvents.Done || uimanagerScr.tutorialManagerScr.events == TutorialEvents.PassOneDay))
         {
             //조합창 실행
             uimanagerScr.CombineWindowLaunch();
