@@ -736,6 +736,38 @@ public class ObjectManager : MonoBehaviour
         curClueList = JsonUtility.FromJson<Serialization<Clue>>(jcurClueData).target;
         curClueList2 = JsonUtility.FromJson<Serialization<Clue>>(jcurClueData).target;
 
+        //장착중인 아이템
+        Item usingItem = curItemList.Find(x => x.isUsing == true);
+        //장착중인 단서
+        Clue usingClue = curClueList.Find(x => x.isUsing == true);
+
+        //장착중인 아이템이 있다면
+        if (usingItem != null)
+        {
+            //아이템 이미지 변경
+            equitObjectSprite.sprite = itemSprite[usingItem.indexNum];
+            //장착 슬롯 텍스트 비우기
+            text_EquipSlot.text = "";
+        }
+
+        //장착중인 단서가 있다면
+        else if (usingClue != null)
+        {
+            //단서 이미지 변경
+            equitObjectSprite.sprite = clueSprite[usingClue.indexNum];
+
+            //장착 슬롯 텍스트 변경
+            text_EquipSlot.text = usingClue.name;
+        }
+
+        else
+        {
+            //단서 이미지 변경
+            equitObjectSprite.sprite = sprite_NoneImage;
+
+            //장착 슬롯 텍스트 변경
+            text_EquipSlot.text = "";
+        }
 
         //현재 보유중인 아이템 리스트 불러오기
         TabClick(curType);
