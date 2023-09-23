@@ -67,7 +67,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition())
         {
             Debug.Log("z키 누름! 장사꾼!!!!");
             //bool_isBotjim = true;

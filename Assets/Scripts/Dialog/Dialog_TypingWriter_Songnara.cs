@@ -65,7 +65,7 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition())
         {
             Debug.Log("z키 누름! 송나라!!!!");
             //bool_isBotjim = true;

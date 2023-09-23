@@ -103,7 +103,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition())
         {
             Debug.Log("zÅ° ´©¸§! Àå½Â»ó´ì!!!!");
             //bool_isBotjim = true;

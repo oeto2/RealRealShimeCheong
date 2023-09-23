@@ -91,7 +91,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition())
         {
             Debug.Log("z키 누름! 뱃사공!!!!");
             //bool_isBotjim = true;

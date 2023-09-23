@@ -65,6 +65,9 @@ public class LoadUiData
 
 public class UIManager : MonoBehaviour
 {
+    //싱글톤
+    public static UIManager instance = null;
+
     //외부 스크립트
     public CameraMove cameraMoveScr;
     public GameManager gameManagerScr;
@@ -182,12 +185,29 @@ public class UIManager : MonoBehaviour
     //게임 종료 확인 창
     public GameObject gameObject_ExitCheckWindow;
 
+    //대화 시작 조건(UI창이 켜져있지 않아야함)
+    public bool sentenceCondition;
+
+
     private void Awake()
     {
         //저장 파일 위치
         saveFilePath = Application.persistentDataPath + "/UiDataText.txt";
 
         totalSlotNum = text_LoadPlaceName.Length;
+
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            if(instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 
     private void Start()
@@ -718,5 +738,21 @@ public class UIManager : MonoBehaviour
     public void BlindCursorLight()
     {
         gameObjcet_CursorLights.SetActive(false);
+    }
+
+    //대화를 시작하기 위한 조건
+    public bool SentenceCondition()
+    {
+        //아이템, 지도, 옵션창이 켜져있지 않은 상태여야 함
+        if(!gameObject_ItemWindow.activeSelf && !gameObject_MapWindow.activeSelf && !gameObject_Option.activeSelf)
+        {
+            sentenceCondition = true;
+            return true;
+        }
+        else
+        {
+            sentenceCondition = false;
+            return false;
+        }
     }
 }

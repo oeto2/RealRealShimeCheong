@@ -90,7 +90,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition())
         {
             Debug.Log("zÅ° ´©¸§! ½Â·Á!!!!");
 
