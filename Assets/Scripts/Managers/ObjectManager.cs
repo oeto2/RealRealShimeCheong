@@ -179,6 +179,9 @@ public class ObjectManager : MonoBehaviour
     // GetClue 확인 여부
     public bool isGetClue = false;
 
+    //장착 슬롯 Text
+    public Text text_EquipSlot;
+
 
     private void Awake()
     {
@@ -316,6 +319,11 @@ public class ObjectManager : MonoBehaviour
 
                 //선택된 이미지 옮겨주기
                 equitObjectSprite.sprite = itemSprite[curItem.indexNum];
+
+                //착용 아이템 슬롯 텍스트 비우기
+                text_EquipSlot.text = "";
+
+               
             }
 
             //사용중인 단서가 있다면 usingClue에 담겠다.
@@ -336,6 +344,12 @@ public class ObjectManager : MonoBehaviour
 
                     //장착 오브젝트 이미지 없애기
                     equitObjectSprite.sprite = sprite_NoneImage;
+
+                    //착용 아이템 슬롯 텍스트 비우기
+                    text_EquipSlot.text = "";
+
+                    //단서 설명창 비우기
+                    contentText.text = "";
                 }
             }
 
@@ -359,6 +373,9 @@ public class ObjectManager : MonoBehaviour
 
                 //착용아이템을 현재 선택된 단서 이미지로 바꿔주기
                 equitObjectSprite.sprite = clueSprite[curClue.indexNum];
+
+                //착용 아이템 슬롯 텍스트 변경
+                text_EquipSlot.text = curClue.name;
             }
 
             //사용중인 아이템이 있다면 usingItem에 담겠다.
@@ -379,6 +396,12 @@ public class ObjectManager : MonoBehaviour
 
                     //장착 오브젝트 이미지 없애기
                     equitObjectSprite.sprite = sprite_NoneImage;
+
+                    //착용 아이템 슬롯 텍스트 비우기
+                    text_EquipSlot.text = "";
+
+                    //단서 설명창 비우기
+                    contentText.text = "";
                 }
             }
             #endregion

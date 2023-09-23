@@ -2498,6 +2498,7 @@ MonoBehaviour:
   - {fileID: -715798771, guid: de965b1d713005e479cbd93978e0e930, type: 3}
   gameObjcet_CursorLights: {fileID: 1797896371}
   gameObject_ExitCheckWindow: {fileID: 98440306}
+  sentenceCondition: 0
 --- !u!1 &98440306
 GameObject:
   m_ObjectHideFlags: 0
@@ -47668,6 +47669,7 @@ MonoBehaviour:
     content: 
     isUsing: 0
   isGetClue: 0
+  text_EquipSlot: {fileID: 454448376}
 --- !u!1 &1598760203
 GameObject:
   m_ObjectHideFlags: 0
@@ -56456,7 +56458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1851244456
 RectTransform:
   m_ObjectHideFlags: 0
