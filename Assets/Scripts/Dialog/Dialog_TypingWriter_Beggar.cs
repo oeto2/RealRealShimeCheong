@@ -64,7 +64,8 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition())
+        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition()
+             && TutorialManager.instance.SentenceCondition())
         {
             Debug.Log("z키 누름! 상거지다!!!!");
             //bool_isBotjim = true;

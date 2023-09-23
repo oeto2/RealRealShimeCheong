@@ -63,6 +63,9 @@ public enum TutorialEvents
 
 public class TutorialManager : MonoBehaviour
 {
+    //싱글톤 패턴
+    public static TutorialManager instance = null;
+
     //외부 스크립트
     public TurnOnLight turnOnLightScr;
     public ObjectManager objectManagerScr;
@@ -145,6 +148,11 @@ public class TutorialManager : MonoBehaviour
 
     //튜토리얼 이벤트 번호
     public int tutorialEventNum = 0;
+
+    private void Awake()
+    {
+        instance = this.gameObject.GetComponent<TutorialManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -733,8 +741,6 @@ public class TutorialManager : MonoBehaviour
                     //지도 획득
                     objCtrlScr.LoadMap();
 
-        
-
                     //UI 설정
                     //UI Canvas 켜기
                     gameObject_UICanvas.SetActive(true);
@@ -787,7 +793,6 @@ public class TutorialManager : MonoBehaviour
                     //지도 획득
                     objCtrlScr.LoadMap();
 
-            
 
                     //UI 설정
                     //UI Canvas 켜기
@@ -800,6 +805,20 @@ public class TutorialManager : MonoBehaviour
                     timeManagerScr.ContinueTime();
                     break;
                 }
+        }
+    }
+
+    //대화 가능한 시점
+    public bool SentenceCondition()
+    {
+        if(events != TutorialEvents.TurnOnLights && events != TutorialEvents.GetItems && events != TutorialEvents.TalkToHyang)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
         }
     }
 }

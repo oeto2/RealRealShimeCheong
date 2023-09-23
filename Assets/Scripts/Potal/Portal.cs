@@ -27,8 +27,21 @@ public class Portal : MonoBehaviour
         //포탈 앞에서 W키 혹은 위 방향키를 눌렀을 경우
         if(isPlayerArrivePotal && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && !GameManager.instance.isBeadPuzzleStart)
         {
-            //목적지 이동
-            MoveToDestination();
+            //만약 포탈 번호가 2번일경우
+            if(int_MapNum == 2)
+            {
+                if(TutorialManager.instance.events != TutorialEvents.TurnOnLights && TutorialManager.instance.events != TutorialEvents.GetItems)
+                {
+                    //목적지 이동
+                    MoveToDestination();
+                }
+            }
+
+            else
+            {
+                //목적지 이동
+                MoveToDestination();
+            }
         }
     }
 
