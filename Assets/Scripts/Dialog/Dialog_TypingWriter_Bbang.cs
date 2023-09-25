@@ -390,16 +390,17 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             }
         }
 
-        ////키(default : space)를 다시 누를 때까지 무한정 대기
-        //while (true)
-        //{
-        //    if (isButtonClicked)
-        //    {
-        //        isButtonClicked = false;
-        //        break;
-        //    }
-        //    yield return null;
-        //}
+        /*
+        //키(default : z)를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (isButtonClicked)
+            {
+                isButtonClicked = false;
+                break;
+           }
+            yield return null;
+        }*/
 
     }
 
