@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25727,6 +25727,7 @@ MonoBehaviour:
   uiManagerScr: {fileID: 95288468}
   joomackScr: {fileID: 629768810}
   dialogGuiduckScr: {fileID: 1060148998}
+  joomuckBabScr: {fileID: 637179489}
   bool_isAction: 0
   scanObject: {fileID: 0}
   dialogText: {fileID: 2081460924}
@@ -25740,10 +25741,18 @@ MonoBehaviour:
     playerPos: {x: 0, y: 0, z: 0}
     limitCamera: 0
     mapPinNum: 0
+    joomuckBabState: 0
+    getJangjack: 0
+    getBagage: 0
+    getRice: 0
   curGameLoadData:
     playerPos: {x: 0, y: 0, z: 0}
     limitCamera: 0
     mapPinNum: 0
+    joomuckBabState: 0
+    getJangjack: 0
+    getBagage: 0
+    getRice: 0
   isBeadPuzzleStart: 0
   isJoomackPuzzleStart: 0
   transform_BeadPuzzleMap: {fileID: 1831607154}
@@ -25752,6 +25761,12 @@ MonoBehaviour:
   gameObjcet_dialogueNPC: {fileID: 1486878665}
   gameObject_gameUI: {fileID: 1851244455}
   gameObjcet_timeUI: {fileID: 1429576755}
+  getJangjack: 0
+  getBagage: 0
+  getRice: 0
+  gameObject_Jangjack: {fileID: 1017795170}
+  gameObject_Bagage: {fileID: 279184793}
+  gameObject_Rice: {fileID: 1041397668}
 --- !u!4 &905248353
 Transform:
   m_ObjectHideFlags: 0
