@@ -79,6 +79,7 @@ public class TurnOnLight : MonoBehaviour
     {
         lightObject.SetActive(true);
         isTrunOnLight = true;
+        isLightsOn = true;
 
         //애니메이션 켜기
         animator_DeungJan.SetBool("LightOn", true);
@@ -90,6 +91,8 @@ public class TurnOnLight : MonoBehaviour
     {
         lightObject.SetActive(false);
         isTrunOnLight = false;
+        isLightsOn = false;
+
 
         //애니메이션 끄기
         animator_DeungJan.SetBool("LightOn", false);
