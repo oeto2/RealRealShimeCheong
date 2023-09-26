@@ -55,6 +55,22 @@ public class GetItem : MonoBehaviour
         isGetStart = true;
         objectManagerScr.GetItem(key);
 
+        //획득한 아이템이 장작일경우
+        if(_key == 1001)
+        {
+            GameManager.instance.getJangjack = true;
+        }
+
+        else if(_key == 1000)
+        {
+            GameManager.instance.getRice = true;
+        }
+
+        else if(_key == 1003)
+        {
+            GameManager.instance.getBagage = true;
+        }
+
         yield return new WaitForSeconds(0.1f);
 
         Destroy(this.gameObject);

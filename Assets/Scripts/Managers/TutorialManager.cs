@@ -544,14 +544,11 @@ public class TutorialManager : MonoBehaviour
                     playerAnimationScr.ChangeAnimationNomal();
                     
                     //Object 설정
-                    //등잔불 리셋
-                    turnOnLightScr.TurnOFFLights();
+                  
                     //봇짐 리셋
                     objCtrlScr.ResetBotzime();
                     //지도 리셋
                     objCtrlScr.ResetMap();
-
-                    
 
                     //UI 설정
                     //UI Canvas 끄기
@@ -607,10 +604,16 @@ public class TutorialManager : MonoBehaviour
                         //Player 봇짐 애니메이션으로 변경
                         playerAnimationScr.ChangeAnimationBotzime();
 
-                 
-
                         //닫힌 상자 이미지로 변경
                         boxActScr.spriteRender.sprite = boxActScr.sprite_Box[0];
+
+                        //UI 설정
+                        //UI Canvas 켜기
+                        gameObject_UICanvas.SetActive(true);
+                        //날짜 UI끄기
+                        timeManagerScr.CloseDayUI();
+                        //플레이어 이동제어
+                        playerCtrlScr.TalkEnd();
                     }
                     //지도만 획득 했다면
                     else if (!_getBotzime && _getMap)
@@ -622,11 +625,22 @@ public class TutorialManager : MonoBehaviour
 
                         //열린 상자 이미지로 변경
                         boxActScr.spriteRender.sprite = boxActScr.sprite_Box[1];
+
+                        //박스 플래그 초기화
+                        boxActScr.isFirst = false;
+
+                        //UI 설정
+                        //UI Canvas 켜기
+                        gameObject_UICanvas.SetActive(true);
+                        //날짜 UI끄기
+                        timeManagerScr.CloseDayUI();
+                        //플레이어 이동제어
+                        playerCtrlScr.TalkEnd();
                     }
                     else
                     {
-                        //Player 봇짐 애니메이션으로 변경
-                        playerAnimationScr.ChangeAnimationBotzime();
+                        //Player 기본애니메이션으로 변경
+                        playerAnimationScr.ChangeAnimationNomal();
 
                         //봇짐 리셋
                         objCtrlScr.ResetBotzime();
@@ -635,17 +649,15 @@ public class TutorialManager : MonoBehaviour
                         boxActScr.isFirst = true;
                         //닫힌 상자 이미지로 변경
                         boxActScr.spriteRender.sprite = boxActScr.sprite_Box[0];
+                        //플레이어 이동제어
+                        playerCtrlScr.TalkEnd();
 
-            
+                        //UI Canvas 끄기
+                        gameObject_UICanvas.SetActive(false);
+                        //날짜 UI끄기
+                        timeManagerScr.CloseDayUI();
                     }
 
-                    //UI 설정
-                    //UI Canvas 켜기
-                    gameObject_UICanvas.SetActive(true);
-                    //날짜 UI끄기
-                    timeManagerScr.CloseDayUI();
-                    //플레이어 이동제어
-                    playerCtrlScr.TalkEnd();
                     break;
                 }
 
@@ -688,7 +700,8 @@ public class TutorialManager : MonoBehaviour
                     objCtrlScr.LoadBotzime();
                     //지도 획득
                     objCtrlScr.LoadMap();
-
+                    //박스 플래그 초기화
+                    boxActScr.isFirst = false;
 
 
                     //UI 설정
@@ -740,6 +753,8 @@ public class TutorialManager : MonoBehaviour
                     objCtrlScr.LoadBotzime();
                     //지도 획득
                     objCtrlScr.LoadMap();
+                    //박스 플래그 초기화
+                    boxActScr.isFirst = false;
 
                     //UI 설정
                     //UI Canvas 켜기
@@ -792,6 +807,8 @@ public class TutorialManager : MonoBehaviour
                     objCtrlScr.LoadBotzime();
                     //지도 획득
                     objCtrlScr.LoadMap();
+                    //박스 플래그 초기화
+                    boxActScr.isFirst = false;
 
 
                     //UI 설정

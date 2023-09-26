@@ -50,9 +50,9 @@ public class JoomuckBab : MonoBehaviour
         if (isTouch && Input.GetKeyDown(KeyCode.Z))
         {
             //주먹밥 이벤트가 활성화 중이고 장작을 착용중이라면
-            if(EventManager.instance.GetEventBool(Events.JoomuckBab))
+            if (EventManager.instance.GetEventBool(Events.JoomuckBab))
             {
-                switch(makeJoomuckBab)
+                switch (makeJoomuckBab)
                 {
                     //장작 넣기
                     case MakeJoomuckBab.PushJangJack:
@@ -82,11 +82,13 @@ public class JoomuckBab : MonoBehaviour
                     //주먹밥 만들기
                     case MakeJoomuckBab.MakeJoomuckBab:
                         StartCoroutine(TakeJoomuckBab());
+
+                        
                         break;
                 }
             }
         }
-    }   
+    }
 
     //장작 넣기
     private IEnumerator PushJangJack()
@@ -106,9 +108,17 @@ public class JoomuckBab : MonoBehaviour
             //다음 이벤트로 이동
             makeJoomuckBab = MakeJoomuckBab.UseFireStone;
         }
+
+        //부싯돌을 착용 중이라면
+        else if(ObjectManager.instance.GetEquipObjectKey() == 1002)
+        {
+            //시스템 메세지 출력
+            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(265), true);
+        }
+
         yield return null;
     }
-    
+
     //부싯돌 사용
     private IEnumerator UseFireStone()
     {
@@ -131,10 +141,13 @@ public class JoomuckBab : MonoBehaviour
     private IEnumerator FillWater_OR_PushRice()
     {
         //물든 바가지를 착용중이라면
-        if(ObjectManager.instance.GetEquipObjectKey() == 1004)
+        if (ObjectManager.instance.GetEquipObjectKey() == 1004)
         {
             //시스템 메세지 출력
             DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(522), true);
+
+
+            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(282), true);
 
             //물든 바가지 아이템 제거
             ObjectManager.instance.RemoveItem(1004);
@@ -148,7 +161,7 @@ public class JoomuckBab : MonoBehaviour
         }
 
         //쌀을 착용중이라면
-        if(objectManagerScr.GetEquipObjectKey() == 1000)
+        if (objectManagerScr.GetEquipObjectKey() == 1000)
         {
             //시스템 메세지 출력
             DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(523), true);
@@ -162,7 +175,7 @@ public class JoomuckBab : MonoBehaviour
 
         yield return null;
     }
-    
+
     //물은 넣었는데 쌀은 안 넣음
     private IEnumerator FillWaterDone()
     {
@@ -184,8 +197,7 @@ public class JoomuckBab : MonoBehaviour
                 if (DialogManager.instance.IsSystemMessageEnd() == true)
                 {
                     yield return new WaitForSeconds(0.2f);
-                    //다음 이벤트로 이동
-                    makeJoomuckBab = MakeJoomuckBab.MakeJoomuckBab;
+                    
                     break;
                 }
 
@@ -213,15 +225,16 @@ public class JoomuckBab : MonoBehaviour
             //가마솥 사용 시작
             UsingGamasot();
 
+            //다음 이벤트로 이동
+            makeJoomuckBab = MakeJoomuckBab.MakeJoomuckBab;
+
             //시스템 메세지가 끝날때까지 무한대기
-            while(true)
+            while (true)
             {
-                if(DialogManager.instance.IsSystemMessageEnd() == true)
+                if (DialogManager.instance.IsSystemMessageEnd() == true)
                 {
                     Debug.Log("다음 이벤트 이동");
                     yield return new WaitForSeconds(0.2f);
-                    //다음 이벤트로 이동
-                    makeJoomuckBab = MakeJoomuckBab.MakeJoomuckBab;
                     break;
                 }
 
@@ -234,7 +247,7 @@ public class JoomuckBab : MonoBehaviour
     //주먹밥 챙기기
     private IEnumerator TakeJoomuckBab()
     {
-        if(DialogManager.instance.IsSystemMessageEnd() == true)
+        if (DialogManager.instance.IsSystemMessageEnd() == true)
         {
             //시스템 메세지 출력
             DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(524), true);
@@ -255,7 +268,7 @@ public class JoomuckBab : MonoBehaviour
     //오브젝트 접촉시
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             isTouch = true;
         }
@@ -288,5 +301,184 @@ public class JoomuckBab : MonoBehaviour
 
         //끓는 가마솥 오브젝트 활성화
         gameObjcet_GamasotUsing.SetActive(false);
+    }
+
+    //주먹밥 이벤트 상태 int 값 반환
+    public int GetEventState()
+    {
+        switch (makeJoomuckBab)
+        {
+            case MakeJoomuckBab.PushJangJack:
+                return 0;
+
+            case MakeJoomuckBab.UseFireStone:
+                return 1;
+
+            case MakeJoomuckBab.FillWater_OR_PushRice:
+                return 2;
+
+            case MakeJoomuckBab.FillWaterDone:
+                return 3;
+
+            case MakeJoomuckBab.PushRiceDone:
+                return 4;
+
+            case MakeJoomuckBab.MakeJoomuckBab:
+                return 5;
+
+            case MakeJoomuckBab.Done:
+                return 6;
+
+            default:
+                return 0;
+
+        }
+    }
+
+    //주먹밥 이벤트 세팅
+    public void EventSetting(int _eventNum)
+    {
+        switch (_eventNum)
+        {
+            //아무것도 없는 상태
+            case 0:
+
+                //이벤트 진행상황 변경
+                makeJoomuckBab = MakeJoomuckBab.PushJangJack;
+
+                //장작 없애기
+                gameObject_JangJack.SetActive(false);
+
+                //불 없애기
+                gameobjcet_Fire.SetActive(false);
+
+                //가마솥 사용 이미지 끄기
+                gameObjcet_GamasotUsing.SetActive(false);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+
+            //장작 넣은 상태
+            case 1:
+
+                //이벤트 진행상황 변경
+                makeJoomuckBab = MakeJoomuckBab.UseFireStone;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 없애기
+                gameobjcet_Fire.SetActive(false);
+
+                //가마솥 사용 이미지 끄기
+                gameObjcet_GamasotUsing.SetActive(false);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+
+            //불을 붙인 상태
+            case 2:
+
+                //이벤트 진행상황 변경
+                makeJoomuckBab = MakeJoomuckBab.FillWater_OR_PushRice;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 보이기
+                gameobjcet_Fire.SetActive(true);
+
+                //가마솥 사용 이미지 끄기
+                gameObjcet_GamasotUsing.SetActive(false);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+
+            //물을 넣은 상태
+            case 3:
+
+                //이벤트 진행상황 변경
+                makeJoomuckBab = MakeJoomuckBab.FillWaterDone;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 보이기
+                gameobjcet_Fire.SetActive(true);
+
+                //가마솥 사용 이미지 끄기
+                gameObjcet_GamasotUsing.SetActive(false);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+
+            //쌀을 넣은 상태
+            case 4:
+
+                //이벤트 진행상황 변경
+                makeJoomuckBab = MakeJoomuckBab.PushRiceDone;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 보이기
+                gameobjcet_Fire.SetActive(true);
+
+                //가마솥 사용 이미지 끄기
+                gameObjcet_GamasotUsing.SetActive(false);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+
+            //쌀과 물을 넣은 상태
+            case 5:
+
+                //이벤트 진행상황 변경
+                makeJoomuckBab = MakeJoomuckBab.MakeJoomuckBab;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 보이기
+                gameobjcet_Fire.SetActive(true);
+
+                //가마솥 사용 이미지 보이기
+                gameObjcet_GamasotUsing.SetActive(true);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+
+            //이벤트 끝
+            case 6:
+
+                //이벤트 진행상황 변경
+                makeJoomuckBab = MakeJoomuckBab.Done;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 끄기
+                gameobjcet_Fire.SetActive(false);
+
+                //가마솥 사용 이미지 끄기
+                gameObjcet_GamasotUsing.SetActive(false);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+        }
     }
 }

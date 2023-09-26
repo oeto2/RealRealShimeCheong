@@ -9,9 +9,13 @@ using System.IO;
 public class GameSaveData
 {
     //생성자
-    public GameSaveData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum)
+    public GameSaveData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum, int _joomuckBabState, bool _getJangjack, bool _getBagage, bool _getRice)
     {
         playerPos = _playerPos; limitCamera = _LimitCamera; mapPinNum = _mapPinNum;
+        joomuckBabState = _joomuckBabState;
+        getJangjack = _getJangjack;
+        getBagage = _getBagage;
+        getRice = _getRice;
     }
 
     //플레이어 위치값
@@ -22,6 +26,21 @@ public class GameSaveData
 
     //지도의 핀 위치값
     public int mapPinNum;
+
+    //주먹밥 이벤트 진행상황
+    public int joomuckBabState;
+
+    #region 아이템 획득 여부
+    //장작 획득 여부
+    public bool getJangjack;
+
+    //바가지 획득 여부
+    public bool getBagage;
+
+    //쌀 획득 여부
+    public bool getRice;
+    #endregion
+
 }
 
 
@@ -30,9 +49,13 @@ public class GameSaveData
 public class GameLoadData
 {
     //생성자
-    public GameLoadData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum)
+    public GameLoadData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum, int _joomuckBabState, bool _getJangjack, bool _getBagage, bool _getRice)
     {
         playerPos = _playerPos; limitCamera = _LimitCamera; mapPinNum = _mapPinNum;
+        joomuckBabState = _joomuckBabState;
+        getJangjack = _getJangjack;
+        getBagage = _getBagage;
+        getRice = _getRice;
     }
 
     //플레이어 위치값
@@ -43,6 +66,21 @@ public class GameLoadData
 
     //지도의 핀 위치값
     public int mapPinNum;
+
+    //주먹밥 이벤트 진행상황
+    public int joomuckBabState;
+
+    #region 아이템 획득 여부
+    //장작 획득 여부
+    public bool getJangjack;
+
+    //바가지 획득 여부
+    public bool getBagage;
+
+    //쌀 획득 여부
+    public bool getRice;
+    #endregion
+
 }
 
 
@@ -53,6 +91,7 @@ public class GameManager : MonoBehaviour
     public UIManager uiManagerScr;
     public JoomackPuzzle joomackScr;
     public Dialog_TypingWriter_Guiduck dialogGuiduckScr;
+    public JoomuckBab joomuckBabScr;
 
     // 하나씩 추가하자
     public bool bool_isAction;
@@ -114,16 +153,34 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    //장작 획득 여부
+    public bool getJangjack;
+
+    //바가지 획득 여부
+    public bool getBagage;
+
+    //쌀 획득 여부
+    public bool getRice;
+
+    //장작 오브젝트
+    public GameObject gameObject_Jangjack;
+
+    //바가지 오브젝트
+    public GameObject gameObject_Bagage;
+
+    //쌀 오브젝트
+    public GameObject gameObject_Rice;
+
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            if(instance != this)
+            if (instance != this)
             {
                 Destroy(this.gameObject);
             }
@@ -152,13 +209,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void Action(GameObject scan_obj)
-	{
+    {
         if (bool_isAction) // exit action
-		{
+        {
             bool_isAction = false;
-		}
-		else
-		{
+        }
+        else
+        {
             bool_isAction = true;
             scanObject = scan_obj;
             //objdata obj_Data = GameObject.Find("Stage").GetComponent<objdata>();
@@ -167,18 +224,18 @@ public class GameManager : MonoBehaviour
 
             talkPanel.SetActive(bool_isAction);
         }
-	}
+    }
 
     void Talk(int id, bool bool_isNPC)
-	{
+    {
         string talkData = talkManager.GetTalk(id, talkIndex);
 
-        if(talkData == null)
-		{
+        if (talkData == null)
+        {
             bool_isAction = false;
             talkIndex = 0;
             return;
-		}
+        }
         if (bool_isNPC)
         {
             dialogText.text = talkData;
@@ -194,7 +251,7 @@ public class GameManager : MonoBehaviour
     }
 
     void Dialog(int id, bool bool_isNPC)
-	{
+    {
 
     }
 
@@ -202,7 +259,7 @@ public class GameManager : MonoBehaviour
     public void ReturnPlayer()
     {
         //플레이어 포지션 값 변경
-        gameObjcet_Player.transform.position = new Vector3(transform_PlayerReturn.position.x,transform_PlayerReturn.position.y,0);
+        gameObjcet_Player.transform.position = new Vector3(transform_PlayerReturn.position.x, transform_PlayerReturn.position.y, 0);
 
         //카메라 영역제한 값 변경
         cameraMoveScr.ChangeLimit(0);
@@ -217,8 +274,9 @@ public class GameManager : MonoBehaviour
         GetPlaceName();
 
         //저장할 데이터 넣기
-        curGameSaveData = new GameSaveData(new Vector3(gameObjcet_Player.transform.position.x,gameObjcet_Player.transform.position.y,
-                          gameObjcet_Player.transform.position.z), cameraMoveScr.int_CurLimitNum, int_PinPosNum);
+        curGameSaveData = new GameSaveData(new Vector3(gameObjcet_Player.transform.position.x, gameObjcet_Player.transform.position.y,
+                          gameObjcet_Player.transform.position.z), cameraMoveScr.int_CurLimitNum, int_PinPosNum, joomuckBabScr.GetEventState()
+                          , getJangjack, getBagage, getRice);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curGameSaveData);
@@ -247,6 +305,60 @@ public class GameManager : MonoBehaviour
         //지도 핀 위치 재설정
         int_PinPosNum = curGameLoadData.mapPinNum;
         //uiManagerScr.pinActionScr.PinPosChange(curGameLoadData.mapPinNum);
+
+        //가마솥 세팅
+        joomuckBabScr.EventSetting(curGameLoadData.joomuckBabState);
+
+        //아이템 세팅
+
+        //쌀
+        if (curGameLoadData.getRice)
+        {
+            if (gameObject_Rice != null)
+            {
+                gameObject_Rice.SetActive(false);
+            }
+        }
+        else
+        {
+            if (gameObject_Rice != null)
+            {
+                gameObject_Rice.SetActive(true);
+            }
+        }
+
+
+        //장작
+        if (curGameLoadData.getJangjack)
+        {
+            if (gameObject_Jangjack != null)
+            {
+                gameObject_Jangjack.SetActive(false);
+            }
+        }
+        else
+        {
+            if (gameObject_Jangjack != null)
+            {
+                gameObject_Jangjack.SetActive(true);
+            }
+        }
+
+        //바가지
+        if (curGameLoadData.getBagage)
+        {
+            if (gameObject_Bagage != null)
+            {
+                gameObject_Bagage.SetActive(false);
+            }
+        }
+        else
+        {
+            if (gameObject_Bagage != null)
+            {
+                gameObject_Bagage.SetActive(true);
+            }
+        }
     }
 
     //현재 장소 이름 구하는 메서드
