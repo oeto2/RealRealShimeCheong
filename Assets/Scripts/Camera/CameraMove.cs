@@ -13,7 +13,7 @@ public class CameraMove : MonoBehaviour
     public Transform transform_TrargetObject;
 
     //카메라 추적 속도
-    [SerializeField] [Range(1, 1000)] private float speed;
+    [SerializeField] [Range(1, 2000)] private float speed;
 
     //카메라 제한 값
     private Transform transform_CameraLimit;

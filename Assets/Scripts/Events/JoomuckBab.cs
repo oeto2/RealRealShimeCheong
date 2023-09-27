@@ -144,17 +144,15 @@ public class JoomuckBab : MonoBehaviour
         if (ObjectManager.instance.GetEquipObjectKey() == 1004)
         {
             //시스템 메세지 출력
-            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(522), true);
+            DialogManager.instance.Start_WaterBageSentence();
 
-
-            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(282), true);
+            //DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(282), true);
 
             //물든 바가지 아이템 제거
             ObjectManager.instance.RemoveItem(1004);
 
             //바가지 아이템 획득
             ObjectManager.instance.GetItem(1003);
-
 
             //다음 이벤트로 이동
             makeJoomuckBab = MakeJoomuckBab.FillWaterDone;
@@ -164,7 +162,7 @@ public class JoomuckBab : MonoBehaviour
         if (objectManagerScr.GetEquipObjectKey() == 1000)
         {
             //시스템 메세지 출력
-            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(523), true);
+            DialogManager.instance.Start_RiceSentence();
 
             //쌀 아이템 제거
             ObjectManager.instance.RemoveItem(1000);

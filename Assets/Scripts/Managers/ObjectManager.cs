@@ -279,21 +279,28 @@ public class ObjectManager : MonoBehaviour
             EmptyCombineSlot();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.C))
         {
-            Debug.Log(GetEquipObjectKey());
+            GetClue(2012);
+            GetClue(2014);
+            GetClue(2009);
         }
 
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            Debug.Log("1002 »πµÊ");
-            GetItem(1002);
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Debug.Log("1003 »πµÊ");
-            GetItem(1003);
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    Debug.Log(GetEquipObjectKey());
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.U))
+        //{
+        //    Debug.Log("1002 »πµÊ");
+        //    GetItem(1002);
+        //}
+        //if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    Debug.Log("1003 »πµÊ");
+        //    GetItem(1003);
+        //}
     }
 
     //ø¿∫Í¡ß∆Æ ΩΩ∑‘ ≈¨∏ØΩ√ (æ∆¿Ã≈€√¢ «—¡§)

@@ -98,6 +98,7 @@ public class DialogManager : MonoBehaviour
     {
         //코루틴 중복 실행 방지
         isSentence_Start = true;
+
         //Text 비우기
         writerText = "";
 
@@ -139,7 +140,7 @@ public class DialogManager : MonoBehaviour
                 //코루틴 중복 실행 방지해제
                 isSentence_Start = false;
 
-                if(_exit)
+                if (_exit)
                 {
                     //시스템 다이얼로그 비활성화
                     Dialouge_System.SetActive(false);
@@ -152,6 +153,8 @@ public class DialogManager : MonoBehaviour
             yield return null;
         }
     }
+
+    
 
     //시스템 메세지를 시작해주는 메서드
     public void Start_SystemMessage(string _narration, bool _exit)
@@ -167,7 +170,7 @@ public class DialogManager : MonoBehaviour
     public bool IsSystemMessageEnd()
     {
         //다이얼로그 창이 종료 되었다면
-        if(Dialouge_System.activeSelf == false)
+        if (Dialouge_System.activeSelf == false)
         {
             return true;
         }
@@ -179,4 +182,35 @@ public class DialogManager : MonoBehaviour
         }
     }
 
+
+    #region 가마솥 이벤트 대사
+
+    //물바가지 대사
+    IEnumerator SystemMessage_WaterBagage()
+    {
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(522), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(282), true));
+    }
+
+    //물 바가지 대사 출력
+    public void Start_WaterBageSentence()
+    {
+        StartCoroutine(SystemMessage_WaterBagage());
+    }
+
+
+    //솥에 쌀만 넣었을 경우 대사
+    IEnumerator SystemMessage_RiceSentence()
+    {
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(523), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(291), true));
+    }
+
+    //솥에 쌀만 넣었을 경우 대사 출력
+    public void Start_RiceSentence()
+    {
+        StartCoroutine(SystemMessage_RiceSentence());
+    }
+
+    #endregion
 }

@@ -59007,7 +59007,7 @@ MonoBehaviour:
   gameManagerScr: {fileID: 905248352}
   pinActionScr: {fileID: 0}
   transform_TrargetObject: {fileID: 1871036900}
-  speed: 1000
+  speed: 1500
   transform_Limits:
   - {fileID: 1087280040}
   - {fileID: 1443931195}
