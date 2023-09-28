@@ -428,7 +428,8 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
             {
                 //공양미의 출처 단서 획득
                 ObjectManager.instance.GetClue(2011);
-
+                
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[533].npc_name, dialogdb.NPC_01[533].comment, true));
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[105].npc_name, dialogdb.NPC_01[105].comment));
             }
             //2011 : 공양미의 출처

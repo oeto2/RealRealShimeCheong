@@ -389,6 +389,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             {
                 //¥‹º≠»πµÊ
                 ObjectManager.instance.GetClue(2001);
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[532].npc_name, dialogdb.NPC_01[532].comment, true));
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[11].npc_name, dialogdb.NPC_01[11].comment));
             }
             //2001 : √ª¿Ã¿« ∞≈¡˛∏ª
