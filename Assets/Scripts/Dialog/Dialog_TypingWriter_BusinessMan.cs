@@ -421,6 +421,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
                 //청이가 사간것 획득
                 ObjectManager.instance.GetClue(2015);
 
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[535].npc_name, npcDatabaseScr.NPC_01[535].comment, true));
                 yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[41].npc_name, npcDatabaseScr.NPC_01[41].comment));
             }
 
@@ -466,6 +467,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
                 //노점의 단골 단서 획득
                 ObjectManager.instance.GetClue(2018);
 
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[545].npc_name, npcDatabaseScr.NPC_01[545].comment, true));
                 yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[132].npc_name, npcDatabaseScr.NPC_01[132].comment));
             }
 
@@ -478,6 +480,9 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             //2015 : 청이가 사간 것 (이후 대사 추가?)
             else if (ObjectManager.instance.GetEquipObjectKey() == 2015)
             {
+
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[547].npc_name, npcDatabaseScr.NPC_01[547].comment, true));
+
                 //아직 먹 전달을 못했으면
                 if (EventManager.instance.eventProgress.deliveryMuck != true)
                 {
@@ -526,6 +531,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             //2021 : 사공의 물건 (구슬 퍼즐? 대사 추가)
             else if (ObjectManager.instance.GetEquipObjectKey() == 2021)
             {
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[553].npc_name, npcDatabaseScr.NPC_01[553].comment, true));
                 yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[210].npc_name, npcDatabaseScr.NPC_01[210].comment, true));
                 yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[215].npc_name, npcDatabaseScr.NPC_01[215].comment, true));
                 yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[216].npc_name, npcDatabaseScr.NPC_01[216].comment, true));
@@ -561,6 +567,8 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             //1006 : 비녀 (이벤트?)
             else if (ObjectManager.instance.GetEquipObjectKey() == 1006)
             {
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[526].npc_name, npcDatabaseScr.NPC_01[526].comment, true));
+
                 //베드엔딩1 양상군자
                 yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[302].npc_name, npcDatabaseScr.NPC_01[302].comment,true));
 
@@ -614,6 +622,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             //4033 : 무역의 중단
             else if (ObjectManager.instance.GetEquipObjectKey() == 4033)
             {
+                yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[560].npc_name, npcDatabaseScr.NPC_01[560].comment,true));
                 yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[384].npc_name, npcDatabaseScr.NPC_01[384].comment));
             }
 
