@@ -285,6 +285,14 @@ public class ObjectManager : MonoBehaviour
             GetAllItem();
         }
 
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            GetClue(2011);
+            GetClue(2012);
+            GetClue(2014);
+            GetClue(2009);
+        }
+
         //if (Input.GetKeyDown(KeyCode.Q))
         //{
         //    Debug.Log(GetEquipObjectKey());
@@ -1024,6 +1032,15 @@ public class ObjectManager : MonoBehaviour
                     slotSumType = "ClueClue";
                 }
 
+                //만약 조합슬롯 1번,2번의 키값이 2022,4023이라면
+                if ((curCombineClue1Info.key == 2012 || curCombineClue1Info.key == 2011) &&
+                    (curCombineClue2Info.key == 2012 || curCombineClue2Info.key == 2011))
+                {
+                    Debug.Log("공양미를 구한 방법");
+                    //슬롯1, 슬롯2의 Type의 합
+                    slotSumType = "ClueClue";
+                }
+
                 //만약 조합슬롯 1번,2번의 단서의 Type이 ClueClue 라면
                 else if (curCombineClue1Info.type == "ClueClue" && curCombineClue2Info.type == "ClueClue")
                 {
@@ -1044,6 +1061,14 @@ public class ObjectManager : MonoBehaviour
                 {
                     //조합 키 값은 9000
                     sumKeyValue = 9000;
+                }
+
+                //만약 조합슬롯 1번의,2번의 단서가 2001 또는 2016일 경우
+                else if ((curCombineClue1Info.key == 2012 || curCombineClue1Info.key == 2011) &&
+                    (curCombineClue2Info.key == 2012 || curCombineClue2Info.key == 2011))
+                {
+                    //조합 키 값은 9001
+                    sumKeyValue = 9001;
                 }
                 #endregion
 
