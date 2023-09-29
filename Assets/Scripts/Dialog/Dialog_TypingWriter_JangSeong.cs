@@ -418,6 +418,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 //향리댁 셋째 아들 단서 획득
                 ObjectManager.instance.GetClue(2013);
 
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[537].npc_name, dialogdb.NPC_01[537].comment, true));
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[59].npc_name, dialogdb.NPC_01[59].comment));
             }
             //2006 : 송나라 상인과 청이
@@ -438,6 +439,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             //2009 : 청이의 도움
             else if (ObjectManager.instance.GetEquipObjectKey() == 2009)
             {
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[541].npc_name, dialogdb.NPC_01[541].comment, true));
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[96].npc_name, dialogdb.NPC_01[96].comment, true));
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[102].npc_name, dialogdb.NPC_01[102].comment, true));
 
@@ -514,6 +516,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             //2023 : 3월 보름날
             else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
             {
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[555].npc_name, dialogdb.NPC_01[555].comment,true));
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[231].npc_name, dialogdb.NPC_01[231].comment));
             }
             #endregion
@@ -532,6 +535,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             //1007 : 먹
             else if (ObjectManager.instance.GetEquipObjectKey() == 1007)
             {
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[527].npc_name, dialogdb.NPC_01[527].comment, true));
                 //먹 아이템 제거
                 ObjectManager.instance.RemoveItem(1007);
                 //먹 전달 완료
@@ -573,6 +577,8 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             //8032 : 함께 사라진 두 사람
             else if (ObjectManager.instance.GetEquipObjectKey() == 8032)
             {
+
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[559].npc_name, dialogdb.NPC_01[559].comment, true));
                 //첫번째 대화 시
                 if (!clue8032Talk)
                 {
