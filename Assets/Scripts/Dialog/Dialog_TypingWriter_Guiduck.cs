@@ -382,7 +382,8 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
             {
                 //청이와 장터 획득
                 ObjectManager.instance.GetClue(2003);
-
+                
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[534].npc_name, dialogdb.NPC_01[534].comment,true));
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[31].npc_name, dialogdb.NPC_01[31].comment));
             }
             //2003 : 청이와 장터
@@ -395,7 +396,7 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
             {
                 //승려와 청이
                 ObjectManager.instance.GetClue(2007);
-
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[536].npc_name, dialogdb.NPC_01[536].comment, true));
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[47].npc_name, dialogdb.NPC_01[47].comment));
             }
             //2005 : 누군가의 아들
@@ -464,10 +465,13 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                 ////주막퍼즐 시작
                 //GameManager.instance.JoomackPuzzleStart();
                 Debug.Log("배의 출항 대사 실행");
+                
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[549].npc_name, dialogdb.NPC_01[549].comment, true));
 
                 //주막 퍼즐을 클리어 했다면
                 if (EventManager.instance.eventProgress.joomackPuzzle_Clear)
                 {
+                    //yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[549].npc_name, dialogdb.NPC_01[549].comment, true));
                     yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[171].npc_name, dialogdb.NPC_01[171].comment, true));
                     //보리떡 획득
                     ObjectManager.instance.GetItem(1008);
@@ -556,6 +560,7 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                 //꽃 전달 완료
                 EventManager.instance.eventProgress.giveFlowerEnd = true;
 
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[529].npc_name, dialogdb.NPC_01[529].comment, true));
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[175].npc_name, dialogdb.NPC_01[175].comment, true));
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[176].npc_name, dialogdb.NPC_01[176].comment, true));
 
@@ -583,7 +588,7 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
             {
                 //사공에게 있었던일 단서 획득
                 ObjectManager.instance.GetClue(2020);
-
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[557].npc_name, dialogdb.NPC_01[557].comment));
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[358].npc_name, dialogdb.NPC_01[358].comment));
             }
             //4017 : 청이와 그의 관계

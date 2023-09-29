@@ -282,6 +282,7 @@ public class ObjectManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.C))
         {
             GetAllClue();
+            GetAllItem();
         }
 
         //if (Input.GetKeyDown(KeyCode.Q))
