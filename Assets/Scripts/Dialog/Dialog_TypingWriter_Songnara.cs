@@ -367,6 +367,7 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
             //잠잠해져야할 물살 단서 획득
             ObjectManager.instance.GetClue(2014);
 
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[537].npc_name, npcDatabaseScr.NPC_01[537].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[64].npc_name, npcDatabaseScr.NPC_01[64].comment));
         }
 
@@ -375,7 +376,7 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
         {
             //청이의 도움 단서 획득
             ObjectManager.instance.GetClue(2009);
-
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[538].npc_name, npcDatabaseScr.NPC_01[538].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[72].npc_name, npcDatabaseScr.NPC_01[72].comment));
         }
 
@@ -448,8 +449,10 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
         //2023 : 3월 보름날
         else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
         {
+
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[555].npc_name, npcDatabaseScr.NPC_01[555].comment, true));
             //베드엔딩4 취생몽사
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[248].npc_name, npcDatabaseScr.NPC_01[248].comment,true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[248].npc_name, npcDatabaseScr.NPC_01[248].comment, true));
 
             //엔딩 배경 ON
             EndingManager.instance.ShowEndingBG();
