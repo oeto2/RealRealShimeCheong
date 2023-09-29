@@ -506,8 +506,10 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         //2006 : 송나라 상인과 청이 (추가 대사 있음)
         else if (ObjectManager.instance.GetEquipObjectKey() == 2006)
         {
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[538].npc_name, npcDatabaseScr.NPC_01[538].comment, true));
+
             //선택지를 고르지 않았다면
-            if(!EventManager.instance.selectEndCheck.select2006_End)
+            if (!EventManager.instance.selectEndCheck.select2006_End)
             {
                 yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[71].npc_name, npcDatabaseScr.NPC_01[71].comment, true));
                 EventManager.instance.SelectStart(NPCName.boatman, 2006);
@@ -580,6 +582,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             //뜨지않는 배 단서 획득
             ObjectManager.instance.GetClue(2019);
 
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[546].npc_name, npcDatabaseScr.NPC_01[546].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[143].npc_name, npcDatabaseScr.NPC_01[143].comment));
         }
 
@@ -613,6 +616,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             //사공의 물건 단서 획득
             ObjectManager.instance.GetClue(2021);
 
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[552].npc_name, npcDatabaseScr.NPC_01[552].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[205].npc_name, npcDatabaseScr.NPC_01[205].comment));
         }
 
@@ -631,6 +635,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         //2023 : 3월 보름날
         else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
         {
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[555].npc_name, npcDatabaseScr.NPC_01[555].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[236].npc_name, npcDatabaseScr.NPC_01[236].comment,true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[237].npc_name, npcDatabaseScr.NPC_01[237].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[238].npc_name, npcDatabaseScr.NPC_01[238].comment, true));
@@ -674,10 +679,10 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         //1011 : 사공의 물건 (이후 대사 추가)
         else if (ObjectManager.instance.GetEquipObjectKey() == 1011)
         {
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[531].npc_name, npcDatabaseScr.NPC_01[531].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[344].npc_name, npcDatabaseScr.NPC_01[344].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[345].npc_name, npcDatabaseScr.NPC_01[345].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[346].npc_name, npcDatabaseScr.NPC_01[346].comment));
-
         }
 
         #endregion
@@ -704,6 +709,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
         //4033 : 무역의 중단
         else if (ObjectManager.instance.GetEquipObjectKey() == 4033)
         {
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[560].npc_name, npcDatabaseScr.NPC_01[560].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[387].npc_name, npcDatabaseScr.NPC_01[387].comment,true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[389].npc_name, npcDatabaseScr.NPC_01[389].comment, true));
 
