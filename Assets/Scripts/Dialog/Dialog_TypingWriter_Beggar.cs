@@ -389,13 +389,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         {
             //¥©±∫∞°¿« æ∆µÈ ¥‹º≠ »πµÊ
             ObjectManager.instance.GetClue(2005);
-
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[51].npc_name, npcDatabaseScr.NPC_01[51].comment));
-        }
-
-        //2004 : √ª¿ÃøÕ ≥≤¿⁄
-        else if (ObjectManager.instance.GetEquipObjectKey() == 2004)
-        {
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[536].npc_name, npcDatabaseScr.NPC_01[536].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[51].npc_name, npcDatabaseScr.NPC_01[51].comment));
         }
 
@@ -500,6 +494,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         //1005 : ¡÷∏‘π‰
         else if (ObjectManager.instance.GetEquipObjectKey() == 1005)
         {
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[525].npc_name, npcDatabaseScr.NPC_01[525].comment, true));
             //Ω√Ω∫≈€ ∏ﬁºº¡ˆ
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[17].npc_name, npcDatabaseScr.NPC_01[17].comment, true));
             //¡÷∏‘π‰ æ∆¿Ã≈€ ¡¶∞≈
@@ -537,6 +532,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             ObjectManager.instance.RemoveItem(1008);
             //∫∏∏Æ∂± ¿¸¥ﬁ øœ∑·
             EventManager.instance.eventEndCheck.giveBoridduck_End = true;
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[528].npc_name, npcDatabaseScr.NPC_01[528].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[173].npc_name, npcDatabaseScr.NPC_01[173].comment,true));
             //≤… »πµÊ
             ObjectManager.instance.GetItem(1009);
