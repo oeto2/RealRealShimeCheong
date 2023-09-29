@@ -432,6 +432,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         {
             //비녀 이벤트 활성화
             EventManager.instance.EventActive(Events.binyeo);
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[536].npc_name, dialogdb.NPC_01[536].comment, true));
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[46].npc_name, dialogdb.NPC_01[46].comment));
         }
         //2005 : 누군가의 아들
@@ -450,6 +451,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             //승려의 마음 단서 획득
             ObjectManager.instance.GetClue(2008);
 
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[539].npc_name, dialogdb.NPC_01[539].comment, true));
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[78].npc_name, dialogdb.NPC_01[78].comment));
         }
         //2008 : 승려의 마음
@@ -548,6 +550,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             //비녀 오브젝트 제거
             ObjectManager.instance.RemoveItem(1006);
 
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[526].npc_name, dialogdb.NPC_01[526].comment, true));
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[54].npc_name, dialogdb.NPC_01[54].comment,true));
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[55].npc_name, dialogdb.NPC_01[55].comment,true));
 
