@@ -77,14 +77,27 @@ public class TitleManager : MonoBehaviour
         saveFilePath = Application.persistentDataPath + "/UiDataText.txt";
     }
 
+    //게임을 종료해주는 메서드
+    public void ExitGame()
+    {
+        if (gameObject_LoadWindow.activeSelf == false)
+        {
+            //실행 종료
+            Application.Quit();
+        }
+    }
+
     //Start Button Clik
     public void StartButton_Click()
     {
-        int_ClickSlotNum = 4;
+        if (gameObject_LoadWindow.activeSelf == false)
+        {
+            int_ClickSlotNum = 4;
 
-        loadSenceState = LoadSceneState.Nomal;
+            loadSenceState = LoadSceneState.Nomal;
 
-        LoadMainScene();
+            LoadMainScene();
+        }
     }
 
     //Load Button Click
@@ -137,15 +150,15 @@ public class TitleManager : MonoBehaviour
         //Load State 변경
         switch(int_ClickSlotNum)
         {
-            case 1:
+            case 0:
                 loadSenceState = LoadSceneState.Slot1;
                 break;
 
-            case 2:
+            case 1:
                 loadSenceState = LoadSceneState.Slot2;
                 break;
 
-            case 3:
+            case 2:
                 loadSenceState = LoadSceneState.Slot3;
                 break;
 
