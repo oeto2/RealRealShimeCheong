@@ -29,7 +29,7 @@ public class CameraMove : MonoBehaviour
     //현재 카메라 제한 구역번호
     public int int_CurLimitNum;
 
-    private void Start()
+    private void Awake()
     {
         //hight = 카메라 화면의 세로크기 절반 값
         hight = Camera.main.orthographicSize;

@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 //LoadScene할때 넘겨줄 상태값
 public enum LoadSceneState
 {
-    Nomal, //처음부터
     Slot1, //1번 슬롯
     Slot2, //2번 슬롯
     Slot3, //3번 슬롯
+    Nomal, //처음부터
 }
 
 public class TitleManager : MonoBehaviour
@@ -43,6 +43,16 @@ public class TitleManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    //Start Button Clik
+    public void StartButton_Click()
+    {
+        int_ClickSlotNum = 4;
+
+        loadSenceState = LoadSceneState.Nomal;
+
+        LoadMainScene();
     }
 
     //Load Button Click

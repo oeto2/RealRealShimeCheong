@@ -185,11 +185,13 @@ public class GameManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+
+        saveFilePath = Application.persistentDataPath + "/GameManagerDataText.txt";
+
     }
 
     private void Start()
     {
-        saveFilePath = Application.persistentDataPath + "/GameManagerDataText.txt";
     }
 
     private void Update()
@@ -290,75 +292,81 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Load GameManagerData");
 
-        //세이브 파일 읽어오기
-        string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
-
-        //읽어온 파일 리스트에 저장
-        curGameLoadData = JsonUtility.FromJson<GameLoadData>(jLoadData);
-
-        //플레이어 위치 재설정
-        gameObjcet_Player.transform.position = curGameLoadData.playerPos;
-
-        //카메라 제한구역 재설정
-        cameraMoveScr.ChangeLimit(curGameLoadData.limitCamera);
-
-        //지도 핀 위치 재설정
-        int_PinPosNum = curGameLoadData.mapPinNum;
-        //uiManagerScr.pinActionScr.PinPosChange(curGameLoadData.mapPinNum);
-
-        //가마솥 세팅
-        joomuckBabScr.EventSetting(curGameLoadData.joomuckBabState);
-
-        //아이템 세팅
-
-        //쌀
-        if (curGameLoadData.getRice)
+        if(_slotNum <= 2)
         {
-            if (gameObject_Rice != null)
+            //세이브 파일 읽어오기
+            string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
+
+            //읽어온 파일 리스트에 저장
+            curGameLoadData = JsonUtility.FromJson<GameLoadData>(jLoadData);
+
+            //플레이어 위치 재설정
+            gameObjcet_Player.transform.position = curGameLoadData.playerPos;
+
+            //카메라 제한구역 재설정
+            cameraMoveScr.ChangeLimit(curGameLoadData.limitCamera);
+
+            Debug.Log($"카메라 제한구역 : {curGameLoadData.limitCamera}");
+
+            //지도 핀 위치 재설정
+            int_PinPosNum = curGameLoadData.mapPinNum;
+            //uiManagerScr.pinActionScr.PinPosChange(curGameLoadData.mapPinNum);
+
+            //가마솥 세팅
+            joomuckBabScr.EventSetting(curGameLoadData.joomuckBabState);
+
+            //아이템 세팅
+
+            //쌀
+            if (curGameLoadData.getRice)
             {
-                gameObject_Rice.SetActive(false);
+                if (gameObject_Rice != null)
+                {
+                    gameObject_Rice.SetActive(false);
+                }
+            }
+            else
+            {
+                if (gameObject_Rice != null)
+                {
+                    gameObject_Rice.SetActive(true);
+                }
+            }
+
+
+            //장작
+            if (curGameLoadData.getJangjack)
+            {
+                if (gameObject_Jangjack != null)
+                {
+                    gameObject_Jangjack.SetActive(false);
+                }
+            }
+            else
+            {
+                if (gameObject_Jangjack != null)
+                {
+                    gameObject_Jangjack.SetActive(true);
+                }
+            }
+
+            //바가지
+            if (curGameLoadData.getBagage)
+            {
+                if (gameObject_Bagage != null)
+                {
+                    gameObject_Bagage.SetActive(false);
+                }
+            }
+            else
+            {
+                if (gameObject_Bagage != null)
+                {
+                    gameObject_Bagage.SetActive(true);
+                }
             }
         }
-        else
-        {
-            if (gameObject_Rice != null)
-            {
-                gameObject_Rice.SetActive(true);
-            }
-        }
-
-
-        //장작
-        if (curGameLoadData.getJangjack)
-        {
-            if (gameObject_Jangjack != null)
-            {
-                gameObject_Jangjack.SetActive(false);
-            }
-        }
-        else
-        {
-            if (gameObject_Jangjack != null)
-            {
-                gameObject_Jangjack.SetActive(true);
-            }
-        }
-
-        //바가지
-        if (curGameLoadData.getBagage)
-        {
-            if (gameObject_Bagage != null)
-            {
-                gameObject_Bagage.SetActive(false);
-            }
-        }
-        else
-        {
-            if (gameObject_Bagage != null)
-            {
-                gameObject_Bagage.SetActive(true);
-            }
-        }
+        
     }
 
     //현재 장소 이름 구하는 메서드

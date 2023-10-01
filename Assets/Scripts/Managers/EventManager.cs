@@ -361,28 +361,31 @@ public class EventManager : MonoBehaviour
     //데이터 로드
     public void Load(int _SlotNum)
     {
-        Debug.Log("Load EventLoadData");
+        if(_SlotNum <=2)
+        {
+            Debug.Log("Load EventLoadData");
 
-        //세이브 파일 읽어오기
-        string jLoadData = File.ReadAllText(saveFilePath + _SlotNum.ToString());
+            //세이브 파일 읽어오기
+            string jLoadData = File.ReadAllText(saveFilePath + _SlotNum.ToString());
 
-        //읽어온 파일 리스트에 저장
-        curEventLoadData = JsonUtility.FromJson<EventLoadData>(jLoadData);
+            //읽어온 파일 리스트에 저장
+            curEventLoadData = JsonUtility.FromJson<EventLoadData>(jLoadData);
 
-        //이벤트 발생 초기화
-        eventCheck.joomackBab = curEventLoadData.joomuckBob;
-        eventCheck.binyeo = curEventLoadData.binyeo;
-        eventCheck.boridduck = curEventLoadData.boridduck;
-        eventCheck.flower = curEventLoadData.flower;
-        eventCheck.muck = curEventLoadData.muck;
+            //이벤트 발생 초기화
+            eventCheck.joomackBab = curEventLoadData.joomuckBob;
+            eventCheck.binyeo = curEventLoadData.binyeo;
+            eventCheck.boridduck = curEventLoadData.boridduck;
+            eventCheck.flower = curEventLoadData.flower;
+            eventCheck.muck = curEventLoadData.muck;
 
-        //이벤트 진행 상황 초기화
-        eventProgress.deliveryMuck = curEventLoadData.deliveryMuck;
-        eventProgress.joomackPuzzle_Clear = curEventLoadData.joomackPuzzle_End;
-        eventProgress.giveFlowerEnd = curEventLoadData.giveFlower;
+            //이벤트 진행 상황 초기화
+            eventProgress.deliveryMuck = curEventLoadData.deliveryMuck;
+            eventProgress.joomackPuzzle_Clear = curEventLoadData.joomackPuzzle_End;
+            eventProgress.giveFlowerEnd = curEventLoadData.giveFlower;
 
-        //이벤트 완료 상황 초기화
-        eventEndCheck.muckEvent_End = curEventLoadData.muckEvent_End;
+            //이벤트 완료 상황 초기화
+            eventEndCheck.muckEvent_End = curEventLoadData.muckEvent_End;
+        }
     }
 
     //선택지 시작

@@ -389,38 +389,43 @@ public class TimeManager : MonoBehaviour
     public void Load(int _SlotNum)
     {
         Debug.Log("Load TimeManagerData");
+        Debug.Log(_SlotNum);
 
-        //세이브 파일 읽어오기
-        string jLoadData = File.ReadAllText(saveFilePath + _SlotNum.ToString());
-
-        //읽어온 파일 리스트에 저장
-        curTimeLoadData = JsonUtility.FromJson<TimeLoadData>(jLoadData);
-
-        //시간 재설정
-        float_RealTime = curTimeLoadData.time;
-
-        //날짜 재설정
-        int_DayCount = curTimeLoadData.day;
-
-        //시간 Text 변경
-        text_TimeText.text = float_RealTime.ToString("F0");
-
-        //컬러값 재설정
-        curObjectRGB = new Color32(curTimeLoadData.curColorValue, curTimeLoadData.curColorValue, 
-            curTimeLoadData.curColorValue,255);
-
-        for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+        if(_SlotNum <= 2)
         {
-            //만약 색을 바꿀 오브젝트가 존재한다면
-            if (spriteRen_ObumbrateObj[i] != null)
-            {
-                //색깔 변경
-                spriteRen_ObumbrateObj[i].color = curObjectRGB;
-            }
-        }
+            //세이브 파일 읽어오기
+            string jLoadData = File.ReadAllText(saveFilePath + _SlotNum.ToString());
 
-        //캘린더 날짜 변경
-        NextDayAnimaton(int_DayCount);
+            //읽어온 파일 리스트에 저장
+            curTimeLoadData = JsonUtility.FromJson<TimeLoadData>(jLoadData);
+
+            //시간 재설정
+            float_RealTime = curTimeLoadData.time;
+
+            //날짜 재설정
+            int_DayCount = curTimeLoadData.day;
+
+            //시간 Text 변경
+            text_TimeText.text = float_RealTime.ToString("F0");
+
+            //컬러값 재설정
+            curObjectRGB = new Color32(curTimeLoadData.curColorValue, curTimeLoadData.curColorValue,
+                curTimeLoadData.curColorValue, 255);
+
+            for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
+            {
+                //만약 색을 바꿀 오브젝트가 존재한다면
+                if (spriteRen_ObumbrateObj[i] != null)
+                {
+                    //색깔 변경
+                    spriteRen_ObumbrateObj[i].color = curObjectRGB;
+                }
+            }
+
+            //캘린더 날짜 변경
+            NextDayAnimaton(int_DayCount);
+        }
+        
     }
 
     //넘겨줄 현재 날짜

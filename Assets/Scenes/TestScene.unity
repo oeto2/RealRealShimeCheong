@@ -23898,6 +23898,10 @@ MonoBehaviour:
   gameObject_Loading: {fileID: 58801909}
   gameObject_SaveCheckWindow: {fileID: 936320460}
   gameObjcet_LoadCheckWindow: {fileID: 1749825954}
+  int_SaveSlotNum: 0
+  int_LoadSlotNum: 0
+  titleManagerScr: {fileID: 0}
+  gameObject_StartMessage: {fileID: 2063844033}
 --- !u!1 &828196366
 GameObject:
   m_ObjectHideFlags: 0
@@ -63369,7 +63373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2063844034
 MonoBehaviour:
   m_ObjectHideFlags: 0

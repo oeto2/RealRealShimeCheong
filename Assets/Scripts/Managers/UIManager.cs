@@ -652,18 +652,22 @@ public class UIManager : MonoBehaviour
     //UI 데이터 불러오기(플레이임, 해시계 UI)
     public void Load(int _slotNum)
     {
-        //파일 읽어오기
-        string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
+        if(_slotNum <= 2)
+        {
+            //파일 읽어오기
+            string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
 
-        //curLoadUiData에 역직렬화
-        curLoadUiData2 = JsonUtility.FromJson<LoadUiData>(jLoadData);
+            //curLoadUiData에 역직렬화
+            curLoadUiData2 = JsonUtility.FromJson<LoadUiData>(jLoadData);
 
-        //해당하는 슬롯에 플레이 타임값을 받아옴
-        timeManagerScr.SetPlayTimeSec(curLoadUiData2.playTimeSec);
+            //해당하는 슬롯에 플레이 타임값을 받아옴
+            timeManagerScr.SetPlayTimeSec(curLoadUiData2.playTimeSec);
 
-        //해시계 UI 이미지 변경
-        image_CurSunClock.sprite = sprite_AllSunClock[curLoadUiData2.sunClockNum];
-        Debug.Log($"해시계 이미지변경 : {curLoadUiData2.sunClockNum}");
+            //해시계 UI 이미지 변경
+            image_CurSunClock.sprite = sprite_AllSunClock[curLoadUiData2.sunClockNum];
+            Debug.Log($"해시계 이미지변경 : {curLoadUiData2.sunClockNum}");
+        }
+       
     }
 
     //현재 해시계 이미지 구하기

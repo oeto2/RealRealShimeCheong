@@ -34,6 +34,9 @@ public class DataManager : MonoBehaviour
     //TitleManager
     public TitleManager titleManagerScr;
 
+    //시작 이벤트 오브젝트
+    public GameObject gameObject_StartMessage;
+
 
     private void Start()
     {
@@ -51,6 +54,12 @@ public class DataManager : MonoBehaviour
                 //해당 데이터 불러오기
                 LoadYesButton();
 
+                //시작 이벤트 화면 끄기
+                gameObject_StartMessage.SetActive(false);
+
+                //이동제한 해제
+                Controller.instance.TalkEnd();
+
                 break;
 
             case LoadSceneState.Slot2:
@@ -60,6 +69,13 @@ public class DataManager : MonoBehaviour
 
                 //해당 데이터 불러오기
                 LoadYesButton();
+
+                //시작 이벤트 화면 끄기
+                gameObject_StartMessage.SetActive(false);
+
+                //이동제한 해제
+                Controller.instance.TalkEnd();
+
 
                 break;
 
@@ -71,10 +87,17 @@ public class DataManager : MonoBehaviour
                 //해당 데이터 불러오기
                 LoadYesButton();
 
+                //시작 이벤트 화면 끄기
+                gameObject_StartMessage.SetActive(false);
+
+                //이동제한 해제
+                Controller.instance.TalkEnd();
+
                 break;
 
             default:
-                Debug.Log("데이터 없음");
+                //플레이어 이동 제한
+                Controller.instance.TalkStart();
                 break;
                
         }

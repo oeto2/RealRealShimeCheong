@@ -198,11 +198,6 @@ public class ObjectManager : MonoBehaviour
             }
         }
 
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         //전체 아이템 리스트 불러오기
         #region
         //String 배열 line안에 itemDataBase 안의 정보들을 0부터 itemDataBase.text.Length까지 받아온뒤 엔터를 기준으로 배열을 나누어 저장
@@ -245,6 +240,12 @@ public class ObjectManager : MonoBehaviour
 
         //보유중인 단서 Json 파일이 저장될 위치
         curCluefilePath = Application.persistentDataPath + "/CurClueText.txt";
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+      
 
         Save(100);
         Load(100);
@@ -725,68 +726,72 @@ public class ObjectManager : MonoBehaviour
     //Data 불러오기
     public void Load(int _slotNum)
     {
-        //아이템 Json 데이터 정의
-        string jItemdata = File.ReadAllText(itemfilePath + _slotNum.ToString());
-
-        //아이템 Json파일로부터 데이터 역직렬화(Load)
-        myItemList = JsonUtility.FromJson<Serialization<Item>>(jItemdata).target;
-
-        //단서 Json 데이터 정의
-        string jCluedata = File.ReadAllText(cluefilePath + _slotNum.ToString());
-        //단서 Json파일로부터 데이터 역직렬화(Load)
-        myClueList = JsonUtility.FromJson<Serialization<Clue>>(jCluedata).target;
-
-        //보유중인 아이템 Json 읽어오기
-        string jcurItemData = File.ReadAllText(curItemfilePath + _slotNum.ToString());
-
-        //curItemList에 jcurItemData 갱신
-        curItemList = JsonUtility.FromJson<Serialization<Item>>(jcurItemData).target;
-        curItemList2 = JsonUtility.FromJson<Serialization<Item>>(jcurItemData).target;
-
-        //보유중인 단서 Json 읽어오기
-        string jcurClueData = File.ReadAllText(curCluefilePath + _slotNum.ToString());
-
-        //curClueList에 jcurClueData 갱신
-        curClueList = JsonUtility.FromJson<Serialization<Clue>>(jcurClueData).target;
-        curClueList2 = JsonUtility.FromJson<Serialization<Clue>>(jcurClueData).target;
-
-        //장착중인 아이템
-        Item usingItem = curItemList.Find(x => x.isUsing == true);
-        //장착중인 단서
-        Clue usingClue = curClueList.Find(x => x.isUsing == true);
-
-        //장착중인 아이템이 있다면
-        if (usingItem != null)
+        if(_slotNum <= 2)
         {
-            //아이템 이미지 변경
-            equitObjectSprite.sprite = itemSprite[usingItem.indexNum];
-            //장착 슬롯 텍스트 비우기
-            text_EquipSlot.text = "";
+            //아이템 Json 데이터 정의
+            string jItemdata = File.ReadAllText(itemfilePath + _slotNum.ToString());
+
+            //아이템 Json파일로부터 데이터 역직렬화(Load)
+            myItemList = JsonUtility.FromJson<Serialization<Item>>(jItemdata).target;
+
+            //단서 Json 데이터 정의
+            string jCluedata = File.ReadAllText(cluefilePath + _slotNum.ToString());
+            //단서 Json파일로부터 데이터 역직렬화(Load)
+            myClueList = JsonUtility.FromJson<Serialization<Clue>>(jCluedata).target;
+
+            //보유중인 아이템 Json 읽어오기
+            string jcurItemData = File.ReadAllText(curItemfilePath + _slotNum.ToString());
+
+            //curItemList에 jcurItemData 갱신
+            curItemList = JsonUtility.FromJson<Serialization<Item>>(jcurItemData).target;
+            curItemList2 = JsonUtility.FromJson<Serialization<Item>>(jcurItemData).target;
+
+            //보유중인 단서 Json 읽어오기
+            string jcurClueData = File.ReadAllText(curCluefilePath + _slotNum.ToString());
+
+            //curClueList에 jcurClueData 갱신
+            curClueList = JsonUtility.FromJson<Serialization<Clue>>(jcurClueData).target;
+            curClueList2 = JsonUtility.FromJson<Serialization<Clue>>(jcurClueData).target;
+
+            //장착중인 아이템
+            Item usingItem = curItemList.Find(x => x.isUsing == true);
+            //장착중인 단서
+            Clue usingClue = curClueList.Find(x => x.isUsing == true);
+
+            //장착중인 아이템이 있다면
+            if (usingItem != null)
+            {
+                //아이템 이미지 변경
+                equitObjectSprite.sprite = itemSprite[usingItem.indexNum];
+                //장착 슬롯 텍스트 비우기
+                text_EquipSlot.text = "";
+            }
+
+            //장착중인 단서가 있다면
+            else if (usingClue != null)
+            {
+                //단서 이미지 변경
+                equitObjectSprite.sprite = clueSprite[usingClue.indexNum];
+
+                //장착 슬롯 텍스트 변경
+                text_EquipSlot.text = usingClue.name;
+            }
+
+            else
+            {
+                //단서 이미지 변경
+                equitObjectSprite.sprite = sprite_NoneImage;
+
+                //장착 슬롯 텍스트 변경
+                text_EquipSlot.text = "";
+            }
+
+            //현재 보유중인 아이템 리스트 불러오기
+            TabClick(curType);
+            //조합창에서 현재 보유중인 아이템 리스트 불러오기
+            TabClick2(curType);
         }
-
-        //장착중인 단서가 있다면
-        else if (usingClue != null)
-        {
-            //단서 이미지 변경
-            equitObjectSprite.sprite = clueSprite[usingClue.indexNum];
-
-            //장착 슬롯 텍스트 변경
-            text_EquipSlot.text = usingClue.name;
-        }
-
-        else
-        {
-            //단서 이미지 변경
-            equitObjectSprite.sprite = sprite_NoneImage;
-
-            //장착 슬롯 텍스트 변경
-            text_EquipSlot.text = "";
-        }
-
-        //현재 보유중인 아이템 리스트 불러오기
-        TabClick(curType);
-        //조합창에서 현재 보유중인 아이템 리스트 불러오기
-        TabClick2(curType);
+        
     }
 
     //Key를 통해서 아이템 얻기

@@ -152,25 +152,15 @@ public class TutorialManager : MonoBehaviour
     private void Awake()
     {
         instance = this.gameObject.GetComponent<TutorialManager>();
+
+        //세이브 데이터 파일 위치
+        saveFilePath = Application.persistentDataPath + "/TutorialDataText.txt";
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //세이브 데이터 파일 위치
-        saveFilePath = Application.persistentDataPath + "/TutorialDataText.txt";
-
-        //튜토리얼 시작 전 사전 작업들
-        #region
-        ////UI Canvas OFF
-        //gameObject_UICanvas.SetActive(false);
-        //Player 이동 제한
-        playerCtrlScr.TalkStart();
-
-        //시간 멈추기
-        timeManagerScr.StopTime();
-        #endregion
-       
+        
     }
 
     // Update is called once per frame
@@ -476,22 +466,25 @@ public class TutorialManager : MonoBehaviour
     //데이터 로드
     public void Load(int _slotNum)
     {
+        if(_slotNum <= 2)
+        {
+            //세이브 파일 읽어오기
+            string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
+
+            //읽어온 파일 리스트에 저장
+            curTutorialLoadData = JsonUtility.FromJson<TutorialLoadData>(jLoadData);
+
+            //저장된 EventNum 불러오기
+            tutorialEventNum = curTutorialLoadData.tutoralEventNum;
+
+            //Event 상태 세팅
+            EventsStateSetting();
+
+            //Event 세팅
+            EventSetting(curTutorialLoadData.getBotzime, curTutorialLoadData.getMap, curTutorialLoadData.isLightsOn);
+        }
+
         Debug.Log("Load TutorialData");
-
-        //세이브 파일 읽어오기
-        string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
-
-        //읽어온 파일 리스트에 저장
-        curTutorialLoadData = JsonUtility.FromJson<TutorialLoadData>(jLoadData);
-
-        //저장된 EventNum 불러오기
-        tutorialEventNum = curTutorialLoadData.tutoralEventNum;
-
-        //Event 상태 세팅
-        EventsStateSetting();
-
-        //Event 세팅
-        EventSetting(curTutorialLoadData.getBotzime, curTutorialLoadData.getMap, curTutorialLoadData.isLightsOn);
     }
 
     //Events State Setting
