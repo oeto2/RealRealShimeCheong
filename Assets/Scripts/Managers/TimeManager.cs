@@ -156,11 +156,7 @@ public class TimeManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-    }
 
-
-    private void Start()
-    {
         //저장 파일 위치
         saveFilePath = Application.persistentDataPath + "/TimeDataText.txt";
 

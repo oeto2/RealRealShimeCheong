@@ -26,10 +26,59 @@ public class DataManager : MonoBehaviour
     public GameObject gameObjcet_LoadCheckWindow;
 
     //세이브 슬롯 번호
-    private int int_SaveSlotNum;
+    [SerializeField] private int int_SaveSlotNum;
 
     //로드 슬롯 번호
-    private int int_LoadSlotNum;
+    [SerializeField] private int int_LoadSlotNum;
+
+    //TitleManager
+    public TitleManager titleManagerScr;
+
+
+    private void Start()
+    {
+        //TitleManager 찾기
+        titleManagerScr = GameObject.Find("TitleManager").GetComponent<TitleManager>();
+        
+       //TitleManager 상태에 따라 저장데이터 불러오기
+        switch(titleManagerScr.loadSenceState)
+        {
+            case LoadSceneState.Slot1:
+                
+                //슬롯 번호 바꾸기
+                int_LoadSlotNum = titleManagerScr.int_ClickSlotNum;
+
+                //해당 데이터 불러오기
+                LoadYesButton();
+
+                break;
+
+            case LoadSceneState.Slot2:
+
+                //슬롯 번호 바꾸기
+                int_LoadSlotNum = titleManagerScr.int_ClickSlotNum;
+
+                //해당 데이터 불러오기
+                LoadYesButton();
+
+                break;
+
+            case LoadSceneState.Slot3:
+
+                //슬롯 번호 바꾸기
+                int_LoadSlotNum = titleManagerScr.int_ClickSlotNum;
+
+                //해당 데이터 불러오기
+                LoadYesButton();
+
+                break;
+
+            default:
+                Debug.Log("데이터 없음");
+                break;
+               
+        }
+    }
 
     //세이브 Yes Button
     public void SaveYesButton()
