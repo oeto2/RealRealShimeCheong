@@ -1274,8 +1274,94 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObject_LoadWindow: {fileID: 1794568429}
   gameObject_LoadCheckWindow: {fileID: 2035961389}
+  text_LoadPlaceName:
+  - {fileID: 1747558468}
+  - {fileID: 328877489}
+  - {fileID: 1828997187}
+  text_LoadDayCount:
+  - {fileID: 782157577}
+  - {fileID: 786064868}
+  - {fileID: 1278704346}
+  text_LoadPlayTime:
+  - {fileID: 1701007555}
+  - {fileID: 2026900989}
+  - {fileID: 1585094322}
+  image_LoadSunClock:
+  - {fileID: 409715549}
+  - {fileID: 264656739}
+  - {fileID: 1970965782}
+  image_LoadUICalendar:
+  - {fileID: 1495089900}
+  - {fileID: 1087330683}
+  - {fileID: 1128948775}
+  sprite_AllCalendar:
+  - {fileID: -1611449428, guid: de965b1d713005e479cbd93978e0e930, type: 3}
+  - {fileID: -1326001569, guid: de965b1d713005e479cbd93978e0e930, type: 3}
+  - {fileID: -715798771, guid: de965b1d713005e479cbd93978e0e930, type: 3}
+  sprite_AllSunClock:
+  - {fileID: 95472260, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -7460792, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -2083392464, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1342927401, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 321782572, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1024493102, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -471364610, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -1665967607, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 150538938, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 712151387, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -1084599156, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1590621307, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1350158535, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -587830824, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -1006595630, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 74915625, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1285832284, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -785249912, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -2146548071, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1804070372, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -1571292836, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -77590087, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1987016500, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 870475152, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -520961745, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1653414185, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 139831565, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -322648340, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -916104910, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -1506199951, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1800115554, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 546283865, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -1898462315, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -1710481304, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 402796406, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -1209072730, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -1068424558, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1007475567, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1447753826, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -1986551891, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: -1473639429, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
+  - {fileID: 1240662546, guid: 9c38e24540dbca14bb4ca6476886a8cc, type: 3}
   int_ClickSlotNum: 4
   loadSenceState: 0
+  saveFilePath: 
 --- !u!1 &951870119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,8 +1884,8 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8627451, g: 0.8627451, b: 0.8627451, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2257,8 +2343,8 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8627451, g: 0.8627451, b: 0.8627451, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2559,8 +2645,8 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8627451, g: 0.8627451, b: 0.8627451, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

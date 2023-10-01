@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class DataManager : MonoBehaviour
 {
@@ -197,9 +198,13 @@ public class DataManager : MonoBehaviour
     //로드 슬롯 클릭
     public void LoadSlotClick(int _slotNum)
     {
-        //로드 슬롯 번호 저장
-        int_LoadSlotNum = _slotNum;
-        //로드 확인 창 띄우기
-        gameObjcet_LoadCheckWindow.SetActive(true);
+        //만약 해당 슬롯의 SaveData jsonFile이 존재한다면
+        if (File.Exists(UIManager.instance.saveFilePath + _slotNum) == true)
+        {
+            //로드 슬롯 번호 저장
+            int_LoadSlotNum = _slotNum;
+            //로드 확인 창 띄우기
+            gameObjcet_LoadCheckWindow.SetActive(true);
+        }    
     }
 }

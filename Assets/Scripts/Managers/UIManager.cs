@@ -147,7 +147,7 @@ public class UIManager : MonoBehaviour
     public SaveUiData curSaveUIData;
 
     //ÀúÀå ÆÄÀÏ À§Ä¡
-    private string saveFilePath;
+    public string saveFilePath;
 
     //½½·ÔÀÇ ÃÑ °¹¼ö
     public int totalSlotNum;
