@@ -277,6 +277,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
     //오버로드
     IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
+        images_NPC.SetActive(true);
         //심학규의 대사일경우
         if (narrator == "심학규")
         {
@@ -347,7 +348,13 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
 
     }
 
-    IEnumerator TextPractice()
+    IEnumerator ClearChat()
+    {
+        images_NPC.SetActive(false);
+        yield return null;
+    }
+
+        IEnumerator TextPractice()
     {
         #region 단서
 
@@ -503,8 +510,8 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[18].npc_name, npcDatabaseScr.NPC_01[18].comment, true));
 
             //대화
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[19].npc_name, npcDatabaseScr.NPC_01[19].comment, true));
-            yield return null;
+            //yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[19].npc_name, npcDatabaseScr.NPC_01[19].comment, true));
+            yield return ClearChat();
 
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[19].npc_name, npcDatabaseScr.NPC_01[19].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[20].npc_name, npcDatabaseScr.NPC_01[20].comment, true));
