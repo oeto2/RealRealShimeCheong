@@ -240,13 +240,17 @@ public class ObjectManager : MonoBehaviour
 
         //보유중인 단서 Json 파일이 저장될 위치
         curCluefilePath = Application.persistentDataPath + "/CurClueText.txt";
+
+        //MyItemList 초기화
+        myItemList = allItemList;
+
+        //MyClueList 초기화
+        myClueList = allClueList;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-      
-
         Save(100);
         Load(100);
 
@@ -264,6 +268,7 @@ public class ObjectManager : MonoBehaviour
         //부싯돌 획득
         GetItem(1002);
         GetItem(1005);
+
 
         //사공 단서 획득
         //GetClue(2021);
@@ -283,8 +288,7 @@ public class ObjectManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.C))
         {
-            GetAllClue();
-            GetAllItem();
+            Debug.Log("아이템 획득");
         }
 
         if (Input.GetKeyDown(KeyCode.V))
@@ -798,9 +802,13 @@ public class ObjectManager : MonoBehaviour
     //Key를 통해서 아이템 얻기
     public void GetItem(int _key)
     {
+        Debug.Log("GetItem 시작");
+
         //해당 Key를 가진 오브젝트가 존재하는 경우
         if (myItemList.Find(x => x.key == _key) != null)
         {
+            Debug.Log("if문 통과");
+
             Item GetItem = myItemList.Find(x => x.key == _key);
             Item CheckItem = curItemList.Find(x => x.key == _key);
 
