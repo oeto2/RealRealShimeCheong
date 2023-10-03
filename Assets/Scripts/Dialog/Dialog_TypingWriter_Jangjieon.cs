@@ -25,7 +25,7 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
     public GameObject images_NPC;
 
     public Sprite[] images_NPC_portrait;
-    
+
     public Trigger_NPC trigger_npc;
 
     public bool isNPCTrigger;
@@ -68,7 +68,7 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
     }
 
     void Awake()
-	{
+    {
         for (int i = 4999; i < dialogdb.NPC_01.Count; ++i)
         {
             if (dialogdb.NPC_01[i].index_num == index)
@@ -80,7 +80,7 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
         }
     }
 
-	public void Update()
+    public void Update()
     {
         foreach (var element in skipButton) // 버튼 검사
         {
@@ -93,7 +93,7 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition()
              && TutorialManager.instance.SentenceCondition())
         {
-            Debug.Log("z키 누름! 승려!!!!");
+            Debug.Log("z키 누름! 장지언!!!!");
 
             controller_scr.TalkStart();
             if (bool_isNPC == false && !remainSentence)
@@ -104,7 +104,7 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
                 Trigger_NPC.instance.isNPCTrigger = true;
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
             }
-            else if(isSentenceEnd)
+            else if (isSentenceEnd)
             {
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
@@ -131,11 +131,11 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
             OnClickdown();
         }
     }
-        public void OnClickdown()
-        {
+    public void OnClickdown()
+    {
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
-            Debug.Log("이건 Touch! 승려!!!!");
+            Debug.Log("이건 Touch! 장지언!!!!");
             //StartCoroutine(TextPractice());
             //bool_isBotjim = true;
             if (bool_isNPC == true)
@@ -149,7 +149,7 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
             else
             {
                 images_NPC.SetActive(false);
-               // images_NPC_portrait.SetActive(false);
+                // images_NPC_portrait.SetActive(false);
                 bool_isNPC = true;
                 //StopCoroutine(TextPractice());
                 Controller.instance.TalkEnd();
@@ -169,7 +169,7 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
         bool t_ignore = false;
         */
         //CharacterName.text = narrator;
-        narrator = characternameText = dialogdb.NPC_01[0].npc_name;
+        narrator = characternameText = dialogdb.NPC_01[563].npc_name;
         //CharacterName.text = narrator;
         writerText = dialogdb.NPC_01[0].comment;
         Debug.Log(characternameText);
@@ -244,63 +244,33 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
 
     IEnumerator NormalChat()
     {
-        
-
         int a = 0;
-        string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[5].npc_name;
-        string narration = dialogdb.NPC_01[5].comment;
-        string narration_2 = dialogdb.NPC_01[407].comment;
-        RandomNum = Random.Range(0, 2);
+        string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[563].npc_name;
+        string narration = dialogdb.NPC_01[603].comment;
         isNPC_Start = false;
         //narrator = CharacterName.text;
 
-        //텍스트 타이핑
-        if (RandomNum == 0)
+
+        for (a = 0; a < narration.Length; a++)
+        //for (a = 0; a < textSpeed; a++)
         {
-            for (a = 0; a < narration.Length; a++)
-            //for (a = 0; a < textSpeed; a++)
+            writerText += narration[a];
+            ChatText.text = writerText;
+
+            //텍스트 타이핑 시간 조절
+            //yield return null;
+
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                writerText += narration[a];
-                ChatText.text = writerText;
-
-                //텍스트 타이핑 시간 조절
-                //yield return null;
-
-                if (Input.GetKeyDown(KeyCode.Z))
-                {
-                    //남은대화 없음
-                    remainSentence = true;
-                    //대화 끝
-                    isSentenceEnd = true;
-                }
-
-                yield return new WaitForSeconds(0.02f);
+                //남은대화 없음
+                remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
             }
-            yield return null;
+
+            yield return new WaitForSeconds(0.02f);
         }
-        else if (RandomNum == 1)
-        {
-            for (a = 0; a < narration_2.Length; a++)
-            //for (a = 0; a < textSpeed; a++)
-            {
-                writerText += narration_2[a];
-                ChatText.text = writerText;
-
-                if (Input.GetKeyDown(KeyCode.Z))
-                {
-                    //남은대화 없음
-                    remainSentence = true;
-                    //대화 끝
-                    isSentenceEnd = true;
-                }
-
-                //텍스트 타이핑 시간 조절
-                //yield return null;
-                yield return new WaitForSeconds(0.02f);
-
-            }
-            yield return null;
-        }
+        yield return null;
         Debug.Log(writerText);
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -395,57 +365,57 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
 
     IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
-            //심학규의 대사일경우
-            if (narrator == "심학규")
+        //심학규의 대사일경우
+        if (narrator == "심학규")
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
+        }
+        else
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+        }
+
+        //남은 대화가 있을경우
+        if (_remainSentence == true)
+        {
+            //남은대화 있음
+            remainSentence = true;
+
+            Debug.Log(narration);
+            int a = 0;
+            CharacterName.text = narrator;
+            //characternameText = narrator;
+
+            //narrator = CharacterName.text;
+
+            //텍스트 타이핑
+            for (a = 0; a < narration.Length; a++)
             {
-                //초상화 변경
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
-            }
-            else
-            {
-                //초상화 변경
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-            }
+                writerText += narration[a];
+                ChatText.text = writerText;
 
-            //남은 대화가 있을경우
-            if (_remainSentence == true)
-            {
-                //남은대화 있음
-                remainSentence = true;
+                //텍스트 타이핑 시간 조절
+                //yield return null;
+                yield return new WaitForSeconds(0.02f);
 
-                Debug.Log(narration);
-                int a = 0;
-                CharacterName.text = narrator;
-                //characternameText = narrator;
-
-                //narrator = CharacterName.text;
-
-                //텍스트 타이핑
-                for (a = 0; a < narration.Length; a++)
+                //중간에 Z키를 누르면
+                if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    writerText += narration[a];
-                    ChatText.text = writerText;
-
-                    //텍스트 타이핑 시간 조절
-                    //yield return null;
-                    yield return new WaitForSeconds(0.02f);
-
-                    //중간에 Z키를 누르면
-                    if (Input.GetKeyDown(KeyCode.Z))
-                    {
-                        break;
-                    }
+                    break;
                 }
+            }
 
-                //Z키를 다시 누를 때까지 무한정 대기
-                while (true)
+            //Z키를 다시 누를 때까지 무한정 대기
+            while (true)
+            {
+                if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    if (Input.GetKeyDown(KeyCode.Z))
-                    {
-                        //Text 비우기
-                        writerText = "";
-                        break;
-                    }
+                    //Text 비우기
+                    writerText = "";
+                    break;
+                }
                 yield return null;
             }
         }
@@ -453,19 +423,9 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
 
     IEnumerator TextPractice()
     {
-        // 최초 1회 출력
-        if (isNPC_Start==true)
-        {
-            Debug.Log("승려 1회 대사 출력");
-            //공양미 삼백석 단서 획득
-            ObjectManager.instance.GetClue(2010);
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[0].npc_name, dialogdb.NPC_01[0].comment));
-            //yield return StartCoroutine(ItemClueChat("11","2222"));
-        }
-
         #region 단서
         //2001 : 청이의 거짓말
-        else if (ObjectManager.instance.GetEquipObjectKey() == 2001)
+        if (ObjectManager.instance.GetEquipObjectKey() == 2001)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[26].npc_name, dialogdb.NPC_01[26].comment));
         }

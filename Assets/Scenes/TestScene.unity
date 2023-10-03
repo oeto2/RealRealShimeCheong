@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -65091,7 +65091,7 @@ GameObject:
   - component: {fileID: 2084979481}
   - component: {fileID: 2084979480}
   - component: {fileID: 2084979479}
-  - component: {fileID: 2084979478}
+  - component: {fileID: 2084979483}
   m_Layer: 0
   m_Name: JangJieon
   m_TagString: NPC
@@ -65114,36 +65114,6 @@ Transform:
   m_Father: {fileID: 66012482}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2084979478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084979476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd043b87b312c1449b441d48247b089d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
-  skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
-  images_NPC_portrait:
-  - {fileID: 21300000, guid: 25c68fb334cd163498e7c06fd241006a, type: 3}
-  trigger_npc: {fileID: 2084979480}
-  isNPCTrigger: 0
-  controller_scr: {fileID: 1871036892}
-  isNPC_Start: 1
-  isSentenceEnd: 0
-  remainSentence: 0
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogs: []
 --- !u!95 &2084979479
 Animator:
   serializedVersion: 5
@@ -65180,7 +65150,7 @@ MonoBehaviour:
   ChatText: "\uC7A5\uC9C0\uC5B8"
   isNPCTrigger: 0
   controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 2084979478}
+  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!61 &2084979481
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -65259,6 +65229,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2084979483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084979476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0946d7938f22fb41a186d4a589e1c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 20000000
+  writerText: 
+  characternameText: 
+  bool_isNPC: 0
+  images_NPC: {fileID: 1486878665}
+  images_NPC_portrait:
+  - {fileID: 21300000, guid: 2d2334f83e28467468c9136410475ee5, type: 3}
+  trigger_npc: {fileID: 2084979480}
+  isNPCTrigger: 0
+  controller_scr: {fileID: 1871036892}
+  isNPC_Start: 1
+  isSentenceEnd: 0
+  remainSentence: 0
+  index: 0
+  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogs: []
 --- !u!1 &2088066540
 GameObject:
   m_ObjectHideFlags: 0
