@@ -5436,3 +5436,9 @@ MonoBehaviour:
       \uB300\uD654\uB97C \uD574\uBCF4\uC790."
     isUsing_dialog_flag: 0
     index_num: 764
+  - key_index: 7355
+    object_type: NPC
+    npc_name: "\uC784\uC2DC"
+    comment: "\uC784\uC2DC"
+    isUsing_dialog_flag: 0
+    index_num: 765

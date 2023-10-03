@@ -34,6 +34,9 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
 
     public S_NPCdatabase_Yes npcDatabaseScr;
 
+    //1005번 주먹밥 처리용
+    public bool isJoomuckBab = false;
+
     // 랜덤 대사 출력 변수
     private int RandomNum;
 
@@ -71,19 +74,16 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             //bool_isBotjim = true;
             controller_scr.TalkStart();
 
-            if (bool_isNPC == false && !remainSentence)
-            {
-                Debug.Log("대화 실행");
-                images_NPC.SetActive(true);
-                StartCoroutine(TextPractice());
-                Trigger_NPC.instance.isNPCTrigger = true;
-                ////초상화 변경
-                //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-                //bool_isNPC = true;
+			if (bool_isNPC == false && !remainSentence)
+			{
+				Debug.Log("대화 실행");
+				images_NPC.SetActive(true);
+				StartCoroutine(TextPractice());
+				Trigger_NPC.instance.isNPCTrigger = true;
             }
 
-            //대화가 끝났을 경우
-            else if (isSentenceEnd)
+			//대화가 끝났을 경우
+			else if (isSentenceEnd)
             {
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
@@ -278,6 +278,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
     IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
         images_NPC.SetActive(true);
+
         //심학규의 대사일경우
         if (narrator == "심학규")
         {
@@ -291,7 +292,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
         }
 
-        //남은 대화가 있을경우
+        //남은 대화가 있을 경우
         if (_remainSentence == true)
         {
             //남은대화 있음
@@ -302,6 +303,24 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             CharacterName.text = narrator;
             //characternameText = narrator;
 
+            if (narration == npcDatabaseScr.NPC_01[765].comment && isJoomuckBab == false)
+            {
+                Debug.Log(narration);
+                Debug.Log("1005번, 18번");
+                images_NPC.SetActive(false);
+
+                //대화 끝 처리
+                isJoomuckBab = true;
+            }
+            if (narration == npcDatabaseScr.NPC_01[765].comment && isJoomuckBab == true)
+            {
+                Debug.Log(narration);
+                Debug.Log("1005번, 19번");
+                //images_NPC.SetActive(false);
+
+                //대화 재실행
+                isJoomuckBab = false;
+            }
 
             //narrator = CharacterName.text;
 
@@ -348,9 +367,22 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
 
     }
 
-    IEnumerator ClearChat()
+    IEnumerator ClearChat(string narrator, string narration, bool _remainSentence)
     {
+        //images_NPC.SetActive(false);
+        CharacterName.text = narrator;
+
+
+
+
         images_NPC.SetActive(false);
+        // images_NPC_portrait.SetActive(false);
+        //대사 비우기
+        writerText = "";
+        //StopAllCoroutines();
+        Trigger_NPC.instance.isNPCTrigger = false;
+        bool_isNPC = false;
+
         yield return null;
     }
 
@@ -509,9 +541,12 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             //주먹밥 먹는 중..
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[18].npc_name, npcDatabaseScr.NPC_01[18].comment, true));
 
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[765].npc_name, npcDatabaseScr.NPC_01[765].comment, true));
+
+            //StopAllCoroutines();
             //대화
             //yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[19].npc_name, npcDatabaseScr.NPC_01[19].comment, true));
-            yield return ClearChat();
+            //yield return StartCoroutine(ClearChat(npcDatabaseScr.NPC_01[18].npc_name, npcDatabaseScr.NPC_01[18].comment, true));
 
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[19].npc_name, npcDatabaseScr.NPC_01[19].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[20].npc_name, npcDatabaseScr.NPC_01[20].comment, true));
