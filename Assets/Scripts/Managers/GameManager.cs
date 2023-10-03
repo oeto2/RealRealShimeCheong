@@ -408,6 +408,12 @@ public class GameManager : MonoBehaviour
             return curPlaceName;
         }
 
+        else if (cameraMoveScr.int_CurLimitNum == 6)
+        {
+            curPlaceName = "장소: 바다";
+            return curPlaceName;
+        }
+
         else
         {
             return null;
