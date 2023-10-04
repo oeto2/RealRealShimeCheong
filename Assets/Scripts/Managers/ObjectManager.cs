@@ -260,14 +260,14 @@ public class ObjectManager : MonoBehaviour
         TabClick2(curType);
 
         ////¸ðµç ¾ÆÀÌÅÛ È¹µæ
-        //GetAllItem();
+        GetAllItem();
 
         ////¸ðµç ´Ü¼­ È¹µæ
-        //GetAllClue();
+        GetAllClue();
 
         //ºÎ½Ëµ¹ È¹µæ
         GetItem(1002);
-        GetItem(1005);
+        //GetItem(1005);
 
 
         //»ç°ø ´Ü¼­ È¹µæ
@@ -1554,5 +1554,16 @@ public class ObjectManager : MonoBehaviour
         {
             GetClue(allClueList[i].key);
         }
+    }
+
+    public int GetClueKey()
+    {
+        for (int i = 0; i < myClueList.Count; i++)
+        {
+            Debug.Log(myClueList[i].key);
+            return myClueList[i].key;
+        }
+        return 0;
+        //return allClueList[2017].key;
     }
 }

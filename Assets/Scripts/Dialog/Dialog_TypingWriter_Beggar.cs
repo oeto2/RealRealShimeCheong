@@ -538,9 +538,9 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[17].npc_name, npcDatabaseScr.NPC_01[17].comment, true));
             //¡÷∏‘π‰ æ∆¿Ã≈€ ¡¶∞≈
             ObjectManager.instance.RemoveItem(1005);
-            //¡÷∏‘π‰ ∏‘¥¬ ¡ﬂ..
+            
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[18].npc_name, npcDatabaseScr.NPC_01[18].comment, true));
-
+            //¡÷∏‘π‰ ∏‘¥¬ ¡ﬂ..
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[765].npc_name, npcDatabaseScr.NPC_01[765].comment, true));
 
             //StopAllCoroutines();
@@ -549,6 +549,9 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             //yield return StartCoroutine(ClearChat(npcDatabaseScr.NPC_01[18].npc_name, npcDatabaseScr.NPC_01[18].comment, true));
 
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[19].npc_name, npcDatabaseScr.NPC_01[19].comment, true));
+
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[765].npc_name, npcDatabaseScr.NPC_01[765].comment, true));
+
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[20].npc_name, npcDatabaseScr.NPC_01[20].comment, true));
             //√ª¿ÃøÕ ªÁ≥ª ¥‹º≠ »πµÊ
             ObjectManager.instance.GetClue(2004);
