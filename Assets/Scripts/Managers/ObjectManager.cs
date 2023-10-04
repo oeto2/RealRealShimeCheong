@@ -289,6 +289,7 @@ public class ObjectManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("æ∆¿Ã≈€ »πµÊ");
+            GetAllClue();
         }
 
         if (Input.GetKeyDown(KeyCode.V))

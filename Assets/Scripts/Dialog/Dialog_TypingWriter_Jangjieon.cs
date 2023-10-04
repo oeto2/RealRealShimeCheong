@@ -463,94 +463,135 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
         //2008 : 승려의 마음
         else if (ObjectManager.instance.GetEquipObjectKey() == 2008)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[90].npc_name, dialogdb.NPC_01[90].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[571].npc_name, dialogdb.NPC_01[571].comment));
         }
         //2009 : 청이의 도움
         else if (ObjectManager.instance.GetEquipObjectKey() == 2009)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[98].npc_name, dialogdb.NPC_01[98].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[572].npc_name, dialogdb.NPC_01[572].comment));
         }
         //2010 : 공양미 삼백 석
         else if (ObjectManager.instance.GetEquipObjectKey() == 2010)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[108].npc_name, dialogdb.NPC_01[108].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[573].npc_name, dialogdb.NPC_01[573].comment));
         }
         //2011 : 공양미의 출처
         else if (ObjectManager.instance.GetEquipObjectKey() == 2011)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[117].npc_name, dialogdb.NPC_01[117].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[574].npc_name, dialogdb.NPC_01[574].comment,true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[574].npc_name, dialogdb.NPC_01[575].comment));
+        }
+        //2012 : 청이의 거래
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2012)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[576].npc_name, dialogdb.NPC_01[576].comment));
+        }
+        //2013 : 향리댁 셋째 아들
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2013)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[577].npc_name, dialogdb.NPC_01[577].comment, true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[578].npc_name, dialogdb.NPC_01[578].comment));
         }
         //2014 : 잠잠해져야 할 물살
         else if (ObjectManager.instance.GetEquipObjectKey() == 2014)
         {
             // 기본 대사와 같음, 생략 가능할지도
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[141].npc_name, dialogdb.NPC_01[141].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[579].npc_name, dialogdb.NPC_01[579].comment));
         }
         //2015 : 청이가 사간 것
         else if (ObjectManager.instance.GetEquipObjectKey() == 2015)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[149].npc_name, dialogdb.NPC_01[149].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[580].npc_name, dialogdb.NPC_01[580].comment));
+        }
+        //2016 : 짚신을 사간 청이
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2016)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[581].npc_name, dialogdb.NPC_01[581].comment,true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[582].npc_name, dialogdb.NPC_01[582].comment));
         }
         //2017 : 배의 출항
         else if (ObjectManager.instance.GetEquipObjectKey() == 2017)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[165].npc_name, dialogdb.NPC_01[165].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[583].npc_name, dialogdb.NPC_01[583].comment, true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[584].npc_name, dialogdb.NPC_01[584].comment, true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[585].npc_name, dialogdb.NPC_01[585].comment));
+
+        }
+        //2018 : 노점의 단골
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2018)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[586].npc_name, dialogdb.NPC_01[586].comment));
+        }
+        //2019 : 뜨지 않는 배
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2019)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[587].npc_name, dialogdb.NPC_01[587].comment));
+        }
+        //2020 : 사공에게 있었던 일
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2020)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[588].npc_name, dialogdb.NPC_01[588].comment, true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[589].npc_name, dialogdb.NPC_01[589].comment));
         }
         //2021 : 사공의 물건
         else if (ObjectManager.instance.GetEquipObjectKey() == 2021)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[211].npc_name, dialogdb.NPC_01[211].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[590].npc_name, dialogdb.NPC_01[590].comment));
+        }
+        //2022 : 뱃길을 잠재울 방법
+        else if (ObjectManager.instance.GetEquipObjectKey() == 2022)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[591].npc_name, dialogdb.NPC_01[591].comment));
         }
         //2023 : 3월 보름날
         else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[233].npc_name, dialogdb.NPC_01[233].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[592].npc_name, dialogdb.NPC_01[592].comment));
         }
         #endregion
 
         #region 아이템
-        //1000 : 쌀
-        else if (ObjectManager.instance.GetEquipObjectKey() == 1000)
-        {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[253].npc_name, dialogdb.NPC_01[253].comment));
-        }
-        //1005 : 주먹밥
-        else if (ObjectManager.instance.GetEquipObjectKey() == 1005)
-        {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[296].npc_name, dialogdb.NPC_01[296].comment));
-        }
-        //1007 : 먹
-        else if (ObjectManager.instance.GetEquipObjectKey() == 1007)
-        {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[311].npc_name, dialogdb.NPC_01[311].comment));
-        }
-        //1009 : 꽃
-        else if (ObjectManager.instance.GetEquipObjectKey() == 1009)
-        {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[326].npc_name, dialogdb.NPC_01[326].comment));
-        }
-        //1011 : 사공의 물건
-        else if (ObjectManager.instance.GetEquipObjectKey() == 1011)
-        {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[342].npc_name, dialogdb.NPC_01[342].comment));
-        }
+        
         #endregion
 
         #region 조합 단서
         //4023 : 공양미를 구한 방법
         else if (ObjectManager.instance.GetEquipObjectKey() == 4023)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[353].npc_name, dialogdb.NPC_01[353].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[593].npc_name, dialogdb.NPC_01[593].comment));
+        }
+        //4015 : 청이가 사라진 날
+        else if (ObjectManager.instance.GetEquipObjectKey() == 4015)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[594].npc_name, dialogdb.NPC_01[594].comment));
+        }
+        //4017 : 청이와 그의 관계
+        else if (ObjectManager.instance.GetEquipObjectKey() == 4017)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[595].npc_name, dialogdb.NPC_01[595].comment));
+        }
+        //8032 : 함께 사라진 두 사람
+        else if (ObjectManager.instance.GetEquipObjectKey() == 8032)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[596].npc_name, dialogdb.NPC_01[596].comment));
         }
         //4033 : 무역의 중단
         else if (ObjectManager.instance.GetEquipObjectKey() == 4033)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[386].npc_name, dialogdb.NPC_01[386].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[597].npc_name, dialogdb.NPC_01[597].comment));
         }
         //4018 : 청이의 가출
         else if (ObjectManager.instance.GetEquipObjectKey() == 4018)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[396].npc_name, dialogdb.NPC_01[396].comment));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[598].npc_name, dialogdb.NPC_01[598].comment));
+        }
+        //6045 : 바다의 바쳐질 제물
+        else if (ObjectManager.instance.GetEquipObjectKey() == 6045)
+        {
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[599].npc_name, dialogdb.NPC_01[599].comment,true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[600].npc_name, dialogdb.NPC_01[600].comment, true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[601].npc_name, dialogdb.NPC_01[601].comment, true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[602].npc_name, dialogdb.NPC_01[602].comment));
         }
         #endregion
 
