@@ -179,6 +179,9 @@ public class ObjectManager : MonoBehaviour
     // GetClue 확인 여부
     public bool isGetClue = false;
 
+    // 2017 : 배의 출항 GetClue 확인 여부
+    public bool isGetClue_2017 = false;
+
     //장착 슬롯 Text
     public Text text_EquipSlot;
 
@@ -263,7 +266,7 @@ public class ObjectManager : MonoBehaviour
         GetAllItem();
 
         ////모든 단서 획득
-        GetAllClue();
+        //GetAllClue();
 
         //부싯돌 획득
         GetItem(1002);
@@ -298,6 +301,8 @@ public class ObjectManager : MonoBehaviour
             GetClue(2012);
             GetClue(2014);
             GetClue(2009);
+            GetClue(2019);
+            GetClue(2017);
         }
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -894,7 +899,13 @@ public class ObjectManager : MonoBehaviour
                 //토스트 메세지 정보값 넘겨주기
                 toastMessageScr.ToastMessageInfo_Chage($"{GetClue.name} 획득", clueSprite[GetClue.indexNum], GetClue.name);
             }
-          
+
+            // 배의 출항 단서 획득 여부 확인
+            else if(_key == 2017)
+			{
+                Debug.Log("단서 2017 존재함");
+                isGetClue_2017 = true;
+			}
         }
     }
 
@@ -1563,15 +1574,23 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
+    //보유 중인 단서 리스트 출력
     public int GetClueKey()
     {
-        for (int i = 0; i < myClueList.Count; i++)
+        //보유중인 단서 리스트가 비어있지 않다면
+        if (curClueList != null)
         {
-            Debug.Log(myClueList[i].key);
-            return myClueList[i].key;
+            for (int i = 0; i < myClueList.Count; i++)
+            {
+
+                Debug.Log(myClueList[i].key);
+                GetClue(myClueList[i].key);
+                //return myClueList[i].key;
+            }
+            
+            //return allClueList[2017].key;
         }
         return 0;
-        //return allClueList[2017].key;
     }
 
     //보유 중인 아이템 리스트 출력
