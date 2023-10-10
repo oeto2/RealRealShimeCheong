@@ -300,6 +300,13 @@ public class ObjectManager : MonoBehaviour
             GetClue(2009);
         }
 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("Show_ItemList 함수 시작");
+            Show_ItemList();
+            Debug.Log("Show_ItemList 함수 끝");
+        }
+
         //if (Input.GetKeyDown(KeyCode.Q))
         //{
         //    Debug.Log(GetEquipObjectKey());
@@ -1565,5 +1572,17 @@ public class ObjectManager : MonoBehaviour
         }
         return 0;
         //return allClueList[2017].key;
+    }
+
+    //보유 중인 아이템 리스트 출력
+    public int Show_ItemList()
+    {
+        for (int i = 0; i< curItemList.Count; ++i)
+        {
+            Debug.Log(curItemList[i].key);
+            GetItem(curItemList[i].key);
+            //return curItemList[i].key;
+        }
+        return 0;
     }
 }
