@@ -5726,3 +5726,9 @@ MonoBehaviour:
     comment: "[\uACE0\uB9BD\uBB34\uC6D0]"
     isUsing_dialog_flag: 0
     index_num: 807
+  - key_index: 7398
+    object_type: NPC
+    npc_name: "\uC784\uC2DC"
+    comment: "\uC784\uC2DC"
+    isUsing_dialog_flag: 0
+    index_num: 808

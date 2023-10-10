@@ -303,7 +303,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             CharacterName.text = narrator;
             //characternameText = narrator;
 
-            if (narration == npcDatabaseScr.NPC_01[765].comment && isJoomuckBab == false)
+            if (narration == npcDatabaseScr.NPC_01[808].comment && isJoomuckBab == false)
             {
                 Debug.Log(narration);
                 Debug.Log("1005¹ø, 18¹ø");
@@ -312,7 +312,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
                 //´ëÈ­ ³¡ Ã³¸®
                 isJoomuckBab = true;
             }
-            if (narration == npcDatabaseScr.NPC_01[765].comment && isJoomuckBab == true)
+            if (narration == npcDatabaseScr.NPC_01[808].comment && isJoomuckBab == true)
             {
                 Debug.Log(narration);
                 Debug.Log("1005¹ø, 19¹ø");
@@ -541,7 +541,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[18].npc_name, npcDatabaseScr.NPC_01[18].comment, true));
             //ÁÖ¸Ô¹ä ¸Ô´Â Áß..
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[765].npc_name, npcDatabaseScr.NPC_01[765].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[808].npc_name, npcDatabaseScr.NPC_01[808].comment, true));
 
             //StopAllCoroutines();
             //´ëÈ­
@@ -550,7 +550,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
 
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[19].npc_name, npcDatabaseScr.NPC_01[19].comment, true));
 
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[765].npc_name, npcDatabaseScr.NPC_01[765].comment, true));
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[808].npc_name, npcDatabaseScr.NPC_01[808].comment, true));
 
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[20].npc_name, npcDatabaseScr.NPC_01[20].comment, true));
             //Ã»ÀÌ¿Í »ç³» ´Ü¼­ È¹µæ
