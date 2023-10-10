@@ -337,7 +337,9 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
                 //중간에 Z키를 누르면
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    break;
+                    writerText = narration;
+                    yield return null;
+                    //break;
                 }
             }
 
