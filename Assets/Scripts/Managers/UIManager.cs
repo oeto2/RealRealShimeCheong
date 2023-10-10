@@ -227,6 +227,9 @@ public class UIManager : MonoBehaviour
             //아이템 창 실행
             ItemWindowLaunch();
 
+            //아이템 창 사운드 재생
+            effectSoundManagerScr.PlayOpenBotzimeSound();
+
             //커서 이미지 변경
             cursorCtrlScr.ChangeCursor(cursorCtrlScr.sprite_idle);
         }
