@@ -390,11 +390,17 @@ public class EventManager : MonoBehaviour
     //선택지 시작
     public void SelectStart(NPCName _npcName, int _SelectNum)
     {
+        //선택지 시작
+        GameManager.instance.isPlayerSelecting = true;
+
         //선택지 키값 변경
         int_selectKeyNum = _SelectNum;
 
         //선택지 UI 띄우기
         gameObject_SelectUI.SetActive(true);
+
+        //마우스 UI 보이기
+        UIManager.instance.ShowCursor();
 
         switch (_npcName)
         {
@@ -437,6 +443,12 @@ public class EventManager : MonoBehaviour
     //선택지 1번 선택
     public void SelectNum1_Click()
     {
+        //선택지 종료
+        GameManager.instance.isPlayerSelecting = false;
+
+        //커서 끄기
+        UIManager.instance.BlindCursor();
+
         switch (int_selectKeyNum)
         {
             //송나라 상인과 청이 선택지일 경우
@@ -462,6 +474,12 @@ public class EventManager : MonoBehaviour
     //선택지 2번 선택
     public void SelectNum2_Click()
     {
+        //선택지 종료
+        GameManager.instance.isPlayerSelecting = false;
+
+        //커서 끄기
+        UIManager.instance.BlindCursor();
+
         switch (int_selectKeyNum)
         {
             //송나라 상인과 청이 선택지일 경우

@@ -5991,7 +5991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079cb59679a8a7947be7923542c33aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boatManDialogueScr: {fileID: 0}
+  boatManDialogueScr: {fileID: 735907609}
   eventCheck:
     joomackBab: 0
     binyeo: 0

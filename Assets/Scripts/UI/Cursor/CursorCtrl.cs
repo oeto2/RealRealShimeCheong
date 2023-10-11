@@ -38,8 +38,8 @@ public class CursorCtrl : MonoBehaviour
         Vector2 cursorPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x + xPos,Input.mousePosition.y + yPos,Input.mousePosition.z));
         transform.position = cursorPos;
 
-        //만약 UI가 실행중이라면
-        if (uimangerScr.GetUiVisible())
+        //만약 UI가 실행중이거나 선택지를 진행중이라면
+        if (uimangerScr.GetUiVisible() || GameManager.instance.isPlayerSelecting)
         {
             //Debug.Log("UI실행중");
             //기본 커서 안보이기
@@ -62,8 +62,8 @@ public class CursorCtrl : MonoBehaviour
             }
         }
         
-        //만약 UI가 실행중이지 않다면
-        else if(!uimangerScr.GetUiVisible())
+        //만약 UI가 실행중이지 않고 선택지를 진행하고 있지 않다면
+        else if(!uimangerScr.GetUiVisible() && !GameManager.instance.isPlayerSelecting)
         {
             //기본 커서 안보이기
             Cursor.visible = false;
@@ -77,6 +77,8 @@ public class CursorCtrl : MonoBehaviour
     //커서 이미지 변경
     public void ChangeCursor(Sprite _cursorImg)
     {
+        Debug.Log("커서 보이기");
+       
         spriteRen_Cursor.sprite = _cursorImg;
     }
 }

@@ -732,6 +732,8 @@ public class UIManager : MonoBehaviour
     //Ä¿¼­ ²ô±â
     public void BlindCursor()
     {
+        Debug.Log("Ä¿¼­ ²ô±â");
+
         cursorCtrlScr.ChangeCursor(cursorCtrlScr.sprite_None);
     }
 

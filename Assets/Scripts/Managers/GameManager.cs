@@ -185,6 +185,9 @@ public class GameManager : MonoBehaviour
     //뱃사공2 오브젝트
     public GameObject gameObject_BoatMan2;
 
+    //지금 현재 플레이어가 선택지를 진행중인지
+    public bool isPlayerSelecting;
+
     private void Awake()
     {
         if (instance == null)
