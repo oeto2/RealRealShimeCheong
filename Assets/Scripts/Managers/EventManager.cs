@@ -56,7 +56,7 @@ public class EventSaveData
 public class EventLoadData
 {
     //생성자
-    public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck, 
+    public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck,
         bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End, bool _giveFlower, bool _day15ClueTalk, bool _day15ClueGet, bool _giveBoridduck_End
         , bool _select2006_End)
     {
@@ -162,6 +162,7 @@ public enum NPCName
     NONE,
     Bbangduck,
     boatman,
+    boatman2,
     beggar,
     Guidyck,
     Songnara,
@@ -219,8 +220,6 @@ public class EventManager : MonoBehaviour
     //선택지의 키값
     public int int_selectKeyNum;
 
-    
-
     private void Awake()
     {
         #region 싱글톤
@@ -249,10 +248,10 @@ public class EventManager : MonoBehaviour
         //반환해줄 리턴값
         bool retrunValue = false;
 
-        switch(_eventName)
+        switch (_eventName)
         {
             case Events.binyeo:
-                if(eventCheck.binyeo == true)
+                if (eventCheck.binyeo == true)
                 {
                     retrunValue = true;
                     break;
@@ -311,7 +310,7 @@ public class EventManager : MonoBehaviour
     //이벤트 활성화 메서드
     public void EventActive(Events _eventName)
     {
-        switch(_eventName)
+        switch (_eventName)
         {
             //비녀 이벤트 활성화
             case Events.binyeo:
@@ -327,7 +326,7 @@ public class EventManager : MonoBehaviour
             case Events.flower:
                 eventCheck.flower = true;
                 break;
-            
+
             //주먹밥 이벤트 활성화
             case Events.JoomuckBab:
                 eventCheck.joomackBab = true;
@@ -346,9 +345,9 @@ public class EventManager : MonoBehaviour
         Debug.Log("Save EventData");
 
         //저장할 데이터 넣기
-        curEventSaveData = new EventSaveData(eventCheck.joomackBab, eventCheck.binyeo, 
+        curEventSaveData = new EventSaveData(eventCheck.joomackBab, eventCheck.binyeo,
             eventCheck.flower, eventCheck.muck, eventCheck.boridduck, eventProgress.deliveryMuck, eventEndCheck.muckEvent_End
-            , eventProgress.joomackPuzzle_Clear,eventProgress.giveFlowerEnd,eventProgress.day15ClueStart, eventEndCheck.day15ClueGet, eventEndCheck.giveBoridduck_End
+            , eventProgress.joomackPuzzle_Clear, eventProgress.giveFlowerEnd, eventProgress.day15ClueStart, eventEndCheck.day15ClueGet, eventEndCheck.giveBoridduck_End
             , selectEndCheck.select2006_End);
 
         //세이브 데이터
@@ -357,11 +356,11 @@ public class EventManager : MonoBehaviour
         //데이터 파일 생성
         File.WriteAllText(saveFilePath + _slotNum.ToString(), jSaveData);
     }
-    
+
     //데이터 로드
     public void Load(int _SlotNum)
     {
-        if(_SlotNum <=2)
+        if (_SlotNum <= 2)
         {
             Debug.Log("Load EventLoadData");
 
@@ -404,11 +403,11 @@ public class EventManager : MonoBehaviour
                 gameObject_SelectUI.SetActive(false);
                 break;
 
-                //뱃사공 선택지
+            //뱃사공 선택지
             case NPCName.boatman:
 
                 //송나라 상인과 청이 선택지일 경우
-                if(ObjectManager.instance.GetEquipObjectKey() == 2006)
+                if (ObjectManager.instance.GetEquipObjectKey() == 2006)
                 {
                     //NPC 다이얼로그 종료
                     DialogManager.instance.Dialouge_System.SetActive(false);
@@ -418,6 +417,19 @@ public class EventManager : MonoBehaviour
                     //2번 선택지 대사 입력
                     text_selectNum2.text = "나도 그 이야기라면 들었소. 송 사람들이 너무하던데 말이오!";
                 }
+                break;
+
+            //뱃사공 선택지2
+            case NPCName.boatman2:
+
+                //NPC 다이얼로그 종료
+                DialogManager.instance.Dialouge_System.SetActive(false);
+
+                //1번 선택지 대사 입력
+                text_selectNum1.text = "예";
+                //2번 선택지 대사 입력
+                text_selectNum2.text = "아니오";
+
                 break;
         }
     }
@@ -472,6 +484,14 @@ public class EventManager : MonoBehaviour
 
                 //선택지 완료
                 selectEndCheck.select2006_End = true;
+                break;
+
+            //뱃사공2 선택지일 경우
+            case 7355:
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
+              
                 break;
         }
     }

@@ -14077,6 +14077,8 @@ MonoBehaviour:
   remainSentence: 0
   int_Select2006Num: 0
   int_select2006Day: 0
+  gameObject_BoatMan2: {fileID: 0}
+  boatMan2_Show: 0
 --- !u!1 &484110310
 GameObject:
   m_ObjectHideFlags: 0
@@ -21571,6 +21573,8 @@ MonoBehaviour:
   remainSentence: 0
   int_Select2006Num: 0
   int_select2006Day: 0
+  gameObject_BoatMan2: {fileID: 1034788309}
+  boatMan2_Show: 0
 --- !u!114 &735907610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26480,6 +26484,7 @@ MonoBehaviour:
   uiManagerScr: {fileID: 95288468}
   joomackScr: {fileID: 629768810}
   dialogGuiduckScr: {fileID: 1060148998}
+  dialogBoatManScr: {fileID: 735907609}
   joomuckBabScr: {fileID: 637179489}
   bool_isAction: 0
   scanObject: {fileID: 0}
@@ -26498,6 +26503,7 @@ MonoBehaviour:
     getJangjack: 0
     getBagage: 0
     getRice: 0
+    boatman2_Show: 0
   curGameLoadData:
     playerPos: {x: 0, y: 0, z: 0}
     limitCamera: 0
@@ -26506,6 +26512,7 @@ MonoBehaviour:
     getJangjack: 0
     getBagage: 0
     getRice: 0
+    boatman2_Show: 0
   isBeadPuzzleStart: 0
   isJoomackPuzzleStart: 0
   transform_BeadPuzzleMap: {fileID: 1831607154}
@@ -26520,6 +26527,7 @@ MonoBehaviour:
   gameObject_Jangjack: {fileID: 1017795170}
   gameObject_Bagage: {fileID: 279184793}
   gameObject_Rice: {fileID: 1041397668}
+  gameObject_BoatMan2: {fileID: 1034788309}
 --- !u!4 &905248353
 Transform:
   m_ObjectHideFlags: 0
@@ -29263,6 +29271,8 @@ MonoBehaviour:
   remainSentence: 0
   int_Select2006Num: 0
   int_select2006Day: 0
+  gameObject_BoatMan2: {fileID: 0}
+  boatMan2_Show: 0
 --- !u!1 &977144836
 GameObject:
   m_ObjectHideFlags: 0
@@ -31389,6 +31399,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021001034}
   m_CullTransparentMesh: 1
+--- !u!1 &1034788309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5247316569281692779, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
+  m_PrefabInstance: {fileID: 5247316568366990642}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1041397668
 GameObject:
   m_ObjectHideFlags: 0
@@ -33646,7 +33661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 40, y: -470.00027}
+  m_AnchoredPosition: {x: 40, y: -470.00024}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1125754046
@@ -45580,6 +45595,47 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5247316569281692776, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
   m_PrefabInstance: {fileID: 5247316568366990642}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1502069088 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5247316569281692780, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
+  m_PrefabInstance: {fileID: 5247316568366990642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034788309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1502069089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034788309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8772e0129b39347b832f916f4e0443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatText: {fileID: 2081460924}
+  CharacterName: {fileID: 1522015625}
+  skipButton: 20000000
+  writerText: 
+  characternameText: 
+  bool_isNPC: 0
+  images_NPC: {fileID: 1486878665}
+  images_NPC_portrait:
+  - {fileID: 21300000, guid: 9b9dc2523cc03cd44b968d424e4c1454, type: 3}
+  - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
+  trigger_npc: {fileID: 1502069088}
+  isNPCTrigger: 0
+  controller_scr: {fileID: 1871036892}
+  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  isSentenceEnd: 0
+  remainSentence: 0
+  int_Select2006Num: 0
+  int_select2006Day: 0
 --- !u!1 &1503348804
 GameObject:
   m_ObjectHideFlags: 0
@@ -48634,6 +48690,7 @@ MonoBehaviour:
     content: 
     isUsing: 0
   isGetClue: 0
+  isGetClue_2017: 0
   text_EquipSlot: {fileID: 454448376}
 --- !u!1 &1598760203
 GameObject:
@@ -66987,29 +67044,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 656091649}
     m_Modifications:
-    - target: {fileID: 5247316569281692754, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
-      propertyPath: ChatText
-      value: 
-      objectReference: {fileID: 2081460924}
-    - target: {fileID: 5247316569281692754, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
-      propertyPath: images_NPC
-      value: 
-      objectReference: {fileID: 1486878665}
-    - target: {fileID: 5247316569281692754, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
-      propertyPath: CharacterName
-      value: 
-      objectReference: {fileID: 1522015625}
-    - target: {fileID: 5247316569281692754, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
-      propertyPath: controller_scr
-      value: 
-      objectReference: {fileID: 1871036892}
     - target: {fileID: 5247316569281692776, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5247316569281692776, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.77
+      value: 14.03
       objectReference: {fileID: 0}
     - target: {fileID: 5247316569281692776, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
       propertyPath: m_LocalPosition.y
@@ -67049,7 +67090,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5247316569281692779, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
       propertyPath: m_Name
-      value: BoatMan
+      value: BoatMan2
       objectReference: {fileID: 0}
     - target: {fileID: 5247316569281692779, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
       propertyPath: m_IsActive

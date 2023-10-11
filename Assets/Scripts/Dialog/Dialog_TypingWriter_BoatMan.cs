@@ -49,23 +49,11 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
     //2006번 선택지 고른 날짜
     public int int_select2006Day = 0;
 
-    //// 선택지 UI 출력
-    //public GameObject Canvas_Selection_UI;
+    //뱃사공2 오브젝트
+    public GameObject gameObject_BoatMan2;
 
-    //// 선택지 발생!
-    //public Text Selection_Text_Name;
-
-    //// 선택지 1 대사 텍스트
-    //public Text Selection_Text1;
-
-    //// 선택지 2 대사 텍스트
-    //public Text Selection_Text2;
-
-    //// 선택지 확인 변수
-    //public bool isSelection_yes = false;
-    //public bool isSelection_no = false;
-
-    //public bool isSelection_5136;
+    //뱃사공2 이벤트 진행여부
+    public bool boatMan2_Show;
 
     //최초 클릭
     void Start()
@@ -639,9 +627,12 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[236].npc_name, npcDatabaseScr.NPC_01[236].comment,true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[237].npc_name, npcDatabaseScr.NPC_01[237].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[238].npc_name, npcDatabaseScr.NPC_01[238].comment, true));
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[239].npc_name, npcDatabaseScr.NPC_01[239].comment, true));
-            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[240].npc_name, npcDatabaseScr.NPC_01[240].comment));
+            
+            //개울가 뱃사공 보이기
+            gameObject_BoatMan2.SetActive(true);
+            boatMan2_Show = true;
 
+            yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[239].npc_name, npcDatabaseScr.NPC_01[239].comment));
         }
         #endregion
 

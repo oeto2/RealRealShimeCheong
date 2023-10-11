@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5247316569281692782}
   - component: {fileID: 5247316569281692777}
   - component: {fileID: 5247316569281692781}
-  - component: {fileID: 5247316569281692754}
   m_Layer: 0
   m_Name: BoatMan
   m_TagString: Untagged
@@ -168,33 +167,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5247316569281692754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5247316569281692779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca077347368808a4697ab69116b9f653, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChatText: {fileID: 0}
-  CharacterName: {fileID: 0}
-  skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 0}
-  images_NPC_portrait:
-  - {fileID: 21300000, guid: 9b9dc2523cc03cd44b968d424e4c1454, type: 3}
-  - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
-  trigger_npc: {fileID: 5247316569281692780}
-  isNPCTrigger: 0
-  controller_scr: {fileID: 0}
-  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  isSentenceEnd: 0
-  remainSentence: 0
-  int_Select2006Num: 0
-  int_select2006Day: 0

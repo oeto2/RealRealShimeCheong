@@ -9,13 +9,15 @@ using System.IO;
 public class GameSaveData
 {
     //생성자
-    public GameSaveData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum, int _joomuckBabState, bool _getJangjack, bool _getBagage, bool _getRice)
+    public GameSaveData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum, int _joomuckBabState, bool _getJangjack, 
+        bool _getBagage, bool _getRice, bool _boatMan2_Show)
     {
         playerPos = _playerPos; limitCamera = _LimitCamera; mapPinNum = _mapPinNum;
         joomuckBabState = _joomuckBabState;
         getJangjack = _getJangjack;
         getBagage = _getBagage;
         getRice = _getRice;
+        boatman2_Show = _boatMan2_Show;
     }
 
     //플레이어 위치값
@@ -39,8 +41,11 @@ public class GameSaveData
 
     //쌀 획득 여부
     public bool getRice;
+
     #endregion
 
+    //뱃사공2 이벤트 진행여부
+    public bool boatman2_Show;
 }
 
 
@@ -49,13 +54,15 @@ public class GameSaveData
 public class GameLoadData
 {
     //생성자
-    public GameLoadData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum, int _joomuckBabState, bool _getJangjack, bool _getBagage, bool _getRice)
+    public GameLoadData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum, int _joomuckBabState, bool _getJangjack, bool _getBagage, bool _getRice
+        , bool _boatMan2_Show)
     {
         playerPos = _playerPos; limitCamera = _LimitCamera; mapPinNum = _mapPinNum;
         joomuckBabState = _joomuckBabState;
         getJangjack = _getJangjack;
         getBagage = _getBagage;
         getRice = _getRice;
+        boatman2_Show = _boatMan2_Show;
     }
 
     //플레이어 위치값
@@ -80,6 +87,9 @@ public class GameLoadData
     //쌀 획득 여부
     public bool getRice;
     #endregion
+
+    //뱃사공2 이벤트 진행여부
+    public bool boatman2_Show;
 
 }
 
@@ -91,6 +101,7 @@ public class GameManager : MonoBehaviour
     public UIManager uiManagerScr;
     public JoomackPuzzle joomackScr;
     public Dialog_TypingWriter_Guiduck dialogGuiduckScr;
+    public Dialog_TypingWriter_BoatMan dialogBoatManScr;
     public JoomuckBab joomuckBabScr;
 
     // 하나씩 추가하자
@@ -170,6 +181,9 @@ public class GameManager : MonoBehaviour
 
     //쌀 오브젝트
     public GameObject gameObject_Rice;
+
+    //뱃사공2 오브젝트
+    public GameObject gameObject_BoatMan2;
 
     private void Awake()
     {
@@ -278,7 +292,7 @@ public class GameManager : MonoBehaviour
         //저장할 데이터 넣기
         curGameSaveData = new GameSaveData(new Vector3(gameObjcet_Player.transform.position.x, gameObjcet_Player.transform.position.y,
                           gameObjcet_Player.transform.position.z), cameraMoveScr.int_CurLimitNum, int_PinPosNum, joomuckBabScr.GetEventState()
-                          , getJangjack, getBagage, getRice);
+                          , getJangjack, getBagage, getRice, dialogBoatManScr.boatMan2_Show);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curGameSaveData);
@@ -364,6 +378,13 @@ public class GameManager : MonoBehaviour
                 {
                     gameObject_Bagage.SetActive(true);
                 }
+            }
+
+            //뱃사공2 보이기
+            if(curGameLoadData.boatman2_Show)
+            {
+                //뱃사공2 보이기
+                gameObject_BoatMan2.SetActive(true);
             }
         }
         
