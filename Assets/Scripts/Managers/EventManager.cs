@@ -487,9 +487,15 @@ public class EventManager : MonoBehaviour
             case 7355:
 
                 //사공의 물건 퀘스트를 완료하지 못했다면
+                if(boatManDialogueScr.boatManObject == false)
+                {
+                    Debug.Log("배드엔딩 루트");
+                }
 
-
-                
+                else
+                {
+                    Debug.Log("굿엔딩 루트");
+                }
                 break;
         }
     }
