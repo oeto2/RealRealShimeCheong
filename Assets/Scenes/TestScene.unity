@@ -13490,52 +13490,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5247316569281692776, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
   m_PrefabInstance: {fileID: 466196938}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &466196940 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5247316569281692779, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
-  m_PrefabInstance: {fileID: 466196938}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &466196941 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5247316569281692780, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
-  m_PrefabInstance: {fileID: 466196938}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 466196940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &466196942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 466196940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c8772e0129b39347b832f916f4e0443, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
-  skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
-  images_NPC_portrait:
-  - {fileID: 21300000, guid: 9b9dc2523cc03cd44b968d424e4c1454, type: 3}
-  - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
-  trigger_npc: {fileID: 466196941}
-  isNPCTrigger: 0
-  controller_scr: {fileID: 1871036892}
-  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  isSentenceEnd: 0
-  remainSentence: 0
-  int_Select2006Num: 0
-  int_select2006Day: 0
 --- !u!1 &466853587
 GameObject:
   m_ObjectHideFlags: 0
@@ -21621,7 +21575,7 @@ MonoBehaviour:
   remainSentence: 0
   int_Select2006Num: 0
   int_select2006Day: 0
-  gameObject_BoatMan2: {fileID: 735907606}
+  gameObject_BoatMan2: {fileID: 1034788309}
   boatMan2_Show: 0
   boatManObject: 0
 --- !u!114 &735907610
@@ -45603,6 +45557,20 @@ MonoBehaviour:
   remainSentence: 0
   int_Select2006Num: 0
   int_select2006Day: 0
+  boatman2_TriggerScr: {fileID: 1502069090}
+--- !u!114 &1502069090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034788309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6977f8fdd4f73de4f8dba39c8abc0d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTouch: 0
 --- !u!1 &1503348804
 GameObject:
   m_ObjectHideFlags: 0

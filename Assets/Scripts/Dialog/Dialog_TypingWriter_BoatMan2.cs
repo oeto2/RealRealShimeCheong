@@ -49,36 +49,15 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
     //2006번 선택지 고른 날짜
     public int int_select2006Day = 0;
 
-    //// 선택지 UI 출력
-    //public GameObject Canvas_Selection_UI;
+    //뱃사공2 트리거 스크립트
+    public BoatMan2_Trigger boatman2_TriggerScr;
 
-    //// 선택지 발생!
-    //public Text Selection_Text_Name;
-
-    //// 선택지 1 대사 텍스트
-    //public Text Selection_Text1;
-
-    //// 선택지 2 대사 텍스트
-    //public Text Selection_Text2;
-
-    //// 선택지 확인 변수
-    //public bool isSelection_yes = false;
-    //public bool isSelection_no = false;
-
-    //public bool isSelection_5136;
 
     //최초 클릭
     void Start()
     {
-        //StartCoroutine(TextPractice());
-        //TextPractice();
-        //StopCoroutine(TextPractice());
         CharacterName.text = "";
         ChatText.text = "";
-
-        //Selection_Text_Name.text = "선택지 발생!";
-        //Selection_Text1.text = "내가 청이 아비 되는 사람이오. 솔직하게 말해주시오.";
-        //Selection_Text2.text = "나도 그 이야기라면 들었소. 송 사람들이 너무하던데 말이오!";
     }
 
     void Update()
@@ -91,13 +70,8 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
             }
         }
 
-        if(trigger_npc.isNPCTrigger )
-        {
-            Debug.Log("뱃사공과 닿음");
-        }
-
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition()
-             && TutorialManager.instance.SentenceCondition())
+             && TutorialManager.instance.SentenceCondition() && boatman2_TriggerScr.isTouch)
         {
             Debug.Log("z키 누름! 뱃사공!!!!");
             //bool_isBotjim = true;
@@ -388,6 +362,5 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
 
         //선택지 시작
         EventManager.instance.SelectStart(NPCName.boatman2, 7355);
-
     }
 }
