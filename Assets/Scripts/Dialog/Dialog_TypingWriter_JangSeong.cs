@@ -517,7 +517,18 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
             {
                 yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[555].npc_name, dialogdb.NPC_01[555].comment,true));
-                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[231].npc_name, dialogdb.NPC_01[231].comment));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[231].npc_name, dialogdb.NPC_01[231].comment,true));
+
+                //엔딩 화면 보이기
+                EndingManager.instance.ShowEndingBG();
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[676].npc_name, dialogdb.NPC_01[676].comment, true));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[677].npc_name, dialogdb.NPC_01[677].comment, true));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[678].npc_name, dialogdb.NPC_01[678].comment, true));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[679].npc_name, dialogdb.NPC_01[679].comment, true));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[680].npc_name, dialogdb.NPC_01[680].comment, true));
+
+                //타이틀 화면 이동
+                EndingManager.instance.LoadTitleScene();
             }
             #endregion
 
