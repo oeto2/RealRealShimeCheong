@@ -5992,6 +5992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boatManDialogueScr: {fileID: 735907609}
+  boatManDialogueScr2: {fileID: 1502069089}
   eventCheck:
     joomackBab: 0
     binyeo: 0
@@ -26528,6 +26529,7 @@ MonoBehaviour:
   gameObject_Bagage: {fileID: 279184793}
   gameObject_Rice: {fileID: 1041397668}
   gameObject_BoatMan2: {fileID: 1034788309}
+  isPlayerSelecting: 0
 --- !u!4 &905248353
 Transform:
   m_ObjectHideFlags: 0

@@ -177,6 +177,7 @@ public class EventManager : MonoBehaviour
 {
     //외부 스크립트 참조
     public Dialog_TypingWriter_BoatMan boatManDialogueScr;
+    public Dialog_TypingWriter_BoatMan2 boatManDialogueScr2;
 
     //싱글톤 패턴
     public static EventManager instance = null;
@@ -509,7 +510,14 @@ public class EventManager : MonoBehaviour
 
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
-              
+
+                //플레이어 움직임 제한 해제
+                Controller.instance.TalkEnd();
+
+                //뱃사공 대화 제어 플래그 초기화
+                boatManDialogueScr2.isSentenceEnd = true;
+                boatManDialogueScr2.remainSentence = true;
+
                 break;
         }
     }
