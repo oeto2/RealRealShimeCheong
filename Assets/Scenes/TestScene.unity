@@ -13471,6 +13471,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5247316569281692780, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
+      propertyPath: ChatText
+      value: "\uBC43\uC0AC\uACF52"
+      objectReference: {fileID: 0}
     - target: {fileID: 5247316569281692783, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -14206,6 +14210,7 @@ MonoBehaviour:
   int_select2006Day: 0
   gameObject_BoatMan2: {fileID: 0}
   boatMan2_Show: 0
+  boatManObject: 0
 --- !u!1 &484110310
 GameObject:
   m_ObjectHideFlags: 0
@@ -21616,8 +21621,9 @@ MonoBehaviour:
   remainSentence: 0
   int_Select2006Num: 0
   int_select2006Day: 0
-  gameObject_BoatMan2: {fileID: 1034788309}
+  gameObject_BoatMan2: {fileID: 735907606}
   boatMan2_Show: 0
+  boatManObject: 0
 --- !u!114 &735907610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29317,6 +29323,7 @@ MonoBehaviour:
   int_select2006Day: 0
   gameObject_BoatMan2: {fileID: 0}
   boatMan2_Show: 0
+  boatManObject: 0
 --- !u!1 &977144836
 GameObject:
   m_ObjectHideFlags: 0
@@ -66995,6 +67002,10 @@ PrefabInstance:
     - target: {fileID: 5247316569281692776, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247316569281692777, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
+      propertyPath: ChatText
+      value: "\uBC43\uC0AC\uACF52"
       objectReference: {fileID: 0}
     - target: {fileID: 5247316569281692779, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
       propertyPath: m_Name

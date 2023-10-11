@@ -91,6 +91,11 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
             }
         }
 
+        if(trigger_npc.isNPCTrigger )
+        {
+            Debug.Log("뱃사공과 닿음");
+        }
+
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition()
              && TutorialManager.instance.SentenceCondition())
         {
@@ -102,7 +107,7 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
             {
                 Debug.Log("대화 실행");
                 images_NPC.SetActive(true);
-                StartCoroutine(TextPractice());
+                StartCoroutine(TextPractice2());
                 Trigger_NPC.instance.isNPCTrigger = true;
                 //초상화 변경
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
@@ -376,12 +381,13 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
         }
     }
 
-    IEnumerator TextPractice()
+    IEnumerator TextPractice2()
     {
         //기본 대사 진행
         yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[765].npc_name, npcDatabaseScr.NPC_01[765].comment, true));
 
         //선택지 시작
         EventManager.instance.SelectStart(NPCName.boatman2, 7355);
+
     }
 }

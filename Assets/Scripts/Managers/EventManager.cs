@@ -10,7 +10,7 @@ public class EventSaveData
     //생성자
     public EventSaveData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck,
         bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End, bool _giveFlower, bool _day15ClueTalk, bool _day15ClueGet, bool _giveBoridduck_End
-        , bool _select2006_End)
+        , bool _select2006_End, bool _boatManObject)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -25,6 +25,7 @@ public class EventSaveData
         day15ClueGet = _day15ClueGet;
         giveBoridduck_End = _giveBoridduck_End;
         select2006_End = _select2006_End;
+        boatManObject = _boatManObject;
     }
 
     //이벤트 활성화 여부
@@ -50,6 +51,9 @@ public class EventSaveData
 
     //선택지 완료 여부
     public bool select2006_End;
+
+    //사공의 물건 전달 여부
+    public bool boatManObject;
 }
 
 //로드할 데이터
@@ -58,7 +62,7 @@ public class EventLoadData
     //생성자
     public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck,
         bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End, bool _giveFlower, bool _day15ClueTalk, bool _day15ClueGet, bool _giveBoridduck_End
-        , bool _select2006_End)
+        , bool _select2006_End, bool _boatManObject)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -73,6 +77,7 @@ public class EventLoadData
         day15ClueGet = _day15ClueGet;
         giveBoridduck_End = _giveBoridduck_End;
         select2006_End = _select2006_End;
+        boatManObject = _boatManObject;
     }
 
     //이벤트 활성화 여부
@@ -97,6 +102,9 @@ public class EventLoadData
 
     //선택지 완료 여부
     public bool select2006_End;
+
+    //사공의 물건 전달 여부
+    public bool boatManObject;
 }
 
 
@@ -349,7 +357,7 @@ public class EventManager : MonoBehaviour
         curEventSaveData = new EventSaveData(eventCheck.joomackBab, eventCheck.binyeo,
             eventCheck.flower, eventCheck.muck, eventCheck.boridduck, eventProgress.deliveryMuck, eventEndCheck.muckEvent_End
             , eventProgress.joomackPuzzle_Clear, eventProgress.giveFlowerEnd, eventProgress.day15ClueStart, eventEndCheck.day15ClueGet, eventEndCheck.giveBoridduck_End
-            , selectEndCheck.select2006_End);
+            , selectEndCheck.select2006_End, boatManDialogueScr.boatManObject);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curEventSaveData);
@@ -385,12 +393,17 @@ public class EventManager : MonoBehaviour
 
             //이벤트 완료 상황 초기화
             eventEndCheck.muckEvent_End = curEventLoadData.muckEvent_End;
+
+            //사공의 물건 진행상황 초기화
+            boatManDialogueScr.boatManObject = curEventLoadData.boatManObject;
         }
     }
 
     //선택지 시작
     public void SelectStart(NPCName _npcName, int _SelectNum)
     {
+        Debug.Log("선택지 시작");
+
         //선택지 시작
         GameManager.instance.isPlayerSelecting = true;
 
@@ -473,10 +486,10 @@ public class EventManager : MonoBehaviour
             //뱃사공2 선택지일 경우
             case 7355:
 
-                //해당 단서를 보유중이라면
-                if(ObjectManager.instance.GetClue_Check(2000))
-                {
-                }
+                //사공의 물건 퀘스트를 완료하지 못했다면
+
+
+                
                 break;
         }
     }

@@ -55,6 +55,9 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
     //뱃사공2 이벤트 진행여부
     public bool boatMan2_Show;
 
+    //사공의 물건을 전달 했는지
+    public bool boatManObject;
+
     //최초 클릭
     void Start()
     {
@@ -673,6 +676,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[531].npc_name, npcDatabaseScr.NPC_01[531].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[344].npc_name, npcDatabaseScr.NPC_01[344].comment, true));
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[345].npc_name, npcDatabaseScr.NPC_01[345].comment, true));
+            boatManObject = true;
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[346].npc_name, npcDatabaseScr.NPC_01[346].comment));
         }
 
