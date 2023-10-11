@@ -1604,4 +1604,28 @@ public class ObjectManager : MonoBehaviour
         }
         return 0;
     }
+
+
+    //해당 단서를 보유중인지 확인해주는 메서드
+    public bool GetClue_Check(int _clueKey)
+    {
+        //찾은 단서를 넣을 클래스
+        Clue findClue = curClueList.Find(x => x.key == _clueKey);
+
+        //만약 해당 키값을 가진 아이템이 존재할경우
+        if(findClue != null)
+        {
+            Debug.Log($"{_clueKey}단서를 보유하고 있습니다.");
+            return true;    
+        }
+
+        //가지고 있지 않을경우
+        else
+        {
+            Debug.Log($"{_clueKey}단서를 보유하고 있지 않습니다.");
+
+            //false 반환
+            return false;
+        } 
+    }
 }

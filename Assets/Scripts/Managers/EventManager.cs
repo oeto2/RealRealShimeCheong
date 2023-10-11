@@ -469,6 +469,15 @@ public class EventManager : MonoBehaviour
                 //선택지 완료
                 selectEndCheck.select2006_End = true;
                 break;
+
+            //뱃사공2 선택지일 경우
+            case 7355:
+
+                //해당 단서를 보유중이라면
+                if(ObjectManager.instance.GetClue_Check(2000))
+                {
+                }
+                break;
         }
     }
 
