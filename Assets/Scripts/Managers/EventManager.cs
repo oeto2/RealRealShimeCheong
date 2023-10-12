@@ -514,6 +514,9 @@ public class EventManager : MonoBehaviour
                     //청이의 물건 단서를 보유 중이라면
                     else
                     {
+                        //선택지 창 끄기
+                        gameObject_SelectUI.SetActive(false);
+
                         //굿/진엔딩 루트 진입
                         boatManDialogueScr2.StartGoodEndingRoot();
                     }

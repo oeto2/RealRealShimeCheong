@@ -188,6 +188,12 @@ public class GameManager : MonoBehaviour
     //지금 현재 플레이어가 선택지를 진행중인지
     public bool isPlayerSelecting;
 
+    //플레이어 게임 오브젝트
+    public GameObject gameObject_Player;
+
+    //Player 바다 SponPos
+    public Transform oceanSponPos;
+
     private void Awake()
     {
         if (instance == null)
@@ -602,6 +608,10 @@ public class GameManager : MonoBehaviour
     //플레이어 위치 변경
     public void TransferPlayer(Vector3 _pos, int _mapNum)
     {
+        //Player의 위치값을 목적 설정 값으로 변경
+        gameObject_Player.transform.position = _pos;
 
+        //카메라의 제한 구역을 맵 번호로 변경
+        Camera.main.GetComponent<CameraMove>().ChangeLimit(_mapNum);
     }
 }
