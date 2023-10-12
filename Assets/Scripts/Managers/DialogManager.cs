@@ -213,4 +213,16 @@ public class DialogManager : MonoBehaviour
     }
 
     #endregion
+
+    //뱃사공 3 대사
+    IEnumerator BoatMan3_Sentence()
+    {
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(604), true));
+    }
+
+    //뱃사공3 대사출력
+    public void Start_BoatMan3_Sentence()
+    {
+        StartCoroutine(BoatMan3_Sentence());
+    }
 }

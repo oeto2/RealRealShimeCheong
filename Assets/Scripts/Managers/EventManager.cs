@@ -171,6 +171,7 @@ public enum NPCName
     Bbangduck,
     boatman,
     boatman2,
+    boatman3,
     beggar,
     Guidyck,
     Songnara,
@@ -228,6 +229,9 @@ public class EventManager : MonoBehaviour
 
     //선택지의 키값
     public int int_selectKeyNum;
+
+    //뱃사공3 선택지 Text UI
+    public GameObject gameObject_BoatMan3Text;
 
     private void Awake()
     {
@@ -451,6 +455,22 @@ public class EventManager : MonoBehaviour
                 text_selectNum2.text = "아니오";
 
                 break;
+
+            //뱃사공 선택지3
+            case NPCName.boatman3:
+
+                //선택지 대사 보이기
+                gameObject_BoatMan3Text.SetActive(true);
+
+                //NPC 다이얼로그 종료
+                DialogManager.instance.Dialouge_System.SetActive(false);
+
+                //1번 선택지 대사 입력
+                text_selectNum1.text = "예";
+                //2번 선택지 대사 입력
+                text_selectNum2.text = "아니오";
+
+                break;
         }
     }
 
@@ -522,6 +542,19 @@ public class EventManager : MonoBehaviour
                     }
                 }
                 break;
+
+            //뱃사공3 선택지일 경우
+            case 7194:
+
+                //선택지 대사 끄기
+                gameObject_BoatMan3Text.SetActive(false);
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
+
+                Debug.Log("엔딩 진행");
+               
+                break;
         }
     }
 
@@ -571,6 +604,19 @@ public class EventManager : MonoBehaviour
                 boatManDialogueScr2.isSentenceEnd = true;
                 boatManDialogueScr2.remainSentence = true;
 
+                break;
+
+            //뱃사공3 선택지일 경우
+            case 7194:
+
+                //선택지 대사 끄기
+                gameObject_BoatMan3Text.SetActive(false);
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
+
+                //플레이어 움직임 제한 해제
+                Controller.instance.TalkEnd();
                 break;
         }
     }
