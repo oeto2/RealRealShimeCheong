@@ -10,11 +10,12 @@ using System;
 public class TimeSaveData
 {
     //생성자
-    public TimeSaveData(float _Time, int _Day, byte _curColorValue)
+    public TimeSaveData(float _Time, int _Day, byte _curColorValue, bool _realTimeStop)
     {
         time = _Time;
         day = _Day; 
         curColorValue = _curColorValue;
+        realTimeStop = _realTimeStop;
     }
 
     //저장할 시간
@@ -25,6 +26,9 @@ public class TimeSaveData
 
     //현재 배경의 컬러값
     public byte curColorValue;
+
+    //시간 정지 여부
+    public bool realTimeStop;
 }
 
 //불러올 데이터
@@ -32,11 +36,12 @@ public class TimeSaveData
 public class TimeLoadData
 {
     //생성자
-    public TimeLoadData(float _Time, int _Day, byte _curColorValue)
+    public TimeLoadData(float _Time, int _Day, byte _curColorValue, bool _realTimeStop)
     {
         time = _Time;
         day = _Day;
         curColorValue = _curColorValue;
+        realTimeStop = _realTimeStop;
     }
 
     //불러올 시간
@@ -47,6 +52,9 @@ public class TimeLoadData
 
     //현재 배경의 컬러값
     public byte curColorValue;
+
+    //시간 정지 여부
+    public bool realTimeStop;
 }
 
 public class TimeManager : MonoBehaviour
@@ -142,6 +150,9 @@ public class TimeManager : MonoBehaviour
     //시간이 정지 되었는지 확인하는 flag
     public bool isTimeStop;
 
+    //시간 진짜 정지 (엔딩)
+    public bool realTimeStop;
+
     public void Awake()
     {
         if(instance == null)
@@ -215,7 +226,7 @@ public class TimeManager : MonoBehaviour
 
         //Debug.Log(float_PlayTimeSec);
 
-        if (!timeStop)
+        if (!timeStop && !realTimeStop)
         {
             //실제 시간 = 시간 + 배속
             float_RealTime += Time.deltaTime * timeMultipleCation;
@@ -376,7 +387,7 @@ public class TimeManager : MonoBehaviour
 
 
         //저장할 데이터 넣기
-        curTimeSaveData = new TimeSaveData(float_RealTime, int_DayCount, curObjectRGB.r);
+        curTimeSaveData = new TimeSaveData(float_RealTime, int_DayCount, curObjectRGB.r, realTimeStop);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curTimeSaveData);
@@ -407,6 +418,9 @@ public class TimeManager : MonoBehaviour
 
             //시간 Text 변경
             text_TimeText.text = float_RealTime.ToString("F0");
+
+            //시간 정지 설정
+            realTimeStop = curTimeLoadData.realTimeStop;
 
             //컬러값 재설정
             curObjectRGB = new Color32(curTimeLoadData.curColorValue, curTimeLoadData.curColorValue,
@@ -686,5 +700,11 @@ public class TimeManager : MonoBehaviour
                 spriteRen_ObumbrateObj[i].color = startRGBValue;
             }
         }
+    }
+
+    //시간 진짜 정지
+    public void RealTimeStop()
+    {
+        realTimeStop = true;
     }
 }
