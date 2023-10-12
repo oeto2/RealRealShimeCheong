@@ -414,7 +414,7 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
         yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[241].npc_name, npcDatabaseScr.NPC_01[241].comment, true));
 
         //배경 천천히 밝게하기
-
+        EndingManager.instance.BrightEndingBG();
 
         yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[242].npc_name, npcDatabaseScr.NPC_01[242].comment, true));
         yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[243].npc_name, npcDatabaseScr.NPC_01[243].comment, true));

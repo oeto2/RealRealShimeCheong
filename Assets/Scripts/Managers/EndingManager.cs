@@ -21,6 +21,9 @@ public class EndingManager : MonoBehaviour
     //베드 엔딩 칼라값
     public Color32 color32_Bad;
 
+    //엔딩 배경 애니메이터
+    public Animator animator_EndingBG;
+
     private void Awake()
     {
         if(instance == null)
@@ -89,5 +92,19 @@ public class EndingManager : MonoBehaviour
         //NPC 다이얼로그 종료
         DialogManager.instance.Dialouge_System.SetActive(false);
 
+    }
+
+    //엔딩 이미지 천천히 밝게 하기
+    public void BrightEndingBG()
+    {
+        //Fade In 애니메이션 실행
+        animator_EndingBG.SetBool("StartFade_In", true);
+    }
+
+    //엔딩 이미지 리셋
+    public void ResetEndingBG()
+    {
+        //Fade In 애니메이션 리셋
+        animator_EndingBG.SetBool("StartFade_In", false);
     }
 }
