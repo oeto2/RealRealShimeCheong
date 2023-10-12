@@ -397,4 +397,37 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
     {
         StartCoroutine(BoatManEnding());
     }
+
+
+    //굿 엔딩 진입 코루틴
+    IEnumerator GoodEndingRoot()
+    {
+        //화면 어둡게 하기
+        EndingManager.instance.ShowEndingBG();
+
+        //대사 진행
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[240].npc_name, npcDatabaseScr.NPC_01[240].comment, true));
+
+        //심봉사, 위치 변경
+
+
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[241].npc_name, npcDatabaseScr.NPC_01[241].comment, true));
+
+        //배경 천천히 밝게하기
+
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[242].npc_name, npcDatabaseScr.NPC_01[242].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[243].npc_name, npcDatabaseScr.NPC_01[243].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[244].npc_name, npcDatabaseScr.NPC_01[244].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[245].npc_name, npcDatabaseScr.NPC_01[245].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[246].npc_name, npcDatabaseScr.NPC_01[246].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[247].npc_name, npcDatabaseScr.NPC_01[247].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[774].npc_name, npcDatabaseScr.NPC_01[774].comment, true));
+
+    }
+
+    //계란 유골 배드엔딩 시작
+    public void StartGoodEndingRoot()
+    {
+        StartCoroutine(GoodEndingRoot());
+    }
 }

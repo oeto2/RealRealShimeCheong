@@ -598,4 +598,10 @@ public class GameManager : MonoBehaviour
     {
         gameObjcet_Loading.SetActive(false);
     }
+
+    //플레이어 위치 변경
+    public void TransferPlayer(Vector3 _pos, int _mapNum)
+    {
+
+    }
 }

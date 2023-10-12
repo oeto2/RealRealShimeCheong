@@ -496,9 +496,27 @@ public class EventManager : MonoBehaviour
                     boatManDialogueScr2.StartBoatManEnding_1();
                 }
 
+                //사공의 물건 퀘스트 완료
                 else
                 {
-                    Debug.Log("굿엔딩 루트");
+                    //청이의 물건 단서를 보유중이지 않다면
+                    if (!ObjectManager.instance.GetClue_Check(9000))
+                    {
+                        Debug.Log("청이 단서 미보유 엔딩");
+
+                        //선택지 창 끄기
+                        gameObject_SelectUI.SetActive(false);
+
+                        //계란유골 배드엔딩
+                        boatManDialogueScr2.StartBoatManEnding_1();
+                    }
+
+                    //청이의 물건 단서를 보유 중이라면
+                    else
+                    {
+                        //굿/진엔딩 루트 진입
+                        boatManDialogueScr2.StartGoodEndingRoot();
+                    }
                 }
                 break;
         }

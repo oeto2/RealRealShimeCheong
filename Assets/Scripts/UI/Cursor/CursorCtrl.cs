@@ -77,8 +77,6 @@ public class CursorCtrl : MonoBehaviour
     //커서 이미지 변경
     public void ChangeCursor(Sprite _cursorImg)
     {
-        Debug.Log("커서 보이기");
-       
         spriteRen_Cursor.sprite = _cursorImg;
     }
 }
