@@ -226,7 +226,6 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
 
         ////키(default : space)를 다시 누를 때까지 무한정 대기
         //while (true)
-        //{
         //    if (isButtonClicked)
         //    {
         //        isButtonClicked = false;
@@ -239,6 +238,9 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
     //오버로드
     IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
+        //대화창 보이기
+        images_NPC.SetActive(true);
+
         //심학규의 대사일경우
         if (narrator == "심학규")
         {
@@ -362,5 +364,37 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
 
         //선택지 시작
         EventManager.instance.SelectStart(NPCName.boatman2, 7355);
+    }
+
+    //계란유골 배드엔딩 코루틴
+    IEnumerator BoatManEnding()
+    {
+        //화면 어둡게 하기
+        EndingManager.instance.ShowEndingBG();
+
+        //대사 진행
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[766].npc_name, npcDatabaseScr.NPC_01[766].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[767].npc_name, npcDatabaseScr.NPC_01[767].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[768].npc_name, npcDatabaseScr.NPC_01[768].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[769].npc_name, npcDatabaseScr.NPC_01[769].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[770].npc_name, npcDatabaseScr.NPC_01[770].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[771].npc_name, npcDatabaseScr.NPC_01[771].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[772].npc_name, npcDatabaseScr.NPC_01[772].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[773].npc_name, npcDatabaseScr.NPC_01[773].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[774].npc_name, npcDatabaseScr.NPC_01[774].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[775].npc_name, npcDatabaseScr.NPC_01[775].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[776].npc_name, npcDatabaseScr.NPC_01[776].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[777].npc_name, npcDatabaseScr.NPC_01[777].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[778].npc_name, npcDatabaseScr.NPC_01[778].comment, true));
+        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[779].npc_name, npcDatabaseScr.NPC_01[779].comment, true));
+
+        //타이틀 화면 이동
+        EndingManager.instance.LoadTitleScene();
+    }
+
+    //계란 유골 배드엔딩 시작
+    public void StartBoatManEnding_1()
+    {
+        StartCoroutine(BoatManEnding());
     }
 }

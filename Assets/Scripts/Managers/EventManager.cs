@@ -489,7 +489,11 @@ public class EventManager : MonoBehaviour
                 //사공의 물건 퀘스트를 완료하지 못했다면
                 if(boatManDialogueScr.boatManObject == false)
                 {
-                    Debug.Log("배드엔딩 루트");
+                    //선택지 창 끄기
+                    gameObject_SelectUI.SetActive(false);
+
+                    //계란유골 배드엔딩
+                    boatManDialogueScr2.StartBoatManEnding_1();
                 }
 
                 else

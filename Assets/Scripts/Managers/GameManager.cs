@@ -388,6 +388,9 @@ public class GameManager : MonoBehaviour
             {
                 //뱃사공2 보이기
                 gameObject_BoatMan2.SetActive(true);
+
+                //플래그 초기화
+                dialogBoatManScr.boatMan2_Show = true;
             }
         }
         
@@ -582,5 +585,17 @@ public class GameManager : MonoBehaviour
 
         //시간 흐르기
         TimeManager.instance.ContinueTime();
+    }
+
+    //화면 이미지 어둡게 변경
+    public void StartBilnd()
+    {
+        gameObjcet_Loading.SetActive(true);
+    }
+
+    //화면 이미지 밝게 변경
+    public void StartBright()
+    {
+        gameObjcet_Loading.SetActive(false);
     }
 }
