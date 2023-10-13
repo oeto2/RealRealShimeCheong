@@ -58,6 +58,9 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
     //사공의 물건을 전달 했는지
     public bool boatManObject;
 
+    //뱃사공과 닿았는지
+    public bool isTouch;
+
     //최초 클릭
     void Start()
     {
@@ -82,7 +85,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition()
+        if (Input.GetKeyDown(KeyCode.Z) && isTouch && UIManager.instance.SentenceCondition()
              && TutorialManager.instance.SentenceCondition())
         {
             Debug.Log("z키 누름! 뱃사공!!!!");
@@ -756,5 +759,18 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
     public void PrintSelect2006_Sentence2()
     {
         StartCoroutine(Select2006_Sentence2());
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            isTouch = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isTouch = false;   
     }
 }
