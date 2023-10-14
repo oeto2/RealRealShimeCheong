@@ -127,6 +127,15 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
                 //텍스트 타이핑 시간 조절
                 //yield return null;
 
+
+                ////대사가 모두 출력되지 않음
+                //if(a != narration.Length && Input.GetKeyDown(KeyCode.Z))
+                //{
+                //    a = narration.Length;
+
+                //    //대화 종료
+                //}
+
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
                     //남은대화 없음
