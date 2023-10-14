@@ -607,13 +607,52 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
             yield return StartCoroutine(NormalChat());
         }
         #endregion
-        //yield return StartCoroutine(NormalChat(characternameText, writerText));
-        //if(index == 4999)
-        //{
-        //yield return StartCoroutine(NormalChat_4999(characternameText, writerText)); 
-        //yield return StartCoroutine(NormalChat_2(characternameText, writerText));
-        //}
-        //yield return StartCoroutine(NormalChat(characternameText, writerText));
-        //yield return StartCoroutine(NormalChat("나는봇짐", "?안녕하세요, 반갑습니다. 대화 전환 테스트입니다 이것은 테스트지? 그럼 테스트지 테스트야 테스트군 테스트"));
     }
+
+    //굿엔딩 : 분골쇄신
+    IEnumerator GoodEndingStart()
+    {
+        //화면 어둡게하기
+        EndingManager.instance.ResetEndingBG();
+        EndingManager.instance.ShowEndingBG();
+
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[698].npc_name, dialogdb.NPC_01[698].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[699].npc_name, dialogdb.NPC_01[699].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[700].npc_name, dialogdb.NPC_01[700].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[701].npc_name, dialogdb.NPC_01[701].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[702].npc_name, dialogdb.NPC_01[702].comment, true));
+
+        //타이틀 이동
+        EndingManager.instance.LoadTitleScene();
+    }
+
+    //굿엔딩 시작
+    public void StartGoodEnidng()
+    {
+        StartCoroutine(GoodEndingStart());
+    }
+
+    //진엔딩 루트
+    IEnumerator RealEndingRoot()
+    {
+        //화면 어둡게하기
+        EndingManager.instance.ResetEndingBG();
+        EndingManager.instance.ShowEndingBG();
+
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[703].npc_name, dialogdb.NPC_01[703].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[704].npc_name, dialogdb.NPC_01[704].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[705].npc_name, dialogdb.NPC_01[705].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[706].npc_name, dialogdb.NPC_01[706].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[707].npc_name, dialogdb.NPC_01[707].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[708].npc_name, dialogdb.NPC_01[708].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[709].npc_name, dialogdb.NPC_01[709].comment, true));
+
+    }
+
+    //진엔딩 루트 시작
+    public void StartRealEndingRoot()
+    {
+        StartCoroutine(RealEndingRoot());
+    }
+
 }

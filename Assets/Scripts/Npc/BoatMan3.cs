@@ -389,6 +389,9 @@ public class BoatMan3 : MonoBehaviour
         yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[695].npc_name, npcDatabaseScr.NPC_01[695].comment, true));
         yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[696].npc_name, npcDatabaseScr.NPC_01[696].comment, true));
         yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[697].npc_name, npcDatabaseScr.NPC_01[697].comment, true));
+
+        //선택지 진행 (1.구하러 뛰어든다, 2.가만히 있는다)
+        EventManager.instance.SelectStart(NPCName.Shimbongsa, 7287);
     }
 
     //엔딩 대사 시작

@@ -187,7 +187,8 @@ public enum NPCName
     budhist,
     BusinessMan,
     JangSeong,
-    Shimbongsa
+    Shimbongsa,
+    shimCheong
 }
 
 
@@ -485,6 +486,20 @@ public class EventManager : MonoBehaviour
                 text_selectNum2.text = "아니오";
 
                 break;
+
+            //심봉사 선택지
+            case NPCName.Shimbongsa:
+
+                //NPC 다이얼로그 종료
+                DialogManager.instance.Dialouge_System.SetActive(false);
+
+                //1번 선택지 대사 입력
+                text_selectNum1.text = "구하러 뛰어든다";
+
+                //2번 선택지 대사 입력
+                text_selectNum2.text = "가만히 있는다";
+
+                break;
         }
     }
 
@@ -573,6 +588,23 @@ public class EventManager : MonoBehaviour
                 boatManDialogueScr3.StartEndingSentence();
 
                 break;
+
+            //심봉사 선택지일 경우
+            case 7287:
+                //다이얼로그 플래그 초기화
+                jangjieonDialogueScr.remainSentence = true;
+                jangjieonDialogueScr.isSentenceEnd = true;
+
+                //다이얼로그 띄우기
+                DialogManager.instance.Dialouge_System.SetActive(true);
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
+
+                //엔딩 진행
+                jangjieonDialogueScr.StartGoodEnidng();
+
+                break;
         }
     }
 
@@ -635,6 +667,23 @@ public class EventManager : MonoBehaviour
 
                 //플레이어 움직임 제한 해제
                 Controller.instance.TalkEnd();
+                break;
+
+            //심봉사 선택지일 경우
+            case 7287:
+                //다이얼로그 플래그 초기화
+                jangjieonDialogueScr.remainSentence = true;
+                jangjieonDialogueScr.isSentenceEnd = true;
+
+                //다이얼로그 띄우기
+                DialogManager.instance.Dialouge_System.SetActive(true);
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
+
+                //엔딩 진행
+                jangjieonDialogueScr.StartRealEndingRoot();
+
                 break;
         }
     }
