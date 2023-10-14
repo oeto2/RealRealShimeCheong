@@ -44,6 +44,9 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
     //남은 대화가 더 있는지
     public bool remainSentence = false;
 
+    //바다의 바쳐질 제물 대사를 진행했는지
+    public bool talkClue_6045;
+
     [System.Serializable]
     public struct DialogData
     {
@@ -588,6 +591,9 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
         //6045 : 바다의 바쳐질 제물
         else if (ObjectManager.instance.GetEquipObjectKey() == 6045)
         {
+            //가만히 있는다 대사 획득
+            talkClue_6045 = true;
+
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[599].npc_name, dialogdb.NPC_01[599].comment,true));
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[600].npc_name, dialogdb.NPC_01[600].comment, true));
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[601].npc_name, dialogdb.NPC_01[601].comment, true));

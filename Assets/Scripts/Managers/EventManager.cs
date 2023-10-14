@@ -10,7 +10,7 @@ public class EventSaveData
     //생성자
     public EventSaveData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck,
         bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End, bool _giveFlower, bool _day15ClueTalk, bool _day15ClueGet, bool _giveBoridduck_End
-        , bool _select2006_End, bool _boatManObject)
+        , bool _select2006_End, bool _boatManObject, bool _talkClue_6045)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -26,6 +26,7 @@ public class EventSaveData
         giveBoridduck_End = _giveBoridduck_End;
         select2006_End = _select2006_End;
         boatManObject = _boatManObject;
+        talkClue_6045 = _talkClue_6045;
     }
 
     //이벤트 활성화 여부
@@ -54,6 +55,9 @@ public class EventSaveData
 
     //사공의 물건 전달 여부
     public bool boatManObject;
+
+    //장지언과 6045대화를 진행했는지
+    public bool talkClue_6045;
 }
 
 //로드할 데이터
@@ -62,7 +66,7 @@ public class EventLoadData
     //생성자
     public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck,
         bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End, bool _giveFlower, bool _day15ClueTalk, bool _day15ClueGet, bool _giveBoridduck_End
-        , bool _select2006_End, bool _boatManObject)
+        , bool _select2006_End, bool _boatManObject, bool _talkClue_6045)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -78,6 +82,8 @@ public class EventLoadData
         giveBoridduck_End = _giveBoridduck_End;
         select2006_End = _select2006_End;
         boatManObject = _boatManObject;
+
+        talkClue_6045 = _talkClue_6045;
     }
 
     //이벤트 활성화 여부
@@ -105,6 +111,9 @@ public class EventLoadData
 
     //사공의 물건 전달 여부
     public bool boatManObject;
+
+    //장지언과 6045대화를 진행했는지
+    public bool talkClue_6045;
 }
 
 
@@ -188,6 +197,7 @@ public class EventManager : MonoBehaviour
     public Dialog_TypingWriter_BoatMan boatManDialogueScr;
     public Dialog_TypingWriter_BoatMan2 boatManDialogueScr2;
     public BoatMan3 boatManDialogueScr3;
+    public Dialog_TypingWriter_Jangjieon jangjieonDialogueScr;
 
     //싱글톤 패턴
     public static EventManager instance = null;
@@ -362,7 +372,7 @@ public class EventManager : MonoBehaviour
         curEventSaveData = new EventSaveData(eventCheck.joomackBab, eventCheck.binyeo,
             eventCheck.flower, eventCheck.muck, eventCheck.boridduck, eventProgress.deliveryMuck, eventEndCheck.muckEvent_End
             , eventProgress.joomackPuzzle_Clear, eventProgress.giveFlowerEnd, eventProgress.day15ClueStart, eventEndCheck.day15ClueGet, eventEndCheck.giveBoridduck_End
-            , selectEndCheck.select2006_End, boatManDialogueScr.boatManObject);
+            , selectEndCheck.select2006_End, boatManDialogueScr.boatManObject, jangjieonDialogueScr.talkClue_6045);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curEventSaveData);
@@ -401,6 +411,9 @@ public class EventManager : MonoBehaviour
 
             //사공의 물건 진행상황 초기화
             boatManDialogueScr.boatManObject = curEventLoadData.boatManObject;
+
+            //장지언 대화 진행상황 저장
+            jangjieonDialogueScr.talkClue_6045 = curEventLoadData.talkClue_6045;
         }
     }
 
