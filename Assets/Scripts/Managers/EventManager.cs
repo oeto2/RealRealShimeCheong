@@ -187,6 +187,7 @@ public class EventManager : MonoBehaviour
     //외부 스크립트 참조
     public Dialog_TypingWriter_BoatMan boatManDialogueScr;
     public Dialog_TypingWriter_BoatMan2 boatManDialogueScr2;
+    public BoatMan3 boatManDialogueScr3;
 
     //싱글톤 패턴
     public static EventManager instance = null;
@@ -546,14 +547,18 @@ public class EventManager : MonoBehaviour
             //뱃사공3 선택지일 경우
             case 7194:
 
+                //선택 완료
+                boatManDialogueScr3.isSelectDone = true;
+
                 //선택지 대사 끄기
                 gameObject_BoatMan3Text.SetActive(false);
 
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
 
-                Debug.Log("엔딩 진행");
-               
+                //엔딩 진행
+                boatManDialogueScr3.StartEndingSentence();
+
                 break;
         }
     }
