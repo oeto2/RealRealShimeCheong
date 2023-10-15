@@ -6019,6 +6019,7 @@ MonoBehaviour:
   text_selectNum2: {fileID: 775504644}
   int_selectKeyNum: 0
   gameObject_BoatMan3Text: {fileID: 1883927437}
+  gameObject_SelectNum2: {fileID: 482821289}
 --- !u!1 &226251995
 GameObject:
   m_ObjectHideFlags: 0

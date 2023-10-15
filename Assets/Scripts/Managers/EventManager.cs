@@ -245,6 +245,9 @@ public class EventManager : MonoBehaviour
     //뱃사공3 선택지 Text UI
     public GameObject gameObject_BoatMan3Text;
 
+    //선택지 2번 오브젝트
+    public GameObject gameObject_SelectNum2;
+
     private void Awake()
     {
         #region 싱글톤
@@ -493,12 +496,24 @@ public class EventManager : MonoBehaviour
                 //NPC 다이얼로그 종료
                 DialogManager.instance.Dialouge_System.SetActive(false);
 
-                //1번 선택지 대사 입력
-                text_selectNum1.text = "구하러 뛰어든다";
+                //만약 장지언과 6045번 단서 대화를 하지 않았을 경우
+                if (!jangjieonDialogueScr.talkClue_6045)
+                {
+                    //2번 선택지 비활성화
+                    gameObject_SelectNum2.SetActive(false);
 
-                //2번 선택지 대사 입력
-                text_selectNum2.text = "가만히 있는다";
+                    //1번 선택지 대사 입력
+                    text_selectNum1.text = "구하러 뛰어든다";
+                }
 
+                else
+                {
+                    //1번 선택지 대사 입력
+                    text_selectNum1.text = "구하러 뛰어든다";
+
+                    //2번 선택지 대사 입력
+                    text_selectNum2.text = "가만히 있는다";
+                }
                 break;
         }
     }
