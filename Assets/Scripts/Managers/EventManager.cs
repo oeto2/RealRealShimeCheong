@@ -58,6 +58,7 @@ public class EventSaveData
 
     //장지언과 6045대화를 진행했는지
     public bool talkClue_6045;
+
 }
 
 //로드할 데이터
@@ -188,6 +189,7 @@ public enum NPCName
     BusinessMan,
     JangSeong,
     Shimbongsa,
+    Shimbongsa2,
     shimCheong
 }
 
@@ -239,6 +241,9 @@ public class EventManager : MonoBehaviour
     //선택지 2번 Text
     public Text text_selectNum2;
 
+    //선택지 3번 Text
+    public Text text_selectNum3;
+
     //선택지의 키값
     public int int_selectKeyNum;
 
@@ -247,6 +252,11 @@ public class EventManager : MonoBehaviour
 
     //선택지 2번 오브젝트
     public GameObject gameObject_SelectNum2;
+
+    //선택지 3번 오브젝트
+    public GameObject gameObject_SelectNum3;
+
+    
 
     private void Awake()
     {
@@ -515,12 +525,35 @@ public class EventManager : MonoBehaviour
                     text_selectNum2.text = "가만히 있는다";
                 }
                 break;
+
+            //심봉사 선택지2
+            case NPCName.Shimbongsa2:
+
+                //NPC 다이얼로그 종료
+                DialogManager.instance.Dialouge_System.SetActive(false);
+
+                //선택지 3번 보이기
+                gameObject_SelectNum3.SetActive(true);
+
+                //1번 선택지 대사 입력
+                text_selectNum1.text = "얼마나 걱정한줄아느냐? 어찌 이런 일을 벌인 것이야!";
+
+                //2번 선택지 대사 입력
+                text_selectNum2.text = "미안하다.청아.";
+
+                //3번 선택지 대사 입력
+                text_selectNum3.text = "(아무말도 하지 않는다.)";
+
+                break;
         }
     }
 
     //선택지 1번 선택
     public void SelectNum1_Click()
     {
+        //2번 선택지 보이기
+        gameObject_SelectNum2.SetActive(true);
+
         //선택지 종료
         GameManager.instance.isPlayerSelecting = false;
 
@@ -618,6 +651,22 @@ public class EventManager : MonoBehaviour
 
                 //엔딩 진행
                 jangjieonDialogueScr.StartGoodEnidng();
+                break;
+
+            //심봉사2 선택지일 경우
+            case 7299:
+                //다이얼로그 플래그 초기화
+                jangjieonDialogueScr.remainSentence = true;
+                jangjieonDialogueScr.isSentenceEnd = true;
+
+                //다이얼로그 띄우기
+                DialogManager.instance.Dialouge_System.SetActive(true);
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
+
+                //굿엔딩 진행
+                jangjieonDialogueScr.StartGoodEnding_1();
 
                 break;
         }
@@ -699,6 +748,53 @@ public class EventManager : MonoBehaviour
                 //엔딩 진행
                 jangjieonDialogueScr.StartRealEndingRoot();
 
+                break;
+
+            //심봉사2 선택지일 경우
+            case 7299:
+                //다이얼로그 플래그 초기화
+                jangjieonDialogueScr.remainSentence = true;
+                jangjieonDialogueScr.isSentenceEnd = true;
+
+                //다이얼로그 띄우기
+                DialogManager.instance.Dialouge_System.SetActive(true);
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
+
+                //엔딩 진행
+                jangjieonDialogueScr.StartGoodEnding_2();
+
+                break;
+        }
+    }
+
+    //선택지 3번 선택
+    public void SelectNum3_Click()
+    {
+        //선택지 종료
+        GameManager.instance.isPlayerSelecting = false;
+
+        //커서 끄기
+        UIManager.instance.BlindCursor();
+
+        switch (int_selectKeyNum)
+        {
+
+            //심봉사2 선택지일 경우
+            case 7299:
+                //다이얼로그 플래그 초기화
+                jangjieonDialogueScr.remainSentence = true;
+                jangjieonDialogueScr.isSentenceEnd = true;
+
+                //다이얼로그 띄우기
+                DialogManager.instance.Dialouge_System.SetActive(true);
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
+
+                //진 엔딩 진행
+                jangjieonDialogueScr.StartRealEnding();
                 break;
         }
     }

@@ -647,12 +647,124 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
         yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[708].npc_name, dialogdb.NPC_01[708].comment, true));
         yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[709].npc_name, dialogdb.NPC_01[709].comment, true));
 
+        //선택지 시작
+        EventManager.instance.SelectStart(NPCName.Shimbongsa2, 7299);
     }
 
     //진엔딩 루트 시작
     public void StartRealEndingRoot()
     {
         StartCoroutine(RealEndingRoot());
+    }
+
+
+    //굿엔딩1
+    IEnumerator GoodEndingSentence_1()
+    {
+        //화면 어둡게하기
+        EndingManager.instance.ResetEndingBG();
+        EndingManager.instance.ShowEndingBG();
+
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[710].npc_name, dialogdb.NPC_01[710].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[711].npc_name, dialogdb.NPC_01[711].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[712].npc_name, dialogdb.NPC_01[712].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[713].npc_name, dialogdb.NPC_01[713].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[714].npc_name, dialogdb.NPC_01[714].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[715].npc_name, dialogdb.NPC_01[715].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[716].npc_name, dialogdb.NPC_01[716].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[717].npc_name, dialogdb.NPC_01[717].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[718].npc_name, dialogdb.NPC_01[718].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[719].npc_name, dialogdb.NPC_01[719].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[720].npc_name, dialogdb.NPC_01[720].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[721].npc_name, dialogdb.NPC_01[721].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[722].npc_name, dialogdb.NPC_01[722].comment, true));
+
+
+        //타이틀로 이동
+        EndingManager.instance.LoadTitleScene();
+    }
+
+    //굿엔딩 1 시작
+    public void StartGoodEnding_1()
+    {
+        StartCoroutine(GoodEndingSentence_1());
+    }
+
+    //굿엔딩2
+    IEnumerator GoodEndingSentence_2()
+    {
+        //화면 어둡게하기
+        EndingManager.instance.ResetEndingBG();
+        EndingManager.instance.ShowEndingBG();
+
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[723].npc_name, dialogdb.NPC_01[723].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[724].npc_name, dialogdb.NPC_01[724].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[725].npc_name, dialogdb.NPC_01[725].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[726].npc_name, dialogdb.NPC_01[726].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[727].npc_name, dialogdb.NPC_01[727].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[728].npc_name, dialogdb.NPC_01[728].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[729].npc_name, dialogdb.NPC_01[729].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[730].npc_name, dialogdb.NPC_01[730].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[731].npc_name, dialogdb.NPC_01[731].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[732].npc_name, dialogdb.NPC_01[732].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[733].npc_name, dialogdb.NPC_01[733].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[734].npc_name, dialogdb.NPC_01[734].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[735].npc_name, dialogdb.NPC_01[735].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[736].npc_name, dialogdb.NPC_01[736].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[737].npc_name, dialogdb.NPC_01[737].comment, true));
+
+        //타이틀로 이동
+        EndingManager.instance.LoadTitleScene();
+    }
+
+    //굿엔딩 2 시작
+    public void StartGoodEnding_2()
+    {
+        StartCoroutine(GoodEndingSentence_2());
+    }
+
+    //진엔딩
+    IEnumerator RealEndingSentence()
+    {
+        //화면 어둡게하기
+        EndingManager.instance.ResetEndingBG();
+        EndingManager.instance.ShowEndingBG();
+
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[738].npc_name, dialogdb.NPC_01[738].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[739].npc_name, dialogdb.NPC_01[739].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[740].npc_name, dialogdb.NPC_01[740].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[741].npc_name, dialogdb.NPC_01[741].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[742].npc_name, dialogdb.NPC_01[742].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[743].npc_name, dialogdb.NPC_01[743].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[744].npc_name, dialogdb.NPC_01[744].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[745].npc_name, dialogdb.NPC_01[745].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[746].npc_name, dialogdb.NPC_01[746].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[747].npc_name, dialogdb.NPC_01[747].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[748].npc_name, dialogdb.NPC_01[748].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[749].npc_name, dialogdb.NPC_01[749].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[750].npc_name, dialogdb.NPC_01[750].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[751].npc_name, dialogdb.NPC_01[751].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[752].npc_name, dialogdb.NPC_01[752].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[753].npc_name, dialogdb.NPC_01[753].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[754].npc_name, dialogdb.NPC_01[754].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[755].npc_name, dialogdb.NPC_01[755].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[756].npc_name, dialogdb.NPC_01[756].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[757].npc_name, dialogdb.NPC_01[757].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[758].npc_name, dialogdb.NPC_01[758].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[759].npc_name, dialogdb.NPC_01[759].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[760].npc_name, dialogdb.NPC_01[760].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[761].npc_name, dialogdb.NPC_01[761].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[762].npc_name, dialogdb.NPC_01[762].comment, true));
+        yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[763].npc_name, dialogdb.NPC_01[763].comment, true));
+
+        //타이틀로 이동
+        EndingManager.instance.LoadTitleScene();
+    }
+
+    //진엔딩 시작
+    public void StartRealEnding()
+    {
+        StartCoroutine(RealEndingSentence());
     }
 
 }
