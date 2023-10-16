@@ -752,6 +752,10 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
         yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[757].npc_name, dialogdb.NPC_01[757].comment, true));
         yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[758].npc_name, dialogdb.NPC_01[758].comment, true));
         yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[759].npc_name, dialogdb.NPC_01[759].comment, true));
+
+        //엔딩배경 색 변경
+        EndingManager.instance.ShowRealEndingBG();
+
         yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[760].npc_name, dialogdb.NPC_01[760].comment, true));
         yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[761].npc_name, dialogdb.NPC_01[761].comment, true));
         yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[762].npc_name, dialogdb.NPC_01[762].comment, true));

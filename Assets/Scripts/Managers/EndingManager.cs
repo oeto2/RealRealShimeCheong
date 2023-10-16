@@ -12,6 +12,9 @@ public class EndingManager : MonoBehaviour
     //엔딩 배경 오브젝트
     public GameObject gameObject_EndingBG;
 
+    //진엔딩 배경 오브젝트
+    public GameObject gameObject_RealEndingBG;
+
     //엔딩 배경 이미지
     public Image image_EndingBg;
 
@@ -20,6 +23,9 @@ public class EndingManager : MonoBehaviour
 
     //베드 엔딩 칼라값
     public Color32 color32_Bad;
+
+    //진 엔딩 칼라값
+    public Color32 color32_Real;
 
     //엔딩 배경 애니메이터
     public Animator animator_EndingBG;
@@ -40,21 +46,15 @@ public class EndingManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     //엔딩 배경 보이기
     public void ShowEndingBG()
     {
+        Debug.Log("엔딩 배경 보이기");
+
+        //진엔딩 배경 끄기
+        CloseRealEndingBG();
+
         //엔딩 배경 이미지 칼라 변경 (기본)
         image_EndingBg.color = color32_Nomal;
 
@@ -62,12 +62,27 @@ public class EndingManager : MonoBehaviour
         gameObject_EndingBG.SetActive(true);
     }
 
-    //베드엔딩 이미지로 변경
+    //배드엔딩 이미지로 변경
     public void ChangeToBadEndingBG()
     {
-        //엔딩 배경 이미지 칼라 변경(베드엔딩)
+        //엔딩 배경 이미지 칼라 변경(배드엔딩)
         image_EndingBg.color = color32_Bad;
     }
+
+    //진엔딩 이미지 보이기
+    public void ShowRealEndingBG()
+    {
+        Debug.Log("진엔딩 배경 변경 보이기");
+
+        gameObject_RealEndingBG.SetActive(true);
+    }
+
+    //진엔딩 이미지 끄기
+    public void CloseRealEndingBG()
+    {
+        gameObject_RealEndingBG.SetActive(false);
+    }
+
 
     //타이틀로 이동
     public void LoadTitleScene()
