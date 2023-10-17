@@ -46,6 +46,8 @@ public class JoomuckBab : MonoBehaviour
     {
         //불 붙이기
         LightFire = 0,
+        //약초 OR 물 넣기
+        PushHerb_OR_Water,
         //약초 넣기
         PushHerb,
         //물 넣기
@@ -126,9 +128,43 @@ public class JoomuckBab : MonoBehaviour
                             gameobjcet_Fire.SetActive(true);
 
                             //다음 순서로 진행
+                            makeHerbOrder = MakeHerbOrder.PushHerb_OR_Water;
+                        }
+                        break;
+
+                    //약초 OR 물 넣기
+                    case MakeHerbOrder.PushHerb_OR_Water:
+
+                        //허브를 장착하고 있었을 경우
+                        if (ObjectManager.instance.GetEquipObjectKey() == 1010)
+                        {
+                            //허브 넣기 대사 실행
+                            DialogManager.instance.StartPushHerbSentence();
+
+                            //약초 오브젝트 제거
+                            ObjectManager.instance.RemoveItem(1010);
+
+                            //다음 순서로 진행
+                            makeHerbOrder = MakeHerbOrder.PushWater;
+                        }
+
+                        //물 바가지를 장착하고 있었을 경우
+                        else if (ObjectManager.instance.GetEquipObjectKey() == 1004)
+                        {
+                            //물 넣기 다이얼로그 출력
+                            DialogManager.instance.Start_WaterBageSentence_2();
+
+                            //물 바가지 제거
+                            ObjectManager.instance.RemoveItem(1004);
+
+                            //바가지 획득
+                            ObjectManager.instance.GetItem(1003);
+
+                            //다음 순서로 진행
                             makeHerbOrder = MakeHerbOrder.PushHerb;
                         }
                         break;
+
 
                     //허브 넣기
                     case MakeHerbOrder.PushHerb:
@@ -139,8 +175,11 @@ public class JoomuckBab : MonoBehaviour
                             //허브 넣기 대사 실행
                             DialogManager.instance.StartPushHerbSentence();
 
+                            //가마솥 이미지 변경
+                            UsingGamasot();
+
                             //다음 순서로 진행
-                            makeHerbOrder = MakeHerbOrder.PushWater;
+                            makeHerbOrder = MakeHerbOrder.Done;
                         }
                         break;
 
@@ -148,14 +187,31 @@ public class JoomuckBab : MonoBehaviour
                     case MakeHerbOrder.PushWater:
 
                         //물 바가지 장착하고 있을 경우
-                        if (ObjectManager.instance.GetEquipObjectKey() == 7112)
+                        if (ObjectManager.instance.GetEquipObjectKey() == 1004)
                         {
                             //물 넣기 다이얼로그 출력
                             DialogManager.instance.Start_WaterBageSentence_2();
 
+                            //물 바가지 제거
+                            ObjectManager.instance.RemoveItem(1004);
+
+                            //바가지 획득
+                            ObjectManager.instance.GetItem(1003);
+
+                            //가마솥 이미지 변경
+                            UsingGamasot();
+
                             //다음 순서로 진행
                             makeHerbOrder = MakeHerbOrder.Done;
                         }
+                        break;
+
+                    //약초 물 마시기1
+                    case MakeHerbOrder.DrinkHerb:
+
+                        //선택지 진행
+                        
+
                         break;
                 }
             }
