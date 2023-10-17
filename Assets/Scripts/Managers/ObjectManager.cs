@@ -1605,7 +1605,6 @@ public class ObjectManager : MonoBehaviour
         return 0;
     }
 
-
     //해당 단서를 보유중인지 확인해주는 메서드
     public bool GetClue_Check(int _clueKey)
     {

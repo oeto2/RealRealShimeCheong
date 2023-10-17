@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class JoomuckBab : MonoBehaviour
 {
-
     //외부스크립트 참조
     public ObjectManager objectManagerScr;
 
@@ -22,6 +21,9 @@ public class JoomuckBab : MonoBehaviour
 
     //가마솥과 접촉했는지 확인하는 falg
     public bool isTouch;
+
+    //허브를 넣었는지 확인하는 falg
+    public bool pushHerb;
 
     //주먹밥 제작 순서
     public enum MakeJoomuckBab
@@ -87,9 +89,34 @@ public class JoomuckBab : MonoBehaviour
                         break;
                 }
             }
+
+            //약초를 장착하고 z키를 눌렀을 경우
+            else if(isTouch && ObjectManager.instance.GetEquipObjectKey() == 1010)
+            {
+                //이벤트 진행
+                StartCoroutine(HerbEvetn_Coroutine());
+            }
         }
     }
+    #region 약초 이벤트
+    public IEnumerator HerbEvetn_Coroutine()
+    {
+        if(!pushHerb)
+        {
+            //약초 넣기 시스템 메세지 출력
+            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(530), true);
+            //이후에 7398로 수정하기
+            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(531), false);
 
+            //플래그 초기화
+            pushHerb = true;
+        }
+
+        yield return null;
+    }
+    #endregion
+
+    #region 주먹밥 이벤트
     //장작 넣기
     private IEnumerator PushJangJack()
     {
@@ -479,4 +506,5 @@ public class JoomuckBab : MonoBehaviour
                 break;
         }
     }
+    #endregion
 }
