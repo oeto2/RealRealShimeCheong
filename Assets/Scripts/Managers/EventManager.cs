@@ -59,7 +59,6 @@ public class EventSaveData
 
     //장지언과 6045대화를 진행했는지
     public bool talkClue_6045;
-
 }
 
 //로드할 데이터

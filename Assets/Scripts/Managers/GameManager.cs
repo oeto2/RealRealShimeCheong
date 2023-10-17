@@ -10,7 +10,7 @@ public class GameSaveData
 {
     //생성자
     public GameSaveData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum, int _joomuckBabState, bool _getJangjack, 
-        bool _getBagage, bool _getRice, bool _boatMan2_Show)
+        bool _getBagage, bool _getRice, bool _boatMan2_Show, int _herbEventState)
     {
         playerPos = _playerPos; limitCamera = _LimitCamera; mapPinNum = _mapPinNum;
         joomuckBabState = _joomuckBabState;
@@ -18,6 +18,7 @@ public class GameSaveData
         getBagage = _getBagage;
         getRice = _getRice;
         boatman2_Show = _boatMan2_Show;
+        herbEventState = _herbEventState;
     }
 
     //플레이어 위치값
@@ -46,6 +47,9 @@ public class GameSaveData
 
     //뱃사공2 이벤트 진행여부
     public bool boatman2_Show;
+
+    //약초물 제작 이벤트 진행상황
+    public int herbEventState;
 }
 
 
@@ -55,7 +59,7 @@ public class GameLoadData
 {
     //생성자
     public GameLoadData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum, int _joomuckBabState, bool _getJangjack, bool _getBagage, bool _getRice
-        , bool _boatMan2_Show)
+        , bool _boatMan2_Show, int _herbEventState)
     {
         playerPos = _playerPos; limitCamera = _LimitCamera; mapPinNum = _mapPinNum;
         joomuckBabState = _joomuckBabState;
@@ -63,6 +67,7 @@ public class GameLoadData
         getBagage = _getBagage;
         getRice = _getRice;
         boatman2_Show = _boatMan2_Show;
+        herbEventState = _herbEventState;
     }
 
     //플레이어 위치값
@@ -91,6 +96,8 @@ public class GameLoadData
     //뱃사공2 이벤트 진행여부
     public bool boatman2_Show;
 
+    //약초물 제작 이벤트 진행상황
+    public int herbEventState;
 }
 
 
@@ -301,7 +308,7 @@ public class GameManager : MonoBehaviour
         //저장할 데이터 넣기
         curGameSaveData = new GameSaveData(new Vector3(gameObjcet_Player.transform.position.x, gameObjcet_Player.transform.position.y,
                           gameObjcet_Player.transform.position.z), cameraMoveScr.int_CurLimitNum, int_PinPosNum, joomuckBabScr.GetEventState()
-                          , getJangjack, getBagage, getRice, dialogBoatManScr.boatMan2_Show);
+                          , getJangjack, getBagage, getRice, dialogBoatManScr.boatMan2_Show, joomuckBabScr.GetHerbEventState());
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curGameSaveData);
@@ -337,6 +344,9 @@ public class GameManager : MonoBehaviour
 
             //가마솥 세팅
             joomuckBabScr.EventSetting(curGameLoadData.joomuckBabState);
+
+            //약초 이벤트 세팅
+            joomuckBabScr.HerbEventSetting(curGameLoadData.herbEventState);
 
             //아이템 세팅
 

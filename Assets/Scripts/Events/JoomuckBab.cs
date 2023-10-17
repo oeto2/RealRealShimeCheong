@@ -241,7 +241,186 @@ public class JoomuckBab : MonoBehaviour
     }
     #region 약초 이벤트
 
+    //약초 이벤트 상태 int 값 반환
+    public int GetHerbEventState()
+    {
+        switch (makeHerbOrder)
+        {
+            case MakeHerbOrder.LightFire:
+                return 0;
 
+            case MakeHerbOrder.PushHerb_OR_Water:
+                return 1;
+
+            case MakeHerbOrder.PushHerb:
+                return 2;
+
+            case MakeHerbOrder.PushWater:
+                return 3;
+
+            case MakeHerbOrder.Done:
+                return 4;
+
+            case MakeHerbOrder.DrinkHerb:
+                return 5;
+
+            case MakeHerbOrder.DrinkHerb2:
+                return 6;
+
+            case MakeHerbOrder.Edning:
+                return 7;
+
+            default:
+                return 0;
+        }
+    }
+
+    //주먹밥 이벤트 세팅
+    public void HerbEventSetting(int _eventNum)
+    {
+        switch (_eventNum)
+        {
+            //불 붙이기 전
+            case 0:
+
+                //이벤트 진행상황 변경
+                makeHerbOrder = MakeHerbOrder.LightFire;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 없애기
+                gameobjcet_Fire.SetActive(false);
+
+                //가마솥 사용 이미지 끄기
+                gameObjcet_GamasotUsing.SetActive(false);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+
+            //불 붙임
+            case 1:
+
+                //이벤트 진행상황 변경
+                makeHerbOrder = MakeHerbOrder.PushHerb_OR_Water;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 보이기
+                gameobjcet_Fire.SetActive(true);
+
+                //가마솥 사용 이미지 끄기
+                gameObjcet_GamasotUsing.SetActive(false);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+
+            //약초 넣음
+            case 2:
+
+                //이벤트 진행상황 변경
+                makeHerbOrder = MakeHerbOrder.PushHerb;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 보이기
+                gameobjcet_Fire.SetActive(true);
+
+                //가마솥 사용 이미지 끄기
+                gameObjcet_GamasotUsing.SetActive(false);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+
+            //물 넣음
+            case 3:
+
+                //이벤트 진행상황 변경
+                makeHerbOrder = MakeHerbOrder.PushWater;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 보이기
+                gameobjcet_Fire.SetActive(true);
+
+                //가마솥 사용 이미지 끄기
+                gameObjcet_GamasotUsing.SetActive(false);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+
+            //약초랑 물 넣음
+            case 4:
+
+                //이벤트 진행상황 변경
+                makeHerbOrder = MakeHerbOrder.Done;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 보이기
+                gameobjcet_Fire.SetActive(true);
+
+                //가마솥 사용 이미지 보이기
+                gameObjcet_GamasotUsing.SetActive(true);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(false);
+
+                break;
+
+            //약초물 마시기1
+            case 5:
+
+                //이벤트 진행상황 변경
+                makeHerbOrder = MakeHerbOrder.DrinkHerb;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 보이기
+                gameobjcet_Fire.SetActive(true);
+
+                //가마솥 사용 이미지 보이기
+                gameObjcet_GamasotUsing.SetActive(true);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(false);
+
+                break;
+
+            //약초물 마시기2    
+            case 6:
+
+                //이벤트 진행상황 변경
+                makeHerbOrder = MakeHerbOrder.DrinkHerb2;
+
+                //장작 보이기
+                gameObject_JangJack.SetActive(true);
+
+                //불 보이기
+                gameobjcet_Fire.SetActive(true);
+
+                //가마솥 사용 이미지 보이기
+                gameObjcet_GamasotUsing.SetActive(true);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(false);
+
+                break;
+        }
+    }
     #endregion
 
     #region 주먹밥 이벤트
