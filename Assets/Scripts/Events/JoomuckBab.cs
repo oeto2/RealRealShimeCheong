@@ -206,13 +206,21 @@ public class JoomuckBab : MonoBehaviour
                         }
                         break;
 
-                    //약초 물 마시기1
+                    //약초 제작완료 시
+                    case MakeHerbOrder.Done:
+
+                        //다음 순서로 진행
+                        makeHerbOrder = MakeHerbOrder.DrinkHerb;
+
+                        break;
+
+                    //약초 물 마시기 1
                     case MakeHerbOrder.DrinkHerb:
 
                         //선택지 진행
-                        
-
+                        EventManager.instance.SelectStart(NPCName.Herb, 5799);
                         break;
+
                 }
             }
         }

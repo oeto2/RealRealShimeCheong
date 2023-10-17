@@ -190,7 +190,11 @@ public enum NPCName
     JangSeong,
     Shimbongsa,
     Shimbongsa2,
-    shimCheong
+    shimCheong,
+
+    //이벤트
+    Herb,
+    Herb2
 }
 
 
@@ -201,6 +205,7 @@ public class EventManager : MonoBehaviour
     public Dialog_TypingWriter_BoatMan2 boatManDialogueScr2;
     public BoatMan3 boatManDialogueScr3;
     public Dialog_TypingWriter_Jangjieon jangjieonDialogueScr;
+    public JoomuckBab joomuckBabScr;
 
     //싱글톤 패턴
     public static EventManager instance = null;
@@ -250,13 +255,16 @@ public class EventManager : MonoBehaviour
     //뱃사공3 선택지 Text UI
     public GameObject gameObject_BoatMan3Text;
 
+    //약초물 마시기 선택지 Text UI
+    public GameObject gameObject_DrinkHerbText;
+
     //선택지 2번 오브젝트
     public GameObject gameObject_SelectNum2;
 
     //선택지 3번 오브젝트
     public GameObject gameObject_SelectNum3;
 
-    
+
 
     private void Awake()
     {
@@ -545,6 +553,25 @@ public class EventManager : MonoBehaviour
                 text_selectNum3.text = "(아무말도 하지 않는다.)";
 
                 break;
+
+
+
+            //약초 마시기 선택지
+            case NPCName.Herb:
+
+                //NPC 다이얼로그 종료
+                DialogManager.instance.Dialouge_System.SetActive(false);
+
+                //약초 마시기 Text 띄우기
+                gameObject_DrinkHerbText.SetActive(true);
+                    
+                //1번 선택지 대사 입력
+                text_selectNum1.text = "예";
+
+                //2번 선택지 대사 입력
+                text_selectNum2.text = "아니오";
+
+                break;
         }
     }
 
@@ -584,7 +611,7 @@ public class EventManager : MonoBehaviour
             case 7355:
 
                 //사공의 물건 퀘스트를 완료하지 못했다면
-                if(boatManDialogueScr.boatManObject == false)
+                if (boatManDialogueScr.boatManObject == false)
                 {
                     //선택지 창 끄기
                     gameObject_SelectUI.SetActive(false);
@@ -668,6 +695,21 @@ public class EventManager : MonoBehaviour
                 //굿엔딩 진행
                 jangjieonDialogueScr.StartGoodEnding_1();
 
+                break;
+
+            //약초물 마시기1
+            case 5799:
+                
+                //이벤트 진행 상황 변경
+                joomuckBabScr.makeHerbOrder = JoomuckBab.MakeHerbOrder.DrinkHerb;
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
+
+                //이동속도 증가, 화면 밝기 증가
+                
+
+                //대사 진행
                 break;
         }
     }
@@ -764,6 +806,15 @@ public class EventManager : MonoBehaviour
 
                 //엔딩 진행
                 jangjieonDialogueScr.StartGoodEnding_2();
+
+                break;
+
+
+            //약초물 마시기1
+            case 5799:
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
 
                 break;
         }
