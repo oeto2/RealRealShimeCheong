@@ -22,9 +22,6 @@ public class JoomuckBab : MonoBehaviour
     //가마솥과 접촉했는지 확인하는 falg
     public bool isTouch;
 
-    //허브를 넣었는지 확인하는 falg
-    public bool pushHerb;
-
     //주먹밥 제작 순서
     public enum MakeJoomuckBab
     {
@@ -44,11 +41,32 @@ public class JoomuckBab : MonoBehaviour
         Done
     }
 
+    //약초 제작 순서
+    public enum MakeHerbOrder
+    {
+        //불 붙이기
+        LightFire = 0,
+        //약초 넣기
+        PushHerb,
+        //물 넣기
+        PushWater,
+        //약초 물 제작 완료
+        Done,
+        //약초 물 마시기1,
+        DrinkHerb,
+        //약초 물 마시기2,
+        DrinkHerb2,
+    }
+
     //주먹밥 만들기 이벤트 순서
     public MakeJoomuckBab makeJoomuckBab = MakeJoomuckBab.PushJangJack;
 
+    //약초 물 제작 순서
+    public MakeHerbOrder makeHerbOrder = MakeHerbOrder.LightFire;
+
     private void Update()
     {
+        //주먹밥 이벤트 실행 조건
         if (isTouch && Input.GetKeyDown(KeyCode.Z))
         {
             //주먹밥 이벤트가 활성화 중이고 장작을 착용중이라면
@@ -85,35 +103,69 @@ public class JoomuckBab : MonoBehaviour
                     case MakeJoomuckBab.MakeJoomuckBab:
                         StartCoroutine(TakeJoomuckBab());
 
-                        
                         break;
                 }
             }
 
-            //약초를 장착하고 z키를 눌렀을 경우
-            else if(isTouch && ObjectManager.instance.GetEquipObjectKey() == 1010)
+            // 허브 이벤트 (주먹밥 만들기 이벤트가 끝난 경우에만 진행)
+            else if (isTouch && Input.GetKeyDown(KeyCode.Z) && makeJoomuckBab == MakeJoomuckBab.Done)
             {
-                //이벤트 진행
-                StartCoroutine(HerbEvetn_Coroutine());
+                //허브 이벤트 진행
+                switch (makeHerbOrder)
+                {
+                    //불 붙이기
+                    case MakeHerbOrder.LightFire:
+
+                        //부싯돌을 장착하고 있을 경우
+                        if (ObjectManager.instance.GetEquipObjectKey() == 1002)
+                        {
+                            //불 붙이기 대사 실행
+                            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(520), true);
+
+                            //불 오브젝트 활성화
+                            gameobjcet_Fire.SetActive(true);
+
+                            //다음 순서로 진행
+                            makeHerbOrder = MakeHerbOrder.PushHerb;
+                        }
+                        break;
+
+                    //허브 넣기
+                    case MakeHerbOrder.PushHerb:
+
+                        //허브를 장착하고 있을 경우
+                        if (ObjectManager.instance.GetEquipObjectKey() == 1010)
+                        {
+                            //허브 넣기 대사 실행
+                            DialogManager.instance.StartPushHerbSentence();
+
+                            //다음 순서로 진행
+                            makeHerbOrder = MakeHerbOrder.PushWater;
+                        }
+                        break;
+
+                    //물 넣기
+                    case MakeHerbOrder.PushWater:
+
+                        //물 바가지 장착하고 있을 경우
+                        if (ObjectManager.instance.GetEquipObjectKey() == 7112)
+                        {
+                            //물 넣기 다이얼로그 출력
+                            DialogManager.instance.Start_WaterBageSentence_2();
+
+                            //다음 순서로 진행
+                            makeHerbOrder = MakeHerbOrder.Done;
+                        }
+                        break;
+                }
             }
         }
     }
     #region 약초 이벤트
-    public IEnumerator HerbEvetn_Coroutine()
-    {
-        if(!pushHerb)
-        {
-            //약초 넣기 시스템 메세지 출력
-            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(530), true);
-            //이후에 7398로 수정하기
-            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(531), false);
 
-            //플래그 초기화
-            pushHerb = true;
-        }
 
-        yield return null;
-    }
+
+
     #endregion
 
     #region 주먹밥 이벤트
@@ -137,7 +189,7 @@ public class JoomuckBab : MonoBehaviour
         }
 
         //부싯돌을 착용 중이라면
-        else if(ObjectManager.instance.GetEquipObjectKey() == 1002)
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1002)
         {
             //시스템 메세지 출력
             DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(265), true);
@@ -222,7 +274,7 @@ public class JoomuckBab : MonoBehaviour
                 if (DialogManager.instance.IsSystemMessageEnd() == true)
                 {
                     yield return new WaitForSeconds(0.2f);
-                    
+
                     break;
                 }
 

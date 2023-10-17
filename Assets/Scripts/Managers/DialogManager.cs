@@ -182,6 +182,28 @@ public class DialogManager : MonoBehaviour
         }
     }
 
+    #region 약초 이벤트 대사
+    //약초 넣기 대사 출력
+    IEnumerator SystemMessage_HerbSentence()
+    {
+        //약초 넣기 시스템 메세지 출력
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(530), true));
+
+        //이후에 7398로 수정하기
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(531), true));
+
+        //다이얼로그 종료
+        Dialouge_System.SetActive(false);
+    }
+
+    //약초 넣기 대사 시작
+    public void StartPushHerbSentence()
+    {
+        StartCoroutine(SystemMessage_HerbSentence());
+    }
+
+    #endregion
+
 
     #region 가마솥 이벤트 대사
 
@@ -192,10 +214,22 @@ public class DialogManager : MonoBehaviour
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(282), true));
     }
 
+    //물바가지 대사2
+    IEnumerator SystemMessage_WaterBagage_2()
+    {
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(522), true));
+    }
+
     //물 바가지 대사 출력
     public void Start_WaterBageSentence()
     {
         StartCoroutine(SystemMessage_WaterBagage());
+    }
+
+    //물 바가지 대사 출력2
+    public void Start_WaterBageSentence_2()
+    {
+        StartCoroutine(SystemMessage_WaterBagage_2());
     }
 
 
