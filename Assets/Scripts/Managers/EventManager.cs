@@ -11,7 +11,7 @@ public class EventSaveData
     //생성자
     public EventSaveData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck,
         bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End, bool _giveFlower, bool _day15ClueTalk, bool _day15ClueGet, bool _giveBoridduck_End
-        , bool _select2006_End, bool _boatManObject, bool _talkClue_6045)
+        , bool _select2006_End, bool _boatManObject, bool _talkClue_6045, bool _drinkHerb)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -28,6 +28,7 @@ public class EventSaveData
         select2006_End = _select2006_End;
         boatManObject = _boatManObject;
         talkClue_6045 = _talkClue_6045;
+        drinkHerb = _drinkHerb;
     }
 
     //이벤트 활성화 여부
@@ -59,6 +60,9 @@ public class EventSaveData
 
     //장지언과 6045대화를 진행했는지
     public bool talkClue_6045;
+
+    //약초물을 마셨는지
+    public bool drinkHerb;
 }
 
 //로드할 데이터
@@ -67,7 +71,7 @@ public class EventLoadData
     //생성자
     public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck,
         bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End, bool _giveFlower, bool _day15ClueTalk, bool _day15ClueGet, bool _giveBoridduck_End
-        , bool _select2006_End, bool _boatManObject, bool _talkClue_6045)
+        , bool _select2006_End, bool _boatManObject, bool _talkClue_6045, bool _drinkHerb)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -85,6 +89,8 @@ public class EventLoadData
         boatManObject = _boatManObject;
 
         talkClue_6045 = _talkClue_6045;
+
+        drinkHerb = _drinkHerb;
     }
 
     //이벤트 활성화 여부
@@ -115,6 +121,9 @@ public class EventLoadData
 
     //장지언과 6045대화를 진행했는지
     public bool talkClue_6045;
+
+    //약초물을 마셨는지
+    public bool drinkHerb;
 }
 
 
@@ -267,6 +276,8 @@ public class EventManager : MonoBehaviour
     //선택지 3번 오브젝트
     public GameObject gameObject_SelectNum3;
 
+    //약초를 마셨는지
+    public bool drinkHerb;
 
 
     private void Awake()
@@ -397,7 +408,7 @@ public class EventManager : MonoBehaviour
         curEventSaveData = new EventSaveData(eventCheck.joomackBab, eventCheck.binyeo,
             eventCheck.flower, eventCheck.muck, eventCheck.boridduck, eventProgress.deliveryMuck, eventEndCheck.muckEvent_End
             , eventProgress.joomackPuzzle_Clear, eventProgress.giveFlowerEnd, eventProgress.day15ClueStart, eventEndCheck.day15ClueGet, eventEndCheck.giveBoridduck_End
-            , selectEndCheck.select2006_End, boatManDialogueScr.boatManObject, jangjieonDialogueScr.talkClue_6045);
+            , selectEndCheck.select2006_End, boatManDialogueScr.boatManObject, jangjieonDialogueScr.talkClue_6045, drinkHerb);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curEventSaveData);
@@ -439,6 +450,21 @@ public class EventManager : MonoBehaviour
 
             //장지언 대화 진행상황 저장
             jangjieonDialogueScr.talkClue_6045 = curEventLoadData.talkClue_6045;
+
+            //약초물 플래그 초기화
+            drinkHerb = curEventLoadData.drinkHerb;
+
+            //플레이어 속도, 시야 초기화
+            PlayerStateReset();
+
+            //만약 약초를 마신 상태라면 이속,시야 2배
+            if (curEventLoadData.drinkHerb)
+            {
+                PlayerStateMultiple();
+
+                //플래그 초기화
+                joomuckBabScr.drinkHerb = true;
+            }
         }
     }
 
@@ -709,9 +735,11 @@ public class EventManager : MonoBehaviour
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
 
+                //약초물 마심
+                drinkHerb = true;
+
                 //이동속도 2배 증가, 화면 밝기 증가
-                Controller.instance.moveSpeed *= 2;
-                light2dScr.pointLightOuterRadius *= 2;
+                PlayerStateMultiple();
 
                 //대사 진행
                 DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(348), true);
@@ -878,4 +906,19 @@ public class EventManager : MonoBehaviour
                 break;
         }
     }
+
+    //속도, 시야 리셋
+    public void PlayerStateReset()
+    {
+        Controller.instance.moveSpeed = 10;
+        light2dScr.pointLightOuterRadius = 6;
+    }
+
+    //속도, 시야 2배
+    public void PlayerStateMultiple()
+    {
+        Controller.instance.moveSpeed *= 2;
+        light2dScr.pointLightOuterRadius *= 2;
+    }
 }
+

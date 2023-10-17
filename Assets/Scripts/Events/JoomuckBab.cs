@@ -22,6 +22,9 @@ public class JoomuckBab : MonoBehaviour
     //가마솥과 접촉했는지 확인하는 falg
     public bool isTouch;
 
+    //약초를 마셨는지
+    public bool drinkHerb;
+
     //주먹밥 제작 순서
     public enum MakeJoomuckBab
     {
