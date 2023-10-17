@@ -58,6 +58,8 @@ public class JoomuckBab : MonoBehaviour
         DrinkHerb,
         //약초 물 마시기2,
         DrinkHerb2,
+        //엔딩
+        Edning
     }
 
     //주먹밥 만들기 이벤트 순서
@@ -224,6 +226,15 @@ public class JoomuckBab : MonoBehaviour
                         }
                         break;
 
+                    //약초 물 마시기 2
+                    case MakeHerbOrder.DrinkHerb2:
+
+                        //선택지 진행
+                        if (!DialogManager.instance.Dialouge_System.activeSelf)
+                        {
+                            EventManager.instance.SelectStart(NPCName.Herb, 7009);
+                        }
+                        break;
                 }
             }
         }

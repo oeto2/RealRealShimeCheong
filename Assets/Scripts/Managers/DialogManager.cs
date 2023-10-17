@@ -259,4 +259,27 @@ public class DialogManager : MonoBehaviour
     {
         StartCoroutine(BoatMan3_Sentence());
     }
+
+    //과유불급 엔딩대화
+    IEnumerator BadEndingSentence()
+    {
+        //배경 어둡게 변경
+        EndingManager.instance.ShowEndingBG();
+
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(419), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(420), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(421), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(422), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(423), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(424), true));
+
+        //타이틀 이동
+        EndingManager.instance.LoadTitleScene();
+    }
+
+    //과유불급 엔딩 시작
+    public void StartBadEndingSentence()
+    {
+        StartCoroutine(BadEndingSentence());
+    }
 }

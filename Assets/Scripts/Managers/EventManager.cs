@@ -718,6 +718,21 @@ public class EventManager : MonoBehaviour
                 DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(348), true);
 
                 break;
+
+            //약초물 마시기2
+            case 7009:
+
+                //이벤트 진행 상황 변경
+                joomuckBabScr.makeHerbOrder = JoomuckBab.MakeHerbOrder.Edning;
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
+
+                //엔딩 시작
+                Debug.Log("과유불급 엔딩");
+                DialogManager.instance.StartBadEndingSentence();
+
+                break;
         }
     }
 
@@ -819,6 +834,14 @@ public class EventManager : MonoBehaviour
 
             //약초물 마시기1
             case 5799:
+
+                //선택지 종료
+                gameObject_SelectUI.SetActive(false);
+
+                break;
+
+            //약초물 마시기2
+            case 7009:
 
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
