@@ -218,7 +218,10 @@ public class JoomuckBab : MonoBehaviour
                     case MakeHerbOrder.DrinkHerb:
 
                         //선택지 진행
-                        EventManager.instance.SelectStart(NPCName.Herb, 5799);
+                        if (!DialogManager.instance.Dialouge_System.activeSelf)
+                        {
+                            EventManager.instance.SelectStart(NPCName.Herb, 5799);
+                        }
                         break;
 
                 }
@@ -226,8 +229,6 @@ public class JoomuckBab : MonoBehaviour
         }
     }
     #region 약초 이벤트
-
-
 
 
     #endregion

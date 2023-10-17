@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 
 //세이브할 데이터
 public class EventSaveData
@@ -207,6 +208,9 @@ public class EventManager : MonoBehaviour
     public Dialog_TypingWriter_Jangjieon jangjieonDialogueScr;
     public JoomuckBab joomuckBabScr;
 
+    //플레이어 빛 스크립트
+    public Light2D light2dScr;
+    
     //싱글톤 패턴
     public static EventManager instance = null;
 
@@ -701,15 +705,18 @@ public class EventManager : MonoBehaviour
             case 5799:
                 
                 //이벤트 진행 상황 변경
-                joomuckBabScr.makeHerbOrder = JoomuckBab.MakeHerbOrder.DrinkHerb;
+                joomuckBabScr.makeHerbOrder = JoomuckBab.MakeHerbOrder.DrinkHerb2;
 
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
 
-                //이동속도 증가, 화면 밝기 증가
-                
+                //이동속도 2배 증가, 화면 밝기 증가
+                Controller.instance.moveSpeed *= 2;
+                light2dScr.pointLightOuterRadius *= 2;
 
                 //대사 진행
+                DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(348), true);
+
                 break;
         }
     }
