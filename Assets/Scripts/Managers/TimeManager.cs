@@ -252,6 +252,16 @@ public class TimeManager : MonoBehaviour
 
                 //하루가 지났음
                 tutorialManagerScr.PassDay();
+
+                //만약 약초물을 마신 상태라면
+                if (EventManager.instance.drinkHerb)
+                {
+                    //약초물 플래그 초기화
+                    EventManager.instance.drinkHerb = false;
+
+                    //플레이어 스텟 초기화
+                    EventManager.instance.PlayerStateReset();
+                }
             }
 
 
@@ -377,6 +387,8 @@ public class TimeManager : MonoBehaviour
         float_RealTime = 0;
         //캘린더 날짜 변경
         NextDayAnimaton(int_DayCount);
+
+        
     }
 
 
