@@ -96,10 +96,19 @@ public class DialogManager : MonoBehaviour
         return npcDatabaseScr.NPC_01[_indexNum].comment;
     }
 
+    //해당하는 인덱스 값의 NPC 이름을 반환해주는 메서드
+    public string GetNpcName(int _indexNum)
+    {
+        return npcDatabaseScr.NPC_01[_indexNum].npc_name;
+    }
+
 
     //시스템 메세지 코루틴
     IEnumerator SystemMessage(string _narration, bool _exit)
     {
+        //다이얼로그 비우기
+        CleanDialogue();
+
         //코루틴 중복 실행 방지
         isSentence_Start = true;
 
@@ -234,6 +243,16 @@ public class DialogManager : MonoBehaviour
         }
     }
 
+    //시스템 메세지를 시작해주는 메서드(이름 포함)
+    public void Start_SystemMessage(string _narrator, string _narration, bool _exit)
+    {
+        //코루틴 중복실행 방지
+        if (!isSentence_Start)
+        {
+            StartCoroutine(SystemMessage(_narrator,_narration, _exit));
+        }
+    }
+
     //시스템 메세지가 끝나면 true, 아니면 false 반환)
     public bool IsSystemMessageEnd()
     {
@@ -351,9 +370,43 @@ public class DialogManager : MonoBehaviour
         StartCoroutine(BadEndingSentence());
     }
 
+    //고립무원 엔딩대화
+    IEnumerator BadEndingSentence2()
+    {
+        //배경 어둡게 변경
+        EndingManager.instance.ShowEndingBG();
+
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(795), DialogManager.instance.GetNpcSentence(795), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(796), DialogManager.instance.GetNpcSentence(796), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(797), DialogManager.instance.GetNpcSentence(797), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(798), DialogManager.instance.GetNpcSentence(798), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(799), DialogManager.instance.GetNpcSentence(799), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(800), DialogManager.instance.GetNpcSentence(800), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(801), DialogManager.instance.GetNpcSentence(801), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(802), DialogManager.instance.GetNpcSentence(802), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(803), DialogManager.instance.GetNpcSentence(803), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(804), DialogManager.instance.GetNpcSentence(804), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(805), DialogManager.instance.GetNpcSentence(805), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(806), DialogManager.instance.GetNpcSentence(806), true));
+        yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(807), DialogManager.instance.GetNpcSentence(807), true));
+
+        //타이틀 이동
+        EndingManager.instance.LoadTitleScene();
+    }
+
+    //고립무원 엔딩 시작
+    public void StartBadEndingSentence2()
+    {
+        //고립무원 엔딩 시작
+        StartCoroutine(BadEndingSentence2());
+    }
+
     //NPC 초상화 변경
     public void ChangeNpcPortrait(string _narrator)
     {
+        Debug.Log($"초상화 변경 실행 : {_narrator}");
+        
+
         switch (_narrator)
         {
             case "심학규":
@@ -447,5 +500,12 @@ public class DialogManager : MonoBehaviour
                 break;
 
         }
+    }
+
+    //다이얼로그 비우기
+    public void CleanDialogue()
+    {
+        //NPC 이름 비우기
+        text_NpcName.text = "";
     }
 }

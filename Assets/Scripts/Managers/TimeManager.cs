@@ -153,6 +153,9 @@ public class TimeManager : MonoBehaviour
     //시간 진짜 정지 (엔딩)
     public bool realTimeStop;
 
+    //고립무원 엔딩을 위한 플래그
+    public bool isEndingStart;
+
     public void Awake()
     {
         if(instance == null)
@@ -191,8 +194,12 @@ public class TimeManager : MonoBehaviour
         //날짜가 모두 지났을 경우
         if(int_DayCount == 15)
         {
-            //배드엔딩 진행
-            
+            if(!isEndingStart)
+            {
+                isEndingStart = true;
+                //배드엔딩 진행
+                DialogManager.instance.StartBadEndingSentence2();
+            }
         }
 
 
@@ -729,4 +736,5 @@ public class TimeManager : MonoBehaviour
     {
         realTimeStop = true;
     }
+    
 }
