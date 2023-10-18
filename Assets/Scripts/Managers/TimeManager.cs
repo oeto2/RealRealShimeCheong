@@ -188,7 +188,11 @@ public class TimeManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        //날짜가 모두 지났을 경우
+        if(int_DayCount == 3)
+        {
+            //배드엔딩 진행
+        }
 
 
         //float RealTime을 int로 변환후 프레임당 갱신
@@ -252,11 +256,11 @@ public class TimeManager : MonoBehaviour
 
                 //하루가 지났음
                 tutorialManagerScr.PassDay();
-
                 //만약 약초물을 마신 상태라면
                 if (EventManager.instance.drinkHerb)
                 {
                     //약초물 플래그 초기화
+
                     EventManager.instance.drinkHerb = false;
 
                     //플레이어 스텟 초기화
