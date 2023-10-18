@@ -616,4 +616,5 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         }
         #endregion
     }
+
 }

@@ -45,10 +45,14 @@ public class DialogManager : MonoBehaviour
     //시스템 다이얼로그 텍스트
     public Text ChatText;
 
+    //NPC 이름 Text
+    public Text text_NpcName;
+
     //시스템 초상화
     public Image System_Portrait;
 
     //초상화 스프라이트 이미지들
+    [Tooltip("0:심학, 1:뺑덕, 2:거지, 3:스님, 4:귀덕, 5:장사, 6:장승, 7:장승2, 8:뱃사, 9:심청, 10:송나라")]
     public Sprite[] sprites;
 
     //출력중인 대사 값
@@ -154,7 +158,71 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    
+    //시스템 메세지 코루틴
+    IEnumerator SystemMessage(string _narrator, string _narration, bool _exit)
+    {
+        //화자에 따라 초상화, 이름 변경
+        ChangeNpcPortrait(_narrator);
+
+        //코루틴 중복 실행 방지
+        isSentence_Start = true;
+
+        //Text 비우기
+        writerText = "";
+
+        //초상화 변경
+        System_Portrait.sprite = sprites[0];
+
+        //시스템 다이얼로그 활성화
+        Dialouge_System.SetActive(true);
+
+        int a = 0;
+
+        for (a = 0; a < _narration.Length; a++)
+        //for (a = 0; a < textSpeed; a++)
+        {
+            writerText += _narration[a];
+            ChatText.text = writerText;
+
+            //텍스트 타이핑 시간 조절
+            //yield return null;
+
+            if (a > 2 && Input.GetKeyDown(KeyCode.Z))
+            {
+                //코루틴 중복 실행 방지해제
+                isSentence_Start = false;
+
+                //시스템 다이얼로그 비활성화
+                //Dialouge_System.SetActive(false);
+            }
+
+            yield return new WaitForSeconds(0.02f);
+        }
+        yield return null;
+
+        //Z키를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                //코루틴 중복 실행 방지해제
+                isSentence_Start = false;
+
+                if (_exit)
+                {
+                    //시스템 다이얼로그 비활성화
+                    Dialouge_System.SetActive(false);
+                }
+
+                //Text 비우기
+                writerText = "";
+                break;
+            }
+            yield return null;
+        }
+    }
+
+
 
     //시스템 메세지를 시작해주는 메서드
     public void Start_SystemMessage(string _narration, bool _exit)
@@ -281,5 +349,103 @@ public class DialogManager : MonoBehaviour
     public void StartBadEndingSentence()
     {
         StartCoroutine(BadEndingSentence());
+    }
+
+    //NPC 초상화 변경
+    public void ChangeNpcPortrait(string _narrator)
+    {
+        switch (_narrator)
+        {
+            case "심학규":
+
+                //초상화 변경
+                System_Portrait.sprite = sprites[0];
+
+                //이름 변경
+                text_NpcName.text = "심학규";
+                break;
+
+            case "뺑덕어멈":
+
+                //초상화 변경
+                System_Portrait.sprite = sprites[1];
+
+                //이름 변경
+                text_NpcName.text = "뺑덕어멈";
+                break;
+
+            case "거지":
+
+                //초상화 변경
+                System_Portrait.sprite = sprites[2];
+
+                //이름 변경
+                text_NpcName.text = "거지";
+                break;
+
+            case "스님":
+
+                //초상화 변경
+                System_Portrait.sprite = sprites[3];
+
+                //이름 변경
+                text_NpcName.text = "스님";
+                break;
+
+            case "귀덕어멈":
+
+                //초상화 변경
+                System_Portrait.sprite = sprites[4];
+
+                //이름 변경
+                text_NpcName.text = "귀덕어멈";
+                break;
+
+            case "장사꾼":
+
+                //초상화 변경
+                System_Portrait.sprite = sprites[5];
+
+                //이름 변경
+                text_NpcName.text = "장사꾼";
+                break;
+
+            case "향리 댁 부인":
+
+                //초상화 변경
+                System_Portrait.sprite = sprites[6];
+
+                //이름 변경
+                text_NpcName.text = "향리 댁 부인";
+                break;
+
+            case "뱃사공":
+
+                //초상화 변경
+                System_Portrait.sprite = sprites[8];
+
+                //이름 변경
+                text_NpcName.text = "뱃사공";
+                break;
+
+            case "심청":
+
+                //초상화 변경
+                System_Portrait.sprite = sprites[9];
+
+                //이름 변경
+                text_NpcName.text = "심청";
+                break;
+
+            case "송나라 상인":
+
+                //초상화 변경
+                System_Portrait.sprite = sprites[10];
+
+                //이름 변경
+                text_NpcName.text = "송나라 상인";
+                break;
+
+        }
     }
 }

@@ -6026,6 +6026,7 @@ MonoBehaviour:
   gameObject_DrinkHerbText: {fileID: 698386876}
   gameObject_SelectNum2: {fileID: 482821289}
   gameObject_SelectNum3: {fileID: 2037848331}
+  drinkHerb: 0
 --- !u!1 &226251995
 GameObject:
   m_ObjectHideFlags: 0
@@ -6681,7 +6682,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.019607844, g: 0.019607844, b: 0.019607844, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -19114,6 +19115,7 @@ MonoBehaviour:
   gameObjcet_GamasotNomal: {fileID: 417309422}
   gameObjcet_GamasotUsing: {fileID: 1241857467}
   isTouch: 0
+  drinkHerb: 0
   makeJoomuckBab: 0
   makeHerbOrder: 0
 --- !u!1 &638634634
@@ -26577,6 +26579,7 @@ MonoBehaviour:
     getBagage: 0
     getRice: 0
     boatman2_Show: 0
+    herbEventState: 0
   curGameLoadData:
     playerPos: {x: 0, y: 0, z: 0}
     limitCamera: 0
@@ -26586,6 +26589,7 @@ MonoBehaviour:
     getBagage: 0
     getRice: 0
     boatman2_Show: 0
+    herbEventState: 0
   isBeadPuzzleStart: 0
   isJoomackPuzzleStart: 0
   transform_BeadPuzzleMap: {fileID: 1831607154}
@@ -32967,9 +32971,20 @@ MonoBehaviour:
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   Dialouge_System: {fileID: 1486878665}
   ChatText: {fileID: 2081460924}
+  text_NpcName: {fileID: 1522015625}
   System_Portrait: {fileID: 589999028}
   sprites:
   - {fileID: 21300000, guid: 9670a3acca94eac45b3470c6b6e1ea35, type: 3}
+  - {fileID: 21300000, guid: 2a9cf6aa1700bd747bc6c144af5885ad, type: 3}
+  - {fileID: 21300000, guid: 806b50596868dee4181d9e54a6bd880f, type: 3}
+  - {fileID: 21300000, guid: e09b0d94c14a68f40ad15c4a861982b0, type: 3}
+  - {fileID: 21300000, guid: b0eae2ec045cb5846969f3f707a09206, type: 3}
+  - {fileID: 21300000, guid: 0d3fa69fc9582f24e843570a3d93931f, type: 3}
+  - {fileID: 21300000, guid: 2856e2e08e4deca47b9aff90474911aa, type: 3}
+  - {fileID: 21300000, guid: c2d78cc3e5c14fc45a58d7f550548406, type: 3}
+  - {fileID: 21300000, guid: e0efcae19f215cb449e7f5d6691884f1, type: 3}
+  - {fileID: 21300000, guid: 6c6c5dc4e92fd67409c8cb203f9dfedf, type: 3}
+  - {fileID: 21300000, guid: 99da248b4c6732e4a8c581f67e8b3d8a, type: 3}
   writerText: 
   isSentence_Start: 0
 --- !u!4 &1092642525

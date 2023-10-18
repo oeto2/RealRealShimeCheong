@@ -714,7 +714,6 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             //뱃길을 잠재울 방법 단서획득
             ObjectManager.instance.GetClue(2022);
             yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[390].npc_name, npcDatabaseScr.NPC_01[390].comment));
-
         }
 
         //4018 : 청이의 가출

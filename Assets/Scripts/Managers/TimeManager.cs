@@ -189,9 +189,10 @@ public class TimeManager : MonoBehaviour
     private void FixedUpdate()
     {
         //날짜가 모두 지났을 경우
-        if(int_DayCount == 3)
+        if(int_DayCount == 15)
         {
             //배드엔딩 진행
+            
         }
 
 
@@ -253,9 +254,14 @@ public class TimeManager : MonoBehaviour
                 {
                     StopTime();
                 }
+                
+                //아직 D-day가 되지않았다면
+                if(int_DayCount < 15)
+                {
+                    //플레이어 위치 변경 및 대사
+                    tutorialManagerScr.PassDay();
+                }
 
-                //하루가 지났음
-                tutorialManagerScr.PassDay();
                 //만약 약초물을 마신 상태라면
                 if (EventManager.instance.drinkHerb)
                 {
