@@ -256,10 +256,14 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                //남은대화 없음
-                remainSentence = true;
-                //대화 끝
-                isSentenceEnd = true;
+                Debug.Log("대사 전부 보여주기");
+                
+                writerText = narration;
+
+                ////남은대화 없음
+                //remainSentence = true;
+                ////대화 끝
+                //isSentenceEnd = true;
             }
 
             //텍스트 타이핑 시간 조절
@@ -269,13 +273,13 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
         //if (ObjectManager.instance.GetEquipObjectKey() == 2000) //test용
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            //남은대화 없음
-            remainSentence = true;
-            //대화 끝
-            isSentenceEnd = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    //남은대화 없음
+        //    remainSentence = true;
+        //    //대화 끝
+        //    isSentenceEnd = true;
+        //}
 
         //키(default : space)를 다시 누를 때까지 무한정 대기
         while (true)
