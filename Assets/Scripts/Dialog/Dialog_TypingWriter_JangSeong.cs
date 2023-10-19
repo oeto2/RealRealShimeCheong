@@ -174,15 +174,17 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 writerText += narration[a];
                 ChatText.text = writerText;
 
-                //3글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-                if (a > 1 && Input.GetKeyDown(KeyCode.Z))
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    Debug.Log("기본 대사 전부 보여주기");
-
-                    writerText = narration;
                     ChatText.text = narration;
 
-                    //for문 break 조건 충족
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+
+                    //for문 조건 충족
                     a = narration.Length;
                     ////대화 끝
                     //isSentenceEnd = true;
@@ -206,21 +208,24 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 writerText += narration_2[a];
                 ChatText.text = writerText;
 
-                //3글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-                if (a > 1 && Input.GetKeyDown(KeyCode.Z))
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    Debug.Log("기본 대사 전부 보여주기");
-
                     ChatText.text = narration_2;
 
-                    //for문 break 조건 충족
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+
+                    //for문 조건 충족
                     a = narration_2.Length;
                     ////대화 끝
                     //isSentenceEnd = true;
                 }
 
                 //대사가 전부 출력되지 않았을 경우
-                if(a < narration_2.Length)
+                if (a < narration_2.Length)
                 {
                     yield return new WaitForSeconds(0.02f);
                 }
@@ -229,17 +234,12 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         }
         Debug.Log(writerText);
 
-        //키(default : space)를 다시 누를 때까지 무한정 대기
-        while (true)
+        //대사 출력이 모두 완료 되었다면
+        if (ChatText.text == narration || ChatText.text == narration_2)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                //남은대화 없음
-                remainSentence = true;
-                //대화 끝
-                isSentenceEnd = true;
-            }
-            yield return null;
+            //대화 종료 조건 충족
+            remainSentence = true;
+            isSentenceEnd = true;
         }
     }
 
@@ -271,52 +271,35 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             writerText += narration[a];
             ChatText.text = writerText;
 
-            //3글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-            if (a >1 && Input.GetKeyDown(KeyCode.Z))
+            //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
             {
-                Debug.Log("대사 전부 보여주기");
-
                 ChatText.text = narration;
 
                 //남은대화 없음
                 remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
 
                 //for문 조건 충족
                 a = narration.Length;
-                ////대화 끝
-                //isSentenceEnd = true;
             }
 
-            //텍스트 타이핑 시간 조절
-            //yield return null;
-            yield return new WaitForSeconds(0.02f);
-        }
-
-        //if (ObjectManager.instance.GetEquipObjectKey() == 2000) //test용
-
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    //남은대화 없음
-        //    remainSentence = true;
-        //    //대화 끝
-        //    isSentenceEnd = true;
-        //}
-
-        //키(default : space)를 다시 누를 때까지 무한정 대기
-        while (true)
-        {
-            if (Input.GetKeyDown(KeyCode.Z))
+            //대사 출력 중일 경우에만
+            if (ChatText.text != narration)
             {
-                //남은대화 없음
-                remainSentence = true;
-                //대화 끝
-                isSentenceEnd = true;
-                break;
+                //텍스트 타이핑 시간 조절
+                yield return new WaitForSeconds(0.02f);
             }
-
-            yield return null;
         }
 
+        //대사 출력이 모두 완료 되었다면
+        if (ChatText.text == narration)
+        {
+            //대화 종료 조건 충족
+            remainSentence = true;
+            isSentenceEnd = true;
+        }
     }
 
     //오버로드
@@ -358,15 +341,15 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 //yield return null;
                 yield return new WaitForSeconds(0.02f);
 
-                //3글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-                if (a > 1 && Input.GetKeyDown(KeyCode.Z))
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    Debug.Log("대사 전부 보여주기");
-
                     ChatText.text = narration;
 
                     //남은대화 없음
                     remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
 
                     //for문 조건 충족
                     a = narration.Length;
@@ -382,43 +365,29 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 {
                     //Text 비우기
                     writerText = "";
-                    break;
 
-                    //남은대화 없음
-                    remainSentence = true;
                     //대화 끝
                     isSentenceEnd = true;
+                    break;
                 }
                 yield return null;
             }
         }
-
-        ////키(default : space)를 다시 누를 때까지 무한정 대기
-        //while (true)
-        //{
-        //    if (isButtonClicked)
-        //    {
-        //        isButtonClicked = false;
-        //        break;
-        //    }
-        //    yield return null;
-        //}
-
     }
 
     IEnumerator TextPractice()
     {
         //만약 향리댁 대화 튜토리얼 중이라면
-        if(tutorialManagerScr.events == TutorialEvents.TalkToHyang)
+        if (tutorialManagerScr.events == TutorialEvents.TalkToHyang)
         {
             Debug.Log("향리댁 튜토리얼 대사");
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[3].npc_name, dialogdb.NPC_01[3].comment,true));
+            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[3].npc_name, dialogdb.NPC_01[3].comment, true));
             yield return StartCoroutine(ItemClueChat("심학규", "청이가 향리 댁에 오지 않았다고 한다.", true));
             yield return StartCoroutine(ItemClueChat("심학규", " 어찌 된 일인지 주변을 수소문 해 보자.", true));
             yield return StartCoroutine(ItemClueChat("심학규", " 게임에서의 하루는 실제 시간의 5분입니다. 하루가 지나면 심학규의 집으로 귀환 됩니다.", true));
             tutorialManagerScr.HyangTalkEnd = true;
         }
-        
+
         else
         {
             #region 단서
@@ -554,8 +523,8 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             //2023 : 3월 보름날
             else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
             {
-                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[555].npc_name, dialogdb.NPC_01[555].comment,true));
-                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[231].npc_name, dialogdb.NPC_01[231].comment,true));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[555].npc_name, dialogdb.NPC_01[555].comment, true));
+                yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[231].npc_name, dialogdb.NPC_01[231].comment, true));
 
                 //엔딩 화면 보이기
                 EndingManager.instance.ShowEndingBG();
