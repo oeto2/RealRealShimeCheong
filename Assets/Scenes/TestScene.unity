@@ -14134,7 +14134,7 @@ MonoBehaviour:
   bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait: []
-  trigger_npc: {fileID: 928861246}
+  trigger_npc: {fileID: 0}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   isSentenceEnd: 0
@@ -27257,7 +27257,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 928861242}
-  - component: {fileID: 928861246}
   - component: {fileID: 928861245}
   - component: {fileID: 928861244}
   - component: {fileID: 928861243}
@@ -27379,22 +27378,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &928861246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928861241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChatText: 
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!95 &928861247
 Animator:
   serializedVersion: 5
@@ -27439,7 +27422,7 @@ MonoBehaviour:
   images_NPC_portrait:
   - {fileID: 21300000, guid: 3905155e4b7cfea4eb80baeaf0d2aa73, type: 3}
   - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
-  trigger_npc: {fileID: 928861246}
+  trigger_npc: {fileID: 928861243}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   isSentenceEnd: 0
@@ -29394,7 +29377,7 @@ MonoBehaviour:
   bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait: []
-  trigger_npc: {fileID: 928861246}
+  trigger_npc: {fileID: 0}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   isSentenceEnd: 0
@@ -41551,6 +41534,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 151670a6c0e53c6429f94d34425b0b22, type: 3}
   isTimeStop: 0
   realTimeStop: 0
+  isEndingStart: 0
 --- !u!1 &1372273901
 GameObject:
   m_ObjectHideFlags: 0
@@ -63948,7 +63932,7 @@ MonoBehaviour:
   bool_isNPC: 0
   images_NPC: {fileID: 1486878665}
   images_NPC_portrait: []
-  trigger_npc: {fileID: 928861246}
+  trigger_npc: {fileID: 0}
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   isSentenceEnd: 0
