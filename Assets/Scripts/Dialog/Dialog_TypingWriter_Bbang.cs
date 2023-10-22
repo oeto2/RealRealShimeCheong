@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class Dialog_TypingWriter_Bbang : MonoBehaviour
 {
-    // ���� ä���� ������ �ؽ�Ʈ
+    // 실제 채팅이 나오는 텍스트
     public Text ChatText;
 
-    // ĳ���� �̸��� ������ �ؽ�Ʈ
+    // 캐릭터 이름이 나오는 텍스트
     public Text CharacterName;
 
-    // ��ȭ�� ������ �ѱ� �� �ִ� Ű(default : space)
+    // 대화를 빠르게 넘길 수 있는 키(default : space)
     public List<KeyCode> skipButton;
 
     public string writerText = "";
@@ -22,7 +22,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     public bool bool_isNPC = false;
 
-    //���̾�α� UI
+    //다이얼로그 UI
     public GameObject images_Bbang;
 
     public Sprite[] images_NPC_portrait;
@@ -31,29 +31,29 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     public Controller controller_scr;
 
-    // ���� ��� ��� ����
+    // 랜덤 대사 출력 변수
     private int RandomNum;
 
-    //��ȭ�� ���� ��� �Ǿ�����
+    //대화가 전부 출력 되었는지
     public bool isSentenceEnd = false;
 
-    //���� ��ȭ�� �� �ִ��� (true�� ��� ���̾�α׸� �������� �ʰ� ������ ����� ���� ��縦 �����)
+    //남은 대화가 더 있는지
     public bool remainSentence = false;
 
-    // ���ڻ� ���� ����
+    // 글자색 설정 변수
     bool t_white = false;
     bool t_red = false;
 
-    // ���ڻ� ���� ���ڴ� ��� ��� ����
+    // 글자색 설정 문자는 대사 출력 무시
     bool t_ignore = false;
 
     [System.Serializable]
     public struct DialogData
     {
-        public int speakerIndex;              // �̸��� ��縦 ����� ���� DialogSystem�� speaker �迭 ����
-        public string name;                   // NPC �̸�
+        public int speakerIndex;              // 이름과 대사를 출력할 현재 DialogSystem의 speaker 배열 순번
+        public string name;                   // NPC 이름
         [TextArea(3, 5)]
-        public string dialogue;               // ���
+        public string dialogue;               // 대사
     }
 
     [SerializeField]
@@ -63,7 +63,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
     [SerializeField]
     private DialogData[] dialogs;
 
-    //�ܺ� ��ũ��Ʈ���� ����ϱ� ���� �뵵(�̱�������)
+    //외부 스크립트 참조
     public static Dialog_TypingWriter_Bbang instance;
     void Start()
     {
@@ -78,7 +78,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             ObjectManager.instance.GetItem(1006);
         }
 
-        foreach (var element in skipButton) // ��ư �˻�
+        foreach (var element in skipButton) // 버튼 검사
         {
             if (Input.GetKeyDown(element))
             {
@@ -90,22 +90,22 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition()
             && TutorialManager.instance.SentenceCondition())
         {
-            Debug.Log("zŰ ����! ����!!!!");
+            Debug.Log("z키 누름! 뺑덕어멈!!!!");
             //bool_isBotjim = true;
             controller_scr.TalkStart();
 
             if (bool_isNPC == false && !remainSentence)
             {
-                Debug.Log("��ȭ ����");
+                Debug.Log("뺑덕 대사 실행");
                 images_Bbang.SetActive(true);
                 StartCoroutine(TextPractice());
                 Trigger_NPC.instance.isNPCTrigger = true;
-                //�ʻ�ȭ ����
+                //대사 출력
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
                 //bool_isNPC = true;
             }
 
-            //��ȭ�� ������ ���
+            //대화 종료
             else if (isSentenceEnd)
             {
                 images_Bbang.SetActive(false);
@@ -117,9 +117,10 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                 bool_isNPC = false;
                 //Controller.instance.TalkEnd();
                 controller_scr.TalkEnd();
-                //������ȭ ����
+                
+                //남은대화 없음
                 remainSentence = false;
-                //��ȭ ��
+                //대화 끝
                 isSentenceEnd = false;
             }
         }
@@ -159,7 +160,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     IEnumerator NormalChat()
     {
-        //��ȭ �ߺ����� ����
+        //대화 중복실행 방지
         remainSentence = true;
 
         string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[1].npc_name;
@@ -169,7 +170,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         RandomNum = Random.Range(0, 2);
         Debug.Log(RandomNum);
 
-        //�ؽ�Ʈ Ÿ����
+        //텍스트 타이핑
         if (RandomNum == 0)
         {
             for (int a = 0; a < narration.Length; a++)
@@ -177,26 +178,26 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                 writerText += narration[a];
                 ChatText.text = writerText;
 
-                //5���� �̻� ��ȭ�� ����ǰ� ZŰ�� ������ ���
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
                     ChatText.text = narration;
 
-                    //������ȭ ����
+                    //남은대화 없음
                     remainSentence = true;
-                    //��ȭ ��
+                    //대화 끝
                     isSentenceEnd = true;
 
-                    //for�� ���� ����
+                    //for문 조건 충족
                     a = narration.Length;
-                    ////��ȭ ��
+                    ////대화 끝
                     //isSentenceEnd = true;
                 }
 
-                //��簡 ���� ��µ��� �ʾ��� ���
+                //대사가 전부 출력되지 않았을 경우
                 if (a < narration.Length)
                 {
-                    //��� Ÿ���� �ӵ�
+                    //대사 타이핑 속도
                     yield return new WaitForSeconds(0.02f);
                 }
 
@@ -211,23 +212,23 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                 writerText += narration_2[a];
                 ChatText.text = writerText;
 
-                //5���� �̻� ��ȭ�� ����ǰ� ZŰ�� ������ ���
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
                     ChatText.text = narration_2;
 
-                    //������ȭ ����
+                    //남은대화 없음
                     remainSentence = true;
-                    //��ȭ ��
+                    //대화 끝
                     isSentenceEnd = true;
 
-                    //for�� ���� ����
+                    //for문 조건 충족
                     a = narration_2.Length;
-                    ////��ȭ ��
+                    ////대화 끝
                     //isSentenceEnd = true;
                 }
 
-                //��簡 ���� ��µ��� �ʾ��� ���
+                //대사가 전부 출력되지 않았을 경우
                 if (a < narration_2.Length)
                 {
                     yield return new WaitForSeconds(0.02f);
@@ -237,10 +238,10 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         }
         Debug.Log(writerText);
 
-        //��� ����� ��� �Ϸ� �Ǿ��ٸ�
+        //대사 출력이 모두 완료 되었다면
         if (ChatText.text == narration || ChatText.text == narration_2)
         {
-            //��ȭ ���� ���� ����
+            //대화 종료 조건 충족
             remainSentence = true;
             isSentenceEnd = true;
         }
@@ -277,7 +278,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     IEnumerator ItemClueChat(string narrator, string narration)
     {
-        //������ȭ ����
+        //남은대화 있음
         remainSentence = true;
 
         CharacterName.text = narrator;
@@ -287,31 +288,31 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
         string t_letter = "";
 
-        //���б��� ����ϰ��
-        if (narrator == "���б�")
+        //심학규의 대사일 경우
+        if (narrator == "심학규")
         {
-            //�ʻ�ȭ ����
+            //초상화 변경
             GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
         }
         else
         {
-            //�ʻ�ȭ ����
+            //초상화 변경
             GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
         }
 
-        //�ؽ�Ʈ Ÿ����
-        for (int a = 0; a < narration.Length; a++)
+        //텍스트 타이핑
+        for (a = 0; a < narration.Length; a++)
         {
             //writerText += narration[a];
             //ChatText.text = writerText;
             switch (narration[a])
             {
-                case '��':
+                case 'ⓡ':
                     t_white = false;
                     t_red = true;
                     t_ignore = true;
                     break;
-                case '��':
+                case 'ⓦ':
                     t_white = true;
                     t_red = false;
                     t_ignore = true;
@@ -332,129 +333,146 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                     Debug.Log("1_red");
                 }
                 //Debug.Log(writerText);
-                writerText += t_letter; // Ư�����ڰ� �ƴ϶�� ��� ���
+                writerText += t_letter; // 특수문자가 아니라면 대사 출력
                 ChatText.text = writerText;
                 //writerText += narration[a];
                 //ChatText.text = writerText;
             }
-            t_ignore = false; // �� ���� ������� �ٽ� false
+            t_ignore = false; // 한 글자 찍었으면 다시 false
 
-            //5���� �̻� ��ȭ�� ����ǰ� ZŰ�� ������ ���
+            //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
             if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
             {
                 ChatText.text = narration;
 
-                //������ȭ ����
+                //남은대화 없음
                 remainSentence = true;
-                //��ȭ ��
+                //대화 끝
                 isSentenceEnd = true;
 
-                //for�� ���� ����
+                //for문 조건 충족
                 a = narration.Length;
             }
 
-            //��� ��� ���� ��쿡��
+            //대사 출력 중일 경우에만
             if (ChatText.text != narration)
             {
-                //�ؽ�Ʈ Ÿ���� �ð� ����
+                //텍스트 타이핑 시간 조절
                 yield return new WaitForSeconds(0.02f);
             }
         }
-        //5���� �̻� ��ȭ�� ����ǰ� ZŰ�� ������ ���
-        if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+
+        //대사 출력이 모두 완료 되었다면
+        if (ChatText.text == writerText)
         {
-                ChatText.text = narration;
-
-                //������ȭ ����
-                remainSentence = true;
-                //��ȭ ��
-                isSentenceEnd = true;
-
-                //for�� ���� ����
-                a = narration.Length;
-        }
-
-        //��� ��� ���� ��쿡��
-        if (ChatText.text != narration)
-        {
-                //�ؽ�Ʈ Ÿ���� �ð� ����
-                yield return new WaitForSeconds(0.02f);
-        }
-
-        //��� ����� ��� �Ϸ� �Ǿ��ٸ�
-        if (ChatText.text == narration)
-        {
-            //��ȭ ���� ���� ����
+            //대화 종료 조건 충족
             remainSentence = true;
             isSentenceEnd = true;
         }
     }
 
 
-    //�����ε�
+    //오버로드
     IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
-        //���б��� ����ϰ��
-        if (narrator == "���б�")
+        string t_letter = "";
+
+        //심학규의 대사일 경우
+        if (narrator == "심학규")
         {
-            //�ʻ�ȭ ����
+            //초상화 변경
             GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
         }
         else
         {
-            //�ʻ�ȭ ����
+            //초상화 변경
             GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
         }
 
-        //���� ��ȭ�� �������
+        //남은 대화가 있을경우
         if (_remainSentence == true)
         {
-            //������ȭ ����
+            //남은대화 있음
             remainSentence = true;
 
             CharacterName.text = narrator;
 
-            //�ؽ�Ʈ Ÿ����
+            //텍스트 타이핑
             for (int a = 0; a < narration.Length; a++)
             {
-                writerText += narration[a];
-                ChatText.text = writerText;
+                //writerText += narration[a];
+                //ChatText.text = writerText;
 
-                //5���� �̻� ��ȭ�� ����ǰ� ZŰ�� ������ ���
+                switch (narration[a])
+                {
+                    case 'ⓡ':
+                        t_white = false;
+                        t_red = true;
+                        t_ignore = true;
+                        break;
+                    case 'ⓦ':
+                        t_white = true;
+                        t_red = false;
+                        t_ignore = true;
+                        break;
+                }
+
+                if (!t_ignore)
+                {
+                    if (t_white)
+                    {
+                        t_letter = "<color=#ffffff>" + narration[a] + "</color>";    // HTML Tag
+                        Debug.Log("0_write");
+                    }
+
+                    else if (t_red)
+                    {
+                        t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                        Debug.Log("1_red");
+                    }
+                    //Debug.Log(writerText);
+                    writerText += t_letter; // 특수문자가 아니라면 대사 출력
+                    //writerText += narration[a];
+                    ChatText.text = writerText;
+                    //ChatText.text = writerText;
+                }
+                t_ignore = false; // 한 글자 찍었으면 다시 false
+
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
                     writerText = narration;
                     ChatText.text = narration;
 
-                    //������ȭ ����
+                    //남은대화 없음
                     remainSentence = true;
-                    ////��ȭ ��
+                    ////대화 끝
                     //isSentenceEnd = true;
 
-                    //for�� ���� ����
+                    //for문 조건 충족
                     a = narration.Length;
                 }
 
-                //��� ��� ���� ��쿡��
+                //대사 출력 중일 경우에만
                 if (ChatText.text != narration)
                 {
-                    //�ؽ�Ʈ Ÿ���� �ð� ����
+                    //텍스트 타이핑 시간 조절
                     yield return new WaitForSeconds(0.02f);
                 }
 
             }
 
-            //��� ��� �� ��� ������
+            //대사 출력 후 잠깐 딜레이
             yield return new WaitForSeconds(0.1f);
 
-            //ZŰ�� �ٽ� ���� ������ ������ ���
+            //Z키를 다시 누를 때까지 무한정 대기
             while (true)
             {
-                if (ChatText.text == narration && Input.GetKeyDown(KeyCode.Z))
+                if (ChatText.text == writerText && Input.GetKeyDown(KeyCode.Z))
                 {
-                    Debug.Log("Text ����");
+                    Debug.Log("Text 비우기");
 
-                    //Text ����
+                    //Text 비우기
                     writerText = "";
 
                     break;
