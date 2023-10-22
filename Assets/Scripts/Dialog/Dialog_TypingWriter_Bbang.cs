@@ -40,6 +40,13 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
     //남은 대화가 더 있는지 (true일 경우 다이얼로그를 종료하지 않고 내용을 비워서 다음 대사를 출력함)
     public bool remainSentence = false;
 
+    // 글자색 설정 변수
+    bool t_white = false;
+    bool t_red = false;
+
+    // 글자색 설정 문자는 대사 출력 무시
+    bool t_ignore = false;
+
     [System.Serializable]
     public struct DialogData
     {
@@ -156,6 +163,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[1].npc_name;
         string narration = dialogdb.NPC_01[1].comment;
         string narration_2 = dialogdb.NPC_01[399].comment;
+        string t_letter = "";
 
         RandomNum = Random.Range(0, 2);
         Debug.Log(RandomNum);
@@ -165,11 +173,51 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             for (a = 0; a < narration.Length; a++)
             //for (a = 0; a < textSpeed; a++)
             {
-                writerText += narration[a];
-                ChatText.text = writerText;
+                switch (narration[a])
+                {
+                    case 'ⓡ':
+                        t_white = false;
+                        t_red = true;
+                        t_ignore = true;
+                        break;
+                    case 'ⓦ':
+                        t_white = true;
+                        t_red = false;
+                        t_ignore = true;
+                        break;
+                }
 
+                if (!t_ignore)
+                {
+                    if (t_white)
+                    {
+                        t_letter = "<color=#ffffff>" + narration[a] + "</color>";    // HTML Tag
+                        Debug.Log("0_write");
+                    }
+
+				    else if (t_red)
+                    {
+                        t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                        Debug.Log("1_red");
+                    }
+                    //Debug.Log(writerText);
+                    writerText += t_letter; // 특수문자가 아니라면 대사 출력
+                    ChatText.text = writerText;
+                    //writerText += narration[a];
+                    //ChatText.text = writerText;
+                }
+                t_ignore = false; // 한 글자 찍었으면 다시 false
+
+<<<<<<< Updated upstream
                 //텍스트 타이핑 시간 조절
                 //yield return null;
+=======
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+                {
+                    ChatText.text = narration;
+                    //ChatText.text = t_letter;
+>>>>>>> Stashed changes
 
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
@@ -177,9 +225,24 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                     remainSentence = true;
                     //대화 끝
                     isSentenceEnd = true;
+<<<<<<< Updated upstream
                 }
 
                 yield return new WaitForSeconds(0.02f);
+=======
+
+                    //for문 조건 충족
+                    a = narration.Length;
+                    //a = t_letter.Length;
+                }
+
+                //대사가 전부 출력되지 않았을 경우
+                if (a < narration.Length)
+                {
+                    //대사 타이핑 속도
+                    yield return new WaitForSeconds(0.02f);
+                }
+>>>>>>> Stashed changes
             }
             yield return null;
         }
@@ -200,6 +263,12 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                     remainSentence = true;
                     //대화 끝
                     isSentenceEnd = true;
+<<<<<<< Updated upstream
+=======
+
+                    //for문 조건 충족
+                    a = narration_2.Length;
+>>>>>>> Stashed changes
                 }
 
                 yield return new WaitForSeconds(0.02f);
@@ -208,7 +277,12 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         }
         Debug.Log(writerText);
 
+<<<<<<< Updated upstream
         if (Input.GetKeyDown(KeyCode.Z))
+=======
+        //대사 출력이 모두 완료 되었다면
+        if (ChatText.text == writerText || ChatText.text == narration_2)
+>>>>>>> Stashed changes
         {
             //대화 끝
             isSentenceEnd = true;
@@ -266,6 +340,8 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         //characternameText = narrator;
         //narrator = CharacterName.text;
 
+        string t_letter = "";
+
         //심학규의 대사일경우
         if (narrator == "심학규")
         {
@@ -281,8 +357,43 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         //텍스트 타이핑
         for (a = 0; a < narration.Length; a++)
         {
-            writerText += narration[a];
-            ChatText.text = writerText;
+            //writerText += narration[a];
+            //ChatText.text = writerText;
+
+            switch (narration[a])
+            {
+                case 'ⓡ':
+                    t_white = false;
+                    t_red = true;
+                    t_ignore = true;
+                    break;
+                case 'ⓦ':
+                    t_white = true;
+                    t_red = false;
+                    t_ignore = true;
+                    break;
+            }
+
+            if (!t_ignore)
+            {
+                if (t_white)
+                {
+                    t_letter = "<color=#ffffff>" + narration[a] + "</color>";    // HTML Tag
+                    Debug.Log("0_write");
+                }
+
+                else if (t_red)
+                {
+                    t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                    Debug.Log("1_red");
+                }
+                //Debug.Log(writerText);
+                writerText += t_letter; // 특수문자가 아니라면 대사 출력
+                ChatText.text = writerText;
+                //writerText += narration[a];
+                //ChatText.text = writerText;
+            }
+            t_ignore = false; // 한 글자 찍었으면 다시 false
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -298,7 +409,12 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
 
+<<<<<<< Updated upstream
         if (Input.GetKeyDown(KeyCode.Z))
+=======
+        //대사 출력이 모두 완료 되었다면
+        if (ChatText.text == writerText)
+>>>>>>> Stashed changes
         {
             //대화 끝
             isSentenceEnd = true;
@@ -334,6 +450,8 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
     //오버로드
     IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
+        string t_letter = "";
+
         //심학규의 대사일경우
         if (narrator == "심학규")
         {
@@ -363,8 +481,43 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             //텍스트 타이핑
             for (a = 0; a < narration.Length; a++)
             {
-                writerText += narration[a];
-                ChatText.text = writerText;
+                //writerText += narration[a];
+                //ChatText.text = writerText;
+
+                switch (narration[a])
+                {
+                    case 'ⓡ':
+                        t_white = false;
+                        t_red = true;
+                        t_ignore = true;
+                        break;
+                    case 'ⓦ':
+                        t_white = true;
+                        t_red = false;
+                        t_ignore = true;
+                        break;
+                }
+
+                if (!t_ignore)
+                {
+                    if (t_white)
+                    {
+                        t_letter = "<color=#ffffff>" + narration[a] + "</color>";    // HTML Tag
+                        Debug.Log("0_write");
+                    }
+
+                    else if (t_red)
+                    {
+                        t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                        Debug.Log("1_red");
+                    }
+                    //Debug.Log(writerText);
+                    writerText += t_letter; // 특수문자가 아니라면 대사 출력
+                    ChatText.text = writerText;
+                    //writerText += narration[a];
+                    //ChatText.text = writerText;
+                }
+                t_ignore = false; // 한 글자 찍었으면 다시 false
 
                 //텍스트 타이핑 시간 조절
                 //yield return null;
@@ -380,7 +533,11 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             //Z키를 다시 누를 때까지 무한정 대기
             while (true)
             {
+<<<<<<< Updated upstream
                 if (Input.GetKeyDown(KeyCode.Z))
+=======
+                if (ChatText.text == writerText && Input.GetKeyDown(KeyCode.Z))
+>>>>>>> Stashed changes
                 {
                     //Text 비우기
                     writerText = "";
