@@ -80,56 +80,53 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
     }
   
     //대화 실행
-    IEnumerator StartChat(string narrator, string narration, bool _clear)
+    IEnumerator StartChat(string narrator, string _narration, bool _clear)
     {
         Debug.Log("다이얼로그 실행");
 
         isTalkEnd = false;
 
-        int a = 0;
-
         //UI상의 캐릭터 이름 
         CharacterName.text = narrator;
 
-        //True : Text창 비우고 대화 시작, False : 이전 대화 이어서 대화 시작
-        if(_clear)
+        //텍스트 타이핑
+        for (int a = 0; a < _narration.Length; a++)
         {
-            writerText = "";
-        }
-
-        //텍스트 타이핑(받은 string의 길이만큼)
-        for (a = 0; a < narration.Length; a++)
-        //for (a = 0; a < textSpeed; a++)
-        {
-            //쓸내용에 1글자씩 더하기
-            writerText += narration[a];
+            writerText += _narration[a];
             ChatText.text = writerText;
 
-            //텍스트 타이핑 시간 조절
-            //yield return null;
-            yield return new WaitForSeconds(0.03f);
+            //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+            {
+                ChatText.text = _narration;
+
+                //for문 조건 충족
+                a = _narration.Length;
+            }
+
+            //대사 출력 중일 경우에만
+            if (ChatText.text != _narration)
+            {
+                //텍스트 타이핑 시간 조절
+                yield return new WaitForSeconds(0.02f);
+            }
         }
 
-        isTalkEnd = true;
-        //yield return null;
+        //Z키를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (ChatText.text == _narration && Input.GetKeyDown(KeyCode.Z))
+            {
+                Debug.Log("Text 비우기");
 
-        ////키(default : space)를 다시 누를 때까지 무한정 대기
-        //while (true)
-        //{
-        //    if (isButtonClicked)
-        //    {
-        //        isButtonClicked = false;
-        //        break;
-        //    }
-        //    yield return null;
-        //}
+                //Text 비우기
+                writerText = "";
+
+                break;
+            }
+            yield return null;
+        }
     }
-
-    //IEnumerator TextPractice()
-    //{
-    //    //yield return StartCoroutine(NormalChat("뺑덕어멈", "호호, 무슨 일이신가요?"));
-    //    //yield return StartCoroutine(NormalChat("뺑덕어멈", "이번에 들여온 비녀가 그렇게 예쁘던데,,,"));
-    //}
 
     //튜토리얼 대화 출력 메서드 모음
     #region
