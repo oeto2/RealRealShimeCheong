@@ -185,53 +185,44 @@ public class DialogManager : MonoBehaviour
         //시스템 다이얼로그 활성화
         Dialouge_System.SetActive(true);
 
-        int a = 0;
-
-        for (a = 0; a < _narration.Length; a++)
-        //for (a = 0; a < textSpeed; a++)
+        //텍스트 타이핑
+        for (int a = 0; a < _narration.Length; a++)
         {
             writerText += _narration[a];
             ChatText.text = writerText;
 
-            //텍스트 타이핑 시간 조절
-            //yield return null;
-
-            if (a > 2 && Input.GetKeyDown(KeyCode.Z))
+            //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
             {
-                //코루틴 중복 실행 방지해제
-                isSentence_Start = false;
+                ChatText.text = _narration;
 
-                //시스템 다이얼로그 비활성화
-                //Dialouge_System.SetActive(false);
+                //for문 조건 충족
+                a = _narration.Length;
             }
 
-            yield return new WaitForSeconds(0.02f);
+            //대사 출력 중일 경우에만
+            if (ChatText.text != _narration)
+            {
+                //텍스트 타이핑 시간 조절
+                yield return new WaitForSeconds(0.02f);
+            }
         }
-        yield return null;
 
         //Z키를 다시 누를 때까지 무한정 대기
         while (true)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (ChatText.text == _narration && Input.GetKeyDown(KeyCode.Z))
             {
-                //코루틴 중복 실행 방지해제
-                isSentence_Start = false;
-
-                if (_exit)
-                {
-                    //시스템 다이얼로그 비활성화
-                    Dialouge_System.SetActive(false);
-                }
+                Debug.Log("Text 비우기");
 
                 //Text 비우기
                 writerText = "";
+
                 break;
             }
             yield return null;
         }
     }
-
-
 
     //시스템 메세지를 시작해주는 메서드
     public void Start_SystemMessage(string _narration, bool _exit)

@@ -47,8 +47,10 @@ public class JoomuckBab : MonoBehaviour
     //약초 제작 순서
     public enum MakeHerbOrder
     {
+        //주먹밥 이벤트 미완료
+        JoomuckBabNotDone = 0,
         //불 붙이기
-        LightFire = 0,
+        LightFire,
         //약초 OR 물 넣기
         PushHerb_OR_Water,
         //약초 넣기
@@ -69,14 +71,14 @@ public class JoomuckBab : MonoBehaviour
     public MakeJoomuckBab makeJoomuckBab = MakeJoomuckBab.PushJangJack;
 
     //약초 물 제작 순서
-    public MakeHerbOrder makeHerbOrder = MakeHerbOrder.LightFire;
+    public MakeHerbOrder makeHerbOrder = MakeHerbOrder.JoomuckBabNotDone;
 
     private void Update()
     {
         //주먹밥 이벤트 실행 조건
-        if (isTouch && Input.GetKeyDown(KeyCode.Z))
+        if (isTouch && Input.GetKeyDown(KeyCode.Z) && makeJoomuckBab != MakeJoomuckBab.Done)
         {
-            //주먹밥 이벤트가 활성화 중이고 장작을 착용중이라면
+            //주먹밥 이벤트가 활성화 중이라면
             if (EventManager.instance.GetEventBool(Events.JoomuckBab))
             {
                 switch (makeJoomuckBab)
@@ -113,134 +115,140 @@ public class JoomuckBab : MonoBehaviour
                         break;
                 }
             }
+        }
 
-            // 허브 이벤트 (주먹밥 만들기 이벤트가 끝난 경우에만 진행)
-            else if (isTouch && Input.GetKeyDown(KeyCode.Z) && makeJoomuckBab == MakeJoomuckBab.Done)
+        // 허브 이벤트 (주먹밥 만들기 이벤트가 끝난 경우에만 진행)
+        else if (isTouch && Input.GetKeyDown(KeyCode.Z) && makeJoomuckBab == MakeJoomuckBab.Done)
+        {
+            //허브 이벤트 진행
+            switch (makeHerbOrder)
             {
-                //허브 이벤트 진행
-                switch (makeHerbOrder)
-                {
-                    //불 붙이기
-                    case MakeHerbOrder.LightFire:
+                //불 붙이기
+                case MakeHerbOrder.LightFire:
 
-                        //부싯돌을 장착하고 있을 경우
-                        if (ObjectManager.instance.GetEquipObjectKey() == 1002)
-                        {
-                            //불 붙이기 대사 실행
-                            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(520), true);
+                    //부싯돌을 장착하고 있을 경우
+                    if (ObjectManager.instance.GetEquipObjectKey() == 1002)
+                    {
+                        //불 붙이기 대사 실행
+                        DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(520), true);
 
-                            //불 오브젝트 활성화
-                            gameobjcet_Fire.SetActive(true);
-
-                            //다음 순서로 진행
-                            makeHerbOrder = MakeHerbOrder.PushHerb_OR_Water;
-                        }
-                        break;
-
-                    //약초 OR 물 넣기
-                    case MakeHerbOrder.PushHerb_OR_Water:
-
-                        //허브를 장착하고 있었을 경우
-                        if (ObjectManager.instance.GetEquipObjectKey() == 1010)
-                        {
-                            //허브 넣기 대사 실행
-                            DialogManager.instance.StartPushHerbSentence();
-
-                            //약초 오브젝트 제거
-                            ObjectManager.instance.RemoveItem(1010);
-
-                            //다음 순서로 진행
-                            makeHerbOrder = MakeHerbOrder.PushWater;
-                        }
-
-                        //물 바가지를 장착하고 있었을 경우
-                        else if (ObjectManager.instance.GetEquipObjectKey() == 1004)
-                        {
-                            //물 넣기 다이얼로그 출력
-                            DialogManager.instance.Start_WaterBageSentence_2();
-
-                            //물 바가지 제거
-                            ObjectManager.instance.RemoveItem(1004);
-
-                            //바가지 획득
-                            ObjectManager.instance.GetItem(1003);
-
-                            //다음 순서로 진행
-                            makeHerbOrder = MakeHerbOrder.PushHerb;
-                        }
-                        break;
-
-
-                    //허브 넣기
-                    case MakeHerbOrder.PushHerb:
-
-                        //허브를 장착하고 있을 경우
-                        if (ObjectManager.instance.GetEquipObjectKey() == 1010)
-                        {
-                            //허브 넣기 대사 실행
-                            DialogManager.instance.StartPushHerbSentence();
-
-                            //가마솥 이미지 변경
-                            UsingGamasot();
-
-                            //다음 순서로 진행
-                            makeHerbOrder = MakeHerbOrder.Done;
-                        }
-                        break;
-
-                    //물 넣기
-                    case MakeHerbOrder.PushWater:
-
-                        //물 바가지 장착하고 있을 경우
-                        if (ObjectManager.instance.GetEquipObjectKey() == 1004)
-                        {
-                            //물 넣기 다이얼로그 출력
-                            DialogManager.instance.Start_WaterBageSentence_2();
-
-                            //물 바가지 제거
-                            ObjectManager.instance.RemoveItem(1004);
-
-                            //바가지 획득
-                            ObjectManager.instance.GetItem(1003);
-
-                            //가마솥 이미지 변경
-                            UsingGamasot();
-
-                            //다음 순서로 진행
-                            makeHerbOrder = MakeHerbOrder.Done;
-                        }
-                        break;
-
-                    //약초 제작완료 시
-                    case MakeHerbOrder.Done:
+                        //불 오브젝트 활성화
+                        gameobjcet_Fire.SetActive(true);
 
                         //다음 순서로 진행
-                        makeHerbOrder = MakeHerbOrder.DrinkHerb;
+                        makeHerbOrder = MakeHerbOrder.PushHerb_OR_Water;
+                    }
+                    break;
 
-                        break;
+                //약초 OR 물 넣기
+                case MakeHerbOrder.PushHerb_OR_Water:
 
-                    //약초 물 마시기 1
-                    case MakeHerbOrder.DrinkHerb:
+                    //허브를 장착하고 있었을 경우
+                    if (ObjectManager.instance.GetEquipObjectKey() == 1010)
+                    {
+                        //허브 넣기 대사 실행
+                        DialogManager.instance.StartPushHerbSentence();
 
-                        //선택지 진행
-                        if (!DialogManager.instance.Dialouge_System.activeSelf)
-                        {
-                            EventManager.instance.SelectStart(NPCName.Herb, 5799);
-                        }
-                        break;
+                        //약초 오브젝트 제거
+                        ObjectManager.instance.RemoveItem(1010);
 
-                    //약초 물 마시기 2
-                    case MakeHerbOrder.DrinkHerb2:
+                        //다음 순서로 진행
+                        makeHerbOrder = MakeHerbOrder.PushWater;
+                    }
 
-                        //선택지 진행
-                        if (!DialogManager.instance.Dialouge_System.activeSelf)
-                        {
-                            EventManager.instance.SelectStart(NPCName.Herb, 7009);
-                        }
-                        break;
-                }
+                    //물 바가지를 장착하고 있었을 경우
+                    else if (ObjectManager.instance.GetEquipObjectKey() == 1004)
+                    {
+                        //물 넣기 다이얼로그 출력
+                        DialogManager.instance.Start_WaterBageSentence_2();
+
+                        //물 바가지 제거
+                        ObjectManager.instance.RemoveItem(1004);
+
+                        //바가지 획득
+                        ObjectManager.instance.GetItem(1003);
+
+                        //다음 순서로 진행
+                        makeHerbOrder = MakeHerbOrder.PushHerb;
+                    }
+                    break;
+
+
+                //허브 넣기
+                case MakeHerbOrder.PushHerb:
+
+                    //허브를 장착하고 있을 경우
+                    if (ObjectManager.instance.GetEquipObjectKey() == 1010)
+                    {
+                        //허브 넣기 대사 실행
+                        DialogManager.instance.StartPushHerbSentence();
+
+                        //가마솥 이미지 변경
+                        UsingGamasot();
+
+                        //다음 순서로 진행
+                        makeHerbOrder = MakeHerbOrder.Done;
+                    }
+                    break;
+
+                //물 넣기
+                case MakeHerbOrder.PushWater:
+
+                    //물 바가지 장착하고 있을 경우
+                    if (ObjectManager.instance.GetEquipObjectKey() == 1004)
+                    {
+                        //물 넣기 다이얼로그 출력
+                        DialogManager.instance.Start_WaterBageSentence_2();
+
+                        //물 바가지 제거
+                        ObjectManager.instance.RemoveItem(1004);
+
+                        //바가지 획득
+                        ObjectManager.instance.GetItem(1003);
+
+                        //가마솥 이미지 변경
+                        UsingGamasot();
+
+                        //다음 순서로 진행
+                        makeHerbOrder = MakeHerbOrder.Done;
+                    }
+                    break;
+
+                //약초 제작완료 시
+                case MakeHerbOrder.Done:
+
+                    //다음 순서로 진행
+                    makeHerbOrder = MakeHerbOrder.DrinkHerb;
+
+                    break;
+
+                //약초 물 마시기 1
+                case MakeHerbOrder.DrinkHerb:
+
+                    //선택지 진행
+                    if (!DialogManager.instance.Dialouge_System.activeSelf)
+                    {
+                        EventManager.instance.SelectStart(NPCName.Herb, 5799);
+                    }
+                    break;
+
+                //약초 물 마시기 2
+                case MakeHerbOrder.DrinkHerb2:
+
+                    //선택지 진행
+                    if (!DialogManager.instance.Dialouge_System.activeSelf)
+                    {
+                        EventManager.instance.SelectStart(NPCName.Herb, 7009);
+                    }
+                    break;
             }
         }
+
+        else
+        {
+            Debug.Log("진행이 안됨");
+        }
+        
     }
     #region 약초 이벤트
 
@@ -249,29 +257,32 @@ public class JoomuckBab : MonoBehaviour
     {
         switch (makeHerbOrder)
         {
-            case MakeHerbOrder.LightFire:
+            case MakeHerbOrder.JoomuckBabNotDone:
                 return 0;
 
-            case MakeHerbOrder.PushHerb_OR_Water:
+            case MakeHerbOrder.LightFire:
                 return 1;
 
-            case MakeHerbOrder.PushHerb:
+            case MakeHerbOrder.PushHerb_OR_Water:
                 return 2;
 
-            case MakeHerbOrder.PushWater:
+            case MakeHerbOrder.PushHerb:
                 return 3;
 
-            case MakeHerbOrder.Done:
+            case MakeHerbOrder.PushWater:
                 return 4;
 
-            case MakeHerbOrder.DrinkHerb:
+            case MakeHerbOrder.Done:
                 return 5;
 
-            case MakeHerbOrder.DrinkHerb2:
+            case MakeHerbOrder.DrinkHerb:
                 return 6;
 
-            case MakeHerbOrder.Edning:
+            case MakeHerbOrder.DrinkHerb2:
                 return 7;
+
+            case MakeHerbOrder.Edning:
+                return 8;
 
             default:
                 return 0;
@@ -283,8 +294,28 @@ public class JoomuckBab : MonoBehaviour
     {
         switch (_eventNum)
         {
-            //불 붙이기 전
+            //주먹밥 이벤트 미완료
             case 0:
+
+                //이벤트 진행상황 변경
+                makeHerbOrder = MakeHerbOrder.JoomuckBabNotDone;
+
+                //장작 없애기
+                gameObject_JangJack.SetActive(false);
+
+                //불 없애기
+                gameobjcet_Fire.SetActive(false);
+
+                //가마솥 사용 이미지 끄기
+                gameObjcet_GamasotUsing.SetActive(false);
+
+                //가마솥 기본 이미지 보이기
+                gameObjcet_GamasotNomal.SetActive(true);
+
+                break;
+
+            //불 붙이기 전
+            case 1:
 
                 //이벤트 진행상황 변경
                 makeHerbOrder = MakeHerbOrder.LightFire;
@@ -304,7 +335,7 @@ public class JoomuckBab : MonoBehaviour
                 break;
 
             //불 붙임
-            case 1:
+            case 2:
 
                 //이벤트 진행상황 변경
                 makeHerbOrder = MakeHerbOrder.PushHerb_OR_Water;
@@ -324,7 +355,7 @@ public class JoomuckBab : MonoBehaviour
                 break;
 
             //약초 넣음
-            case 2:
+            case 3:
 
                 //이벤트 진행상황 변경
                 makeHerbOrder = MakeHerbOrder.PushHerb;
@@ -344,7 +375,7 @@ public class JoomuckBab : MonoBehaviour
                 break;
 
             //물 넣음
-            case 3:
+            case 4:
 
                 //이벤트 진행상황 변경
                 makeHerbOrder = MakeHerbOrder.PushWater;
@@ -364,7 +395,7 @@ public class JoomuckBab : MonoBehaviour
                 break;
 
             //약초랑 물 넣음
-            case 4:
+            case 5:
 
                 //이벤트 진행상황 변경
                 makeHerbOrder = MakeHerbOrder.Done;
@@ -384,7 +415,7 @@ public class JoomuckBab : MonoBehaviour
                 break;
 
             //약초물 마시기1
-            case 5:
+            case 6:
 
                 //이벤트 진행상황 변경
                 makeHerbOrder = MakeHerbOrder.DrinkHerb;
@@ -404,7 +435,7 @@ public class JoomuckBab : MonoBehaviour
                 break;
 
             //약초물 마시기2    
-            case 6:
+            case 7:
 
                 //이벤트 진행상황 변경
                 makeHerbOrder = MakeHerbOrder.DrinkHerb2;
@@ -595,6 +626,9 @@ public class JoomuckBab : MonoBehaviour
 
             //다음 이벤트 이동
             makeJoomuckBab = MakeJoomuckBab.Done;
+
+            //허브 이벤트 준비작업
+            makeHerbOrder = MakeHerbOrder.LightFire;
         }
 
         yield return null;

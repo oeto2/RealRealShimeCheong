@@ -108,7 +108,9 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
 
     IEnumerator NormalChat()
     {
-        int a = 0;
+        //대화 중복실행 방지
+        remainSentence = true;
+
         string narrator = characternameText = CharacterName.text = npcDatabaseScr.NPC_01[4].npc_name;
         string narration = npcDatabaseScr.NPC_01[4].comment;
         string narration_2 = npcDatabaseScr.NPC_01[402].comment;
@@ -116,95 +118,80 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
         RandomNum = Random.Range(0, 2);
         Debug.Log(RandomNum);
 
+        //텍스트 타이핑
         if (RandomNum == 0)
         {
-            for (a = 0; a < narration.Length; a++)
-            //for (a = 0; a < textSpeed; a++)
+            for (int a = 0; a < narration.Length; a++)
             {
                 writerText += narration[a];
                 ChatText.text = writerText;
 
-                //텍스트 타이핑 시간 조절
-                //yield return null;
-
-
-                ////대사가 모두 출력되지 않음
-                //if(a != narration.Length && Input.GetKeyDown(KeyCode.Z))
-                //{
-                //    a = narration.Length;
-
-                //    //대화 종료
-                //}
-
-                if (Input.GetKeyDown(KeyCode.Z))
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
+                    ChatText.text = narration;
+
                     //남은대화 없음
                     remainSentence = true;
                     //대화 끝
                     isSentenceEnd = true;
+
+                    //for문 조건 충족
+                    a = narration.Length;
+                    ////대화 끝
+                    //isSentenceEnd = true;
                 }
 
-                yield return new WaitForSeconds(0.02f);
+                //대사가 전부 출력되지 않았을 경우
+                if (a < narration.Length)
+                {
+                    //대사 타이핑 속도
+                    yield return new WaitForSeconds(0.02f);
+                }
+
             }
             yield return null;
         }
         else if (RandomNum == 1)
         {
-            for (a = 0; a < narration_2.Length; a++)
+            for (int a = 0; a < narration_2.Length; a++)
             //for (a = 0; a < textSpeed; a++)
             {
                 writerText += narration_2[a];
                 ChatText.text = writerText;
 
-                if (Input.GetKeyDown(KeyCode.Z))
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
+                    ChatText.text = narration_2;
+
                     //남은대화 없음
                     remainSentence = true;
                     //대화 끝
                     isSentenceEnd = true;
+
+                    //for문 조건 충족
+                    a = narration_2.Length;
+                    ////대화 끝
+                    //isSentenceEnd = true;
                 }
 
-                //텍스트 타이핑 시간 조절
-                //yield return null;
-                yield return new WaitForSeconds(0.02f);
-
+                //대사가 전부 출력되지 않았을 경우
+                if (a < narration_2.Length)
+                {
+                    yield return new WaitForSeconds(0.02f);
+                }
             }
             yield return null;
         }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            //대화 끝
-            isSentenceEnd = true;
-        }
-
         Debug.Log(writerText);
-        //writerText = "";
 
-        /*
-        //텍스트 타이핑
-        for (a = 0; a < narration.Length; a++)
-        //for (a = 0; a < textSpeed; a++)
+        //대사 출력이 모두 완료 되었다면
+        if (ChatText.text == narration || ChatText.text == narration_2)
         {
-            writerText += narration[a];
-            ChatText.text = writerText;
-
-            //텍스트 타이핑 시간 조절
-            //yield return null;
-            yield return new WaitForSeconds(0.05f);
-        }
-        yield return null;
-        */
-
-        //키(default : space)를 다시 누를 때까지 무한정 대기
-        while (true)
-        {
-            if (isButtonClicked)
-            {
-                isButtonClicked = false;
-                break;
-            }
-            yield return null;
+            //대화 종료 조건 충족
+            remainSentence = true;
+            isSentenceEnd = true;
         }
     }
 
@@ -214,7 +201,6 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
         remainSentence = true;
 
         Debug.Log(narration);
-        int a = 0;
         CharacterName.text = narrator;
         //characternameText = narrator;
         //narrator = CharacterName.text;
@@ -232,74 +218,40 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
         }
 
         //텍스트 타이핑
-        for (a = 0; a < narration.Length; a++)
+        for (int a = 0; a < narration.Length; a++)
         {
             writerText += narration[a];
             ChatText.text = writerText;
 
-            if (Input.GetKeyDown(KeyCode.Z))
+            //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
             {
+                ChatText.text = narration;
+
                 //남은대화 없음
                 remainSentence = true;
                 //대화 끝
                 isSentenceEnd = true;
 
-                if (narration == npcDatabaseScr.NPC_01[220].comment)
-                {
-                    //사공의 물건 획득
-                    ObjectManager.instance.GetItem(1011);
-                }
+                //for문 조건 충족
+                a = narration.Length;
             }
 
-            //텍스트 타이핑 시간 조절
-            //yield return null;
-
-            yield return new WaitForSeconds(0.02f);
+            //대사 출력 중일 경우에만
+            if (ChatText.text != narration)
+            {
+                //텍스트 타이핑 시간 조절
+                yield return new WaitForSeconds(0.02f);
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        //대사 출력이 모두 완료 되었다면
+        if (ChatText.text == narration)
         {
-            //대화 끝
+            //대화 종료 조건 충족
+            remainSentence = true;
             isSentenceEnd = true;
-
-            if (narration == npcDatabaseScr.NPC_01[220].comment)
-            {
-                //사공의 물건 획득
-                ObjectManager.instance.GetItem(1011);
-            }
         }
-
-        //Z키를 다시 누를 때까지 무한정 대기
-        while (true)
-        {
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                //남은대화 없음
-                remainSentence = true;
-                //대화 끝
-                isSentenceEnd = true;
-
-                if (narration == npcDatabaseScr.NPC_01[220].comment)
-                {
-                    //사공의 물건 획득
-                    ObjectManager.instance.GetItem(1011);
-                }
-
-                break;
-            }
-            yield return null;
-        }
-
-        ////키(default : space)를 다시 누를 때까지 무한정 대기
-        //while (true)
-        //{
-        //    if (isButtonClicked)
-        //    {
-        //        isButtonClicked = false;
-        //        break;
-        //    }
-        //    yield return null;
-        //}
     }
 
     //오버로드
@@ -323,55 +275,56 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
             //남은대화 있음
             remainSentence = true;
 
-            Debug.Log(narration);
-            int a = 0;
             CharacterName.text = narrator;
-            //characternameText = narrator;
-
-
-            //narrator = CharacterName.text;
 
             //텍스트 타이핑
-            for (a = 0; a < narration.Length; a++)
+            for (int a = 0; a < narration.Length; a++)
             {
                 writerText += narration[a];
                 ChatText.text = writerText;
 
-                //텍스트 타이핑 시간 조절
-                //yield return null;
-                yield return new WaitForSeconds(0.02f);
-
-                //중간에 Z키를 누르면
-                if (Input.GetKeyDown(KeyCode.Z))
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    break;
+                    writerText = narration;
+                    ChatText.text = narration;
+
+                    //남은대화 없음
+                    remainSentence = true;
+                    ////대화 끝
+                    //isSentenceEnd = true;
+
+                    //for문 조건 충족
+                    a = narration.Length;
                 }
+
+                //대사 출력 중일 경우에만
+                if (ChatText.text != narration)
+                {
+                    //텍스트 타이핑 시간 조절
+                    yield return new WaitForSeconds(0.02f);
+                }
+
             }
+
+            //대사 출력 후 잠깐 딜레이
+            yield return new WaitForSeconds(0.1f);
 
             //Z키를 다시 누를 때까지 무한정 대기
             while (true)
             {
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (ChatText.text == narration && Input.GetKeyDown(KeyCode.Z))
                 {
+                    Debug.Log("Text 비우기");
+
                     //Text 비우기
                     writerText = "";
+
                     break;
                 }
                 yield return null;
             }
         }
-
-        ////키(default : space)를 다시 누를 때까지 무한정 대기
-        //while (true)
-        //{
-        //    if (isButtonClicked)
-        //    {
-        //        isButtonClicked = false;
-        //        break;
-        //    }
-        //    yield return null;
-        //}
-
     }
 
     //구슬 퍼즐 시작

@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class Dialog_TypingWriter_Bbang : MonoBehaviour
 {
-    // ½ÇÁ¦ Ã¤ÆÃÀÌ ³ª¿À´Â ÅØ½ºÆ®
+    // ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
     public Text ChatText;
 
-    // Ä³¸¯ÅÍ ÀÌ¸§ÀÌ ³ª¿À´Â ÅØ½ºÆ®
+    // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
     public Text CharacterName;
 
-    // ´ëÈ­¸¦ ºü¸£°Ô ³Ñ±æ ¼ö ÀÖ´Â Å°(default : space)
+    // ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ Å°(default : space)
     public List<KeyCode> skipButton;
 
     public string writerText = "";
@@ -22,7 +22,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     public bool bool_isNPC = false;
 
-    //´ÙÀÌ¾ó·Î±× UI
+    //ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ UI
     public GameObject images_Bbang;
 
     public Sprite[] images_NPC_portrait;
@@ -31,29 +31,29 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     public Controller controller_scr;
 
-    // ·£´ý ´ë»ç Ãâ·Â º¯¼ö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private int RandomNum;
 
-    //´ëÈ­°¡ ÀüºÎ Ãâ·Â µÇ¾ú´ÂÁö
+    //ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½
     public bool isSentenceEnd = false;
 
-    //³²Àº ´ëÈ­°¡ ´õ ÀÖ´ÂÁö (trueÀÏ °æ¿ì ´ÙÀÌ¾ó·Î±×¸¦ Á¾·áÇÏÁö ¾Ê°í ³»¿ëÀ» ºñ¿ö¼­ ´ÙÀ½ ´ë»ç¸¦ Ãâ·ÂÇÔ)
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ (trueï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ç¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½)
     public bool remainSentence = false;
 
-    // ±ÛÀÚ»ö ¼³Á¤ º¯¼ö
+    // ï¿½ï¿½ï¿½Ú»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     bool t_white = false;
     bool t_red = false;
 
-    // ±ÛÀÚ»ö ¼³Á¤ ¹®ÀÚ´Â ´ë»ç Ãâ·Â ¹«½Ã
+    // ï¿½ï¿½ï¿½Ú»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     bool t_ignore = false;
 
     [System.Serializable]
     public struct DialogData
     {
-        public int speakerIndex;              // ÀÌ¸§°ú ´ë»ç¸¦ Ãâ·ÂÇÒ ÇöÀç DialogSystemÀÇ speaker ¹è¿­ ¼ø¹ø
-        public string name;                   // NPC ÀÌ¸§
+        public int speakerIndex;              // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ç¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ DialogSystemï¿½ï¿½ speaker ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½
+        public string name;                   // NPC ï¿½Ì¸ï¿½
         [TextArea(3, 5)]
-        public string dialogue;               // ´ë»ç
+        public string dialogue;               // ï¿½ï¿½ï¿½
     }
 
     [SerializeField]
@@ -63,7 +63,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
     [SerializeField]
     private DialogData[] dialogs;
 
-    //¿ÜºÎ ½ºÅ©¸³Æ®¿¡¼­ »ç¿ëÇÏ±â À§ÇÑ ¿ëµµ(½Ì±ÛÅæÆÐÅÏ)
+    //ï¿½Üºï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ëµµ(ï¿½Ì±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
     public static Dialog_TypingWriter_Bbang instance;
     void Start()
     {
@@ -78,7 +78,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             ObjectManager.instance.GetItem(1006);
         }
 
-        foreach (var element in skipButton) // ¹öÆ° °Ë»ç
+        foreach (var element in skipButton) // ï¿½ï¿½Æ° ï¿½Ë»ï¿½
         {
             if (Input.GetKeyDown(element))
             {
@@ -90,36 +90,36 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition()
             && TutorialManager.instance.SentenceCondition())
         {
-            Debug.Log("zÅ° ´©¸§! »±´ö!!!!");
+            Debug.Log("zÅ° ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½!!!!");
             //bool_isBotjim = true;
             controller_scr.TalkStart();
 
             if (bool_isNPC == false && !remainSentence)
             {
-                Debug.Log("´ëÈ­ ½ÇÇà");
+                Debug.Log("ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½");
                 images_Bbang.SetActive(true);
                 StartCoroutine(TextPractice());
                 Trigger_NPC.instance.isNPCTrigger = true;
-                //ÃÊ»óÈ­ º¯°æ
+                //ï¿½Ê»ï¿½È­ ï¿½ï¿½ï¿½ï¿½
                 GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
                 //bool_isNPC = true;
             }
 
-            //´ëÈ­°¡ ³¡³µÀ» °æ¿ì
+            //ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             else if (isSentenceEnd)
             {
                 images_Bbang.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
-                //´ë»ç ºñ¿ì±â
+                //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 writerText = "";
                 StopAllCoroutines();
                 Trigger_NPC.instance.isNPCTrigger = false;
                 bool_isNPC = false;
                 //Controller.instance.TalkEnd();
                 controller_scr.TalkEnd();
-                //³²Àº´ëÈ­ ¾øÀ½
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
                 remainSentence = false;
-                //´ëÈ­ ³¡
+                //ï¿½ï¿½È­ ï¿½ï¿½
                 isSentenceEnd = false;
             }
         }
@@ -130,7 +130,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
         {
-            Debug.Log("zÅ° ´©¸§! Bbang!!!!");
+            Debug.Log("zÅ° ï¿½ï¿½ï¿½ï¿½! Bbang!!!!");
 
             controller_scr.TalkStart();
             //bool_isBotjim = true;
@@ -144,7 +144,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             }
             else
             {
-                //ÇÃ·¹ÀÌ¾î ÀÌµ¿Á¦ÇÑ ÇØÁ¦
+                //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 controller_scr.TalkEnd();
 
                 images_Bbang.SetActive(false);
@@ -159,7 +159,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     IEnumerator NormalChat()
     {
-        //´ëÈ­ Áßº¹½ÇÇà ¹æÁö
+        //ï¿½ï¿½È­ ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         remainSentence = true;
 
         string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[1].npc_name;
@@ -169,7 +169,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         RandomNum = Random.Range(0, 2);
         Debug.Log(RandomNum);
 
-        //ÅØ½ºÆ® Å¸ÀÌÇÎ
+        //ï¿½Ø½ï¿½Æ® Å¸ï¿½ï¿½ï¿½ï¿½
         if (RandomNum == 0)
         {
             for (int a = 0; a < narration.Length; a++)
@@ -177,26 +177,26 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                 writerText += narration[a];
                 ChatText.text = writerText;
 
-                //5±ÛÀÚ ÀÌ»ó ´ëÈ­°¡ ÁøÇàµÇ°í ZÅ°¸¦ ´­·¶À» °æ¿ì
+                //5ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ ZÅ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
                     ChatText.text = narration;
 
-                    //³²Àº´ëÈ­ ¾øÀ½
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
                     remainSentence = true;
-                    //´ëÈ­ ³¡
+                    //ï¿½ï¿½È­ ï¿½ï¿½
                     isSentenceEnd = true;
 
-                    //for¹® Á¶°Ç ÃæÁ·
+                    //forï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     a = narration.Length;
-                    ////´ëÈ­ ³¡
+                    ////ï¿½ï¿½È­ ï¿½ï¿½
                     //isSentenceEnd = true;
                 }
 
-                //´ë»ç°¡ ÀüºÎ Ãâ·ÂµÇÁö ¾Ê¾ÒÀ» °æ¿ì
+                //ï¿½ï¿½ç°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Âµï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 if (a < narration.Length)
                 {
-                    //´ë»ç Å¸ÀÌÇÎ ¼Óµµ
+                    //ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
                     yield return new WaitForSeconds(0.02f);
                 }
 
@@ -211,23 +211,23 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                 writerText += narration_2[a];
                 ChatText.text = writerText;
 
-                //5±ÛÀÚ ÀÌ»ó ´ëÈ­°¡ ÁøÇàµÇ°í ZÅ°¸¦ ´­·¶À» °æ¿ì
+                //5ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ ZÅ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
                     ChatText.text = narration_2;
 
-                    //³²Àº´ëÈ­ ¾øÀ½
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
                     remainSentence = true;
-                    //´ëÈ­ ³¡
+                    //ï¿½ï¿½È­ ï¿½ï¿½
                     isSentenceEnd = true;
 
-                    //for¹® Á¶°Ç ÃæÁ·
+                    //forï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     a = narration_2.Length;
-                    ////´ëÈ­ ³¡
+                    ////ï¿½ï¿½È­ ï¿½ï¿½
                     //isSentenceEnd = true;
                 }
 
-                //´ë»ç°¡ ÀüºÎ Ãâ·ÂµÇÁö ¾Ê¾ÒÀ» °æ¿ì
+                //ï¿½ï¿½ç°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Âµï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 if (a < narration_2.Length)
                 {
                     yield return new WaitForSeconds(0.02f);
@@ -237,10 +237,10 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         }
         Debug.Log(writerText);
 
-        //´ë»ç Ãâ·ÂÀÌ ¸ðµÎ ¿Ï·á µÇ¾ú´Ù¸é
+        //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ ï¿½Ç¾ï¿½ï¿½Ù¸ï¿½
         if (ChatText.text == narration || ChatText.text == narration_2)
         {
-            //´ëÈ­ Á¾·á Á¶°Ç ÃæÁ·
+            //ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             remainSentence = true;
             isSentenceEnd = true;
         }
@@ -252,18 +252,18 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
     //    CharacterName.text = narrator;
     //    writerText = "";
 
-    //    //ÅØ½ºÆ® Å¸ÀÌÇÎ
+    //    //ï¿½Ø½ï¿½Æ® Å¸ï¿½ï¿½ï¿½ï¿½
     //    for (a = 0; a < narration.Length; a++)
     //    {
     //        writerText += narration[a];
     //        ChatText.text = writerText;
 
-    //        //ÅØ½ºÆ® Å¸ÀÌÇÎ ½Ã°£ Á¶Àý
+    //        //ï¿½Ø½ï¿½Æ® Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
     //        //yield return null;
     //        yield return new WaitForSeconds(0.02f);
     //    }
 
-    //    //Å°(default : space)¸¦ ´Ù½Ã ´©¸¦ ¶§±îÁö ¹«ÇÑÁ¤ ´ë±â
+    //    //Å°(default : space)ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     //    while (true)
     //    {
     //        if (isButtonClicked)
@@ -277,7 +277,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     IEnumerator ItemClueChat(string narrator, string narration)
     {
-        //³²Àº´ëÈ­ ÀÖÀ½
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
         remainSentence = true;
 
         CharacterName.text = narrator;
@@ -287,31 +287,31 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
         string t_letter = "";
 
-        //½ÉÇÐ±ÔÀÇ ´ë»çÀÏ°æ¿ì
-        if (narrator == "½ÉÇÐ±Ô")
+        //ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½
+        if (narrator == "ï¿½ï¿½ï¿½Ð±ï¿½")
         {
-            //ÃÊ»óÈ­ º¯°æ
+            //ï¿½Ê»ï¿½È­ ï¿½ï¿½ï¿½ï¿½
             GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
         }
         else
         {
-            //ÃÊ»óÈ­ º¯°æ
+            //ï¿½Ê»ï¿½È­ ï¿½ï¿½ï¿½ï¿½
             GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
         }
 
-        //ÅØ½ºÆ® Å¸ÀÌÇÎ
-        for (a = 0; a < narration.Length; a++)
+        //ï¿½Ø½ï¿½Æ® Å¸ï¿½ï¿½ï¿½ï¿½
+        for (int a = 0; a < narration.Length; a++)
         {
             //writerText += narration[a];
             //ChatText.text = writerText;
             switch (narration[a])
             {
-                case '¨Þ':
+                case 'ï¿½ï¿½':
                     t_white = false;
                     t_red = true;
                     t_ignore = true;
                     break;
-                case '¨ã':
+                case 'ï¿½ï¿½':
                     t_white = true;
                     t_red = false;
                     t_ignore = true;
@@ -332,121 +332,129 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                     Debug.Log("1_red");
                 }
                 //Debug.Log(writerText);
-                writerText += t_letter; // Æ¯¼ö¹®ÀÚ°¡ ¾Æ´Ï¶ó¸é ´ë»ç Ãâ·Â
+                writerText += t_letter; // Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 ChatText.text = writerText;
                 //writerText += narration[a];
                 //ChatText.text = writerText;
             }
-            t_ignore = false; // ÇÑ ±ÛÀÚ Âï¾úÀ¸¸é ´Ù½Ã false
+            t_ignore = false; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ false
 
-            if (Input.GetKeyDown(KeyCode.Z))
+            //5ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ ZÅ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
             {
-                //³²Àº´ëÈ­ ¾øÀ½
+                ChatText.text = narration;
+
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
                 remainSentence = true;
-                //´ëÈ­ ³¡
+                //ï¿½ï¿½È­ ï¿½ï¿½
                 isSentenceEnd = true;
+
+                //forï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                a = narration.Length;
             }
 
-            //ÅØ½ºÆ® Å¸ÀÌÇÎ ½Ã°£ Á¶Àý
-            //yield return null;
-
-            yield return new WaitForSeconds(0.02f);
+            //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½
+            if (ChatText.text != narration)
+            {
+                //ï¿½Ø½ï¿½Æ® Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
+                yield return new WaitForSeconds(0.02f);
+            }
         }
-        //5±ÛÀÚ ÀÌ»ó ´ëÈ­°¡ ÁøÇàµÇ°í ZÅ°¸¦ ´­·¶À» °æ¿ì
+        //5ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ ZÅ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
         {
                 ChatText.text = narration;
 
-                //³²Àº´ëÈ­ ¾øÀ½
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
                 remainSentence = true;
-                //´ëÈ­ ³¡
+                //ï¿½ï¿½È­ ï¿½ï¿½
                 isSentenceEnd = true;
 
-                //for¹® Á¶°Ç ÃæÁ·
+                //forï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 a = narration.Length;
         }
 
-        //´ë»ç Ãâ·Â ÁßÀÏ °æ¿ì¿¡¸¸
+        //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½
         if (ChatText.text != narration)
         {
-                //ÅØ½ºÆ® Å¸ÀÌÇÎ ½Ã°£ Á¶Àý
+                //ï¿½Ø½ï¿½Æ® Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
                 yield return new WaitForSeconds(0.02f);
         }
 
-        //´ë»ç Ãâ·ÂÀÌ ¸ðµÎ ¿Ï·á µÇ¾ú´Ù¸é
+        //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ ï¿½Ç¾ï¿½ï¿½Ù¸ï¿½
         if (ChatText.text == narration)
         {
-            //´ëÈ­ Á¾·á Á¶°Ç ÃæÁ·
+            //ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             remainSentence = true;
             isSentenceEnd = true;
         }
     }
 
 
-    //¿À¹ö·Îµå
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½
     IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
-        //½ÉÇÐ±ÔÀÇ ´ë»çÀÏ°æ¿ì
-        if (narrator == "½ÉÇÐ±Ô")
+        //ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½
+        if (narrator == "ï¿½ï¿½ï¿½Ð±ï¿½")
         {
-            //ÃÊ»óÈ­ º¯°æ
+            //ï¿½Ê»ï¿½È­ ï¿½ï¿½ï¿½ï¿½
             GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
         }
         else
         {
-            //ÃÊ»óÈ­ º¯°æ
+            //ï¿½Ê»ï¿½È­ ï¿½ï¿½ï¿½ï¿½
             GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
         }
 
-        //³²Àº ´ëÈ­°¡ ÀÖÀ»°æ¿ì
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (_remainSentence == true)
         {
-            //³²Àº´ëÈ­ ÀÖÀ½
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
             remainSentence = true;
 
             CharacterName.text = narrator;
 
-            //ÅØ½ºÆ® Å¸ÀÌÇÎ
+            //ï¿½Ø½ï¿½Æ® Å¸ï¿½ï¿½ï¿½ï¿½
             for (int a = 0; a < narration.Length; a++)
             {
                 writerText += narration[a];
                 ChatText.text = writerText;
 
-                //5±ÛÀÚ ÀÌ»ó ´ëÈ­°¡ ÁøÇàµÇ°í ZÅ°¸¦ ´­·¶À» °æ¿ì
+                //5ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ ZÅ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
                     writerText = narration;
                     ChatText.text = narration;
 
-                    //³²Àº´ëÈ­ ¾øÀ½
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
                     remainSentence = true;
-                    ////´ëÈ­ ³¡
+                    ////ï¿½ï¿½È­ ï¿½ï¿½
                     //isSentenceEnd = true;
 
-                    //for¹® Á¶°Ç ÃæÁ·
+                    //forï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     a = narration.Length;
                 }
 
-                //´ë»ç Ãâ·Â ÁßÀÏ °æ¿ì¿¡¸¸
+                //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½
                 if (ChatText.text != narration)
                 {
-                    //ÅØ½ºÆ® Å¸ÀÌÇÎ ½Ã°£ Á¶Àý
+                    //ï¿½Ø½ï¿½Æ® Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
                     yield return new WaitForSeconds(0.02f);
                 }
 
             }
 
-            //´ë»ç Ãâ·Â ÈÄ Àá±ñ µô·¹ÀÌ
+            //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             yield return new WaitForSeconds(0.1f);
 
-            //ZÅ°¸¦ ´Ù½Ã ´©¸¦ ¶§±îÁö ¹«ÇÑÁ¤ ´ë±â
+            //ZÅ°ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             while (true)
             {
                 if (ChatText.text == narration && Input.GetKeyDown(KeyCode.Z))
                 {
-                    Debug.Log("Text ºñ¿ì±â");
+                    Debug.Log("Text ï¿½ï¿½ï¿½ï¿½");
 
-                    //Text ºñ¿ì±â
+                    //Text ï¿½ï¿½ï¿½ï¿½
                     writerText = "";
 
                     break;
@@ -458,121 +466,121 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
     IEnumerator TextPractice()
     {
-        #region ´Ü¼­
-        //2000 : ½Â»ó´ìÀÇ ¼ö¾çµþ
+        #region ï¿½Ü¼ï¿½
+        //2000 : ï¿½Â»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         if (ObjectManager.instance.GetEquipObjectKey() == 2000)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[9].npc_name, dialogdb.NPC_01[9].comment));
         }
-        //2001 : Ã»ÀÌÀÇ °ÅÁþ¸»
+        //2001 : Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2001)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[22].npc_name, dialogdb.NPC_01[22].comment));
         }
-        //2002 : Ã»ÀÌÀÇ Çà¹æ
+        //2002 : Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2002)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[30].npc_name, dialogdb.NPC_01[30].comment));
         }
-        //2003 : Ã»ÀÌ¿Í ÀåÅÍ
+        //2003 : Ã»ï¿½Ì¿ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2003)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[38].npc_name, dialogdb.NPC_01[38].comment));
         }
-        //2004 : Ã»ÀÌ¿Í »ç³»
+        //2004 : Ã»ï¿½Ì¿ï¿½ ï¿½ç³»
         else if (ObjectManager.instance.GetEquipObjectKey() == 2004)
         {
-            //ºñ³à ÀÌº¥Æ® È°¼ºÈ­
+            //ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® È°ï¿½ï¿½È­
             EventManager.instance.EventActive(Events.binyeo);
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[536].npc_name, dialogdb.NPC_01[536].comment, true));
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[46].npc_name, dialogdb.NPC_01[46].comment));
         }
-        //2005 : ´©±º°¡ÀÇ ¾Æµé
+        //2005 : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æµï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2005)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[57].npc_name, dialogdb.NPC_01[57].comment));
         }
-        //2006 : ¼Û³ª¶ó »óÀÎ°ú Ã»ÀÌ
+        //2006 : ï¿½Û³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ Ã»ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2006)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[65].npc_name, dialogdb.NPC_01[65].comment));
         }
-        //2007 : ½Â·Á¿Í Ã»ÀÌ
+        //2007 : ï¿½Â·ï¿½ï¿½ï¿½ Ã»ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2007)
         {
-            //½Â·ÁÀÇ ¸¶À½ ´Ü¼­ È¹µæ
+            //ï¿½Â·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü¼ï¿½ È¹ï¿½ï¿½
             ObjectManager.instance.GetClue(2008);
 
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[539].npc_name, dialogdb.NPC_01[539].comment, true));
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[78].npc_name, dialogdb.NPC_01[78].comment));
         }
-        //2008 : ½Â·ÁÀÇ ¸¶À½
+        //2008 : ï¿½Â·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2008)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[86].npc_name, dialogdb.NPC_01[86].comment));
         }
-        //2009 : Ã»ÀÌÀÇ µµ¿ò
+        //2009 : Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2009)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[94].npc_name, dialogdb.NPC_01[94].comment));
         }
-        //2010 : °ø¾ç¹Ì »ï¹é ¼®
+        //2010 : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2010)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[104].npc_name, dialogdb.NPC_01[104].comment));
         }
-        //2011 : °ø¾ç¹ÌÀÇ ÃâÃ³
+        //2011 : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã³
         else if (ObjectManager.instance.GetEquipObjectKey() == 2011)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[113].npc_name, dialogdb.NPC_01[113].comment));
         }
-        //2012 : Ã»ÀÌÀÇ °Å·¡
+        //2012 : Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2012)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[121].npc_name, dialogdb.NPC_01[121].comment));
         }
-        //2013 : Çâ¸® ´ì ¼ÂÂ° ¾Æµé
+        //2013 : ï¿½â¸® ï¿½ï¿½ ï¿½ï¿½Â° ï¿½Æµï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2013)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[129].npc_name, dialogdb.NPC_01[129].comment));
         }
-        /*//2014 : ÀáÀáÇØÁ®¾ß ÇÒ ¹°»ì, 2020 : »ç°ø¿¡°Ô ÀÖ¾ú´ø ÀÏ, 2022 : ¹î±æÀ» ÀáÀç¿ï ¹æ¹ý
+        /*//2014 : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, 2020 : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½, 2022 : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2014)
         {
-            // ±âº» ´ë»ç¿Í °°À½, »ý·« °¡´ÉÇÒÁöµµ
+            // ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[137].npc_name, dialogdb.NPC_01[137].comment));
         }*/
-        //2015 : Ã»ÀÌ°¡ »ç°£ °Í
+        //2015 : Ã»ï¿½Ì°ï¿½ ï¿½ç°£ ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2015)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[145].npc_name, dialogdb.NPC_01[145].comment));
         }
-        //2016 : Â¤½ÅÀ» »ç°£ Ã»ÀÌ
+        //2016 : Â¤ï¿½ï¿½ï¿½ï¿½ ï¿½ç°£ Ã»ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2016)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[155].npc_name, dialogdb.NPC_01[155].comment));
         }
-        //2017 : ¹èÀÇ ÃâÇ×
+        //2017 : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2017)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[163].npc_name, dialogdb.NPC_01[163].comment));
         }
-        //2018 : ³ëÁ¡ÀÇ ´Ü°ñ
+        //2018 : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2018)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[182].npc_name, dialogdb.NPC_01[182].comment));
         }
-        //2019 : ¶ßÁö ¾Ê´Â ¹è
+        //2019 : ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2019)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[190].npc_name, dialogdb.NPC_01[190].comment));
         }
-        //2021 : »ç°øÀÇ ¹°°Ç
+        //2021 : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2021)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[207].npc_name, dialogdb.NPC_01[207].comment));
         }
-        //2023 : 3¿ù º¸¸§³¯
+        //2023 : 3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 2023)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[229].npc_name, dialogdb.NPC_01[229].comment));
@@ -580,47 +588,47 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
         #endregion
 
-        #region ¾ÆÀÌÅÛ
-        //1000 : ½Ò
+        #region ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        //1000 : ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 1000)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[283].npc_name, dialogdb.NPC_01[283].comment));
         }
-        //1001 : ÀåÀÛ
+        //1001 : ï¿½ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 1001)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[249].npc_name, dialogdb.NPC_01[78].comment));
         }
-        //1005 : ÁÖ¸Ô¹ä
+        //1005 : ï¿½Ö¸Ô¹ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 1005)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[292].npc_name, dialogdb.NPC_01[292].comment));
         }
-        //1006 : ºñ³à
+        //1006 : ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 1006)
         {
-            //ºñ³à ¿ÀºêÁ§Æ® Á¦°Å
+            //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
             ObjectManager.instance.RemoveItem(1006);
 
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[526].npc_name, dialogdb.NPC_01[526].comment, true));
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[54].npc_name, dialogdb.NPC_01[54].comment, true));
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[55].npc_name, dialogdb.NPC_01[55].comment, true));
 
-            //¼Û³ª¶ó »óÀÎ°ú Ã»ÀÌ ´Ü¼­ È¹µæ
+            //ï¿½Û³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ Ã»ï¿½ï¿½ ï¿½Ü¼ï¿½ È¹ï¿½ï¿½
             ObjectManager.instance.GetClue(2006);
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[56].npc_name, dialogdb.NPC_01[56].comment));
         }
-        //1007 : ¸Ô
+        //1007 : ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 1007)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[307].npc_name, dialogdb.NPC_01[307].comment));
         }
-        //1009 : ²É
+        //1009 : ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 1009)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[322].npc_name, dialogdb.NPC_01[322].comment));
         }
-        //1011 : »ç°øÀÇ ¹°°Ç
+        //1011 : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 1011)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[338].npc_name, dialogdb.NPC_01[338].comment));
@@ -628,40 +636,40 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
 
         #endregion
 
-        #region Á¶ÇÕ ´Ü¼­
-        //4023 : °ø¾ç¹Ì¸¦ ±¸ÇÑ ¹æ¹ý
+        #region ï¿½ï¿½ï¿½ï¿½ ï¿½Ü¼ï¿½
+        //4023 : ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 4023)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[349].npc_name, dialogdb.NPC_01[349].comment));
         }
-        //4015 : Ã»ÀÌ°¡ »ç¶óÁø ³¯
+        //4015 : Ã»ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 4015)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[357].npc_name, dialogdb.NPC_01[357].comment));
         }
-        //4017 : Ã»ÀÌ¿Í ±×ÀÇ °ü°è
+        //4017 : Ã»ï¿½Ì¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 4017)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[365].npc_name, dialogdb.NPC_01[365].comment));
         }
-        //8032 : ÇÔ²² »ç¶óÁø µÎ »ç¶÷
+        //8032 : ï¿½Ô²ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 8032)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[373].npc_name, dialogdb.NPC_01[373].comment));
         }
-        //4033 : ¹«¿ªÀÇ Áß´Ü
+        //4033 : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 4033)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[381].npc_name, dialogdb.NPC_01[381].comment));
         }
-        //4018 : Ã»ÀÌÀÇ °¡Ãâ
+        //4018 : Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if (ObjectManager.instance.GetEquipObjectKey() == 4018)
         {
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[391].npc_name, dialogdb.NPC_01[391].comment));
         }
         #endregion
 
-        #region ±âº» ´ë»ç
+        #region ï¿½âº» ï¿½ï¿½ï¿½
         else
         {
             yield return StartCoroutine(NormalChat());

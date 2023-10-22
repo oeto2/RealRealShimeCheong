@@ -119,7 +119,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
             if (bool_isNPC == false && !remainSentence)
             {
-
+                Debug.Log("향리댁 대사 실행");
                 //선택지 UI
                 Canvas_Selection_UI.SetActive(false);
 
@@ -409,6 +409,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
+                    writerText = narration;
                     ChatText.text = narration;
 
                     //남은대화 없음
@@ -429,6 +430,9 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
             }
 
+            //대사 출력 후 잠깐 딜레이
+            yield return new WaitForSeconds(0.1f);
+
             //Z키를 다시 누를 때까지 무한정 대기
             while (true)
             {
@@ -438,10 +442,10 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
                     //Text 비우기
                     writerText = "";
+
                     break;
                 }
-
-                yield return null;
+                yield return null;  
             }
         }
     }
