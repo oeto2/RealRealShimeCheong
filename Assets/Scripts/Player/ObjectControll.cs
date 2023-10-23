@@ -45,6 +45,10 @@ public class ObjectControll : MonoBehaviour
     //봇짐 UI 오브젝트
     public GameObject gameObject_BotzimeUI;
 
+    //지도 UI 오브젝트
+    public GameObject gameObject_MapUI;
+
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -193,14 +197,17 @@ public class ObjectControll : MonoBehaviour
     {
         getBotzime = true;
 
-        //봇짐 애니메이션 변경
-        playerAnimationScr.ChangeAnimationBotzime();
+        //오브젝트 UI 보이기
+        UIManager.instance.gameObject_UIBackGround.SetActive(true);
+
+        ////봇짐 UI 이미지 보이기
+        //gameObject_BotzimeUI.SetActive(true);
+
+        ////봇짐 애니메이션 변경
+        //playerAnimationScr.ChangeAnimationBotzime();
 
         //봇짐 획득 대화 실행
         playerDialogueScr.Start_Sentence_GetBotzime();
-
-        //플레이어 이동 제한
-        playerCtrlScr.TalkStart();
 
         //오브젝트 비활성화
         _obj.SetActive(false);
@@ -215,9 +222,12 @@ public class ObjectControll : MonoBehaviour
         //지도 획득 대화 실행
         playerDialogueScr.Start_Sentence_GetMap();
 
-        //플레이어 이동제한
-        playerCtrlScr.TalkStart();
+        ////맵 오브젝트 UI 보이기
+        //gameObject_MapUI.SetActive(true);
 
+        ////지도 이미지 보이기
+        //gameObject_MapImage.SetActive(true);
+            
         //오브젝트 비활성화
         _obj.SetActive(false);
     }
@@ -228,8 +238,12 @@ public class ObjectControll : MonoBehaviour
         //지도 획득 대화 실행
         playerDialogueScr.Start_Sentence_GetMap();
 
-        //플레이어 이동제한
-        playerCtrlScr.TalkStart();
+        //  //맵 오브젝트 UI 보이기
+        //gameObject_MapUI.SetActive(true);
+
+        ////지도 이미지 보이기
+        //gameObject_MapImage.SetActive(true);
+        
     }
     #endregion
 

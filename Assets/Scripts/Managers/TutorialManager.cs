@@ -204,14 +204,11 @@ public class TutorialManager : MonoBehaviour
             }
 
             //노트를 읽고 난 뒤 Z or Space를 누른다
-            if (gameObject_shimeNote.activeSelf)
+            if (gameObject_shimeNote.activeSelf && events == TutorialEvents.TurnOnLights)
             {
                 //메모 끄기
                 if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Space)) && !closeNote)
                 {
-                    //Player 이동제한
-                    playerCtrlScr.TalkStart();
-
                     //메모 끄기
                     gameObject_shimeNote.SetActive(false);
 
@@ -219,103 +216,47 @@ public class TutorialManager : MonoBehaviour
                     playerDialogueScr.Start_Sentence1();
 
                     Invoke("CloseNote", 0.2f);
+
+                    //대사1 종료
+                    setence1End = true;
+
+                    //다음 이벤트 변경
+                    events = TutorialEvents.GetItems;
+                    tutorialEventNum = 1;
                 }
             }
-
-            //이어서 대화 시작
-            if (!setence1End && playerDialogueScr.isTalkEnd && closeNote && Input.GetKeyDown(KeyCode.Z))
-            {
-                //Player 이동제한
-                playerCtrlScr.TalkStart();
-
-                playerDialogueScr.Start_Sentence1_2();
-
-                Invoke("Sentence1End", 0.2f);
-            }
-        }
-
-        //2번째 대화가 끝나고 Z키 누르면 다이얼로그창 끄기
-        if (setence1End && Input.GetKeyDown(KeyCode.Z) && !objCtrlScr.getBotzime && !objCtrlScr.getMap && playerDialogueScr.isTalkEnd && events == TutorialEvents.TurnOnLights)
-        {
-            //단서 획득
-            objectManagerScr.GetClue(2000);
-
-            //Player 이동제한 해제
-            playerCtrlScr.TalkEnd();
-
-            //UI 캔버스 보이기
-            gameObject_UICanvas.SetActive(true);
-
-
-            gameObject_Dialogue.SetActive(false);
-
-            //다음 이벤트
-            tutorialEventNum = 1;
-            events = TutorialEvents.GetItems;
         }
         #endregion
 
         #region 오브젝트 획득 튜토리얼
 
-        if (setence1End && !getObjects)
+        if (setence1End && !getObjects && events == TutorialEvents.GetItems)
         {
-            //Evnet 1 : 봇짐 또는 지도를 획득하자
-
-            //봇짐 획득 후 창 끄기
-            if (setence1End && Input.GetKeyDown(KeyCode.Z) && objCtrlScr.getBotzime && playerDialogueScr.isTalkEnd)
-            {
-                //Player 이동제한 해제
-                playerCtrlScr.TalkEnd();
-
-                gameObject_Dialogue.SetActive(false);
-            }
-
-            //맵 획득 후 창 끄기
-            if (setence1End && Input.GetKeyDown(KeyCode.Z) && objCtrlScr.getMap && playerDialogueScr.isTalkEnd)
-            {
-                //Player 이동제한 해제
-                playerCtrlScr.TalkEnd();
-
-                gameObject_Dialogue.SetActive(false);
-            }
 
             if (!gameObject_Dialogue.activeSelf && objCtrlScr.getMap && objCtrlScr.getBotzime)
             {
                 //둘다 획득 대화 실행
                 playerDialogueScr.Start_Sentence_GetObjcets();
 
-                //Player 이동제한
-                playerCtrlScr.TalkStart();
-
                 getObjects = true;
+
+                //다음 이벤트
+                tutorialEventNum = 2;
+
+                //향리댁 대화이벤트
+                events = TutorialEvents.TalkToHyang;
             }
         }
         #endregion
-
-        if (setence1End && getObjects && Input.GetKeyDown(KeyCode.Z) && playerDialogueScr.isTalkEnd && events == TutorialEvents.GetItems)
-        {
-            //Player 이동제한 해제
-            playerCtrlScr.TalkEnd();
-
-            gameObject_Dialogue.SetActive(false);
-
-            //다음 이벤트
-            tutorialEventNum = 2;
-
-            //향리댁 대화이벤트
-            events = TutorialEvents.TalkToHyang;
-        }
 
         //Evnet 2 : 향리댁과 대화하자
         //향리댁 대화가 모두 끝나고 Z 키를 누를경우
         if (events == TutorialEvents.TalkToHyang && HyangTalkEnd && Input.GetKeyDown(KeyCode.Z))
         {
-            //대화 끝
-            playerCtrlScr.TalkEnd();
-
             //다이얼로그 끄기
             gameObject_Dialogue.SetActive(false);
             DialogManager.instance.Dialouge_System.SetActive(false);
+
             //향리댁 SentenceEnd
             dialogueHyangScr.isSentenceEnd = true;
 
