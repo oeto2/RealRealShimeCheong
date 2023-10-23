@@ -168,6 +168,9 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         string narrator = characternameText = CharacterName.text = dialogdb.NPC_01[3].npc_name;
         string narration = dialogdb.NPC_01[3].comment;
         string narration_2 = dialogdb.NPC_01[401].comment;
+
+        //string t_letter = "";
+        //string t_letter_2 = "";
         RandomNum = Random.Range(0, 2);
 
         //텍스트 타이핑
@@ -190,14 +193,11 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
                     //for문 조건 충족
                     a = narration.Length;
-                    ////대화 끝
-                    //isSentenceEnd = true;
                 }
 
                 //대사가 전부 출력되지 않았을 경우
                 if (a < narration.Length)
                 {
-                    //대사 타이핑 속도
                     yield return new WaitForSeconds(0.02f);
                 }
 
@@ -456,10 +456,11 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         if (tutorialManagerScr.events == TutorialEvents.TalkToHyang)
         {
             Debug.Log("향리댁 튜토리얼 대사");
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[3].npc_name, dialogdb.NPC_01[3].comment, true));
-            yield return StartCoroutine(ItemClueChat("심학규", "청이가 향리 댁에 오지 않았다고 한다.", true));
-            yield return StartCoroutine(ItemClueChat("심학규", " 어찌 된 일인지 주변을 수소문 해 보자.", true));
-            yield return StartCoroutine(ItemClueChat("심학규", " 게임에서의 하루는 실제 시간의 5분입니다. 하루가 지나면 심학규의 집으로 귀환 됩니다.", true));
+            //yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[3].npc_name, dialogdb.NPC_01[3].comment, true));
+            yield return StartCoroutine(ItemClueChat("향리 댁 부인", "ⓦ여기는 어쩐 일이오?", true));
+            yield return StartCoroutine(ItemClueChat("심학규", "ⓦ청이가 향리 댁에 오지 않았다고 한다.", true));
+            yield return StartCoroutine(ItemClueChat("심학규", "ⓦ어찌 된 일인지 주변을 수소문 해 보자.", true));
+            yield return StartCoroutine(ItemClueChat("심학규", "ⓦ게임에서의 하루는 실제 시간의 5분입니다. 하루가 지나면 심학규의 집으로 귀환 됩니다.", true));
             tutorialManagerScr.HyangTalkEnd = true;
         }
 
