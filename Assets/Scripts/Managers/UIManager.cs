@@ -95,6 +95,8 @@ public class UIManager : MonoBehaviour
     public GameObject gameObject_SaveCheckWindow;
     //Sleep Check Window
     public GameObject gameObject_SleepCheckWindow;
+    //아이템 UI 칸 오브젝트
+    public GameObject gameObject_UIBackGround;
 
     //아이템 창이 실행중인지 확인하는 flag
     public bool isItemWindowLaunch;

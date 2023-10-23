@@ -145,6 +145,9 @@ public class DialogManager : MonoBehaviour
         }
         yield return null;
 
+        //대사 출력 후 잠깐 딜레이
+        yield return new WaitForSeconds(0.1f);
+
         //Z키를 다시 누를 때까지 무한정 대기
         while (true)
         {
@@ -207,6 +210,9 @@ public class DialogManager : MonoBehaviour
                 yield return new WaitForSeconds(0.02f);
             }
         }
+
+        //대사 출력 후 잠깐 딜레이
+        yield return new WaitForSeconds(0.1f);
 
         //Z키를 다시 누를 때까지 무한정 대기
         while (true)

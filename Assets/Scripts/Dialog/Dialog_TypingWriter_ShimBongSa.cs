@@ -84,6 +84,10 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
     {
         Debug.Log("다이얼로그 실행");
 
+        //다이얼로그 창 띄우기
+        gameObject_Dialougue.SetActive(true);
+
+
         isTalkEnd = false;
 
         //UI상의 캐릭터 이름 
@@ -112,6 +116,9 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
             }
         }
 
+        //대사 출력 후 잠깐 딜레이
+        yield return new WaitForSeconds(0.1f);
+
         //Z키를 다시 누를 때까지 무한정 대기
         while (true)
         {
@@ -122,6 +129,12 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
                 //Text 비우기
                 writerText = "";
 
+                //이후 대사가 없을 경우 다이얼로그 종료
+                if(_clear == true)
+                {
+                    gameObject_Dialougue.SetActive(false);
+                }
+
                 break;
             }
             yield return null;
@@ -130,15 +143,24 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
 
     //튜토리얼 대화 출력 메서드 모음
     #region
-    //1번 대화 실행 (Tutorial Manager에서 관리)
-    public void Start_Sentence1()
+    //튜토리얼 대사1
+    IEnumerator TutorialSentence_1()
     {
         Debug.Log("다이얼로그 대화1");
 
-        //대화 실행시 다이얼로그창 띄우기
-        gameObject_Dialougue.SetActive(true);
+        //튜토리얼 대사 출력
+        yield return StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[0].sentence, false));
+        yield return StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[1].sentence, true));
 
-        StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[0].sentence, true));
+        //단서 획득
+        ObjectManager.instance.GetClue(2000);
+        yield return null;
+    }
+
+    //1번 대화 실행 (Tutorial Manager에서 관리)
+    public void Start_Sentence1()
+    {
+        StartCoroutine(TutorialSentence_1());
     }
 
 

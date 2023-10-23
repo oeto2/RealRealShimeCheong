@@ -2416,6 +2416,7 @@ MonoBehaviour:
   gameObject_LoadWindow: {fileID: 1312410315}
   gameObject_SaveCheckWindow: {fileID: 936320460}
   gameObject_SleepCheckWindow: {fileID: 505507876}
+  gameObject_UIBackGround: {fileID: 1851244455}
   isItemWindowLaunch: 0
   isMapWindowLaunch: 0
   isOptionLaunch: 0
@@ -7030,8 +7031,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1833412218}
   m_HandleRect: {fileID: 1833412217}
   m_Direction: 2
-  m_Value: 0.99999994
-  m_Size: 0.24456519
+  m_Value: 1
+  m_Size: 0.2445652
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -53910,7 +53911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1729665404
 RectTransform:
   m_ObjectHideFlags: 0
@@ -58747,6 +58748,7 @@ MonoBehaviour:
   botzime: {fileID: 821866694}
   map: {fileID: 0}
   gameObject_BotzimeUI: {fileID: 1791878073}
+  gameObject_MapUI: {fileID: 454061957}
 --- !u!114 &1871036899
 MonoBehaviour:
   m_ObjectHideFlags: 0
