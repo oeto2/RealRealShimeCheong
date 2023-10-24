@@ -505,5 +505,4 @@ public class DialogManager : MonoBehaviour
         //NPC 이름 비우기
         text_NpcName.text = "";
     }
-
 }

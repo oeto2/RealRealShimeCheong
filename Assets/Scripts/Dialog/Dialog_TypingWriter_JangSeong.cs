@@ -345,7 +345,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
     {
         string t_letter = "";
 
-        //심학규의 대사일 경
+        //심학규의 대사일 경우
         if (narrator == "심학규")
         {
             //초상화 변경
@@ -384,11 +384,9 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                         t_ignore = true;
                         break;
                 }
-               
+
                 if (!t_ignore)
                 {
-                    Debug.Log("향리댁 대사 출력 중2");
-
                     if (t_white)
                     {
                         t_letter = "<color=#ffffff>" + narration[a] + "</color>";    // HTML Tag
@@ -400,16 +398,12 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                         t_letter = "<color=#B40404>" + narration[a] + "</color>";
                         Debug.Log("1_red");
                     }
-
                     //Debug.Log(writerText);
                     writerText += t_letter; // 특수문자가 아니라면 대사 출력
                     //writerText += narration[a];
                     ChatText.text = writerText;
                     //ChatText.text = writerText;
-
-                    Debug.Log($"writerText = {t_letter}");
                 }
-
                 t_ignore = false; // 한 글자 찍었으면 다시 false
 
                 //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
@@ -463,9 +457,9 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         {
             Debug.Log("향리댁 튜토리얼 대사");
             yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[3].npc_name, dialogdb.NPC_01[3].comment, true));
-            yield return StartCoroutine(ItemClueChat("심학규", "ⓦ청이가 향리 댁에 오지 않았다고 한다.", true));
-            yield return StartCoroutine(ItemClueChat("심학규", "ⓦ어찌 된 일인지 주변을 수소문 해 보자.", true));
-            yield return StartCoroutine(ItemClueChat("심학규", "ⓦ게임에서의 하루는 실제 시간의 5분입니다. 하루가 지나면 심학규의 집으로 귀환 됩니다.", true));
+            yield return StartCoroutine(ItemClueChat("심학규", "청이가 향리 댁에 오지 않았다고 한다.", true));
+            yield return StartCoroutine(ItemClueChat("심학규", " 어찌 된 일인지 주변을 수소문 해 보자.", true));
+            yield return StartCoroutine(ItemClueChat("심학규", " 게임에서의 하루는 실제 시간의 5분입니다. 하루가 지나면 심학규의 집으로 귀환 됩니다.", true));
             tutorialManagerScr.HyangTalkEnd = true;
         }
 
