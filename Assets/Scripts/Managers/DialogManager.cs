@@ -83,8 +83,11 @@ public class DialogManager : MonoBehaviour
     // 랜덤 대사 출력 변수
     private int RandomNum;
 
+    public Coroutine DialogueItemClue;
+
     void Awake()
     {
+
         if (instance == null)
         {
             instance = this;
@@ -103,7 +106,7 @@ public class DialogManager : MonoBehaviour
     }
 
     //NPC 기본대사
-    IEnumerator NormalChat(string _narrator)
+    public IEnumerator NormalChat(string _narrator)
     {
         //다이얼로그 Text 비우기
         CleanDialogue();
@@ -197,7 +200,7 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    IEnumerator ItemClueChat(string narrator, string narration)
+    public IEnumerator ItemClueChat(string narrator, string narration)
     {
         Debug.Log("대화출력1");
 
@@ -287,7 +290,7 @@ public class DialogManager : MonoBehaviour
     }
 
     //다이얼로그 대화 출력
-    IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
+    public IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
         Debug.Log("대화출력2");
 
@@ -390,38 +393,25 @@ public class DialogManager : MonoBehaviour
         }
     }
     
-    //다이얼로그 기본대사 출력
-    public void PrintDialogueNomal(string _narrator)
-    {
-        StartCoroutine(NormalChat(_narrator));
-    }
+    ////다이얼로그 기본대사 출력
+    //public void PrintDialogueNomal(string _narrator)
+    //{
+    //    StartCoroutine(NormalChat(_narrator));
+    //}
 
-    //다이얼로그 단서,아이템 대화 텍스트 출력1
-    public void PrintDialougeItemClue(string _narrator, string _narration)
-    {
-        //코루틴 시작
-        StartCoroutine(ItemClueChat(_narrator, _narration));
-    }
+    ////다이얼로그 단서,아이템 대화 텍스트 출력1
+    //public void PrintDialougeItemClue(string _narrator, string _narration)
+    //{
+    //    //코루틴 시작
+    //    StartCoroutine(ItemClueChat(_narrator, _narration));
+    //}
 
-    //다이얼로그 단서,아이템 대화 텍스트 출력2
-    public void PrintDialougeItemClue(string _narrator, string _narration, bool _remainSentence)
-    {
-        //코루틴 시작
-        StartCoroutine(ItemClueChat(_narrator, _narration, _remainSentence));
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ////다이얼로그 단서,아이템 대화 텍스트 출력2
+    //public void PrintDialougeItemClue(string _narrator, string _narration, bool _remainSentence)
+    //{
+    //    //코루틴 시작
+    //    StartCoroutine(ItemClueChat(_narrator, _narration, _remainSentence));
+    //}
 
 
     void GenerateData()
