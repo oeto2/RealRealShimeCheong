@@ -114,8 +114,18 @@ public class DialogManager : MonoBehaviour
         //narratior 값에 따라 해당하는 랜덤 대사값 넘겨줌
         string narration = RandomNpcSentence(_narrator);
         string narration_2 = RandomNpcSentence2(_narrator);
+        string narration_3 = RandomNpcSentence3(_narrator);
 
-        RandomNum = Random.Range(0, 2);
+        //송나라 상인일 경우
+        if(_narrator == "송나라 상인")
+        {
+            RandomNum = Random.Range(0, 3);
+        }
+        //그 외
+        else
+        {
+            RandomNum = Random.Range(0, 2);
+        }
 
         //텍스트 타이핑
         if (RandomNum == 0)
@@ -183,10 +193,40 @@ public class DialogManager : MonoBehaviour
             }
             yield return null;
         }
+        else if (RandomNum == 2)
+        {
+            for (int a = 0; a < narration_3.Length; a++)
+            //for (a = 0; a < textSpeed; a++)
+            {
+                writerText += narration_3[a];
+                ChatText.text = writerText;
+
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+                {
+                    ChatText.text = narration_3;
+
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+
+                    //for문 조건 충족
+                    a = narration_3.Length;
+                }
+
+                //대사가 전부 출력되지 않았을 경우
+                if (a < narration_3.Length)
+                {
+                    yield return new WaitForSeconds(0.02f);
+                }
+            }
+            yield return null;
+        }
         Debug.Log(ChatText);
 
         //대사 출력이 모두 완료 되었다면
-        if (ChatText.text == narration || ChatText.text == narration_2)
+        if (ChatText.text == narration || ChatText.text == narration_2 || ChatText.text == narration_3)
         {
             //대화 종료 조건 충족
             remainSentence = true;
@@ -807,7 +847,7 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    //NPC 초상화 변경
+    //NPC 랜덤 대사값1
     public string RandomNpcSentence(string _narrator)
     {
         Debug.Log($"랜덤 대사 값 반환 : {_narrator}");
@@ -842,14 +882,14 @@ public class DialogManager : MonoBehaviour
                 return null;
 
             case "송나라 상인":
-                return null;
+                return npcDatabaseScr.NPC_01[8].comment;
 
             default:
                 return null;
         }
     }
 
-    //NPC 초상화 변경
+    //NPC 랜덤 대사값2
     public string RandomNpcSentence2(string _narrator)
     {
         Debug.Log($"랜덤 대사 값 반환 : {_narrator}");
@@ -884,7 +924,49 @@ public class DialogManager : MonoBehaviour
                 return null;
 
             case "송나라 상인":
+                return npcDatabaseScr.NPC_01[405].comment;
+
+            default:
                 return null;
+        }
+    }
+
+    //NPC 랜덤 대사값3
+    public string RandomNpcSentence3(string _narrator)
+    {
+        Debug.Log($"랜덤 대사 값 반환 : {_narrator}");
+
+        switch (_narrator)
+        {
+            case "심학규":
+                return null;
+
+            case "뺑덕 어멈":
+                return npcDatabaseScr.NPC_01[399].comment;
+
+            case "거지":
+                return npcDatabaseScr.NPC_01[403].comment;
+
+            case "스님":
+                return null;
+
+            case "귀덕 어멈":
+                return npcDatabaseScr.NPC_01[400].comment;
+
+            case "장사꾼":
+                return npcDatabaseScr.NPC_01[402].comment;
+
+            case "향리 댁 부인":
+                return npcDatabaseScr.NPC_01[401].comment;
+
+            case "뱃사공":
+                return npcDatabaseScr.NPC_01[404].comment;
+
+            case "심청":
+                return null;
+
+            case "송나라 상인":
+                return npcDatabaseScr.NPC_01[406].comment;
 
             default:
                 return null;
