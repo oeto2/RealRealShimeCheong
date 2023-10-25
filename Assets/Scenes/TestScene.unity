@@ -14172,6 +14172,7 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogdb: {fileID: 0}
   isSentenceEnd: 0
   remainSentence: 0
   int_Select2006Num: 0
@@ -21743,6 +21744,7 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   isSentenceEnd: 0
   remainSentence: 0
   int_Select2006Num: 0
@@ -29415,6 +29417,7 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogdb: {fileID: 0}
   isSentenceEnd: 0
   remainSentence: 0
   int_Select2006Num: 0
@@ -63889,6 +63892,7 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogdb: {fileID: 0}
   isSentenceEnd: 0
   remainSentence: 0
   int_Select2006Num: 0
