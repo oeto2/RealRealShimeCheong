@@ -52,7 +52,7 @@ public class DialogManager : MonoBehaviour
     public Image System_Portrait;
 
     //ÃÊ»óÈ­ ½ºÇÁ¶óÀÌÆ® ÀÌ¹ÌÁöµé
-    [Tooltip("0:½ÉÇĞ, 1:»±´ö, 2:°ÅÁö, 3:½º´Ô, 4:±Í´ö, 5:Àå»ç, 6:Àå½Â, 7:Àå½Â2, 8:¹î»ç, 9:½ÉÃ», 10:¼Û³ª¶ó")]
+    [Tooltip("0:½ÉÇĞ, 1:»±´ö, 2:°ÅÁö, 3:½Â·Á, 4:±Í´ö, 5:Àå»ç, 6:Àå½Â, 7:Àå½Â2, 8:¹î»ç, 9:½ÉÃ», 10:¼Û³ª¶ó")]
     public Sprite[] npc_Sprites;
 
     //Ãâ·ÂÁßÀÎ ´ë»ç °ª
@@ -781,13 +781,13 @@ public class DialogManager : MonoBehaviour
                 text_NpcName.text = "°ÅÁö";
                 break;
 
-            case "½º´Ô":
+            case "½Â·Á":
 
                 //ÃÊ»óÈ­ º¯°æ
                 System_Portrait.sprite = npc_Sprites[3];
 
                 //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "½º´Ô";
+                text_NpcName.text = "½Â·Á";
                 break;
 
             case "±Í´ö ¾î¸Ø":
@@ -863,8 +863,8 @@ public class DialogManager : MonoBehaviour
             case "°ÅÁö":
                 return npcDatabaseScr.NPC_01[6].comment;
 
-            case "½º´Ô":
-                return null;
+            case "½Â·Á":
+                return npcDatabaseScr.NPC_01[5].comment;
 
             case "±Í´ö ¾î¸Ø":
                 return npcDatabaseScr.NPC_01[2].comment;
@@ -905,8 +905,8 @@ public class DialogManager : MonoBehaviour
             case "°ÅÁö":
                 return npcDatabaseScr.NPC_01[403].comment;
 
-            case "½º´Ô":
-                return null;
+            case "½Â·Á":
+                return npcDatabaseScr.NPC_01[407].comment;
 
             case "±Í´ö ¾î¸Ø":
                 return npcDatabaseScr.NPC_01[400].comment;
@@ -947,7 +947,7 @@ public class DialogManager : MonoBehaviour
             case "°ÅÁö":
                 return npcDatabaseScr.NPC_01[403].comment;
 
-            case "½º´Ô":
+            case "½Â·Á":
                 return null;
 
             case "±Í´ö ¾î¸Ø":
