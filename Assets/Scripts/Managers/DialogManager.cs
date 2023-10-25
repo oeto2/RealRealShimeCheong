@@ -68,8 +68,10 @@ public class DialogManager : MonoBehaviour
     public bool remainSentence = false;
 
     // 글자색 설정 변수
-    bool t_white = false;
-    bool t_red = false;
+    bool t_white = false;   // 노말 대사
+    bool t_red = false;     // 강조 대사
+    bool t_blue = false;    // 진엔딩
+    bool t_violet = false;  // 추가 예정
 
     // 글자색 설정 문자는 대사 출력 무시
     bool t_ignore = false;
@@ -96,7 +98,6 @@ public class DialogManager : MonoBehaviour
         }
 
         DialogData = new Dictionary<int, string[]>();
-        GenerateData();
     }
 
     //NPC 기본대사
@@ -259,14 +260,36 @@ public class DialogManager : MonoBehaviour
             //ChatText.text = writerText;
             switch (narration[a])
             {
+                // red
                 case 'ⓡ':
                     t_white = false;
                     t_red = true;
+                    t_blue = false;
+                    t_violet = false;
                     t_ignore = true;
                     break;
+                // write
                 case 'ⓦ':
                     t_white = true;
                     t_red = false;
+                    t_blue = false;
+                    t_violet = false;
+                    t_ignore = true;
+                    break;
+                // blue
+                case 'ⓑ':
+                    t_white = false;
+                    t_red = false;
+                    t_blue = true;
+                    t_violet = false;
+                    t_ignore = true;
+                    break;
+                // violet
+                case 'ⓥ':
+                    t_white = false;
+                    t_red = false;
+                    t_blue = false;
+                    t_violet = true;
                     t_ignore = true;
                     break;
             }
@@ -281,8 +304,14 @@ public class DialogManager : MonoBehaviour
 
                 else if (t_red)
                 {
-                    t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                    t_letter = "<color=#B40404>" + narration[a] + "</color>";   
                     Debug.Log("1_red");
+                }
+
+                else if (t_blue)
+                {
+                    t_letter = "<color=#0d4577>" + "<b>" + narration[a] + "</b>" + "</color>";
+                    Debug.Log("2_blue");
                 }
                 //Debug.Log(writerText);
                 writerText += t_letter; // 특수문자가 아니라면 대사 출력
@@ -328,7 +357,6 @@ public class DialogManager : MonoBehaviour
     {
         Debug.Log("대화출력2");
 
-
         //Npc 초상화 자동 변경
         ChangeNpcPortrait(narrator);
 
@@ -339,8 +367,21 @@ public class DialogManager : MonoBehaviour
         {
             //남은대화 있음
             remainSentence = true;
-
             text_NpcName.text = narrator;
+
+            // 거지 - 주먹밥 다이얼로그 대화 예외 처리
+            if (narration == npcDatabaseScr.NPC_01[827].comment)
+            {
+                Debug.Log(narration);
+                Debug.Log("1005번, 18번");
+                Dialouge_System.SetActive(false);
+            }
+            if (narration != npcDatabaseScr.NPC_01[827].comment)
+            {
+                Debug.Log(narration);
+                Debug.Log("1005번, 19번");
+                Dialouge_System.SetActive(true);
+            }
 
             //텍스트 타이핑
             for (int a = 0; a < narration.Length; a++)
@@ -350,14 +391,36 @@ public class DialogManager : MonoBehaviour
 
                 switch (narration[a])
                 {
+                    // red
                     case 'ⓡ':
                         t_white = false;
                         t_red = true;
+                        t_blue = false;
+                        t_violet = false;
                         t_ignore = true;
                         break;
+                    // write
                     case 'ⓦ':
                         t_white = true;
                         t_red = false;
+                        t_blue = false;
+                        t_violet = false;
+                        t_ignore = true;
+                        break;
+                    // blue
+                    case 'ⓑ':
+                        t_white = false;
+                        t_red = false;
+                        t_blue = true;
+                        t_violet = false;
+                        t_ignore = true;
+                        break;
+                    // violet
+                    case 'ⓥ':
+                        t_white = false;
+                        t_red = false;
+                        t_blue = false;
+                        t_violet = true;
                         t_ignore = true;
                         break;
                 }
@@ -374,6 +437,12 @@ public class DialogManager : MonoBehaviour
                     {
                         t_letter = "<color=#B40404>" + narration[a] + "</color>";
                         Debug.Log("1_red");
+                    }
+
+                    else if (t_blue)
+                    {
+                        t_letter = "<color=#0d4577>" + "<b>" + narration[a] + "</b>" + "</color>";
+                        Debug.Log("2_blue");
                     }
                     //Debug.Log(writerText);
                     writerText += t_letter; // 특수문자가 아니라면 대사 출력
@@ -425,16 +494,6 @@ public class DialogManager : MonoBehaviour
                 yield return null;
             }
         }
-    }
-
-    void GenerateData()
-    {
-        DialogData.Add(5000, new string[] { "?이것은 테스트지?", "그럼 테스트지 테스트야 테스트군 테스트똻" });
-    }
-
-    public string GetTalk(int id, int idx_Dialog)
-    {
-        return DialogData[id][idx_Dialog];
     }
 
     //해당하는 인덱스 값의 대화를 반환해주는 메서드
