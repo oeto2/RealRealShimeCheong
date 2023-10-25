@@ -32940,7 +32940,7 @@ MonoBehaviour:
   ChatText: {fileID: 2081460924}
   text_NpcName: {fileID: 1522015625}
   System_Portrait: {fileID: 589999028}
-  sprites:
+  npc_Sprites:
   - {fileID: 21300000, guid: 9670a3acca94eac45b3470c6b6e1ea35, type: 3}
   - {fileID: 21300000, guid: 2a9cf6aa1700bd747bc6c144af5885ad, type: 3}
   - {fileID: 21300000, guid: 806b50596868dee4181d9e54a6bd880f, type: 3}
@@ -32949,11 +32949,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0d3fa69fc9582f24e843570a3d93931f, type: 3}
   - {fileID: 21300000, guid: 2856e2e08e4deca47b9aff90474911aa, type: 3}
   - {fileID: 21300000, guid: c2d78cc3e5c14fc45a58d7f550548406, type: 3}
-  - {fileID: 21300000, guid: e0efcae19f215cb449e7f5d6691884f1, type: 3}
   - {fileID: 21300000, guid: 6c6c5dc4e92fd67409c8cb203f9dfedf, type: 3}
   - {fileID: 21300000, guid: 99da248b4c6732e4a8c581f67e8b3d8a, type: 3}
   writerText: 
   isSentence_Start: 0
+  isSentenceEnd: 0
+  remainSentence: 0
 --- !u!4 &1092642525
 Transform:
   m_ObjectHideFlags: 0

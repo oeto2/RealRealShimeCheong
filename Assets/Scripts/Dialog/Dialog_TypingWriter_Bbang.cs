@@ -94,7 +94,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             //bool_isBotjim = true;
             controller_scr.TalkStart();
 
-            if (bool_isNPC == false && !remainSentence)
+            if (bool_isNPC == false && !DialogManager.instance.remainSentence)
             {
                 Debug.Log("뺑덕 대사 실행");
                 images_Bbang.SetActive(true);
@@ -106,57 +106,64 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
             }
 
             //대화 종료
-            else if (isSentenceEnd)
+            else if (DialogManager.instance.isSentenceEnd)
             {
+                Debug.Log("뺑덕 대사 종료");
                 images_Bbang.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
-                //��� ����
-                writerText = "";
+               
+               
                 StopAllCoroutines();
                 Trigger_NPC.instance.isNPCTrigger = false;
                 bool_isNPC = false;
                 //Controller.instance.TalkEnd();
                 controller_scr.TalkEnd();
                 
+                ////남은대화 없음
+                //remainSentence = false;
+                ////대화 끝
+                //isSentenceEnd = false;
+
                 //남은대화 없음
-                remainSentence = false;
+                DialogManager.instance.remainSentence = false;
                 //대화 끝
-                isSentenceEnd = false;
+                DialogManager.instance.isSentenceEnd = false;
+                //텍스트 비우기
+                DialogManager.instance.writerText = "";
             }
         }
         //dialogstart();
     }
 
-    public void dialogstart()
-    {
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
-        {
-            Debug.Log("zŰ ����! Bbang!!!!");
+    //public void dialogstart()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger)
+    //    {
+    //        Debug.Log("zŰ ����! Bbang!!!!");
 
-            controller_scr.TalkStart();
-            //bool_isBotjim = true;
-            if (bool_isNPC == false)
-            {
-                StartCoroutine(TextPractice());
-                trigger_npc.isNPCTrigger = true;
-                images_Bbang.SetActive(true);
-                bool_isNPC = true;
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-            }
-            else
-            {
-                //�÷��̾� �̵����� ����
-                controller_scr.TalkEnd();
+    //        controller_scr.TalkStart();
+    //        //bool_isBotjim = true;
+    //        if (bool_isNPC == false)
+    //        {
+    //            StartCoroutine(TextPractice());
+    //            trigger_npc.isNPCTrigger = true;
+    //            images_Bbang.SetActive(true);
+    //            bool_isNPC = true;
+    //            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+    //        }
+    //        else
+    //        {
+    //            //�÷��̾� �̵����� ����
+    //            controller_scr.TalkEnd();
 
-                images_Bbang.SetActive(false);
-                bool_isNPC = false;
-                trigger_npc.isNPCTrigger = false;
+    //            images_Bbang.SetActive(false);
+    //            bool_isNPC = false;
+    //            trigger_npc.isNPCTrigger = false;
 
-                writerText = "";
-                StopAllCoroutines();
-            }
-        }
-    }
+    //            writerText = "";
+    //            StopAllCoroutines();
+    //        }
+    //    }
+    //}
 
     IEnumerator NormalChat()
     {
@@ -485,11 +492,18 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
     IEnumerator TextPractice()
     {
         #region 단서
-        //2000 : 승상댁의 수양딸
+        ////2000 : 승상댁의 수양딸
+        //if (ObjectManager.instance.GetEquipObjectKey() == 2000)
+        //{
+        //    yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[9].npc_name, dialogdb.NPC_01[9].comment));
+        //}
+
         if (ObjectManager.instance.GetEquipObjectKey() == 2000)
         {
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[9].npc_name, dialogdb.NPC_01[9].comment));
+            DialogManager.instance.PrintDialougeItemClue(dialogdb.NPC_01[9].npc_name, dialogdb.NPC_01[9].comment);
+            yield return null;
         }
+
         //2001 : 청이의 거짓말
         else if (ObjectManager.instance.GetEquipObjectKey() == 2001)
         {
@@ -510,8 +524,10 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         {
             //��� �̺�Ʈ Ȱ��ȭ
             EventManager.instance.EventActive(Events.binyeo);
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[536].npc_name, dialogdb.NPC_01[536].comment, true));
-            yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[46].npc_name, dialogdb.NPC_01[46].comment));
+            //yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[536].npc_name, dialogdb.NPC_01[536].comment, true));
+            //yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[46].npc_name, dialogdb.NPC_01[46].comment));
+            DialogManager.instance.PrintDialougeItemClue(dialogdb.NPC_01[536].npc_name, dialogdb.NPC_01[536].comment, true);
+            DialogManager.instance.PrintDialougeItemClue(dialogdb.NPC_01[46].npc_name, dialogdb.NPC_01[46].comment);
         }
         //2005 : 누군가의 아들
         else if (ObjectManager.instance.GetEquipObjectKey() == 2005)
@@ -690,7 +706,12 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         #region 기본 대사
         else
         {
-            yield return StartCoroutine(NormalChat());
+            //yield return StartCoroutine(NormalChat());
+            Debug.Log("뺑덕 어멈 기본대사 출력");
+
+            //뺑덕 어멈 기본대사 출력
+            DialogManager.instance.PrintDialogueNomal("뺑덕 어멈");
+            yield return null;
         }
         #endregion
     }

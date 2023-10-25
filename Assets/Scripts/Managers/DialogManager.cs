@@ -31,6 +31,12 @@ public class DialogueEvent
 
 public class DialogManager : MonoBehaviour
 {
+    //NPC 다이얼로그 스크립트들
+    //public Dialog_TypingWriter_Bbang bbangScr;
+    //public Dialog_TypingWriter_Beggar beggarScr;
+    //public Dialog_TypingWriter_BoatMan boatManScr;
+    //public Dialog_TypingWriter_BoatMan2 boatManScr2;
+
     Dictionary<int, string[]> DialogData;
 
     //싱글톤
@@ -74,6 +80,9 @@ public class DialogManager : MonoBehaviour
     // 글자색 설정 문자는 대사 출력 무시
     bool t_ignore = false;
 
+    // 랜덤 대사 출력 변수
+    private int RandomNum;
+
     void Awake()
     {
         if (instance == null)
@@ -93,27 +102,200 @@ public class DialogManager : MonoBehaviour
         GenerateData();
     }
 
+    //NPC 기본대사
+    IEnumerator NormalChat(string _narrator)
+    {
+        //다이얼로그 Text 비우기
+        CleanDialogue();
 
+        //대화 중복실행 방지
+        remainSentence = true;
+
+        //Npc 초상화 자동 변경
+        ChangeNpcPortrait(_narrator);
+
+        //narratior 값에 따라 해당하는 랜덤 대사값 넘겨줌
+        string narration = RandomNpcSentence(_narrator);
+        string narration_2 = RandomNpcSentence2(_narrator);
+
+        RandomNum = Random.Range(0, 2);
+
+        //텍스트 타이핑
+        if (RandomNum == 0)
+        {
+            for (int a = 0; a < narration.Length; a++)
+            {
+                writerText += narration[a];
+                ChatText.text = writerText;
+
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+                {
+                    ChatText.text = narration;
+
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+
+                    //for문 조건 충족
+                    a = narration.Length;
+                    ////대화 끝
+                    //isSentenceEnd = true;
+                }
+
+                //대사가 전부 출력되지 않았을 경우
+                if (a < narration.Length)
+                {
+                    //대사 타이핑 속도
+                    yield return new WaitForSeconds(0.02f);
+                }
+
+            }
+            yield return null;
+        }
+        else if (RandomNum == 1)
+        {
+            for (int a = 0; a < narration_2.Length; a++)
+            //for (a = 0; a < textSpeed; a++)
+            {
+                writerText += narration_2[a];
+                ChatText.text = writerText;
+
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+                {
+                    ChatText.text = narration_2;
+
+                    //남은대화 없음
+                    remainSentence = true;
+                    //대화 끝
+                    isSentenceEnd = true;
+
+                    //for문 조건 충족
+                    a = narration_2.Length;
+                    ////대화 끝
+                    //isSentenceEnd = true;
+                }
+
+                //대사가 전부 출력되지 않았을 경우
+                if (a < narration_2.Length)
+                {
+                    yield return new WaitForSeconds(0.02f);
+                }
+            }
+            yield return null;
+        }
+        Debug.Log(ChatText);
+
+        //대사 출력이 모두 완료 되었다면
+        if (ChatText.text == narration || ChatText.text == narration_2)
+        {
+            //대화 종료 조건 충족
+            remainSentence = true;
+            isSentenceEnd = true;
+        }
+    }
+
+    IEnumerator ItemClueChat(string narrator, string narration)
+    {
+        Debug.Log("대화출력1");
+
+        //남은대화 있음
+        remainSentence = true;
+
+        //다이얼로그 Text 비우기
+        CleanDialogue();
+
+        //Npc 초상화 자동 변경
+        ChangeNpcPortrait(narrator);
+
+        Debug.Log(narration);
+        int a = 0;
+
+        string t_letter = "";
+
+        //텍스트 타이핑
+        for (a = 0; a < narration.Length; a++)
+        {
+            //writerText += narration[a];
+            //ChatText.text = writerText;
+            switch (narration[a])
+            {
+                case 'ⓡ':
+                    t_white = false;
+                    t_red = true;
+                    t_ignore = true;
+                    break;
+                case 'ⓦ':
+                    t_white = true;
+                    t_red = false;
+                    t_ignore = true;
+                    break;
+            }
+
+            if (!t_ignore)
+            {
+                if (t_white)
+                {
+                    t_letter = "<color=#ffffff>" + narration[a] + "</color>";    // HTML Tag
+                    Debug.Log("0_write");
+                }
+
+                else if (t_red)
+                {
+                    t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                    Debug.Log("1_red");
+                }
+                //Debug.Log(writerText);
+                writerText += t_letter; // 특수문자가 아니라면 대사 출력
+                ChatText.text = writerText;
+                //writerText += narration[a];
+                //ChatText.text = writerText;
+            }
+            t_ignore = false; // 한 글자 찍었으면 다시 false
+
+            //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+            {
+                ChatText.text = narration;
+
+                //남은대화 없음
+                remainSentence = true;
+                //대화 끝
+                isSentenceEnd = true;
+
+                //for문 조건 충족
+                a = narration.Length;
+            }
+
+            //대사 출력 중일 경우에만
+            if (ChatText.text != narration)
+            {
+                //텍스트 타이핑 시간 조절
+                yield return new WaitForSeconds(0.02f);
+            }
+        }
+
+        //대사 출력이 모두 완료 되었다면
+        if (ChatText.text == writerText)
+        {
+            //대화 종료 조건 충족
+            remainSentence = true;
+            isSentenceEnd = true;
+        }
+    }
 
     //다이얼로그 대화 출력
     IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
+        Debug.Log("대화출력2");
+
+
         //Npc 초상화 자동 변경
         ChangeNpcPortrait(narrator);
 
         string t_letter = "";
-
-        //심학규의 대사일 경우
-        if (narrator == "심학규")
-        {
-            //초상화 변경
-            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = npc_Sprites[1];
-        }
-        else
-        {
-            //초상화 변경
-            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = npc_Sprites[0];
-        }
 
         //남은 대화가 있을경우
         if (_remainSentence == true)
@@ -207,9 +389,26 @@ public class DialogManager : MonoBehaviour
             }
         }
     }
+    
+    //다이얼로그 기본대사 출력
+    public void PrintDialogueNomal(string _narrator)
+    {
+        StartCoroutine(NormalChat(_narrator));
+    }
 
+    //다이얼로그 단서,아이템 대화 텍스트 출력1
+    public void PrintDialougeItemClue(string _narrator, string _narration)
+    {
+        //코루틴 시작
+        StartCoroutine(ItemClueChat(_narrator, _narration));
+    }
 
-
+    //다이얼로그 단서,아이템 대화 텍스트 출력2
+    public void PrintDialougeItemClue(string _narrator, string _narration, bool _remainSentence)
+    {
+        //코루틴 시작
+        StartCoroutine(ItemClueChat(_narrator, _narration, _remainSentence));
+    }
 
 
 
@@ -561,7 +760,7 @@ public class DialogManager : MonoBehaviour
                 text_NpcName.text = "심학규";
                 break;
 
-            case "뺑덕어멈":
+            case "뺑덕 어멈":
 
                 //초상화 변경
                 System_Portrait.sprite = npc_Sprites[1];
@@ -588,7 +787,7 @@ public class DialogManager : MonoBehaviour
                 text_NpcName.text = "스님";
                 break;
 
-            case "귀덕어멈":
+            case "귀덕 어멈":
 
                 //초상화 변경
                 System_Portrait.sprite = npc_Sprites[4];
@@ -645,10 +844,94 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    //다이얼로그 비우기
+    //NPC 초상화 변경
+    public string RandomNpcSentence(string _narrator)
+    {
+        Debug.Log($"랜덤 대사 값 반환 : {_narrator}");
+
+        switch (_narrator)
+        {
+            case "심학규":
+                return null;
+
+            case "뺑덕 어멈":
+                return npcDatabaseScr.NPC_01[1].comment;
+
+            case "거지":
+                return null;
+
+            case "스님":
+                return null;
+
+            case "귀덕 어멈":
+                return null;
+
+            case "장사꾼":
+                return null;
+
+            case "향리 댁 부인":
+                return null;
+
+            case "뱃사공":
+                return null;
+
+            case "심청":
+                return null;
+
+            case "송나라 상인":
+                return null;
+
+            default:
+                return null;
+        }
+    }
+
+    //NPC 초상화 변경
+    public string RandomNpcSentence2(string _narrator)
+    {
+        Debug.Log($"랜덤 대사 값 반환 : {_narrator}");
+
+        switch (_narrator)
+        {
+            case "심학규":
+                return null;
+
+            case "뺑덕 어멈":
+                return npcDatabaseScr.NPC_01[399].comment;
+
+            case "거지":
+                return null;
+
+            case "스님":
+                return null;
+
+            case "귀덕 어멈":
+                return null;
+
+            case "장사꾼":
+                return null;
+
+            case "향리 댁 부인":
+                return null;
+
+            case "뱃사공":
+                return null;
+
+            case "심청":
+                return null;
+
+            case "송나라 상인":
+                return null;
+
+            default:
+                return null;
+        }
+    }
+
+    //다이얼로그 대사 값 비우기
     public void CleanDialogue()
     {
-        //NPC 이름 비우기
-        text_NpcName.text = "";
+        ChatText.text = "";
+        writerText = "";
     }
 }

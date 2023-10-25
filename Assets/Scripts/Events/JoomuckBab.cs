@@ -243,12 +243,6 @@ public class JoomuckBab : MonoBehaviour
                     break;
             }
         }
-
-        else
-        {
-            Debug.Log("진행이 안됨");
-        }
-        
     }
     #region 약초 이벤트
 
