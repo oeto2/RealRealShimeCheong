@@ -844,6 +844,15 @@ public class DialogManager : MonoBehaviour
                 text_NpcName.text = "송나라 상인";
                 break;
 
+            case "장지언":
+
+                //초상화 변경
+                System_Portrait.sprite = npc_Sprites[11];
+
+                //이름 변경
+                text_NpcName.text = "장지언";
+                break;
+
         }
     }
 
@@ -883,6 +892,9 @@ public class DialogManager : MonoBehaviour
 
             case "송나라 상인":
                 return npcDatabaseScr.NPC_01[8].comment;
+
+            case "장지언":
+                return npcDatabaseScr.NPC_01[563].comment;
 
             default:
                 return null;
@@ -925,6 +937,9 @@ public class DialogManager : MonoBehaviour
 
             case "송나라 상인":
                 return npcDatabaseScr.NPC_01[405].comment;
+
+            case "장지언":
+                return npcDatabaseScr.NPC_01[603].comment;
 
             default:
                 return null;
