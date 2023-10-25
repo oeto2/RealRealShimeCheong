@@ -31,12 +31,6 @@ public class DialogueEvent
 
 public class DialogManager : MonoBehaviour
 {
-    //NPC 다이얼로그 스크립트들
-    //public Dialog_TypingWriter_Bbang bbangScr;
-    //public Dialog_TypingWriter_Beggar beggarScr;
-    //public Dialog_TypingWriter_BoatMan boatManScr;
-    //public Dialog_TypingWriter_BoatMan2 boatManScr2;
-
     Dictionary<int, string[]> DialogData;
 
     //싱글톤
@@ -392,27 +386,6 @@ public class DialogManager : MonoBehaviour
             }
         }
     }
-    
-    ////다이얼로그 기본대사 출력
-    //public void PrintDialogueNomal(string _narrator)
-    //{
-    //    StartCoroutine(NormalChat(_narrator));
-    //}
-
-    ////다이얼로그 단서,아이템 대화 텍스트 출력1
-    //public void PrintDialougeItemClue(string _narrator, string _narration)
-    //{
-    //    //코루틴 시작
-    //    StartCoroutine(ItemClueChat(_narrator, _narration));
-    //}
-
-    ////다이얼로그 단서,아이템 대화 텍스트 출력2
-    //public void PrintDialougeItemClue(string _narrator, string _narration, bool _remainSentence)
-    //{
-    //    //코루틴 시작
-    //    StartCoroutine(ItemClueChat(_narrator, _narration, _remainSentence));
-    //}
-
 
     void GenerateData()
     {
@@ -854,13 +827,13 @@ public class DialogManager : MonoBehaviour
                 return null;
 
             case "귀덕 어멈":
-                return null;
+                return npcDatabaseScr.NPC_01[2].comment;
 
             case "장사꾼":
                 return null;
 
             case "향리 댁 부인":
-                return null;
+                return npcDatabaseScr.NPC_01[3].comment;
 
             case "뱃사공":
                 return null;
@@ -896,13 +869,13 @@ public class DialogManager : MonoBehaviour
                 return null;
 
             case "귀덕 어멈":
-                return null;
+                return npcDatabaseScr.NPC_01[400].comment;
 
             case "장사꾼":
                 return null;
 
             case "향리 댁 부인":
-                return null;
+                return npcDatabaseScr.NPC_01[401].comment;
 
             case "뱃사공":
                 return null;
