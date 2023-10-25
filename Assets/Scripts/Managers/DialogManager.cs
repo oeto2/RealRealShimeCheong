@@ -53,13 +53,26 @@ public class DialogManager : MonoBehaviour
 
     //초상화 스프라이트 이미지들
     [Tooltip("0:심학, 1:뺑덕, 2:거지, 3:스님, 4:귀덕, 5:장사, 6:장승, 7:장승2, 8:뱃사, 9:심청, 10:송나라")]
-    public Sprite[] sprites;
+    public Sprite[] npc_Sprites;
 
     //출력중인 대사 값
     public string writerText = "";
 
     //시스템 메세지 코루틴이 이미 실행중인지 확인하는 flag
     public bool isSentence_Start;
+
+    //대화가 전부 출력 되었는지
+    public bool isSentenceEnd = false;
+
+    //남은 대화가 더 있는지
+    public bool remainSentence = false;
+
+    // 글자색 설정 변수
+    bool t_white = false;
+    bool t_red = false;
+
+    // 글자색 설정 문자는 대사 출력 무시
+    bool t_ignore = false;
 
     void Awake()
     {
@@ -79,6 +92,138 @@ public class DialogManager : MonoBehaviour
         DialogData = new Dictionary<int, string[]>();
         GenerateData();
     }
+
+
+
+    //다이얼로그 대화 출력
+    IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
+    {
+        //Npc 초상화 자동 변경
+        ChangeNpcPortrait(narrator);
+
+        string t_letter = "";
+
+        //심학규의 대사일 경우
+        if (narrator == "심학규")
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = npc_Sprites[1];
+        }
+        else
+        {
+            //초상화 변경
+            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = npc_Sprites[0];
+        }
+
+        //남은 대화가 있을경우
+        if (_remainSentence == true)
+        {
+            //남은대화 있음
+            remainSentence = true;
+
+            text_NpcName.text = narrator;
+
+            //텍스트 타이핑
+            for (int a = 0; a < narration.Length; a++)
+            {
+                //writerText += narration[a];
+                //ChatText.text = writerText;
+
+                switch (narration[a])
+                {
+                    case 'ⓡ':
+                        t_white = false;
+                        t_red = true;
+                        t_ignore = true;
+                        break;
+                    case 'ⓦ':
+                        t_white = true;
+                        t_red = false;
+                        t_ignore = true;
+                        break;
+                }
+
+                if (!t_ignore)
+                {
+                    if (t_white)
+                    {
+                        t_letter = "<color=#ffffff>" + narration[a] + "</color>";    // HTML Tag
+                        Debug.Log("0_write");
+                    }
+
+                    else if (t_red)
+                    {
+                        t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                        Debug.Log("1_red");
+                    }
+                    //Debug.Log(writerText);
+                    writerText += t_letter; // 특수문자가 아니라면 대사 출력
+                    //writerText += narration[a];
+                    ChatText.text = writerText;
+                    //ChatText.text = writerText;
+                }
+                t_ignore = false; // 한 글자 찍었으면 다시 false
+
+                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+                {
+                    writerText = narration;
+                    ChatText.text = narration;
+
+                    //남은대화 없음
+                    remainSentence = true;
+                    ////대화 끝
+                    //isSentenceEnd = true;
+
+                    //for문 조건 충족
+                    a = narration.Length;
+                }
+
+                //대사 출력 중일 경우에만
+                if (ChatText.text != narration)
+                {
+                    //텍스트 타이핑 시간 조절
+                    yield return new WaitForSeconds(0.02f);
+                }
+
+            }
+
+            //대사 출력 후 잠깐 딜레이
+            yield return new WaitForSeconds(0.1f);
+
+            //Z키를 다시 누를 때까지 무한정 대기
+            while (true)
+            {
+                if (ChatText.text == writerText && Input.GetKeyDown(KeyCode.Z))
+                {
+                    Debug.Log("Text 비우기");
+
+                    //Text 비우기
+                    writerText = "";
+
+                    break;
+                }
+                yield return null;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     void GenerateData()
     {
@@ -102,7 +247,7 @@ public class DialogManager : MonoBehaviour
         return npcDatabaseScr.NPC_01[_indexNum].npc_name;
     }
 
-
+    #region 시스템 메세지 로직
     //시스템 메세지 코루틴
     IEnumerator SystemMessage(string _narration, bool _exit)
     {
@@ -116,7 +261,7 @@ public class DialogManager : MonoBehaviour
         writerText = "";
 
         //초상화 변경
-        System_Portrait.sprite = sprites[0];
+        System_Portrait.sprite = npc_Sprites[0];
 
         //시스템 다이얼로그 활성화
         Dialouge_System.SetActive(true);
@@ -183,7 +328,7 @@ public class DialogManager : MonoBehaviour
         writerText = "";
 
         //초상화 변경
-        System_Portrait.sprite = sprites[0];
+        System_Portrait.sprite = npc_Sprites[0];
 
         //시스템 다이얼로그 활성화
         Dialouge_System.SetActive(true);
@@ -265,6 +410,7 @@ public class DialogManager : MonoBehaviour
             return false;
         }
     }
+    #endregion
 
     #region 약초 이벤트 대사
     //약초 넣기 대사 출력
@@ -409,7 +555,7 @@ public class DialogManager : MonoBehaviour
             case "심학규":
 
                 //초상화 변경
-                System_Portrait.sprite = sprites[0];
+                System_Portrait.sprite = npc_Sprites[0];
 
                 //이름 변경
                 text_NpcName.text = "심학규";
@@ -418,7 +564,7 @@ public class DialogManager : MonoBehaviour
             case "뺑덕어멈":
 
                 //초상화 변경
-                System_Portrait.sprite = sprites[1];
+                System_Portrait.sprite = npc_Sprites[1];
 
                 //이름 변경
                 text_NpcName.text = "뺑덕어멈";
@@ -427,7 +573,7 @@ public class DialogManager : MonoBehaviour
             case "거지":
 
                 //초상화 변경
-                System_Portrait.sprite = sprites[2];
+                System_Portrait.sprite = npc_Sprites[2];
 
                 //이름 변경
                 text_NpcName.text = "거지";
@@ -436,7 +582,7 @@ public class DialogManager : MonoBehaviour
             case "스님":
 
                 //초상화 변경
-                System_Portrait.sprite = sprites[3];
+                System_Portrait.sprite = npc_Sprites[3];
 
                 //이름 변경
                 text_NpcName.text = "스님";
@@ -445,7 +591,7 @@ public class DialogManager : MonoBehaviour
             case "귀덕어멈":
 
                 //초상화 변경
-                System_Portrait.sprite = sprites[4];
+                System_Portrait.sprite = npc_Sprites[4];
 
                 //이름 변경
                 text_NpcName.text = "귀덕어멈";
@@ -454,7 +600,7 @@ public class DialogManager : MonoBehaviour
             case "장사꾼":
 
                 //초상화 변경
-                System_Portrait.sprite = sprites[5];
+                System_Portrait.sprite = npc_Sprites[5];
 
                 //이름 변경
                 text_NpcName.text = "장사꾼";
@@ -463,7 +609,7 @@ public class DialogManager : MonoBehaviour
             case "향리 댁 부인":
 
                 //초상화 변경
-                System_Portrait.sprite = sprites[6];
+                System_Portrait.sprite = npc_Sprites[6];
 
                 //이름 변경
                 text_NpcName.text = "향리 댁 부인";
@@ -472,7 +618,7 @@ public class DialogManager : MonoBehaviour
             case "뱃사공":
 
                 //초상화 변경
-                System_Portrait.sprite = sprites[8];
+                System_Portrait.sprite = npc_Sprites[8];
 
                 //이름 변경
                 text_NpcName.text = "뱃사공";
@@ -481,7 +627,7 @@ public class DialogManager : MonoBehaviour
             case "심청":
 
                 //초상화 변경
-                System_Portrait.sprite = sprites[9];
+                System_Portrait.sprite = npc_Sprites[9];
 
                 //이름 변경
                 text_NpcName.text = "심청";
@@ -490,7 +636,7 @@ public class DialogManager : MonoBehaviour
             case "송나라 상인":
 
                 //초상화 변경
-                System_Portrait.sprite = sprites[10];
+                System_Portrait.sprite = npc_Sprites[10];
 
                 //이름 변경
                 text_NpcName.text = "송나라 상인";
