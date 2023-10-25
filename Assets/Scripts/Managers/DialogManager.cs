@@ -821,7 +821,7 @@ public class DialogManager : MonoBehaviour
                 return npcDatabaseScr.NPC_01[1].comment;
 
             case "°ÅÁö":
-                return null;
+                return npcDatabaseScr.NPC_01[6].comment;
 
             case "½º´Ô":
                 return null;
@@ -863,7 +863,7 @@ public class DialogManager : MonoBehaviour
                 return npcDatabaseScr.NPC_01[399].comment;
 
             case "°ÅÁö":
-                return null;
+                return npcDatabaseScr.NPC_01[403].comment;
 
             case "½º´Ô":
                 return null;

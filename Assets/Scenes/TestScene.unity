@@ -60814,6 +60814,7 @@ MonoBehaviour:
   isJoomuckBab: 0
   isSentenceEnd: 0
   remainSentence: 0
+  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
 --- !u!1 &1939898700
 GameObject:
   m_ObjectHideFlags: 0
