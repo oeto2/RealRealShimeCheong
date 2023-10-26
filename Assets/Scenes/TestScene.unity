@@ -45463,6 +45463,7 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   isSentenceEnd: 0
   remainSentence: 0
   int_Select2006Num: 0
@@ -45750,6 +45751,7 @@ MonoBehaviour:
   int_Select2006Num: 0
   int_select2006Day: 0
   boatman2_TriggerScr: {fileID: 1502069090}
+  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
 --- !u!114 &1502069090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60814,7 +60816,6 @@ MonoBehaviour:
   isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  isJoomuckBab: 0
   isSentenceEnd: 0
   remainSentence: 0
   dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
@@ -67592,7 +67593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5247316569281692779, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edf22891398bd1e48b243148e1dc7254, type: 3}

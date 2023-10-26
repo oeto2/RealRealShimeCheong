@@ -81,6 +81,14 @@ public class DialogManager : MonoBehaviour
 
     public Coroutine DialogueItemClue;
 
+    //텍스트 스킵을 했는지 확인하는 flag
+    public bool isSkip;
+    //타이핑 속도
+    public float typingSpeed = 0.02f;
+    //스킵 타이핑 속도
+    public float skipTypingSpeed = 0.0005f;
+    
+
     void Awake()
     {
 
@@ -139,24 +147,15 @@ public class DialogManager : MonoBehaviour
                 //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    ChatText.text = narration;
-
-                    //남은대화 없음
-                    remainSentence = true;
-                    //대화 끝
-                    isSentenceEnd = true;
-
-                    //for문 조건 충족
-                    a = narration.Length;
-                    ////대화 끝
-                    //isSentenceEnd = true;
+                    //타이핑 속도 변경
+                    typingSpeed = skipTypingSpeed;
                 }
 
                 //대사가 전부 출력되지 않았을 경우
                 if (a < narration.Length)
                 {
                     //대사 타이핑 속도
-                    yield return new WaitForSeconds(0.02f);
+                    yield return new WaitForSeconds(typingSpeed);
                 }
 
             }
@@ -173,23 +172,14 @@ public class DialogManager : MonoBehaviour
                 //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    ChatText.text = narration_2;
-
-                    //남은대화 없음
-                    remainSentence = true;
-                    //대화 끝
-                    isSentenceEnd = true;
-
-                    //for문 조건 충족
-                    a = narration_2.Length;
-                    ////대화 끝
-                    //isSentenceEnd = true;
+                    //타이핑 속도 변경
+                    typingSpeed = skipTypingSpeed;
                 }
 
                 //대사가 전부 출력되지 않았을 경우
                 if (a < narration_2.Length)
                 {
-                    yield return new WaitForSeconds(0.02f);
+                    yield return new WaitForSeconds(typingSpeed);
                 }
             }
             yield return null;
@@ -205,21 +195,14 @@ public class DialogManager : MonoBehaviour
                 //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    ChatText.text = narration_3;
-
-                    //남은대화 없음
-                    remainSentence = true;
-                    //대화 끝
-                    isSentenceEnd = true;
-
-                    //for문 조건 충족
-                    a = narration_3.Length;
+                    //타이핑 속도 변경
+                    typingSpeed = skipTypingSpeed;
                 }
 
                 //대사가 전부 출력되지 않았을 경우
                 if (a < narration_3.Length)
                 {
-                    yield return new WaitForSeconds(0.02f);
+                    yield return new WaitForSeconds(typingSpeed);
                 }
             }
             yield return null;
@@ -232,6 +215,9 @@ public class DialogManager : MonoBehaviour
             //대화 종료 조건 충족
             remainSentence = true;
             isSentenceEnd = true;
+
+            //타이핑 속도 초기화
+            typingSpeed = 0.02f;
         }
     }
 
@@ -324,28 +310,24 @@ public class DialogManager : MonoBehaviour
             //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
             if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
             {
-                ChatText.text = narration;
-
-                //남은대화 없음
-                remainSentence = true;
-                //대화 끝
-                isSentenceEnd = true;
-
-                //for문 조건 충족
-                a = narration.Length;
+                //타이핑 속도 변경
+                typingSpeed = skipTypingSpeed;
             }
 
             //대사 출력 중일 경우에만
             if (ChatText.text != narration)
             {
                 //텍스트 타이핑 시간 조절
-                yield return new WaitForSeconds(0.02f);
+                yield return new WaitForSeconds(typingSpeed);
             }
         }
 
         //대사 출력이 모두 완료 되었다면
         if (ChatText.text == writerText)
         {
+            //타이핑 속도 변경
+            typingSpeed = 0.02f;
+
             //대화 종료 조건 충족
             remainSentence = true;
             isSentenceEnd = true;
@@ -455,23 +437,15 @@ public class DialogManager : MonoBehaviour
                 //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    writerText = narration;
-                    ChatText.text = narration;
-
-                    //남은대화 없음
-                    remainSentence = true;
-                    ////대화 끝
-                    //isSentenceEnd = true;
-
-                    //for문 조건 충족
-                    a = narration.Length;
+                    //타이핑 속도 변경
+                    typingSpeed = skipTypingSpeed;
                 }
 
                 //대사 출력 중일 경우에만
                 if (ChatText.text != narration)
                 {
                     //텍스트 타이핑 시간 조절
-                    yield return new WaitForSeconds(0.02f);
+                    yield return new WaitForSeconds(typingSpeed);
                 }
 
             }
@@ -485,6 +459,9 @@ public class DialogManager : MonoBehaviour
                 if (ChatText.text == writerText && Input.GetKeyDown(KeyCode.Z))
                 {
                     Debug.Log("Text 비우기");
+
+                    //타이핑 속도 초기화
+                    typingSpeed = 0.02f;
 
                     //Text 비우기
                     writerText = "";

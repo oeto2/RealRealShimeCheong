@@ -34,6 +34,8 @@ public class BoatMan3 : MonoBehaviour
     public Controller controller_scr;
 
     public S_NPCdatabase_Yes npcDatabaseScr;
+    public S_NPCdatabase_Yes dialogdb;
+
 
     // 랜덤 대사 출력 변수
     private int RandomNum;
@@ -82,7 +84,7 @@ public class BoatMan3 : MonoBehaviour
             //bool_isBotjim = true;
             controller_scr.TalkStart();
 
-            if (bool_isNPC == false && !remainSentence)
+            if (bool_isNPC == false && !DialogManager.instance.remainSentence)
             {
                 Debug.Log("대화 실행");
                 images_NPC.SetActive(true);
@@ -91,258 +93,30 @@ public class BoatMan3 : MonoBehaviour
             }
 
             //대화가 끝났을 경우
-            else if (isSentenceEnd)
+            else if (DialogManager.instance.isSentenceEnd)
             {
                 //isSelection_5136 = false;
 
                 images_NPC.SetActive(false);
                 // images_NPC_portrait.SetActive(false);
                 //대사 비우기
-                writerText = "";
                 StopAllCoroutines();
                 Trigger_NPC.instance.isNPCTrigger = false;
                 bool_isNPC = false;
                 //Controller.instance.TalkEnd();
                 controller_scr.TalkEnd();
-                //남은대화 없음
-                remainSentence = false;
-                //대화 끝
-                isSentenceEnd = false;
-            }
-        }
-    }
-
-    IEnumerator NormalChat()
-    {
-        //대화 중복실행 방지
-        remainSentence = true;
-
-        string narrator = characternameText = CharacterName.text = npcDatabaseScr.NPC_01[765].npc_name;
-        string narration = npcDatabaseScr.NPC_01[765].comment;
-
-        Debug.Log(RandomNum);
-
-
-        for (int a = 0; a < narration.Length; a++)
-        {
-            writerText += narration[a];
-            ChatText.text = writerText;
-
-            //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
-            {
-                ChatText.text = narration;
 
                 //남은대화 없음
-                remainSentence = true;
+                DialogManager.instance.remainSentence = false;
                 //대화 끝
-                isSentenceEnd = true;
-
-                //for문 조건 충족
-                a = narration.Length;
-                ////대화 끝
-                //isSentenceEnd = true;
-            }
-
-            //대사가 전부 출력되지 않았을 경우
-            if (a < narration.Length)
-            {
-                //대사 타이핑 속도
-                yield return new WaitForSeconds(0.02f);
-            }
-
-        }
-
-        //대사 출력이 모두 완료 되었다면
-        if (ChatText.text == narration)
-        {
-            //대화 종료 조건 충족
-            remainSentence = true;
-            isSentenceEnd = true;
-        }
-    }
-
-    IEnumerator ItemClueChat(string narrator, string narration)
-    {
-        //남은대화 있음
-        remainSentence = true;
-
-        Debug.Log(narration);
-        CharacterName.text = narrator;
-        //characternameText = narrator;
-        //narrator = CharacterName.text;
-
-        //심학규의 대사일경우
-        if (narrator == "심학규")
-        {
-            //초상화 변경
-            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
-        }
-        else
-        {
-            //초상화 변경
-            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-        }
-
-        //텍스트 타이핑
-        for (int a = 0; a < narration.Length; a++)
-        {
-            writerText += narration[a];
-            ChatText.text = writerText;
-
-            //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
-            {
-                ChatText.text = narration;
-
-                //남은대화 없음
-                remainSentence = true;
-                //대화 끝
-                isSentenceEnd = true;
-
-                //for문 조건 충족
-                a = narration.Length;
-            }
-
-            //대사 출력 중일 경우에만
-            if (ChatText.text != narration)
-            {
-                //텍스트 타이핑 시간 조절
-                yield return new WaitForSeconds(0.02f);
-            }
-        }
-
-        //대사 출력이 모두 완료 되었다면
-        if (ChatText.text == narration)
-        {
-            //대화 종료 조건 충족
-            remainSentence = true;
-            isSentenceEnd = true;
-        }
-    }
-
-    //오버로드
-    IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
-    {
-        //대화창 보이기
-        images_NPC.SetActive(true);
-
-        //심학규의 대사일경우
-        if (narrator == "심학규")
-        {
-            //초상화 변경
-            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
-        }
-        else
-        {
-            //초상화 변경
-            GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-        }
-
-        //남은 대화가 있을경우
-        if (_remainSentence == true)
-        {
-            //남은대화 있음
-            remainSentence = true;
-
-            CharacterName.text = narrator;
-
-            //텍스트 타이핑
-            for (int a = 0; a < narration.Length; a++)
-            {
-                writerText += narration[a];
-                ChatText.text = writerText;
-
-                //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
-                {
-                    writerText = narration;
-                    ChatText.text = narration;
-
-                    //남은대화 없음
-                    remainSentence = true;
-                    ////대화 끝
-                    //isSentenceEnd = true;
-
-                    //for문 조건 충족
-                    a = narration.Length;
-                }
-
-                //대사 출력 중일 경우에만
-                if (ChatText.text != narration)
-                {
-                    //텍스트 타이핑 시간 조절
-                    yield return new WaitForSeconds(0.02f);
-                }
-
-            }
-
-            //대사 출력 후 잠깐 딜레이
-            yield return new WaitForSeconds(0.1f);
-
-            //Z키를 다시 누를 때까지 무한정 대기
-            while (true)
-            {
-                if (ChatText.text == narration && Input.GetKeyDown(KeyCode.Z))
-                {
-                    Debug.Log("Text 비우기");
-
-                    //Text 비우기
-                    writerText = "";
-
-                    break;
-                }
-                yield return null;
+                DialogManager.instance.isSentenceEnd = false;
+                //텍스트 비우기
+                DialogManager.instance.writerText = "";
             }
         }
     }
 
-    IEnumerator ItemClueChat2(string narrator, string narration, bool _remainSentence)
-    {
-        //남은 대화가 있을경우
-        if (_remainSentence == true)
-        {
-            //남은대화 있음
-            remainSentence = true;
 
-            Debug.Log(narration);
-            int a = 0;
-            CharacterName.text = narrator;
-            //characternameText = narrator;
-
-
-            //narrator = CharacterName.text;
-
-            //텍스트 타이핑
-            for (a = 0; a < narration.Length; a++)
-            {
-                writerText += narration[a];
-                ChatText.text = writerText;
-
-                //텍스트 타이핑 시간 조절
-                //yield return null;
-                yield return new WaitForSeconds(0.02f);
-
-                //중간에 Z키를 누르면
-                if (Input.GetKeyDown(KeyCode.Z))
-                {
-                    break;
-                }
-            }
-
-            //Z키를 다시 누를 때까지 무한정 대기
-            while (true)
-            {
-                if (Input.GetKeyDown(KeyCode.Z))
-                {
-                    //Text 비우기
-                    writerText = "";
-                    break;
-                }
-                yield return null;
-            }
-        }
-    }
 
     IEnumerator TextPractice()
     {
@@ -357,23 +131,23 @@ public class BoatMan3 : MonoBehaviour
         EndingManager.instance.ShowEndingBG();
         EndingManager.instance.BrightEndingBG();
 
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[681].npc_name, npcDatabaseScr.NPC_01[681].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[682].npc_name, npcDatabaseScr.NPC_01[682].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[683].npc_name, npcDatabaseScr.NPC_01[683].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[684].npc_name, npcDatabaseScr.NPC_01[684].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[685].npc_name, npcDatabaseScr.NPC_01[685].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[686].npc_name, npcDatabaseScr.NPC_01[686].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[687].npc_name, npcDatabaseScr.NPC_01[687].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[688].npc_name, npcDatabaseScr.NPC_01[688].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[689].npc_name, npcDatabaseScr.NPC_01[689].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[690].npc_name, npcDatabaseScr.NPC_01[690].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[691].npc_name, npcDatabaseScr.NPC_01[691].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[692].npc_name, npcDatabaseScr.NPC_01[692].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[693].npc_name, npcDatabaseScr.NPC_01[693].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[694].npc_name, npcDatabaseScr.NPC_01[694].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[695].npc_name, npcDatabaseScr.NPC_01[695].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[696].npc_name, npcDatabaseScr.NPC_01[696].comment, true));
-        yield return StartCoroutine(ItemClueChat(npcDatabaseScr.NPC_01[697].npc_name, npcDatabaseScr.NPC_01[697].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[681].npc_name, dialogdb.NPC_01[681].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[682].npc_name, dialogdb.NPC_01[682].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[683].npc_name, dialogdb.NPC_01[683].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[684].npc_name, dialogdb.NPC_01[684].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[685].npc_name, dialogdb.NPC_01[685].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[686].npc_name, dialogdb.NPC_01[686].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[687].npc_name, dialogdb.NPC_01[687].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[688].npc_name, dialogdb.NPC_01[688].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[689].npc_name, dialogdb.NPC_01[689].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[690].npc_name, dialogdb.NPC_01[690].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[691].npc_name, dialogdb.NPC_01[691].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[692].npc_name, dialogdb.NPC_01[692].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[693].npc_name, dialogdb.NPC_01[693].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[694].npc_name, dialogdb.NPC_01[694].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[695].npc_name, dialogdb.NPC_01[695].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[696].npc_name, dialogdb.NPC_01[696].comment, true));
+        yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[697].npc_name, dialogdb.NPC_01[697].comment, true));
 
         //선택지 진행 (1.구하러 뛰어든다, 2.가만히 있는다)
         EventManager.instance.SelectStart(NPCName.Shimbongsa, 7287);
@@ -398,4 +172,238 @@ public class BoatMan3 : MonoBehaviour
     {
         isTouch = false;
     }
+
+    #region Previous code
+    //IEnumerator NormalChat()
+    //{
+    //    //대화 중복실행 방지
+    //    remainSentence = true;
+
+    //    string narrator = characternameText = CharacterName.text = npcDatabaseScr.NPC_01[765].npc_name;
+    //    string narration = npcDatabaseScr.NPC_01[765].comment;
+
+    //    Debug.Log(RandomNum);
+
+
+    //    for (int a = 0; a < narration.Length; a++)
+    //    {
+    //        writerText += narration[a];
+    //        ChatText.text = writerText;
+
+    //        //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+    //        if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+    //        {
+    //            ChatText.text = narration;
+
+    //            //남은대화 없음
+    //            remainSentence = true;
+    //            //대화 끝
+    //            isSentenceEnd = true;
+
+    //            //for문 조건 충족
+    //            a = narration.Length;
+    //            ////대화 끝
+    //            //isSentenceEnd = true;
+    //        }
+
+    //        //대사가 전부 출력되지 않았을 경우
+    //        if (a < narration.Length)
+    //        {
+    //            //대사 타이핑 속도
+    //            yield return new WaitForSeconds(0.02f);
+    //        }
+
+    //    }
+
+    //    //대사 출력이 모두 완료 되었다면
+    //    if (ChatText.text == narration)
+    //    {
+    //        //대화 종료 조건 충족
+    //        remainSentence = true;
+    //        isSentenceEnd = true;
+    //    }
+    //}
+
+    //IEnumerator ItemClueChat(string narrator, string narration)
+    //{
+    //    //남은대화 있음
+    //    remainSentence = true;
+
+    //    Debug.Log(narration);
+    //    CharacterName.text = narrator;
+    //    //characternameText = narrator;
+    //    //narrator = CharacterName.text;
+
+    //    //심학규의 대사일경우
+    //    if (narrator == "심학규")
+    //    {
+    //        //초상화 변경
+    //        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
+    //    }
+    //    else
+    //    {
+    //        //초상화 변경
+    //        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+    //    }
+
+    //    //텍스트 타이핑
+    //    for (int a = 0; a < narration.Length; a++)
+    //    {
+    //        writerText += narration[a];
+    //        ChatText.text = writerText;
+
+    //        //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+    //        if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+    //        {
+    //            ChatText.text = narration;
+
+    //            //남은대화 없음
+    //            remainSentence = true;
+    //            //대화 끝
+    //            isSentenceEnd = true;
+
+    //            //for문 조건 충족
+    //            a = narration.Length;
+    //        }
+
+    //        //대사 출력 중일 경우에만
+    //        if (ChatText.text != narration)
+    //        {
+    //            //텍스트 타이핑 시간 조절
+    //            yield return new WaitForSeconds(0.02f);
+    //        }
+    //    }
+
+    //    //대사 출력이 모두 완료 되었다면
+    //    if (ChatText.text == narration)
+    //    {
+    //        //대화 종료 조건 충족
+    //        remainSentence = true;
+    //        isSentenceEnd = true;
+    //    }
+    //}
+
+    ////오버로드
+    //IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
+    //{
+    //    //대화창 보이기
+    //    images_NPC.SetActive(true);
+
+    //    //심학규의 대사일경우
+    //    if (narrator == "심학규")
+    //    {
+    //        //초상화 변경
+    //        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[1];
+    //    }
+    //    else
+    //    {
+    //        //초상화 변경
+    //        GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
+    //    }
+
+    //    //남은 대화가 있을경우
+    //    if (_remainSentence == true)
+    //    {
+    //        //남은대화 있음
+    //        remainSentence = true;
+
+    //        CharacterName.text = narrator;
+
+    //        //텍스트 타이핑
+    //        for (int a = 0; a < narration.Length; a++)
+    //        {
+    //            writerText += narration[a];
+    //            ChatText.text = writerText;
+
+    //            //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+    //            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+    //            {
+    //                writerText = narration;
+    //                ChatText.text = narration;
+
+    //                //남은대화 없음
+    //                remainSentence = true;
+    //                ////대화 끝
+    //                //isSentenceEnd = true;
+
+    //                //for문 조건 충족
+    //                a = narration.Length;
+    //            }
+
+    //            //대사 출력 중일 경우에만
+    //            if (ChatText.text != narration)
+    //            {
+    //                //텍스트 타이핑 시간 조절
+    //                yield return new WaitForSeconds(0.02f);
+    //            }
+
+    //        }
+
+    //        //대사 출력 후 잠깐 딜레이
+    //        yield return new WaitForSeconds(0.1f);
+
+    //        //Z키를 다시 누를 때까지 무한정 대기
+    //        while (true)
+    //        {
+    //            if (ChatText.text == narration && Input.GetKeyDown(KeyCode.Z))
+    //            {
+    //                Debug.Log("Text 비우기");
+
+    //                //Text 비우기
+    //                writerText = "";
+
+    //                break;
+    //            }
+    //            yield return null;
+    //        }
+    //    }
+    //}
+
+    //IEnumerator ItemClueChat2(string narrator, string narration, bool _remainSentence)
+    //{
+    //    //남은 대화가 있을경우
+    //    if (_remainSentence == true)
+    //    {
+    //        //남은대화 있음
+    //        remainSentence = true;
+
+    //        Debug.Log(narration);
+    //        int a = 0;
+    //        CharacterName.text = narrator;
+    //        //characternameText = narrator;
+
+
+    //        //narrator = CharacterName.text;
+
+    //        //텍스트 타이핑
+    //        for (a = 0; a < narration.Length; a++)
+    //        {
+    //            writerText += narration[a];
+    //            ChatText.text = writerText;
+
+    //            //텍스트 타이핑 시간 조절
+    //            //yield return null;
+    //            yield return new WaitForSeconds(0.02f);
+
+    //            //중간에 Z키를 누르면
+    //            if (Input.GetKeyDown(KeyCode.Z))
+    //            {
+    //                break;
+    //            }
+    //        }
+
+    //        //Z키를 다시 누를 때까지 무한정 대기
+    //        while (true)
+    //        {
+    //            if (Input.GetKeyDown(KeyCode.Z))
+    //            {
+    //                //Text 비우기
+    //                writerText = "";
+    //                break;
+    //            }
+    //            yield return null;
+    //        }
+    //    }
+    //}
+    #endregion
 }
