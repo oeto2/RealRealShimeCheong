@@ -78,5 +78,10 @@ public class Portal : MonoBehaviour
 
         //GameManager의 PinPos값 변경
         GameManager.instance.ChangePinPosNum(int_MapNum);
+
+        //배경음악 변경
+        BgmManager.instance.ChangeBGM();
+        //서브음악 변경
+        SubbgmManager.instance.ChangeBGM();
     }
 }
