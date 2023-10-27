@@ -48,12 +48,21 @@ public class DialogManager : MonoBehaviour
     //NPC 이름 Text
     public Text text_NpcName;
 
-    //시스템 초상화
-    public Image System_Portrait;
+    //Npc 초상화
+    public Image Npc_Portrait;
+
+    //Player 초상화
+    public Image player_Portrait;
+    
 
     //초상화 스프라이트 이미지들
-    [Tooltip("0:Null 1:심학규, 2:뺑덕, 3:거지, 4:승려, 5:귀덕, 6:장사, 7:장승, 8:장승2, 9:뱃사, 10:심청, 11:송나라, 12: 장지언")]
+    [Tooltip("0:Null, 1:뺑덕, 2:거지, 3:승려, 4:귀덕, 5:장사, 6:장승, 7:장승2, 8:뱃사, 9:심청, 10:송나라, 11: 장지언")]
     public Sprite[] npc_Sprites;
+
+
+    //Player 스프라이트 이미지들
+    [Tooltip("0: Null, 1:기본")]
+    public Sprite[] player_sprites;
 
     //출력중인 대사 값
     public string writerText = "";
@@ -499,7 +508,7 @@ public class DialogManager : MonoBehaviour
         writerText = "";
 
         //초상화 변경
-        System_Portrait.sprite = npc_Sprites[0];
+        Npc_Portrait.sprite = npc_Sprites[0];
 
         //시스템 다이얼로그 활성화
         Dialouge_System.SetActive(true);
@@ -566,7 +575,7 @@ public class DialogManager : MonoBehaviour
         writerText = "";
 
         //초상화 변경
-        System_Portrait.sprite = npc_Sprites[0];
+        Npc_Portrait.sprite = npc_Sprites[0];
 
         //시스템 다이얼로그 활성화
         Dialouge_System.SetActive(true);
@@ -790,19 +799,10 @@ public class DialogManager : MonoBehaviour
 
         switch (_narrator)
         {
-            case "심학규":
-
-                //초상화 변경
-                System_Portrait.sprite = npc_Sprites[1];
-
-                //이름 변경
-                text_NpcName.text = "심학규";
-                break;
-
             case "뺑덕 어멈":
 
                 //초상화 변경
-                System_Portrait.sprite = npc_Sprites[2];
+                Npc_Portrait.sprite = npc_Sprites[1];
 
                 //이름 변경
                 text_NpcName.text = "뺑덕어멈";
@@ -811,7 +811,7 @@ public class DialogManager : MonoBehaviour
             case "거지":
 
                 //초상화 변경
-                System_Portrait.sprite = npc_Sprites[3];
+                Npc_Portrait.sprite = npc_Sprites[2];
 
                 //이름 변경
                 text_NpcName.text = "거지";
@@ -820,7 +820,7 @@ public class DialogManager : MonoBehaviour
             case "승려":
 
                 //초상화 변경
-                System_Portrait.sprite = npc_Sprites[4];
+                Npc_Portrait.sprite = npc_Sprites[3];
 
                 //이름 변경
                 text_NpcName.text = "승려";
@@ -829,7 +829,7 @@ public class DialogManager : MonoBehaviour
             case "귀덕 어멈":
 
                 //초상화 변경
-                System_Portrait.sprite = npc_Sprites[5];
+                Npc_Portrait.sprite = npc_Sprites[4];
 
                 //이름 변경
                 text_NpcName.text = "귀덕어멈";
@@ -838,7 +838,7 @@ public class DialogManager : MonoBehaviour
             case "장사꾼":
 
                 //초상화 변경
-                System_Portrait.sprite = npc_Sprites[6];
+                Npc_Portrait.sprite = npc_Sprites[5];
 
                 //이름 변경
                 text_NpcName.text = "장사꾼";
@@ -847,7 +847,7 @@ public class DialogManager : MonoBehaviour
             case "향리 댁 부인":
 
                 //초상화 변경
-                System_Portrait.sprite = npc_Sprites[7];
+                Npc_Portrait.sprite = npc_Sprites[6];
 
                 //이름 변경
                 text_NpcName.text = "향리 댁 부인";
@@ -856,7 +856,7 @@ public class DialogManager : MonoBehaviour
             case "뱃사공":
 
                 //초상화 변경
-                System_Portrait.sprite = npc_Sprites[8];
+                Npc_Portrait.sprite = npc_Sprites[7];
 
                 //이름 변경
                 text_NpcName.text = "뱃사공";
@@ -865,7 +865,7 @@ public class DialogManager : MonoBehaviour
             case "심청":
 
                 //초상화 변경
-                System_Portrait.sprite = npc_Sprites[9];
+                Npc_Portrait.sprite = npc_Sprites[8];
 
                 //이름 변경
                 text_NpcName.text = "심청";
@@ -874,7 +874,7 @@ public class DialogManager : MonoBehaviour
             case "송나라 상인":
 
                 //초상화 변경
-                System_Portrait.sprite = npc_Sprites[10];
+                Npc_Portrait.sprite = npc_Sprites[9];
 
                 //이름 변경
                 text_NpcName.text = "송나라 상인";
@@ -883,7 +883,7 @@ public class DialogManager : MonoBehaviour
             case "장지언":
 
                 //초상화 변경
-                System_Portrait.sprite = npc_Sprites[11];
+                Npc_Portrait.sprite = npc_Sprites[10];
 
                 //이름 변경
                 text_NpcName.text = "장지언";
@@ -1029,5 +1029,17 @@ public class DialogManager : MonoBehaviour
     {
         ChatText.text = "";
         writerText = "";
+    }
+
+    //Npc초상화 초기화
+    public void ResetNpcPortrait()
+    {
+        Npc_Portrait.sprite = npc_Sprites[0];
+    }
+
+    //Player초상화 초기화
+    public void ResetPlayerPortrait()
+    {
+        player_Portrait.sprite = npc_Sprites[0];   
     }
 }

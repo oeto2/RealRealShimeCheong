@@ -81,9 +81,6 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
                 images_NPC.SetActive(true);
                 StartCoroutine(TextPractice());
                 Trigger_NPC.instance.isNPCTrigger = true;
-                //초상화 변경
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-                //bool_isNPC = true;
             }
 
             //대화가 끝났을 경우

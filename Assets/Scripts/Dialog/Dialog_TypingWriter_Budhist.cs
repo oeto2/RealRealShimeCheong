@@ -102,7 +102,6 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
                 images_NPC.SetActive(true);
                 bool_isNPC = true;
                 Trigger_NPC.instance.isNPCTrigger = true;
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
             }
             else if(DialogManager.instance.isSentenceEnd)
             {

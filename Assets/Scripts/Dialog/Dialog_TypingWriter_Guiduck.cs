@@ -89,7 +89,6 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                 StartCoroutine(TextPractice());
 
                 Trigger_NPC.instance.isNPCTrigger = true;
-                //GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
             }
 
             else if(DialogManager.instance.isSentenceEnd)
@@ -100,7 +99,6 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                 controller_scr.TalkEnd();
 
                 images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
                 bool_isNPC = false;
 
                 StopAllCoroutines();

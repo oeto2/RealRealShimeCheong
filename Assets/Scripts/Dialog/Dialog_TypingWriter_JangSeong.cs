@@ -129,7 +129,6 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 //대사 출력
                 StartCoroutine(TextPractice());
                 Trigger_NPC.instance.isNPCTrigger = true;
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
             }
 
             //대화 종료

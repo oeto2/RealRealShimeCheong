@@ -100,9 +100,6 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                 images_Bbang.SetActive(true);
                 StartCoroutine(TextPractice());
                 Trigger_NPC.instance.isNPCTrigger = true;
-                //대사 출력
-                GameObject.Find("NPC_Profile").GetComponent<Image>().sprite = images_NPC_portrait[0];
-                //bool_isNPC = true;
             }
 
             //대화 종료
