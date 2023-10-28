@@ -307,7 +307,8 @@ public class DialogManager : MonoBehaviour
 
                 else if (t_red)
                 {
-                    t_letter = "<color=#B40404>" + narration[a] + "</color>";   
+                    //t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                    t_letter = "<color=#850000>" + "<b>" + narration[a] + "</b>" + "</color>";
                     Debug.Log("1_red");
                 }
 
@@ -315,6 +316,12 @@ public class DialogManager : MonoBehaviour
                 {
                     t_letter = "<color=#0d4577>" + "<b>" + narration[a] + "</b>" + "</color>";
                     Debug.Log("2_blue");
+                }
+
+                else if (t_violet)
+                {
+                    t_letter = "<color=#6a2c7a>" + "<b>" + narration[a] + "</b>" + "</color>";
+                    Debug.Log("3_violet");
                 }
                 //Debug.Log(writerText);
                 writerText += t_letter; // Æ¯¼ö¹®ÀÚ°¡ ¾Æ´Ï¶ó¸é ´ë»ç Ãâ·Â
@@ -382,13 +389,13 @@ public class DialogManager : MonoBehaviour
             text_NpcName.text = narrator;
 
             // °ÅÁö - ÁÖ¸Ô¹ä ´ÙÀÌ¾ó·Î±× ´ëÈ­ ¿¹¿Ü Ã³¸®
-            if (narration == npcDatabaseScr.NPC_01[827].comment)
+            if (narration == npcDatabaseScr.NPC_01[836].comment)
             {
                 Debug.Log(narration);
                 Debug.Log("1005¹ø, 18¹ø");
                 Dialouge_System.SetActive(false);
             }
-            if (narration != npcDatabaseScr.NPC_01[827].comment)
+            if (narration != npcDatabaseScr.NPC_01[836].comment)
             {
                 Debug.Log(narration);
                 Debug.Log("1005¹ø, 19¹ø");
@@ -842,7 +849,7 @@ public class DialogManager : MonoBehaviour
                 ResetPlayerPortrait();
 
                 //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "»±´ö¾î¸Ø";
+                text_NpcName.text = "»±´ö ¾î¸Ø";
                 break;
 
             case "°ÅÁö":
@@ -875,7 +882,7 @@ public class DialogManager : MonoBehaviour
                 ResetPlayerPortrait();
 
                 //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "±Í´ö¾î¸Ø";
+                text_NpcName.text = "±Í´ö ¾î¸Ø";
                 break;
 
             case "Àå»ç²Û":
