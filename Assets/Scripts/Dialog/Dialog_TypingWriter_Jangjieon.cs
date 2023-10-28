@@ -98,7 +98,7 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
         {
             Debug.Log("z키 누름! 장지언!!!!");
 
-            controller_scr.TalkStart();
+            //controller_scr.TalkStart();
             if (bool_isNPC == false && !DialogManager.instance.remainSentence)
             {
                 StartCoroutine(TextPractice());

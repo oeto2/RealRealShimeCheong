@@ -80,7 +80,7 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
             Debug.Log("zÅ° ´©¸§! ±Í´ö¾î¸Ø!!!!");
 
             //bool_isBotjim = true;
-            controller_scr.TalkStart();
+            //controller_scr.TalkStart();
 
             if (bool_isNPC == false && !DialogManager.instance.remainSentence)
             {

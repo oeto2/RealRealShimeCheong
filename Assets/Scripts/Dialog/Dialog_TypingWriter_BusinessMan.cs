@@ -73,7 +73,7 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
         {
             Debug.Log("z키 누름! 장사꾼!!!!");
             //bool_isBotjim = true;
-            controller_scr.TalkStart();
+            //controller_scr.TalkStart();
 
             if (bool_isNPC == false && !DialogManager.instance.remainSentence)
             {

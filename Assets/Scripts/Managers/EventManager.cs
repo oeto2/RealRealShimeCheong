@@ -806,8 +806,11 @@ public class EventManager : MonoBehaviour
                 Controller.instance.TalkEnd();
 
                 //뱃사공 대화 제어 플래그 초기화
-                boatManDialogueScr2.isSentenceEnd = true;
-                boatManDialogueScr2.remainSentence = true;
+                //boatManDialogueScr2.isSentenceEnd = true;
+                //boatManDialogueScr2.remainSentence = true;
+                DialogManager.instance.isSentenceEnd = false;
+                DialogManager.instance.remainSentence = false;
+
 
                 break;
 
@@ -827,8 +830,11 @@ public class EventManager : MonoBehaviour
             //심봉사 선택지일 경우
             case 7287:
                 //다이얼로그 플래그 초기화
-                jangjieonDialogueScr.remainSentence = true;
-                jangjieonDialogueScr.isSentenceEnd = true;
+                //jangjieonDialogueScr.remainSentence = true;
+                //jangjieonDialogueScr.isSentenceEnd = true;
+
+                DialogManager.instance.isSentenceEnd = false;
+                DialogManager.instance.remainSentence = false;
 
                 //다이얼로그 띄우기
                 DialogManager.instance.Dialouge_System.SetActive(true);
@@ -844,8 +850,12 @@ public class EventManager : MonoBehaviour
             //심봉사2 선택지일 경우
             case 7299:
                 //다이얼로그 플래그 초기화
-                jangjieonDialogueScr.remainSentence = true;
-                jangjieonDialogueScr.isSentenceEnd = true;
+                //jangjieonDialogueScr.remainSentence = true;
+                //jangjieonDialogueScr.isSentenceEnd = true;
+
+
+                DialogManager.instance.isSentenceEnd = false;
+                DialogManager.instance.remainSentence = false;
 
                 //다이얼로그 띄우기
                 DialogManager.instance.Dialouge_System.SetActive(true);
@@ -892,8 +902,11 @@ public class EventManager : MonoBehaviour
             //심봉사2 선택지일 경우
             case 7299:
                 //다이얼로그 플래그 초기화
-                jangjieonDialogueScr.remainSentence = true;
-                jangjieonDialogueScr.isSentenceEnd = true;
+                //jangjieonDialogueScr.remainSentence = true;
+                //jangjieonDialogueScr.isSentenceEnd = true;
+
+                DialogManager.instance.isSentenceEnd = false;
+                DialogManager.instance.remainSentence = false;
 
                 //다이얼로그 띄우기
                 DialogManager.instance.Dialouge_System.SetActive(true);

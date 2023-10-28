@@ -95,7 +95,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         {
             Debug.Log("zÅ° ´©¸§! ½Â·Á!!!!");
 
-            controller_scr.TalkStart();
+            //controller_scr.TalkStart();
             if (bool_isNPC == false && !DialogManager.instance.remainSentence)
             {
                 StartCoroutine(TextPractice());

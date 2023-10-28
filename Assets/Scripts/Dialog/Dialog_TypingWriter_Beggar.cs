@@ -71,7 +71,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         {
             Debug.Log("z키 누름! 상거지다!!!!");
             //bool_isBotjim = true;
-            controller_scr.TalkStart();
+            //controller_scr.TalkStart();
 
 			if (bool_isNPC == false && !DialogManager.instance.remainSentence)
 			{

@@ -76,7 +76,7 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
         {
             Debug.Log("z키 누름! 뱃사공!!!!");
             //bool_isBotjim = true;
-            controller_scr.TalkStart();
+            //controller_scr.TalkStart();
 
             if (bool_isNPC == false && !DialogManager.instance.remainSentence)
             {

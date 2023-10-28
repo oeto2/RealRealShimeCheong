@@ -253,6 +253,9 @@ public class TutorialManager : MonoBehaviour
         //향리댁 대화가 모두 끝나고 Z 키를 누를경우
         if (events == TutorialEvents.TalkToHyang && HyangTalkEnd && Input.GetKeyDown(KeyCode.Z))
         {
+            //이동제한 해제
+            playerCtrlScr.TalkEnd();
+
             //다이얼로그 끄기
             gameObject_Dialogue.SetActive(false);
             DialogManager.instance.Dialouge_System.SetActive(false);

@@ -115,7 +115,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             Debug.Log("z키 누름! 장승상댁!!!!");
             //bool_isBotjim = true;
             //플레이어 이동제한
-            controller_scr.TalkStart();
+            //controller_scr.TalkStart();
 
             if (bool_isNPC == false && !DialogManager.instance.remainSentence)
             {
@@ -167,7 +167,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             yield return StartCoroutine(DialogManager.instance.ItemClueChat("향리 댁 부인", "ⓦ여기는 어쩐 일이오?", true));
             yield return StartCoroutine(DialogManager.instance.ItemClueChat("심학규", "ⓦ청이가 향리 댁에 오지 않았다고 한다.", true));
             yield return StartCoroutine(DialogManager.instance.ItemClueChat("심학규", "ⓦ어찌 된 일인지 주변을 수소문 해 보자.", true));
-            yield return StartCoroutine(DialogManager.instance.ItemClueChat("심학규", "ⓦ게임에서의 하루는 실제 시간의 5분입니다. 하루가 지나면 심학규의 집으로 귀환 됩니다.", true));
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat("심학규", "ⓦ게임에서의 하루는 실제 시간의 5분입니다. 하루가 지나면 심학규의 집으로 귀환 됩니다."));
             tutorialManagerScr.HyangTalkEnd = true;
         }
 
