@@ -339,16 +339,23 @@ public class DialogManager : MonoBehaviour
             }
         }
 
-        //대사 출력이 모두 완료 되었다면
-        if (ChatText.text == writerText)
-        {
-            //타이핑 속도 변경
-            typingSpeed = 0.02f;
+        //타이핑 속도 변경
+        typingSpeed = 0.02f;
 
-            //대화 종료 조건 충족
-            remainSentence = true;
-            isSentenceEnd = true;
-        }
+        //대화 종료 조건 충족
+        remainSentence = true;
+        isSentenceEnd = true;
+
+        ////대사 출력이 모두 완료 되었다면
+        //if (ChatText.text == writerText)
+        //{
+        //    //타이핑 속도 변경
+        //    typingSpeed = 0.02f;
+
+        //    //대화 종료 조건 충족
+        //    remainSentence = true;
+        //    isSentenceEnd = true;
+        //}
     }
 
     //다이얼로그 대화 출력

@@ -214,6 +214,8 @@ public class TutorialManager : MonoBehaviour
                     //대사1 종료
                     setence1End = true;
 
+                
+
                     //다음 이벤트 변경
                     events = TutorialEvents.GetItems;
                     tutorialEventNum = 1;
@@ -274,15 +276,25 @@ public class TutorialManager : MonoBehaviour
 
         //Evnet 3 : 하루를 보내자
         //하루가 지났을 경우
-        if (passDay && !PassDayTalkEnd1)
+        if (passDay && events == TutorialEvents.PassOneDay)
         {
-            //대화 시작
-            playerCtrlScr.TalkStart();
+            //하루지나고 대화 시작
+            StartCoroutine(PassDayTalk());
 
-            //하루 지나고 대화 1
-            playerDialogueScr.Start_Sentence_PassDay();
+            //시간 흐르기
+            timeManagerScr.ContinueTime();
 
-            PassDayTalkEnd1 = true;
+            //다음 이벤트
+            tutorialEventNum = 4;
+            events = TutorialEvents.Done;
+
+            Debug.Log("튜토리얼 끝");
+
+            ////대화 시작
+            //playerCtrlScr.TalkStart();
+
+            ////하루 지나고 대화 1
+            //playerDialogueScr.Start_Sentence_PassDay();
         }
 
         if (playerDialogueScr.isTalkEnd && PassDayTalkEnd1 && !PassDayTalkEnd2 && Input.GetKeyDown(KeyCode.Z) && passDay)
@@ -343,6 +355,20 @@ public class TutorialManager : MonoBehaviour
         //배경의 현재 컬러값 변경
         timeManagerScr.curObjectRGB = timeManagerScr.startRGBValue;
     }
+
+    //하루 지나고 나서 대화 모음
+    public IEnumerator PassDayTalk()
+    {
+        yield return DialogManager.instance.ItemClueChat("심학규", "ⓦ사람들의 이야기를 들어보아도, 아무래도 청이는 누군가의 꾀임에 넘어갔음이 틀림없다.", true);
+        yield return DialogManager.instance.ItemClueChat("심학규", "ⓦ청이를 데려간 범인을 알아내야 한다.", true);
+        yield return DialogManager.instance.ItemClueChat("심학규", "ⓦ이제까지 알아낸 정보를 조합해 새로운 단서를 만들 수 있다.");
+        DialogManager.instance.isSentenceEnd = false;
+        DialogManager.instance.remainSentence = false;
+        DialogManager.instance.Dialouge_System.SetActive(false);
+        playerCtrlScr.TalkEnd();
+        yield return null;
+    }
+
 
     //PassDay Flag Dealy용
     private void PassDayTrue()
