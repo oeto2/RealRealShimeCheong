@@ -232,11 +232,11 @@ public class GameManager : MonoBehaviour
         //    PlayBeadPuzzle();
         //}
 
-        //if (Input.GetKeyDown(KeyCode.J))
-        //{
-        //    Debug.Log("주막 퍼즐 시작");
-        //    JoomackPuzzleStart();
-        //}
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log("주막 퍼즐 시작");
+            JoomackPuzzleStart();
+        }
 
     }
 

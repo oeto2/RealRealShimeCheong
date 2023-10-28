@@ -447,7 +447,9 @@ public class DialogManager : MonoBehaviour
 
                     else if (t_red)
                     {
-                        t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                        //t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                        //t_letter = "<color=#850000>" + "<b>" + narration[a] + "</b>" + "</color>";
+                        t_letter = "<color=#222222>" + "<b>" + narration[a] + "</b>" + "</color>";
                         Debug.Log("1_red");
                     }
 
@@ -851,7 +853,7 @@ public class DialogManager : MonoBehaviour
                 ResetPlayerPortrait();
 
                 //이름 변경
-                text_NpcName.text = "거지";
+                text_NpcName.text = "거 지";
                 break;
 
             case "승려":
@@ -862,7 +864,7 @@ public class DialogManager : MonoBehaviour
                 ResetPlayerPortrait();
 
                 //이름 변경
-                text_NpcName.text = "승려";
+                text_NpcName.text = "승 려";
                 break;
 
             case "귀덕 어멈":
@@ -917,7 +919,7 @@ public class DialogManager : MonoBehaviour
                 ResetPlayerPortrait();
 
                 //이름 변경
-                text_NpcName.text = "심청";
+                text_NpcName.text = "심 청";
                 break;
 
             case "송나라 상인":
