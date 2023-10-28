@@ -226,17 +226,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("구슬 퍼즐 시작");
-            PlayBeadPuzzle();
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    Debug.Log("구슬 퍼즐 시작");
+        //    PlayBeadPuzzle();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Debug.Log("주막 퍼즐 시작");
-            JoomackPuzzleStart();
-        }
+        //if (Input.GetKeyDown(KeyCode.J))
+        //{
+        //    Debug.Log("주막 퍼즐 시작");
+        //    JoomackPuzzleStart();
+        //}
 
     }
 

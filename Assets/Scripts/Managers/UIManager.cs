@@ -303,6 +303,9 @@ public class UIManager : MonoBehaviour
         if (!isOptionLaunch && !isItemWindowLaunch && !isMapWindowLaunch && !isCombineLaunch && Input.GetKeyDown(KeyCode.Escape) &&
            !playerCtrlScr.isTalk)
         {
+            //可记芒 家府 犁积
+            EffectSoundManager.instance.PlayOnOptionSound();
+            
             //可记芒 焊咯林扁
             gameObject_Option.SetActive(true);
 

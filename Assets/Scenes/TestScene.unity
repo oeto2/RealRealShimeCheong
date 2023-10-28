@@ -31834,7 +31834,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -41995,6 +41995,8 @@ MonoBehaviour:
   auidoSource: {fileID: 1377642333}
   clip_MapOpen: {fileID: 8300000, guid: 7e0f9ead02b141d49a93dda2424f20b3, type: 3}
   clip_BotzimeOpen: {fileID: 8300000, guid: 21b5f0185fa334c4aa93935fe51f9544, type: 3}
+  clip_JangJackPush: {fileID: 0}
+  clip_OptionOn: {fileID: 8300000, guid: 96ebc21b0b062014e90913aa8fd5595d, type: 3}
 --- !u!1 &1381241257
 GameObject:
   m_ObjectHideFlags: 0
@@ -59105,7 +59107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871344486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.613336, y: -1.4630005, z: 0}
+  m_LocalPosition: {x: 11.613336, y: -1.59, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -63104,7 +63106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010482427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.831114, y: -0.68333375, z: 0}
+  m_LocalPosition: {x: 10.021, y: -0.872, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -67860,7 +67862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5247316569281692779, guid: edf22891398bd1e48b243148e1dc7254, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edf22891398bd1e48b243148e1dc7254, type: 3}

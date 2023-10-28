@@ -262,8 +262,8 @@ public class ObjectManager : MonoBehaviour
         //조합창 아이템 탭 기본으로 보여주기
         TabClick2(curType);
 
-        ////모든 아이템 획득
-        GetAllItem();
+        //////모든 아이템 획득
+        //GetAllItem();
 
         ////모든 단서 획득
         //GetAllClue();
@@ -289,28 +289,28 @@ public class ObjectManager : MonoBehaviour
             EmptyCombineSlot();
         }
 
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("아이템 획득");
-            GetAllClue();
-        }
+        //if(Input.GetKeyDown(KeyCode.C))
+        //{
+        //    Debug.Log("아이템 획득");
+        //    GetAllClue();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            GetClue(2011);
-            GetClue(2012);
-            GetClue(2014);
-            GetClue(2009);
-            GetClue(2019);
-            GetClue(2017);
-        }
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    GetClue(2011);
+        //    GetClue(2012);
+        //    GetClue(2014);
+        //    GetClue(2009);
+        //    GetClue(2019);
+        //    GetClue(2017);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("Show_ItemList 함수 시작");
-            Show_ItemList();
-            Debug.Log("Show_ItemList 함수 끝");
-        }
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    Debug.Log("Show_ItemList 함수 시작");
+        //    Show_ItemList();
+        //    Debug.Log("Show_ItemList 함수 끝");
+        //}
 
         //if (Input.GetKeyDown(KeyCode.Q))
         //{
