@@ -471,6 +471,12 @@ public class DialogManager : MonoBehaviour
                         t_letter = "<color=#0d4577>" + "<b>" + narration[a] + "</b>" + "</color>";
                         Debug.Log("2_blue");
                     }
+
+                    else if (t_violet)
+                    {
+                        t_letter = "<color=#6a2c7a>" + "<b>" + narration[a] + "</b>" + "</color>";
+                        Debug.Log("3_violet");
+                    }
                     //Debug.Log(writerText);
                     writerText += t_letter; // 특수문자가 아니라면 대사 출력
                     //writerText += narration[a];
