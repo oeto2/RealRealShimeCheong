@@ -120,6 +120,9 @@ public class DialogManager : MonoBehaviour
     //NPC 기본대사
     public IEnumerator NormalChat(string _narrator)
     {
+        //다이얼로그 비우기
+        CleanDialogue();
+
         //Player, Npc 초상화 초기화
         ResetNpcPortrait();
         ResetPlayerPortrait();
@@ -236,6 +239,12 @@ public class DialogManager : MonoBehaviour
 
     public IEnumerator ItemClueChat(string narrator, string narration)
     {
+        //다이얼로그 비우기
+        CleanDialogue();
+
+        //다이얼로그 창 띄우기
+        Dialouge_System.SetActive(true);
+
         //Player, Npc 초상화 초기화
         ResetNpcPortrait();
         ResetPlayerPortrait();
@@ -250,6 +259,8 @@ public class DialogManager : MonoBehaviour
 
         //Npc 초상화 자동 변경
         ChangeNpcPortrait(narrator);
+        //Player 초상화 자동 변경
+        ChagePlayerPortrait(narrator);
 
         Debug.Log(narration);
         int a = 0;
@@ -352,22 +363,17 @@ public class DialogManager : MonoBehaviour
         //대화 종료 조건 충족
         remainSentence = true;
         isSentenceEnd = true;
-
-        ////대사 출력이 모두 완료 되었다면
-        //if (ChatText.text == writerText)
-        //{
-        //    //타이핑 속도 변경
-        //    typingSpeed = 0.02f;
-
-        //    //대화 종료 조건 충족
-        //    remainSentence = true;
-        //    isSentenceEnd = true;
-        //}
     }
 
     //다이얼로그 대화 출력
     public IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
+        //다이얼로그 비우기
+        CleanDialogue();
+
+        //다이얼로그 창 띄우기
+        Dialouge_System.SetActive(true);
+
         //Player, Npc 초상화 초기화
         ResetNpcPortrait();
         ResetPlayerPortrait();

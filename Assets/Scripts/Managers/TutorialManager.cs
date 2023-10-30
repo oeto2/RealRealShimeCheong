@@ -207,14 +207,12 @@ public class TutorialManager : MonoBehaviour
                     gameObject_shimeNote.SetActive(false);
 
                     //1번 대화 실행
-                    playerDialogueScr.Start_Sentence1();
+                    StartCoroutine(TutorialSentence_1());
 
                     Invoke("CloseNote", 0.2f);
 
                     //대사1 종료
                     setence1End = true;
-
-                
 
                     //다음 이벤트 변경
                     events = TutorialEvents.GetItems;
@@ -225,24 +223,22 @@ public class TutorialManager : MonoBehaviour
         #endregion
 
         #region 오브젝트 획득 튜토리얼
+        //if (setence1End && !getObjects && events == TutorialEvents.GetItems)
+        //{
+        //    if (!gameObject_Dialogue.activeSelf && objCtrlScr.getMap && objCtrlScr.getBotzime)
+        //    {
+        //        //둘다 획득 대화 실행
+        //        StartCoroutine(Start_Sentence_GetObjcets());
 
-        if (setence1End && !getObjects && events == TutorialEvents.GetItems)
-        {
+        //        getObjects = true;
 
-            if (!gameObject_Dialogue.activeSelf && objCtrlScr.getMap && objCtrlScr.getBotzime)
-            {
-                //둘다 획득 대화 실행
-                playerDialogueScr.Start_Sentence_GetObjcets();
+        //        //다음 이벤트
+        //        tutorialEventNum = 2;
 
-                getObjects = true;
-
-                //다음 이벤트
-                tutorialEventNum = 2;
-
-                //향리댁 대화이벤트
-                events = TutorialEvents.TalkToHyang;
-            }
-        }
+        //        //향리댁 대화이벤트
+        //        events = TutorialEvents.TalkToHyang;
+        //    }
+        //}
         #endregion
 
         //Evnet 2 : 향리댁과 대화하자
@@ -356,26 +352,160 @@ public class TutorialManager : MonoBehaviour
         timeManagerScr.curObjectRGB = timeManagerScr.startRGBValue;
     }
 
+    //쪽지를 읽고난 후 대사
+    IEnumerator TutorialSentence_1()
+    {
+        Debug.Log("다이얼로그 대화1");
+
+        //튜토리얼 대사 출력
+        yield return DialogManager.instance.ItemClueChat("심학규", "ⓦ심청이를 안본지 이틀이 지났다, 간만의 외출이니 나갈 채비를 해보자.", true);
+        yield return DialogManager.instance.ItemClueChat("심학규", "ⓦZ를 누르면 주변의 물건과 상호작용할 수 있다.");
+
+        //단서 획득
+        ObjectManager.instance.GetClue(2000);
+
+        //Z키를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (DialogManager.instance.isSentenceEnd && DialogManager.instance.remainSentence && Input.GetKeyDown(KeyCode.Z))
+            {
+                Debug.Log("다이얼로그 종료");
+                TutorialDialougeEnd();
+                break;
+            }
+            yield return null;
+        }
+        yield return null;
+    }
+
+    //봇짐 획득 대사
+    public IEnumerator Start_Sentence_GetBotzime()
+    {
+        Debug.Log("봇짐 획득 대화");
+
+        //튜토리얼 대사 출력
+        yield return DialogManager.instance.ItemClueChat("심학규", "ⓦ봇짐을 챙겼다. X를 눌러 봇짐을 열어볼 수 있다.");
+
+        //만약 지도를 획득한 상태라면
+        if (objCtrlScr.getMap)
+        {
+            //둘다 획득 대사 진행
+            yield return StartCoroutine(Start_Sentence_GetObjcets());
+        }
+
+        //Z키를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (DialogManager.instance.isSentenceEnd && DialogManager.instance.remainSentence && Input.GetKeyDown(KeyCode.Z))
+            {
+                TutorialDialougeEnd();
+                break;
+            }
+            yield return null;
+        }
+        yield return null;
+    }
+
+    //지도 획득 대사
+    public IEnumerator Start_Sentence_GetMap()
+    {
+        Debug.Log("지도 획득 대화");
+
+        //튜토리얼 대사 출력
+        yield return DialogManager.instance.ItemClueChat("심학규", "ⓦ늘 나의 눈이 되어주는 지도를 챙겼다.");
+
+        //만약 봇짐을 획득한 상태라면
+        if(objCtrlScr.getBotzime)
+        {
+            //둘다 획득 대사 진행
+            yield return StartCoroutine(Start_Sentence_GetObjcets());
+        }
+
+        else
+        {
+            //Z키를 다시 누를 때까지 무한정 대기
+            while (true)
+            {
+                if (DialogManager.instance.isSentenceEnd && DialogManager.instance.remainSentence && Input.GetKeyDown(KeyCode.Z))
+                {
+                    TutorialDialougeEnd();
+                    break;
+                }
+                yield return null;
+            }
+        }    
+        yield return null;
+    }
+
+    //지도와, 봇짐을 모두 챙기고난 후의 대사
+    IEnumerator Start_Sentence_GetObjcets()
+    {
+        Debug.Log("지도,봇짐 챙긴 후 대사");
+
+        //잠깐 딜레이
+        yield return new WaitForSeconds(0.3f);
+
+        //튜토리얼 대사 출력
+        yield return DialogManager.instance.ItemClueChat("심학규", "ⓦ채비가 끝났으니 심청이를 만나러 향리 댁으로 가자.");
+
+        getObjects = true;
+
+        //다음 이벤트
+        tutorialEventNum = 2;
+
+        //향리댁 대화이벤트
+        events = TutorialEvents.TalkToHyang;
+
+
+        //Z키를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (DialogManager.instance.isSentenceEnd && DialogManager.instance.remainSentence && Input.GetKeyDown(KeyCode.Z))
+            {
+                Debug.Log("다이얼로그 종료");
+                TutorialDialougeEnd();
+                break;
+            }
+            yield return null;
+        }
+        yield return null;
+    }
+
     //하루 지나고 나서 대화 모음
     public IEnumerator PassDayTalk()
     {
         yield return DialogManager.instance.ItemClueChat("심학규", "ⓦ사람들의 이야기를 들어보아도, 아무래도 청이는 누군가의 꾀임에 넘어갔음이 틀림없다.", true);
         yield return DialogManager.instance.ItemClueChat("심학규", "ⓦ청이를 데려간 범인을 알아내야 한다.", true);
         yield return DialogManager.instance.ItemClueChat("심학규", "ⓦ이제까지 알아낸 정보를 조합해 새로운 단서를 만들 수 있다.");
-        DialogManager.instance.isSentenceEnd = false;
-        DialogManager.instance.remainSentence = false;
-        DialogManager.instance.Dialouge_System.SetActive(false);
-        playerCtrlScr.TalkEnd();
+
+        //Z키를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (DialogManager.instance.isSentenceEnd && DialogManager.instance.remainSentence && Input.GetKeyDown(KeyCode.Z))
+            {
+                Debug.Log("다이얼로그 종료");
+                TutorialDialougeEnd();
+                break;
+            }
+            yield return null;
+        }
         yield return null;
     }
 
+    //튜토리얼 다이얼로그 종료 로직
+    public void TutorialDialougeEnd()
+    {
+        DialogManager.instance.Dialouge_System.SetActive(false);
+        DialogManager.instance.isSentenceEnd = false;
+        DialogManager.instance.remainSentence = false;
+        playerCtrlScr.TalkEnd();
+    }
 
     //PassDay Flag Dealy용
     private void PassDayTrue()
     {
         passDay = true;
     }
-
 
     //나레이션 배경 끄기
     private void ActiveFalse_NarationBG()

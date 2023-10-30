@@ -200,14 +200,9 @@ public class ObjectControll : MonoBehaviour
         //오브젝트 UI 보이기
         UIManager.instance.gameObject_UIBackGround.SetActive(true);
 
-        ////봇짐 UI 이미지 보이기
-        //gameObject_BotzimeUI.SetActive(true);
-
-        ////봇짐 애니메이션 변경
-        //playerAnimationScr.ChangeAnimationBotzime();
-
         //봇짐 획득 대화 실행
-        playerDialogueScr.Start_Sentence_GetBotzime();
+        StartCoroutine(tutorialManagerScr.Start_Sentence_GetBotzime());
+
 
         //오브젝트 비활성화
         _obj.SetActive(false);
@@ -220,14 +215,8 @@ public class ObjectControll : MonoBehaviour
         getMap = true;
 
         //지도 획득 대화 실행
-        playerDialogueScr.Start_Sentence_GetMap();
+        StartCoroutine(tutorialManagerScr.Start_Sentence_GetMap());
 
-        ////맵 오브젝트 UI 보이기
-        //gameObject_MapUI.SetActive(true);
-
-        ////지도 이미지 보이기
-        //gameObject_MapImage.SetActive(true);
-            
         //오브젝트 비활성화
         _obj.SetActive(false);
     }
@@ -236,14 +225,7 @@ public class ObjectControll : MonoBehaviour
         getMap = true;
 
         //지도 획득 대화 실행
-        playerDialogueScr.Start_Sentence_GetMap();
-
-        //  //맵 오브젝트 UI 보이기
-        //gameObject_MapUI.SetActive(true);
-
-        ////지도 이미지 보이기
-        //gameObject_MapImage.SetActive(true);
-        
+        StartCoroutine(tutorialManagerScr.Start_Sentence_GetMap());
     }
     #endregion
 
