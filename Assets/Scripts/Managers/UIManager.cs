@@ -190,6 +190,9 @@ public class UIManager : MonoBehaviour
     //대화 시작 조건(UI창이 켜져있지 않아야함)
     public bool sentenceCondition;
 
+    //Audio Window
+    public GameObject gameObject_AudioWindow;
+
 
     private void Awake()
     {
@@ -385,6 +388,19 @@ public class UIManager : MonoBehaviour
             Debug.Log("조합창 닫기");
             CombineWindowExit();
         }
+
+        //오디오창이 실행중일때 ESC를 눌렀을 경우
+        else if (gameObject_AudioWindow.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameObject_AudioWindow.SetActive(false);
+
+            //플레이어 이동제한 해제
+            playerCtrlScr.PlayerMoveStart();
+
+            //시간 정지 해제
+            timeManagerScr.ContinueTime();
+        }
+
         #endregion
     }
 
@@ -769,4 +785,18 @@ public class UIManager : MonoBehaviour
             return false;
         }
     }
+
+
+    //오디오 창 보이기
+    public void ShowAudioWiondow()
+    {
+        gameObject_AudioWindow.SetActive(true);
+    }
+
+    //오디오 창 끄기
+    public void CloseAuidoWindow()
+    {
+        gameObject_AudioWindow.SetActive(false);
+    }
+    
 }

@@ -8,7 +8,7 @@ public class BgmManager : MonoBehaviour
     public CameraMove cameraScr;
 
     //Bgm Audio Source
-    public AudioSource auidoSource;
+    public AudioSource audioSource;
 
     //±âº» À½¾Ç
     public AudioClip clip_Nomal;
@@ -85,25 +85,25 @@ public class BgmManager : MonoBehaviour
     {
 
         //ÇöÀç Àç»ýÁßÀÎ À½¾ÇÀÌ ¾ø´Ù¸é
-        if (auidoSource.clip == null)
+        if (audioSource.clip == null)
         {
             Debug.Log("±âº» À½¾Ç Àç»ý");
 
             //À½¾ÇÀç»ý
-            auidoSource.clip = clip_Nomal;
-            auidoSource.Play();
+            audioSource.clip = clip_Nomal;
+            audioSource.Play();
         }
 
         else
         {
             //ÇöÀç °°Àº À½¾ÇÀÌ Àç»ýÁßÀÌÁö ¾Ê´Ù¸é
-            if (auidoSource.clip.name != clip_Nomal.name)
+            if (audioSource.clip.name != clip_Nomal.name)
             {
                 Debug.Log("±âº» À½¾Ç Àç»ý");
 
                 //À½¾ÇÀç»ý
-                auidoSource.clip = clip_Nomal;
-                auidoSource.Play();
+                audioSource.clip = clip_Nomal;
+                audioSource.Play();
             }
         }
     }
@@ -114,25 +114,37 @@ public class BgmManager : MonoBehaviour
     {
 
         //ÇöÀç Àç»ýÁßÀÎ À½¾ÇÀÌ ¾ø´Ù¸é
-        if (auidoSource.clip == null)
+        if (audioSource.clip == null)
         {
             Debug.Log("¸¶ÄÏ À½¾Ç Àç»ý");
 
             //À½¾ÇÀç»ý
-            auidoSource.clip = clip_Market;
-            auidoSource.Play();
+            audioSource.clip = clip_Market;
+            audioSource.Play();
         }
         else
         {
             //ÇöÀç °°Àº À½¾ÇÀÌ Àç»ýÁßÀÌÁö ¾Ê´Ù¸é
-            if (auidoSource.clip.name != clip_Market.name)
+            if (audioSource.clip.name != clip_Market.name)
             {
                 Debug.Log("¸¶ÄÏ À½¾Ç Àç»ý");
                 //À½¾ÇÀç»ý
                 //À½¾ÇÀç»ý
-                auidoSource.clip = clip_Market;
-                auidoSource.Play();
+                audioSource.clip = clip_Market;
+                audioSource.Play();
             }
         }
+    }
+
+    //À½¾Ç¼Ò¸® ²ô±â
+    public void StopMusic()
+    {
+        audioSource.mute = true;
+    }
+
+    //À½¾Ç¼Ò¸® ÄÑ±â
+    public void StartMusic()
+    {
+        audioSource.mute = false;
     }
 }

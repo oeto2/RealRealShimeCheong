@@ -65,4 +65,16 @@ public class EffectSoundManager : MonoBehaviour
         Debug.Log("厘累 持绰 家府 犁积");
         auidoSource.PlayOneShot(clip_JangJackPush);
     }
+
+    //Stop Music
+    public void StopMusic()
+    {
+        auidoSource.mute = true;
+    }
+
+    //Start Music
+    public void StartMusic()
+    {
+        auidoSource.mute = false;
+    }
 }
