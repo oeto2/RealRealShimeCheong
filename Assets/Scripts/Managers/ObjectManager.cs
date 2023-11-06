@@ -263,7 +263,7 @@ public class ObjectManager : MonoBehaviour
         TabClick2(curType);
 
         //////¸ðµç ¾ÆÀÌÅÛ È¹µæ
-        GetAllItem();
+        //GetAllItem();
 
         ////¸ðµç ´Ü¼­ È¹µæ
         //GetAllClue();
