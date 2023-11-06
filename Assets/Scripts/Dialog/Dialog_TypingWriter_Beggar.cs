@@ -259,7 +259,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[18].npc_name, dialogdb.NPC_01[18].comment, true));
 
             //ÁÖ¸Ô¹ä ¸Ô´Â Áß..
-            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[827].npc_name, dialogdb.NPC_01[827].comment, true));
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[843].npc_name, dialogdb.NPC_01[843].comment, true));
 
             //StopAllCoroutines();
             //´ëÈ­
@@ -267,7 +267,7 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
             //yield return StartCoroutine(ClearChat(npcDatabaseScr.NPC_01[18].npc_name, npcDatabaseScr.NPC_01[18].comment, true));
 
             yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[19].npc_name, dialogdb.NPC_01[19].comment, true));
-            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[827].npc_name, dialogdb.NPC_01[827].comment, true));
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[843].npc_name, dialogdb.NPC_01[843].comment, true));
             yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[20].npc_name, dialogdb.NPC_01[20].comment, true));
             //Ã»ÀÌ¿Í »ç³» ´Ü¼­ È¹µæ
             ObjectManager.instance.GetClue(2004);

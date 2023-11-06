@@ -387,7 +387,7 @@ public class DialogManager : MonoBehaviour
 
         string t_letter = "";
 
-        //남은 대화가 있을경우
+        //남은 대화가 있을 경우
         if (_remainSentence == true)
         {
             //남은대화 있음
@@ -395,13 +395,13 @@ public class DialogManager : MonoBehaviour
             text_NpcName.text = narrator;
 
             // 거지 - 주먹밥 다이얼로그 대화 예외 처리
-            if (narration == npcDatabaseScr.NPC_01[836].comment)
+            if (narration == npcDatabaseScr.NPC_01[843].comment)
             {
                 Debug.Log(narration);
                 Debug.Log("1005번, 18번");
                 Dialouge_System.SetActive(false);
             }
-            if (narration != npcDatabaseScr.NPC_01[836].comment)
+            if (narration != npcDatabaseScr.NPC_01[843].comment)
             {
                 Debug.Log(narration);
                 Debug.Log("1005번, 19번");
@@ -461,8 +461,8 @@ public class DialogManager : MonoBehaviour
                     else if (t_red)
                     {
                         //t_letter = "<color=#B40404>" + narration[a] + "</color>";
-                        //t_letter = "<color=#850000>" + "<b>" + narration[a] + "</b>" + "</color>";
-                        t_letter = "<color=#222222>" + "<b>" + narration[a] + "</b>" + "</color>";
+                        t_letter = "<color=#850000>" + "<b>" + narration[a] + "</b>" + "</color>";
+                        //t_letter = "<color=#222222>" + "<b>" + narration[a] + "</b>" + "</color>";
                         Debug.Log("1_red");
                     }
 
