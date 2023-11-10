@@ -9,7 +9,7 @@ using System.IO;
 public class GameSaveData
 {
     //생성자
-    public GameSaveData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum, int _joomuckBabState, bool _getJangjack, 
+    public GameSaveData(Vector3 _playerPos, int _LimitCamera, int _mapPinNum, int _joomuckBabState, bool _getJangjack,
         bool _getBagage, bool _getRice, bool _boatMan2_Show, int _herbEventState)
     {
         playerPos = _playerPos; limitCamera = _LimitCamera; mapPinNum = _mapPinNum;
@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
     public Dialog_TypingWriter_Guiduck dialogGuiduckScr;
     public Dialog_TypingWriter_BoatMan dialogBoatManScr;
     public JoomuckBab joomuckBabScr;
+    public StrawPuzzle strawPuzzleScr;
 
     // 하나씩 추가하자
     public bool bool_isAction;
@@ -148,11 +149,17 @@ public class GameManager : MonoBehaviour
     //플레이어가 주막 퍼즐중인지 확인하는 flag
     public bool isJoomackPuzzleStart;
 
+    //플레이어가 새끼줄 퍼즐중인지 확인하는 flag
+    public bool isStrawPuzzleStart;
+
     //Bead Puzzle Map Transform
     public Transform transform_BeadPuzzleMap;
 
     //Joomack Puzzle Map Transform
     public Transform transform_JoomackMap;
+
+    //straw Puzzle Map Transform
+    public Transform transform_StrawMap;
 
     //맵의 핀위치 값
     public int int_PinPosNum;
@@ -236,6 +243,12 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("주막 퍼즐 시작");
             JoomackPuzzleStart();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("새끼줄 퍼즐 시작");
+            StrawPuzzleStart();
         }
 
     }
@@ -322,7 +335,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Load GameManagerData");
 
-        if(_slotNum <= 2)
+        if (_slotNum <= 2)
         {
             //세이브 파일 읽어오기
             string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
@@ -400,7 +413,7 @@ public class GameManager : MonoBehaviour
             }
 
             //뱃사공2 보이기
-            if(curGameLoadData.boatman2_Show)
+            if (curGameLoadData.boatman2_Show)
             {
                 //뱃사공2 보이기
                 gameObject_BoatMan2.SetActive(true);
@@ -409,7 +422,7 @@ public class GameManager : MonoBehaviour
                 dialogBoatManScr.boatMan2_Show = true;
             }
         }
-        
+
     }
 
     //현재 장소 이름 구하는 메서드
@@ -581,6 +594,41 @@ public class GameManager : MonoBehaviour
         //대화 실행
         dialogGuiduckScr.StartDialogSentence();
     }
+
+    //새끼줄 퍼즐 시작
+    public void StrawPuzzleStart()
+    {
+        //시간 정지
+        TimeManager.instance.StopTime();
+
+        //새끼줄 퍼즐 falg on
+        isStrawPuzzleStart = true;
+
+        //다이얼로그 끄기
+        gameObjcet_dialogueNPC.SetActive(false);
+
+        //게임 UI 숨기기
+        gameObject_gameUI.SetActive(false);
+
+        //시간 UI 숨기기
+        gameObjcet_timeUI.SetActive(false);
+
+        //로딩 이미지 보여주기
+        StartCoroutine(ShowLoding());
+
+        //커서 보여주기
+        uiManagerScr.ShowCursor();
+
+        //커서 불빛 끄기
+        uiManagerScr.BlindCursorLight();
+
+        //새끼줄 퍼즐 UI 보이기
+        strawPuzzleScr.gameObject_StrawUI.SetActive(true);
+
+        //카메라 위치 변경
+        cameraMoveScr.CameraTransfer(new Vector2(transform_StrawMap.position.x, 0.7f));
+    }
+
 
     //로딩 이미지 보여주기
     IEnumerator ShowLoding()

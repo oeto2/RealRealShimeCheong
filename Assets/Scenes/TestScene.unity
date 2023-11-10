@@ -28135,6 +28135,7 @@ MonoBehaviour:
   dialogGuiduckScr: {fileID: 1060148998}
   dialogBoatManScr: {fileID: 735907609}
   joomuckBabScr: {fileID: 637179489}
+  strawPuzzleScr: {fileID: 1590301190}
   bool_isAction: 0
   scanObject: {fileID: 0}
   dialogText: {fileID: 2081460924}
@@ -28166,8 +28167,10 @@ MonoBehaviour:
     herbEventState: 0
   isBeadPuzzleStart: 0
   isJoomackPuzzleStart: 0
+  isStrawPuzzleStart: 0
   transform_BeadPuzzleMap: {fileID: 1831607154}
   transform_JoomackMap: {fileID: 1450297744}
+  transform_StrawMap: {fileID: 1590301189}
   int_PinPosNum: 0
   gameObjcet_dialogueNPC: {fileID: 1486878665}
   gameObject_gameUI: {fileID: 1851244455}
@@ -39963,11 +39966,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -39983,8 +39986,8 @@ Canvas:
   m_GameObject: {fileID: 1274219383}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1924761760}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -39993,7 +39996,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 80
   m_TargetDisplay: 0
 --- !u!1 &1279340790
 GameObject:
@@ -50977,15 +50980,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1590301188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99437a86584ae3f428ec1e1eb3469fb5, type: 3}
+  m_Script: {fileID: 11500000, guid: b96549837caa5ff4f911360e77c4e433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObject_JoomackUI: {fileID: 0}
-  text_Answer1: {fileID: 0}
-  text_Answer2: {fileID: 0}
-  int_Answer1Value: 1
-  int_Answer2Value: 1
-  isClear: 0
+  gameObject_StrawUI: {fileID: 1274219383}
 --- !u!1 &1591751238
 GameObject:
   m_ObjectHideFlags: 0

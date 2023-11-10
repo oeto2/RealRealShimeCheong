@@ -54,7 +54,7 @@ public class CameraMove : MonoBehaviour
     void LateUpdate()
     {
         //카메라 추적 조건
-        if (!gameManagerScr.isBeadPuzzleStart && !gameManagerScr.isJoomackPuzzleStart)
+        if (!gameManagerScr.isBeadPuzzleStart && !gameManagerScr.isJoomackPuzzleStart && !gameManagerScr.isStrawPuzzleStart)
         {
             //카메라 오브젝트의 포지션 값을 추적오브젝트의 포지션값 과의 사이값으로 적용 (Y축,Z축은 고정)
             transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, 1, 0), new Vector3(transform_TrargetObject.position.x, 1, 0), Time.deltaTime * speed);

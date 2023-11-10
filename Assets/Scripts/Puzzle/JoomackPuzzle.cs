@@ -121,5 +121,11 @@ public class JoomackPuzzle : MonoBehaviour
     {
         gameObject_JoomackUI.SetActive(false);
     }
-    
+
+    //새끼줄 UI 보여주기
+    public void ShowStrawUI()
+    {
+        gameObject_JoomackUI.SetActive(true);
+    }
+
 }
