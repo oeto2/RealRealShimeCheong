@@ -1627,4 +1627,27 @@ public class ObjectManager : MonoBehaviour
             return false;
         } 
     }
+
+    //해당 아이템을 보유중인지 확인해주는 메서드
+    public bool GetItem_Check(int _itemKey)
+    {
+        //찾은 아이템을 넣을 클래스
+        Item finditem = curItemList.Find(x => x.key == _itemKey);
+
+        //만약 해당 키값을 가진 아이템이 존재할경우
+        if (finditem != null)
+        {
+            Debug.Log($"{_itemKey}단서를 보유하고 있습니다.");
+            return true;
+        }
+
+        //가지고 있지 않을경우
+        else
+        {
+            Debug.Log($"{_itemKey}단서를 보유하고 있지 않습니다.");
+
+            //false 반환
+            return false;
+        }
+    }
 }

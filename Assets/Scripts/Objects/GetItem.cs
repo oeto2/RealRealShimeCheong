@@ -19,7 +19,7 @@ public class GetItem : MonoBehaviour
     private void Update()
     {
         //아이템은 봇짐을 얻은 이후에만 획득할 수 있음
-        if(ObjectControll.instance.getBotzime)
+        if (ObjectControll.instance.getBotzime)
         {
             //오브젝트와 접촉후 Z키를 눌러 해당 Key값에 아이템을 획득할 수 있다.
             if (Input.GetKeyDown(KeyCode.Z) && isTouch && !isGetStart)
@@ -53,26 +53,46 @@ public class GetItem : MonoBehaviour
     IEnumerator GetItemStart(int _key)
     {
         isGetStart = true;
-        objectManagerScr.GetItem(key);
+
+        //만약 획득한 오브젝트가 볏짚일 경우
+        if (_key == 1012)
+        {
+            //현재 볏짚 오브젝트를 보유중이지 않다면
+            if (objectManagerScr.GetItem_Check(1012) == false)
+            {
+                //볏짚 획득
+                objectManagerScr.GetItem(key);
+            }
+        }
+        
+        //볏짚을 제외한 오브젝트의 경우
+        else
+        {
+            objectManagerScr.GetItem(key);
+        }
 
         //획득한 아이템이 장작일경우
-        if(_key == 1001)
+        if (_key == 1001)
         {
             GameManager.instance.getJangjack = true;
         }
 
-        else if(_key == 1000)
+        else if (_key == 1000)
         {
             GameManager.instance.getRice = true;
         }
 
-        else if(_key == 1003)
+        else if (_key == 1003)
         {
             GameManager.instance.getBagage = true;
         }
 
         yield return new WaitForSeconds(0.1f);
 
-        Destroy(this.gameObject);
+        //볏짚이 아닐경우 오브젝트 제거
+        if (_key != 1012)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
