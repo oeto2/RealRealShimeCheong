@@ -205,11 +205,22 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             //2005 : 누군가의 아들
             else if (ObjectManager.instance.GetEquipObjectKey() == 2005)
             {
-                //향리댁 셋째 아들 단서 획득
-                ObjectManager.instance.GetClue(2013);
+                //새끼줄 이벤트 클리어시
+                if(EventManager.instance.giveStraw)
+                {
+                    //향리댁 셋째 아들 단서 획득
+                    ObjectManager.instance.GetClue(2013);
+                    yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[537].npc_name, dialogdb.NPC_01[537].comment, true));
+                    yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[59].npc_name, dialogdb.NPC_01[59].comment));
+                }
 
-                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[537].npc_name, dialogdb.NPC_01[537].comment, true));
-                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[59].npc_name, dialogdb.NPC_01[59].comment));
+                //아직 새끼줄 이벤트를 클리어하지 못했을 경우
+                else
+                {
+                    yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[537].npc_name, dialogdb.NPC_01[537].comment, true));
+                    yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[836].npc_name, dialogdb.NPC_01[836].comment, true));
+                    yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[837].npc_name, dialogdb.NPC_01[837].comment));
+                }
             }
             //2006 : 송나라 상인과 청이
             else if (ObjectManager.instance.GetEquipObjectKey() == 2006)
@@ -357,6 +368,27 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[340].npc_name, dialogdb.NPC_01[340].comment));
             }
 
+            //1013 : 새끼줄 1
+            else if (ObjectManager.instance.GetEquipObjectKey() == 1013)
+            {
+                //새끼줄 전달완료
+                EventManager.instance.giveStraw = true;
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[842].npc_name, dialogdb.NPC_01[842].comment, true));
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[838].npc_name, dialogdb.NPC_01[838].comment, true));
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[840].npc_name, dialogdb.NPC_01[840].comment));
+            }
+
+            //1014 : 새끼줄 2
+            else if (ObjectManager.instance.GetEquipObjectKey() == 1014)
+            {
+                //새끼줄 전달완료
+                EventManager.instance.giveStraw = true;
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[842].npc_name, dialogdb.NPC_01[842].comment, true));
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[839].npc_name, dialogdb.NPC_01[839].comment, true));
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[840].npc_name, dialogdb.NPC_01[840].comment));
+            }
+
+
             #endregion
 
             #region 조합 단서
@@ -428,6 +460,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             #endregion
         }
     }
+
 
     #region PreviousCode
     //IEnumerator NormalChat()

@@ -33,6 +33,9 @@ public class DialogManager : MonoBehaviour
 {
     Dictionary<int, string[]> DialogData;
 
+    //외부 스크립트 참조
+    public Controller playerCtrlScr;
+
     //싱글톤
     public static DialogManager instance = null;
 
@@ -53,7 +56,7 @@ public class DialogManager : MonoBehaviour
 
     //Player 초상화
     public Image player_Portrait;
-    
+
 
     //초상화 스프라이트 이미지들
     [Tooltip("0:Null, 1:뺑덕, 2:거지, 3:승려, 4:귀덕, 5:장사, 6:장승, 7:장승2, 8:뱃사, 9:심청, 10:송나라, 11: 장지언")]
@@ -96,7 +99,7 @@ public class DialogManager : MonoBehaviour
     public float typingSpeed = 0.02f;
     //스킵 타이핑 속도
     public float skipTypingSpeed = 0.0005f;
-    
+
 
     void Awake()
     {
@@ -142,7 +145,7 @@ public class DialogManager : MonoBehaviour
         string narration_3 = RandomNpcSentence3(_narrator);
 
         //송나라 상인일 경우
-        if(_narrator == "송나라 상인")
+        if (_narrator == "송나라 상인")
         {
             RandomNum = Random.Range(0, 3);
         }
@@ -377,7 +380,7 @@ public class DialogManager : MonoBehaviour
         //Player, Npc 초상화 초기화
         ResetNpcPortrait();
         ResetPlayerPortrait();
-        
+
 
         //Player, Npc 초상화 보이기
         ChangeNpcPortrait(narrator);
@@ -609,7 +612,7 @@ public class DialogManager : MonoBehaviour
     {
         //화자에 따라 초상화, 이름 변경
         ChangeNpcPortrait(_narrator);
-        
+
 
         //코루틴 중복 실행 방지
         isSentence_Start = true;
@@ -681,7 +684,7 @@ public class DialogManager : MonoBehaviour
         //코루틴 중복실행 방지
         if (!isSentence_Start)
         {
-            StartCoroutine(SystemMessage(_narrator,_narration, _exit));
+            StartCoroutine(SystemMessage(_narrator, _narration, _exit));
         }
     }
 
@@ -837,7 +840,7 @@ public class DialogManager : MonoBehaviour
     //Player 초상화 변경
     public void ChagePlayerPortrait(string _narrator)
     {
-        switch(_narrator)
+        switch (_narrator)
         {
             case "심학규":
                 player_Portrait.sprite = player_sprites[1];
@@ -849,7 +852,7 @@ public class DialogManager : MonoBehaviour
     public void ChangeNpcPortrait(string _narrator)
     {
         Debug.Log($"초상화 변경 실행 : {_narrator}");
-        
+
 
         switch (_narrator)
         {
@@ -1114,6 +1117,15 @@ public class DialogManager : MonoBehaviour
     //Player초상화 초기화
     public void ResetPlayerPortrait()
     {
-        player_Portrait.sprite = npc_Sprites[0];   
+        player_Portrait.sprite = npc_Sprites[0];
+    }
+
+    //다이얼로그 종료
+    public void Dialouge_End()
+    {
+        Dialouge_System.SetActive(false);
+        isSentenceEnd = false;
+        remainSentence = false;
+        playerCtrlScr.TalkEnd();
     }
 }

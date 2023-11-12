@@ -289,44 +289,13 @@ public class ObjectManager : MonoBehaviour
             EmptyCombineSlot();
         }
 
-        //if(Input.GetKeyDown(KeyCode.C))
-        //{
-        //    Debug.Log("아이템 획득");
-        //    GetAllClue();
-        //}
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            GetClue(2005);
+            GetItem(1013);
+            GetItem(1014);
+        }
 
-        //if (Input.GetKeyDown(KeyCode.V))
-        //{
-        //    GetClue(2011);
-        //    GetClue(2012);
-        //    GetClue(2014);
-        //    GetClue(2009);
-        //    GetClue(2019);
-        //    GetClue(2017);
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    Debug.Log("Show_ItemList 함수 시작");
-        //    Show_ItemList();
-        //    Debug.Log("Show_ItemList 함수 끝");
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    Debug.Log(GetEquipObjectKey());
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.U))
-        //{
-        //    Debug.Log("1002 획득");
-        //    GetItem(1002);
-        //}
-        //if (Input.GetKeyDown(KeyCode.I))
-        //{
-        //    Debug.Log("1003 획득");
-        //    GetItem(1003);
-        //}
     }
 
     //오브젝트 슬롯 클릭시 (아이템창 한정)
@@ -1614,14 +1583,14 @@ public class ObjectManager : MonoBehaviour
         //만약 해당 키값을 가진 아이템이 존재할경우
         if(findClue != null)
         {
-            Debug.Log($"{_clueKey}단서를 보유하고 있습니다.");
+            //Debug.Log($"{_clueKey}단서를 보유하고 있습니다.");
             return true;    
         }
 
         //가지고 있지 않을경우
         else
         {
-            Debug.Log($"{_clueKey}단서를 보유하고 있지 않습니다.");
+            //Debug.Log($"{_clueKey}단서를 보유하고 있지 않습니다.");
 
             //false 반환
             return false;
@@ -1637,14 +1606,14 @@ public class ObjectManager : MonoBehaviour
         //만약 해당 키값을 가진 아이템이 존재할경우
         if (finditem != null)
         {
-            Debug.Log($"{_itemKey}단서를 보유하고 있습니다.");
+            //Debug.Log($"{_itemKey}단서를 보유하고 있습니다.");
             return true;
         }
 
         //가지고 있지 않을경우
         else
         {
-            Debug.Log($"{_itemKey}단서를 보유하고 있지 않습니다.");
+            //Debug.Log($"{_itemKey}단서를 보유하고 있지 않습니다.");
 
             //false 반환
             return false;

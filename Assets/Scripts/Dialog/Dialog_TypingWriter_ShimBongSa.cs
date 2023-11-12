@@ -287,4 +287,27 @@ public class Dialog_TypingWriter_ShimBongSa : MonoBehaviour
         StartCoroutine(StartChat(narator_Name, tutorial_SentenceList[11].sentence, false));
     }
     #endregion
+
+
+    //새끼줄 완성 후 대사
+    public IEnumerator StrawPuzzleEnd_Sentence()
+    {
+        //대사 출력
+        StartCoroutine(DialogManager.instance.ItemClueChat(DialogManager.instance.npcDatabaseScr.NPC_01[841].npc_name,
+            DialogManager.instance.npcDatabaseScr.NPC_01[841].comment));
+
+        //Z키를 다시 누를 때까지 무한정 대기
+        while (true)
+        {
+            if (DialogManager.instance.isSentenceEnd && DialogManager.instance.remainSentence && Input.GetKeyDown(KeyCode.Z))
+            {
+                Debug.Log("다이얼로그 종료");
+                //다이얼로그 종료
+                DialogManager.instance.Dialouge_End();
+                break;
+            }
+            yield return null;
+        }
+        yield return null;
+    }
 }

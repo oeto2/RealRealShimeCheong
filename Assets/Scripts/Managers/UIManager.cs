@@ -734,7 +734,7 @@ public class UIManager : MonoBehaviour
     {
         if (gameObject_ItemWindow.activeSelf || gameObject_CombineWindow.activeSelf || gameObject_LoadWindow.activeSelf || gameObject_MapWindow.activeSelf ||
             gameObject_Option.activeSelf || gameObject_SaveWindow.activeSelf || gameManagerScr.isJoomackPuzzleStart ||
-            gameObject_SleepCheckWindow.activeSelf)
+            gameObject_SleepCheckWindow.activeSelf || gameManagerScr.isStrawPuzzleStart)
         {
             return true;
         }

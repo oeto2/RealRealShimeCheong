@@ -11,7 +11,7 @@ public class EventSaveData
     //생성자
     public EventSaveData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck,
         bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End, bool _giveFlower, bool _day15ClueTalk, bool _day15ClueGet, bool _giveBoridduck_End
-        , bool _select2006_End, bool _boatManObject, bool _talkClue_6045, bool _drinkHerb)
+        , bool _select2006_End, bool _boatManObject, bool _talkClue_6045, bool _drinkHerb, bool _giveStraw)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -29,6 +29,7 @@ public class EventSaveData
         boatManObject = _boatManObject;
         talkClue_6045 = _talkClue_6045;
         drinkHerb = _drinkHerb;
+        giveStraw = _giveStraw;
     }
 
     //이벤트 활성화 여부
@@ -63,6 +64,9 @@ public class EventSaveData
 
     //약초물을 마셨는지
     public bool drinkHerb;
+
+    //새끼줄을 전달했는지
+    public bool giveStraw;
 }
 
 //로드할 데이터
@@ -71,7 +75,7 @@ public class EventLoadData
     //생성자
     public EventLoadData(bool _joomuckBob, bool _binyeo, bool _flower, bool _muck, bool _boridduck,
         bool _deliveryMuck, bool _muckEvent_End, bool _joomackPuzzle_End, bool _giveFlower, bool _day15ClueTalk, bool _day15ClueGet, bool _giveBoridduck_End
-        , bool _select2006_End, bool _boatManObject, bool _talkClue_6045, bool _drinkHerb)
+        , bool _select2006_End, bool _boatManObject, bool _talkClue_6045, bool _drinkHerb, bool _giveStraw)
     {
         joomuckBob = _joomuckBob;
         binyeo = _binyeo;
@@ -91,6 +95,8 @@ public class EventLoadData
         talkClue_6045 = _talkClue_6045;
 
         drinkHerb = _drinkHerb;
+
+        giveStraw = _giveStraw;
     }
 
     //이벤트 활성화 여부
@@ -124,6 +130,9 @@ public class EventLoadData
 
     //약초물을 마셨는지
     public bool drinkHerb;
+
+    //새끼줄을 전달했는지
+    public bool giveStraw;
 }
 
 
@@ -180,7 +189,8 @@ public enum Events
     flower,
     muck,
     boridduck,
-    Lenght
+    Lenght,
+    straw
 }
 
 //NPC 이름들
@@ -279,6 +289,8 @@ public class EventManager : MonoBehaviour
     //약초를 마셨는지
     public bool drinkHerb;
 
+    //새끼줄을 전달했는지
+    public bool giveStraw;
 
     private void Awake()
     {
@@ -408,7 +420,7 @@ public class EventManager : MonoBehaviour
         curEventSaveData = new EventSaveData(eventCheck.joomackBab, eventCheck.binyeo,
             eventCheck.flower, eventCheck.muck, eventCheck.boridduck, eventProgress.deliveryMuck, eventEndCheck.muckEvent_End
             , eventProgress.joomackPuzzle_Clear, eventProgress.giveFlowerEnd, eventProgress.day15ClueStart, eventEndCheck.day15ClueGet, eventEndCheck.giveBoridduck_End
-            , selectEndCheck.select2006_End, boatManDialogueScr.boatManObject, jangjieonDialogueScr.talkClue_6045, drinkHerb);
+            , selectEndCheck.select2006_End, boatManDialogueScr.boatManObject, jangjieonDialogueScr.talkClue_6045, drinkHerb, giveStraw);
 
         //세이브 데이터
         string jSaveData = JsonUtility.ToJson(curEventSaveData);
@@ -453,6 +465,9 @@ public class EventManager : MonoBehaviour
 
             //약초물 플래그 초기화
             drinkHerb = curEventLoadData.drinkHerb;
+
+            //새끼줄 전달 상황 초기화
+            giveStraw = curEventLoadData.giveStraw;
 
             //플레이어 속도, 시야 초기화
             PlayerStateReset();

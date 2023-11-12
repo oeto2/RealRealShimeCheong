@@ -52,11 +52,15 @@ public class GetItem : MonoBehaviour
 
     IEnumerator GetItemStart(int _key)
     {
+        Debug.Log("아이템 획득 시작");
+
         isGetStart = true;
 
-        //만약 획득한 오브젝트가 볏짚일 경우
+        //만약 획득할 오브젝트가 볏짚일 경우
         if (_key == 1012)
         {
+            Debug.Log("볏짚 획득 시작");
+
             //현재 볏짚 오브젝트를 보유중이지 않다면
             if (objectManagerScr.GetItem_Check(1012) == false)
             {

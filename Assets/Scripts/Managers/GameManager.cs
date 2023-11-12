@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
     public Dialog_TypingWriter_BoatMan dialogBoatManScr;
     public JoomuckBab joomuckBabScr;
     public StrawPuzzle strawPuzzleScr;
+    public Dialog_TypingWriter_ShimBongSa dialogSimbongScr;
 
     // 하나씩 추가하자
     public bool bool_isAction;
@@ -629,6 +630,35 @@ public class GameManager : MonoBehaviour
         cameraMoveScr.CameraTransfer(new Vector2(transform_StrawMap.position.x, 0.7f));
     }
 
+    //새끼줄 퍼즐 끝
+    public void StrawPuzzleClear()
+    {
+        //볏짚 아이템 제거
+        ObjectManager.instance.RemoveItem(1012);
+
+        //시간 흐르기
+        TimeManager.instance.ContinueTime();
+
+        isStrawPuzzleStart = false;
+
+        //게임 UI 보이기
+        gameObject_gameUI.SetActive(true);
+
+        //시간 UI 보이기
+        gameObjcet_timeUI.SetActive(true);
+
+        //로딩 이미지 보여주기
+        StartCoroutine(ShowLoding());
+
+        //커서 불빛 켜기
+        uiManagerScr.ShowCursorLight();
+
+        //새끼줄 퍼즐 UI 끄기
+        strawPuzzleScr.gameObject_StrawUI.SetActive(false);
+
+        //다이얼로그 실행
+        StartCoroutine(dialogSimbongScr.StrawPuzzleEnd_Sentence());
+    }
 
     //로딩 이미지 보여주기
     IEnumerator ShowLoding()
