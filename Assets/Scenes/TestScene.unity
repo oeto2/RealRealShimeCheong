@@ -33699,7 +33699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraScr: {fileID: 1924761762}
   audioSource: {fileID: 1050156638}
-  clip_Nomal: {fileID: 8300000, guid: c9f6b0fe777ad3d4994816d9b49b7c57, type: 3}
+  clip_Nomal: {fileID: 8300000, guid: 5f7a1e8d48cd90749b2cc2ec204c6893, type: 3}
   clip_Market: {fileID: 8300000, guid: f8319f5707e278142a71bded6c00f79a, type: 3}
 --- !u!82 &1050156638
 AudioSource:
