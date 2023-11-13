@@ -398,13 +398,13 @@ public class DialogManager : MonoBehaviour
             text_NpcName.text = narrator;
 
             // 거지 - 주먹밥 다이얼로그 대화 예외 처리
-            if (narration == npcDatabaseScr.NPC_01[843].comment)
+            if (narration == npcDatabaseScr.NPC_01[869].comment)
             {
                 Debug.Log(narration);
                 Debug.Log("1005번, 18번");
                 Dialouge_System.SetActive(false);
             }
-            if (narration != npcDatabaseScr.NPC_01[843].comment)
+            if (narration != npcDatabaseScr.NPC_01[869].comment)
             {
                 Debug.Log(narration);
                 Debug.Log("1005번, 19번");
