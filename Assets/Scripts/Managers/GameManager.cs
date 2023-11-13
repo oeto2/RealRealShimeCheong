@@ -240,17 +240,17 @@ public class GameManager : MonoBehaviour
         //    PlayBeadPuzzle();
         //}
 
-        //if (Input.GetKeyDown(KeyCode.J))
-        //{
-        //    Debug.Log("¡÷∏∑ ∆€¡Ò Ω√¿€");
-        //    JoomackPuzzleStart();
-        //}
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log("¡÷∏∑ ∆€¡Ò Ω√¿€");
+            JoomackPuzzleStart();
+        }
 
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    Debug.Log("ªı≥¢¡Ÿ ∆€¡Ò Ω√¿€");
-        //    StrawPuzzleStart();
-        //}
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("ªı≥¢¡Ÿ ∆€¡Ò Ω√¿€");
+            StrawPuzzleStart();
+        }
 
     }
 
