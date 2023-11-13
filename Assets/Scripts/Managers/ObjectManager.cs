@@ -289,12 +289,12 @@ public class ObjectManager : MonoBehaviour
             EmptyCombineSlot();
         }
 
-        //if(Input.GetKeyDown(KeyCode.V))
-        //{
-        //    GetClue(2005);
-        //    GetItem(1013);
-        //    GetItem(1014);
-        //}
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            GetClue(2005);
+            GetItem(1013);
+            GetItem(1014);
+        }
 
     }
 
