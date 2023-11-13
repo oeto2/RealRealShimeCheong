@@ -296,6 +296,11 @@ public class ObjectManager : MonoBehaviour
         //    GetItem(1014);
         //}
 
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            GetAllItem();
+        }
+
     }
 
     //오브젝트 슬롯 클릭시 (아이템창 한정)
