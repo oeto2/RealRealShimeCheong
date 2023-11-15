@@ -551,6 +551,9 @@ public class JoomuckBab : MonoBehaviour
             //가마솥 사용 시작
             UsingGamasot();
 
+            //다음 이벤트로 이동
+            makeJoomuckBab = MakeJoomuckBab.MakeJoomuckBab;
+
             //시스템 메세지가 끝날때까지 무한대기
             while (true)
             {

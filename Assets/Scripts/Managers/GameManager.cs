@@ -246,11 +246,11 @@ public class GameManager : MonoBehaviour
         //    JoomackPuzzleStart();
         //}
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log("ªı≥¢¡Ÿ ∆€¡Ò Ω√¿€");
-            StrawPuzzleStart();
-        }
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    Debug.Log("ªı≥¢¡Ÿ ∆€¡Ò Ω√¿€");
+        //    StrawPuzzleStart();
+        //}
 
     }
 
