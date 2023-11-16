@@ -238,7 +238,16 @@ public class Dialog_TypingWriter_Songnara : MonoBehaviour
         {
             yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[347].npc_name, dialogdb.NPC_01[347].comment));
         }
-
+        //1013 : ªı≥¢¡Ÿ1
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1013)
+        {
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[860].npc_name, dialogdb.NPC_01[860].comment));
+        }
+        //1014 : ªı≥¢¡Ÿ2
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1014)
+        {
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[868].npc_name, dialogdb.NPC_01[868].comment));
+        }
         #endregion
 
         #region ¡∂«’ ¥‹º≠

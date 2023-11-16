@@ -283,6 +283,11 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
         {
             yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[342].npc_name, dialogdb.NPC_01[342].comment));
         }
+        //1014 : 새끼줄2
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1014)
+        {
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[865].npc_name, dialogdb.NPC_01[865].comment));
+        }
         #endregion
 
         #region 조합 단서

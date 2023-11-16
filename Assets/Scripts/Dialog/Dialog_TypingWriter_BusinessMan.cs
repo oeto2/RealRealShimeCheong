@@ -342,6 +342,16 @@ public class Dialog_TypingWriter_BusinessMan : MonoBehaviour
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[341].npc_name, dialogdb.NPC_01[341].comment));
             }
 
+            //1013 : ªı≥¢¡Ÿ1
+            else if (ObjectManager.instance.GetEquipObjectKey() == 1013)
+            {
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[854].npc_name, dialogdb.NPC_01[854].comment));
+            }
+            //1014 : ªı≥¢¡Ÿ2
+            else if (ObjectManager.instance.GetEquipObjectKey() == 1014)
+            {
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[864].npc_name, dialogdb.NPC_01[864].comment));
+            }
             #endregion
 
             #region ¡∂«’ ¥‹º≠

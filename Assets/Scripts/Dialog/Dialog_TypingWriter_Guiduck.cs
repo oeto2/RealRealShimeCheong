@@ -383,6 +383,21 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
             {
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[338].npc_name, dialogdb.NPC_01[338].comment));
             }
+            //1012 : º²Â¤
+            else if (ObjectManager.instance.GetEquipObjectKey() == 1012)
+            {
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[846].npc_name, dialogdb.NPC_01[846].comment));
+            }
+            //1013 : »õ³¢ÁÙ1
+            else if (ObjectManager.instance.GetEquipObjectKey() == 1013)
+            {
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[854].npc_name, dialogdb.NPC_01[854].comment));
+            }
+            //1014 : »õ³¢ÁÙ2
+            else if (ObjectManager.instance.GetEquipObjectKey() == 1014)
+            {
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[862].npc_name, dialogdb.NPC_01[862].comment));
+            }
             #endregion
 
             #region Á¶ÇÕ ´Ü¼­

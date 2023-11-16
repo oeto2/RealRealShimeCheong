@@ -258,7 +258,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         {
             yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[283].npc_name, dialogdb.NPC_01[283].comment));
         }
-        //1001 : ����
+        //1001 : 장작
         else if (ObjectManager.instance.GetEquipObjectKey() == 1001)
         {
             yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[249].npc_name, dialogdb.NPC_01[249].comment));
@@ -268,7 +268,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         {
             yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[292].npc_name, dialogdb.NPC_01[292].comment));
         }
-        //1006 : ���
+        //1006 : 비녀
         else if (ObjectManager.instance.GetEquipObjectKey() == 1006)
         {
             //��� ������Ʈ ����
@@ -295,6 +295,11 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
         else if (ObjectManager.instance.GetEquipObjectKey() == 1011)
         {
             yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[338].npc_name, dialogdb.NPC_01[338].comment));
+        }
+        //1012 : 볏짚
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1012)
+        {
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[845].npc_name, dialogdb.NPC_01[845].comment));
         }
 
         #endregion

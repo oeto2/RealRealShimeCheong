@@ -311,6 +311,21 @@ public class Dialog_TypingWriter_Beggar : MonoBehaviour
         {
             yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[343].npc_name, dialogdb.NPC_01[343].comment));
         }
+        //1012 : º²Â¤
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1012)
+        {
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[850].npc_name, dialogdb.NPC_01[850].comment));
+        }
+        //1013 : »õ³¢ÁÙ1
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1013)
+        {
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[858].npc_name, dialogdb.NPC_01[858].comment));
+        }
+        //1014 : »õ³¢ÁÙ2
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1014)
+        {
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[866].npc_name, dialogdb.NPC_01[866].comment));
+        }
         #endregion
 
         #region Á¶ÇÕ ´Ü¼­

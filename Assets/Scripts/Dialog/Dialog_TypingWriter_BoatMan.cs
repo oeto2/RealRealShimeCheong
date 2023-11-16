@@ -339,6 +339,16 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
             yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[346].npc_name, dialogdb.NPC_01[346].comment));
         }
 
+        //1013 : ªı≥¢¡Ÿ1
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1013)
+        {
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[859].npc_name, dialogdb.NPC_01[859].comment));
+        }
+        //1014 : ªı≥¢¡Ÿ2
+        else if (ObjectManager.instance.GetEquipObjectKey() == 1014)
+        {
+            yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[867].npc_name, dialogdb.NPC_01[867].comment));
+        }
         #endregion
 
         #region ¡∂«’ ¥‹º≠

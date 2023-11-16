@@ -367,6 +367,11 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             {
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[340].npc_name, dialogdb.NPC_01[340].comment));
             }
+            //1012 : º²Â¤
+            else if (ObjectManager.instance.GetEquipObjectKey() == 1012)
+            {
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[844].npc_name, dialogdb.NPC_01[844].comment));
+            }
 
             //1013 : »õ³¢ÁÙ 1
             else if (ObjectManager.instance.GetEquipObjectKey() == 1013)
@@ -387,7 +392,6 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[839].npc_name, dialogdb.NPC_01[839].comment, true));
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[840].npc_name, dialogdb.NPC_01[840].comment));
             }
-
 
             #endregion
 
