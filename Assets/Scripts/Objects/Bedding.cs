@@ -16,6 +16,9 @@ public class Bedding : MonoBehaviour
     //Sleep BackGround Object
     public GameObject gameObject_SleepBG;
 
+    //Z키 오브젝트
+    public GameObject gameObject_Zkey;
+
     //플레이어가 오브젝트와 닿았는지 확인하는 flag
     public bool isTouch;
     
@@ -58,6 +61,13 @@ public class Bedding : MonoBehaviour
         if (Obj.CompareTag("Player"))
         {
             isTouch = true;
+
+            //하루가 지난 뒤 라면
+            if(tutorialManagerScr.tutorialEventNum >= 4)
+            {
+                //Z키 보이기
+                gameObject_Zkey.SetActive(true);
+            }
         }
     }
 
@@ -77,6 +87,9 @@ public class Bedding : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         isTouch = false;
+
+        //Z키 비활성화
+        gameObject_Zkey.SetActive(false);
     }
 
     //예 버튼을 눌렀을 경우

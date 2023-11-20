@@ -219,7 +219,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 {
                     yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[537].npc_name, dialogdb.NPC_01[537].comment, true));
                     yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[836].npc_name, dialogdb.NPC_01[836].comment, true));
-                    yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[837].npc_name, dialogdb.NPC_01[837].comment));
+                    yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[836].npc_name, dialogdb.NPC_01[837].comment));
                 }
             }
             //2006 : 송나라 상인과 청이
@@ -376,6 +376,9 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             //1013 : 새끼줄 1
             else if (ObjectManager.instance.GetEquipObjectKey() == 1013)
             {
+                //새끼줄 아이템 제거
+                ObjectManager.instance.RemoveItem(1013);
+
                 //새끼줄 전달완료
                 EventManager.instance.giveStraw = true;
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[842].npc_name, dialogdb.NPC_01[842].comment, true));
@@ -386,6 +389,9 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             //1014 : 새끼줄 2
             else if (ObjectManager.instance.GetEquipObjectKey() == 1014)
             {
+                //새끼줄 아이템 제거
+                ObjectManager.instance.RemoveItem(1014);
+
                 //새끼줄 전달완료
                 EventManager.instance.giveStraw = true;
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[842].npc_name, dialogdb.NPC_01[842].comment, true));
