@@ -41,66 +41,70 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        //TitleManager 찾기
-        titleManagerScr = GameObject.Find("TitleManager").GetComponent<TitleManager>();
-        
-       //TitleManager 상태에 따라 저장데이터 불러오기
-        switch(titleManagerScr.loadSenceState)
+        //타이틀 화면으로 부터 데이터 받기
+        if(GameObject.Find("TitleManager") != null)
         {
-            case LoadSceneState.Slot1:
-                
-                //슬롯 번호 바꾸기
-                int_LoadSlotNum = titleManagerScr.int_ClickSlotNum;
+            //TitleManager 찾기
+            titleManagerScr = GameObject.Find("TitleManager").GetComponent<TitleManager>();
 
-                //해당 데이터 불러오기
-                LoadYesButton();
+            //TitleManager 상태에 따라 저장데이터 불러오기
+            switch (titleManagerScr.loadSenceState)
+            {
+                case LoadSceneState.Slot1:
 
-                //시작 이벤트 화면 끄기
-                gameObject_StartMessage.SetActive(false);
+                    //슬롯 번호 바꾸기
+                    int_LoadSlotNum = titleManagerScr.int_ClickSlotNum;
 
-                //이동제한 해제
-                Controller.instance.TalkEnd();
+                    //해당 데이터 불러오기
+                    LoadYesButton();
 
-                break;
+                    //시작 이벤트 화면 끄기
+                    gameObject_StartMessage.SetActive(false);
 
-            case LoadSceneState.Slot2:
+                    //이동제한 해제
+                    Controller.instance.TalkEnd();
 
-                //슬롯 번호 바꾸기
-                int_LoadSlotNum = titleManagerScr.int_ClickSlotNum;
+                    break;
 
-                //해당 데이터 불러오기
-                LoadYesButton();
+                case LoadSceneState.Slot2:
 
-                //시작 이벤트 화면 끄기
-                gameObject_StartMessage.SetActive(false);
+                    //슬롯 번호 바꾸기
+                    int_LoadSlotNum = titleManagerScr.int_ClickSlotNum;
 
-                //이동제한 해제
-                Controller.instance.TalkEnd();
+                    //해당 데이터 불러오기
+                    LoadYesButton();
+
+                    //시작 이벤트 화면 끄기
+                    gameObject_StartMessage.SetActive(false);
+
+                    //이동제한 해제
+                    Controller.instance.TalkEnd();
 
 
-                break;
+                    break;
 
-            case LoadSceneState.Slot3:
+                case LoadSceneState.Slot3:
 
-                //슬롯 번호 바꾸기
-                int_LoadSlotNum = titleManagerScr.int_ClickSlotNum;
+                    //슬롯 번호 바꾸기
+                    int_LoadSlotNum = titleManagerScr.int_ClickSlotNum;
 
-                //해당 데이터 불러오기
-                LoadYesButton();
+                    //해당 데이터 불러오기
+                    LoadYesButton();
 
-                //시작 이벤트 화면 끄기
-                gameObject_StartMessage.SetActive(false);
+                    //시작 이벤트 화면 끄기
+                    gameObject_StartMessage.SetActive(false);
 
-                //이동제한 해제
-                Controller.instance.TalkEnd();
+                    //이동제한 해제
+                    Controller.instance.TalkEnd();
 
-                break;
+                    break;
 
-            default:
-                //플레이어 이동 제한
-                Controller.instance.TalkStart();
-                break;
-               
+                default:
+                    //플레이어 이동 제한
+                    Controller.instance.TalkStart();
+                    break;
+
+            }
         }
     }
 
