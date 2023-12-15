@@ -925,7 +925,7 @@ public class DialogManager : MonoBehaviour
             case "뱃사공":
 
                 //초상화 변경
-                Npc_Portrait.sprite = npc_Sprites[7];
+                Npc_Portrait.sprite = npc_Sprites[8];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
 
@@ -936,7 +936,7 @@ public class DialogManager : MonoBehaviour
             case "심청":
 
                 //초상화 변경
-                Npc_Portrait.sprite = npc_Sprites[8];
+                Npc_Portrait.sprite = npc_Sprites[9];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
 
@@ -947,7 +947,7 @@ public class DialogManager : MonoBehaviour
             case "송나라 상인":
 
                 //초상화 변경
-                Npc_Portrait.sprite = npc_Sprites[9];
+                Npc_Portrait.sprite = npc_Sprites[10];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
 
@@ -958,7 +958,7 @@ public class DialogManager : MonoBehaviour
             case "장지언":
 
                 //초상화 변경
-                Npc_Portrait.sprite = npc_Sprites[10];
+                Npc_Portrait.sprite = npc_Sprites[11];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
 
