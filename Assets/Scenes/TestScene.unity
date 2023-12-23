@@ -35122,20 +35122,20 @@ MonoBehaviour:
   player_Portrait: {fileID: 589999028}
   npc_Sprites:
   - {fileID: 21300000, guid: dd3556056374256478d4fd6cca6f8653, type: 3}
-  - {fileID: 21300000, guid: ca5ce2b6b6689104590c713a9ab6bdf4, type: 3}
+  - {fileID: 21300000, guid: 95720d30c4fa2b247b85e235ef5860ed, type: 3}
   - {fileID: 21300000, guid: 1f255b1e70be3f64aa0c63177102dbb6, type: 3}
-  - {fileID: 21300000, guid: eb9dd3ec5b49a4049bd46b5c13279e4b, type: 3}
-  - {fileID: 21300000, guid: 3c0fc02ce719fea40a3ed0cf05d9697f, type: 3}
-  - {fileID: 21300000, guid: 8917621fbe9583447bb57a37bc96c40b, type: 3}
-  - {fileID: 21300000, guid: f31ca976fe6cd434e90cd8c23002afb3, type: 3}
+  - {fileID: 21300000, guid: 38c9a7e4e86ab04468cf01a939a845c0, type: 3}
+  - {fileID: 21300000, guid: ccd33beeb8b457647bf9b80d4b409d4b, type: 3}
+  - {fileID: 21300000, guid: efcacd1a9b0045d419b5dd2215f5f485, type: 3}
+  - {fileID: 21300000, guid: 3fe7ea992f29a9647bb87e5eea569988, type: 3}
   - {fileID: 21300000, guid: c2d78cc3e5c14fc45a58d7f550548406, type: 3}
   - {fileID: 21300000, guid: edde6c8f2a8c46a40aca68be1e726cd1, type: 3}
-  - {fileID: 21300000, guid: b15a183384a589742b7fb58a98036464, type: 3}
+  - {fileID: 21300000, guid: 45602b487d3af9941a031483afbfe344, type: 3}
   - {fileID: 21300000, guid: a27fd3b3262a22649a97516478b81c15, type: 3}
-  - {fileID: 21300000, guid: ab7f64b8e1b6336489ad6859fb5ec495, type: 3}
+  - {fileID: 21300000, guid: ea697676cae3d2d4d8c2a95b6d40c5a4, type: 3}
   player_sprites:
   - {fileID: 21300000, guid: dd3556056374256478d4fd6cca6f8653, type: 3}
-  - {fileID: 21300000, guid: 3ef6b8aecfd4bb54cab5ec3c381cb689, type: 3}
+  - {fileID: 21300000, guid: a5b9f94b401ecaf45ae536d201a10b67, type: 3}
   writerText: 
   isSentence_Start: 0
   isSentenceEnd: 0
@@ -36059,7 +36059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3.2662354, y: -437.58768}
+  m_AnchoredPosition: {x: 3.2662964, y: -437.58765}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1125754046
