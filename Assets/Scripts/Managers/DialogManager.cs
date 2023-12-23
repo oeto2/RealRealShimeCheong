@@ -123,6 +123,9 @@ public class DialogManager : MonoBehaviour
     //NPC 기본대사
     public IEnumerator NormalChat(string _narrator)
     {
+        //다이얼로그 택스트 소리 재생
+        EffectSoundManager.instance.PlayTalkTextSound();
+
         //다이얼로그 비우기
         CleanDialogue();
 

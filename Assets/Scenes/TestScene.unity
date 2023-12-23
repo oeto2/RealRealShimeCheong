@@ -35127,12 +35127,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eb9dd3ec5b49a4049bd46b5c13279e4b, type: 3}
   - {fileID: 21300000, guid: 3c0fc02ce719fea40a3ed0cf05d9697f, type: 3}
   - {fileID: 21300000, guid: 8917621fbe9583447bb57a37bc96c40b, type: 3}
-  - {fileID: 21300000, guid: 2856e2e08e4deca47b9aff90474911aa, type: 3}
+  - {fileID: 21300000, guid: f31ca976fe6cd434e90cd8c23002afb3, type: 3}
   - {fileID: 21300000, guid: c2d78cc3e5c14fc45a58d7f550548406, type: 3}
   - {fileID: 21300000, guid: edde6c8f2a8c46a40aca68be1e726cd1, type: 3}
   - {fileID: 21300000, guid: b15a183384a589742b7fb58a98036464, type: 3}
-  - {fileID: 21300000, guid: 99da248b4c6732e4a8c581f67e8b3d8a, type: 3}
-  - {fileID: 21300000, guid: 99da248b4c6732e4a8c581f67e8b3d8a, type: 3}
+  - {fileID: 21300000, guid: a27fd3b3262a22649a97516478b81c15, type: 3}
+  - {fileID: 21300000, guid: ab7f64b8e1b6336489ad6859fb5ec495, type: 3}
   player_sprites:
   - {fileID: 21300000, guid: dd3556056374256478d4fd6cca6f8653, type: 3}
   - {fileID: 21300000, guid: 3ef6b8aecfd4bb54cab5ec3c381cb689, type: 3}
@@ -36059,7 +36059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3.2662354, y: -437.58765}
+  m_AnchoredPosition: {x: 3.2662354, y: -437.58768}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1125754046
@@ -44560,6 +44560,7 @@ MonoBehaviour:
   clip_BotzimeOpen: {fileID: 8300000, guid: 21b5f0185fa334c4aa93935fe51f9544, type: 3}
   clip_JangJackPush: {fileID: 0}
   clip_OptionOn: {fileID: 8300000, guid: 96ebc21b0b062014e90913aa8fd5595d, type: 3}
+  clip_TalkText: {fileID: 8300000, guid: 651fa85678bb1154f975e9820be34172, type: 3}
 --- !u!1 &1381241257
 GameObject:
   m_ObjectHideFlags: 0

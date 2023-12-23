@@ -19,6 +19,9 @@ public class EffectSoundManager : MonoBehaviour
     //옵션창 켜는소리
     public AudioClip clip_OptionOn;
 
+    //다이얼로그 효과음
+    public AudioClip clip_TalkText;
+
     //싱글톤
     public static EffectSoundManager instance = null;
     
@@ -66,6 +69,13 @@ public class EffectSoundManager : MonoBehaviour
         auidoSource.PlayOneShot(clip_JangJackPush);
     }
 
+    //Play Talk Sound
+    public void PlayTalkTextSound()
+    {
+        Debug.Log("다이얼로그 텍스트 사운드 재생");
+        auidoSource.PlayOneShot(clip_TalkText);
+    }
+
     //Stop Music
     public void StopMusic()
     {
@@ -77,4 +87,5 @@ public class EffectSoundManager : MonoBehaviour
     {
         auidoSource.mute = false;
     }
+
 }
