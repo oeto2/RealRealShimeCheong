@@ -38,17 +38,18 @@ public class DataManager : MonoBehaviour
     //시작 이벤트 오브젝트
     public GameObject gameObject_StartMessage;
 
+    //타이틀 매니저 오브젝트
+    public GameObject obj_TitleManager;
 
     private void Start()
     {
-        //TitleManager 찾기
         titleManagerScr = GameObject.Find("TitleManager").GetComponent<TitleManager>();
-        
-       //TitleManager 상태에 따라 저장데이터 불러오기
-        switch(titleManagerScr.loadSenceState)
+
+        //TitleManager 상태에 따라 저장데이터 불러오기
+        switch (titleManagerScr.loadSenceState)
         {
             case LoadSceneState.Slot1:
-                
+
                 //슬롯 번호 바꾸기
                 int_LoadSlotNum = titleManagerScr.int_ClickSlotNum;
 
@@ -100,7 +101,7 @@ public class DataManager : MonoBehaviour
                 //플레이어 이동 제한
                 Controller.instance.TalkStart();
                 break;
-               
+
         }
     }
 
@@ -135,7 +136,7 @@ public class DataManager : MonoBehaviour
     {
         gameObject_SaveCheckWindow.SetActive(false);
     }
-    
+
     //로드 Yes버튼
     public void LoadYesButton()
     {
@@ -183,7 +184,7 @@ public class DataManager : MonoBehaviour
         yield return new WaitForSeconds(int_LodingTime);
 
         gameObject_Loading.SetActive(false);
-        
+
     }
 
     //세이브 슬롯 클릭
@@ -205,6 +206,6 @@ public class DataManager : MonoBehaviour
             int_LoadSlotNum = _slotNum;
             //로드 확인 창 띄우기
             gameObjcet_LoadCheckWindow.SetActive(true);
-        }    
+        }
     }
 }
