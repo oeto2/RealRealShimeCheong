@@ -103,7 +103,6 @@ public class DialogManager : MonoBehaviour
     //스킵 타이핑 속도
     public float skipTypingSpeed = 0.0005f;
 
-
     void Awake()
     {
 
@@ -1144,7 +1143,14 @@ public class DialogManager : MonoBehaviour
     //Player초상화 초기화
     public void ResetPlayerPortrait()
     {
-        player_Portrait.sprite = npc_Sprites[0];
+        //player_Portrait.sprite = npc_Sprites[0];
+
+        //기본 이미지로 초기화
+        player_Portrait.sprite = player_sprites[1];
+
+        Color player_color = player_Portrait.color;
+        player_color.a = 40;
+        player_Portrait.color = player_color;
     }
 
     //다이얼로그 종료
