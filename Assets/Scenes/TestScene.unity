@@ -12624,6 +12624,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420779666}
   m_CullTransparentMesh: 1
+--- !u!1 &420974745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6231257024653600344, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+  m_PrefabInstance: {fileID: 6938847883954847401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &420974749
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420974745}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 198ae99a82fb5b1468727e203316f8ab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &424605699
 GameObject:
   m_ObjectHideFlags: 0
@@ -35120,6 +35146,7 @@ MonoBehaviour:
   text_NpcName: {fileID: 1522015625}
   Npc_Portrait: {fileID: 6938847883954847402}
   player_Portrait: {fileID: 589999028}
+  obj_TalkEndCur: {fileID: 420974745}
   npc_Sprites:
   - {fileID: 21300000, guid: dd3556056374256478d4fd6cca6f8653, type: 3}
   - {fileID: 21300000, guid: 95720d30c4fa2b247b85e235ef5860ed, type: 3}
@@ -71855,6 +71882,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -169.12204
       objectReference: {fileID: 0}
+    - target: {fileID: 164586054572820447, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -193
+      objectReference: {fileID: 0}
+    - target: {fileID: 164586054572820447, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 787367317014451100, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -71877,6 +71912,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4049101234531469390, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231257024653600344, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6938847884951112618, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}

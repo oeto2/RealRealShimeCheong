@@ -57,6 +57,9 @@ public class DialogManager : MonoBehaviour
     //Player 초상화
     public Image player_Portrait;
 
+    //대화종료 커서 오브젝트
+    public GameObject obj_TalkEndCur;
+
 
     //초상화 스프라이트 이미지들
     [Tooltip("0:Null, 1:뺑덕, 2:거지, 3:승려, 4:귀덕, 5:장사, 6:장승, 7:장승2, 8:뱃사, 9:심청, 10:송나라, 11: 장지언")]
@@ -123,6 +126,9 @@ public class DialogManager : MonoBehaviour
     //NPC 기본대사
     public IEnumerator NormalChat(string _narrator)
     {
+        //커서 숨기기
+        obj_TalkEndCur.SetActive(false);
+
         //시간 정지
         TimeManager.instance.StopTime();
 
@@ -237,6 +243,9 @@ public class DialogManager : MonoBehaviour
         //대사 출력이 모두 완료 되었다면
         if (ChatText.text == narration || ChatText.text == narration_2 || ChatText.text == narration_3)
         {
+            //대화종료 커서 보이기
+            obj_TalkEndCur.SetActive(true);
+
             //대화 종료 조건 충족
             remainSentence = true;
             isSentenceEnd = true;
@@ -248,6 +257,9 @@ public class DialogManager : MonoBehaviour
 
     public IEnumerator ItemClueChat(string narrator, string narration)
     {
+        //커서 숨기기
+        obj_TalkEndCur.SetActive(false);
+
         //시간 정지
         TimeManager.instance.StopTime();
 
@@ -380,6 +392,9 @@ public class DialogManager : MonoBehaviour
     //다이얼로그 대화 출력
     public IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
+        //커서 숨기기
+        obj_TalkEndCur.SetActive(false);
+
         //시간 정지
         TimeManager.instance.StopTime();
 
