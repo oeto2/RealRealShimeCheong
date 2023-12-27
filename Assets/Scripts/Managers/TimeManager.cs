@@ -339,9 +339,6 @@ public class TimeManager : MonoBehaviour
             }
 
             #endregion
-
-
-            
         }
     }
 
@@ -374,6 +371,8 @@ public class TimeManager : MonoBehaviour
     //시간 멈추기
     public void StopTime()
     {
+        Debug.Log("시간 정지");
+
         isTimeStop = true;
         //시간 멈추기
         timeStop = true;
@@ -382,6 +381,8 @@ public class TimeManager : MonoBehaviour
     //시간 계속가기
     public void ContinueTime()
     {
+        Debug.Log("시간 흐르기");
+
         isTimeStop = false;
 
         //시간 흐르기
