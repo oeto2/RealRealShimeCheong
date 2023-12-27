@@ -123,6 +123,9 @@ public class DialogManager : MonoBehaviour
     //NPC 기본대사
     public IEnumerator NormalChat(string _narrator)
     {
+        //시간 정지
+        TimeManager.instance.StopTime();
+
         //다이얼로그 비우기
         CleanDialogue();
 
@@ -237,11 +240,16 @@ public class DialogManager : MonoBehaviour
 
             //타이핑 속도 초기화
             typingSpeed = 0.02f;
+
+            //TimeManager.instance.ContinueTime();
         }
     }
 
     public IEnumerator ItemClueChat(string narrator, string narration)
     {
+        //시간 정지
+        TimeManager.instance.StopTime();
+
         //다이얼로그 비우기
         CleanDialogue();
 
@@ -371,6 +379,9 @@ public class DialogManager : MonoBehaviour
     //다이얼로그 대화 출력
     public IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
+        //시간 정지
+        TimeManager.instance.StopTime();
+
         //다이얼로그 비우기
         CleanDialogue();
 
