@@ -125,6 +125,9 @@ public class DialogManager : MonoBehaviour
     //NPC 기본대사
     public IEnumerator NormalChat(string _narrator)
     {
+        //커서 불빛 끄기
+        CursorCtrl.instance.OffCursorLight();
+
         //커서 숨기기
         obj_TalkEndCur.SetActive(false);
 
@@ -256,6 +259,9 @@ public class DialogManager : MonoBehaviour
 
     public IEnumerator ItemClueChat(string narrator, string narration)
     {
+        //커서 불빛 끄기
+        CursorCtrl.instance.OffCursorLight();
+
         //커서 숨기기
         obj_TalkEndCur.SetActive(false);
 
@@ -386,11 +392,17 @@ public class DialogManager : MonoBehaviour
         //대화 종료 조건 충족
         remainSentence = true;
         isSentenceEnd = true;
+
+        //TalkEnd Cursor 보이기
+        obj_TalkEndCur.SetActive(true);
     }
 
     //다이얼로그 대화 출력
     public IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
+        //커서 불빛 끄기
+        CursorCtrl.instance.OffCursorLight();
+
         //커서 숨기기
         obj_TalkEndCur.SetActive(false);
 
@@ -532,6 +544,9 @@ public class DialogManager : MonoBehaviour
 
             //대사 출력 후 잠깐 딜레이
             yield return new WaitForSeconds(0.1f);
+
+            //TalkEnd Cursor 보이기
+            obj_TalkEndCur.SetActive(true);
 
             //Z키를 다시 누를 때까지 무한정 대기
             while (true)

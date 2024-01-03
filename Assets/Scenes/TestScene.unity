@@ -36086,7 +36086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3.2662964, y: -437.58765}
+  m_AnchoredPosition: {x: 3.2663574, y: -437.5877}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1125754046
@@ -40767,6 +40767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uimangerScr: {fileID: 95288468}
   spriteRen_Cursor: {fileID: 1285786386}
+  obj_CursorLight: {fileID: 181543355}
   sprite_idle: {fileID: 21300000, guid: 846fd842428061b48b5385f948731ba4, type: 3}
   sprite_Click: {fileID: 21300000, guid: baa0366fa0c7dfb439603e395fce0f2a, type: 3}
   sprite_None: {fileID: 21300000, guid: dd3556056374256478d4fd6cca6f8653, type: 3}
