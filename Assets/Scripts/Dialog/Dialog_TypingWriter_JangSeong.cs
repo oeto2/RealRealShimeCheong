@@ -59,12 +59,6 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
     //함께 사라진 두 사람 대화를 했는지 체크 (대화시 True)
     public bool clue8032Talk;
 
-    //// 선택지 확인 변수
-    //public bool isSelection_yes = false;
-    //public bool isSelection_no = false;
-
-    //public bool isSelection_2023;
-
     // 글자색 설정 변수
     bool t_white = false;
     bool t_red = false;
@@ -93,11 +87,6 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
     {
         CharacterName.text = "";
         ChatText.text = "";
-        /*
-        Selection_Text_Name.text = "선택지 발생!";
-        Selection_Text1.text = "예";
-        Selection_Text2.text = "아니오";
-        */
     }
 
     void Update()

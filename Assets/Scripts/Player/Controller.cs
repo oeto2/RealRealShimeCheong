@@ -149,8 +149,9 @@ public class Controller : MonoBehaviour
     //대화 끝
     public void TalkEnd()
     {
+        CursorCtrl.instance.OnCursorLight();
 
-        if(tutorialManagerScr.events == TutorialEvents.PassOneDay || tutorialManagerScr.events == TutorialEvents.Done)
+        if (tutorialManagerScr.events == TutorialEvents.PassOneDay || tutorialManagerScr.events == TutorialEvents.Done)
         {
             //시간 흐르기
             TimeManager.instance.ContinueTime();
