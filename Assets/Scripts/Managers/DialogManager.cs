@@ -268,6 +268,9 @@ public class DialogManager : MonoBehaviour
         //시간 정지
         TimeManager.instance.StopTime();
 
+        //다이얼로그 택스트 소리 재생
+        EffectSoundManager.instance.PlayTalkTextSound();
+
         //다이얼로그 비우기
         CleanDialogue();
 
@@ -411,6 +414,9 @@ public class DialogManager : MonoBehaviour
 
         //다이얼로그 비우기
         CleanDialogue();
+
+        //다이얼로그 택스트 소리 재생
+        EffectSoundManager.instance.PlayTalkTextSound();
 
         //다이얼로그 창 띄우기
         Dialouge_System.SetActive(true);
