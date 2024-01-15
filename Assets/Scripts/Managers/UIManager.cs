@@ -632,7 +632,7 @@ public class UIManager : MonoBehaviour
                 //만약 i번째 슬롯에 해당하는 SaveData jsonFile이 존재한다면
                 if (File.Exists(saveFilePath + i.ToString()) == true)
                 {
-                    Debug.Log("슬롯 Ui데이터 갱신" + i.ToString());
+                    //Debug.Log("슬롯 Ui데이터 갱신" + i.ToString());
 
                     //파일 읽어오기
                     string jLoadData = File.ReadAllText(saveFilePath + i.ToString());

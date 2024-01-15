@@ -13,7 +13,7 @@ public class TimeSaveData
     public TimeSaveData(float _Time, int _Day, byte _curColorValue, bool _realTimeStop)
     {
         time = _Time;
-        day = _Day; 
+        day = _Day;
         curColorValue = _curColorValue;
         realTimeStop = _realTimeStop;
     }
@@ -158,14 +158,14 @@ public class TimeManager : MonoBehaviour
 
     public void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            if(instance != this)
+            if (instance != this)
             {
                 Destroy(this.gameObject);
             }
@@ -185,16 +185,17 @@ public class TimeManager : MonoBehaviour
         if (cameraMoveScr.int_CurLimitNum == 0 || cameraMoveScr.int_CurLimitNum == 1 || tutorialManagerScr.events == TutorialEvents.TurnOnLights
             || tutorialManagerScr.events == TutorialEvents.GetItems || tutorialManagerScr.events == TutorialEvents.TalkToHyang)
         {
-            TimeManager.instance.StopTime();
+            if (!isTimeStop && !timeStop)
+                TimeManager.instance.StopTime();
         }
     }
 
     private void FixedUpdate()
     {
         //날짜가 모두 지났을 경우
-        if(int_DayCount == 15)
+        if (int_DayCount == 15)
         {
-            if(!isEndingStart)
+            if (!isEndingStart)
             {
                 isEndingStart = true;
                 //배드엔딩 진행
@@ -257,13 +258,13 @@ public class TimeManager : MonoBehaviour
                 NextDayAnimaton(int_DayCount);
 
                 //시간 정지
-                if(int_DayCount == 2)
+                if (int_DayCount == 2)
                 {
                     StopTime();
                 }
-                
+
                 //아직 D-day가 되지않았다면
-                if(int_DayCount < 15)
+                if (int_DayCount < 15)
                 {
                     //플레이어 위치 변경 및 대사
                     tutorialManagerScr.PassDay();
@@ -285,9 +286,9 @@ public class TimeManager : MonoBehaviour
             #region 주막 이미지변경
 
             //0 ~ 49초
-            else if(int_RealTime >= 0 && int_RealTime <50)
+            else if (int_RealTime >= 0 && int_RealTime < 50)
             {
-                if(spriteRen_Joomack.sprite != sprite_Joomacks[0])
+                if (spriteRen_Joomack.sprite != sprite_Joomacks[0])
                 {
                     ChageJoomack(sprite_Joomacks[0]);
                 }
@@ -406,14 +407,14 @@ public class TimeManager : MonoBehaviour
         //캘린더 날짜 변경
         NextDayAnimaton(int_DayCount);
 
-        
+
     }
 
 
     //데이터 저장
     public void Save(int _slotNum)
     {
-        Debug.Log("Save TimeManagerData");
+        //Debug.Log("Save TimeManagerData");
 
 
         //저장할 데이터 넣기
@@ -429,10 +430,10 @@ public class TimeManager : MonoBehaviour
     //데이터 로드
     public void Load(int _SlotNum)
     {
-        Debug.Log("Load TimeManagerData");
+        //Debug.Log("Load TimeManagerData");
         Debug.Log(_SlotNum);
 
-        if(_SlotNum <= 2)
+        if (_SlotNum <= 2)
         {
             //세이브 파일 읽어오기
             string jLoadData = File.ReadAllText(saveFilePath + _SlotNum.ToString());
@@ -469,7 +470,7 @@ public class TimeManager : MonoBehaviour
             //캘린더 날짜 변경
             NextDayAnimaton(int_DayCount);
         }
-        
+
     }
 
     //넘겨줄 현재 날짜
@@ -511,7 +512,7 @@ public class TimeManager : MonoBehaviour
 
         playTime = "진행 시간 : " + MathF.Truncate(float_PlayTimeHour) + "시간 " + MathF.Truncate(float_PlayTimeMinute) + "분";
 
-        Debug.Log("playTimetext : " + playTime);
+        //Debug.Log("playTimetext : " + playTime);
 
         return playTime;
     }
@@ -519,7 +520,7 @@ public class TimeManager : MonoBehaviour
     //넘겨줄 시간 값
     public float GetPlayTimeSec(int _slotNum)
     {
-        Debug.Log("넘겨준 플레이 타임 : " + float_PlayTimeSec);
+        //Debug.Log("넘겨준 플레이 타임 : " + float_PlayTimeSec);
 
         //현재 플레이 타임 값을 넘겨줌
         return float_PlayTimeSec;
@@ -528,7 +529,7 @@ public class TimeManager : MonoBehaviour
     //받아올 기존 플레이타임 값
     public void SetPlayTimeSec(float _playTime)
     {
-        Debug.Log("저장된 플레이 타임 : " + _playTime.ToString());
+        //Debug.Log("저장된 플레이 타임 : " + _playTime.ToString());
 
         //누적 플레이 시간 받아오기
         float_SavePlayTime = _playTime;
@@ -666,11 +667,11 @@ public class TimeManager : MonoBehaviour
 
                 //현재 오브젝트 RGB값 갱신
                 curObjectRGB = new Color32((byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), 255);
-            }   
+            }
         }
 
         //야간 (210 ~ 300)
-        else if(((int)MathF.Truncate(float_RealTime) > 210 && (int)MathF.Truncate(float_RealTime) <= 300))
+        else if (((int)MathF.Truncate(float_RealTime) > 210 && (int)MathF.Truncate(float_RealTime) <= 300))
         {
             Debug.Log("한밤중");
 
@@ -680,7 +681,7 @@ public class TimeManager : MonoBehaviour
                 for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
                 {
                     //만약 색을 바꿀 오브젝트가 존재한다면
-                    if(spriteRen_ObumbrateObj[i] != null )
+                    if (spriteRen_ObumbrateObj[i] != null)
                     {
                         //색깔 변경
                         spriteRen_ObumbrateObj[i].color = new Color32((byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), (byte)(_curObjectColor.r - minusValeue_night), 255);
@@ -700,9 +701,9 @@ public class TimeManager : MonoBehaviour
         isOneSecStart = true;
         yield return new WaitForSeconds(1f);
 
-        Debug.Log("배경 밝기 조절");
+        //Debug.Log("배경 밝기 조절");
 
-        if(!timeStop)
+        if (!timeStop)
         {
             //오브젝트 밝기 바꾸기
             ObumbrateObject(curObjectRGB);
@@ -737,5 +738,5 @@ public class TimeManager : MonoBehaviour
     {
         realTimeStop = true;
     }
-    
+
 }

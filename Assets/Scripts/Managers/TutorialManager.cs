@@ -336,7 +336,7 @@ public class TutorialManager : MonoBehaviour
         //Player 위치 초기화
         gameManagerScr.ReturnPlayer();
 
-        if(TimeManager.instance.int_DayCount == 2)
+        if (TimeManager.instance.int_DayCount == 2)
         {
             //Player 움직임 정지
             playerCtrlScr.TalkStart();
@@ -389,6 +389,15 @@ public class TutorialManager : MonoBehaviour
         //만약 지도를 획득한 상태라면
         if (objCtrlScr.getMap)
         {
+            while (true)
+            {
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    break;
+                }
+                yield return null;
+            }
+
             //둘다 획득 대사 진행
             yield return StartCoroutine(Start_Sentence_GetObjcets());
         }
@@ -415,9 +424,17 @@ public class TutorialManager : MonoBehaviour
         yield return DialogManager.instance.ItemClueChat("심학규", "ⓦ늘 나의 눈이 되어주는 지도를 챙겼다.");
 
         //만약 봇짐을 획득한 상태라면
-        if(objCtrlScr.getBotzime)
+        if (objCtrlScr.getBotzime)
         {
             //둘다 획득 대사 진행
+            while(true)
+            {
+                if(Input.GetKeyDown(KeyCode.Z))
+                {
+                    break;
+                }
+                yield return null;
+            }
             yield return StartCoroutine(Start_Sentence_GetObjcets());
         }
 
@@ -433,7 +450,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 yield return null;
             }
-        }    
+        }
         yield return null;
     }
 
@@ -545,7 +562,7 @@ public class TutorialManager : MonoBehaviour
     //Save Data
     public void Save(int _slotNum)
     {
-        Debug.Log("Save TutorialData");
+        //Debug.Log("Save TutorialData");
 
         //저장할 데이터 넣기
         curTutorialSaveData = new TutorialSaveData(tutorialEventNum, objCtrlScr.getBotzime, objCtrlScr.getMap, turnOnLightScr.isLightsOn);
@@ -560,7 +577,7 @@ public class TutorialManager : MonoBehaviour
     //데이터 로드
     public void Load(int _slotNum)
     {
-        if(_slotNum <= 2)
+        if (_slotNum <= 2)
         {
             //세이브 파일 읽어오기
             string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
@@ -578,7 +595,7 @@ public class TutorialManager : MonoBehaviour
             EventSetting(curTutorialLoadData.getBotzime, curTutorialLoadData.getMap, curTutorialLoadData.isLightsOn);
         }
 
-        Debug.Log("Load TutorialData");
+        //Debug.Log("Load TutorialData");
     }
 
     //Events State Setting
@@ -629,9 +646,9 @@ public class TutorialManager : MonoBehaviour
 
                     //Player 기본애니메이션으로 변경
                     playerAnimationScr.ChangeAnimationNomal();
-                    
+
                     //Object 설정
-                  
+
                     //봇짐 리셋
                     objCtrlScr.ResetBotzime();
                     //지도 리셋
@@ -668,7 +685,7 @@ public class TutorialManager : MonoBehaviour
                     //Object 설정
 
                     //등잔불이 켜져있었다면
-                    if(_isLightsOn)
+                    if (_isLightsOn)
                     {
                         //등잔불 켜기
                         turnOnLightScr.TurnOnLights();
@@ -915,7 +932,7 @@ public class TutorialManager : MonoBehaviour
     //대화 가능한 시점
     public bool SentenceCondition()
     {
-        if(events != TutorialEvents.TurnOnLights && events != TutorialEvents.GetItems && events != TutorialEvents.TalkToHyang)
+        if (events != TutorialEvents.TurnOnLights && events != TutorialEvents.GetItems && events != TutorialEvents.TalkToHyang)
         {
             return true;
         }

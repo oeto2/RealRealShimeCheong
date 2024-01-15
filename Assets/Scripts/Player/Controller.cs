@@ -39,12 +39,6 @@ public class Controller : MonoBehaviour
     // ray
     GameObject scanObject;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("move!!");
-    }
-
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();

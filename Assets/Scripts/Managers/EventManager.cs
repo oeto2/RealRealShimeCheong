@@ -414,7 +414,7 @@ public class EventManager : MonoBehaviour
     //데이터 저장
     public void Save(int _slotNum)
     {
-        Debug.Log("Save EventData");
+        //Debug.Log("Save EventData");
 
         //저장할 데이터 넣기
         curEventSaveData = new EventSaveData(eventCheck.joomackBab, eventCheck.binyeo,
@@ -434,7 +434,7 @@ public class EventManager : MonoBehaviour
     {
         if (_SlotNum <= 2)
         {
-            Debug.Log("Load EventLoadData");
+            //Debug.Log("Load EventLoadData");
 
             //세이브 파일 읽어오기
             string jLoadData = File.ReadAllText(saveFilePath + _SlotNum.ToString());

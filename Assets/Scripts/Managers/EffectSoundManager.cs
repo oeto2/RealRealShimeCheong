@@ -44,35 +44,35 @@ public class EffectSoundManager : MonoBehaviour
     //Play Open Map Sound
     public void PlayOpenMapSound()
     {
-        Debug.Log("지도 펼치는 소리 재생");
+        //Debug.Log("지도 펼치는 소리 재생");
         auidoSource.PlayOneShot(clip_MapOpen);
     }
 
     //Play Open Botzime Sound
     public void PlayOpenBotzimeSound()
     {
-        Debug.Log("봇짐 펼치는 소리 재생");
+        //Debug.Log("봇짐 펼치는 소리 재생");
         auidoSource.PlayOneShot(clip_BotzimeOpen);
     }
 
     //Play Open OptionWindow Sound
     public void PlayOnOptionSound()
     {
-        Debug.Log("옵션창 소리 재생");
+        //Debug.Log("옵션창 소리 재생");
         auidoSource.PlayOneShot(clip_OptionOn);
     }
 
     //Play Push Jangjack Sound
     public void PlayPushJangJackSound()
     {
-        Debug.Log("장작 넣는 소리 재생");
+        //Debug.Log("장작 넣는 소리 재생");
         auidoSource.PlayOneShot(clip_JangJackPush);
     }
 
     //Play Talk Sound
     public void PlayTalkTextSound()
     {
-        Debug.Log("다이얼로그 텍스트 사운드 재생");
+        //Debug.Log("다이얼로그 텍스트 사운드 재생");
         auidoSource.PlayOneShot(clip_TalkText);
     }
 

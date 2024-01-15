@@ -314,7 +314,7 @@ public class GameManager : MonoBehaviour
     //Save Data
     public void Save(int _slotNum)
     {
-        Debug.Log("Save GameManagerData");
+        //Debug.Log("Save GameManagerData");
 
         //저장할 장소의 이름 구하기
         GetPlaceName();
@@ -334,7 +334,7 @@ public class GameManager : MonoBehaviour
     //데이터 로드
     public void Load(int _slotNum)
     {
-        Debug.Log("Load GameManagerData");
+        //Debug.Log("Load GameManagerData");
 
         if (_slotNum <= 2)
         {

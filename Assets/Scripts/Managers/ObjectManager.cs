@@ -789,12 +789,12 @@ public class ObjectManager : MonoBehaviour
     //Key를 통해서 아이템 얻기
     public void GetItem(int _key)
     {
-        Debug.Log("GetItem 시작");
+        //Debug.Log("GetItem 시작");
 
         //해당 Key를 가진 오브젝트가 존재하는 경우
         if (myItemList.Find(x => x.key == _key) != null)
         {
-            Debug.Log("if문 통과");
+            //Debug.Log("if문 통과");
 
             Item GetItem = myItemList.Find(x => x.key == _key);
             Item CheckItem = curItemList.Find(x => x.key == _key);
@@ -802,7 +802,7 @@ public class ObjectManager : MonoBehaviour
             //해당 아이템을 보유중이지 않다면
             if(CheckItem == null)
             {
-                Debug.Log($"{_key}번 아이템 획득");
+                //Debug.Log($"{_key}번 아이템 획득");
                 curItemList.Add(myItemList.Find(x => x.key == _key));
                 curItemList2.Add(myItemList.Find(x => x.key == _key));
                 TabClick(curType);
@@ -812,7 +812,7 @@ public class ObjectManager : MonoBehaviour
                 //봇짐을 획득한 상태라면
                 if (ObjectControll.instance.getBotzime)
                 {
-                    Debug.Log("토스트메세지 실행");
+                    //Debug.Log("토스트메세지 실행");
                     //토스트 메세지 실행
                     toastMessageScr.ToastMessageStart();
 
