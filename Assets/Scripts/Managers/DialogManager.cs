@@ -659,6 +659,8 @@ public class DialogManager : MonoBehaviour
         //화자에 따라 초상화, 이름 변경
         ChangeNpcPortrait(_narrator);
 
+        //시간 정지
+        TimeManager.instance.StopTime();
 
         //코루틴 중복 실행 방지
         isSentence_Start = true;
