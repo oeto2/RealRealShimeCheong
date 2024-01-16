@@ -1,31 +1,31 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Ä¿½ºÅÒ Å¬·¡½º¸¦ ÀÎ½ºÆåÅÍ Ã¢¿¡¼­ ¼öÁ¤ÇÏ±â À§ÇØ¼­ Ãß°¡
+// ì»¤ìŠ¤í…€ í´ë˜ìŠ¤ë¥¼ ì¸ìŠ¤í™í„° ì°½ì—ì„œ ìˆ˜ì •í•˜ê¸° ìœ„í•´ì„œ ì¶”ê°€
 [System.Serializable]
 public class Dialogue
 {
-    // Ä³¸¯ÅÍ ÀÌ¸§À» npc_name Ã¢¿¡ ¶ç¿ì±â
-    [Tooltip("´ë»ç Ä¡´Â Ä³¸¯ÅÍ ÀÌ¸§")]
-    public string name; // Ä³¸¯ÅÍ ÀÌ¸§
+    // ìºë¦­í„° ì´ë¦„ì„ npc_name ì°½ì— ë„ìš°ê¸°
+    [Tooltip("ëŒ€ì‚¬ ì¹˜ëŠ” ìºë¦­í„° ì´ë¦„")]
+    public string name; // ìºë¦­í„° ì´ë¦„
 
-    // ´ë»ç ³»¿ëÀ» ´ãÀ» ¹è¿­ Á¤ÀÇ
-    [Tooltip("´ë»ç ³»¿ë")]
+    // ëŒ€ì‚¬ ë‚´ìš©ì„ ë‹´ì„ ë°°ì—´ ì •ì˜
+    [Tooltip("ëŒ€ì‚¬ ë‚´ìš©")]
     public string[] context;
 }
 
 [System.Serializable]
 public class DialogueEvent
 {
-    // ´ëÈ­ ÀÌº¥Æ® ÀÌ¸§ Á¤ÀÇ
+    // ëŒ€í™” ì´ë²¤íŠ¸ ì´ë¦„ ì •ì˜
     public string name;
 
-    // vector2(x,y) xÁÙºÎÅÍ yÁÙ±îÁöÀÇ ´ë»ç¸¦ °¡Á®¿À±â
+    // vector2(x,y) xì¤„ë¶€í„° yì¤„ê¹Œì§€ì˜ ëŒ€ì‚¬ë¥¼ ê°€ì ¸ì˜¤ê¸°
     public Vector2 line;
 
-    // ´ë»ç¸¦ ¿©·¯ ¸íÀÌ ÇÒ ¼ö ÀÖµµ·Ï ¹è¿­·Î »ı¼º
+    // ëŒ€ì‚¬ë¥¼ ì—¬ëŸ¬ ëª…ì´ í•  ìˆ˜ ìˆë„ë¡ ë°°ì—´ë¡œ ìƒì„±
     public Dialogue[] dialogues;
 }
 
@@ -33,74 +33,74 @@ public class DialogManager : MonoBehaviour
 {
     Dictionary<int, string[]> DialogData;
 
-    //¿ÜºÎ ½ºÅ©¸³Æ® ÂüÁ¶
+    //ì™¸ë¶€ ìŠ¤í¬ë¦½íŠ¸ ì°¸ì¡°
     public Controller playerCtrlScr;
 
-    //½Ì±ÛÅæ
+    //ì‹±ê¸€í†¤
     public static DialogManager instance = null;
 
-    //´ëÈ­ µ¥ÀÌÅÍº£ÀÌ½º
+    //ëŒ€í™” ë°ì´í„°ë² ì´ìŠ¤
     public S_NPCdatabase_Yes npcDatabaseScr;
 
-    //½Ã½ºÅÛ ´ÙÀÌ¾ó·Î±× ¿ÀºêÁ§Æ®
+    //ì‹œìŠ¤í…œ ë‹¤ì´ì–¼ë¡œê·¸ ì˜¤ë¸Œì íŠ¸
     public GameObject Dialouge_System;
 
-    //½Ã½ºÅÛ ´ÙÀÌ¾ó·Î±× ÅØ½ºÆ®
+    //ì‹œìŠ¤í…œ ë‹¤ì´ì–¼ë¡œê·¸ í…ìŠ¤íŠ¸
     public Text ChatText;
 
-    //NPC ÀÌ¸§ Text
+    //NPC ì´ë¦„ Text
     public Text text_NpcName;
 
-    //Npc ÃÊ»óÈ­
+    //Npc ì´ˆìƒí™”
     public Image Npc_Portrait;
 
-    //Player ÃÊ»óÈ­
+    //Player ì´ˆìƒí™”
     public Image player_Portrait;
 
-    //´ëÈ­Á¾·á Ä¿¼­ ¿ÀºêÁ§Æ®
+    //ëŒ€í™”ì¢…ë£Œ ì»¤ì„œ ì˜¤ë¸Œì íŠ¸
     public GameObject obj_TalkEndCur;
 
 
-    //ÃÊ»óÈ­ ½ºÇÁ¶óÀÌÆ® ÀÌ¹ÌÁöµé
-    [Tooltip("0:Null, 1:»±´ö, 2:°ÅÁö, 3:½Â·Á, 4:±Í´ö, 5:Àå»ç, 6:Àå½Â, 7:Àå½Â2, 8:¹î»ç, 9:½ÉÃ», 10:¼Û³ª¶ó, 11: ÀåÁö¾ğ")]
+    //ì´ˆìƒí™” ìŠ¤í”„ë¼ì´íŠ¸ ì´ë¯¸ì§€ë“¤
+    [Tooltip("0:Null, 1:ëº‘ë•, 2:ê±°ì§€, 3:ìŠ¹ë ¤, 4:ê·€ë•, 5:ì¥ì‚¬, 6:ì¥ìŠ¹, 7:ì¥ìŠ¹2, 8:ë±ƒì‚¬, 9:ì‹¬ì²­, 10:ì†¡ë‚˜ë¼, 11: ì¥ì§€ì–¸")]
     public Sprite[] npc_Sprites;
 
 
-    //Player ½ºÇÁ¶óÀÌÆ® ÀÌ¹ÌÁöµé
-    [Tooltip("0: Null, 1:±âº»")]
+    //Player ìŠ¤í”„ë¼ì´íŠ¸ ì´ë¯¸ì§€ë“¤
+    [Tooltip("0: Null, 1:ê¸°ë³¸")]
     public Sprite[] player_sprites;
 
-    //Ãâ·ÂÁßÀÎ ´ë»ç °ª
+    //ì¶œë ¥ì¤‘ì¸ ëŒ€ì‚¬ ê°’
     public string writerText = "";
 
-    //½Ã½ºÅÛ ¸Ş¼¼Áö ÄÚ·çÆ¾ÀÌ ÀÌ¹Ì ½ÇÇàÁßÀÎÁö È®ÀÎÇÏ´Â flag
+    //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì½”ë£¨í‹´ì´ ì´ë¯¸ ì‹¤í–‰ì¤‘ì¸ì§€ í™•ì¸í•˜ëŠ” flag
     public bool isSentence_Start;
 
-    //´ëÈ­°¡ ÀüºÎ Ãâ·Â µÇ¾ú´ÂÁö
+    //ëŒ€í™”ê°€ ì „ë¶€ ì¶œë ¥ ë˜ì—ˆëŠ”ì§€
     public bool isSentenceEnd = false;
 
-    //³²Àº ´ëÈ­°¡ ´õ ÀÖ´ÂÁö
+    //ë‚¨ì€ ëŒ€í™”ê°€ ë” ìˆëŠ”ì§€
     public bool remainSentence = false;
 
-    // ±ÛÀÚ»ö ¼³Á¤ º¯¼ö
-    bool t_white = false;   // ³ë¸» ´ë»ç
-    bool t_red = false;     // °­Á¶ ´ë»ç
-    bool t_blue = false;    // Áø¿£µù
-    bool t_violet = false;  // Ãß°¡ ¿¹Á¤
+    // ê¸€ììƒ‰ ì„¤ì • ë³€ìˆ˜
+    bool t_white = false;   // ë…¸ë§ ëŒ€ì‚¬
+    bool t_red = false;     // ê°•ì¡° ëŒ€ì‚¬
+    bool t_blue = false;    // ì§„ì—”ë”©
+    bool t_violet = false;  // ì¶”ê°€ ì˜ˆì •
 
-    // ±ÛÀÚ»ö ¼³Á¤ ¹®ÀÚ´Â ´ë»ç Ãâ·Â ¹«½Ã
+    // ê¸€ììƒ‰ ì„¤ì • ë¬¸ìëŠ” ëŒ€ì‚¬ ì¶œë ¥ ë¬´ì‹œ
     bool t_ignore = false;
 
-    // ·£´ı ´ë»ç Ãâ·Â º¯¼ö
+    // ëœë¤ ëŒ€ì‚¬ ì¶œë ¥ ë³€ìˆ˜
     private int RandomNum;
 
     public Coroutine DialogueItemClue;
 
-    //ÅØ½ºÆ® ½ºÅµÀ» Çß´ÂÁö È®ÀÎÇÏ´Â flag
+    //í…ìŠ¤íŠ¸ ìŠ¤í‚µì„ í–ˆëŠ”ì§€ í™•ì¸í•˜ëŠ” flag
     public bool isSkip;
-    //Å¸ÀÌÇÎ ¼Óµµ
+    //íƒ€ì´í•‘ ì†ë„
     public float typingSpeed = 0.02f;
-    //½ºÅµ Å¸ÀÌÇÎ ¼Óµµ
+    //ìŠ¤í‚µ íƒ€ì´í•‘ ì†ë„
     public float skipTypingSpeed = 0.0005f;
 
     void Awake()
@@ -122,54 +122,54 @@ public class DialogManager : MonoBehaviour
         DialogData = new Dictionary<int, string[]>();
     }
 
-    //NPC ±âº»´ë»ç
+    //NPC ê¸°ë³¸ëŒ€ì‚¬
     public IEnumerator NormalChat(string _narrator)
     {
-        //Ä¿¼­ ºÒºû ²ô±â
+        //ì»¤ì„œ ë¶ˆë¹› ë„ê¸°
         CursorCtrl.instance.OffCursorLight();
 
-        //Ä¿¼­ ¼û±â±â
+        //ì»¤ì„œ ìˆ¨ê¸°ê¸°
         obj_TalkEndCur.SetActive(false);
 
-        //½Ã°£ Á¤Áö
+        //ì‹œê°„ ì •ì§€
         TimeManager.instance.StopTime();
 
-        //´ÙÀÌ¾ó·Î±× ÅÃ½ºÆ® ¼Ò¸® Àç»ı
+        //ë‹¤ì´ì–¼ë¡œê·¸ íƒìŠ¤íŠ¸ ì†Œë¦¬ ì¬ìƒ
         EffectSoundManager.instance.PlayTalkTextSound();
 
-        //´ÙÀÌ¾ó·Î±× ºñ¿ì±â
+        //ë‹¤ì´ì–¼ë¡œê·¸ ë¹„ìš°ê¸°
         CleanDialogue();
 
-        //Player, Npc ÃÊ»óÈ­ ÃÊ±âÈ­
+        //Player, Npc ì´ˆìƒí™” ì´ˆê¸°í™”
         ResetNpcPortrait();
         ResetPlayerPortrait();
 
-        //´ÙÀÌ¾ó·Î±× Text ºñ¿ì±â
+        //ë‹¤ì´ì–¼ë¡œê·¸ Text ë¹„ìš°ê¸°
         CleanDialogue();
 
-        //´ëÈ­ Áßº¹½ÇÇà ¹æÁö
+        //ëŒ€í™” ì¤‘ë³µì‹¤í–‰ ë°©ì§€
         remainSentence = true;
 
-        //Npc ÃÊ»óÈ­ ÀÚµ¿ º¯°æ
+        //Npc ì´ˆìƒí™” ìë™ ë³€ê²½
         ChangeNpcPortrait(_narrator);
 
-        //narratior °ª¿¡ µû¶ó ÇØ´çÇÏ´Â ·£´ı ´ë»ç°ª ³Ñ°ÜÁÜ
+        //narratior ê°’ì— ë”°ë¼ í•´ë‹¹í•˜ëŠ” ëœë¤ ëŒ€ì‚¬ê°’ ë„˜ê²¨ì¤Œ
         string narration = RandomNpcSentence(_narrator);
         string narration_2 = RandomNpcSentence2(_narrator);
         string narration_3 = RandomNpcSentence3(_narrator);
 
-        //¼Û³ª¶ó »óÀÎÀÏ °æ¿ì
-        if (_narrator == "¼Û³ª¶ó »óÀÎ")
+        //ì†¡ë‚˜ë¼ ìƒì¸ì¼ ê²½ìš°
+        if (_narrator == "ì†¡ë‚˜ë¼ ìƒì¸")
         {
             RandomNum = Random.Range(0, 3);
         }
-        //±× ¿Ü
+        //ê·¸ ì™¸
         else
         {
             RandomNum = Random.Range(0, 2);
         }
 
-        //ÅØ½ºÆ® Å¸ÀÌÇÎ
+        //í…ìŠ¤íŠ¸ íƒ€ì´í•‘
         if (RandomNum == 0)
         {
             for (int a = 0; a < narration.Length; a++)
@@ -177,17 +177,17 @@ public class DialogManager : MonoBehaviour
                 writerText += narration[a];
                 ChatText.text = writerText;
 
-                //5±ÛÀÚ ÀÌ»ó ´ëÈ­°¡ ÁøÇàµÇ°í ZÅ°¸¦ ´­·¶À» °æ¿ì
+                //5ê¸€ì ì´ìƒ ëŒ€í™”ê°€ ì§„í–‰ë˜ê³  Zí‚¤ë¥¼ ëˆŒë €ì„ ê²½ìš°
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    //Å¸ÀÌÇÎ ¼Óµµ º¯°æ
+                    //íƒ€ì´í•‘ ì†ë„ ë³€ê²½
                     typingSpeed = skipTypingSpeed;
                 }
 
-                //´ë»ç°¡ ÀüºÎ Ãâ·ÂµÇÁö ¾Ê¾ÒÀ» °æ¿ì
+                //ëŒ€ì‚¬ê°€ ì „ë¶€ ì¶œë ¥ë˜ì§€ ì•Šì•˜ì„ ê²½ìš°
                 if (a < narration.Length)
                 {
-                    //´ë»ç Å¸ÀÌÇÎ ¼Óµµ
+                    //ëŒ€ì‚¬ íƒ€ì´í•‘ ì†ë„
                     yield return new WaitForSeconds(typingSpeed);
                 }
 
@@ -202,14 +202,14 @@ public class DialogManager : MonoBehaviour
                 writerText += narration_2[a];
                 ChatText.text = writerText;
 
-                //5±ÛÀÚ ÀÌ»ó ´ëÈ­°¡ ÁøÇàµÇ°í ZÅ°¸¦ ´­·¶À» °æ¿ì
+                //5ê¸€ì ì´ìƒ ëŒ€í™”ê°€ ì§„í–‰ë˜ê³  Zí‚¤ë¥¼ ëˆŒë €ì„ ê²½ìš°
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    //Å¸ÀÌÇÎ ¼Óµµ º¯°æ
+                    //íƒ€ì´í•‘ ì†ë„ ë³€ê²½
                     typingSpeed = skipTypingSpeed;
                 }
 
-                //´ë»ç°¡ ÀüºÎ Ãâ·ÂµÇÁö ¾Ê¾ÒÀ» °æ¿ì
+                //ëŒ€ì‚¬ê°€ ì „ë¶€ ì¶œë ¥ë˜ì§€ ì•Šì•˜ì„ ê²½ìš°
                 if (a < narration_2.Length)
                 {
                     yield return new WaitForSeconds(typingSpeed);
@@ -225,14 +225,14 @@ public class DialogManager : MonoBehaviour
                 writerText += narration_3[a];
                 ChatText.text = writerText;
 
-                //5±ÛÀÚ ÀÌ»ó ´ëÈ­°¡ ÁøÇàµÇ°í ZÅ°¸¦ ´­·¶À» °æ¿ì
+                //5ê¸€ì ì´ìƒ ëŒ€í™”ê°€ ì§„í–‰ë˜ê³  Zí‚¤ë¥¼ ëˆŒë €ì„ ê²½ìš°
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    //Å¸ÀÌÇÎ ¼Óµµ º¯°æ
+                    //íƒ€ì´í•‘ ì†ë„ ë³€ê²½
                     typingSpeed = skipTypingSpeed;
                 }
 
-                //´ë»ç°¡ ÀüºÎ Ãâ·ÂµÇÁö ¾Ê¾ÒÀ» °æ¿ì
+                //ëŒ€ì‚¬ê°€ ì „ë¶€ ì¶œë ¥ë˜ì§€ ì•Šì•˜ì„ ê²½ìš°
                 if (a < narration_3.Length)
                 {
                     yield return new WaitForSeconds(typingSpeed);
@@ -242,56 +242,56 @@ public class DialogManager : MonoBehaviour
         }
         Debug.Log(ChatText);
 
-        //´ë»ç Ãâ·ÂÀÌ ¸ğµÎ ¿Ï·á µÇ¾ú´Ù¸é
+        //ëŒ€ì‚¬ ì¶œë ¥ì´ ëª¨ë‘ ì™„ë£Œ ë˜ì—ˆë‹¤ë©´
         if (ChatText.text == narration || ChatText.text == narration_2 || ChatText.text == narration_3)
         {
-            //´ëÈ­Á¾·á Ä¿¼­ º¸ÀÌ±â
+            //ëŒ€í™”ì¢…ë£Œ ì»¤ì„œ ë³´ì´ê¸°
             obj_TalkEndCur.SetActive(true);
 
-            //´ëÈ­ Á¾·á Á¶°Ç ÃæÁ·
+            //ëŒ€í™” ì¢…ë£Œ ì¡°ê±´ ì¶©ì¡±
             remainSentence = true;
             isSentenceEnd = true;
 
-            //Å¸ÀÌÇÎ ¼Óµµ ÃÊ±âÈ­
+            //íƒ€ì´í•‘ ì†ë„ ì´ˆê¸°í™”
             typingSpeed = 0.02f;
         }
     }
 
     public IEnumerator ItemClueChat(string narrator, string narration)
     {
-        //Ä¿¼­ ºÒºû ²ô±â
+        //ì»¤ì„œ ë¶ˆë¹› ë„ê¸°
         CursorCtrl.instance.OffCursorLight();
 
-        //Ä¿¼­ ¼û±â±â
+        //ì»¤ì„œ ìˆ¨ê¸°ê¸°
         obj_TalkEndCur.SetActive(false);
 
-        //½Ã°£ Á¤Áö
+        //ì‹œê°„ ì •ì§€
         TimeManager.instance.StopTime();
 
-        //´ÙÀÌ¾ó·Î±× ÅÃ½ºÆ® ¼Ò¸® Àç»ı
+        //ë‹¤ì´ì–¼ë¡œê·¸ íƒìŠ¤íŠ¸ ì†Œë¦¬ ì¬ìƒ
         EffectSoundManager.instance.PlayTalkTextSound();
 
-        //´ÙÀÌ¾ó·Î±× ºñ¿ì±â
+        //ë‹¤ì´ì–¼ë¡œê·¸ ë¹„ìš°ê¸°
         CleanDialogue();
 
-        //´ÙÀÌ¾ó·Î±× Ã¢ ¶ç¿ì±â
+        //ë‹¤ì´ì–¼ë¡œê·¸ ì°½ ë„ìš°ê¸°
         Dialouge_System.SetActive(true);
 
-        //Player, Npc ÃÊ»óÈ­ ÃÊ±âÈ­
+        //Player, Npc ì´ˆìƒí™” ì´ˆê¸°í™”
         ResetNpcPortrait();
         ResetPlayerPortrait();
 
-        Debug.Log("´ëÈ­Ãâ·Â1");
+        Debug.Log("ëŒ€í™”ì¶œë ¥1");
 
-        //³²Àº´ëÈ­ ÀÖÀ½
+        //ë‚¨ì€ëŒ€í™” ìˆìŒ
         remainSentence = true;
 
-        //´ÙÀÌ¾ó·Î±× Text ºñ¿ì±â
+        //ë‹¤ì´ì–¼ë¡œê·¸ Text ë¹„ìš°ê¸°
         CleanDialogue();
 
-        //Npc ÃÊ»óÈ­ ÀÚµ¿ º¯°æ
+        //Npc ì´ˆìƒí™” ìë™ ë³€ê²½
         ChangeNpcPortrait(narrator);
-        //Player ÃÊ»óÈ­ ÀÚµ¿ º¯°æ
+        //Player ì´ˆìƒí™” ìë™ ë³€ê²½
         ChagePlayerPortrait(narrator);
 
         Debug.Log(narration);
@@ -299,7 +299,7 @@ public class DialogManager : MonoBehaviour
 
         string t_letter = "";
 
-        //ÅØ½ºÆ® Å¸ÀÌÇÎ
+        //í…ìŠ¤íŠ¸ íƒ€ì´í•‘
         for (a = 0; a < narration.Length; a++)
         {
             //writerText += narration[a];
@@ -307,7 +307,7 @@ public class DialogManager : MonoBehaviour
             switch (narration[a])
             {
                 // red
-                case '¨Ş':
+                case 'â“¡':
                     t_white = false;
                     t_red = true;
                     t_blue = false;
@@ -315,7 +315,7 @@ public class DialogManager : MonoBehaviour
                     t_ignore = true;
                     break;
                 // write
-                case '¨ã':
+                case 'â“¦':
                     t_white = true;
                     t_red = false;
                     t_blue = false;
@@ -323,7 +323,7 @@ public class DialogManager : MonoBehaviour
                     t_ignore = true;
                     break;
                 // blue
-                case '¨Î':
+                case 'â“‘':
                     t_white = false;
                     t_red = false;
                     t_blue = true;
@@ -331,7 +331,7 @@ public class DialogManager : MonoBehaviour
                     t_ignore = true;
                     break;
                 // violet
-                case '¨â':
+                case 'â“¥':
                     t_white = false;
                     t_red = false;
                     t_blue = false;
@@ -367,95 +367,94 @@ public class DialogManager : MonoBehaviour
                     Debug.Log("3_violet");
                 }
                 //Debug.Log(writerText);
-                writerText += t_letter; // Æ¯¼ö¹®ÀÚ°¡ ¾Æ´Ï¶ó¸é ´ë»ç Ãâ·Â
+                writerText += t_letter; // íŠ¹ìˆ˜ë¬¸ìê°€ ì•„ë‹ˆë¼ë©´ ëŒ€ì‚¬ ì¶œë ¥
                 ChatText.text = writerText;
                 //writerText += narration[a];
                 //ChatText.text = writerText;
             }
-            t_ignore = false; // ÇÑ ±ÛÀÚ Âï¾úÀ¸¸é ´Ù½Ã false
+            t_ignore = false; // í•œ ê¸€ì ì°ì—ˆìœ¼ë©´ ë‹¤ì‹œ false
 
-            //5±ÛÀÚ ÀÌ»ó ´ëÈ­°¡ ÁøÇàµÇ°í ZÅ°¸¦ ´­·¶À» °æ¿ì
+            //5ê¸€ì ì´ìƒ ëŒ€í™”ê°€ ì§„í–‰ë˜ê³  Zí‚¤ë¥¼ ëˆŒë €ì„ ê²½ìš°
             if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
             {
-                //Å¸ÀÌÇÎ ¼Óµµ º¯°æ
+                //íƒ€ì´í•‘ ì†ë„ ë³€ê²½
                 typingSpeed = skipTypingSpeed;
             }
 
-            //´ë»ç Ãâ·Â ÁßÀÏ °æ¿ì¿¡¸¸
+            //ëŒ€ì‚¬ ì¶œë ¥ ì¤‘ì¼ ê²½ìš°ì—ë§Œ
             if (ChatText.text != narration)
             {
-                //ÅØ½ºÆ® Å¸ÀÌÇÎ ½Ã°£ Á¶Àı
+                //í…ìŠ¤íŠ¸ íƒ€ì´í•‘ ì‹œê°„ ì¡°ì ˆ
                 yield return new WaitForSeconds(typingSpeed);
             }
         }
 
-        //Å¸ÀÌÇÎ ¼Óµµ º¯°æ
+        //íƒ€ì´í•‘ ì†ë„ ë³€ê²½
         typingSpeed = 0.02f;
 
-        //´ëÈ­ Á¾·á Á¶°Ç ÃæÁ·
+        //ëŒ€í™” ì¢…ë£Œ ì¡°ê±´ ì¶©ì¡±
         remainSentence = true;
         isSentenceEnd = true;
 
-        //TalkEnd Cursor º¸ÀÌ±â
+        //TalkEnd Cursor ë³´ì´ê¸°
         obj_TalkEndCur.SetActive(true);
     }
 
-    //´ÙÀÌ¾ó·Î±× ´ëÈ­ Ãâ·Â
+    //ë‹¤ì´ì–¼ë¡œê·¸ ëŒ€í™” ì¶œë ¥
     public IEnumerator ItemClueChat(string narrator, string narration, bool _remainSentence)
     {
-        //Ä¿¼­ ºÒºû ²ô±â
+        //ì»¤ì„œ ë¶ˆë¹› ë„ê¸°
         CursorCtrl.instance.OffCursorLight();
 
-        //Ä¿¼­ ¼û±â±â
+        //ì»¤ì„œ ìˆ¨ê¸°ê¸°
         obj_TalkEndCur.SetActive(false);
 
-        //½Ã°£ Á¤Áö
+        //ì‹œê°„ ì •ì§€
         TimeManager.instance.StopTime();
 
-        //´ÙÀÌ¾ó·Î±× ºñ¿ì±â
+        //ë‹¤ì´ì–¼ë¡œê·¸ ë¹„ìš°ê¸°
         CleanDialogue();
 
-        //´ÙÀÌ¾ó·Î±× ÅÃ½ºÆ® ¼Ò¸® Àç»ı
+        //ë‹¤ì´ì–¼ë¡œê·¸ íƒìŠ¤íŠ¸ ì†Œë¦¬ ì¬ìƒ
         EffectSoundManager.instance.PlayTalkTextSound();
 
-        //´ÙÀÌ¾ó·Î±× Ã¢ ¶ç¿ì±â
+        //ë‹¤ì´ì–¼ë¡œê·¸ ì°½ ë„ìš°ê¸°
         Dialouge_System.SetActive(true);
 
-        //Player, Npc ÃÊ»óÈ­ ÃÊ±âÈ­
+        //Player, Npc ì´ˆìƒí™” ì´ˆê¸°í™”
         ResetNpcPortrait();
         ResetPlayerPortrait();
 
-
-        //Player, Npc ÃÊ»óÈ­ º¸ÀÌ±â
+        //Player, Npc ì´ˆìƒí™” ë³´ì´ê¸°
         ChangeNpcPortrait(narrator);
         ChagePlayerPortrait(narrator);
 
-        Debug.Log("´ëÈ­Ãâ·Â2");
+        Debug.Log("ëŒ€í™”ì¶œë ¥2");
 
         string t_letter = "";
 
-        //³²Àº ´ëÈ­°¡ ÀÖÀ» °æ¿ì
+        //ë‚¨ì€ ëŒ€í™”ê°€ ìˆì„ ê²½ìš°
         if (_remainSentence == true)
         {
-            //³²Àº´ëÈ­ ÀÖÀ½
+            //ë‚¨ì€ëŒ€í™” ìˆìŒ
             remainSentence = true;
             text_NpcName.text = narrator;
 
-            // °ÅÁö - ÁÖ¸Ô¹ä ´ÙÀÌ¾ó·Î±× ´ëÈ­ ¿¹¿Ü Ã³¸®
+            // ê±°ì§€ - ì£¼ë¨¹ë°¥ ë‹¤ì´ì–¼ë¡œê·¸ ëŒ€í™” ì˜ˆì™¸ ì²˜ë¦¬
             if (narration == npcDatabaseScr.NPC_01[869].comment)
             {
                 Debug.Log(narration);
-                Debug.Log("1005¹ø, 18¹ø");
+                Debug.Log("1005ë²ˆ, 18ë²ˆ");
                 Dialouge_System.SetActive(false);
             }
             if (narration != npcDatabaseScr.NPC_01[869].comment)
             {
                 Debug.Log(narration);
-                Debug.Log("1005¹ø, 19¹ø");
+                Debug.Log("1005ë²ˆ, 19ë²ˆ");
                 Dialouge_System.SetActive(true);
             }
 
-            //ÅØ½ºÆ® Å¸ÀÌÇÎ
+            //í…ìŠ¤íŠ¸ íƒ€ì´í•‘
             for (int a = 0; a < narration.Length; a++)
             {
                 //writerText += narration[a];
@@ -464,7 +463,7 @@ public class DialogManager : MonoBehaviour
                 switch (narration[a])
                 {
                     // red
-                    case '¨Ş':
+                    case 'â“¡':
                         t_white = false;
                         t_red = true;
                         t_blue = false;
@@ -472,7 +471,7 @@ public class DialogManager : MonoBehaviour
                         t_ignore = true;
                         break;
                     // write
-                    case '¨ã':
+                    case 'â“¦':
                         t_white = true;
                         t_red = false;
                         t_blue = false;
@@ -480,7 +479,7 @@ public class DialogManager : MonoBehaviour
                         t_ignore = true;
                         break;
                     // blue
-                    case '¨Î':
+                    case 'â“‘':
                         t_white = false;
                         t_red = false;
                         t_blue = true;
@@ -488,7 +487,7 @@ public class DialogManager : MonoBehaviour
                         t_ignore = true;
                         break;
                     // violet
-                    case '¨â':
+                    case 'â“¥':
                         t_white = false;
                         t_red = false;
                         t_blue = false;
@@ -525,46 +524,46 @@ public class DialogManager : MonoBehaviour
                         Debug.Log("3_violet");
                     }
                     //Debug.Log(writerText);
-                    writerText += t_letter; // Æ¯¼ö¹®ÀÚ°¡ ¾Æ´Ï¶ó¸é ´ë»ç Ãâ·Â
+                    writerText += t_letter; // íŠ¹ìˆ˜ë¬¸ìê°€ ì•„ë‹ˆë¼ë©´ ëŒ€ì‚¬ ì¶œë ¥
                     //writerText += narration[a];
                     ChatText.text = writerText;
                     //ChatText.text = writerText;
                 }
-                t_ignore = false; // ÇÑ ±ÛÀÚ Âï¾úÀ¸¸é ´Ù½Ã false
+                t_ignore = false; // í•œ ê¸€ì ì°ì—ˆìœ¼ë©´ ë‹¤ì‹œ false
 
-                //5±ÛÀÚ ÀÌ»ó ´ëÈ­°¡ ÁøÇàµÇ°í ZÅ°¸¦ ´­·¶À» °æ¿ì
+                //5ê¸€ì ì´ìƒ ëŒ€í™”ê°€ ì§„í–‰ë˜ê³  Zí‚¤ë¥¼ ëˆŒë €ì„ ê²½ìš°
                 if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
                 {
-                    //Å¸ÀÌÇÎ ¼Óµµ º¯°æ
+                    //íƒ€ì´í•‘ ì†ë„ ë³€ê²½
                     typingSpeed = skipTypingSpeed;
                 }
 
-                //´ë»ç Ãâ·Â ÁßÀÏ °æ¿ì¿¡¸¸
+                //ëŒ€ì‚¬ ì¶œë ¥ ì¤‘ì¼ ê²½ìš°ì—ë§Œ
                 if (ChatText.text != narration)
                 {
-                    //ÅØ½ºÆ® Å¸ÀÌÇÎ ½Ã°£ Á¶Àı
+                    //í…ìŠ¤íŠ¸ íƒ€ì´í•‘ ì‹œê°„ ì¡°ì ˆ
                     yield return new WaitForSeconds(typingSpeed);
                 }
 
             }
 
-            //´ë»ç Ãâ·Â ÈÄ Àá±ñ µô·¹ÀÌ
+            //ëŒ€ì‚¬ ì¶œë ¥ í›„ ì ê¹ ë”œë ˆì´
             yield return new WaitForSeconds(0.1f);
 
-            //TalkEnd Cursor º¸ÀÌ±â
+            //TalkEnd Cursor ë³´ì´ê¸°
             obj_TalkEndCur.SetActive(true);
 
-            //ZÅ°¸¦ ´Ù½Ã ´©¸¦ ¶§±îÁö ¹«ÇÑÁ¤ ´ë±â
+            //Zí‚¤ë¥¼ ë‹¤ì‹œ ëˆ„ë¥¼ ë•Œê¹Œì§€ ë¬´í•œì • ëŒ€ê¸°
             while (true)
             {
                 if (ChatText.text == writerText && Input.GetKeyDown(KeyCode.Z))
                 {
-                    Debug.Log("Text ºñ¿ì±â");
+                    Debug.Log("Text ë¹„ìš°ê¸°");
 
-                    //Å¸ÀÌÇÎ ¼Óµµ ÃÊ±âÈ­
+                    //íƒ€ì´í•‘ ì†ë„ ì´ˆê¸°í™”
                     typingSpeed = 0.02f;
 
-                    //Text ºñ¿ì±â
+                    //Text ë¹„ìš°ê¸°
                     writerText = "";
 
                     break;
@@ -574,35 +573,35 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    //ÇØ´çÇÏ´Â ÀÎµ¦½º °ªÀÇ ´ëÈ­¸¦ ¹İÈ¯ÇØÁÖ´Â ¸Ş¼­µå
+    //í•´ë‹¹í•˜ëŠ” ì¸ë±ìŠ¤ ê°’ì˜ ëŒ€í™”ë¥¼ ë°˜í™˜í•´ì£¼ëŠ” ë©”ì„œë“œ
     public string GetNpcSentence(int _indexNum)
     {
         return npcDatabaseScr.NPC_01[_indexNum].comment;
     }
 
-    //ÇØ´çÇÏ´Â ÀÎµ¦½º °ªÀÇ NPC ÀÌ¸§À» ¹İÈ¯ÇØÁÖ´Â ¸Ş¼­µå
+    //í•´ë‹¹í•˜ëŠ” ì¸ë±ìŠ¤ ê°’ì˜ NPC ì´ë¦„ì„ ë°˜í™˜í•´ì£¼ëŠ” ë©”ì„œë“œ
     public string GetNpcName(int _indexNum)
     {
         return npcDatabaseScr.NPC_01[_indexNum].npc_name;
     }
 
-    #region ½Ã½ºÅÛ ¸Ş¼¼Áö ·ÎÁ÷
-    //½Ã½ºÅÛ ¸Ş¼¼Áö ÄÚ·çÆ¾
+    #region ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ë¡œì§
+    //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì½”ë£¨í‹´
     IEnumerator SystemMessage(string _narration, bool _exit)
     {
-        //´ÙÀÌ¾ó·Î±× ºñ¿ì±â
+        //ë‹¤ì´ì–¼ë¡œê·¸ ë¹„ìš°ê¸°
         CleanDialogue();
 
-        //ÄÚ·çÆ¾ Áßº¹ ½ÇÇà ¹æÁö
+        //ì½”ë£¨í‹´ ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€
         isSentence_Start = true;
 
-        //Text ºñ¿ì±â
+        //Text ë¹„ìš°ê¸°
         writerText = "";
 
-        //ÃÊ»óÈ­ º¯°æ
+        //ì´ˆìƒí™” ë³€ê²½
         Npc_Portrait.sprite = npc_Sprites[0];
 
-        //½Ã½ºÅÛ ´ÙÀÌ¾ó·Î±× È°¼ºÈ­
+        //ì‹œìŠ¤í…œ ë‹¤ì´ì–¼ë¡œê·¸ í™œì„±í™”
         Dialouge_System.SetActive(true);
 
         int a = 0;
@@ -613,15 +612,15 @@ public class DialogManager : MonoBehaviour
             writerText += _narration[a];
             ChatText.text = writerText;
 
-            //ÅØ½ºÆ® Å¸ÀÌÇÎ ½Ã°£ Á¶Àı
+            //í…ìŠ¤íŠ¸ íƒ€ì´í•‘ ì‹œê°„ ì¡°ì ˆ
             //yield return null;
 
             if (a > 2 && Input.GetKeyDown(KeyCode.Z))
             {
-                //ÄÚ·çÆ¾ Áßº¹ ½ÇÇà ¹æÁöÇØÁ¦
+                //ì½”ë£¨í‹´ ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€í•´ì œ
                 isSentence_Start = false;
 
-                //½Ã½ºÅÛ ´ÙÀÌ¾ó·Î±× ºñÈ°¼ºÈ­
+                //ì‹œìŠ¤í…œ ë‹¤ì´ì–¼ë¡œê·¸ ë¹„í™œì„±í™”
                 //Dialouge_System.SetActive(false);
             }
 
@@ -629,24 +628,24 @@ public class DialogManager : MonoBehaviour
         }
         yield return null;
 
-        //´ë»ç Ãâ·Â ÈÄ Àá±ñ µô·¹ÀÌ
+        //ëŒ€ì‚¬ ì¶œë ¥ í›„ ì ê¹ ë”œë ˆì´
         yield return new WaitForSeconds(0.1f);
 
-        //ZÅ°¸¦ ´Ù½Ã ´©¸¦ ¶§±îÁö ¹«ÇÑÁ¤ ´ë±â
+        //Zí‚¤ë¥¼ ë‹¤ì‹œ ëˆ„ë¥¼ ë•Œê¹Œì§€ ë¬´í•œì • ëŒ€ê¸°
         while (true)
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                //ÄÚ·çÆ¾ Áßº¹ ½ÇÇà ¹æÁöÇØÁ¦
+                //ì½”ë£¨í‹´ ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€í•´ì œ
                 isSentence_Start = false;
 
                 if (_exit)
                 {
-                    //½Ã½ºÅÛ ´ÙÀÌ¾ó·Î±× ºñÈ°¼ºÈ­
+                    //ì‹œìŠ¤í…œ ë‹¤ì´ì–¼ë¡œê·¸ ë¹„í™œì„±í™”
                     Dialouge_System.SetActive(false);
                 }
 
-                //Text ºñ¿ì±â
+                //Text ë¹„ìš°ê¸°
                 writerText = "";
                 break;
             }
@@ -654,59 +653,88 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    //½Ã½ºÅÛ ¸Ş¼¼Áö ÄÚ·çÆ¾
+    //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì½”ë£¨í‹´
     IEnumerator SystemMessage(string _narrator, string _narration, bool _exit)
     {
-        //È­ÀÚ¿¡ µû¶ó ÃÊ»óÈ­, ÀÌ¸§ º¯°æ
+        //í™”ìì— ë”°ë¼ ì´ˆìƒí™”, ì´ë¦„ ë³€ê²½
         ChangeNpcPortrait(_narrator);
 
 
-        //ÄÚ·çÆ¾ Áßº¹ ½ÇÇà ¹æÁö
+        //ì½”ë£¨í‹´ ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€
         isSentence_Start = true;
 
-        //Text ºñ¿ì±â
+        //Text ë¹„ìš°ê¸°
         writerText = "";
 
-        //ÃÊ»óÈ­ º¯°æ
+        //ì´ˆìƒí™” ë³€ê²½
         Npc_Portrait.sprite = npc_Sprites[0];
 
-        //½Ã½ºÅÛ ´ÙÀÌ¾ó·Î±× È°¼ºÈ­
+        if(Npc_Portrait.sprite == npc_Sprites[0])
+		{
+
+            //ê¸°ë³¸ ì´ë¯¸ì§€ë¡œ ì´ˆê¸°í™”
+            Npc_Portrait.sprite = npc_Sprites[0];
+
+            //ì´ë¯¸ì§€ ì»¬ëŸ¬ êµ¬ì¡°ì²´ í• ë‹¹
+            Color npc_color = Npc_Portrait.color;
+
+            //ì•ŒíŒŒê°’ ì¡°ì ˆ
+            //player_Portrait.color = new Color(player_Portrait.color.r, player_Portrait.color.g, player_Portrait.color.b, 0.5f);
+            npc_color.a = 0.05f;
+            Npc_Portrait.color = npc_color;
+
+
+
+            //ê¸°ë³¸ ì´ë¯¸ì§€ë¡œ ì´ˆê¸°í™”
+            player_Portrait.sprite = player_sprites[1];
+
+            //ì´ë¯¸ì§€ ì»¬ëŸ¬ êµ¬ì¡°ì²´ í• ë‹¹
+            Color player_color = player_Portrait.color;
+
+            //ì•ŒíŒŒê°’ ì¡°ì ˆ
+            //player_Portrait.color = new Color(player_Portrait.color.r, player_Portrait.color.g, player_Portrait.color.b, 0.5f);
+            player_color.a = 1.0f;
+            player_Portrait.color = player_color;
+        }
+
+
+        //ì‹œìŠ¤í…œ ë‹¤ì´ì–¼ë¡œê·¸ í™œì„±í™”
         Dialouge_System.SetActive(true);
 
-        //ÅØ½ºÆ® Å¸ÀÌÇÎ
+        //í…ìŠ¤íŠ¸ íƒ€ì´í•‘
         for (int a = 0; a < _narration.Length; a++)
         {
             writerText += _narration[a];
             ChatText.text = writerText;
 
-            //5±ÛÀÚ ÀÌ»ó ´ëÈ­°¡ ÁøÇàµÇ°í ZÅ°¸¦ ´­·¶À» °æ¿ì
+            //5ê¸€ì ì´ìƒ ëŒ€í™”ê°€ ì§„í–‰ë˜ê³  Zí‚¤ë¥¼ ëˆŒë €ì„ ê²½ìš°
             if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
             {
                 ChatText.text = _narration;
 
-                //for¹® Á¶°Ç ÃæÁ·
+                //forë¬¸ ì¡°ê±´ ì¶©ì¡±
                 a = _narration.Length;
             }
 
-            //´ë»ç Ãâ·Â ÁßÀÏ °æ¿ì¿¡¸¸
+            //ëŒ€ì‚¬ ì¶œë ¥ ì¤‘ì¼ ê²½ìš°ì—ë§Œ
             if (ChatText.text != _narration)
             {
-                //ÅØ½ºÆ® Å¸ÀÌÇÎ ½Ã°£ Á¶Àı
+                //í…ìŠ¤íŠ¸ íƒ€ì´í•‘ ì‹œê°„ ì¡°ì ˆ
                 yield return new WaitForSeconds(0.02f);
             }
         }
 
-        //´ë»ç Ãâ·Â ÈÄ Àá±ñ µô·¹ÀÌ
+        //ëŒ€ì‚¬ ì¶œë ¥ í›„ ì ê¹ ë”œë ˆì´
         yield return new WaitForSeconds(0.1f);
 
-        //ZÅ°¸¦ ´Ù½Ã ´©¸¦ ¶§±îÁö ¹«ÇÑÁ¤ ´ë±â
+        //Zí‚¤ë¥¼ ë‹¤ì‹œ ëˆ„ë¥¼ ë•Œê¹Œì§€ ë¬´í•œì • ëŒ€ê¸°
         while (true)
         {
             if (ChatText.text == _narration && Input.GetKeyDown(KeyCode.Z))
             {
-                Debug.Log("Text ºñ¿ì±â");
+                Debug.Log("Text ë¹„ìš°ê¸°");
 
-                //Text ºñ¿ì±â
+                //Text ë¹„ìš°ê¸°
                 writerText = "";
 
                 break;
@@ -715,36 +743,36 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    //½Ã½ºÅÛ ¸Ş¼¼Áö¸¦ ½ÃÀÛÇØÁÖ´Â ¸Ş¼­µå
+    //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ë¥¼ ì‹œì‘í•´ì£¼ëŠ” ë©”ì„œë“œ
     public void Start_SystemMessage(string _narration, bool _exit)
     {
-        //ÄÚ·çÆ¾ Áßº¹½ÇÇà ¹æÁö
+        //ì½”ë£¨í‹´ ì¤‘ë³µì‹¤í–‰ ë°©ì§€
         if (!isSentence_Start)
         {
             StartCoroutine(SystemMessage(_narration, _exit));
         }
     }
 
-    //½Ã½ºÅÛ ¸Ş¼¼Áö¸¦ ½ÃÀÛÇØÁÖ´Â ¸Ş¼­µå(ÀÌ¸§ Æ÷ÇÔ)
+    //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ë¥¼ ì‹œì‘í•´ì£¼ëŠ” ë©”ì„œë“œ(ì´ë¦„ í¬í•¨)
     public void Start_SystemMessage(string _narrator, string _narration, bool _exit)
     {
-        //ÄÚ·çÆ¾ Áßº¹½ÇÇà ¹æÁö
+        //ì½”ë£¨í‹´ ì¤‘ë³µì‹¤í–‰ ë°©ì§€
         if (!isSentence_Start)
         {
             StartCoroutine(SystemMessage(_narrator, _narration, _exit));
         }
     }
 
-    //½Ã½ºÅÛ ¸Ş¼¼Áö°¡ ³¡³ª¸é true, ¾Æ´Ï¸é false ¹İÈ¯)
+    //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ê°€ ëë‚˜ë©´ true, ì•„ë‹ˆë©´ false ë°˜í™˜)
     public bool IsSystemMessageEnd()
     {
-        //´ÙÀÌ¾ó·Î±× Ã¢ÀÌ Á¾·á µÇ¾ú´Ù¸é
+        //ë‹¤ì´ì–¼ë¡œê·¸ ì°½ì´ ì¢…ë£Œ ë˜ì—ˆë‹¤ë©´
         if (Dialouge_System.activeSelf == false)
         {
             return true;
         }
 
-        //¾Æ´Ï¸é
+        //ì•„ë‹ˆë©´
         else
         {
             return false;
@@ -752,21 +780,21 @@ public class DialogManager : MonoBehaviour
     }
     #endregion
 
-    #region ¾àÃÊ ÀÌº¥Æ® ´ë»ç
-    //¾àÃÊ ³Ö±â ´ë»ç Ãâ·Â
+    #region ì•½ì´ˆ ì´ë²¤íŠ¸ ëŒ€ì‚¬
+    //ì•½ì´ˆ ë„£ê¸° ëŒ€ì‚¬ ì¶œë ¥
     IEnumerator SystemMessage_HerbSentence()
     {
-        //¾àÃÊ ³Ö±â ½Ã½ºÅÛ ¸Ş¼¼Áö Ãâ·Â
+        //ì•½ì´ˆ ë„£ê¸° ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì¶œë ¥
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(530), true));
 
-        //ÀÌÈÄ¿¡ 7398·Î ¼öÁ¤ÇÏ±â
+        //ì´í›„ì— 7398ë¡œ ìˆ˜ì •í•˜ê¸°
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(531), true));
 
-        //´ÙÀÌ¾ó·Î±× Á¾·á
+        //ë‹¤ì´ì–¼ë¡œê·¸ ì¢…ë£Œ
         Dialouge_System.SetActive(false);
     }
 
-    //¾àÃÊ ³Ö±â ´ë»ç ½ÃÀÛ
+    //ì•½ì´ˆ ë„£ê¸° ëŒ€ì‚¬ ì‹œì‘
     public void StartPushHerbSentence()
     {
         StartCoroutine(SystemMessage_HerbSentence());
@@ -775,42 +803,42 @@ public class DialogManager : MonoBehaviour
     #endregion
 
 
-    #region °¡¸¶¼Ü ÀÌº¥Æ® ´ë»ç
+    #region ê°€ë§ˆì†¥ ì´ë²¤íŠ¸ ëŒ€ì‚¬
 
-    //¹°¹Ù°¡Áö ´ë»ç
+    //ë¬¼ë°”ê°€ì§€ ëŒ€ì‚¬
     IEnumerator SystemMessage_WaterBagage()
     {
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(522), true));
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(282), true));
     }
 
-    //¹°¹Ù°¡Áö ´ë»ç2
+    //ë¬¼ë°”ê°€ì§€ ëŒ€ì‚¬2
     IEnumerator SystemMessage_WaterBagage_2()
     {
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(522), true));
     }
 
-    //¹° ¹Ù°¡Áö ´ë»ç Ãâ·Â
+    //ë¬¼ ë°”ê°€ì§€ ëŒ€ì‚¬ ì¶œë ¥
     public void Start_WaterBageSentence()
     {
         StartCoroutine(SystemMessage_WaterBagage());
     }
 
-    //¹° ¹Ù°¡Áö ´ë»ç Ãâ·Â2
+    //ë¬¼ ë°”ê°€ì§€ ëŒ€ì‚¬ ì¶œë ¥2
     public void Start_WaterBageSentence_2()
     {
         StartCoroutine(SystemMessage_WaterBagage_2());
     }
 
 
-    //¼Ü¿¡ ½Ò¸¸ ³Ö¾úÀ» °æ¿ì ´ë»ç
+    //ì†¥ì— ìŒ€ë§Œ ë„£ì—ˆì„ ê²½ìš° ëŒ€ì‚¬
     IEnumerator SystemMessage_RiceSentence()
     {
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(523), true));
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(291), true));
     }
 
-    //¼Ü¿¡ ½Ò¸¸ ³Ö¾úÀ» °æ¿ì ´ë»ç Ãâ·Â
+    //ì†¥ì— ìŒ€ë§Œ ë„£ì—ˆì„ ê²½ìš° ëŒ€ì‚¬ ì¶œë ¥
     public void Start_RiceSentence()
     {
         StartCoroutine(SystemMessage_RiceSentence());
@@ -818,22 +846,22 @@ public class DialogManager : MonoBehaviour
 
     #endregion
 
-    //¹î»ç°ø 3 ´ë»ç
+    //ë±ƒì‚¬ê³µ 3 ëŒ€ì‚¬
     IEnumerator BoatMan3_Sentence()
     {
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(604), true));
     }
 
-    //¹î»ç°ø3 ´ë»çÃâ·Â
+    //ë±ƒì‚¬ê³µ3 ëŒ€ì‚¬ì¶œë ¥
     public void Start_BoatMan3_Sentence()
     {
         StartCoroutine(BoatMan3_Sentence());
     }
 
-    //°úÀ¯ºÒ±Ş ¿£µù´ëÈ­
+    //ê³¼ìœ ë¶ˆê¸‰ ì—”ë”©ëŒ€í™”
     IEnumerator BadEndingSentence()
     {
-        //¹è°æ ¾îµÓ°Ô º¯°æ
+        //ë°°ê²½ ì–´ë‘¡ê²Œ ë³€ê²½
         EndingManager.instance.ShowEndingBG();
 
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(419), true));
@@ -843,20 +871,20 @@ public class DialogManager : MonoBehaviour
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(423), true));
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(424), true));
 
-        //Å¸ÀÌÆ² ÀÌµ¿
+        //íƒ€ì´í‹€ ì´ë™
         EndingManager.instance.LoadTitleScene();
     }
 
-    //°úÀ¯ºÒ±Ş ¿£µù ½ÃÀÛ
+    //ê³¼ìœ ë¶ˆê¸‰ ì—”ë”© ì‹œì‘
     public void StartBadEndingSentence()
     {
         StartCoroutine(BadEndingSentence());
     }
 
-    //°í¸³¹«¿ø ¿£µù´ëÈ­
+    //ê³ ë¦½ë¬´ì› ì—”ë”©ëŒ€í™”
     IEnumerator BadEndingSentence2()
     {
-        //¹è°æ ¾îµÓ°Ô º¯°æ
+        //ë°°ê²½ ì–´ë‘¡ê²Œ ë³€ê²½
         EndingManager.instance.ShowEndingBG();
 
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(795), DialogManager.instance.GetNpcSentence(795), true));
@@ -873,187 +901,199 @@ public class DialogManager : MonoBehaviour
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(806), DialogManager.instance.GetNpcSentence(806), true));
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcName(807), DialogManager.instance.GetNpcSentence(807), true));
 
-        //Å¸ÀÌÆ² ÀÌµ¿
+        //íƒ€ì´í‹€ ì´ë™
         EndingManager.instance.LoadTitleScene();
     }
 
-    //°í¸³¹«¿ø ¿£µù ½ÃÀÛ
+    //ê³ ë¦½ë¬´ì› ì—”ë”© ì‹œì‘
     public void StartBadEndingSentence2()
     {
-        //°í¸³¹«¿ø ¿£µù ½ÃÀÛ
+        //ê³ ë¦½ë¬´ì› ì—”ë”© ì‹œì‘
         StartCoroutine(BadEndingSentence2());
     }
 
-    //Player ÃÊ»óÈ­ º¯°æ
+    //Player ì´ˆìƒí™” ë³€ê²½
     public void ChagePlayerPortrait(string _narrator)
     {
         switch (_narrator)
         {
-            case "½ÉÇĞ±Ô":
+            case "ì‹¬í•™ê·œ":
                 player_Portrait.sprite = player_sprites[1];
+
+                //ê¸°ë³¸ ì´ë¯¸ì§€ë¡œ ì´ˆê¸°í™”
+                //player_Portrait.sprite = player_sprites[1];
+
+                //ì´ë¯¸ì§€ ì»¬ëŸ¬ êµ¬ì¡°ì²´ í• ë‹¹
+                Color player_color = player_Portrait.color;
+
+                //ì•ŒíŒŒê°’ ì¡°ì ˆ
+                //player_Portrait.color = new Color(player_Portrait.color.r, player_Portrait.color.g, player_Portrait.color.b, 0.5f);
+                player_color.a = 1.0f;
+                player_Portrait.color = player_color;
+
                 break;
         }
     }
 
-    //NPC ÃÊ»óÈ­ º¯°æ
+    //NPC ì´ˆìƒí™” ë³€ê²½
     public void ChangeNpcPortrait(string _narrator)
     {
-        Debug.Log($"ÃÊ»óÈ­ º¯°æ ½ÇÇà : {_narrator}");
+        Debug.Log($"ì´ˆìƒí™” ë³€ê²½ ì‹¤í–‰ : {_narrator}");
 
 
         switch (_narrator)
         {
-            case "»±´ö ¾î¸Ø":
+            case "ëº‘ë• ì–´ë©ˆ":
 
-                //ÃÊ»óÈ­ º¯°æ
+                //ì´ˆìƒí™” ë³€ê²½
                 Npc_Portrait.sprite = npc_Sprites[1];
-                //½ÉÇĞ±Ô ÀÌ¹ÌÁö ¸®¼Â
+                //ì‹¬í•™ê·œ ì´ë¯¸ì§€ ë¦¬ì…‹
                 ResetPlayerPortrait();
 
-                //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "»±´ö ¾î¸Ø";
+                //ì´ë¦„ ë³€ê²½
+                text_NpcName.text = "ëº‘ë• ì–´ë©ˆ";
                 break;
 
-            case "°ÅÁö":
+            case "ê±°ì§€":
 
-                //ÃÊ»óÈ­ º¯°æ
+                //ì´ˆìƒí™” ë³€ê²½
                 Npc_Portrait.sprite = npc_Sprites[2];
-                //½ÉÇĞ±Ô ÀÌ¹ÌÁö ¸®¼Â
+                //ì‹¬í•™ê·œ ì´ë¯¸ì§€ ë¦¬ì…‹
                 ResetPlayerPortrait();
 
-                //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "°Å Áö";
+                //ì´ë¦„ ë³€ê²½
+                text_NpcName.text = "ê±° ì§€";
                 break;
 
-            case "½Â·Á":
+            case "ìŠ¹ë ¤":
 
-                //ÃÊ»óÈ­ º¯°æ
+                //ì´ˆìƒí™” ë³€ê²½
                 Npc_Portrait.sprite = npc_Sprites[3];
-                //½ÉÇĞ±Ô ÀÌ¹ÌÁö ¸®¼Â
+                //ì‹¬í•™ê·œ ì´ë¯¸ì§€ ë¦¬ì…‹
                 ResetPlayerPortrait();
 
-                //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "½Â ·Á";
+                //ì´ë¦„ ë³€ê²½
+                text_NpcName.text = "ìŠ¹ ë ¤";
                 break;
 
-            case "±Í´ö ¾î¸Ø":
+            case "ê·€ë• ì–´ë©ˆ":
 
-                //ÃÊ»óÈ­ º¯°æ
+                //ì´ˆìƒí™” ë³€ê²½
                 Npc_Portrait.sprite = npc_Sprites[4];
-                //½ÉÇĞ±Ô ÀÌ¹ÌÁö ¸®¼Â
+                //ì‹¬í•™ê·œ ì´ë¯¸ì§€ ë¦¬ì…‹
                 ResetPlayerPortrait();
 
-                //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "±Í´ö ¾î¸Ø";
+                //ì´ë¦„ ë³€ê²½
+                text_NpcName.text = "ê·€ë• ì–´ë©ˆ";
                 break;
 
-            case "Àå»ç²Û":
+            case "ì¥ì‚¬ê¾¼":
 
-                //ÃÊ»óÈ­ º¯°æ
+                //ì´ˆìƒí™” ë³€ê²½
                 Npc_Portrait.sprite = npc_Sprites[5];
-                //½ÉÇĞ±Ô ÀÌ¹ÌÁö ¸®¼Â
+                //ì‹¬í•™ê·œ ì´ë¯¸ì§€ ë¦¬ì…‹
                 ResetPlayerPortrait();
 
-                //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "Àå»ç²Û";
+                //ì´ë¦„ ë³€ê²½
+                text_NpcName.text = "ì¥ì‚¬ê¾¼";
                 break;
 
-            case "Çâ¸® ´ì ºÎÀÎ":
+            case "í–¥ë¦¬ ëŒ ë¶€ì¸":
 
-                //ÃÊ»óÈ­ º¯°æ
+                //ì´ˆìƒí™” ë³€ê²½
                 Npc_Portrait.sprite = npc_Sprites[6];
-                //½ÉÇĞ±Ô ÀÌ¹ÌÁö ¸®¼Â
+                //ì‹¬í•™ê·œ ì´ë¯¸ì§€ ë¦¬ì…‹
                 ResetPlayerPortrait();
 
-                //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "Çâ¸® ´ì ºÎÀÎ";
+                //ì´ë¦„ ë³€ê²½
+                text_NpcName.text = "í–¥ë¦¬ ëŒ ë¶€ì¸";
                 break;
 
-            case "¹î»ç°ø":
+            case "ë±ƒì‚¬ê³µ":
 
-                //ÃÊ»óÈ­ º¯°æ
+                //ì´ˆìƒí™” ë³€ê²½
                 Npc_Portrait.sprite = npc_Sprites[8];
-                //½ÉÇĞ±Ô ÀÌ¹ÌÁö ¸®¼Â
+                //ì‹¬í•™ê·œ ì´ë¯¸ì§€ ë¦¬ì…‹
                 ResetPlayerPortrait();
 
-                //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "¹î»ç°ø";
+                //ì´ë¦„ ë³€ê²½
+                text_NpcName.text = "ë±ƒì‚¬ê³µ";
                 break;
 
-            case "½ÉÃ»":
+            case "ì‹¬ì²­":
 
-                //ÃÊ»óÈ­ º¯°æ
+                //ì´ˆìƒí™” ë³€ê²½
                 Npc_Portrait.sprite = npc_Sprites[9];
-                //½ÉÇĞ±Ô ÀÌ¹ÌÁö ¸®¼Â
+                //ì‹¬í•™ê·œ ì´ë¯¸ì§€ ë¦¬ì…‹
                 ResetPlayerPortrait();
 
-                //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "½É Ã»";
+                //ì´ë¦„ ë³€ê²½
+                text_NpcName.text = "ì‹¬ ì²­";
                 break;
 
-            case "¼Û³ª¶ó »óÀÎ":
+            case "ì†¡ë‚˜ë¼ ìƒì¸":
 
-                //ÃÊ»óÈ­ º¯°æ
+                //ì´ˆìƒí™” ë³€ê²½
                 Npc_Portrait.sprite = npc_Sprites[10];
-                //½ÉÇĞ±Ô ÀÌ¹ÌÁö ¸®¼Â
+                //ì‹¬í•™ê·œ ì´ë¯¸ì§€ ë¦¬ì…‹
                 ResetPlayerPortrait();
 
-                //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "¼Û³ª¶ó »óÀÎ";
+                //ì´ë¦„ ë³€ê²½
+                text_NpcName.text = "ì†¡ë‚˜ë¼ ìƒì¸";
                 break;
 
-            case "ÀåÁö¾ğ":
+            case "ì¥ì§€ì–¸":
 
-                //ÃÊ»óÈ­ º¯°æ
+                //ì´ˆìƒí™” ë³€ê²½
                 Npc_Portrait.sprite = npc_Sprites[11];
-                //½ÉÇĞ±Ô ÀÌ¹ÌÁö ¸®¼Â
+                //ì‹¬í•™ê·œ ì´ë¯¸ì§€ ë¦¬ì…‹
                 ResetPlayerPortrait();
 
-                //ÀÌ¸§ º¯°æ
-                text_NpcName.text = "ÀåÁö¾ğ";
+                //ì´ë¦„ ë³€ê²½
+                text_NpcName.text = "ì¥ì§€ì–¸";
                 break;
 
         }
     }
 
-    //NPC ·£´ı ´ë»ç°ª1
+    //NPC ëœë¤ ëŒ€ì‚¬ê°’1
     public string RandomNpcSentence(string _narrator)
     {
-        Debug.Log($"·£´ı ´ë»ç °ª ¹İÈ¯ : {_narrator}");
+        Debug.Log($"ëœë¤ ëŒ€ì‚¬ ê°’ ë°˜í™˜ : {_narrator}");
 
         switch (_narrator)
         {
-            case "½ÉÇĞ±Ô":
+            case "ì‹¬í•™ê·œ":
                 return null;
 
-            case "»±´ö ¾î¸Ø":
+            case "ëº‘ë• ì–´ë©ˆ":
                 return npcDatabaseScr.NPC_01[1].comment;
 
-            case "°ÅÁö":
+            case "ê±°ì§€":
                 return npcDatabaseScr.NPC_01[6].comment;
 
-            case "½Â·Á":
+            case "ìŠ¹ë ¤":
                 return npcDatabaseScr.NPC_01[5].comment;
 
-            case "±Í´ö ¾î¸Ø":
+            case "ê·€ë• ì–´ë©ˆ":
                 return npcDatabaseScr.NPC_01[2].comment;
 
-            case "Àå»ç²Û":
+            case "ì¥ì‚¬ê¾¼":
                 return npcDatabaseScr.NPC_01[4].comment;
 
-            case "Çâ¸® ´ì ºÎÀÎ":
+            case "í–¥ë¦¬ ëŒ ë¶€ì¸":
                 return npcDatabaseScr.NPC_01[3].comment;
 
-            case "¹î»ç°ø":
+            case "ë±ƒì‚¬ê³µ":
                 return npcDatabaseScr.NPC_01[7].comment;
 
-            case "½ÉÃ»":
+            case "ì‹¬ì²­":
                 return null;
 
-            case "¼Û³ª¶ó »óÀÎ":
+            case "ì†¡ë‚˜ë¼ ìƒì¸":
                 return npcDatabaseScr.NPC_01[8].comment;
 
-            case "ÀåÁö¾ğ":
+            case "ì¥ì§€ì–¸":
                 return npcDatabaseScr.NPC_01[563].comment;
 
             default:
@@ -1061,44 +1101,44 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    //NPC ·£´ı ´ë»ç°ª2
+    //NPC ëœë¤ ëŒ€ì‚¬ê°’2
     public string RandomNpcSentence2(string _narrator)
     {
-        Debug.Log($"·£´ı ´ë»ç °ª ¹İÈ¯ : {_narrator}");
+        Debug.Log($"ëœë¤ ëŒ€ì‚¬ ê°’ ë°˜í™˜ : {_narrator}");
 
         switch (_narrator)
         {
-            case "½ÉÇĞ±Ô":
+            case "ì‹¬í•™ê·œ":
                 return null;
 
-            case "»±´ö ¾î¸Ø":
+            case "ëº‘ë• ì–´ë©ˆ":
                 return npcDatabaseScr.NPC_01[399].comment;
 
-            case "°ÅÁö":
+            case "ê±°ì§€":
                 return npcDatabaseScr.NPC_01[403].comment;
 
-            case "½Â·Á":
+            case "ìŠ¹ë ¤":
                 return npcDatabaseScr.NPC_01[407].comment;
 
-            case "±Í´ö ¾î¸Ø":
+            case "ê·€ë• ì–´ë©ˆ":
                 return npcDatabaseScr.NPC_01[400].comment;
 
-            case "Àå»ç²Û":
+            case "ì¥ì‚¬ê¾¼":
                 return npcDatabaseScr.NPC_01[402].comment;
 
-            case "Çâ¸® ´ì ºÎÀÎ":
+            case "í–¥ë¦¬ ëŒ ë¶€ì¸":
                 return npcDatabaseScr.NPC_01[401].comment;
 
-            case "¹î»ç°ø":
+            case "ë±ƒì‚¬ê³µ":
                 return npcDatabaseScr.NPC_01[404].comment;
 
-            case "½ÉÃ»":
+            case "ì‹¬ì²­":
                 return null;
 
-            case "¼Û³ª¶ó »óÀÎ":
+            case "ì†¡ë‚˜ë¼ ìƒì¸":
                 return npcDatabaseScr.NPC_01[405].comment;
 
-            case "ÀåÁö¾ğ":
+            case "ì¥ì§€ì–¸":
                 return npcDatabaseScr.NPC_01[603].comment;
 
             default:
@@ -1106,41 +1146,41 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    //NPC ·£´ı ´ë»ç°ª3
+    //NPC ëœë¤ ëŒ€ì‚¬ê°’3
     public string RandomNpcSentence3(string _narrator)
     {
-        Debug.Log($"·£´ı ´ë»ç °ª ¹İÈ¯ : {_narrator}");
+        Debug.Log($"ëœë¤ ëŒ€ì‚¬ ê°’ ë°˜í™˜ : {_narrator}");
 
         switch (_narrator)
         {
-            case "½ÉÇĞ±Ô":
+            case "ì‹¬í•™ê·œ":
                 return null;
 
-            case "»±´ö ¾î¸Ø":
+            case "ëº‘ë• ì–´ë©ˆ":
                 return npcDatabaseScr.NPC_01[399].comment;
 
-            case "°ÅÁö":
+            case "ê±°ì§€":
                 return npcDatabaseScr.NPC_01[403].comment;
 
-            case "½Â·Á":
+            case "ìŠ¹ë ¤":
                 return null;
 
-            case "±Í´ö ¾î¸Ø":
+            case "ê·€ë• ì–´ë©ˆ":
                 return npcDatabaseScr.NPC_01[400].comment;
 
-            case "Àå»ç²Û":
+            case "ì¥ì‚¬ê¾¼":
                 return npcDatabaseScr.NPC_01[402].comment;
 
-            case "Çâ¸® ´ì ºÎÀÎ":
+            case "í–¥ë¦¬ ëŒ ë¶€ì¸":
                 return npcDatabaseScr.NPC_01[401].comment;
 
-            case "¹î»ç°ø":
+            case "ë±ƒì‚¬ê³µ":
                 return npcDatabaseScr.NPC_01[404].comment;
 
-            case "½ÉÃ»":
+            case "ì‹¬ì²­":
                 return null;
 
-            case "¼Û³ª¶ó »óÀÎ":
+            case "ì†¡ë‚˜ë¼ ìƒì¸":
                 return npcDatabaseScr.NPC_01[406].comment;
 
             default:
@@ -1148,33 +1188,60 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    //´ÙÀÌ¾ó·Î±× ´ë»ç °ª ºñ¿ì±â
+    //ë‹¤ì´ì–¼ë¡œê·¸ ëŒ€ì‚¬ ê°’ ë¹„ìš°ê¸°
     public void CleanDialogue()
     {
         ChatText.text = "";
         writerText = "";
     }
 
-    //NpcÃÊ»óÈ­ ÃÊ±âÈ­
+    //Npcì´ˆìƒí™” ì´ˆê¸°í™”
     public void ResetNpcPortrait()
     {
+        //ê¸°ë³¸ ì´ë¯¸ì§€ë¡œ ì´ˆê¸°í™”
         Npc_Portrait.sprite = npc_Sprites[0];
+        /*
+        //ì´ë¯¸ì§€ ì»¬ëŸ¬ êµ¬ì¡°ì²´ í• ë‹¹
+        Color npc_color = Npc_Portrait.color;
+
+        //ì•ŒíŒŒê°’ ì¡°ì ˆ
+        //player_Portrait.color = new Color(player_Portrait.color.r, player_Portrait.color.g, player_Portrait.color.b, 0.5f);
+        npc_color.a = 0.05f;
+        Npc_Portrait.color = npc_color;
+        
+
+        
+        //ê¸°ë³¸ ì´ë¯¸ì§€ë¡œ ì´ˆê¸°í™”
+        player_Portrait.sprite = player_sprites[1];
+
+        //ì´ë¯¸ì§€ ì»¬ëŸ¬ êµ¬ì¡°ì²´ í• ë‹¹
+        Color player_color = player_Portrait.color;
+
+        //ì•ŒíŒŒê°’ ì¡°ì ˆ
+        //player_Portrait.color = new Color(player_Portrait.color.r, player_Portrait.color.g, player_Portrait.color.b, 0.5f);
+        player_color.a = 1.0f;
+        player_Portrait.color = player_color;
+        */
     }
 
-    //PlayerÃÊ»óÈ­ ÃÊ±âÈ­
+    //Playerì´ˆìƒí™” ì´ˆê¸°í™”
     public void ResetPlayerPortrait()
     {
         //player_Portrait.sprite = npc_Sprites[0];
-
-        //±âº» ÀÌ¹ÌÁö·Î ÃÊ±âÈ­
+        
+        //ê¸°ë³¸ ì´ë¯¸ì§€ë¡œ ì´ˆê¸°í™”
         player_Portrait.sprite = player_sprites[1];
-
+        
+        //ì´ë¯¸ì§€ ì»¬ëŸ¬ êµ¬ì¡°ì²´ í• ë‹¹
         Color player_color = player_Portrait.color;
-        player_color.a = 40;
+
+        //ì•ŒíŒŒê°’ ì¡°ì ˆ
+        //player_Portrait.color = new Color(player_Portrait.color.r, player_Portrait.color.g, player_Portrait.color.b, 0.5f);
+        player_color.a = 0.05f;
         player_Portrait.color = player_color;
     }
 
-    //´ÙÀÌ¾ó·Î±× Á¾·á
+    //ë‹¤ì´ì–¼ë¡œê·¸ ì¢…ë£Œ
     public void Dialouge_End()
     {
         Dialouge_System.SetActive(false);
