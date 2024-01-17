@@ -74,6 +74,9 @@ public class TimeManager : MonoBehaviour
     //날짜 UI
     public GameObject gameObjcet_DayUI;
 
+    //날짜 UI 컨트롤 변수
+    public bool isDayUI = false;
+
     //실제 시간
     [SerializeField]
     private float float_RealTime;
@@ -83,7 +86,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField]
     private int timeMultipleCation;
 
-    //하루가 지나기위해 걸리는시간
+    //하루가 지나기 위해 걸리는 시간
     public int int_DayMinute;
 
     //몇일 째인지 확인하는 변수
@@ -406,10 +409,7 @@ public class TimeManager : MonoBehaviour
         float_RealTime = 0;
         //캘린더 날짜 변경
         NextDayAnimaton(int_DayCount);
-
-
     }
-
 
     //데이터 저장
     public void Save(int _slotNum)

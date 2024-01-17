@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -35140,6 +35140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrlScr: {fileID: 1871036892}
+  timeManagerScr: {fileID: 0}
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   Dialouge_System: {fileID: 1486878665}
   ChatText: {fileID: 2081460924}
@@ -36086,7 +36087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3.2663574, y: -437.58768}
+  m_AnchoredPosition: {x: 3.2663574, y: -437.58765}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1125754046
@@ -44224,6 +44225,7 @@ MonoBehaviour:
   animator_Celender: {fileID: 1307439882}
   text_TimeText: {fileID: 219243736}
   gameObjcet_DayUI: {fileID: 1429576755}
+  isDayUI: 0
   float_RealTime: 0
   timeMultipleCation: 1
   int_DayMinute: 300

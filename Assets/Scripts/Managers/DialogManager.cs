@@ -33,8 +33,9 @@ public class DialogManager : MonoBehaviour
 {
     Dictionary<int, string[]> DialogData;
 
-    //외부 스크립트 참조
-    public Controller playerCtrlScr;
+	//외부 스크립트 참조
+	public Controller playerCtrlScr;
+    public TimeManager timeManagerScr;
 
     //싱글톤
     public static DialogManager instance = null;
@@ -60,11 +61,9 @@ public class DialogManager : MonoBehaviour
     //대화종료 커서 오브젝트
     public GameObject obj_TalkEndCur;
 
-
     //초상화 스프라이트 이미지들
     [Tooltip("0:Null, 1:뺑덕, 2:거지, 3:승려, 4:귀덕, 5:장사, 6:장승, 7:장승2, 8:뱃사, 9:심청, 10:송나라, 11: 장지언")]
     public Sprite[] npc_Sprites;
-
 
     //Player 스프라이트 이미지들
     [Tooltip("0: Null, 1:기본")]
@@ -73,7 +72,7 @@ public class DialogManager : MonoBehaviour
     //출력중인 대사 값
     public string writerText = "";
 
-    //시스템 메세지 코루틴이 이미 실행중인지 확인하는 flag
+    //시스템 메세지 코루틴이 이미 실행 중인지 확인하는 flag
     public bool isSentence_Start;
 
     //대화가 전부 출력 되었는지
@@ -133,6 +132,12 @@ public class DialogManager : MonoBehaviour
 
         //시간 정지
         TimeManager.instance.StopTime();
+
+        //UI 설정
+        //UI Canvas 끄기
+        //TutorialManager.instance.gameObject_UICanvas.SetActive(false);
+        //날짜 UI 끄기
+        //timeManagerScr.CloseDayUI();
 
         //다이얼로그 택스트 소리 재생
         EffectSoundManager.instance.PlayTalkTextSound();
@@ -267,6 +272,12 @@ public class DialogManager : MonoBehaviour
 
         //시간 정지
         TimeManager.instance.StopTime();
+
+        //UI 설정
+        //UI Canvas 끄기
+        //TutorialManager.instance.gameObject_UICanvas.SetActive(false);
+        //날짜 UI끄기
+        //timeManagerScr.CloseDayUI();
 
         //다이얼로그 택스트 소리 재생
         EffectSoundManager.instance.PlayTalkTextSound();
@@ -412,6 +423,12 @@ public class DialogManager : MonoBehaviour
         //시간 정지
         TimeManager.instance.StopTime();
 
+        //UI 설정
+        //UI Canvas 끄기
+        //TutorialManager.instance.gameObject_UICanvas.SetActive(false);
+        //날짜 UI끄기
+        //timeManagerScr.CloseDayUI();
+
         //다이얼로그 비우기
         CleanDialogue();
 
@@ -544,7 +561,6 @@ public class DialogManager : MonoBehaviour
                     //텍스트 타이핑 시간 조절
                     yield return new WaitForSeconds(typingSpeed);
                 }
-
             }
 
             //대사 출력 후 잠깐 딜레이
@@ -662,6 +678,12 @@ public class DialogManager : MonoBehaviour
         //시간 정지
         TimeManager.instance.StopTime();
 
+        //UI 설정
+        //UI Canvas 끄기
+        //TutorialManager.instance.gameObject_UICanvas.SetActive(false);
+        //날짜 UI끄기
+        //timeManagerScr.CloseDayUI();
+
         //코루틴 중복 실행 방지
         isSentence_Start = true;
 
@@ -768,9 +790,15 @@ public class DialogManager : MonoBehaviour
     //시스템 메세지가 끝나면 true, 아니면 false 반환)
     public bool IsSystemMessageEnd()
     {
-        //다이얼로그 창이 종료 되었다면
+        //다이얼로그 창이 종료되었다면
         if (Dialouge_System.activeSelf == false)
         {
+            //UI 설정
+            //UI Canvas 켜기
+            //TutorialManager.instance.gameObject_UICanvas.SetActive(true);
+            //날짜 UI켜기
+            //timeManagerScr.ShowDayUI();
+
             return true;
         }
 
@@ -942,7 +970,6 @@ public class DialogManager : MonoBehaviour
     {
         Debug.Log($"초상화 변경 실행 : {_narrator}");
 
-
         switch (_narrator)
         {
             case "뺑덕 어멈":
@@ -1054,7 +1081,6 @@ public class DialogManager : MonoBehaviour
                 //이름 변경
                 text_NpcName.text = "장지언";
                 break;
-
         }
     }
 
