@@ -193,6 +193,9 @@ public class UIManager : MonoBehaviour
     //Audio Window
     public GameObject gameObject_AudioWindow;
 
+    //UI 게임 컨트롤용
+    public GameObject image_item_Close_UI;
+    public GameObject image_Calendar_Close_UI;
 
     private void Awake()
     {
@@ -798,5 +801,28 @@ public class UIManager : MonoBehaviour
     {
         gameObject_AudioWindow.SetActive(false);
     }
-    
+
+    //아이템 UI 창 보이기
+    public void ShowItemWindow()
+    {
+        image_item_Close_UI.SetActive(true);
+    }
+
+    //아이템 UI 창 끄기
+    public void CloseItemWindow()
+    {
+        image_item_Close_UI.SetActive(false);
+    }
+
+    //캘린더 UI 창 보이기
+    public void ShowCalendarWindow()
+    {
+        image_Calendar_Close_UI.SetActive(true);
+    }
+
+    //캘린더 UI 창 끄기
+    public void CloseCalendarWindow()
+    {
+        image_Calendar_Close_UI.SetActive(false);
+    }
 }

@@ -135,9 +135,9 @@ public class DialogManager : MonoBehaviour
 
         //UI 설정
         //UI Canvas 끄기
-        //TutorialManager.instance.gameObject_UICanvas.SetActive(false);
+        UIManager.instance.CloseItemWindow();
         //날짜 UI 끄기
-        //timeManagerScr.CloseDayUI();
+        UIManager.instance.CloseCalendarWindow();
 
         //다이얼로그 택스트 소리 재생
         EffectSoundManager.instance.PlayTalkTextSound();
@@ -260,6 +260,15 @@ public class DialogManager : MonoBehaviour
             //타이핑 속도 초기화
             typingSpeed = 0.02f;
         }
+
+        if(remainSentence == true && isSentenceEnd == true) 
+        { 
+            //UI 설정
+            //UI Canvas 켜기
+            UIManager.instance.ShowItemWindow();
+            //날짜 UI 켜기
+            UIManager.instance.ShowCalendarWindow();
+        }
     }
 
     public IEnumerator ItemClueChat(string narrator, string narration)
@@ -275,9 +284,9 @@ public class DialogManager : MonoBehaviour
 
         //UI 설정
         //UI Canvas 끄기
-        //TutorialManager.instance.gameObject_UICanvas.SetActive(false);
-        //날짜 UI끄기
-        //timeManagerScr.CloseDayUI();
+        UIManager.instance.CloseItemWindow();
+        //날짜 UI 끄기
+        UIManager.instance.CloseCalendarWindow();
 
         //다이얼로그 택스트 소리 재생
         EffectSoundManager.instance.PlayTalkTextSound();
@@ -409,6 +418,15 @@ public class DialogManager : MonoBehaviour
 
         //TalkEnd Cursor 보이기
         obj_TalkEndCur.SetActive(true);
+
+        if (remainSentence == true && isSentenceEnd == true)
+        {
+            //UI 설정
+            //UI Canvas 켜기
+            UIManager.instance.ShowItemWindow();
+            //날짜 UI 켜기
+            UIManager.instance.ShowCalendarWindow();
+        }
     }
 
     //다이얼로그 대화 출력
@@ -425,9 +443,9 @@ public class DialogManager : MonoBehaviour
 
         //UI 설정
         //UI Canvas 끄기
-        //TutorialManager.instance.gameObject_UICanvas.SetActive(false);
-        //날짜 UI끄기
-        //timeManagerScr.CloseDayUI();
+        UIManager.instance.CloseItemWindow();
+        //날짜 UI 끄기
+        UIManager.instance.CloseCalendarWindow();
 
         //다이얼로그 비우기
         CleanDialogue();
@@ -586,6 +604,15 @@ public class DialogManager : MonoBehaviour
                 }
                 yield return null;
             }
+        }
+
+        if (remainSentence == true && isSentenceEnd == true)
+        {
+            //UI 설정
+            //UI Canvas 켜기
+            UIManager.instance.ShowItemWindow();
+            //날짜 UI 켜기
+            UIManager.instance.ShowCalendarWindow();
         }
     }
 
@@ -795,9 +822,9 @@ public class DialogManager : MonoBehaviour
         {
             //UI 설정
             //UI Canvas 켜기
-            //TutorialManager.instance.gameObject_UICanvas.SetActive(true);
-            //날짜 UI켜기
-            //timeManagerScr.ShowDayUI();
+            UIManager.instance.ShowItemWindow();
+            //날짜 UI 켜기
+            UIManager.instance.ShowCalendarWindow();
 
             return true;
         }
@@ -1276,5 +1303,13 @@ public class DialogManager : MonoBehaviour
         isSentenceEnd = false;
         remainSentence = false;
         playerCtrlScr.TalkEnd();
+
+        /*
+        //UI 설정
+        //UI Canvas 켜기
+        UIManager.instance.ShowItemWindow();
+        //날짜 UI 켜기
+        UIManager.instance.ShowCalendarWindow();
+        */
     }
 }

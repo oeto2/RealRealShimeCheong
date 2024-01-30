@@ -2680,6 +2680,8 @@ MonoBehaviour:
   gameObject_ExitCheckWindow: {fileID: 98440306}
   sentenceCondition: 0
   gameObject_AudioWindow: {fileID: 892057837}
+  image_item_Close_UI: {fileID: 1851244455}
+  image_Calendar_Close_UI: {fileID: 1429576755}
 --- !u!1 &98440306
 GameObject:
   m_ObjectHideFlags: 0
@@ -7420,8 +7422,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1833412218}
   m_HandleRect: {fileID: 1833412217}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.2445652
+  m_Value: 0.99999994
+  m_Size: 0.24456519
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13606,7 +13608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &454061958
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36087,7 +36089,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 3.2663574, y: -437.58765}
+  m_AnchoredPosition: {x: 3.2663574, y: -437.58768}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1125754046
@@ -57069,7 +57071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1729665404
 RectTransform:
   m_ObjectHideFlags: 0

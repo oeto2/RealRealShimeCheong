@@ -136,9 +136,6 @@ public class Controller : MonoBehaviour
         //시간 정지
         TimeManager.instance.StopTime();
 
-        //대화 도중 시간 UI, 장착 아이템 UI 비활성화
-        TimeManager.instance.CloseDayUI();
-
         Debug.Log("TalkStart");
         isTalk = true;
         canMove = true;
@@ -153,9 +150,6 @@ public class Controller : MonoBehaviour
         {
             //시간 흐르기
             TimeManager.instance.ContinueTime();
-
-            //대화 도중 시간 UI, 장착 아이템 UI 활성화
-            TimeManager.instance.ShowDayUI();
         }
         Debug.Log("TalkEnd");
         isTalk = false;
