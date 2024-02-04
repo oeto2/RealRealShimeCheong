@@ -1,51 +1,51 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class ObjectControll : MonoBehaviour
 {
-    //¿ÜºÎ ½ºÅ©¸³Æ® ÂüÁ¶
+    //ì™¸ë¶€ ìŠ¤í¬ë¦½íŠ¸ ì°¸ì¡°
     public ObjectManager objectManagerScr;
     public Dialog_TypingWriter_ShimBongSa playerDialogueScr;
     public TutorialManager tutorialManagerScr;
     public Controller playerCtrlScr;
     public PlayerAnimation playerAnimationScr;
 
-    //¿ÀºêÁ§Æ® µ¥ÀÌÅÍ ½ºÅ©¸³Æ®
+    //ì˜¤ë¸Œì íŠ¸ ë°ì´í„° ìŠ¤í¬ë¦½íŠ¸
     [SerializeField]
     private Objdata objdataScr;
 
-    //Player°¡ ¿ÀºêÁ§Æ®¿Í Á¢ÃËÁßÀÎÁö È®ÀÎÇÏ´Â flag
+    //Playerê°€ ì˜¤ë¸Œì íŠ¸ì™€ ì ‘ì´‰ì¤‘ì¸ì§€ í™•ì¸í•˜ëŠ” flag
     [SerializeField]
     private bool isTriggerObject;
 
-    //Player°¡ È¹µæÇÒ ¿ÀºêÁ§Æ®
+    //Playerê°€ íšë“í•  ì˜¤ë¸Œì íŠ¸
     [SerializeField]
     private GameObject gameobject_TargetObject;
 
-    //UI º¿Áü ÀÌ¹ÌÁö
+    //UI ë´‡ì§ ì´ë¯¸ì§€
     public GameObject gameObjcet_BotzimeImage;
 
-    //UI Áöµµ ÀÌ¹ÌÁö
+    //UI ì§€ë„ ì´ë¯¸ì§€
     public GameObject gameObject_MapImage;
 
-    //º¿ÁüÀ» È¹µæ Çß´ÂÁö
+    //ë´‡ì§ì„ íšë“ í–ˆëŠ”ì§€
     public bool getBotzime;
 
-    //¸ÊÀ» È¹µæ Çß´ÂÁö
+    //ë§µì„ íšë“ í–ˆëŠ”ì§€
     public bool getMap;
 
-    //º¿Áü ¿ÀºêÁ§Æ®
+    //ë´‡ì§ ì˜¤ë¸Œì íŠ¸
     public GameObject botzime;
 
-    //Áöµµ ¿ÀºêÁ§Æ®
+    //ì§€ë„ ì˜¤ë¸Œì íŠ¸
     public GameObject map;
 
-    //½Ì±ÛÅæ
+    //ì‹±ê¸€í†¤
     public static ObjectControll instance = null;
 
-    //º¿Áü UI ¿ÀºêÁ§Æ®
+    //ë´‡ì§ UI ì˜¤ë¸Œì íŠ¸
     public GameObject gameObject_BotzimeUI;
 
-    //Áöµµ UI ¿ÀºêÁ§Æ®
+    //ì§€ë„ UI ì˜¤ë¸Œì íŠ¸
     public GameObject gameObject_MapUI;
 
 
@@ -69,73 +69,73 @@ public class ObjectControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //¿ÀºêÁ§Æ® Á¢ÃËÈÄ ZÅ°¸¦ ´­·¶À» °æ¿ì
+        //ì˜¤ë¸Œì íŠ¸ ì ‘ì´‰í›„ Zí‚¤ë¥¼ ëˆŒë €ì„ ê²½ìš°
         if (Input.GetKeyDown(KeyCode.Z) && isTriggerObject && tutorialManagerScr.setence1End)
         {
-            //¾ÆÀÌÅÛ ¿ÀºêÁ§Æ® Ãß°¡
+            //ì•„ì´í…œ ì˜¤ë¸Œì íŠ¸ ì¶”ê°€
             if (gameobject_TargetObject.CompareTag("Item"))
             {
                 objectManagerScr.GetItem(objdataScr.key);
-                //¿ÀºêÁ§Æ® SetActive false
+                //ì˜¤ë¸Œì íŠ¸ SetActive false
                 gameobject_TargetObject.SetActive(false);
             }
 
-            //´Ü¼­ ¾ÆÀÌÅÛ È¹µæ
+            //ë‹¨ì„œ ì•„ì´í…œ íšë“
             else if (gameobject_TargetObject.CompareTag("Clue"))
             {
                 objectManagerScr.GetClue(objdataScr.key);
-                //¿ÀºêÁ§Æ® SetActive false
+                //ì˜¤ë¸Œì íŠ¸ SetActive false
                 gameobject_TargetObject.SetActive(false);
             }
 
-            //º¿ÁüÀÏ °æ¿ì
+            //ë´‡ì§ì¼ ê²½ìš°
             else if (gameobject_TargetObject.CompareTag("Object") && gameobject_TargetObject.name == "Botzime")
             {
-                //º¿Áü ÀÌ¹ÌÁö º¸¿©ÁÖ±â
+                //ë´‡ì§ ì´ë¯¸ì§€ ë³´ì—¬ì£¼ê¸°
                 gameObjcet_BotzimeImage.SetActive(true);
                 GetBotzime(gameobject_TargetObject);
             }
 
-            //¸ÊÀÏ °æ¿ì
+            //ë§µì¼ ê²½ìš°
             else if (gameobject_TargetObject.CompareTag("Object") && gameobject_TargetObject.name == "Map")
             {
-                //Áöµµ ÀÌ¹ÌÁö º¸¿©ÁÖ±â
+                //ì§€ë„ ì´ë¯¸ì§€ ë³´ì—¬ì£¼ê¸°
                 gameObject_MapImage.SetActive(true);
                 GetMap(gameobject_TargetObject);
             }
         }
     }
 
-    //¿ÀºêÁ§Æ® BoxCollider¿Í Á¢ÃË½Ã
+    //ì˜¤ë¸Œì íŠ¸ BoxColliderì™€ ì ‘ì´‰ì‹œ
     private void OnTriggerEnter2D(Collider2D collision)
     {
         string objName = collision.name;
 
-        // ¾ÆÀÌÅÛÀÏ °æ¿ì
+        // ì•„ì´í…œì¼ ê²½ìš°
         if (collision.CompareTag("Item"))
         {
-            //Á¢ÃËÇÑ ¿ÀºêÁ§Æ®
+            //ì ‘ì´‰í•œ ì˜¤ë¸Œì íŠ¸
             gameobject_TargetObject = collision.gameObject;
 
             isTriggerObject = true;
 
-            //¾ÆÀÌÅÛ ³»ºÎÀÇ Objdata¸¦ °¡Á®¿È
+            //ì•„ì´í…œ ë‚´ë¶€ì˜ Objdataë¥¼ ê°€ì ¸ì˜´
             objdataScr = gameobject_TargetObject.GetComponent<Objdata>();
         }
 
-        //´Ü¼­ÀÏ °æ¿ì
+        //ë‹¨ì„œì¼ ê²½ìš°
         else if(collision.CompareTag("Clue"))
         {
-            //Á¢ÃËÇÑ ¿ÀºêÁ§Æ®
+            //ì ‘ì´‰í•œ ì˜¤ë¸Œì íŠ¸
             gameobject_TargetObject = collision.gameObject;
 
             isTriggerObject = true;
 
-            //¾ÆÀÌÅÛ ³»ºÎÀÇ Objdata¸¦ °¡Á®¿È
+            //ì•„ì´í…œ ë‚´ë¶€ì˜ Objdataë¥¼ ê°€ì ¸ì˜´
             objdataScr = gameobject_TargetObject.GetComponent<Objdata>();
         }
 
-        //º¿Áü°ú ´ê¾ÒÀ» °æ¿ì
+        //ë´‡ì§ê³¼ ë‹¿ì•˜ì„ ê²½ìš°
         else if(collision.CompareTag("Object") && objName == "Botzime")
         {
             gameobject_TargetObject = collision.gameObject;
@@ -143,7 +143,7 @@ public class ObjectControll : MonoBehaviour
             isTriggerObject = true;
         }
 
-        //¸ÊÀÌ¶û ´ê¾ÒÀ» °æ¿ì
+        //ë§µì´ë‘ ë‹¿ì•˜ì„ ê²½ìš°
         else if (collision.CompareTag("Object") && objName == "Map")
         {
             gameobject_TargetObject = collision.gameObject;
@@ -152,111 +152,119 @@ public class ObjectControll : MonoBehaviour
         }
     }
 
-    //¿ÀºêÁ§Æ® BoxCollider¿Í Á¢ÃËÁßÀÏ°æ¿ì
+    //ì˜¤ë¸Œì íŠ¸ BoxColliderì™€ ì ‘ì´‰ì¤‘ì¼ê²½ìš°
     private void OnTriggerStay2D(Collider2D collision)
     {
         string objName = collision.name;
 
 
-        //º¿ÁüÀÏ °æ¿ì
+        //ë´‡ì§ì¼ ê²½ìš°
         if (collision.CompareTag("Item"))
         {
             isTriggerObject = true;
         }
 
-        //´Ü¼­ÀÏ °æ¿ì
+        //ë‹¨ì„œì¼ ê²½ìš°
         else if (collision.CompareTag("Clue"))
         {
-            //Á¢ÃËÇÑ ¿ÀºêÁ§Æ®
+            //ì ‘ì´‰í•œ ì˜¤ë¸Œì íŠ¸
             gameobject_TargetObject = collision.gameObject;
 
             isTriggerObject = true;
         }
 
-        //º¿Áü°ú ´ê¾ÒÀ» °æ¿ì
+        //ë´‡ì§ê³¼ ë‹¿ì•˜ì„ ê²½ìš°
         else if (collision.CompareTag("Object") && objName == "Botzime")
         {
             isTriggerObject = true;
         }
 
-        //¸ÊÀÌ¶û ´ê¾ÒÀ» °æ¿ì
+        //ë§µì´ë‘ ë‹¿ì•˜ì„ ê²½ìš°
         else if (collision.CompareTag("Object") && objName == "Map")
         {
             isTriggerObject = true;
         }
     }
 
-    //¿ÀºêÁ§Æ® boxCollider¿Í ¶³¾îÁ³À» °æ¿ì
+    //ì˜¤ë¸Œì íŠ¸ boxColliderì™€ ë–¨ì–´ì¡Œì„ ê²½ìš°
     private void OnTriggerExit2D(Collider2D collision)
     {
         isTriggerObject = false;
     }
 
-    //º¿Áü È¹µæ
+    //ë´‡ì§ íšë“
     public void GetBotzime(GameObject _obj)
     {
         getBotzime = true;
 
-        //¿ÀºêÁ§Æ® UI º¸ÀÌ±â
+        //ì˜¤ë¸Œì íŠ¸ UI ë³´ì´ê¸°
         UIManager.instance.gameObject_UIBackGround.SetActive(true);
 
-        //º¿Áü È¹µæ ´ëÈ­ ½ÇÇà
+        //ë´‡ì§ UI ì´ë¯¸ì§€ ë³´ì´ê¸°
+        gameObject_BotzimeUI.SetActive(true);
+
+        //ë´‡ì§ íšë“ ëŒ€í™” ì‹¤í–‰
         StartCoroutine(tutorialManagerScr.Start_Sentence_GetBotzime());
 
-
-        //¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+        //ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
         _obj.SetActive(false);
     }
 
-    //Áöµµ È¹µæ
+    //ì§€ë„ íšë“
     #region
     public void GetMap(GameObject _obj)
     {
         getMap = true;
 
-        //Áöµµ È¹µæ ´ëÈ­ ½ÇÇà
+        //ì§€ë„ íšë“ ëŒ€í™” ì‹¤í–‰
         StartCoroutine(tutorialManagerScr.Start_Sentence_GetMap());
 
-        //¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+        //ë´‡ì§ UI ì´ë¯¸ì§€ ë³´ì´ê¸°
+        gameObject_BotzimeUI.SetActive(true);
+
+        //ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
         _obj.SetActive(false);
     }
     public void GetMap()
     {
         getMap = true;
 
-        //Áöµµ È¹µæ ´ëÈ­ ½ÇÇà
+        //ì§€ë„ íšë“ ëŒ€í™” ì‹¤í–‰
         StartCoroutine(tutorialManagerScr.Start_Sentence_GetMap());
+
+        //ë´‡ì§ UI ì´ë¯¸ì§€ ë³´ì´ê¸°
+        gameObject_BotzimeUI.SetActive(true);
     }
     #endregion
 
-    //º¿Áü ¸®¼Â
+    //ë´‡ì§ ë¦¬ì…‹
     public void ResetBotzime()
     {
         getBotzime = false;
         botzime.SetActive(true);
     }
 
-    //Áöµµ ¸®¼Â
+    //ì§€ë„ ë¦¬ì…‹
     public void ResetMap()
     {
         getMap = false;
         //map.SetActive(true);
     }
 
-    //º¿Áü È¹µæ ÈÄ ·Îµå
+    //ë´‡ì§ íšë“ í›„ ë¡œë“œ
     public void LoadBotzime()
     {
         getBotzime = true;
 
-        //º¿Áü UI ÀÌ¹ÌÁö º¸ÀÌ±â
+        //ë´‡ì§ UI ì´ë¯¸ì§€ ë³´ì´ê¸°
         gameObject_BotzimeUI.SetActive(true);
 
-        //º¿Áü ¾Ö´Ï¸ŞÀÌ¼Ç º¯°æ
+        //ë´‡ì§ ì• ë‹ˆë©”ì´ì…˜ ë³€ê²½
         playerAnimationScr.ChangeAnimationBotzime();
         botzime.SetActive(false);
     }
 
-    //Áöµµ È¹µæ ÈÄ ·Îµå
+    //ì§€ë„ íšë“ í›„ ë¡œë“œ
     public void LoadMap()
     {
         getMap = true;

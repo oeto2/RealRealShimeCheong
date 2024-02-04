@@ -260,15 +260,6 @@ public class DialogManager : MonoBehaviour
             //타이핑 속도 초기화
             typingSpeed = 0.02f;
         }
-
-        if(remainSentence == true && isSentenceEnd == true) 
-        { 
-            //UI 설정
-            //UI Canvas 켜기
-            UIManager.instance.ShowItemWindow();
-            //날짜 UI 켜기
-            UIManager.instance.ShowCalendarWindow();
-        }
     }
 
     public IEnumerator ItemClueChat(string narrator, string narration)
@@ -418,15 +409,6 @@ public class DialogManager : MonoBehaviour
 
         //TalkEnd Cursor 보이기
         obj_TalkEndCur.SetActive(true);
-
-        if (remainSentence == true && isSentenceEnd == true)
-        {
-            //UI 설정
-            //UI Canvas 켜기
-            UIManager.instance.ShowItemWindow();
-            //날짜 UI 켜기
-            UIManager.instance.ShowCalendarWindow();
-        }
     }
 
     //다이얼로그 대화 출력
@@ -606,14 +588,6 @@ public class DialogManager : MonoBehaviour
             }
         }
 
-        if (remainSentence == true && isSentenceEnd == true)
-        {
-            //UI 설정
-            //UI Canvas 켜기
-            UIManager.instance.ShowItemWindow();
-            //날짜 UI 켜기
-            UIManager.instance.ShowCalendarWindow();
-        }
     }
 
     //해당하는 인덱스 값의 대화를 반환해주는 메서드

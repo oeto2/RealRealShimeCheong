@@ -151,6 +151,16 @@ public class Controller : MonoBehaviour
             //시간 흐르기
             TimeManager.instance.ContinueTime();
         }
+
+        if (tutorialManagerScr.events >= TutorialEvents.PassOneDay)
+        {
+            //UI 설정
+            //UI Canvas 켜기
+            UIManager.instance.ShowItemWindow();
+            //날짜 UI 켜기
+            UIManager.instance.ShowCalendarWindow();
+        }
+
         Debug.Log("TalkEnd");
         isTalk = false;
         canMove = false;
