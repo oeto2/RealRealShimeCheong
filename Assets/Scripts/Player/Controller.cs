@@ -61,7 +61,6 @@ public class Controller : MonoBehaviour
         {
             dialogueOn = false;
         }
-       
 
         //scan object
         if (Input.GetButtonDown("Jump") && scanObject != null) // space
@@ -160,6 +159,9 @@ public class Controller : MonoBehaviour
             //날짜 UI 켜기
             UIManager.instance.ShowCalendarWindow();
         }
+
+        //아이템 UI 이미지 보이기
+        ObjectControll.instance.RefreshItemUI();
 
         Debug.Log("TalkEnd");
         isTalk = false;

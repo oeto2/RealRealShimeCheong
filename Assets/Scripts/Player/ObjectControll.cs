@@ -157,7 +157,6 @@ public class ObjectControll : MonoBehaviour
     {
         string objName = collision.name;
 
-
         //봇짐일 경우
         if (collision.CompareTag("Item"))
         {
@@ -197,12 +196,6 @@ public class ObjectControll : MonoBehaviour
     {
         getBotzime = true;
 
-        //오브젝트 UI 보이기
-        UIManager.instance.gameObject_UIBackGround.SetActive(true);
-
-        //봇짐 UI 이미지 보이기
-        gameObject_BotzimeUI.SetActive(true);
-
         //봇짐 획득 대화 실행
         StartCoroutine(tutorialManagerScr.Start_Sentence_GetBotzime());
 
@@ -219,9 +212,6 @@ public class ObjectControll : MonoBehaviour
         //지도 획득 대화 실행
         StartCoroutine(tutorialManagerScr.Start_Sentence_GetMap());
 
-        //봇짐 UI 이미지 보이기
-        gameObject_BotzimeUI.SetActive(true);
-
         //오브젝트 비활성화
         _obj.SetActive(false);
     }
@@ -231,9 +221,6 @@ public class ObjectControll : MonoBehaviour
 
         //지도 획득 대화 실행
         StartCoroutine(tutorialManagerScr.Start_Sentence_GetMap());
-
-        //봇짐 UI 이미지 보이기
-        gameObject_BotzimeUI.SetActive(true);
     }
     #endregion
 
@@ -269,5 +256,24 @@ public class ObjectControll : MonoBehaviour
     {
         getMap = true;
         //map.SetActive(false);
+    }
+
+    //오브젝트 UI 갱신
+    public void RefreshItemUI()
+    {
+        if(getBotzime)
+        {
+            //오브젝트 UI 보이기
+            UIManager.instance.gameObject_UIBackGround.SetActive(true);
+            //봇짐 UI 이미지 보이기
+            gameObject_BotzimeUI.SetActive(true);
+        }
+        if(getMap)
+        {
+            //오브젝트 UI 보이기
+            UIManager.instance.gameObject_UIBackGround.SetActive(true);
+            //맵 UI 이미지 보이기
+            gameObject_MapImage.SetActive(true);
+        }
     }
 }
