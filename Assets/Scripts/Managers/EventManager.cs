@@ -514,7 +514,7 @@ public class EventManager : MonoBehaviour
                 if (ObjectManager.instance.GetEquipObjectKey() == 2006)
                 {
                     //NPC 다이얼로그 종료
-                    DialogManager.instance.Dialouge_System.SetActive(false);
+                    DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
                     //1번 선택지 대사 입력
                     text_selectNum1.text = "내가 청이 아비 되는 사람이오. 솔직하게 말해주시오.";
@@ -527,7 +527,7 @@ public class EventManager : MonoBehaviour
             case NPCName.boatman2:
 
                 //NPC 다이얼로그 종료
-                DialogManager.instance.Dialouge_System.SetActive(false);
+                DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
                 //1번 선택지 대사 입력
                 text_selectNum1.text = "예";
@@ -543,7 +543,7 @@ public class EventManager : MonoBehaviour
                 gameObject_BoatMan3Text.SetActive(true);
 
                 //NPC 다이얼로그 종료
-                DialogManager.instance.Dialouge_System.SetActive(false);
+                DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
                 //1번 선택지 대사 입력
                 text_selectNum1.text = "예";
@@ -556,7 +556,7 @@ public class EventManager : MonoBehaviour
             case NPCName.Shimbongsa:
 
                 //NPC 다이얼로그 종료
-                DialogManager.instance.Dialouge_System.SetActive(false);
+                DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
                 //만약 장지언과 6045번 단서 대화를 하지 않았을 경우
                 if (!jangjieonDialogueScr.talkClue_6045)
@@ -582,7 +582,7 @@ public class EventManager : MonoBehaviour
             case NPCName.Shimbongsa2:
 
                 //NPC 다이얼로그 종료
-                DialogManager.instance.Dialouge_System.SetActive(false);
+                DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
                 //선택지 3번 보이기
                 gameObject_SelectNum3.SetActive(true);
@@ -604,7 +604,7 @@ public class EventManager : MonoBehaviour
             case NPCName.Herb:
 
                 //NPC 다이얼로그 종료
-                DialogManager.instance.Dialouge_System.SetActive(false);
+                DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
                 //약초 마시기 Text 띄우기
                 gameObject_DrinkHerbText.SetActive(true);
@@ -642,7 +642,7 @@ public class EventManager : MonoBehaviour
                 boatManDialogueScr.int_Select2006Num = 1;
 
                 //다이얼로그 활성화
-                DialogManager.instance.Dialouge_System.SetActive(true);
+                DialogManager.instance.Dialouge_Canvas.SetActive(true);
 
                 //대사 출력
                 boatManDialogueScr.PrintSelect2006_Sentence1();
@@ -715,7 +715,7 @@ public class EventManager : MonoBehaviour
                 jangjieonDialogueScr.isSentenceEnd = true;
 
                 //다이얼로그 띄우기
-                DialogManager.instance.Dialouge_System.SetActive(true);
+                DialogManager.instance.Dialouge_Canvas.SetActive(true);
 
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
@@ -731,7 +731,7 @@ public class EventManager : MonoBehaviour
                 jangjieonDialogueScr.isSentenceEnd = true;
 
                 //다이얼로그 띄우기
-                DialogManager.instance.Dialouge_System.SetActive(true);
+                DialogManager.instance.Dialouge_Canvas.SetActive(true);
 
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
@@ -802,7 +802,7 @@ public class EventManager : MonoBehaviour
                 boatManDialogueScr.int_select2006Day = TimeManager.instance.int_DayCount;
 
                 //다이얼로그 활성화
-                DialogManager.instance.Dialouge_System.SetActive(true);
+                DialogManager.instance.Dialouge_Canvas.SetActive(true);
 
                 //대사 출력
                 boatManDialogueScr.PrintSelect2006_Sentence2();
@@ -852,7 +852,7 @@ public class EventManager : MonoBehaviour
                 DialogManager.instance.remainSentence = false;
 
                 //다이얼로그 띄우기
-                DialogManager.instance.Dialouge_System.SetActive(true);
+                DialogManager.instance.Dialouge_Canvas.SetActive(true);
 
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
@@ -873,7 +873,7 @@ public class EventManager : MonoBehaviour
                 DialogManager.instance.remainSentence = false;
 
                 //다이얼로그 띄우기
-                DialogManager.instance.Dialouge_System.SetActive(true);
+                DialogManager.instance.Dialouge_Canvas.SetActive(true);
 
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
@@ -924,7 +924,7 @@ public class EventManager : MonoBehaviour
                 DialogManager.instance.remainSentence = false;
 
                 //다이얼로그 띄우기
-                DialogManager.instance.Dialouge_System.SetActive(true);
+                DialogManager.instance.Dialouge_Canvas.SetActive(true);
 
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);

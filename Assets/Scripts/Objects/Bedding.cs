@@ -26,7 +26,7 @@ public class Bedding : MonoBehaviour
     void Update()
     {
         //만약에 플레이어가 오브젝트와 접촉후 z키를 눌렀을 경우 (이벤트를 전부 다 봤을 경우에만 동작)
-        if(isTouch && Input.GetKeyDown(KeyCode.Z) && tutorialManagerScr.events == TutorialEvents.Done && !DialogManager.instance.Dialouge_System.activeSelf)
+        if(isTouch && Input.GetKeyDown(KeyCode.Z) && tutorialManagerScr.events == TutorialEvents.Done && !DialogManager.instance.Dialouge_Canvas.activeSelf)
         {
             //Sleep UI 보여주기
             gameObjcet_SleepUI.SetActive(true);

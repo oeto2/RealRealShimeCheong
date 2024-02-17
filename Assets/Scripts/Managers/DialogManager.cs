@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 // 커스텀 클래스를 인스펙터 창에서 수정하기 위해서 추가
 [System.Serializable]
-public class Dialogue
+public class DialogueState
 {
     // 캐릭터 이름을 npc_name 창에 띄우기
     [Tooltip("대사 치는 캐릭터 이름")]
@@ -26,7 +26,7 @@ public class DialogueEvent
     public Vector2 line;
 
     // 대사를 여러 명이 할 수 있도록 배열로 생성
-    public Dialogue[] dialogues;
+    public DialogueState[] dialogues;
 }
 
 public class DialogManager : MonoBehaviour
@@ -44,7 +44,7 @@ public class DialogManager : MonoBehaviour
     public S_NPCdatabase_Yes npcDatabaseScr;
 
     //시스템 다이얼로그 오브젝트
-    public GameObject Dialouge_System;
+    public GameObject Dialouge_Canvas;
 
     //시스템 다이얼로그 텍스트
     public Text ChatText;
@@ -286,7 +286,7 @@ public class DialogManager : MonoBehaviour
         CleanDialogue();
 
         //다이얼로그 창 띄우기
-        Dialouge_System.SetActive(true);
+        Dialouge_Canvas.SetActive(true);
 
         //Player, Npc 초상화 초기화
         ResetNpcPortrait();
@@ -436,7 +436,7 @@ public class DialogManager : MonoBehaviour
         EffectSoundManager.instance.PlayTalkTextSound();
 
         //다이얼로그 창 띄우기
-        Dialouge_System.SetActive(true);
+        Dialouge_Canvas.SetActive(true);
 
         //Player, Npc 초상화 초기화
         ResetNpcPortrait();
@@ -462,13 +462,13 @@ public class DialogManager : MonoBehaviour
             {
                 Debug.Log(narration);
                 Debug.Log("1005번, 18번");
-                Dialouge_System.SetActive(false);
+                Dialouge_Canvas.SetActive(false);
             }
             if (narration != npcDatabaseScr.NPC_01[869].comment)
             {
                 Debug.Log(narration);
                 Debug.Log("1005번, 19번");
-                Dialouge_System.SetActive(true);
+                Dialouge_Canvas.SetActive(true);
             }
 
             //텍스트 타이핑
@@ -619,7 +619,7 @@ public class DialogManager : MonoBehaviour
         Npc_Portrait.sprite = npc_Sprites[0];
 
         //시스템 다이얼로그 활성화
-        Dialouge_System.SetActive(true);
+        Dialouge_Canvas.SetActive(true);
 
         int a = 0;
 
@@ -659,7 +659,7 @@ public class DialogManager : MonoBehaviour
                 if (_exit)
                 {
                     //시스템 다이얼로그 비활성화
-                    Dialouge_System.SetActive(false);
+                    Dialouge_Canvas.SetActive(false);
                 }
 
                 //Text 비우기
@@ -724,7 +724,7 @@ public class DialogManager : MonoBehaviour
 
 
         //시스템 다이얼로그 활성화
-        Dialouge_System.SetActive(true);
+        Dialouge_Canvas.SetActive(true);
 
         //텍스트 타이핑
         for (int a = 0; a < _narration.Length; a++)
@@ -792,7 +792,7 @@ public class DialogManager : MonoBehaviour
     public bool IsSystemMessageEnd()
     {
         //다이얼로그 창이 종료되었다면
-        if (Dialouge_System.activeSelf == false)
+        if (Dialouge_Canvas.activeSelf == false)
         {
             //UI 설정
             //UI Canvas 켜기
@@ -822,7 +822,7 @@ public class DialogManager : MonoBehaviour
         yield return StartCoroutine(SystemMessage(DialogManager.instance.GetNpcSentence(531), true));
 
         //다이얼로그 종료
-        Dialouge_System.SetActive(false);
+        Dialouge_Canvas.SetActive(false);
     }
 
     //약초 넣기 대사 시작
@@ -1088,8 +1088,6 @@ public class DialogManager : MonoBehaviour
     //NPC 랜덤 대사값1
     public string RandomNpcSentence(string _narrator)
     {
-        Debug.Log($"랜덤 대사 값 반환 : {_narrator}");
-
         switch (_narrator)
         {
             case "심학규":
@@ -1133,8 +1131,6 @@ public class DialogManager : MonoBehaviour
     //NPC 랜덤 대사값2
     public string RandomNpcSentence2(string _narrator)
     {
-        Debug.Log($"랜덤 대사 값 반환 : {_narrator}");
-
         switch (_narrator)
         {
             case "심학규":
@@ -1178,8 +1174,6 @@ public class DialogManager : MonoBehaviour
     //NPC 랜덤 대사값3
     public string RandomNpcSentence3(string _narrator)
     {
-        Debug.Log($"랜덤 대사 값 반환 : {_narrator}");
-
         switch (_narrator)
         {
             case "심학규":
@@ -1273,7 +1267,7 @@ public class DialogManager : MonoBehaviour
     //다이얼로그 종료
     public void Dialouge_End()
     {
-        Dialouge_System.SetActive(false);
+        Dialouge_Canvas.SetActive(false);
         isSentenceEnd = false;
         remainSentence = false;
         playerCtrlScr.TalkEnd();

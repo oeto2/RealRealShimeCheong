@@ -548,7 +548,7 @@ public class GameManager : MonoBehaviour
         joomackScr.JoomackUIClose();
 
         //다이얼로그 보이기
-        dialogGuiduckScr.images_NPC.SetActive(true);
+        dialogGuiduckScr.DialogueCanvas.SetActive(true);
 
         //주막 퍼즐 클리어
         EventManager.instance.eventProgress.joomackPuzzle_Clear = true;

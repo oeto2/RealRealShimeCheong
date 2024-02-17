@@ -151,7 +151,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this.gameObject.GetComponent<TutorialManager>();
+        instance = this;
 
         //세이브 데이터 파일 위치
         saveFilePath = Application.persistentDataPath + "/TutorialDataText.txt";
@@ -250,7 +250,7 @@ public class TutorialManager : MonoBehaviour
 
             //다이얼로그 끄기
             gameObject_Dialogue.SetActive(false);
-            DialogManager.instance.Dialouge_System.SetActive(false);
+            DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
             //향리댁 SentenceEnd
             dialogueHyangScr.isSentenceEnd = true;
@@ -512,7 +512,7 @@ public class TutorialManager : MonoBehaviour
     //튜토리얼 다이얼로그 종료 로직
     public void TutorialDialougeEnd()
     {
-        DialogManager.instance.Dialouge_System.SetActive(false);
+        DialogManager.instance.Dialouge_Canvas.SetActive(false);
         DialogManager.instance.isSentenceEnd = false;
         DialogManager.instance.remainSentence = false;
         playerCtrlScr.TalkEnd();

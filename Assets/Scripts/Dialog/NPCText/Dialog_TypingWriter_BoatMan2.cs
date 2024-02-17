@@ -55,62 +55,6 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
     public S_NPCdatabase_Yes dialogdb;
 
     //최초 클릭
-    void Start()
-    {
-        CharacterName.text = "";
-        ChatText.text = "";
-    }
-
-    void Update()
-    {
-        foreach (var element in skipButton) // 버튼 검사
-        {
-            if (Input.GetKeyDown(element))
-            {
-                isButtonClicked = true;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition()
-             && TutorialManager.instance.SentenceCondition() && boatman2_TriggerScr.isTouch)
-        {
-            Debug.Log("z키 누름! 뱃사공!!!!");
-            //bool_isBotjim = true;
-            //controller_scr.TalkStart();
-
-            if (bool_isNPC == false && !DialogManager.instance.remainSentence)
-            {
-                Debug.Log("대화 실행");
-                images_NPC.SetActive(true);
-                StartCoroutine(TextPractice2());
-                //Trigger_NPC.instance.isNPCTrigger = true;
-            }
-
-            //대화가 끝났을 경우
-            else if (DialogManager.instance.isSentenceEnd)
-            {
-                //isSelection_5136 = false;
-
-                images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
-                //대사 비우기
-                StopAllCoroutines();
-                //Trigger_NPC.instance.isNPCTrigger = false;
-                bool_isNPC = false;
-                //Controller.instance.TalkEnd();
-                controller_scr.TalkEnd();
-
-                //남은대화 없음
-                DialogManager.instance.remainSentence = false;
-                //대화 끝
-                DialogManager.instance.isSentenceEnd = false;
-                //텍스트 비우기
-                DialogManager.instance.writerText = "";
-            }
-        }
-    }
-
-
     IEnumerator TextPractice2()
     {
         //기본 대사 진행
@@ -180,7 +124,7 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
         yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[247].npc_name, dialogdb.NPC_01[247].comment, true));
 
         //다이얼로그창 끄기
-        DialogManager.instance.Dialouge_System.SetActive(false);
+        DialogManager.instance.Dialouge_Canvas.SetActive(false);
         remainSentence = true;
         isSentenceEnd = true;
         controller_scr.TalkEnd();

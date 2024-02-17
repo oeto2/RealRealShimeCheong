@@ -3,142 +3,23 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialog_TypingWriter_JangSeong : MonoBehaviour
+public class Dialog_TypingWriter_JangSeong : Dialogue, ITalkable
 {
-    //외부 스크립트 참조
-    public TutorialManager tutorialManagerScr;
-
-    // 실제 채팅이 나오는 텍스트
-    public Text ChatText;
-
-    // 캐릭터 이름이 나오는 텍스트
-    public Text CharacterName;
-
-    // 대화를 빠르게 넘길 수 있는 키(default : space)
-    public List<KeyCode> skipButton;
-
-    public string writerText = "";
-
-    public string characternameText = "";
-
-    public bool bool_isNPC = false;
-
-    public GameObject images_NPC;
-
-    public Sprite[] images_NPC_portrait;
-
-    public Trigger_NPC trigger_npc;
-
-    public bool isNPCTrigger;
-
-    public Controller controller_scr;
-
-    //대화가 전부 출력 되었는지
-    public bool isSentenceEnd = false;
-
-    //남은 대화가 더 있는지
-    public bool remainSentence = false;
-
-    // 랜덤 대사 출력 변수
-    private int RandomNum;
-
-    // 선택지 UI 출력
-    public GameObject Canvas_Selection_UI;
-
-    // 선택지 발생!
-    public Text Selection_Text_Name;
-
-    // 선택지 1 대사 텍스트
-    public Text Selection_Text1;
-
-    // 선택지 2 대사 텍스트
-    public Text Selection_Text2;
-
     //함께 사라진 두 사람 대화를 했는지 체크 (대화시 True)
-    public bool clue8032Talk;
-
-    // 글자색 설정 변수
-    bool t_white = false;
-    bool t_red = false;
-
-    // 글자색 설정 문자는 대사 출력 무시
-    bool t_ignore = false;
-
-    [System.Serializable]
-    public struct DialogData
-    {
-        public int speakerIndex;              // 이름과 대사를 출력할 현재 DialogSystem의 speaker 배열 순번
-        public string name;                   // NPC 이름
-        [TextArea(3, 5)]
-        public string dialogue;               // 대사
-    }
-
-    [SerializeField]
-    public int index;
-    [SerializeField]
-    public S_NPCdatabase_Yes dialogdb;
-    [SerializeField]
-    private DialogData[] dialogs;
-
-    //최초 클릭
-    void Start()
-    {
-        CharacterName.text = "";
-        ChatText.text = "";
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition())
-        {
-            Debug.Log("z키 누름! 장승상댁!!!!");
-         
-            if (bool_isNPC == false && !DialogManager.instance.remainSentence)
-            {
-                Debug.Log("향리댁 대사 실행");
-                //선택지 UI
-                Canvas_Selection_UI.SetActive(false);
-
-                //다이얼로그 UI
-                images_NPC.SetActive(true);
-
-                //대사 출력
-                StartCoroutine(TextPractice());
-            }
-
-            //대화 종료
-            else if (DialogManager.instance.isSentenceEnd)
-            {
-                //플레이어 이동제한 해제
-                controller_scr.TalkEnd();
-
-                images_NPC.SetActive(false);
-                bool_isNPC = false;
-
-                StopAllCoroutines();
-
-                //남은대화 없음
-                DialogManager.instance.remainSentence = false;
-                //대화 끝
-                DialogManager.instance.isSentenceEnd = false;
-                //텍스트 비우기
-                DialogManager.instance.writerText = "";
-            }
-        }
-    }
+    private bool clue8032Talk;
 
     //대화 로직 모음.
-    IEnumerator TextPractice()
+    public IEnumerator TextPractice()
     {
         //만약 향리댁 대화 튜토리얼 중이라면
-        if (tutorialManagerScr.events == TutorialEvents.TalkToHyang)
+        if (TutorialManager.instance.events == TutorialEvents.TalkToHyang)
         {
             Debug.Log("향리댁 튜토리얼 대사");
             yield return StartCoroutine(DialogManager.instance.ItemClueChat("향리 댁 부인", "ⓦ여기는 어쩐 일이오?", true));
             yield return StartCoroutine(DialogManager.instance.ItemClueChat("심학규", "ⓦ청이가 향리 댁에 오지 않았다고 한다.", true));
             yield return StartCoroutine(DialogManager.instance.ItemClueChat("심학규", "ⓦ어찌 된 일인지 주변을 수소문 해 보자.", true));
             yield return StartCoroutine(DialogManager.instance.ItemClueChat("심학규", "ⓦ게임에서의 하루는 실제 시간의 5분입니다. 하루가 지나면 심학규의 집으로 귀환 됩니다."));
-            tutorialManagerScr.HyangTalkEnd = true;
+            TutorialManager.instance.HyangTalkEnd = true;
         }
 
         else
@@ -176,7 +57,7 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
             else if (ObjectManager.instance.GetEquipObjectKey() == 2005)
             {
                 //새끼줄 이벤트 클리어시
-                if(EventManager.instance.giveStraw)
+                if (EventManager.instance.giveStraw)
                 {
                     //향리댁 셋째 아들 단서 획득
                     ObjectManager.instance.GetClue(2013);

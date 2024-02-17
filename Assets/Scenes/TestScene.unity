@@ -9399,7 +9399,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 358651627}
-  - component: {fileID: 358651631}
   - component: {fileID: 358651630}
   - component: {fileID: 358651629}
   - component: {fileID: 358651628}
@@ -9439,10 +9438,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: "\uC7A5\uC0AC\uAFBC"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!61 &358651629
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9521,22 +9520,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &358651631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358651626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChatText: "\uC7A5\uC0AC\uAFBC"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!95 &358651632
 Animator:
   serializedVersion: 5
@@ -9570,24 +9553,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175fc74d91131d048894d562db73b741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beadmoveScr: {fileID: 427055113}
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait:
   - {fileID: 21300000, guid: e7aa9c89fe54e8d40b51f1fc7cc85bae, type: 3}
   - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
-  trigger_npc: {fileID: 358651631}
-  isNPCTrigger: 0
+  trigger_npc: {fileID: 0}
   controller_scr: {fileID: 1871036892}
-  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   isSentenceEnd: 0
   remainSentence: 0
+  Canvas_Selection_UI: {fileID: 2089243226}
+  beadmoveScr: {fileID: 427055113}
 --- !u!1 &359510315
 GameObject:
   m_ObjectHideFlags: 0
@@ -14841,28 +14817,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e2e2166ddbe6f4f9bd4a110df502fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialManagerScr: {fileID: 0}
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait: []
   trigger_npc: {fileID: 0}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   isSentenceEnd: 0
   remainSentence: 0
   Canvas_Selection_UI: {fileID: 2089243226}
-  Selection_Text_Name: {fileID: 0}
-  Selection_Text1: {fileID: 0}
-  Selection_Text2: {fileID: 0}
-  clue8032Talk: 0
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogs: []
 --- !u!114 &482821295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14875,21 +14837,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca077347368808a4697ab69116b9f653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait: []
   trigger_npc: {fileID: 0}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
-  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogdb: {fileID: 0}
   isSentenceEnd: 0
   remainSentence: 0
+  Canvas_Selection_UI: {fileID: 0}
   int_Select2006Num: 0
   int_select2006Day: 0
   gameObject_BoatMan2: {fileID: 0}
@@ -20296,24 +20251,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd043b87b312c1449b441d48247b089d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 25c68fb334cd163498e7c06fd241006a, type: 3}
   trigger_npc: {fileID: 640755470}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
-  isNPC_Start: 1
   isSentenceEnd: 0
   remainSentence: 0
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogs: []
+  Canvas_Selection_UI: {fileID: 0}
+  isNPC_Start: 1
 --- !u!95 &640755469
 Animator:
   serializedVersion: 5
@@ -20347,10 +20294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: "\uC2EC\uCCAD"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 640755468}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!61 &640755471
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21849,7 +21796,6 @@ GameObject:
   m_Component:
   - component: {fileID: 688575805}
   - component: {fileID: 688575811}
-  - component: {fileID: 688575810}
   - component: {fileID: 688575809}
   - component: {fileID: 688575808}
   - component: {fileID: 688575807}
@@ -21935,13 +21881,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970c00c963432ab478d27cd83cd58726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_Bbang: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 2bddb3c6ccdfd724eb610c4339e60988, type: 3}
   - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
@@ -21949,9 +21890,7 @@ MonoBehaviour:
   controller_scr: {fileID: 1871036892}
   isSentenceEnd: 0
   remainSentence: 0
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogs: []
+  Canvas_Selection_UI: {fileID: 2089243226}
 --- !u!114 &688575809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21964,22 +21903,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: Bbang
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
---- !u!114 &688575810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688575804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5af91d1e1fddb54ea7f8502eb00ad2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!212 &688575811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22858,23 +22785,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca077347368808a4697ab69116b9f653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 9b9dc2523cc03cd44b968d424e4c1454, type: 3}
   - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
   trigger_npc: {fileID: 0}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
-  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   isSentenceEnd: 0
   remainSentence: 0
+  Canvas_Selection_UI: {fileID: 0}
   int_Select2006Num: 0
   int_select2006Day: 0
   gameObject_BoatMan2: {fileID: 1034788309}
@@ -29047,11 +28967,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 928861242}
+  - component: {fileID: 928861243}
+  - component: {fileID: 928861248}
   - component: {fileID: 928861245}
   - component: {fileID: 928861244}
-  - component: {fileID: 928861243}
   - component: {fileID: 928861247}
-  - component: {fileID: 928861248}
   m_Layer: 0
   m_Name: JangSeong
   m_TagString: Untagged
@@ -29086,10 +29006,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: "\uC7A5\uC2B9\uC0C1\uB301\uBD80\uC778"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!61 &928861244
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29201,30 +29121,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e2e2166ddbe6f4f9bd4a110df502fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialManagerScr: {fileID: 2057623165}
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 3905155e4b7cfea4eb80baeaf0d2aa73, type: 3}
   - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
   trigger_npc: {fileID: 928861243}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   isSentenceEnd: 0
   remainSentence: 0
   Canvas_Selection_UI: {fileID: 2089243226}
-  Selection_Text_Name: {fileID: 0}
-  Selection_Text1: {fileID: 2064643417}
-  Selection_Text2: {fileID: 775504644}
-  clue8032Talk: 0
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogs: []
 --- !u!1 &933551566
 GameObject:
   m_ObjectHideFlags: 0
@@ -31292,28 +31198,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e2e2166ddbe6f4f9bd4a110df502fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialManagerScr: {fileID: 0}
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait: []
   trigger_npc: {fileID: 0}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   isSentenceEnd: 0
   remainSentence: 0
   Canvas_Selection_UI: {fileID: 2089243226}
-  Selection_Text_Name: {fileID: 0}
-  Selection_Text1: {fileID: 0}
-  Selection_Text2: {fileID: 0}
-  clue8032Talk: 0
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogs: []
 --- !u!114 &975648062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31326,21 +31218,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca077347368808a4697ab69116b9f653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait: []
   trigger_npc: {fileID: 0}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
-  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogdb: {fileID: 0}
   isSentenceEnd: 0
   remainSentence: 0
+  Canvas_Selection_UI: {fileID: 0}
   int_Select2006Num: 0
   int_select2006Day: 0
   gameObject_BoatMan2: {fileID: 0}
@@ -34196,10 +34081,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: "\uADC0\uB355\uC5B4\uBA48"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!61 &1060148994
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34311,24 +34196,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df6325853a470940882a5e6b478d9e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait:
   - {fileID: 21300000, guid: a261ff852c438b64ea203fd02aee8e11, type: 3}
   - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
   trigger_npc: {fileID: 1060148993}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   isSentenceEnd: 0
   remainSentence: 0
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogs: []
+  Canvas_Selection_UI: {fileID: 0}
 --- !u!1 &1075882280
 GameObject:
   m_ObjectHideFlags: 0
@@ -34428,22 +34305,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970c00c963432ab478d27cd83cd58726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_Bbang: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 736739ca216a124488b340c0e4d8e827, type: 3}
   trigger_npc: {fileID: 1075882285}
   controller_scr: {fileID: 1871036892}
   isSentenceEnd: 0
   remainSentence: 0
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogs: []
+  Canvas_Selection_UI: {fileID: 0}
 --- !u!114 &1075882285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34456,10 +34326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: "\uBE91\uB355\uC5B4\uBA48"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!114 &1075882286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35121,7 +34991,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1092642525}
   - component: {fileID: 1092642524}
-  - component: {fileID: 1092642527}
   m_Layer: 0
   m_Name: DialogManager
   m_TagString: Untagged
@@ -35144,7 +35013,7 @@ MonoBehaviour:
   playerCtrlScr: {fileID: 1871036892}
   timeManagerScr: {fileID: 0}
   npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  Dialouge_System: {fileID: 1486878665}
+  Dialouge_Canvas: {fileID: 1486878665}
   ChatText: {fileID: 2081460924}
   text_NpcName: {fileID: 1522015625}
   Npc_Portrait: {fileID: 6938847883954847402}
@@ -35188,31 +35057,6 @@ Transform:
   m_Father: {fileID: 537534573}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1092642527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092642523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7cec857fe2652843a0c6fb7b7a3d94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  speakers:
-  - spriteRenderer: {fileID: 0}
-    imageDialog: {fileID: 0}
-    textName: {fileID: 0}
-    textDialogue: {fileID: 0}
-    objectArrow: {fileID: 0}
-  dialogs:
-  - speakerIndex: 0
-    name: 
-    dialogue: 
-  isAutoStart: 0
 --- !u!1 &1092845968
 GameObject:
   m_ObjectHideFlags: 0
@@ -48024,7 +47868,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1482299813}
-  - component: {fileID: 1482299817}
   - component: {fileID: 1482299816}
   - component: {fileID: 1482299815}
   - component: {fileID: 1482299814}
@@ -48064,10 +47907,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: "\uC1A1\uB098\uB77C \uC0C1\uC778"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!61 &1482299815
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48146,22 +47989,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1482299817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482299812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChatText: "\uC1A1\uB098\uB77C\uC0C1\uC778"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
 --- !u!95 &1482299818
 Animator:
   serializedVersion: 5
@@ -48195,23 +48022,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce19dbfc09257842858d8d1ea44aac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait:
   - {fileID: 21300000, guid: c3be3c400a824154fa3df1f4b58c0779, type: 3}
   - {fileID: 21300000, guid: 5150b935b3008ed459cbc0b694538ba9, type: 3}
-  trigger_npc: {fileID: 1482299817}
-  isNPCTrigger: 0
+  trigger_npc: {fileID: 0}
   controller_scr: {fileID: 1871036892}
-  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   isSentenceEnd: 0
   remainSentence: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  Canvas_Selection_UI: {fileID: 2089243226}
 --- !u!1 &1485747553
 GameObject:
   m_ObjectHideFlags: 0
@@ -52757,10 +52577,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!61 &1614491627
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52851,10 +52671,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: "\uC2EC\uCCAD\uC774"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!95 &1614491630
 Animator:
   serializedVersion: 5
@@ -54189,10 +54009,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: "\uC2B9\uB824"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 1657878955}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!61 &1657878951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54304,24 +54124,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd043b87b312c1449b441d48247b089d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 25c68fb334cd163498e7c06fd241006a, type: 3}
   trigger_npc: {fileID: 1657878950}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
-  isNPC_Start: 1
   isSentenceEnd: 0
   remainSentence: 0
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogs: []
+  Canvas_Selection_UI: {fileID: 0}
+  isNPC_Start: 1
 --- !u!1 &1658723608
 GameObject:
   m_ObjectHideFlags: 0
@@ -64376,10 +64188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: "\uAC70\uC9C0"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!61 &1939285205
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -64491,23 +64303,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2aa5e51b1bc3bb4090039124eefdc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 238e9718555ebec48bc618dbcfc4788e, type: 3}
   - {fileID: 21300000, guid: cdd1a2d7958fc994cbd656eeb55a154f, type: 3}
   trigger_npc: {fileID: 1939285204}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
-  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
   isSentenceEnd: 0
   remainSentence: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
+  Canvas_Selection_UI: {fileID: 0}
 --- !u!1 &1939898700
 GameObject:
   m_ObjectHideFlags: 0
@@ -67893,21 +67698,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca077347368808a4697ab69116b9f653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait: []
   trigger_npc: {fileID: 0}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
-  npcDatabaseScr: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogdb: {fileID: 0}
   isSentenceEnd: 0
   remainSentence: 0
+  Canvas_Selection_UI: {fileID: 0}
   int_Select2006Num: 0
   int_select2006Day: 0
   gameObject_BoatMan2: {fileID: 0}
@@ -67926,28 +67724,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e2e2166ddbe6f4f9bd4a110df502fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialManagerScr: {fileID: 0}
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait: []
   trigger_npc: {fileID: 0}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
   isSentenceEnd: 0
   remainSentence: 0
   Canvas_Selection_UI: {fileID: 2089243226}
-  Selection_Text_Name: {fileID: 0}
-  Selection_Text1: {fileID: 0}
-  Selection_Text2: {fileID: 0}
-  clue8032Talk: 0
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogs: []
 --- !u!114 &2037848335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69657,10 +69441,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: "\uC7A5\uC9C0\uC5B8"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!61 &2084979481
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -69751,26 +69535,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0946d7938f22fb41a186d4a589e1c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: {fileID: 2081460924}
-  CharacterName: {fileID: 1522015625}
   skipButton: 20000000
-  writerText: 
-  characternameText: 
-  bool_isNPC: 0
-  images_NPC: {fileID: 1486878665}
+  DialogueCanvas: {fileID: 0}
   images_NPC_portrait:
   - {fileID: 21300000, guid: 2d2334f83e28467468c9136410475ee5, type: 3}
   - {fileID: 21300000, guid: 2d2334f83e28467468c9136410475ee5, type: 3}
   trigger_npc: {fileID: 2084979480}
-  isNPCTrigger: 0
   controller_scr: {fileID: 1871036892}
-  isNPC_Start: 1
   isSentenceEnd: 0
   remainSentence: 0
+  Canvas_Selection_UI: {fileID: 0}
   talkClue_6045: 0
-  index: 0
-  dialogdb: {fileID: 11400000, guid: 16147c0333d7cea47a856c65cac99c1d, type: 2}
-  dialogs: []
 --- !u!1 &2088066540
 GameObject:
   m_ObjectHideFlags: 0
@@ -70242,10 +70017,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: 
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!61 &2101056105
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -70336,10 +70111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91292e17fd0446144b317143cbb11d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatText: "\uC2EC\uCCAD\uC774"
-  isNPCTrigger: 0
-  controller: {fileID: 0}
-  dialog_TypingWriter_Budhist: {fileID: 0}
+  isTouchNPC: 0
+  NPCDalogue: {fileID: 0}
+  reTalkDelayTime: 0.5
+  enableTalk: 1
 --- !u!1 &2110074465
 GameObject:
   m_ObjectHideFlags: 0
@@ -71885,7 +71660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95283417651686755, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -169.12204
+      value: -169.12207
       objectReference: {fileID: 0}
     - target: {fileID: 164586054572820447, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -72102,6 +71877,10 @@ PrefabInstance:
     - target: {fileID: 6938847885188490016, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_FontData.m_FontStyle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938847885188490017, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6938847885188490018, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_AnchoredPosition.x

@@ -3,49 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialog_TypingWriter_BoatMan : MonoBehaviour
+public class Dialog_TypingWriter_BoatMan : Dialogue, ITalkable
 {
-    // 실제 채팅이 나오는 텍스트
-    public Text ChatText;
-
-    // 캐릭터 이름이 나오는 텍스트
-    public Text CharacterName;
-
-    // 대화를 빠르게 넘길 수 있는 키(default : space)
-    public List<KeyCode> skipButton;
-
-    public string writerText = "";
-
-    public string characternameText = "";
-
-    bool isButtonClicked = false;
-
-    public bool bool_isNPC = false;
-
-    public GameObject images_NPC;
-
-    public Sprite[] images_NPC_portrait;
-
-    public Trigger_NPC trigger_npc;
-
-    public bool isNPCTrigger;
-
-    public Controller controller_scr;
-
-    public S_NPCdatabase_Yes npcDatabaseScr;
-
-    [SerializeField]
-    public S_NPCdatabase_Yes dialogdb;
-
-    // 랜덤 대사 출력 변수
-    private int RandomNum;
-
-    //대화가 전부 출력 되었는지
-    public bool isSentenceEnd = false;
-
-    //남은 대화가 더 있는지
-    public bool remainSentence = false;
-
     //송나라 상인과 청이 선택지 값
     public int int_Select2006Num = 0;
 
@@ -64,70 +23,7 @@ public class Dialog_TypingWriter_BoatMan : MonoBehaviour
     //뱃사공과 닿았는지
     public bool isTouch;
 
-    //최초 클릭
-    void Start()
-    {
-        //StartCoroutine(TextPractice());
-        //TextPractice();
-        //StopCoroutine(TextPractice());
-        CharacterName.text = "";
-        ChatText.text = "";
-
-        //Selection_Text_Name.text = "선택지 발생!";
-        //Selection_Text1.text = "내가 청이 아비 되는 사람이오. 솔직하게 말해주시오.";
-        //Selection_Text2.text = "나도 그 이야기라면 들었소. 송 사람들이 너무하던데 말이오!";
-    }
-
-    void Update()
-    {
-        foreach (var element in skipButton) // 버튼 검사
-        {
-            if (Input.GetKeyDown(element))
-            {
-                isButtonClicked = true;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z) && isTouch && UIManager.instance.SentenceCondition()
-             && TutorialManager.instance.SentenceCondition())
-        {
-            Debug.Log("z키 누름! 뱃사공!!!!");
-            //bool_isBotjim = true;
-            //controller_scr.TalkStart();
-
-            if (bool_isNPC == false && !DialogManager.instance.remainSentence)
-            {
-                Debug.Log("대화 실행");
-                images_NPC.SetActive(true);
-                StartCoroutine(TextPractice());
-                //Trigger_NPC.instance.isNPCTrigger = true;
-            }
-
-            //대화가 끝났을 경우
-            else if (DialogManager.instance.isSentenceEnd)
-            {
-                //isSelection_5136 = false;
-
-                images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
-                //대사 비우기
-                StopAllCoroutines();
-                //Trigger_NPC.instance.isNPCTrigger = false;
-                bool_isNPC = false;
-                //Controller.instance.TalkEnd();
-                controller_scr.TalkEnd();
-
-                //남은대화 없음
-                DialogManager.instance.remainSentence = false;
-                //대화 끝
-                DialogManager.instance.isSentenceEnd = false;
-                //텍스트 비우기
-                DialogManager.instance.writerText = "";
-            }
-        }
-    }
-
-    IEnumerator TextPractice()
+    public IEnumerator TextPractice()
     {
         #region 단서
         //2001 : 청이의 거짓말

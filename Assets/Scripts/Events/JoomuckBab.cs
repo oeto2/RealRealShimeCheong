@@ -226,7 +226,7 @@ public class JoomuckBab : MonoBehaviour
                 case MakeHerbOrder.DrinkHerb:
 
                     //선택지 진행
-                    if (!DialogManager.instance.Dialouge_System.activeSelf)
+                    if (!DialogManager.instance.Dialouge_Canvas.activeSelf)
                     {
                         EventManager.instance.SelectStart(NPCName.Herb, 5799);
                     }
@@ -236,7 +236,7 @@ public class JoomuckBab : MonoBehaviour
                 case MakeHerbOrder.DrinkHerb2:
 
                     //선택지 진행
-                    if (!DialogManager.instance.Dialouge_System.activeSelf)
+                    if (!DialogManager.instance.Dialouge_Canvas.activeSelf)
                     {
                         EventManager.instance.SelectStart(NPCName.Herb, 7009);
                     }

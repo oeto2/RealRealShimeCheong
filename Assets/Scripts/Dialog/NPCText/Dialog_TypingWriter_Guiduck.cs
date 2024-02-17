@@ -3,127 +3,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialog_TypingWriter_Guiduck : MonoBehaviour
+public class Dialog_TypingWriter_Guiduck : Dialogue, ITalkable
 {
-    // 실제 채팅이 나오는 텍스트
-    public Text ChatText;
-
-    // 캐릭터 이름이 나오는 텍스트
-    public Text CharacterName;
-
-    // 대화를 빠르게 넘길 수 있는 키(default : space)
-    public List<KeyCode> skipButton;
-
-    public string writerText = "";
-
-    public string characternameText = "";
-
-    bool isButtonClicked = false;
-
-    public bool bool_isNPC = false;
-
-    public GameObject images_NPC;
-
-    public Sprite[] images_NPC_portrait;
-
-    public Trigger_NPC trigger_npc;
-
-    public bool isNPCTrigger;
-
-    public Controller controller_scr;
-
-    //대화가 전부 출력 되었는지
-    public bool isSentenceEnd = false;
-
-    //남은 대화가 더 있는지
-    public bool remainSentence = false;
-
-    // 랜덤 대사 출력 변수
-    private int RandomNum;
-
-    [System.Serializable]
-    public struct DialogData
-    {
-        public int speakerIndex;              // 이름과 대사를 출력할 현재 DialogSystem의 speaker 배열 순번
-        public string name;                   // NPC 이름
-        [TextArea(3, 5)]
-        public string dialogue;               // 대사
-    }
-
-    [SerializeField]
-    public int index;
-    [SerializeField]
-    public S_NPCdatabase_Yes dialogdb;
-    [SerializeField]
-    private DialogData[] dialogs;
-
-    //최초 클릭
-    void Start()
-    {
-        CharacterName.text = "";
-        ChatText.text = "";
-    }
-
-    void Update()
-    {
-        foreach (var element in skipButton) // 버튼 검사
-        {
-            if (Input.GetKeyDown(element))
-            {
-                isButtonClicked = true;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition()
-             && TutorialManager.instance.SentenceCondition())
-        {
-            Debug.Log("z키 누름! 귀덕어멈!!!!");
-
-            //bool_isBotjim = true;
-            //controller_scr.TalkStart();
-
-            if (bool_isNPC == false && !DialogManager.instance.remainSentence)
-            {
-                Debug.Log("귀덕어멈 대화 시작");
-                images_NPC.SetActive(true);
-                StartCoroutine(TextPractice());
-
-                //Trigger_NPC.instance.isNPCTrigger = true;
-            }
-
-            else if(DialogManager.instance.isSentenceEnd)
-            {
-                Debug.Log("귀덕어멈 대화 끝");
-
-                //캐릭터 이동제한 해제
-                controller_scr.TalkEnd();
-
-                images_NPC.SetActive(false);
-                bool_isNPC = false;
-
-                StopAllCoroutines();
-
-                //남은대화 없음
-                DialogManager.instance.remainSentence = false;
-                //대화 끝
-                DialogManager.instance.isSentenceEnd = false;
-                //텍스트 비우기
-                DialogManager.instance.writerText = "";
-            }
-        }
-    }
-
-
-
-
-    IEnumerator TextPractice()
+    public IEnumerator TextPractice()
     {
         //만약 3월15일 대사 이벤트 중이라면
-        if(EventManager.instance.eventProgress.day15ClueStart && !EventManager.instance.eventEndCheck.day15ClueGet)
-            
+        if (EventManager.instance.eventProgress.day15ClueStart && !EventManager.instance.eventEndCheck.day15ClueGet)
+
         {
             //주막 퍼즐 완료 후 꽃 전달을 완료 했을 때
-            if (EventManager.instance.eventProgress.joomackPuzzle_Clear && EventManager.instance.eventProgress.giveFlowerEnd && 
+            if (EventManager.instance.eventProgress.joomackPuzzle_Clear && EventManager.instance.eventProgress.giveFlowerEnd &&
                 EventManager.instance.eventEndCheck.giveBoridduck_End)
             {
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[180].npc_name, dialogdb.NPC_01[180].comment, true));
@@ -136,7 +25,7 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
             }
 
             //배의 출항 단서로 대화시
-            else if(ObjectManager.instance.GetEquipObjectKey() == 2017)
+            else if (ObjectManager.instance.GetEquipObjectKey() == 2017)
             {
                 ////주막퍼즐 시작
                 //GameManager.instance.JoomackPuzzleStart();

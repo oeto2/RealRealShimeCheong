@@ -105,7 +105,7 @@ public class EndingManager : MonoBehaviour
         gameObject_EndingBG.SetActive(true);
 
         //NPC 다이얼로그 종료
-        DialogManager.instance.Dialouge_System.SetActive(false);
+        DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
     }
 

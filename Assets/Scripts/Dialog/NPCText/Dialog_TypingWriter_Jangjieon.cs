@@ -3,129 +3,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
+public class Dialog_TypingWriter_Jangjieon : Dialogue, ITalkable
 {
-    // 실제 채팅이 나오는 텍스트
-    public Text ChatText;
-
-    // 캐릭터 이름이 나오는 텍스트
-    public Text CharacterName;
-
-    // 대화를 빠르게 넘길 수 있는 키(default : space)
-    public List<KeyCode> skipButton;
-
-    public string writerText = "";
-
-    public string characternameText = "";
-
-    bool isButtonClicked = false;
-
-    public bool bool_isNPC = false;
-
-    public GameObject images_NPC;
-
-    public Sprite[] images_NPC_portrait;
-
-    public Trigger_NPC trigger_npc;
-
-    public bool isNPCTrigger;
-
-    public Controller controller_scr;
-
-    // 랜덤 대사 출력 변수
-    private int RandomNum;
-
-    //최초에만 출력되도록 하는 확인용
-    public bool isNPC_Start = true;
-
-    //대화가 전부 출력 되었는지
-    public bool isSentenceEnd = false;
-
-    //남은 대화가 더 있는지
-    public bool remainSentence = false;
-
     //바다의 바쳐질 제물 대사를 진행했는지
     public bool talkClue_6045;
-
-    [System.Serializable]
-    public struct DialogData
-    {
-        public int speakerIndex;              // 이름과 대사를 출력할 현재 DialogSystem의 speaker 배열 순번
-        public string name;                   // NPC 이름
-        [TextArea(3, 5)]
-        public string dialogue;               // 대사
-    }
-
-    [SerializeField]
-    public int index;
-    [SerializeField]
-    public S_NPCdatabase_Yes dialogdb;
-    [SerializeField]
-    private DialogData[] dialogs;
-
-    //최초 클릭
-    void Start()
-    {
-        CharacterName.text = "";
-        ChatText.text = "";
-    }
-
-    void Awake()
-    {
-        for (int i = 4999; i < dialogdb.NPC_01.Count; ++i)
-        {
-            if (dialogdb.NPC_01[i].index_num == index)
-            {
-                dialogs[index].name = dialogdb.NPC_01[i].npc_name;
-                dialogs[index].dialogue = dialogdb.NPC_01[i].comment;
-                index++;
-            }
-        }
-    }
-
-    public void Update()
-    {
-        foreach (var element in skipButton) // 버튼 검사
-        {
-            if (Input.GetKeyDown(element))
-            {
-                isButtonClicked = true;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition()
-             && TutorialManager.instance.SentenceCondition())
-        {
-            Debug.Log("z키 누름! 장지언!!!!");
-
-            //controller_scr.TalkStart();
-            if (bool_isNPC == false && !DialogManager.instance.remainSentence)
-            {
-                StartCoroutine(TextPractice());
-                images_NPC.SetActive(true);
-                bool_isNPC = true;
-            }
-            else if (DialogManager.instance.isSentenceEnd)
-            {
-                images_NPC.SetActive(false);
-                // images_NPC_portrait.SetActive(false);
-                //대사 비우기
-                StopAllCoroutines();
-                bool_isNPC = false;
-                //Controller.instance.TalkEnd();
-                controller_scr.TalkEnd();
-
-                //남은대화 없음
-                DialogManager.instance.remainSentence = false;
-                //대화 끝
-                DialogManager.instance.isSentenceEnd = false;
-                //텍스트 비우기
-                DialogManager.instance.writerText = "";
-            }
-        }
-    }
-
-    IEnumerator TextPractice()
+    public IEnumerator TextPractice()
     {
         #region 단서
         //2001 : 향리댁 수양 딸 
@@ -254,7 +136,7 @@ public class Dialog_TypingWriter_Jangjieon : MonoBehaviour
         #endregion
 
         #region 아이템
-        
+
         #endregion
 
         #region 조합 단서
