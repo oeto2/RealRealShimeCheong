@@ -234,25 +234,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    Debug.Log("구슬 퍼즐 시작");
-        //    PlayBeadPuzzle();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.J))
-        //{
-        //    Debug.Log("주막 퍼즐 시작");
-        //    JoomackPuzzleStart();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    Debug.Log("새끼줄 퍼즐 시작");
-        //    StrawPuzzleStart();
-        //}
-
-    }
+        }
 
     public void Action(GameObject scan_obj)
     {
@@ -429,52 +411,31 @@ public class GameManager : MonoBehaviour
     //현재 장소 이름 구하는 메서드
     public string GetPlaceName()
     {
-        if (cameraMoveScr.int_CurLimitNum == 0)
+        switch(cameraMoveScr.int_CurLimitNum)
         {
-            curPlaceName = "장소: 안방";
-            return curPlaceName;
+            case 0:
+                curPlaceName = "장소: 안방";
+                return curPlaceName;
+            case 1:
+                curPlaceName = "장소: 부엌";
+                return curPlaceName;
+            case 2:
+                curPlaceName = "장소: 마당";
+                return curPlaceName;
+            case 3:
+                curPlaceName = "장소: 마을";
+                return curPlaceName;
+            case 4:
+                curPlaceName = "장소: 장터";
+                return curPlaceName;
+            case 5:
+                curPlaceName = "장소: 개울";
+                return curPlaceName;
+            case 6:
+                curPlaceName = "장소: 바다";
+                return curPlaceName;
         }
-
-        else if (cameraMoveScr.int_CurLimitNum == 1)
-        {
-            curPlaceName = "장소: 부엌";
-            return curPlaceName;
-        }
-
-        else if (cameraMoveScr.int_CurLimitNum == 2)
-        {
-            curPlaceName = "장소: 마당";
-            return curPlaceName;
-        }
-
-        else if (cameraMoveScr.int_CurLimitNum == 3)
-        {
-            curPlaceName = "장소: 마을";
-            return curPlaceName;
-        }
-
-        else if (cameraMoveScr.int_CurLimitNum == 4)
-        {
-            curPlaceName = "장소: 장터";
-            return curPlaceName;
-        }
-
-        else if (cameraMoveScr.int_CurLimitNum == 5)
-        {
-            curPlaceName = "장소: 개울";
-            return curPlaceName;
-        }
-
-        else if (cameraMoveScr.int_CurLimitNum == 6)
-        {
-            curPlaceName = "장소: 바다";
-            return curPlaceName;
-        }
-
-        else
-        {
-            return null;
-        }
+        return "";
     }
 
     //구슬 퍼즐 시작
