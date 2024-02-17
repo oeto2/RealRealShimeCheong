@@ -5,28 +5,7 @@ using UnityEngine;
 public class Trigger_NPC : MonoBehaviour
 {
     public string ChatText = "";
-    private GameObject Main;
     public bool isNPCTrigger;
-
-    public Controller controller;
-
-    public Dialog_TypingWriter_Budhist dialog_TypingWriter_Budhist;
-
-    //외부 스크립트에서 사용하기 위한 용도(싱글톤 패턴)
-    public static Trigger_NPC instance;
-
-    void Awake()
-    {
-        if(Trigger_NPC.instance == null)
-        {
-            Trigger_NPC.instance = this;
-		}
-    }
-
-    void Start()
-    {
-        Main = GameObject.Find("TalkManager");
-    }
 
     void Update()
 	{

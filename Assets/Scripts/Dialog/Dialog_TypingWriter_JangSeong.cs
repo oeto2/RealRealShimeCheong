@@ -21,8 +21,6 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
     public string characternameText = "";
 
-    bool isButtonClicked = false;
-
     public bool bool_isNPC = false;
 
     public GameObject images_NPC;
@@ -91,21 +89,10 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
     void Update()
     {
-        foreach (var element in skipButton) // 버튼 검사
-        {
-            if (Input.GetKeyDown(element))
-            {
-                isButtonClicked = true;
-            }
-        }
-
         if (Input.GetKeyDown(KeyCode.Z) && trigger_npc.isNPCTrigger && UIManager.instance.SentenceCondition())
         {
             Debug.Log("z키 누름! 장승상댁!!!!");
-            //bool_isBotjim = true;
-            //플레이어 이동제한
-            //controller_scr.TalkStart();
-
+         
             if (bool_isNPC == false && !DialogManager.instance.remainSentence)
             {
                 Debug.Log("향리댁 대사 실행");
@@ -117,7 +104,6 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
 
                 //대사 출력
                 StartCoroutine(TextPractice());
-                Trigger_NPC.instance.isNPCTrigger = true;
             }
 
             //대화 종료
@@ -126,13 +112,10 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
                 //플레이어 이동제한 해제
                 controller_scr.TalkEnd();
 
-                //isSelection_2023 = false;
-
                 images_NPC.SetActive(false);
                 bool_isNPC = false;
 
                 StopAllCoroutines();
-
 
                 //남은대화 없음
                 DialogManager.instance.remainSentence = false;
@@ -144,15 +127,13 @@ public class Dialog_TypingWriter_JangSeong : MonoBehaviour
         }
     }
 
-
-
+    //대화 로직 모음.
     IEnumerator TextPractice()
     {
         //만약 향리댁 대화 튜토리얼 중이라면
         if (tutorialManagerScr.events == TutorialEvents.TalkToHyang)
         {
             Debug.Log("향리댁 튜토리얼 대사");
-            //yield return StartCoroutine(ItemClueChat(dialogdb.NPC_01[3].npc_name, dialogdb.NPC_01[3].comment, true));
             yield return StartCoroutine(DialogManager.instance.ItemClueChat("향리 댁 부인", "ⓦ여기는 어쩐 일이오?", true));
             yield return StartCoroutine(DialogManager.instance.ItemClueChat("심학규", "ⓦ청이가 향리 댁에 오지 않았다고 한다.", true));
             yield return StartCoroutine(DialogManager.instance.ItemClueChat("심학규", "ⓦ어찌 된 일인지 주변을 수소문 해 보자.", true));

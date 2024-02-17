@@ -88,7 +88,7 @@ public class Dialog_TypingWriter_Guiduck : MonoBehaviour
                 images_NPC.SetActive(true);
                 StartCoroutine(TextPractice());
 
-                Trigger_NPC.instance.isNPCTrigger = true;
+                //Trigger_NPC.instance.isNPCTrigger = true;
             }
 
             else if(DialogManager.instance.isSentenceEnd)

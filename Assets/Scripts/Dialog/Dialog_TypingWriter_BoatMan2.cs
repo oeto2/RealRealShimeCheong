@@ -83,7 +83,7 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
                 Debug.Log("대화 실행");
                 images_NPC.SetActive(true);
                 StartCoroutine(TextPractice2());
-                Trigger_NPC.instance.isNPCTrigger = true;
+                //Trigger_NPC.instance.isNPCTrigger = true;
             }
 
             //대화가 끝났을 경우
@@ -95,7 +95,7 @@ public class Dialog_TypingWriter_BoatMan2 : MonoBehaviour
                 // images_NPC_portrait.SetActive(false);
                 //대사 비우기
                 StopAllCoroutines();
-                Trigger_NPC.instance.isNPCTrigger = false;
+                //Trigger_NPC.instance.isNPCTrigger = false;
                 bool_isNPC = false;
                 //Controller.instance.TalkEnd();
                 controller_scr.TalkEnd();

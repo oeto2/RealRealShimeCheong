@@ -101,7 +101,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
                 StartCoroutine(TextPractice());
                 images_NPC.SetActive(true);
                 bool_isNPC = true;
-                Trigger_NPC.instance.isNPCTrigger = true;
+                //Trigger_NPC.instance.isNPCTrigger = true;
             }
             else if(DialogManager.instance.isSentenceEnd)
             {
@@ -109,7 +109,7 @@ public class Dialog_TypingWriter_Budhist : MonoBehaviour
                 // images_NPC_portrait.SetActive(false);
                 //대사 비우기
                 StopAllCoroutines();
-                Trigger_NPC.instance.isNPCTrigger = false;
+                //Trigger_NPC.instance.isNPCTrigger = false;
                 bool_isNPC = false;
                 //Controller.instance.TalkEnd();
                 controller_scr.TalkEnd();

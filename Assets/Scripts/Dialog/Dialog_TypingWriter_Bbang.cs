@@ -99,7 +99,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                 Debug.Log("뺑덕 대사 실행");
                 images_Bbang.SetActive(true);
                 StartCoroutine(TextPractice());
-                Trigger_NPC.instance.isNPCTrigger = true;
+                //Trigger_NPC.instance.isNPCTrigger = true;
             }
 
             //대화 종료
@@ -110,7 +110,7 @@ public class Dialog_TypingWriter_Bbang : MonoBehaviour
                
                
                 StopAllCoroutines();
-                Trigger_NPC.instance.isNPCTrigger = false;
+                //Trigger_NPC.instance.isNPCTrigger = false;
                 bool_isNPC = false;
                 //Controller.instance.TalkEnd();
                 controller_scr.TalkEnd();
