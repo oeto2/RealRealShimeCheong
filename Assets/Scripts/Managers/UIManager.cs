@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEditor;
 
 //저장할 UI 데이터들
 [System.Serializable]
@@ -663,10 +664,20 @@ public class UIManager : MonoBehaviour
                     //로드슬롯의 해시계 Ui image 변경
                     image_LoadSunClock[i].sprite = sprite_AllSunClock[curLoadUiData.sunClockNum];
 
-                    //저장슬롯의 캘린더 UI image 변경
-                    image_SaveUICalendar[i].sprite = sprite_AllCalendar[curLoadUiData.day - 1];
-                    //로드슬롯의 캘린더 UI image 변경
-                    image_LoadUICalendar[i].sprite = sprite_AllCalendar[curLoadUiData.day - 1];
+                    if(curLoadUiData.day <= 3)
+                    {
+                        //저장슬롯의 캘린더 UI image 변경
+                        image_SaveUICalendar[i].sprite = sprite_AllCalendar[curLoadUiData.day - 1];
+                        //로드슬롯의 캘린더 UI image 변경
+                        image_LoadUICalendar[i].sprite = sprite_AllCalendar[curLoadUiData.day - 1];
+                    }
+                    else
+                    {
+                        //저장슬롯의 캘린더 UI image 변경
+                        image_SaveUICalendar[i].sprite = sprite_AllCalendar[2];
+                        //로드슬롯의 캘린더 UI image 변경
+                        image_LoadUICalendar[i].sprite = sprite_AllCalendar[2];
+                    }
 
 
                     ////플레이타임 변경
