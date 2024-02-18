@@ -289,13 +289,6 @@ public class ObjectManager : MonoBehaviour
             EmptyCombineSlot();
         }
 
-        //if(Input.GetKeyDown(KeyCode.V))
-        //{
-        //    GetClue(2005);
-        //    GetItem(1013);
-        //    GetItem(1014);
-        //}
-
         if(Input.GetKeyDown(KeyCode.I))
         {
             GetAllItem();
@@ -1046,6 +1039,19 @@ public class ObjectManager : MonoBehaviour
                     Debug.Log("공양미를 구한 방법");
                     //슬롯1, 슬롯2의 Type의 합
                     slotSumType = "ClueClue";
+                    //조합 키 값은 9001
+                    sumKeyValue = 9001;
+                }
+
+                //만약 조합슬롯 1번,2번의 키값이 2022,4023이라면
+                if ((curCombineClue1Info.key == 2022 || curCombineClue1Info.key == 9001) &&
+                    (curCombineClue2Info.key == 9001 || curCombineClue2Info.key == 2022))
+                {
+                    Debug.Log("바다에 바쳐질 제물");
+                    //슬롯1, 슬롯2의 Type의 합
+                    slotSumType = "ClueClue";
+                    //조합 키 값은 9001
+                    sumKeyValue = 6045;
                 }
 
                 //만약 조합슬롯 1번,2번의 단서의 Type이 ClueClue 라면
@@ -1068,14 +1074,6 @@ public class ObjectManager : MonoBehaviour
                 {
                     //조합 키 값은 9000
                     sumKeyValue = 9000;
-                }
-
-                //만약 조합슬롯 1번의,2번의 단서가 2001 또는 2016일 경우
-                else if ((curCombineClue1Info.key == 2012 || curCombineClue1Info.key == 2011) &&
-                    (curCombineClue2Info.key == 2012 || curCombineClue2Info.key == 2011))
-                {
-                    //조합 키 값은 9001
-                    sumKeyValue = 9001;
                 }
                 #endregion
 
@@ -1100,10 +1098,6 @@ public class ObjectManager : MonoBehaviour
                 {
                     //해당 Key값을 가진 단서 획득
                     GetClue(sumKeyValue);
-
-                    ////조합에 사용된 단서 제거
-                    //RemoveClue(curCombineClue1Info.key);
-                    //RemoveClue(curCombineClue2Info.key);
 
                     //슬롯 비우기
                     EmptyCombineSlot();

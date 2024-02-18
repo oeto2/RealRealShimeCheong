@@ -181,7 +181,10 @@ public class Dialog_TypingWriter_BusinessMan : Dialogue, ITalkable
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[217].npc_name, dialogdb.NPC_01[217].comment, true));
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[218].npc_name, dialogdb.NPC_01[218].comment, true));
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[219].npc_name, dialogdb.NPC_01[219].comment, true));
+                //¸Ô È¹µæ
+                ObjectManager.instance.GetItem(1011);
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[220].npc_name, dialogdb.NPC_01[220].comment));
+
             }
 
             //2023 : 3¿ùº¸¸§³¯

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Trigger_NPC : MonoBehaviour
 {
@@ -9,9 +11,12 @@ public class Trigger_NPC : MonoBehaviour
     [SerializeField] private Dialogue NPCDalogue;
     private ITalkable _ITalkable;
 
+    [Header("Dialogue State")]
     //대화를 할 수 있는지
     [SerializeField] private float reTalkDelayTime = 0.5f;
     [SerializeField] private bool enableTalk = true;
+
+    
 
     private void Awake()
     {
