@@ -1,32 +1,32 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DrawWater : MonoBehaviour
 {
-    //Äİ¶óÀÌ´õ¿Í ÇÃ·¹ÀÌ¾î°¡ Á¢ÃËÇß´ÂÁö
+    //ì½œë¼ì´ë”ì™€ í”Œë ˆì´ì–´ê°€ ì ‘ì´‰í–ˆëŠ”ì§€
     public bool isTouch;
 
     private void Update()
     {
-        //¹Ù°¡Áö ÀåÂøÈÄ ZÅ°¸¦ ´­·¶À» °æ¿ì
+        //ë°”ê°€ì§€ ì¥ì°©í›„ Zí‚¤ë¥¼ ëˆŒë €ì„ ê²½ìš°
         if(isTouch && ObjectManager.instance.GetEquipObjectKey() == 1003 && Input.GetKeyDown(KeyCode.Z))
         {
-            //ÄÚ·çÆ¾ ½ÇÇà
+            //ì½”ë£¨í‹´ ì‹¤í–‰
             StartCoroutine(DrawWaterStart());
         }
     }
 
     private IEnumerator DrawWaterStart()
     {
-        //¹°ÀÌµç ¹Ù°¡Áö È¹µæ
+        //ë¬¼ì´ë“  ë°”ê°€ì§€ íšë“
         ObjectManager.instance.GetItem(1004);
 
-        //¹Ù°¡Áö ¾ÆÀÌÅÛ Á¦°Å
+        //ë°”ê°€ì§€ ì•„ì´í…œ ì œê±°
         ObjectManager.instance.RemoveItem(1003);
 
-        //½Ã½ºÅÛ ¸Ş¼¼Áö Ãâ·Â
-        DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(521), true);
+        //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì¶œë ¥
+        DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcName(521),DialogManager.instance.GetNpcSentence(521), true);
 
         yield return null;
     }

@@ -1,114 +1,114 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class JoomuckBab : MonoBehaviour
 {
-    //¿ÜºÎ½ºÅ©¸³Æ® ÂüÁ¶
+    //ì™¸ë¶€ìŠ¤í¬ë¦½íŠ¸ ì°¸ì¡°
     public ObjectManager objectManagerScr;
 
-    //ÀåÀÛ ¿ÀºêÁ§Æ®
+    //ì¥ì‘ ì˜¤ë¸Œì íŠ¸
     public GameObject gameObject_JangJack;
 
-    //ºÒ ¿ÀºêÁ§Æ®
+    //ë¶ˆ ì˜¤ë¸Œì íŠ¸
     public GameObject gameobjcet_Fire;
 
-    //°¡¸¶¼Ü ±âº» ¿ÀºêÁ§Æ®
+    //ê°€ë§ˆì†¥ ê¸°ë³¸ ì˜¤ë¸Œì íŠ¸
     public GameObject gameObjcet_GamasotNomal;
 
-    //°¡¸¶¼Ü ²ú´Â ¿ÀºêÁ§Æ®
+    //ê°€ë§ˆì†¥ ë“ëŠ” ì˜¤ë¸Œì íŠ¸
     public GameObject gameObjcet_GamasotUsing;
 
-    //°¡¸¶¼Ü°ú Á¢ÃËÇß´ÂÁö È®ÀÎÇÏ´Â falg
+    //ê°€ë§ˆì†¥ê³¼ ì ‘ì´‰í–ˆëŠ”ì§€ í™•ì¸í•˜ëŠ” falg
     public bool isTouch;
 
-    //¾àÃÊ¸¦ ¸¶¼Ì´ÂÁö
+    //ì•½ì´ˆë¥¼ ë§ˆì…¨ëŠ”ì§€
     public bool drinkHerb;
 
-    //ÁÖ¸Ô¹ä Á¦ÀÛ ¼ø¼­
+    //ì£¼ë¨¹ë°¥ ì œì‘ ìˆœì„œ
     public enum MakeJoomuckBab
     {
-        //ÀåÀÛ ³Ö±â
+        //ì¥ì‘ ë„£ê¸°
         PushJangJack = 0,
-        //ºÎ½Ëµ¹ »ç¿ë
+        //ë¶€ì‹¯ëŒ ì‚¬ìš©
         UseFireStone,
-        //¹°°ú ½Ò ¸ğµÎ ¾øÀ½
+        //ë¬¼ê³¼ ìŒ€ ëª¨ë‘ ì—†ìŒ
         FillWater_OR_PushRice,
-        //¹°Àº ³Ö¾ú´Âµ¥ ½ÒÀº ¾È³ÖÀ½
+        //ë¬¼ì€ ë„£ì—ˆëŠ”ë° ìŒ€ì€ ì•ˆë„£ìŒ
         FillWaterDone,
-        //½ÒÀº ³Ö¾ú´Âµ¥ ¹°Àº ¾È³ÖÀ½
+        //ìŒ€ì€ ë„£ì—ˆëŠ”ë° ë¬¼ì€ ì•ˆë„£ìŒ
         PushRiceDone,
-        //ÁÖ¸Ô¹ä ¸¸µé±â
+        //ì£¼ë¨¹ë°¥ ë§Œë“¤ê¸°
         MakeJoomuckBab,
-        //ÀÌº¥Æ® Á¾·á
+        //ì´ë²¤íŠ¸ ì¢…ë£Œ
         Done
     }
 
-    //¾àÃÊ Á¦ÀÛ ¼ø¼­
+    //ì•½ì´ˆ ì œì‘ ìˆœì„œ
     public enum MakeHerbOrder
     {
-        //ÁÖ¸Ô¹ä ÀÌº¥Æ® ¹Ì¿Ï·á
+        //ì£¼ë¨¹ë°¥ ì´ë²¤íŠ¸ ë¯¸ì™„ë£Œ
         JoomuckBabNotDone = 0,
-        //ºÒ ºÙÀÌ±â
+        //ë¶ˆ ë¶™ì´ê¸°
         LightFire,
-        //¾àÃÊ OR ¹° ³Ö±â
+        //ì•½ì´ˆ OR ë¬¼ ë„£ê¸°
         PushHerb_OR_Water,
-        //¾àÃÊ ³Ö±â
+        //ì•½ì´ˆ ë„£ê¸°
         PushHerb,
-        //¹° ³Ö±â
+        //ë¬¼ ë„£ê¸°
         PushWater,
-        //¾àÃÊ ¹° Á¦ÀÛ ¿Ï·á
+        //ì•½ì´ˆ ë¬¼ ì œì‘ ì™„ë£Œ
         Done,
-        //¾àÃÊ ¹° ¸¶½Ã±â1,
+        //ì•½ì´ˆ ë¬¼ ë§ˆì‹œê¸°1,
         DrinkHerb,
-        //¾àÃÊ ¹° ¸¶½Ã±â2,
+        //ì•½ì´ˆ ë¬¼ ë§ˆì‹œê¸°2,
         DrinkHerb2,
-        //¿£µù
+        //ì—”ë”©
         Edning
     }
 
-    //ÁÖ¸Ô¹ä ¸¸µé±â ÀÌº¥Æ® ¼ø¼­
+    //ì£¼ë¨¹ë°¥ ë§Œë“¤ê¸° ì´ë²¤íŠ¸ ìˆœì„œ
     public MakeJoomuckBab makeJoomuckBab = MakeJoomuckBab.PushJangJack;
 
-    //¾àÃÊ ¹° Á¦ÀÛ ¼ø¼­
+    //ì•½ì´ˆ ë¬¼ ì œì‘ ìˆœì„œ
     public MakeHerbOrder makeHerbOrder = MakeHerbOrder.JoomuckBabNotDone;
 
     private void Update()
     {
-        //ÁÖ¸Ô¹ä ÀÌº¥Æ® ½ÇÇà Á¶°Ç
+        //ì£¼ë¨¹ë°¥ ì´ë²¤íŠ¸ ì‹¤í–‰ ì¡°ê±´
         if (isTouch && Input.GetKeyDown(KeyCode.Z) && makeJoomuckBab != MakeJoomuckBab.Done)
         {
-            //ÁÖ¸Ô¹ä ÀÌº¥Æ®°¡ È°¼ºÈ­ ÁßÀÌ¶ó¸é
+            //ì£¼ë¨¹ë°¥ ì´ë²¤íŠ¸ê°€ í™œì„±í™” ì¤‘ì´ë¼ë©´
             if (EventManager.instance.GetEventBool(Events.JoomuckBab))
             {
                 switch (makeJoomuckBab)
                 {
-                    //ÀåÀÛ ³Ö±â
+                    //ì¥ì‘ ë„£ê¸°
                     case MakeJoomuckBab.PushJangJack:
                         StartCoroutine(PushJangJack());
                         break;
 
-                    //ºÎ½Ëµ¹ »ç¿ë
+                    //ë¶€ì‹¯ëŒ ì‚¬ìš©
                     case MakeJoomuckBab.UseFireStone:
                         StartCoroutine(UseFireStone());
                         break;
 
-                    //¹° ³Ö±â È¤Àº ½Ò ³Ö±â
+                    //ë¬¼ ë„£ê¸° í˜¹ì€ ìŒ€ ë„£ê¸°
                     case MakeJoomuckBab.FillWater_OR_PushRice:
                         StartCoroutine(FillWater_OR_PushRice());
                         break;
 
-                    //¹°Àº ³Ö¾ú´Âµ¥ ½ÒÀº ¾È³ÖÀ½
+                    //ë¬¼ì€ ë„£ì—ˆëŠ”ë° ìŒ€ì€ ì•ˆë„£ìŒ
                     case MakeJoomuckBab.FillWaterDone:
                         StartCoroutine(FillWaterDone());
                         break;
 
-                    //½ÒÀº ³Ö¾ú´Âµ¥ ¹°À» ¾È³ÖÀ½
+                    //ìŒ€ì€ ë„£ì—ˆëŠ”ë° ë¬¼ì„ ì•ˆë„£ìŒ
                     case MakeJoomuckBab.PushRiceDone:
                         StartCoroutine(PushRiceDone());
                         break;
 
-                    //ÁÖ¸Ô¹ä ¸¸µé±â
+                    //ì£¼ë¨¹ë°¥ ë§Œë“¤ê¸°
                     case MakeJoomuckBab.MakeJoomuckBab:
                         StartCoroutine(TakeJoomuckBab());
 
@@ -117,125 +117,125 @@ public class JoomuckBab : MonoBehaviour
             }
         }
 
-        // Çãºê ÀÌº¥Æ® (ÁÖ¸Ô¹ä ¸¸µé±â ÀÌº¥Æ®°¡ ³¡³­ °æ¿ì¿¡¸¸ ÁøÇà)
+        // í—ˆë¸Œ ì´ë²¤íŠ¸ (ì£¼ë¨¹ë°¥ ë§Œë“¤ê¸° ì´ë²¤íŠ¸ê°€ ëë‚œ ê²½ìš°ì—ë§Œ ì§„í–‰)
         else if (isTouch && Input.GetKeyDown(KeyCode.Z) && makeJoomuckBab == MakeJoomuckBab.Done)
         {
-            //Çãºê ÀÌº¥Æ® ÁøÇà
+            //í—ˆë¸Œ ì´ë²¤íŠ¸ ì§„í–‰
             switch (makeHerbOrder)
             {
-                //ºÒ ºÙÀÌ±â
+                //ë¶ˆ ë¶™ì´ê¸°
                 case MakeHerbOrder.LightFire:
 
-                    //ºÎ½Ëµ¹À» ÀåÂøÇÏ°í ÀÖÀ» °æ¿ì
+                    //ë¶€ì‹¯ëŒì„ ì¥ì°©í•˜ê³  ìˆì„ ê²½ìš°
                     if (ObjectManager.instance.GetEquipObjectKey() == 1002)
                     {
-                        //ºÒ ºÙÀÌ±â ´ë»ç ½ÇÇà
-                        DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(520), true);
+                        //ë¶ˆ ë¶™ì´ê¸° ëŒ€ì‚¬ ì‹¤í–‰
+                        DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcName(520), DialogManager.instance.GetNpcSentence(520), true);
 
-                        //ºÒ ¿ÀºêÁ§Æ® È°¼ºÈ­
+                        //ë¶ˆ ì˜¤ë¸Œì íŠ¸ í™œì„±í™”
                         gameobjcet_Fire.SetActive(true);
 
-                        //´ÙÀ½ ¼ø¼­·Î ÁøÇà
+                        //ë‹¤ìŒ ìˆœì„œë¡œ ì§„í–‰
                         makeHerbOrder = MakeHerbOrder.PushHerb_OR_Water;
                     }
                     break;
 
-                //¾àÃÊ OR ¹° ³Ö±â
+                //ì•½ì´ˆ OR ë¬¼ ë„£ê¸°
                 case MakeHerbOrder.PushHerb_OR_Water:
 
-                    //Çãºê¸¦ ÀåÂøÇÏ°í ÀÖ¾úÀ» °æ¿ì
+                    //í—ˆë¸Œë¥¼ ì¥ì°©í•˜ê³  ìˆì—ˆì„ ê²½ìš°
                     if (ObjectManager.instance.GetEquipObjectKey() == 1010)
                     {
-                        //Çãºê ³Ö±â ´ë»ç ½ÇÇà
+                        //í—ˆë¸Œ ë„£ê¸° ëŒ€ì‚¬ ì‹¤í–‰
                         DialogManager.instance.StartPushHerbSentence();
 
-                        //¾àÃÊ ¿ÀºêÁ§Æ® Á¦°Å
+                        //ì•½ì´ˆ ì˜¤ë¸Œì íŠ¸ ì œê±°
                         ObjectManager.instance.RemoveItem(1010);
 
-                        //´ÙÀ½ ¼ø¼­·Î ÁøÇà
+                        //ë‹¤ìŒ ìˆœì„œë¡œ ì§„í–‰
                         makeHerbOrder = MakeHerbOrder.PushWater;
                     }
 
-                    //¹° ¹Ù°¡Áö¸¦ ÀåÂøÇÏ°í ÀÖ¾úÀ» °æ¿ì
+                    //ë¬¼ ë°”ê°€ì§€ë¥¼ ì¥ì°©í•˜ê³  ìˆì—ˆì„ ê²½ìš°
                     else if (ObjectManager.instance.GetEquipObjectKey() == 1004)
                     {
-                        //¹° ³Ö±â ´ÙÀÌ¾ó·Î±× Ãâ·Â
+                        //ë¬¼ ë„£ê¸° ë‹¤ì´ì–¼ë¡œê·¸ ì¶œë ¥
                         DialogManager.instance.Start_WaterBageSentence_2();
 
-                        //¹° ¹Ù°¡Áö Á¦°Å
+                        //ë¬¼ ë°”ê°€ì§€ ì œê±°
                         ObjectManager.instance.RemoveItem(1004);
 
-                        //¹Ù°¡Áö È¹µæ
+                        //ë°”ê°€ì§€ íšë“
                         ObjectManager.instance.GetItem(1003);
 
-                        //´ÙÀ½ ¼ø¼­·Î ÁøÇà
+                        //ë‹¤ìŒ ìˆœì„œë¡œ ì§„í–‰
                         makeHerbOrder = MakeHerbOrder.PushHerb;
                     }
                     break;
 
 
-                //Çãºê ³Ö±â
+                //í—ˆë¸Œ ë„£ê¸°
                 case MakeHerbOrder.PushHerb:
 
-                    //Çãºê¸¦ ÀåÂøÇÏ°í ÀÖÀ» °æ¿ì
+                    //í—ˆë¸Œë¥¼ ì¥ì°©í•˜ê³  ìˆì„ ê²½ìš°
                     if (ObjectManager.instance.GetEquipObjectKey() == 1010)
                     {
-                        //Çãºê ³Ö±â ´ë»ç ½ÇÇà
+                        //í—ˆë¸Œ ë„£ê¸° ëŒ€ì‚¬ ì‹¤í–‰
                         DialogManager.instance.StartPushHerbSentence();
 
-                        //°¡¸¶¼Ü ÀÌ¹ÌÁö º¯°æ
+                        //ê°€ë§ˆì†¥ ì´ë¯¸ì§€ ë³€ê²½
                         UsingGamasot();
 
-                        //´ÙÀ½ ¼ø¼­·Î ÁøÇà
+                        //ë‹¤ìŒ ìˆœì„œë¡œ ì§„í–‰
                         makeHerbOrder = MakeHerbOrder.Done;
                     }
                     break;
 
-                //¹° ³Ö±â
+                //ë¬¼ ë„£ê¸°
                 case MakeHerbOrder.PushWater:
 
-                    //¹° ¹Ù°¡Áö ÀåÂøÇÏ°í ÀÖÀ» °æ¿ì
+                    //ë¬¼ ë°”ê°€ì§€ ì¥ì°©í•˜ê³  ìˆì„ ê²½ìš°
                     if (ObjectManager.instance.GetEquipObjectKey() == 1004)
                     {
-                        //¹° ³Ö±â ´ÙÀÌ¾ó·Î±× Ãâ·Â
+                        //ë¬¼ ë„£ê¸° ë‹¤ì´ì–¼ë¡œê·¸ ì¶œë ¥
                         DialogManager.instance.Start_WaterBageSentence_2();
 
-                        //¹° ¹Ù°¡Áö Á¦°Å
+                        //ë¬¼ ë°”ê°€ì§€ ì œê±°
                         ObjectManager.instance.RemoveItem(1004);
 
-                        //¹Ù°¡Áö È¹µæ
+                        //ë°”ê°€ì§€ íšë“
                         ObjectManager.instance.GetItem(1003);
 
-                        //°¡¸¶¼Ü ÀÌ¹ÌÁö º¯°æ
+                        //ê°€ë§ˆì†¥ ì´ë¯¸ì§€ ë³€ê²½
                         UsingGamasot();
 
-                        //´ÙÀ½ ¼ø¼­·Î ÁøÇà
+                        //ë‹¤ìŒ ìˆœì„œë¡œ ì§„í–‰
                         makeHerbOrder = MakeHerbOrder.Done;
                     }
                     break;
 
-                //¾àÃÊ Á¦ÀÛ¿Ï·á ½Ã
+                //ì•½ì´ˆ ì œì‘ì™„ë£Œ ì‹œ
                 case MakeHerbOrder.Done:
 
-                    //´ÙÀ½ ¼ø¼­·Î ÁøÇà
+                    //ë‹¤ìŒ ìˆœì„œë¡œ ì§„í–‰
                     makeHerbOrder = MakeHerbOrder.DrinkHerb;
 
                     break;
 
-                //¾àÃÊ ¹° ¸¶½Ã±â 1
+                //ì•½ì´ˆ ë¬¼ ë§ˆì‹œê¸° 1
                 case MakeHerbOrder.DrinkHerb:
 
-                    //¼±ÅÃÁö ÁøÇà
+                    //ì„ íƒì§€ ì§„í–‰
                     if (!DialogManager.instance.Dialouge_Canvas.activeSelf)
                     {
                         EventManager.instance.SelectStart(NPCName.Herb, 5799);
                     }
                     break;
 
-                //¾àÃÊ ¹° ¸¶½Ã±â 2
+                //ì•½ì´ˆ ë¬¼ ë§ˆì‹œê¸° 2
                 case MakeHerbOrder.DrinkHerb2:
 
-                    //¼±ÅÃÁö ÁøÇà
+                    //ì„ íƒì§€ ì§„í–‰
                     if (!DialogManager.instance.Dialouge_Canvas.activeSelf)
                     {
                         EventManager.instance.SelectStart(NPCName.Herb, 7009);
@@ -244,9 +244,9 @@ public class JoomuckBab : MonoBehaviour
             }
         }
     }
-    #region ¾àÃÊ ÀÌº¥Æ®
+    #region ì•½ì´ˆ ì´ë²¤íŠ¸
 
-    //¾àÃÊ ÀÌº¥Æ® »óÅÂ int °ª ¹İÈ¯
+    //ì•½ì´ˆ ì´ë²¤íŠ¸ ìƒíƒœ int ê°’ ë°˜í™˜
     public int GetHerbEventState()
     {
         switch (makeHerbOrder)
@@ -283,167 +283,167 @@ public class JoomuckBab : MonoBehaviour
         }
     }
 
-    //ÁÖ¸Ô¹ä ÀÌº¥Æ® ¼¼ÆÃ
+    //ì£¼ë¨¹ë°¥ ì´ë²¤íŠ¸ ì„¸íŒ…
     public void HerbEventSetting(int _eventNum)
     {
         switch (_eventNum)
         {
-            //ÁÖ¸Ô¹ä ÀÌº¥Æ® ¹Ì¿Ï·á
+            //ì£¼ë¨¹ë°¥ ì´ë²¤íŠ¸ ë¯¸ì™„ë£Œ
             case 0:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeHerbOrder = MakeHerbOrder.JoomuckBabNotDone;
 
-                //ÀåÀÛ ¾ø¾Ö±â
+                //ì¥ì‘ ì—†ì• ê¸°
                 gameObject_JangJack.SetActive(false);
 
-                //ºÒ ¾ø¾Ö±â
+                //ë¶ˆ ì—†ì• ê¸°
                 gameobjcet_Fire.SetActive(false);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö ²ô±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë„ê¸°
                 gameObjcet_GamasotUsing.SetActive(false);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;
 
-            //ºÒ ºÙÀÌ±â Àü
+            //ë¶ˆ ë¶™ì´ê¸° ì „
             case 1:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeHerbOrder = MakeHerbOrder.LightFire;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ ¾ø¾Ö±â
+                //ë¶ˆ ì—†ì• ê¸°
                 gameobjcet_Fire.SetActive(false);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö ²ô±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë„ê¸°
                 gameObjcet_GamasotUsing.SetActive(false);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;
 
-            //ºÒ ºÙÀÓ
+            //ë¶ˆ ë¶™ì„
             case 2:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeHerbOrder = MakeHerbOrder.PushHerb_OR_Water;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ º¸ÀÌ±â
+                //ë¶ˆ ë³´ì´ê¸°
                 gameobjcet_Fire.SetActive(true);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö ²ô±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë„ê¸°
                 gameObjcet_GamasotUsing.SetActive(false);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;
 
-            //¾àÃÊ ³ÖÀ½
+            //ì•½ì´ˆ ë„£ìŒ
             case 3:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeHerbOrder = MakeHerbOrder.PushHerb;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ º¸ÀÌ±â
+                //ë¶ˆ ë³´ì´ê¸°
                 gameobjcet_Fire.SetActive(true);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö ²ô±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë„ê¸°
                 gameObjcet_GamasotUsing.SetActive(false);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;
 
-            //¹° ³ÖÀ½
+            //ë¬¼ ë„£ìŒ
             case 4:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeHerbOrder = MakeHerbOrder.PushWater;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ º¸ÀÌ±â
+                //ë¶ˆ ë³´ì´ê¸°
                 gameobjcet_Fire.SetActive(true);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö ²ô±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë„ê¸°
                 gameObjcet_GamasotUsing.SetActive(false);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;
 
-            //¾àÃÊ¶û ¹° ³ÖÀ½
+            //ì•½ì´ˆë‘ ë¬¼ ë„£ìŒ
             case 5:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeHerbOrder = MakeHerbOrder.Done;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ º¸ÀÌ±â
+                //ë¶ˆ ë³´ì´ê¸°
                 gameobjcet_Fire.SetActive(true);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotUsing.SetActive(true);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(false);
 
                 break;
 
-            //¾àÃÊ¹° ¸¶½Ã±â1
+            //ì•½ì´ˆë¬¼ ë§ˆì‹œê¸°1
             case 6:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeHerbOrder = MakeHerbOrder.DrinkHerb;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ º¸ÀÌ±â
+                //ë¶ˆ ë³´ì´ê¸°
                 gameobjcet_Fire.SetActive(true);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotUsing.SetActive(true);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(false);
 
                 break;
 
-            //¾àÃÊ¹° ¸¶½Ã±â2    
+            //ì•½ì´ˆë¬¼ ë§ˆì‹œê¸°2    
             case 7:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeHerbOrder = MakeHerbOrder.DrinkHerb2;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ º¸ÀÌ±â
+                //ë¶ˆ ë³´ì´ê¸°
                 gameobjcet_Fire.SetActive(true);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotUsing.SetActive(true);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(false);
 
                 break;
@@ -451,110 +451,112 @@ public class JoomuckBab : MonoBehaviour
     }
     #endregion
 
-    #region ÁÖ¸Ô¹ä ÀÌº¥Æ®
-    //ÀåÀÛ ³Ö±â
+    #region ì£¼ë¨¹ë°¥ ì´ë²¤íŠ¸
+    //ì¥ì‘ ë„£ê¸°
     private IEnumerator PushJangJack()
     {
-        //ÀåÀÛ ¾ÆÀÌÅÛÀ» Âø¿ëÁßÀÌ¶ó¸é
+        //ì¥ì‘ ì•„ì´í…œì„ ì°©ìš©ì¤‘ì´ë¼ë©´
         if (ObjectManager.instance.GetEquipObjectKey() == 1001)
         {
-            //½Ã½ºÅÛ ¸Ş¼¼Áö Ãâ·Â
-            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(519), true);
+            //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì¶œë ¥
+            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcName(519),DialogManager.instance.GetNpcSentence(519), true);
 
-            //ÀåÀÛ ¿ÀºêÁ§Æ® È°¼ºÈ­
+            //ì¥ì‘ ì˜¤ë¸Œì íŠ¸ í™œì„±í™”
             gameObject_JangJack.SetActive(true);
 
-            //ÀåÀÛ ¾ÆÀÌÅÛ Á¦°Å
+            //ì¥ì‘ ì•„ì´í…œ ì œê±°
             objectManagerScr.RemoveItem(1001);
 
-            //´ÙÀ½ ÀÌº¥Æ®·Î ÀÌµ¿
+            //ë‹¤ìŒ ì´ë²¤íŠ¸ë¡œ ì´ë™
             makeJoomuckBab = MakeJoomuckBab.UseFireStone;
         }
 
-        //ºÎ½Ëµ¹À» Âø¿ë ÁßÀÌ¶ó¸é
+        //ë¶€ì‹¯ëŒì„ ì°©ìš© ì¤‘ì´ë¼ë©´
         else if (ObjectManager.instance.GetEquipObjectKey() == 1002)
         {
-            //½Ã½ºÅÛ ¸Ş¼¼Áö Ãâ·Â
-            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(265), true);
+            //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì¶œë ¥
+            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcName(265),DialogManager.instance.GetNpcSentence(265), true);
+
+            Debug.Log("ë¨¼ì € ì¥ì‘ì„ ë„£ì–´ì•¼ í•œë‹¤!!!!");
         }
 
         yield return null;
     }
 
-    //ºÎ½Ëµ¹ »ç¿ë
+    //ë¶€ì‹¯ëŒ ì‚¬ìš©
     private IEnumerator UseFireStone()
     {
-        //ºÎ½Ëµ¹À» Âø¿ëÁßÀÌ¶ó¸é
+        //ë¶€ì‹¯ëŒì„ ì°©ìš©ì¤‘ì´ë¼ë©´
         if (ObjectManager.instance.GetEquipObjectKey() == 1002)
         {
-            //ºÒ ¿ÀºêÁ§Æ® È°¼ºÈ­
+            //ë¶ˆ ì˜¤ë¸Œì íŠ¸ í™œì„±í™”
             gameobjcet_Fire.SetActive(true);
 
-            //½Ã½ºÅÛ ¸Ş¼¼Áö Ãâ·Â
-            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(520), true);
+            //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì¶œë ¥
+            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcName(520),DialogManager.instance.GetNpcSentence(520), true);
 
-            //´ÙÀ½ ÀÌº¥Æ®·Î ÀÌµ¿
+            //ë‹¤ìŒ ì´ë²¤íŠ¸ë¡œ ì´ë™
             makeJoomuckBab = MakeJoomuckBab.FillWater_OR_PushRice;
         }
         yield return null;
     }
 
-    //¹° È¤Àº ½Ò ³Ö±â
+    //ë¬¼ í˜¹ì€ ìŒ€ ë„£ê¸°
     private IEnumerator FillWater_OR_PushRice()
     {
-        //¹°µç ¹Ù°¡Áö¸¦ Âø¿ëÁßÀÌ¶ó¸é
+        //ë¬¼ë“  ë°”ê°€ì§€ë¥¼ ì°©ìš©ì¤‘ì´ë¼ë©´
         if (ObjectManager.instance.GetEquipObjectKey() == 1004)
         {
-            //½Ã½ºÅÛ ¸Ş¼¼Áö Ãâ·Â
+            //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì¶œë ¥
             DialogManager.instance.Start_WaterBageSentence();
 
             //DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(282), true);
 
-            //¹°µç ¹Ù°¡Áö ¾ÆÀÌÅÛ Á¦°Å
+            //ë¬¼ë“  ë°”ê°€ì§€ ì•„ì´í…œ ì œê±°
             ObjectManager.instance.RemoveItem(1004);
 
-            //¹Ù°¡Áö ¾ÆÀÌÅÛ È¹µæ
+            //ë°”ê°€ì§€ ì•„ì´í…œ íšë“
             ObjectManager.instance.GetItem(1003);
 
-            //´ÙÀ½ ÀÌº¥Æ®·Î ÀÌµ¿
+            //ë‹¤ìŒ ì´ë²¤íŠ¸ë¡œ ì´ë™
             makeJoomuckBab = MakeJoomuckBab.FillWaterDone;
         }
 
-        //½ÒÀ» Âø¿ëÁßÀÌ¶ó¸é
+        //ìŒ€ì„ ì°©ìš©ì¤‘ì´ë¼ë©´
         if (objectManagerScr.GetEquipObjectKey() == 1000)
         {
-            //½Ã½ºÅÛ ¸Ş¼¼Áö Ãâ·Â
+            //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì¶œë ¥
             DialogManager.instance.Start_RiceSentence();
 
-            //½Ò ¾ÆÀÌÅÛ Á¦°Å
+            //ìŒ€ ì•„ì´í…œ ì œê±°
             ObjectManager.instance.RemoveItem(1000);
 
-            //´ÙÀ½ ÀÌº¥Æ®·Î ÀÌµ¿
+            //ë‹¤ìŒ ì´ë²¤íŠ¸ë¡œ ì´ë™
             makeJoomuckBab = MakeJoomuckBab.PushRiceDone;
         }
 
         yield return null;
     }
 
-    //¹°Àº ³Ö¾ú´Âµ¥ ½ÒÀº ¾È ³ÖÀ½
+    //ë¬¼ì€ ë„£ì—ˆëŠ”ë° ìŒ€ì€ ì•ˆ ë„£ìŒ
     private IEnumerator FillWaterDone()
     {
-        //½ÒÀ» Âø¿ë ÁßÀÌ¶ó¸é
+        //ìŒ€ì„ ì°©ìš© ì¤‘ì´ë¼ë©´
         if (ObjectManager.instance.GetEquipObjectKey() == 1000)
         {
-            //½Ã½ºÅÛ ¸Ş¼¼Áö Ãâ·Â
-            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(523), true);
+            //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì¶œë ¥
+            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcName(523),DialogManager.instance.GetNpcSentence(523), true);
 
-            //½Ò ¾ÆÀÌÅÛ Á¦°Å
+            //ìŒ€ ì•„ì´í…œ ì œê±°
             ObjectManager.instance.RemoveItem(1000);
 
-            //°¡¸¶¼Ü »ç¿ë ½ÃÀÛ
+            //ê°€ë§ˆì†¥ ì‚¬ìš© ì‹œì‘
             UsingGamasot();
 
-            //´ÙÀ½ ÀÌº¥Æ®·Î ÀÌµ¿
+            //ë‹¤ìŒ ì´ë²¤íŠ¸ë¡œ ì´ë™
             makeJoomuckBab = MakeJoomuckBab.MakeJoomuckBab;
 
-            //½Ã½ºÅÛ ¸Ş¼¼Áö°¡ ³¡³¯¶§±îÁö ¹«ÇÑ´ë±â
+            //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ê°€ ëë‚ ë•Œê¹Œì§€ ë¬´í•œëŒ€ê¸°
             while (true)
             {
                 if (DialogManager.instance.IsSystemMessageEnd() == true)
@@ -570,33 +572,33 @@ public class JoomuckBab : MonoBehaviour
         yield return null;
     }
 
-    //½ÒÀº ³Ö¾ú´Âµ¥ ¹°À» ¾È³ÖÀ½
+    //ìŒ€ì€ ë„£ì—ˆëŠ”ë° ë¬¼ì„ ì•ˆë„£ìŒ
     private IEnumerator PushRiceDone()
     {
-        //¹°ÀÌµç ¹Ù°¡Áö¸¦ Âø¿ë ÁßÀÌ¶ó¸é
+        //ë¬¼ì´ë“  ë°”ê°€ì§€ë¥¼ ì°©ìš© ì¤‘ì´ë¼ë©´
         if (objectManagerScr.GetEquipObjectKey() == 1004)
         {
-            //½Ã½ºÅÛ ¸Ş¼¼Áö Ãâ·Â
-            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(522), true);
+            //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì¶œë ¥
+            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcName(522),DialogManager.instance.GetNpcSentence(522), true);
 
-            //¹°ÀÌµç ¹Ù°¡Áö ¾ÆÀÌÅÛ Á¦°Å
+            //ë¬¼ì´ë“  ë°”ê°€ì§€ ì•„ì´í…œ ì œê±°
             ObjectManager.instance.RemoveItem(1004);
 
-            //¹Ù°¡Áö ¾ÆÀÌÅÛ È¹µæ
+            //ë°”ê°€ì§€ ì•„ì´í…œ íšë“
             ObjectManager.instance.GetItem(1003);
 
-            //°¡¸¶¼Ü »ç¿ë ½ÃÀÛ
+            //ê°€ë§ˆì†¥ ì‚¬ìš© ì‹œì‘
             UsingGamasot();
 
-            //´ÙÀ½ ÀÌº¥Æ®·Î ÀÌµ¿
+            //ë‹¤ìŒ ì´ë²¤íŠ¸ë¡œ ì´ë™
             makeJoomuckBab = MakeJoomuckBab.MakeJoomuckBab;
 
-            //½Ã½ºÅÛ ¸Ş¼¼Áö°¡ ³¡³¯¶§±îÁö ¹«ÇÑ´ë±â
+            //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ê°€ ëë‚ ë•Œê¹Œì§€ ë¬´í•œëŒ€ê¸°
             while (true)
             {
                 if (DialogManager.instance.IsSystemMessageEnd() == true)
                 {
-                    Debug.Log("´ÙÀ½ ÀÌº¥Æ® ÀÌµ¿");
+                    Debug.Log("ë‹¤ìŒ ì´ë²¤íŠ¸ ì´ë™");
                     yield return new WaitForSeconds(0.2f);
                     break;
                 }
@@ -607,31 +609,31 @@ public class JoomuckBab : MonoBehaviour
         yield return null;
     }
 
-    //ÁÖ¸Ô¹ä Ã¬±â±â
+    //ì£¼ë¨¹ë°¥ ì±™ê¸°ê¸°
     private IEnumerator TakeJoomuckBab()
     {
         if (DialogManager.instance.IsSystemMessageEnd() == true)
         {
-            //½Ã½ºÅÛ ¸Ş¼¼Áö Ãâ·Â
-            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(524), true);
+            //ì‹œìŠ¤í…œ ë©”ì„¸ì§€ ì¶œë ¥
+            DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcName(524),DialogManager.instance.GetNpcSentence(524), true);
 
-            //ÁÖ¸Ô¹ä È¹µæ
+            //ì£¼ë¨¹ë°¥ íšë“
             ObjectManager.instance.GetItem(1005);
 
-            //°¡¸¶¼Ü »ç¿ë Á¾·á
+            //ê°€ë§ˆì†¥ ì‚¬ìš© ì¢…ë£Œ
             UsingGamasotEnd();
 
-            //´ÙÀ½ ÀÌº¥Æ® ÀÌµ¿
+            //ë‹¤ìŒ ì´ë²¤íŠ¸ ì´ë™
             makeJoomuckBab = MakeJoomuckBab.Done;
 
-            //Çãºê ÀÌº¥Æ® ÁØºñÀÛ¾÷
+            //í—ˆë¸Œ ì´ë²¤íŠ¸ ì¤€ë¹„ì‘ì—…
             makeHerbOrder = MakeHerbOrder.LightFire;
         }
 
         yield return null;
     }
 
-    //¿ÀºêÁ§Æ® Á¢ÃË½Ã
+    //ì˜¤ë¸Œì íŠ¸ ì ‘ì´‰ì‹œ
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -640,36 +642,36 @@ public class JoomuckBab : MonoBehaviour
         }
     }
 
-    //¿ÀºêÁ§Æ® Á¢ÃË¿¡¼­ ¹ş¾î³µÀ»°æ¿ì
+    //ì˜¤ë¸Œì íŠ¸ ì ‘ì´‰ì—ì„œ ë²—ì–´ë‚¬ì„ê²½ìš°
     private void OnTriggerExit2D(Collider2D collision)
     {
         isTouch = false;
     }
 
-    //°¡¸¶¼Ü »ç¿ë ½ÃÀÛ
+    //ê°€ë§ˆì†¥ ì‚¬ìš© ì‹œì‘
     public void UsingGamasot()
     {
-        //±âº» °¡¸¶¼Ü ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+        //ê¸°ë³¸ ê°€ë§ˆì†¥ ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
         gameObjcet_GamasotNomal.SetActive(false);
 
-        //²ú´Â °¡¸¶¼Ü ¿ÀºêÁ§Æ® È°¼ºÈ­
+        //ë“ëŠ” ê°€ë§ˆì†¥ ì˜¤ë¸Œì íŠ¸ í™œì„±í™”
         gameObjcet_GamasotUsing.SetActive(true);
     }
 
-    //°¡¸¶¼Ü »ç¿ë ³¡
+    //ê°€ë§ˆì†¥ ì‚¬ìš© ë
     public void UsingGamasotEnd()
     {
-        //±âº» °¡¸¶¼Ü ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+        //ê¸°ë³¸ ê°€ë§ˆì†¥ ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
         gameObjcet_GamasotNomal.SetActive(true);
 
-        //ºÒ ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+        //ë¶ˆ ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
         gameobjcet_Fire.SetActive(false);
 
-        //²ú´Â °¡¸¶¼Ü ¿ÀºêÁ§Æ® È°¼ºÈ­
+        //ë“ëŠ” ê°€ë§ˆì†¥ ì˜¤ë¸Œì íŠ¸ í™œì„±í™”
         gameObjcet_GamasotUsing.SetActive(false);
     }
 
-    //ÁÖ¸Ô¹ä ÀÌº¥Æ® »óÅÂ int °ª ¹İÈ¯
+    //ì£¼ë¨¹ë°¥ ì´ë²¤íŠ¸ ìƒíƒœ int ê°’ ë°˜í™˜
     public int GetEventState()
     {
         switch (makeJoomuckBab)
@@ -701,147 +703,147 @@ public class JoomuckBab : MonoBehaviour
         }
     }
 
-    //ÁÖ¸Ô¹ä ÀÌº¥Æ® ¼¼ÆÃ
+    //ì£¼ë¨¹ë°¥ ì´ë²¤íŠ¸ ì„¸íŒ…
     public void EventSetting(int _eventNum)
     {
         switch (_eventNum)
         {
-            //¾Æ¹«°Íµµ ¾ø´Â »óÅÂ
+            //ì•„ë¬´ê²ƒë„ ì—†ëŠ” ìƒíƒœ
             case 0:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeJoomuckBab = MakeJoomuckBab.PushJangJack;
 
-                //ÀåÀÛ ¾ø¾Ö±â
+                //ì¥ì‘ ì—†ì• ê¸°
                 gameObject_JangJack.SetActive(false);
 
-                //ºÒ ¾ø¾Ö±â
+                //ë¶ˆ ì—†ì• ê¸°
                 gameobjcet_Fire.SetActive(false);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö ²ô±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë„ê¸°
                 gameObjcet_GamasotUsing.SetActive(false);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;
 
-            //ÀåÀÛ ³ÖÀº »óÅÂ
+            //ì¥ì‘ ë„£ì€ ìƒíƒœ
             case 1:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeJoomuckBab = MakeJoomuckBab.UseFireStone;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ ¾ø¾Ö±â
+                //ë¶ˆ ì—†ì• ê¸°
                 gameobjcet_Fire.SetActive(false);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö ²ô±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë„ê¸°
                 gameObjcet_GamasotUsing.SetActive(false);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;
 
-            //ºÒÀ» ºÙÀÎ »óÅÂ
+            //ë¶ˆì„ ë¶™ì¸ ìƒíƒœ
             case 2:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeJoomuckBab = MakeJoomuckBab.FillWater_OR_PushRice;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ º¸ÀÌ±â
+                //ë¶ˆ ë³´ì´ê¸°
                 gameobjcet_Fire.SetActive(true);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö ²ô±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë„ê¸°
                 gameObjcet_GamasotUsing.SetActive(false);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;
 
-            //¹°À» ³ÖÀº »óÅÂ
+            //ë¬¼ì„ ë„£ì€ ìƒíƒœ
             case 3:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeJoomuckBab = MakeJoomuckBab.FillWaterDone;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ º¸ÀÌ±â
+                //ë¶ˆ ë³´ì´ê¸°
                 gameobjcet_Fire.SetActive(true);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö ²ô±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë„ê¸°
                 gameObjcet_GamasotUsing.SetActive(false);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;
 
-            //½ÒÀ» ³ÖÀº »óÅÂ
+            //ìŒ€ì„ ë„£ì€ ìƒíƒœ
             case 4:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeJoomuckBab = MakeJoomuckBab.PushRiceDone;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ º¸ÀÌ±â
+                //ë¶ˆ ë³´ì´ê¸°
                 gameobjcet_Fire.SetActive(true);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö ²ô±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë„ê¸°
                 gameObjcet_GamasotUsing.SetActive(false);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;
 
-            //½Ò°ú ¹°À» ³ÖÀº »óÅÂ
+            //ìŒ€ê³¼ ë¬¼ì„ ë„£ì€ ìƒíƒœ
             case 5:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeJoomuckBab = MakeJoomuckBab.MakeJoomuckBab;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ º¸ÀÌ±â
+                //ë¶ˆ ë³´ì´ê¸°
                 gameobjcet_Fire.SetActive(true);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotUsing.SetActive(true);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;
 
-            //ÀÌº¥Æ® ³¡
+            //ì´ë²¤íŠ¸ ë
             case 6:
 
-                //ÀÌº¥Æ® ÁøÇà»óÈ² º¯°æ
+                //ì´ë²¤íŠ¸ ì§„í–‰ìƒí™© ë³€ê²½
                 makeJoomuckBab = MakeJoomuckBab.Done;
 
-                //ÀåÀÛ º¸ÀÌ±â
+                //ì¥ì‘ ë³´ì´ê¸°
                 gameObject_JangJack.SetActive(true);
 
-                //ºÒ ²ô±â
+                //ë¶ˆ ë„ê¸°
                 gameobjcet_Fire.SetActive(false);
 
-                //°¡¸¶¼Ü »ç¿ë ÀÌ¹ÌÁö ²ô±â
+                //ê°€ë§ˆì†¥ ì‚¬ìš© ì´ë¯¸ì§€ ë„ê¸°
                 gameObjcet_GamasotUsing.SetActive(false);
 
-                //°¡¸¶¼Ü ±âº» ÀÌ¹ÌÁö º¸ÀÌ±â
+                //ê°€ë§ˆì†¥ ê¸°ë³¸ ì´ë¯¸ì§€ ë³´ì´ê¸°
                 gameObjcet_GamasotNomal.SetActive(true);
 
                 break;

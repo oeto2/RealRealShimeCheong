@@ -261,7 +261,6 @@ public class DialogManager : MonoBehaviour
             typingSpeed = 0.02f;
         }
     }
-
     public IEnumerator ItemClueChat(string narrator, string narration)
     {
         //커서 불빛 끄기
@@ -623,16 +622,103 @@ public class DialogManager : MonoBehaviour
 
         int a = 0;
 
+        string t_letter = "";
+
         for (a = 0; a < _narration.Length; a++)
         //for (a = 0; a < textSpeed; a++)
         {
-            writerText += _narration[a];
-            ChatText.text = writerText;
+            //writerText += narration[a];
+            //ChatText.text = writerText;
 
-            //텍스트 타이핑 시간 조절
-            //yield return null;
+            switch (_narration[a])
+            {
+                // red
+                case 'ⓡ':
+                    t_white = false;
+                    t_red = true;
+                    t_blue = false;
+                    t_violet = false;
+                    t_ignore = true;
+                    break;
+                // write
+                case 'ⓦ':
+                    t_white = true;
+                    t_red = false;
+                    t_blue = false;
+                    t_violet = false;
+                    t_ignore = true;
+                    break;
+                // blue
+                case 'ⓑ':
+                    t_white = false;
+                    t_red = false;
+                    t_blue = true;
+                    t_violet = false;
+                    t_ignore = true;
+                    break;
+                // violet
+                case 'ⓥ':
+                    t_white = false;
+                    t_red = false;
+                    t_blue = false;
+                    t_violet = true;
+                    t_ignore = true;
+                    break;
+            }
 
-            if (a > 2 && Input.GetKeyDown(KeyCode.Z))
+            if (!t_ignore)
+            {
+                if (t_white)
+                {
+                    t_letter = "<color=#ffffff>" + _narration[a] + "</color>";    // HTML Tag
+                    Debug.Log("0_write");
+                }
+
+                else if (t_red)
+                {
+                    //t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                    t_letter = "<color=#850000>" + "<b>" + _narration[a] + "</b>" + "</color>";
+                    //t_letter = "<color=#222222>" + "<b>" + narration[a] + "</b>" + "</color>";
+                    Debug.Log("1_red");
+                }
+
+                else if (t_blue)
+                {
+                    t_letter = "<color=#0d4577>" + "<b>" + _narration[a] + "</b>" + "</color>";
+                    Debug.Log("2_blue");
+                }
+
+                else if (t_violet)
+                {
+                    t_letter = "<color=#6a2c7a>" + "<b>" + _narration[a] + "</b>" + "</color>";
+                    Debug.Log("3_violet");
+                }
+                //Debug.Log(writerText);
+                writerText += t_letter; // 특수문자가 아니라면 대사 출력
+                                        //writerText += narration[a];
+                ChatText.text = writerText;
+                //ChatText.text = writerText;
+            }
+            t_ignore = false; // 한 글자 찍었으면 다시 false
+
+            //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
+            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+            {
+                //타이핑 속도 변경
+                typingSpeed = skipTypingSpeed;
+            }
+
+            //대사 출력 중일 경우에만
+            if (ChatText.text != _narration)
+            {
+                //텍스트 타이핑 시간 조절
+                yield return new WaitForSeconds(typingSpeed);
+            }
+
+        //텍스트 타이핑 시간 조절
+        //yield return null;
+
+        if (a > 2 && Input.GetKeyDown(KeyCode.Z))
             {
                 //코루틴 중복 실행 방지해제
                 isSentence_Start = false;
@@ -674,7 +760,7 @@ public class DialogManager : MonoBehaviour
     IEnumerator SystemMessage(string _narrator, string _narration, bool _exit)
     {
         //화자에 따라 초상화, 이름 변경
-        ChangeNpcPortrait(_narrator);
+        ChagePlayerFace(_narrator);
 
         //시간 정지
         TimeManager.instance.StopTime();
@@ -685,6 +771,10 @@ public class DialogManager : MonoBehaviour
         //날짜 UI끄기
         //timeManagerScr.CloseDayUI();
 
+        int a = 0;
+
+        string t_letter = "";
+
         //코루틴 중복 실행 방지
         isSentence_Start = true;
 
@@ -694,60 +784,116 @@ public class DialogManager : MonoBehaviour
         //초상화 변경
         Npc_Portrait.sprite = npc_Sprites[0];
 
-        if(Npc_Portrait.sprite == npc_Sprites[0])
-		{
-
-            //기본 이미지로 초기화
-            Npc_Portrait.sprite = npc_Sprites[0];
-
-            //이미지 컬러 구조체 할당
-            Color npc_color = Npc_Portrait.color;
-
-            //알파값 조절
-            //player_Portrait.color = new Color(player_Portrait.color.r, player_Portrait.color.g, player_Portrait.color.b, 0.5f);
-            npc_color.a = 0.05f;
-            Npc_Portrait.color = npc_color;
-
-
-
-            //기본 이미지로 초기화
-            player_Portrait.sprite = player_sprites[1];
-
-            //이미지 컬러 구조체 할당
-            Color player_color = player_Portrait.color;
-
-            //알파값 조절
-            //player_Portrait.color = new Color(player_Portrait.color.r, player_Portrait.color.g, player_Portrait.color.b, 0.5f);
-            player_color.a = 1.0f;
-            player_Portrait.color = player_color;
-        }
-
 
         //시스템 다이얼로그 활성화
         Dialouge_Canvas.SetActive(true);
 
         //텍스트 타이핑
-        for (int a = 0; a < _narration.Length; a++)
+        for (a = 0; a < _narration.Length; a++)
         {
-            writerText += _narration[a];
-            ChatText.text = writerText;
+            //writerText += narration[a];
+            //ChatText.text = writerText;
+
+            switch (_narration[a])
+            {
+                // red
+                case 'ⓡ':
+                    t_white = false;
+                    t_red = true;
+                    t_blue = false;
+                    t_violet = false;
+                    t_ignore = true;
+                    break;
+                // write
+                case 'ⓦ':
+                    t_white = true;
+                    t_red = false;
+                    t_blue = false;
+                    t_violet = false;
+                    t_ignore = true;
+                    break;
+                // blue
+                case 'ⓑ':
+                    t_white = false;
+                    t_red = false;
+                    t_blue = true;
+                    t_violet = false;
+                    t_ignore = true;
+                    break;
+                // violet
+                case 'ⓥ':
+                    t_white = false;
+                    t_red = false;
+                    t_blue = false;
+                    t_violet = true;
+                    t_ignore = true;
+                    break;
+            }
+
+            if (!t_ignore)
+            {
+                if (t_white)
+                {
+                    t_letter = "<color=#ffffff>" + _narration[a] + "</color>";    // HTML Tag
+                    Debug.Log("0_write");
+                }
+
+                else if (t_red)
+                {
+                    //t_letter = "<color=#B40404>" + narration[a] + "</color>";
+                    t_letter = "<color=#850000>" + "<b>" + _narration[a] + "</b>" + "</color>";
+                    //t_letter = "<color=#222222>" + "<b>" + narration[a] + "</b>" + "</color>";
+                    Debug.Log("1_red");
+                }
+
+                else if (t_blue)
+                {
+                    t_letter = "<color=#0d4577>" + "<b>" + _narration[a] + "</b>" + "</color>";
+                    Debug.Log("2_blue");
+                }
+
+                else if (t_violet)
+                {
+                    t_letter = "<color=#6a2c7a>" + "<b>" + _narration[a] + "</b>" + "</color>";
+                    Debug.Log("3_violet");
+                }
+                //Debug.Log(writerText);
+                writerText += t_letter; // 특수문자가 아니라면 대사 출력
+                                        //writerText += narration[a];
+                ChatText.text = writerText;
+                //ChatText.text = writerText;
+            }
+            t_ignore = false; // 한 글자 찍었으면 다시 false
 
             //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
             if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
             {
-                ChatText.text = _narration;
-
-                //for문 조건 충족
-                a = _narration.Length;
+                //타이핑 속도 변경
+                typingSpeed = skipTypingSpeed;
             }
 
             //대사 출력 중일 경우에만
             if (ChatText.text != _narration)
             {
                 //텍스트 타이핑 시간 조절
-                yield return new WaitForSeconds(0.02f);
+                yield return new WaitForSeconds(typingSpeed);
             }
+
+            //텍스트 타이핑 시간 조절
+            //yield return null;
+
+            if (a > 2 && Input.GetKeyDown(KeyCode.Z))
+            {
+                //코루틴 중복 실행 방지해제
+                isSentence_Start = false;
+
+                //시스템 다이얼로그 비활성화
+                //Dialouge_System.SetActive(false);
+            }
+
+            yield return new WaitForSeconds(0.02f);
         }
+        yield return null;
 
         //대사 출력 후 잠깐 딜레이
         yield return new WaitForSeconds(0.1f);
@@ -755,13 +901,20 @@ public class DialogManager : MonoBehaviour
         //Z키를 다시 누를 때까지 무한정 대기
         while (true)
         {
-            if (ChatText.text == _narration && Input.GetKeyDown(KeyCode.Z))
+
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                Debug.Log("Text 비우기");
+                //코루틴 중복 실행 방지해제
+                isSentence_Start = false;
+
+                if (_exit)
+                {
+                    //시스템 다이얼로그 비활성화
+                    Dialouge_Canvas.SetActive(false);
+                }
 
                 //Text 비우기
                 writerText = "";
-
                 break;
             }
             yield return null;
@@ -944,6 +1097,20 @@ public class DialogManager : MonoBehaviour
     }
 
     //Player 초상화 변경
+    public void ChagePlayerFace(string _narrator)
+    {
+        switch (_narrator)
+        {
+            case "심학규":
+                player_Portrait.sprite = player_sprites[1];
+
+                //이름 변경
+                text_NpcName.text = "심학규";
+                break;
+        }
+    }
+
+    //Player 초상화 알파값 변경
     public void ChagePlayerPortrait(string _narrator)
     {
         switch (_narrator)
