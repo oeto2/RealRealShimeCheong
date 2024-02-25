@@ -35203,6 +35203,7 @@ MonoBehaviour:
   ChatText: {fileID: 2081460924}
   text_NpcName: {fileID: 1522015625}
   Npc_Portrait: {fileID: 6938847883954847402}
+  NpcPortrait_RectTr: {fileID: 6938847883954847404}
   player_Portrait: {fileID: 589999028}
   obj_TalkEndCur: {fileID: 420974745}
   npc_Sprites:
@@ -72170,6 +72171,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3421147927406149850, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4049101234531469390, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -72460,3 +72465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &6938847883954847404 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7401846186988648409, guid: 853d1f3ed73fa1946880648a6fd4d424, type: 3}
+  m_PrefabInstance: {fileID: 6938847883954847401}
+  m_PrefabAsset: {fileID: 0}

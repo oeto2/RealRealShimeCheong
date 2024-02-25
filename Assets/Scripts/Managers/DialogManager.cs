@@ -55,6 +55,9 @@ public class DialogManager : MonoBehaviour
     //Npc 초상화
     public Image Npc_Portrait;
 
+    //NPC 이미지 위치
+    public RectTransform NpcPortrait_RectTr;
+
     //Player 초상화
     public Image player_Portrait;
 
@@ -1146,6 +1149,8 @@ public class DialogManager : MonoBehaviour
                 Npc_Portrait.sprite = npc_Sprites[1];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
+                //초상화 크기 변경
+                ChangeNPCImage_Transform(500, -10, 1000, 1000);
 
                 //이름 변경
                 text_NpcName.text = "뺑덕 어멈";
@@ -1157,6 +1162,8 @@ public class DialogManager : MonoBehaviour
                 Npc_Portrait.sprite = npc_Sprites[2];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
+                //초상화 크기 변경
+                ChangeNPCImage_Transform(500, -50, 700, 800);
 
                 //이름 변경
                 text_NpcName.text = "거 지";
@@ -1168,6 +1175,8 @@ public class DialogManager : MonoBehaviour
                 Npc_Portrait.sprite = npc_Sprites[3];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
+                //초상화 크기 변경
+                ChangeNPCImage_Transform(500, 50, 850, 1000);
 
                 //이름 변경
                 text_NpcName.text = "승 려";
@@ -1179,6 +1188,8 @@ public class DialogManager : MonoBehaviour
                 Npc_Portrait.sprite = npc_Sprites[4];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
+                //초상화 크기 변경
+                ChangeNPCImage_Transform(500, -10, 1100, 950);
 
                 //이름 변경
                 text_NpcName.text = "귀덕 어멈";
@@ -1190,6 +1201,8 @@ public class DialogManager : MonoBehaviour
                 Npc_Portrait.sprite = npc_Sprites[5];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
+                //초상화 크기 변경
+                ChangeNPCImage_Transform(500, 0, 950, 950);
 
                 //이름 변경
                 text_NpcName.text = "장사꾼";
@@ -1201,6 +1214,8 @@ public class DialogManager : MonoBehaviour
                 Npc_Portrait.sprite = npc_Sprites[6];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
+                //초상화 크기 변경
+                ChangeNPCImage_Transform(500, -50, 1000, 1000);
 
                 //이름 변경
                 text_NpcName.text = "향리 댁 부인";
@@ -1212,6 +1227,8 @@ public class DialogManager : MonoBehaviour
                 Npc_Portrait.sprite = npc_Sprites[8];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
+                //초상화 크기 변경
+                ChangeNPCImage_Transform(500, 70, 780, 780);
 
                 //이름 변경
                 text_NpcName.text = "뱃사공";
@@ -1223,6 +1240,8 @@ public class DialogManager : MonoBehaviour
                 Npc_Portrait.sprite = npc_Sprites[9];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
+                //초상화 크기 변경
+                ChangeNPCImage_Transform(500, 0, 750, 950);
 
                 //이름 변경
                 text_NpcName.text = "심 청";
@@ -1234,6 +1253,8 @@ public class DialogManager : MonoBehaviour
                 Npc_Portrait.sprite = npc_Sprites[10];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
+                //초상화 크기 변경
+                ChangeNPCImage_Transform(500, -50, 850, 1100);
 
                 //이름 변경
                 text_NpcName.text = "송나라 상인";
@@ -1245,6 +1266,8 @@ public class DialogManager : MonoBehaviour
                 Npc_Portrait.sprite = npc_Sprites[11];
                 //심학규 이미지 리셋
                 ResetPlayerPortrait();
+                //초상화 크기 변경
+                ChangeNPCImage_Transform(500, 50, 750, 950);
 
                 //이름 변경
                 text_NpcName.text = "장지언";
@@ -1446,5 +1469,12 @@ public class DialogManager : MonoBehaviour
         //날짜 UI 켜기
         UIManager.instance.ShowCalendarWindow();
         */
+    }
+
+    //NPC 이미지 크기변경
+    public void ChangeNPCImage_Transform(int _xPos, int _yPos ,int _width, int _height)
+    {
+        NpcPortrait_RectTr.localPosition = new Vector2(_xPos, _yPos);
+        NpcPortrait_RectTr.sizeDelta = new Vector2(_width, _height);
     }
 }
