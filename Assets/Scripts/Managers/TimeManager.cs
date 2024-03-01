@@ -159,6 +159,10 @@ public class TimeManager : MonoBehaviour
     //고립무원 엔딩을 위한 플래그
     public bool isEndingStart;
 
+
+    //이벤트 목록
+    public event Action NextDayEvent;
+
     public void Awake()
     {
         if (instance == null)
@@ -254,11 +258,11 @@ public class TimeManager : MonoBehaviour
                 //날짜 증가
                 int_DayCount++;
 
+                //이벤트 실행
+                CallNextDayEvent();
+
                 //시간 리셋
                 ResetTime();
-
-                //캘린더 애니메이션 진행
-                NextDayAnimaton(int_DayCount);
 
                 //시간 정지
                 if (int_DayCount == 2)
@@ -347,11 +351,11 @@ public class TimeManager : MonoBehaviour
     }
 
     //날짜가 지났을때 실행할 애니메이션
-    public void NextDayAnimaton(int _day)
-    {
-        //캘린더 날짜 바꾸기
-        animator_Celender.SetInteger("DayNum", _day);
-    }
+    //public void NextDayAnimaton(int _day)
+    //{
+    //    //캘린더 날짜 바꾸기
+    //    animator_Celender.SetInteger("DayNum", _day);
+    //}
 
     //날짜 UI 보여주기
     public void ShowDayUI()
@@ -407,8 +411,6 @@ public class TimeManager : MonoBehaviour
         int_DayCount++;
         //시간 0으로 초기화
         float_RealTime = 0;
-        //캘린더 날짜 변경
-        NextDayAnimaton(int_DayCount);
     }
 
     //데이터 저장
@@ -466,9 +468,6 @@ public class TimeManager : MonoBehaviour
                     spriteRen_ObumbrateObj[i].color = curObjectRGB;
                 }
             }
-
-            //캘린더 날짜 변경
-            NextDayAnimaton(int_DayCount);
         }
 
     }
@@ -561,6 +560,7 @@ public class TimeManager : MonoBehaviour
 
 
     //오브젝트 어둡게하기
+    #region 배경 칼라 변경
     public void ObumbrateObject(Color32 _curObjectColor)
     {
 
@@ -570,26 +570,10 @@ public class TimeManager : MonoBehaviour
         //밤에 줄어들어야하는 값 = (255 - 밤 RGB값) / 밤 시간
         int minusValeue_night = (int)MathF.Truncate((255 - nightRGBValue.r) / 60);
 
-        ////만약 다음날이 되었을경우
-        //if ((int)MathF.Truncate(float_RealTime) == 0)
-        //{
-        //    Debug.Log("0시");
-        //    for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
-        //    {
-        //        //만약 색을 바꿀 오브젝트가 존재한다면
-        //        if (spriteRen_ObumbrateObj[i] != null)
-        //        {
-        //            //색깔 변경 (시작 값)
-        //            spriteRen_ObumbrateObj[i].color = startRGBValue;
-        //        }
-        //    }
-        //}
 
         //만약 아침일 경우(0 ~ 35초) = 초당 3씩 밝아짐
         if ((int)MathF.Truncate(float_RealTime) > 0 && (int)MathF.Truncate(float_RealTime) <= 35)
         {
-            Debug.Log("아침");
-
             for (int i = 0; i < spriteRen_ObumbrateObj.Length; i++)
             {
                 //만약 색을 바꿀 오브젝트가 존재한다면
@@ -607,8 +591,6 @@ public class TimeManager : MonoBehaviour
         //만약 낮이 되었을 경우 (35 ~ 150초)
         else if ((int)MathF.Truncate(float_RealTime) >= 35 && (int)MathF.Truncate(float_RealTime) <= 150)
         {
-            Debug.Log("낮");
-
             if (curObjectRGB.r < 255)
             {
                 if (curObjectRGB.r < 250)
@@ -693,7 +675,7 @@ public class TimeManager : MonoBehaviour
             }
         }
     }
-
+    #endregion
 
     //1초에 한번 실행하는 코루틴
     IEnumerator OneSecStartCoroutine()
@@ -739,4 +721,11 @@ public class TimeManager : MonoBehaviour
         realTimeStop = true;
     }
 
+
+    //다음날 이벤트 실행
+    public void CallNextDayEvent()
+    {
+        Debug.Log("다음날 이벤트 실행");
+        NextDayEvent?.Invoke();
+    }
 }

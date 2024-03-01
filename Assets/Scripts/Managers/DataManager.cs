@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System;
+using Unity.VisualScripting;
 
 public class DataManager : MonoBehaviour
 {
+    public static DataManager instance = null;
+
     //외부 스크립트 참조
     public UIManager uiManagerScr;
     public TimeManager timeManagerScr;
@@ -38,6 +42,14 @@ public class DataManager : MonoBehaviour
     //시작 이벤트 오브젝트
     public GameObject gameObject_StartMessage;
 
+    //이벤트들
+    public event Action LoadEvent;
+    public event Action SaveEvent;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -103,7 +115,6 @@ public class DataManager : MonoBehaviour
                     //플레이어 이동 제한
                     Controller.instance.TalkStart();
                     break;
-
             }
         }
     }
@@ -111,8 +122,6 @@ public class DataManager : MonoBehaviour
     //세이브 Yes Button
     public void SaveYesButton()
     {
-        Debug.Log("Save");
-
         //TimeManager Data 저장
         timeManagerScr.Save(int_SaveSlotNum);
 
@@ -132,6 +141,9 @@ public class DataManager : MonoBehaviour
 
         //세이브 확인창 끄기
         gameObject_SaveCheckWindow.SetActive(false);
+
+        //세이브 이벤트 호출
+        CallSaveEvent();
     }
 
     //세이브 No Button
@@ -143,8 +155,6 @@ public class DataManager : MonoBehaviour
     //로드 Yes버튼
     public void LoadYesButton()
     {
-        Debug.Log("Load");
-
         //로딩
         StartCoroutine(Loading());
 
@@ -165,6 +175,9 @@ public class DataManager : MonoBehaviour
 
         //Event Data Load
         eventManagerScr.Load(int_LoadSlotNum);
+
+        //로드 이벤트 호출
+        CallLoadEvent();
     }
 
     //로드 No버튼
@@ -210,5 +223,15 @@ public class DataManager : MonoBehaviour
             //로드 확인 창 띄우기
             gameObjcet_LoadCheckWindow.SetActive(true);
         }    
+    }
+
+    public void CallSaveEvent()
+    {
+        SaveEvent?.Invoke();
+    }
+
+    public void CallLoadEvent()
+    {
+        LoadEvent?.Invoke();
     }
 }
