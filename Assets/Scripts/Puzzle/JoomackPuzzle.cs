@@ -23,14 +23,6 @@ public class JoomackPuzzle : MonoBehaviour
     //퍼즐을 클리어 했는지
     public bool isClear;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (GameManager.instance.isJoomackPuzzleStart)
-        {
-        }
-    }
-
     //정답 1번 버튼 클릭 시
     public void Answer1Button_Click()
     {
@@ -43,6 +35,40 @@ public class JoomackPuzzle : MonoBehaviour
             int_Answer1Value = 1;
         }
 
+        RefreshText_1();
+    }
+
+    public void Answer1DownButton_Click()
+    {
+        if (int_Answer1Value > 1)
+        {
+            --int_Answer1Value;
+        }
+        else
+        {
+            int_Answer1Value = 9;
+        }
+
+        RefreshText_1();
+    }
+
+    //정답 2번 버튼 클릭 시
+    public void AnswerButton2_Click()
+    {
+        if(int_Answer2Value == 1)
+        {
+            int_Answer2Value = 0;
+        }
+        else
+        {
+            int_Answer2Value = 1;
+        }
+
+        RefreshText_2();
+    }
+
+    public void RefreshText_1()
+    {
         switch (int_Answer1Value)
         {
             case 1:
@@ -75,19 +101,9 @@ public class JoomackPuzzle : MonoBehaviour
         }
     }
 
-    //정답 2번 버튼 클릭 시
-    public void AnswerButton2_Click()
+    public void RefreshText_2()
     {
-        if(int_Answer2Value == 1)
-        {
-            int_Answer2Value = 0;
-        }
-        else
-        {
-            int_Answer2Value = 1;
-        }
-
-        switch(int_Answer2Value)
+        switch (int_Answer2Value)
         {
             case 0:
                 text_Answer2.text = " ";

@@ -22,6 +22,9 @@ public class EffectSoundManager : MonoBehaviour
     //다이얼로그 효과음
     public AudioClip clip_TalkText;
 
+    //바람소리 효과음
+    public AudioClip clip_WindSound;
+
     //싱글톤
     public static EffectSoundManager instance = null;
     
@@ -76,6 +79,12 @@ public class EffectSoundManager : MonoBehaviour
         auidoSource.PlayOneShot(clip_TalkText);
     }
 
+    //Play Wind Sound
+    public void PlayWindSound()
+    {
+        auidoSource.PlayOneShot(clip_WindSound);
+    }
+
     //Stop Music
     public void StopMusic()
     {
@@ -87,5 +96,4 @@ public class EffectSoundManager : MonoBehaviour
     {
         auidoSource.mute = false;
     }
-
 }

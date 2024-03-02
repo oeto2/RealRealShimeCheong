@@ -80,6 +80,14 @@ public class TimeManager : MonoBehaviour
     //실제 시간
     [SerializeField]
     private float float_RealTime;
+
+    public float Float_RealTime
+    {
+        get
+        {
+            return float_RealTime;
+        }
+    }
     private int int_RealTime;
 
     //시간 배속

@@ -12,7 +12,7 @@ public class Calendar_Controller : MonoBehaviour
     [SerializeField] private Image CalendarUI;
     [SerializeField] float animationSpeed;
     [SerializeField] GameObject BlindBackGround;
-    [SerializeField] private int curCalendarIdex;
+    [SerializeField] private int curCalendarIndex;
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class Calendar_Controller : MonoBehaviour
             day = (--day * 5) -1;
             CalendarUI.sprite = CalendarSprites[day];
         }
-        curCalendarIdex = day;
+        curCalendarIndex = day;
     }
 
     //캘린더 애니메이션 실행
@@ -48,14 +48,14 @@ public class Calendar_Controller : MonoBehaviour
     private IEnumerator NextCalendarAnimation(float _animationtime)
     {
         WaitForSeconds animationDealyTime = new WaitForSeconds(_animationtime);
-        int targetCalendarId = (curCalendarIdex <= 1) ? curCalendarIdex + 5 : curCalendarIdex + 4;
+        int targetCalendarId = (curCalendarIndex <= 1) ? curCalendarIndex + 4 : curCalendarIndex + 5;
         BlindBackGround.SetActive(true);
 
-        while (curCalendarIdex <= targetCalendarId)
+        while (curCalendarIndex <= targetCalendarId)
         {
-            CalendarUI.sprite = CalendarSprites[curCalendarIdex];
+            CalendarUI.sprite = CalendarSprites[curCalendarIndex];
             yield return animationDealyTime;
-            curCalendarIdex++;
+            curCalendarIndex++;
         }
 
         yield return new WaitForSeconds(0.5f);

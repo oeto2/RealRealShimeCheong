@@ -19,6 +19,7 @@ public class BgmManager : MonoBehaviour
     //싱글톤
     public static BgmManager instance = null;
 
+
     private void Awake()
     {
         if(instance == null)
@@ -33,6 +34,11 @@ public class BgmManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    private void Start()
+    {
+        DataManager.instance.LoadEvent += ChangeBGM;
     }
 
     //Change BGM
@@ -112,7 +118,6 @@ public class BgmManager : MonoBehaviour
     //Play MarketBgm
     public void PlayMartketBGM()
     {
-
         //현재 재생중인 음악이 없다면
         if (audioSource.clip == null)
         {
@@ -128,7 +133,7 @@ public class BgmManager : MonoBehaviour
             if (audioSource.clip.name != clip_Market.name)
             {
                 Debug.Log("마켓 음악 재생");
-                //음악재생
+
                 //음악재생
                 audioSource.clip = clip_Market;
                 audioSource.Play();

@@ -225,16 +225,20 @@ public class GameManager : MonoBehaviour
         }
 
         saveFilePath = Application.persistentDataPath + "/GameManagerDataText.txt";
-
     }
 
     private void Start()
     {
     }
 
+
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            JoomackPuzzleStart();
         }
+    }
 
     public void Action(GameObject scan_obj)
     {
