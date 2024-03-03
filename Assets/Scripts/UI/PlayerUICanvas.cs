@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
 public class PlayerUICanvas : MonoBehaviour
@@ -32,7 +29,7 @@ public class PlayerUICanvas : MonoBehaviour
     //바람이 언제 불지 세팅
     public void WindSetting()
     {
-        windStartTime = Random.Range(0, 300);
+        windStartTime = Random.Range(1, 300);
     }
 
     public void WindTrigger()

@@ -657,6 +657,8 @@ public class EventManager : MonoBehaviour
                 //사공의 물건 퀘스트를 완료하지 못했다면
                 if (boatManDialogueScr.boatManObject == false)
                 {
+                    Debug.Log("사공의 물건 없음, 계란 유골");
+
                     //선택지 창 끄기
                     gameObject_SelectUI.SetActive(false);
 
@@ -670,7 +672,7 @@ public class EventManager : MonoBehaviour
                     //청이의 물건 단서를 보유중이지 않다면
                     if (!ObjectManager.instance.GetClue_Check(9000))
                     {
-                        Debug.Log("청이 단서 미보유 엔딩");
+                        Debug.Log("청이 단서 미보유, 계란 유골");
 
                         //선택지 창 끄기
                         gameObject_SelectUI.SetActive(false);
@@ -682,6 +684,11 @@ public class EventManager : MonoBehaviour
                     //청이의 물건 단서를 보유 중이라면
                     else
                     {
+                        Debug.Log("굿/진엔딩 루트 진입");
+
+                        //화면 어둡게 하기
+                        EndingManager.instance.ShowEndingBG();
+
                         //선택지 창 끄기
                         gameObject_SelectUI.SetActive(false);
 
