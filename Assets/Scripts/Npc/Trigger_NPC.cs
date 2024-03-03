@@ -16,8 +16,6 @@ public class Trigger_NPC : MonoBehaviour
     [SerializeField] private float reTalkDelayTime = 0.5f;
     [SerializeField] private bool enableTalk = true;
 
-    
-
     private void Awake()
     {
         NPCDalogue = GetComponent<Dialogue>();

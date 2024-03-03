@@ -112,8 +112,8 @@ public class EndingManager : MonoBehaviour
     //엔딩 이미지 천천히 밝게 하기
     public void BrightEndingBG()
     {
-        //Fade In 애니메이션 실행
-        animator_EndingBG.SetBool("StartFade_In", true);
+        ////Fade In 애니메이션 실행
+        //animator_EndingBG.SetBool("StartFade_In", true);
     }
 
     //엔딩 이미지 리셋

@@ -434,8 +434,6 @@ public class EventManager : MonoBehaviour
     {
         if (_SlotNum <= 2)
         {
-            //Debug.Log("Load EventLoadData");
-
             //세이브 파일 읽어오기
             string jLoadData = File.ReadAllText(saveFilePath + _SlotNum.ToString());
 
@@ -509,7 +507,6 @@ public class EventManager : MonoBehaviour
 
             //뱃사공 선택지
             case NPCName.boatman:
-
                 //송나라 상인과 청이 선택지일 경우
                 if (ObjectManager.instance.GetEquipObjectKey() == 2006)
                 {
@@ -525,7 +522,6 @@ public class EventManager : MonoBehaviour
 
             //뱃사공 선택지2
             case NPCName.boatman2:
-
                 //NPC 다이얼로그 종료
                 DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
@@ -538,7 +534,6 @@ public class EventManager : MonoBehaviour
 
             //뱃사공 선택지3
             case NPCName.boatman3:
-
                 //선택지 대사 보이기
                 gameObject_BoatMan3Text.SetActive(true);
 
@@ -554,7 +549,6 @@ public class EventManager : MonoBehaviour
 
             //심봉사 선택지
             case NPCName.Shimbongsa:
-
                 //NPC 다이얼로그 종료
                 DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
@@ -567,7 +561,6 @@ public class EventManager : MonoBehaviour
                     //1번 선택지 대사 입력
                     text_selectNum1.text = "구하러 뛰어든다";
                 }
-
                 else
                 {
                     //1번 선택지 대사 입력
@@ -580,7 +573,6 @@ public class EventManager : MonoBehaviour
 
             //심봉사 선택지2
             case NPCName.Shimbongsa2:
-
                 //NPC 다이얼로그 종료
                 DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
@@ -598,11 +590,8 @@ public class EventManager : MonoBehaviour
 
                 break;
 
-
-
             //약초 마시기 선택지
             case NPCName.Herb:
-
                 //NPC 다이얼로그 종료
                 DialogManager.instance.Dialouge_Canvas.SetActive(false);
 
@@ -614,7 +603,6 @@ public class EventManager : MonoBehaviour
 
                 //2번 선택지 대사 입력
                 text_selectNum2.text = "아니오";
-
                 break;
         }
     }
@@ -653,7 +641,6 @@ public class EventManager : MonoBehaviour
 
             //뱃사공2 선택지일 경우
             case 7355:
-
                 //사공의 물건 퀘스트를 완료하지 못했다면
                 if (boatManDialogueScr.boatManObject == false)
                 {
@@ -700,7 +687,6 @@ public class EventManager : MonoBehaviour
 
             //뱃사공3 선택지일 경우
             case 7194:
-
                 //선택 완료
                 boatManDialogueScr3.isSelectDone = true;
 
@@ -712,7 +698,6 @@ public class EventManager : MonoBehaviour
 
                 //엔딩 진행
                 boatManDialogueScr3.StartEndingSentence();
-
                 break;
 
             //심봉사 선택지일 경우
@@ -745,12 +730,10 @@ public class EventManager : MonoBehaviour
 
                 //굿엔딩 진행
                 jangjieonDialogueScr.StartGoodEnding_1();
-
                 break;
 
             //약초물 마시기1
             case 5799:
-                
                 //이벤트 진행 상황 변경
                 joomuckBabScr.makeHerbOrder = JoomuckBab.MakeHerbOrder.DrinkHerb2;
 
@@ -765,12 +748,10 @@ public class EventManager : MonoBehaviour
 
                 //대사 진행
                 DialogManager.instance.Start_SystemMessage(DialogManager.instance.GetNpcSentence(348), true);
-
                 break;
 
             //약초물 마시기2
             case 7009:
-
                 //이벤트 진행 상황 변경
                 joomuckBabScr.makeHerbOrder = JoomuckBab.MakeHerbOrder.Edning;
 
@@ -780,7 +761,6 @@ public class EventManager : MonoBehaviour
                 //엔딩 시작
                 Debug.Log("과유불급 엔딩");
                 DialogManager.instance.StartBadEndingSentence();
-
                 break;
         }
     }
@@ -798,7 +778,6 @@ public class EventManager : MonoBehaviour
         {
             //송나라 상인과 청이 선택지일 경우
             case 2006:
-
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
 
@@ -820,7 +799,6 @@ public class EventManager : MonoBehaviour
 
             //뱃사공2 선택지일 경우
             case 7355:
-
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
 
@@ -828,17 +806,12 @@ public class EventManager : MonoBehaviour
                 Controller.instance.TalkEnd();
 
                 //뱃사공 대화 제어 플래그 초기화
-                //boatManDialogueScr2.isSentenceEnd = true;
-                //boatManDialogueScr2.remainSentence = true;
                 DialogManager.instance.isSentenceEnd = false;
                 DialogManager.instance.remainSentence = false;
-
-
                 break;
 
             //뱃사공3 선택지일 경우
             case 7194:
-
                 //선택지 대사 끄기
                 gameObject_BoatMan3Text.SetActive(false);
 
@@ -852,9 +825,6 @@ public class EventManager : MonoBehaviour
             //심봉사 선택지일 경우
             case 7287:
                 //다이얼로그 플래그 초기화
-                //jangjieonDialogueScr.remainSentence = true;
-                //jangjieonDialogueScr.isSentenceEnd = true;
-
                 DialogManager.instance.isSentenceEnd = false;
                 DialogManager.instance.remainSentence = false;
 
@@ -866,16 +836,11 @@ public class EventManager : MonoBehaviour
 
                 //엔딩 진행
                 jangjieonDialogueScr.StartRealEndingRoot();
-
                 break;
 
             //심봉사2 선택지일 경우
-            case 7299:
+            case 7299:          
                 //다이얼로그 플래그 초기화
-                //jangjieonDialogueScr.remainSentence = true;
-                //jangjieonDialogueScr.isSentenceEnd = true;
-
-
                 DialogManager.instance.isSentenceEnd = false;
                 DialogManager.instance.remainSentence = false;
 
@@ -887,24 +852,18 @@ public class EventManager : MonoBehaviour
 
                 //엔딩 진행
                 jangjieonDialogueScr.StartGoodEnding_2();
-
                 break;
-
 
             //약초물 마시기1
             case 5799:
-
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
-
                 break;
 
             //약초물 마시기2
             case 7009:
-
                 //선택지 종료
                 gameObject_SelectUI.SetActive(false);
-
                 break;
         }
     }
@@ -920,13 +879,9 @@ public class EventManager : MonoBehaviour
 
         switch (int_selectKeyNum)
         {
-
             //심봉사2 선택지일 경우
             case 7299:
                 //다이얼로그 플래그 초기화
-                //jangjieonDialogueScr.remainSentence = true;
-                //jangjieonDialogueScr.isSentenceEnd = true;
-
                 DialogManager.instance.isSentenceEnd = false;
                 DialogManager.instance.remainSentence = false;
 

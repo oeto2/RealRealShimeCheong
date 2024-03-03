@@ -52,15 +52,11 @@ public class Dialog_TypingWriter_BoatMan2 : Dialogue,ITalkable
         StartCoroutine(BoatManEnding());
     }
 
-
     //굿 엔딩 진입 코루틴
     IEnumerator GoodEndingRoot()
     {
         //시간이 더 이상 흐르지 않음
         TimeManager.instance.RealTimeStop();
-
-        ////화면 어둡게 하기
-        //EndingManager.instance.ShowEndingBG();
 
         //대사 진행
         yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[240].npc_name, dialogdb.NPC_01[240].comment, true));
@@ -82,9 +78,9 @@ public class Dialog_TypingWriter_BoatMan2 : Dialogue,ITalkable
 
         //다이얼로그창 끄기
         DialogManager.instance.Dialouge_Canvas.SetActive(false);
-        remainSentence = true;
-        isSentenceEnd = true;
         controller_scr.TalkEnd();
+
+        DialogManager.instance.remainSentence = false;
     }
 
     //계란 유골 배드엔딩 시작

@@ -11,7 +11,7 @@ public class Dialog_TypingWriter_Budhist : Dialogue, ITalkable
     public IEnumerator TextPractice()
     {
         // 최초 1회 출력
-        if (isNPC_Start==true)
+        if (isNPC_Start == true)
         {
             Debug.Log("승려 1회 대사 출력");
             //공양미 삼백석 단서 획득
