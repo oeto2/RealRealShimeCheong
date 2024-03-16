@@ -25,6 +25,8 @@ public class DayBox_Changer : MonoBehaviour
     public void RefreshDayBoxes_Image()
     {
         int time = TimeManager.instance.int_DayCount - 1;
+        
+        Debug.Log($"³¯Â¥ : {time}");
 
         if (time < 16)
         {

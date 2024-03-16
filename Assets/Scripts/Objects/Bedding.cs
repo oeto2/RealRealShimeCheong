@@ -97,12 +97,16 @@ public class Bedding : MonoBehaviour
     {
         //하루 지나기
         timeManagerScr.PassOneDay();
+
         //Sleep UI 끄기
         gameObjcet_SleepUI.SetActive(false);
         //Sleep BackRound Ani Start
         ShowSleepBG();
         //1초뒤에 오브젝트 비활성화
-        Invoke("CloseSleepBG", 2f);
+        Invoke(nameof(CloseSleepBG), 2f);
+
+        //플레이어 이동제한 해제
+        playerCtrlScr.PlayerMoveStart();
     }
 
     //아니오 버튼을 눌렀을 경우
@@ -110,6 +114,9 @@ public class Bedding : MonoBehaviour
     {
         //Sleep UI 끄기
         gameObjcet_SleepUI.SetActive(false);
+
+        //플레이어 이동제한 해제
+        playerCtrlScr.PlayerMoveStart();
     }
 
     public void ShowSleepBG()
@@ -125,5 +132,7 @@ public class Bedding : MonoBehaviour
     public void CloseButtonClick()
     {
         gameObjcet_SleepUI.SetActive(false);
+        //플레이어 이동제한 해제
+        playerCtrlScr.PlayerMoveStart();
     }
 }

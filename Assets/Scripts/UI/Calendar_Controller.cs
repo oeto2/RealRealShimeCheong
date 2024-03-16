@@ -20,6 +20,7 @@ public class Calendar_Controller : MonoBehaviour
     //켈린더 새로고침
     private void RefreshCalendar()
     {
+
         int day = TimeManager.instance.int_DayCount;
         if (day <= 1)
         {
@@ -32,6 +33,7 @@ public class Calendar_Controller : MonoBehaviour
             CalendarUI.sprite = CalendarSprites[day];
         }
         curCalendarIndex = day;
+        Debug.Log($"캘린더 새로고침{day}");
     }
 
     //캘린더 애니메이션 실행

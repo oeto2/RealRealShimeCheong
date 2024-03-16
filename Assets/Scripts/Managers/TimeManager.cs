@@ -167,6 +167,8 @@ public class TimeManager : MonoBehaviour
     //고립무원 엔딩을 위한 플래그
     public bool isEndingStart;
 
+    //하루가 지났을 때 발생하는 이벤트들
+    public Action PassDayEvents;
 
     //이벤트 목록
     public event Action NextDayEvent;
@@ -185,10 +187,8 @@ public class TimeManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-
         //저장 파일 위치
         saveFilePath = Application.persistentDataPath + "/TimeDataText.txt";
-
 
         //오브젝트의 현재 RGB값
         curObjectRGB = startRGBValue;
@@ -218,7 +218,6 @@ public class TimeManager : MonoBehaviour
             }
         }
 
-
         //float RealTime을 int로 변환후 프레임당 갱신
         int_RealTime = (int)MathF.Truncate(float_RealTime);
 
@@ -228,13 +227,11 @@ public class TimeManager : MonoBehaviour
             ObjectStartRGB_Value(startRGBValue.r);
         }
 
-
         //오브젝트 밝기 조절
         if (!isOneSecStart)
         {
             StartCoroutine(OneSecStartCoroutine());
         }
-
 
         //해시계 애니메이션
         ChageSunClock();
@@ -357,14 +354,7 @@ public class TimeManager : MonoBehaviour
             #endregion
         }
     }
-
-    //날짜가 지났을때 실행할 애니메이션
-    //public void NextDayAnimaton(int _day)
-    //{
-    //    //캘린더 날짜 바꾸기
-    //    animator_Celender.SetInteger("DayNum", _day);
-    //}
-
+ 
     //날짜 UI 보여주기
     public void ShowDayUI()
     {
@@ -419,13 +409,14 @@ public class TimeManager : MonoBehaviour
         int_DayCount++;
         //시간 0으로 초기화
         float_RealTime = 0;
+        CallNextDayEvent();
+        RefreshTimeUIs();
     }
 
     //데이터 저장
     public void Save(int _slotNum)
     {
         //Debug.Log("Save TimeManagerData");
-
 
         //저장할 데이터 넣기
         curTimeSaveData = new TimeSaveData(float_RealTime, int_DayCount, curObjectRGB.r, realTimeStop);
@@ -729,11 +720,16 @@ public class TimeManager : MonoBehaviour
         realTimeStop = true;
     }
 
-
     //다음날 이벤트 실행
     public void CallNextDayEvent()
     {
         Debug.Log("다음날 이벤트 실행");
         NextDayEvent?.Invoke();
+    }
+
+    //시간 UI 업데이트
+    public void RefreshTimeUIs()
+    {
+        text_TimeText.text = float_RealTime.ToString();
     }
 }
