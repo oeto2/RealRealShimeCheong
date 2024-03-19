@@ -186,7 +186,7 @@ public class DialogManager : MonoBehaviour
                 ChatText.text = writerText;
 
                 //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyUp(KeyCode.Space)))
                 {
                     //타이핑 속도 변경
                     typingSpeed = skipTypingSpeed;
@@ -211,7 +211,7 @@ public class DialogManager : MonoBehaviour
                 ChatText.text = writerText;
 
                 //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyUp(KeyCode.Space)))
                 {
                     //타이핑 속도 변경
                     typingSpeed = skipTypingSpeed;
@@ -234,7 +234,7 @@ public class DialogManager : MonoBehaviour
                 ChatText.text = writerText;
 
                 //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyUp(KeyCode.Space)))
                 {
                     //타이핑 속도 변경
                     typingSpeed = skipTypingSpeed;
@@ -388,7 +388,7 @@ public class DialogManager : MonoBehaviour
             t_ignore = false; // 한 글자 찍었으면 다시 false
 
             //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+            if (a > 5 && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyUp(KeyCode.Space)))
             {
                 //타이핑 속도 변경
                 typingSpeed = skipTypingSpeed;
@@ -551,7 +551,7 @@ public class DialogManager : MonoBehaviour
                 t_ignore = false; // 한 글자 찍었으면 다시 false
 
                 //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-                if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+                if (a > 5 && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyUp(KeyCode.Space)))
                 {
                     //타이핑 속도 변경
                     typingSpeed = skipTypingSpeed;
@@ -574,7 +574,7 @@ public class DialogManager : MonoBehaviour
             //Z키를 다시 누를 때까지 무한정 대기
             while (true)
             {
-                if (ChatText.text == writerText && Input.GetKeyDown(KeyCode.Z))
+                if (ChatText.text == writerText && Input.GetKeyDown(KeyCode.Space))
                 {
                     Debug.Log("Text 비우기");
 
@@ -705,7 +705,7 @@ public class DialogManager : MonoBehaviour
             t_ignore = false; // 한 글자 찍었으면 다시 false
 
             //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+            if (a > 5 && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyUp(KeyCode.Space)))
             {
                 //타이핑 속도 변경
                 typingSpeed = skipTypingSpeed;
@@ -721,7 +721,7 @@ public class DialogManager : MonoBehaviour
         //텍스트 타이핑 시간 조절
         //yield return null;
 
-        if (a > 2 && Input.GetKeyDown(KeyCode.Z))
+        if (a > 2 && Input.GetKeyDown(KeyCode.Space))
             {
                 //코루틴 중복 실행 방지해제
                 isSentence_Start = false;
@@ -740,7 +740,7 @@ public class DialogManager : MonoBehaviour
         //Z키를 다시 누를 때까지 무한정 대기
         while (true)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 //코루틴 중복 실행 방지해제
                 isSentence_Start = false;
@@ -869,7 +869,7 @@ public class DialogManager : MonoBehaviour
             t_ignore = false; // 한 글자 찍었으면 다시 false
 
             //5글자 이상 대화가 진행되고 Z키를 눌렀을 경우
-            if (a > 5 && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyUp(KeyCode.Z)))
+            if (a > 5 && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyUp(KeyCode.Space)))
             {
                 //타이핑 속도 변경
                 typingSpeed = skipTypingSpeed;
@@ -885,7 +885,7 @@ public class DialogManager : MonoBehaviour
             //텍스트 타이핑 시간 조절
             //yield return null;
 
-            if (a > 2 && Input.GetKeyDown(KeyCode.Z))
+            if (a > 2 && Input.GetKeyDown(KeyCode.Space))
             {
                 //코루틴 중복 실행 방지해제
                 isSentence_Start = false;
@@ -905,7 +905,7 @@ public class DialogManager : MonoBehaviour
         while (true)
         {
 
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 //코루틴 중복 실행 방지해제
                 isSentence_Start = false;
