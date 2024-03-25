@@ -289,14 +289,15 @@ public class ObjectManager : MonoBehaviour
             EmptyCombineSlot();
         }
 
+        /* 모든 아이템 획득 치트키
         if(Input.GetKeyDown(KeyCode.I))
         {
             GetAllItem();
         }
-
+        */
     }
 
-    //오브젝트 슬롯 클릭시 (아이템창 한정)
+    //오브젝트 슬롯 클릭시 (아이템 창 한정)
     public void SlotClick(int slotNum)
     {
         //오브젝트 타입이 아이템일 경우
@@ -306,7 +307,6 @@ public class ObjectManager : MonoBehaviour
             #region
             Item curItem = curItemList[slotNum];
             Item usingItem = curItemList.Find(x => x.isUsing == true);
-
 
 
             //사용중인 아이템을 제외한 아이템들의 사용을 false로 바꿈
@@ -322,7 +322,6 @@ public class ObjectManager : MonoBehaviour
 
                 //착용 아이템 슬롯 텍스트 비우기
                 text_EquipSlot.text = "";
-
                
             }
 
@@ -376,6 +375,8 @@ public class ObjectManager : MonoBehaviour
 
                 //착용 아이템 슬롯 텍스트 변경
                 text_EquipSlot.text = curClue.name;
+
+
             }
 
             //사용중인 아이템이 있다면 usingItem에 담겠다.
@@ -605,6 +606,35 @@ public class ObjectManager : MonoBehaviour
                 slot[i].SetActive(isExist);
                 //Text보이기
                 slot[i].GetComponentInChildren<Text>().text = isExist ? curClueList[i].name : "";
+
+                //Color ClueColor;
+                //string ClueColor_code;
+
+                #region 예외처리 - 만약 단서 슬롯 키값이 조합용 단서라면
+                if ((curClueList[i].key == 2022 || curClueList[i].key == 4023)
+                    || (curClueList[i].key == 2012 || curClueList[i].key == 2011)
+                    || (curClueList[i].key == 2022 || curClueList[i].key == 9001)
+                    || (curClueList[i].key == 2001 || curClueList[i].key == 2016))
+                {
+                    Debug.Log("단서 색상 변경!");
+                    // 글자색상 변경
+                    //slot[i].GetComponentInChildren<Text>().text = "<color=#850000>" + curClueList[i].name + "</color>";
+                    slot[i].GetComponentInChildren<Text>().color = Color.gray;
+                }
+                #endregion
+
+                #region 예외처리 - 만약 단서 슬롯 키값이 조합된 단서라면
+                if ((curClueList[i].key == 4015 || curClueList[i].key == 4017)
+                    || (curClueList[i].key == 4018 || curClueList[i].key == 4023)
+                    || (curClueList[i].key == 4033 || curClueList[i].key == 6045)
+                    || (curClueList[i].key == 8032 || curClueList[i].key == 9001))
+                {
+                    Debug.Log("조합된 단서 색상 변경!");
+                    // 글자색상 변경
+                    //slot[i].GetComponentInChildren<Text>().text = "<color=#850000>" + curClueList[i].name + "</color>";
+                    slot[i].GetComponentInChildren<Text>().color = Color.red;
+                }
+                #endregion
 
                 //슬롯이 존재한다면
                 if (isExist)
@@ -850,10 +880,6 @@ public class ObjectManager : MonoBehaviour
             Clue GetClue = myClueList.Find(x => x.key == _key);
             Clue CheckClue = curClueList.Find(x => x.key == _key);
 
-            // 글자색상 바꿀 이름 받을 변수
-            string GetClueName;
-
-            GetClueName = "<color=#850000>" + GetClue.name + "</color>";
 
             //만약 해당 단서를 보유중이지 않다면
             if (CheckClue == null)
