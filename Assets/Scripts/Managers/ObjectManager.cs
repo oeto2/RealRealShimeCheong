@@ -1,10 +1,10 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
-//Listë¥¼ Jasonìœ¼ë¡œ ì €ì¥í• ìˆ˜ ìˆê²Œë„ì™€ì£¼ëŠ” Class
+//List¸¦ JasonÀ¸·Î ÀúÀåÇÒ¼ö ÀÖ°Ôµµ¿ÍÁÖ´Â Class
 [System.Serializable]
 public class Serialization<T>
 {
@@ -12,11 +12,11 @@ public class Serialization<T>
     public List<T> target;
 }
 
-//Item ë°ì´í„° ë² ì´ìŠ¤
+//Item µ¥ÀÌÅÍ º£ÀÌ½º
 [System.Serializable]
 public class Item
 {
-    //ìƒì„±ì ì •ì˜
+    //»ı¼ºÀÚ Á¤ÀÇ
     public Item(int _key, string _type, string _name, string _content, bool _isUsing, int _indexNum)
     {
         key = _key; type = _type; name = _name; content = _content; isUsing = _isUsing; indexNum = _indexNum;
@@ -27,11 +27,11 @@ public class Item
     public bool isUsing;
 }
 
-//Clue ë°ì´í„° ë² ì´ìŠ¤
+//Clue µ¥ÀÌÅÍ º£ÀÌ½º
 [System.Serializable]
 public class Clue
 {
-    //ìƒì„±ì ì •ì˜
+    //»ı¼ºÀÚ Á¤ÀÇ
     public Clue(int _key, string _type, string _name, string _content, bool _isUsing, int _indexNum)
     {
         key = _key; type = _type; name = _name; content = _content; isUsing = _isUsing; indexNum = _indexNum;
@@ -44,145 +44,145 @@ public class Clue
 
 public class ObjectManager : MonoBehaviour
 {
-    //ì™¸ë¶€ìŠ¤í¬ë¦½íŠ¸ ì°¸ì¡°
+    //¿ÜºÎ½ºÅ©¸³Æ® ÂüÁ¶
     public UIManager uiManagerScr;
     public ToastMessage toastMessageScr;
 
-    //ì‹±ê¸€í†¤
+    //½Ì±ÛÅæ
     public static ObjectManager instance = null;
 
     //Item
     #region 
-    //ì•„ì´í…œ ë°ì´í„° ê°’ì´ ë‹´ê¸´ txtíŒŒì¼
+    //¾ÆÀÌÅÛ µ¥ÀÌÅÍ °ªÀÌ ´ã±ä txtÆÄÀÏ
     public TextAsset itemDataBase;
 
-    //Item í´ë˜ìŠ¤ ì•ˆì˜ ì•„ì´í…œ ë°ì´í„°ë“¤ì„ ë¦¬ìŠ¤íŠ¸í™” ì‹œí‚¨ ê²ƒ
-    [Tooltip("ëª¨ë“  ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸")]
+    //Item Å¬·¡½º ¾ÈÀÇ ¾ÆÀÌÅÛ µ¥ÀÌÅÍµéÀ» ¸®½ºÆ®È­ ½ÃÅ² °Í
+    [Tooltip("¸ğµç ¾ÆÀÌÅÛ ¸®½ºÆ®")]
     public List<Item> allItemList;
 
-    //ê²Œì„ë‚´ì—ì„œ ì‚¬ìš©í•  ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ (ì•„ì´í…œì°½ í•œì •)
-    [Tooltip("ê²Œì„ë‚´ì—ì„œ ì‚¬ìš©í•  ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸")]
+    //°ÔÀÓ³»¿¡¼­ »ç¿ëÇÒ ¾ÆÀÌÅÛ ¸®½ºÆ® (¾ÆÀÌÅÛÃ¢ ÇÑÁ¤)
+    [Tooltip("°ÔÀÓ³»¿¡¼­ »ç¿ëÇÒ ¾ÆÀÌÅÛ ¸®½ºÆ®")]
     public List<Item> myItemList;
 
-    //ìŠ¬ë¡¯ì—ì„œ ë³´ì—¬ì¤„ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ (í˜„ì¬ ë³´ìœ ì¤‘)
-    [Tooltip("ê²Œì„ë‚´ì—ì„œ íšë“í•œ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸(ì¸ë²¤í† ë¦¬)")]
+    //½½·Ô¿¡¼­ º¸¿©ÁÙ ¾ÆÀÌÅÛ ¸®½ºÆ® (ÇöÀç º¸À¯Áß)
+    [Tooltip("°ÔÀÓ³»¿¡¼­ È¹µæÇÑ ¾ÆÀÌÅÛ ¸®½ºÆ®(ÀÎº¥Åä¸®)")]
     public List<Item> curItemList;
 
-    //ì¡°í•©ì°½ì—ì„œ ë³´ì—¬ì¤„ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ (í˜„ì¬ ë³´ìœ ì¤‘)
-    [Tooltip("ê²Œì„ë‚´ì—ì„œ íšë“í•œ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸(ì¡°í•©ì°½)")]
+    //Á¶ÇÕÃ¢¿¡¼­ º¸¿©ÁÙ ¾ÆÀÌÅÛ ¸®½ºÆ® (ÇöÀç º¸À¯Áß)
+    [Tooltip("°ÔÀÓ³»¿¡¼­ È¹µæÇÑ ¾ÆÀÌÅÛ ¸®½ºÆ®(Á¶ÇÕÃ¢)")]
     public List<Item> curItemList2;
     #endregion
 
-    //ë‹¨ì„œ ë°ì´í„° ê°’ì´ ë‹´ê¸´ txtíŒŒì¼
+    //´Ü¼­ µ¥ÀÌÅÍ °ªÀÌ ´ã±ä txtÆÄÀÏ
     public TextAsset clueDataBase;
 
-    //Clue í´ë˜ìŠ¤ ì•ˆì˜ ë‹¨ì„œ ë°ì´í„°ë“¤ì„ ë¦¬ìŠ¤íŠ¸í™” ì‹œí‚¨ê²ƒ
-    [Tooltip("ëª¨ë“  ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸")]
+    //Clue Å¬·¡½º ¾ÈÀÇ ´Ü¼­ µ¥ÀÌÅÍµéÀ» ¸®½ºÆ®È­ ½ÃÅ²°Í
+    [Tooltip("¸ğµç ´Ü¼­ ¸®½ºÆ®")]
     public List<Clue> allClueList;
 
-    //ê²Œì„ë‚´ì—ì„œ ì‚¬ìš©í•  ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸
-    [Tooltip("ê²Œì„ë‚´ì—ì„œ ì‚¬ìš©í•  ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸")]
+    //°ÔÀÓ³»¿¡¼­ »ç¿ëÇÒ ´Ü¼­ ¸®½ºÆ®
+    [Tooltip("°ÔÀÓ³»¿¡¼­ »ç¿ëÇÒ ´Ü¼­ ¸®½ºÆ®")]
     public List<Clue> myClueList;
 
-    //ìŠ¬ë¡¯ì—ì„œ ë³´ì—¬ì¤„ ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸(í˜„ì¬ ë³´ìœ ì¤‘)
-    [Tooltip("ê²Œì„ë‚´ì—ì„œ íšë“í•œ ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸(ì¸ë²¤í† ë¦¬)")]
+    //½½·Ô¿¡¼­ º¸¿©ÁÙ ´Ü¼­ ¸®½ºÆ®(ÇöÀç º¸À¯Áß)
+    [Tooltip("°ÔÀÓ³»¿¡¼­ È¹µæÇÑ ´Ü¼­ ¸®½ºÆ®(ÀÎº¥Åä¸®)")]
     public List<Clue> curClueList;
 
-    //ì¡°í•©ì°½ ì—ë³´ì—¬ì¤„ ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸(í˜„ì¬ ë³´ìœ ì¤‘)
-    [Tooltip("ê²Œì„ë‚´ì—ì„œ íšë“í•œ ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸(ì¡°í•©ì°½)")]
+    //Á¶ÇÕÃ¢ ¿¡º¸¿©ÁÙ ´Ü¼­ ¸®½ºÆ®(ÇöÀç º¸À¯Áß)
+    [Tooltip("°ÔÀÓ³»¿¡¼­ È¹µæÇÑ ´Ü¼­ ¸®½ºÆ®(Á¶ÇÕÃ¢)")]
     public List<Clue> curClueList2;
 
-    //ì•„ì´í…œ Jsonì´ ì €ì¥ë  ìœ„ì¹˜
+    //¾ÆÀÌÅÛ JsonÀÌ ÀúÀåµÉ À§Ä¡
     public string itemfilePath;
-    //ë³´ìœ ì¤‘ì¸ ì•„ì´í…œ Jsonì´ ì €ì¥ë  ìœ„ì¹˜
+    //º¸À¯ÁßÀÎ ¾ÆÀÌÅÛ JsonÀÌ ÀúÀåµÉ À§Ä¡
     public string curItemfilePath;
 
-    //ë‹¨ì„œ Jsonì´ ì €ì¥ë  ìœ„ì¹˜
+    //´Ü¼­ JsonÀÌ ÀúÀåµÉ À§Ä¡
     public string cluefilePath;
-    //ë³´ìœ ì¤‘ì¸ ë‹¨ì„œ Jsonì´ ì €ì¥ë  ìœ„ì¹˜
+    //º¸À¯ÁßÀÎ ´Ü¼­ JsonÀÌ ÀúÀåµÉ À§Ä¡
     public string curCluefilePath;
 
-    //ë‹¤ì´ì–¼ë¡œê·¸ Jsonì´ ì €ì¥ë  ìœ„ì¹˜
+    //´ÙÀÌ¾ó·Î±× JsonÀÌ ÀúÀåµÉ À§Ä¡
     public string dialogfilePath;
-    //ë‹¤ì´ì–¼ë¡œê·¸ ë§ˆì§€ë§‰ ê²½ë¡œ Jsonì´ ì €ì¥ë  ìœ„ì¹˜
+    //´ÙÀÌ¾ó·Î±× ¸¶Áö¸· °æ·Î JsonÀÌ ÀúÀåµÉ À§Ä¡
     public string curDialogfilePath;
 
-    //ì²˜ìŒì— ì ìš©í•  ì˜¤ë¸Œì íŠ¸ íƒ€ì…
+    //Ã³À½¿¡ Àû¿ëÇÒ ¿ÀºêÁ§Æ® Å¸ÀÔ
     public string curType = "Item";
 
-    //ìŠ¬ë¡¯
+    //½½·Ô
     public GameObject[] slot;
-    //ì¡°í•©ì°½ ìŠ¬ë¡¯
+    //Á¶ÇÕÃ¢ ½½·Ô
     public GameObject[] slot2;
 
-    //ì‚¬ìš©ì¤‘ì¼ë•Œ ì´ë¯¸ì§€
+    //»ç¿ëÁßÀÏ¶§ ÀÌ¹ÌÁö
     public GameObject[] usingImage;
-    //ì¡°í•©ì°½ ì‚¬ìš©ì¤‘ì¼ë•Œ ì´ë¯¸ì§€
+    //Á¶ÇÕÃ¢ »ç¿ëÁßÀÏ¶§ ÀÌ¹ÌÁö
     public GameObject[] usingImage2;
 
-    //ì˜¤ë¸Œì íŠ¸ ì´ë¯¸ì§€
+    //¿ÀºêÁ§Æ® ÀÌ¹ÌÁö
     public Image[] objectImage;
-    //ì¡°í•©ì°½ ì˜¤ë¸Œì íŠ¸ ì´ë¯¸ì§€
+    //Á¶ÇÕÃ¢ ¿ÀºêÁ§Æ® ÀÌ¹ÌÁö
     public Image[] objectImage2;
 
-    //ë‘ê°œì˜ ì´ë¯¸ì§€ì˜ ë°°ì—´ì˜ ì¸ë±ìŠ¤ëŠ” ì˜¤ë¸Œì íŠ¸ë“¤ì˜ ì¸ë±ìŠ¤ ê°’ê³¼ ì¼ì¹˜í•´ì•¼í•œë‹¤.
-    //ì•„ì´í…œ ì´ë¯¸ì§€
+    //µÎ°³ÀÇ ÀÌ¹ÌÁöÀÇ ¹è¿­ÀÇ ÀÎµ¦½º´Â ¿ÀºêÁ§Æ®µéÀÇ ÀÎµ¦½º °ª°ú ÀÏÄ¡ÇØ¾ßÇÑ´Ù.
+    //¾ÆÀÌÅÛ ÀÌ¹ÌÁö
     public Sprite[] itemSprite;
-    //ë‹¨ì„œ ì´ë¯¸ì§€
+    //´Ü¼­ ÀÌ¹ÌÁö
     public Sprite[] clueSprite;
 
-    //í˜„ì¬ ì¥ì°©ì¤‘ì¸ ì˜¤ë¸Œì íŠ¸ì˜ ì´ë¯¸ì§€
+    //ÇöÀç ÀåÂøÁßÀÎ ¿ÀºêÁ§Æ®ÀÇ ÀÌ¹ÌÁö
     public Image equitObjectSprite;
 
-    //ì˜¤ë¸Œì íŠ¸ ì„¤ëª…ì´ í‘œì‹œë˜ëŠ” í…ìŠ¤íŠ¸
+    //¿ÀºêÁ§Æ® ¼³¸íÀÌ Ç¥½ÃµÇ´Â ÅØ½ºÆ®
     public Text contentText;
-    //ì¡°í•©ì°½ ì˜¤ë¸Œì íŠ¸ ì„¤ëª…ì´ í‘œì‹œë˜ëŠ” í…ìŠ¤íŠ¸
+    //Á¶ÇÕÃ¢ ¿ÀºêÁ§Æ® ¼³¸íÀÌ Ç¥½ÃµÇ´Â ÅØ½ºÆ®
     public Text contentText2;
 
-    //ì¡°í•©ì°½ì˜ ìŠ¬ë¡¯1ì˜ ì´ë¯¸ì§€
+    //Á¶ÇÕÃ¢ÀÇ ½½·Ô1ÀÇ ÀÌ¹ÌÁö
     public Image image_CombineSlot1;
-    //ì¡°í•©ì°½ì˜ ìŠ¬ë¡¯2ì˜ ì´ë¯¸ì§€
+    //Á¶ÇÕÃ¢ÀÇ ½½·Ô2ÀÇ ÀÌ¹ÌÁö
     public Image image_CombineSlot2;
 
-    //ìŠ¬ë¡¯ì°½ Spriteì´ë¯¸ì§€
+    //½½·ÔÃ¢ SpriteÀÌ¹ÌÁö
     public Sprite sprite_Slot;
-    //ìŠ¬ë¡¯ì°½ í™œì„±í™” Spriteì´ë¯¸ì§€
+    //½½·ÔÃ¢ È°¼ºÈ­ SpriteÀÌ¹ÌÁö
     public Sprite sprite_UsingSlot;
     //NoneImage
     public Sprite sprite_NoneImage;
 
-    //ì¡°í•©ì°½ 1ì´ ì‚¬ìš©ì¤‘ì¸ì§€
+    //Á¶ÇÕÃ¢ 1ÀÌ »ç¿ëÁßÀÎÁö
     public bool combineSlot1_Using;
-    //ì¡°í•©ì°½ 2ê°€ ì‚¬ìš©ì¤‘ì¸ì§€
+    //Á¶ÇÕÃ¢ 2°¡ »ç¿ëÁßÀÎÁö
     public bool combineSlot2_Using;
 
-    //ì¡°í•©ì°½ ìŠ¬ë¡¯1 ì•„ì´í…œ ì´ë¯¸ì§€
+    //Á¶ÇÕÃ¢ ½½·Ô1 ¾ÆÀÌÅÛ ÀÌ¹ÌÁö
     public Image image_CombineSlot1Item;
-    //ì¡°í•©ì°½ ìŠ¬ë¡¯2 ì•„ì´í…œ ì´ë¯¸ì§€
+    //Á¶ÇÕÃ¢ ½½·Ô2 ¾ÆÀÌÅÛ ÀÌ¹ÌÁö
     public Image image_CombineSlot2Item;
 
-    //ì¡°í•©ì°½ ìŠ¬ë¡¯1 ì•„ì´í…œ ì´ë¦„
+    //Á¶ÇÕÃ¢ ½½·Ô1 ¾ÆÀÌÅÛ ÀÌ¸§
     public Text combineSlot1Name;
-    //ì¡°í•©ì°½ ìŠ¬ë¡¯2 ì•„ì´í…œ ì´ë¦„
+    //Á¶ÇÕÃ¢ ½½·Ô2 ¾ÆÀÌÅÛ ÀÌ¸§
     public Text combineSlot2Name;
 
-    //ì¡°í•©ì°½ ìŠ¬ë¡¯1ì— ì„ íƒëœ ì•„ì´í…œì˜ ì •ë³´
+    //Á¶ÇÕÃ¢ ½½·Ô1¿¡ ¼±ÅÃµÈ ¾ÆÀÌÅÛÀÇ Á¤º¸
     public Item curCombineItem1Info;
-    //ì¡°í•©ì°½ ìŠ¬ë¡¯2ì— ì„ íƒëœ ì•„ì´í…œì˜ ì •ë³´
+    //Á¶ÇÕÃ¢ ½½·Ô2¿¡ ¼±ÅÃµÈ ¾ÆÀÌÅÛÀÇ Á¤º¸
     public Item curCombineItem2Info;
 
-    //ì¡°í•©ì°½ ìŠ¬ë¡¯1ì— ì„ íƒëœ ë‹¨ì„œì˜ ì •ë³´
+    //Á¶ÇÕÃ¢ ½½·Ô1¿¡ ¼±ÅÃµÈ ´Ü¼­ÀÇ Á¤º¸
     public Clue curCombineClue1Info;
-    //ì¡°í•©ì°½ ìŠ¬ë¡¯2ì— ì„ íƒëœ ë‹¨ì„œì˜ ì •ë³´
+    //Á¶ÇÕÃ¢ ½½·Ô2¿¡ ¼±ÅÃµÈ ´Ü¼­ÀÇ Á¤º¸
     public Clue curCombineClue2Info;
 
-    // GetClue í™•ì¸ ì—¬ë¶€
+    // GetClue È®ÀÎ ¿©ºÎ
     public bool isGetClue = false;
 
-    // 2017 : ë°°ì˜ ì¶œí•­ GetClue í™•ì¸ ì—¬ë¶€
+    // 2017 : ¹èÀÇ ÃâÇ× GetClue È®ÀÎ ¿©ºÎ
     public bool isGetClue_2017 = false;
 
-    //ì¥ì°© ìŠ¬ë¡¯ Text
+    //ÀåÂø ½½·Ô Text
     public Text text_EquipSlot;
 
 
@@ -201,53 +201,53 @@ public class ObjectManager : MonoBehaviour
             }
         }
 
-        //ì „ì²´ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
+        //ÀüÃ¼ ¾ÆÀÌÅÛ ¸®½ºÆ® ºÒ·¯¿À±â
         #region
-        //String ë°°ì—´ lineì•ˆì— itemDataBase ì•ˆì˜ ì •ë³´ë“¤ì„ 0ë¶€í„° itemDataBase.text.Lengthê¹Œì§€ ë°›ì•„ì˜¨ë’¤ ì—”í„°ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ë°°ì—´ì„ ë‚˜ëˆ„ì–´ ì €ì¥
-        //ex) line.length = ItemDataBase ì•ˆì˜ ì½”ë“œì˜ ì¤„ ê°¯ìˆ˜
+        //String ¹è¿­ line¾È¿¡ itemDataBase ¾ÈÀÇ Á¤º¸µéÀ» 0ºÎÅÍ itemDataBase.text.Length±îÁö ¹Ş¾Æ¿ÂµÚ ¿£ÅÍ¸¦ ±âÁØÀ¸·Î ¹è¿­À» ³ª´©¾î ÀúÀå
+        //ex) line.length = ItemDataBase ¾ÈÀÇ ÄÚµåÀÇ ÁÙ °¹¼ö
         string[] itemline = itemDataBase.text.Substring(0, itemDataBase.text.Length).Split('\n');
 
-        // ItmeDataBasse ì•ˆì˜ ì •ë³´ë“¤ì„ Tabì„ ê¸°ì¤€ìœ¼ë¡œ ë‚˜ëˆ„ì–´ ì €ì¥
+        // ItmeDataBasse ¾ÈÀÇ Á¤º¸µéÀ» TabÀ» ±âÁØÀ¸·Î ³ª´©¾î ÀúÀå
         // ex) row[0] = key, row[1] = ObjectType, row[2] = Name, row[3] = Content, row[4] = isUsing, row[5] = IndexNum
         for (int i = 0; i < itemline.Length; i++)
         {
             string[] row = itemline[i].Split('\t');
 
-            //allItemListì— ê°’ë“¤ ì¶”ê°€
+            //allItemList¿¡ °ªµé Ãß°¡
             allItemList.Add(new Item(int.Parse(row[0]), row[1], row[2], row[3], row[4] == "TRUE", int.Parse(row[5])));
         }
         #endregion
 
-        //ì „ì²´ ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
+        //ÀüÃ¼ ´Ü¼­ ¸®½ºÆ® ºÒ·¯¿À±â
         #region
-        //ë‹¨ì„œ ë°ì´í„°ë² ì´ìŠ¤ í…ìŠ¤íŠ¸ íŒŒì¼ì•ˆì˜ ì¤„ ê°¯ìˆ˜ë§Œí¼ì˜ í¬ê¸°ë¥¼ ê°€ì§„ ë°°ì—´ clueline ì„ ì–¸
+        //´Ü¼­ µ¥ÀÌÅÍº£ÀÌ½º ÅØ½ºÆ® ÆÄÀÏ¾ÈÀÇ ÁÙ °¹¼ö¸¸Å­ÀÇ Å©±â¸¦ °¡Áø ¹è¿­ clueline ¼±¾ğ
         string[] clueline = clueDataBase.text.Substring(0, clueDataBase.text.Length).Split('\n');
 
         for (int i = 0; i < clueline.Length; i++)
         {
-            //Tabí‚¤ë¥¼ ëˆŒë¦° ê¸°ì¤€ìœ¼ë¡œ ë°ì´í„°ë“¤ì„ ë–¼ì–´ì„œ ë°°ì—´ì— ì €ì¥
+            //TabÅ°¸¦ ´­¸° ±âÁØÀ¸·Î µ¥ÀÌÅÍµéÀ» ¶¼¾î¼­ ¹è¿­¿¡ ÀúÀå
             string[] row = clueline[i].Split('\t');
 
             allClueList.Add(new Clue(int.Parse(row[0]), row[1], row[2], row[3], row[4] == "TRUE", int.Parse(row[5])));
         }
         #endregion
 
-        //ì•„ì´í…œ Json íŒŒì¼ì´ ì €ì¥ë  ìœ„ì¹˜
+        //¾ÆÀÌÅÛ Json ÆÄÀÏÀÌ ÀúÀåµÉ À§Ä¡
         itemfilePath = Application.persistentDataPath + "/AllItemText.txt";
 
-        //ë³´ìœ ì¤‘ì¸ ì•„ì´í…œ Json íŒŒì¼ì´ ì €ì¥ë  ìœ„ì¹˜
+        //º¸À¯ÁßÀÎ ¾ÆÀÌÅÛ Json ÆÄÀÏÀÌ ÀúÀåµÉ À§Ä¡
         curItemfilePath = Application.persistentDataPath + "/CurItemText.txt";
 
-        //ë‹¨ì„œ Json íŒŒì¼ì´ ì €ì¥ë  ìœ„ì¹˜
+        //´Ü¼­ Json ÆÄÀÏÀÌ ÀúÀåµÉ À§Ä¡
         cluefilePath = Application.persistentDataPath + "/AllClueText.txt";
 
-        //ë³´ìœ ì¤‘ì¸ ë‹¨ì„œ Json íŒŒì¼ì´ ì €ì¥ë  ìœ„ì¹˜
+        //º¸À¯ÁßÀÎ ´Ü¼­ Json ÆÄÀÏÀÌ ÀúÀåµÉ À§Ä¡
         curCluefilePath = Application.persistentDataPath + "/CurClueText.txt";
 
-        //MyItemList ì´ˆê¸°í™”
+        //MyItemList ÃÊ±âÈ­
         myItemList = allItemList;
 
-        //MyClueList ì´ˆê¸°í™”
+        //MyClueList ÃÊ±âÈ­
         myClueList = allClueList;
     }
 
@@ -257,23 +257,23 @@ public class ObjectManager : MonoBehaviour
         Save(100);
         Load(100);
 
-        //ì•„ì´í…œ íƒ­ ê¸°ë³¸ìœ¼ë¡œ ë³´ì—¬ì£¼ê¸°
+        //¾ÆÀÌÅÛ ÅÇ ±âº»À¸·Î º¸¿©ÁÖ±â
         TabClick(curType);
-        //ì¡°í•©ì°½ ì•„ì´í…œ íƒ­ ê¸°ë³¸ìœ¼ë¡œ ë³´ì—¬ì£¼ê¸°
+        //Á¶ÇÕÃ¢ ¾ÆÀÌÅÛ ÅÇ ±âº»À¸·Î º¸¿©ÁÖ±â
         TabClick2(curType);
 
-        //////ëª¨ë“  ì•„ì´í…œ íšë“
+        //////¸ğµç ¾ÆÀÌÅÛ È¹µæ
         //GetAllItem();
 
-        ////ëª¨ë“  ë‹¨ì„œ íšë“
+        ////¸ğµç ´Ü¼­ È¹µæ
         //GetAllClue();
 
-        //ë¶€ì‹¯ëŒ íšë“
+        //ºÎ½Ëµ¹ È¹µæ
         GetItem(1002);
         //GetItem(1005);
 
 
-        //ì‚¬ê³µ ë‹¨ì„œ íšë“
+        //»ç°ø ´Ü¼­ È¹µæ
         //GetClue(2021);
         //GetClue(2011);
         //GetClue(2012);
@@ -282,10 +282,10 @@ public class ObjectManager : MonoBehaviour
 
     private void Update()
     {
-        //ì¡°í•©ì°½ì´ ì—´ë¦¬ì§€ ì•Šì•˜ì„ ê²½ìš°
+        //Á¶ÇÕÃ¢ÀÌ ¿­¸®Áö ¾Ê¾ÒÀ» °æ¿ì
         if (!uiManagerScr.gameObject_CombineWindow.activeSelf)
         {
-            //ì¡°í•© ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+            //Á¶ÇÕ ½½·Ô ºñ¿ì±â
             EmptyCombineSlot();
         }
 
@@ -296,59 +296,59 @@ public class ObjectManager : MonoBehaviour
 
     }
 
-    //ì˜¤ë¸Œì íŠ¸ ìŠ¬ë¡¯ í´ë¦­ì‹œ (ì•„ì´í…œì°½ í•œì •)
+    //¿ÀºêÁ§Æ® ½½·Ô Å¬¸¯½Ã (¾ÆÀÌÅÛÃ¢ ÇÑÁ¤)
     public void SlotClick(int slotNum)
     {
-        //ì˜¤ë¸Œì íŠ¸ íƒ€ì…ì´ ì•„ì´í…œì¼ ê²½ìš°
+        //¿ÀºêÁ§Æ® Å¸ÀÔÀÌ ¾ÆÀÌÅÛÀÏ °æ¿ì
         if (curType == "Item")
         {
-            //ì•„ì´í…œ ì°½ì˜ ê²½ìš°
+            //¾ÆÀÌÅÛ Ã¢ÀÇ °æ¿ì
             #region
             Item curItem = curItemList[slotNum];
             Item usingItem = curItemList.Find(x => x.isUsing == true);
 
 
 
-            //ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œì„ ì œì™¸í•œ ì•„ì´í…œë“¤ì˜ ì‚¬ìš©ì„ falseë¡œ ë°”ê¿ˆ
+            //»ç¿ëÁßÀÎ ¾ÆÀÌÅÛÀ» Á¦¿ÜÇÑ ¾ÆÀÌÅÛµéÀÇ »ç¿ëÀ» false·Î ¹Ù²Ş
             if (usingItem != null) usingItem.isUsing = false;
             {
                 curItem.isUsing = true;
 
-                //ì„ íƒëœ ì•„ì´í…œì•ˆì˜ ë‚´ìš© í‘œì‹œí•˜ê¸°
+                //¼±ÅÃµÈ ¾ÆÀÌÅÛ¾ÈÀÇ ³»¿ë Ç¥½ÃÇÏ±â
                 contentText.text = curItem.content;
 
-                //ì„ íƒëœ ì´ë¯¸ì§€ ì˜®ê²¨ì£¼ê¸°
+                //¼±ÅÃµÈ ÀÌ¹ÌÁö ¿Å°ÜÁÖ±â
                 equitObjectSprite.sprite = itemSprite[curItem.indexNum];
 
-                //ì°©ìš© ì•„ì´í…œ ìŠ¬ë¡¯ í…ìŠ¤íŠ¸ ë¹„ìš°ê¸°
+                //Âø¿ë ¾ÆÀÌÅÛ ½½·Ô ÅØ½ºÆ® ºñ¿ì±â
                 text_EquipSlot.text = "";
 
                
             }
 
-            //ì‚¬ìš©ì¤‘ì¸ ë‹¨ì„œê°€ ìˆë‹¤ë©´ usingClueì— ë‹´ê² ë‹¤.
+            //»ç¿ëÁßÀÎ ´Ü¼­°¡ ÀÖ´Ù¸é usingClue¿¡ ´ã°Ú´Ù.
             Clue usingClue = curClueList.Find(x => x.isUsing == true);
 
-            //ë§Œì•½ ì‚¬ìš©ì¤‘ì¸ ë‹¨ì„œê°€ ìˆì—ˆë‹¤ë©´ ê·¸ ê°’ì„ falseë¡œ ë°”ê¾¸ê² ë‹¤.
+            //¸¸¾à »ç¿ëÁßÀÎ ´Ü¼­°¡ ÀÖ¾ú´Ù¸é ±× °ªÀ» false·Î ¹Ù²Ù°Ú´Ù.
             if (usingClue != null)
             {
                 usingClue.isUsing = false;
             }
 
-            //ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œì„ í•œë²ˆ ë” í´ë¦­í•˜ë©´ falseë¡œ ë°”ê¾¸ëŠ” ì½”ë“œ
+            //»ç¿ëÁßÀÎ ¾ÆÀÌÅÛÀ» ÇÑ¹ø ´õ Å¬¸¯ÇÏ¸é false·Î ¹Ù²Ù´Â ÄÚµå
             if (usingItem != null)
             {
                 if (usingItem.key == curItemList[slotNum].key)
                 {
                     curItemList[slotNum].isUsing = false;
 
-                    //ì¥ì°© ì˜¤ë¸Œì íŠ¸ ì´ë¯¸ì§€ ì—†ì• ê¸°
+                    //ÀåÂø ¿ÀºêÁ§Æ® ÀÌ¹ÌÁö ¾ø¾Ö±â
                     equitObjectSprite.sprite = sprite_NoneImage;
 
-                    //ì°©ìš© ì•„ì´í…œ ìŠ¬ë¡¯ í…ìŠ¤íŠ¸ ë¹„ìš°ê¸°
+                    //Âø¿ë ¾ÆÀÌÅÛ ½½·Ô ÅØ½ºÆ® ºñ¿ì±â
                     text_EquipSlot.text = "";
 
-                    //ë‹¨ì„œ ì„¤ëª…ì°½ ë¹„ìš°ê¸°
+                    //´Ü¼­ ¼³¸íÃ¢ ºñ¿ì±â
                     contentText.text = "";
                 }
             }
@@ -356,10 +356,10 @@ public class ObjectManager : MonoBehaviour
             #endregion
         }
 
-        //ì˜¤ë¸Œì íŠ¸ íƒ€ì…ì´ ë‹¨ì„œì¼ ê²½ìš°
+        //¿ÀºêÁ§Æ® Å¸ÀÔÀÌ ´Ü¼­ÀÏ °æ¿ì
         else if (curType == "Clue")
         {
-            //ë‹¨ì„œ ì°½ì˜ ê²½ìš°
+            //´Ü¼­ Ã¢ÀÇ °æ¿ì
             #region
             Clue curClue = curClueList[slotNum];
             Clue usingClue = curClueList.Find(x => x.isUsing == true);
@@ -368,39 +368,39 @@ public class ObjectManager : MonoBehaviour
             {
                 curClue.isUsing = true;
 
-                //ì„ íƒëœ ë‹¨ì„œì•ˆì˜ ë‚´ìš© í‘œì‹œí•˜ê¸°
+                //¼±ÅÃµÈ ´Ü¼­¾ÈÀÇ ³»¿ë Ç¥½ÃÇÏ±â
                 contentText.text = curClue.content;
 
-                //ì°©ìš©ì•„ì´í…œì„ í˜„ì¬ ì„ íƒëœ ë‹¨ì„œ ì´ë¯¸ì§€ë¡œ ë°”ê¿”ì£¼ê¸°
+                //Âø¿ë¾ÆÀÌÅÛÀ» ÇöÀç ¼±ÅÃµÈ ´Ü¼­ ÀÌ¹ÌÁö·Î ¹Ù²ãÁÖ±â
                 equitObjectSprite.sprite = clueSprite[curClue.indexNum];
 
-                //ì°©ìš© ì•„ì´í…œ ìŠ¬ë¡¯ í…ìŠ¤íŠ¸ ë³€ê²½
+                //Âø¿ë ¾ÆÀÌÅÛ ½½·Ô ÅØ½ºÆ® º¯°æ
                 text_EquipSlot.text = curClue.name;
             }
 
-            //ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œì´ ìˆë‹¤ë©´ usingItemì— ë‹´ê² ë‹¤.
+            //»ç¿ëÁßÀÎ ¾ÆÀÌÅÛÀÌ ÀÖ´Ù¸é usingItem¿¡ ´ã°Ú´Ù.
             Item usingItem = curItemList.Find(x => x.isUsing == true);
 
-            //ë§Œì•½ ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œì´ ìˆì—ˆë‹¤ë©´ ê·¸ ì•„ì´í…œì˜ isUsingì„ falseë¡œ ë°”ê¾¸ê² ë‹¤.
+            //¸¸¾à »ç¿ëÁßÀÎ ¾ÆÀÌÅÛÀÌ ÀÖ¾ú´Ù¸é ±× ¾ÆÀÌÅÛÀÇ isUsingÀ» false·Î ¹Ù²Ù°Ú´Ù.
             if (usingItem != null)
             {
                 usingItem.isUsing = false;
             }
 
-            //ì‚¬ìš©ì¤‘ì¸ ë‹¨ì„œë¥¼ í•œë²ˆ ë” í´ë¦­í•˜ë©´ falseë¡œ ë°”ê¾¸ëŠ” ì½”ë“œ
+            //»ç¿ëÁßÀÎ ´Ü¼­¸¦ ÇÑ¹ø ´õ Å¬¸¯ÇÏ¸é false·Î ¹Ù²Ù´Â ÄÚµå
             if (usingClue != null)
             {
                 if (usingClue.key == curClueList[slotNum].key)
                 {
                     curClueList[slotNum].isUsing = false;
 
-                    //ì¥ì°© ì˜¤ë¸Œì íŠ¸ ì´ë¯¸ì§€ ì—†ì• ê¸°
+                    //ÀåÂø ¿ÀºêÁ§Æ® ÀÌ¹ÌÁö ¾ø¾Ö±â
                     equitObjectSprite.sprite = sprite_NoneImage;
 
-                    //ì°©ìš© ì•„ì´í…œ ìŠ¬ë¡¯ í…ìŠ¤íŠ¸ ë¹„ìš°ê¸°
+                    //Âø¿ë ¾ÆÀÌÅÛ ½½·Ô ÅØ½ºÆ® ºñ¿ì±â
                     text_EquipSlot.text = "";
 
-                    //ë‹¨ì„œ ì„¤ëª…ì°½ ë¹„ìš°ê¸°
+                    //´Ü¼­ ¼³¸íÃ¢ ºñ¿ì±â
                     contentText.text = "";
                 }
             }
@@ -411,151 +411,151 @@ public class ObjectManager : MonoBehaviour
         //Save();
     }
 
-    //ì˜¤ë¸Œì íŠ¸ ìŠ¬ë¡¯ í´ë¦­ì‹œ(ì¡°í•©ì°½ í•œì •)
+    //¿ÀºêÁ§Æ® ½½·Ô Å¬¸¯½Ã(Á¶ÇÕÃ¢ ÇÑÁ¤)
     public void SlotClick2(int slotNum)
     {
-        //ì˜¤ë¸Œì íŠ¸ íƒ€ì…ì´ ì•„ì´í…œì¼ ê²½ìš°
+        //¿ÀºêÁ§Æ® Å¸ÀÔÀÌ ¾ÆÀÌÅÛÀÏ °æ¿ì
         if (curType == "Item")
         {
-            //ì¡°í•©ì°½ì˜ ì•„ì´í…œì˜ ê²½ìš°
+            //Á¶ÇÕÃ¢ÀÇ ¾ÆÀÌÅÛÀÇ °æ¿ì
             #region
             Item curItem2 = curItemList2[slotNum];
             Item usingItem2 = curItemList2.Find(x => x.isUsing == true);
 
-            //ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œì„ ì œì™¸í•œ ì•„ì´í…œë“¤ì˜ ì‚¬ìš©ì„ falseë¡œ ë°”ê¿ˆ
+            //»ç¿ëÁßÀÎ ¾ÆÀÌÅÛÀ» Á¦¿ÜÇÑ ¾ÆÀÌÅÛµéÀÇ »ç¿ëÀ» false·Î ¹Ù²Ş
             if (curItem2 != null)
             {
-                //ì„ íƒëœ ì•„ì´í…œì•ˆì˜ ë‚´ìš© í‘œì‹œí•˜ê¸°
+                //¼±ÅÃµÈ ¾ÆÀÌÅÛ¾ÈÀÇ ³»¿ë Ç¥½ÃÇÏ±â
                 contentText2.text = curItem2.content;
             }
 
-            //ì•„ì´í…œ íƒ­ì—ì„œ ì¡°í•©ì°½ 1ì´ ì‚¬ìš©ì¤‘ì¼ê²½ìš°
+            //¾ÆÀÌÅÛ ÅÇ¿¡¼­ Á¶ÇÕÃ¢ 1ÀÌ »ç¿ëÁßÀÏ°æ¿ì
             if (combineSlot1_Using)
             {
-                //ì¡°í•©ì°½ ìŠ¬ë¡¯ 1ì˜ ì´ë¯¸ì§€ë¥¼ ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œì˜ ì´ë¯¸ì§€ë¡œ ë³€ê²½
+                //Á¶ÇÕÃ¢ ½½·Ô 1ÀÇ ÀÌ¹ÌÁö¸¦ »ç¿ëÁßÀÎ ¾ÆÀÌÅÛÀÇ ÀÌ¹ÌÁö·Î º¯°æ
                 image_CombineSlot1Item.sprite = itemSprite[curItem2.indexNum];
-                //ì¡°í•©ì°½ ìŠ¬ë¡¯ 1ì˜ ì•„ì´í…œ ì´ë¦„ ë³€ê²½
+                //Á¶ÇÕÃ¢ ½½·Ô 1ÀÇ ¾ÆÀÌÅÛ ÀÌ¸§ º¯°æ
                 combineSlot1Name.text = curItem2.name;
 
-                //curCombineClue1Infoì•ˆì˜ Keyê°’ì„ ë¹„ì›€
+                //curCombineClue1Info¾ÈÀÇ Key°ªÀ» ºñ¿ò
                 curCombineClue1Info = null;
 
-                //curCombineItem1Infoì— ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œì˜ ì •ë³´ë¥¼ ë„˜ê¹€
+                //curCombineItem1Info¿¡ »ç¿ëÁßÀÎ ¾ÆÀÌÅÛÀÇ Á¤º¸¸¦ ³Ñ±è
                 curCombineItem1Info = curItem2;
             }
 
-            //ì•„ì´í…œ íƒ­ì—ì„œ ì¡°í•©ì°½ 2ê°€ ì‚¬ìš©ì¤‘ì¼ê²½ìš°
+            //¾ÆÀÌÅÛ ÅÇ¿¡¼­ Á¶ÇÕÃ¢ 2°¡ »ç¿ëÁßÀÏ°æ¿ì
             else if (combineSlot2_Using)
             {
-                //ì¡°í•©ì°½ ìŠ¬ë¡¯ 2ì˜ ì´ë¯¸ì§€ë¥¼ ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œì˜ ì´ë¯¸ì§€ë¡œ ë³€ê²½
+                //Á¶ÇÕÃ¢ ½½·Ô 2ÀÇ ÀÌ¹ÌÁö¸¦ »ç¿ëÁßÀÎ ¾ÆÀÌÅÛÀÇ ÀÌ¹ÌÁö·Î º¯°æ
                 image_CombineSlot2Item.sprite = itemSprite[curItem2.indexNum];
-                //ì¡°í•©ì°½ ìŠ¬ë¡¯ 2ì˜ ì•„ì´í…œ ì´ë¦„ ë³€ê²½
+                //Á¶ÇÕÃ¢ ½½·Ô 2ÀÇ ¾ÆÀÌÅÛ ÀÌ¸§ º¯°æ
                 combineSlot2Name.text = curItem2.name;
 
-                //curCombineClue2Infoì•ˆì˜ Keyê°’ì„ ë¹„ì›€
+                //curCombineClue2Info¾ÈÀÇ Key°ªÀ» ºñ¿ò
                 curCombineClue2Info = null;
 
-                //curCombineItem2Infoì— ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œì˜ ì •ë³´ë¥¼ ë„˜ê¹€
+                //curCombineItem2Info¿¡ »ç¿ëÁßÀÎ ¾ÆÀÌÅÛÀÇ Á¤º¸¸¦ ³Ñ±è
                 curCombineItem2Info = curItem2;
             }
 
             #endregion
         }
 
-        //ì˜¤ë¸Œì íŠ¸ íƒ€ì…ì´ ë‹¨ì„œì¼ ê²½ìš°
+        //¿ÀºêÁ§Æ® Å¸ÀÔÀÌ ´Ü¼­ÀÏ °æ¿ì
         else if (curType == "Clue")
         {
-            //ì¡°í•©ì°½ì˜ ë‹¨ì„œ ì°½ì˜ ê²½ìš°
+            //Á¶ÇÕÃ¢ÀÇ ´Ü¼­ Ã¢ÀÇ °æ¿ì
             #region
             Clue curClue2 = curClueList2[slotNum];
             Clue usingClue2 = curClueList2.Find(x => x.isUsing == true);
 
             if (curClueList2 != null)
             {
-                //ì„ íƒëœ ë‹¨ì„œì•ˆì˜ ë‚´ìš© í‘œì‹œí•˜ê¸°
+                //¼±ÅÃµÈ ´Ü¼­¾ÈÀÇ ³»¿ë Ç¥½ÃÇÏ±â
                 contentText2.text = curClue2.content;
             }
 
-            //ë‹¨ì„œ íƒ­ì—ì„œ ì¡°í•©ì°½ 1ì´ ì‚¬ìš©ì¤‘ì¼ê²½ìš°
+            //´Ü¼­ ÅÇ¿¡¼­ Á¶ÇÕÃ¢ 1ÀÌ »ç¿ëÁßÀÏ°æ¿ì
             if (combineSlot1_Using)
             {
-                //ì¡°í•©ì°½ ìŠ¬ë¡¯ 1ì˜ ì´ë¯¸ì§€ë¥¼ ì‚¬ìš©ì¤‘ì¸ ë‹¨ì„œì˜ ì´ë¯¸ì§€ë¡œ ë³€ê²½
+                //Á¶ÇÕÃ¢ ½½·Ô 1ÀÇ ÀÌ¹ÌÁö¸¦ »ç¿ëÁßÀÎ ´Ü¼­ÀÇ ÀÌ¹ÌÁö·Î º¯°æ
                 image_CombineSlot1Item.sprite = clueSprite[curClue2.indexNum];
 
-                //ì¡°í•©ì°½ ìŠ¬ë¡¯ 1ì˜ ë‹¨ì„œ ì´ë¦„ë³€ê²½
+                //Á¶ÇÕÃ¢ ½½·Ô 1ÀÇ ´Ü¼­ ÀÌ¸§º¯°æ
                 combineSlot1Name.text = curClue2.name;
 
-                //curCombineItem1Infoì•ˆì˜ keyê°’ì„ ë¹„ì›€
+                //curCombineItem1Info¾ÈÀÇ key°ªÀ» ºñ¿ò
                 curCombineItem1Info = null;
 
-                //curCombineClue1Infoì— ì‚¬ìš©ì¤‘ì¸ ë‹¨ì„œì˜ ì •ë³´ë¥¼ ë„˜ê¹€
+                //curCombineClue1Info¿¡ »ç¿ëÁßÀÎ ´Ü¼­ÀÇ Á¤º¸¸¦ ³Ñ±è
                 curCombineClue1Info = curClue2;
             }
 
-            //ë‹¨ì„œ íƒ­ì—ì„œ ì¡°í•©ì°½ 2ê°€ ì‚¬ìš©ì¤‘ì¼ê²½ìš°
+            //´Ü¼­ ÅÇ¿¡¼­ Á¶ÇÕÃ¢ 2°¡ »ç¿ëÁßÀÏ°æ¿ì
             else if (combineSlot2_Using)
             {
-                //ì¡°í•©ì°½ ìŠ¬ë¡¯ 1ì˜ ì´ë¯¸ì§€ë¥¼ ì‚¬ìš©ì¤‘ì¸ ë‹¨ì„œì˜ ì´ë¯¸ì§€ë¡œ ë³€ê²½
+                //Á¶ÇÕÃ¢ ½½·Ô 1ÀÇ ÀÌ¹ÌÁö¸¦ »ç¿ëÁßÀÎ ´Ü¼­ÀÇ ÀÌ¹ÌÁö·Î º¯°æ
                 image_CombineSlot2Item.sprite = clueSprite[curClue2.indexNum];
-                //ì¡°í•©ì°½ ìŠ¬ë¡¯ 2ì˜ ë‹¨ì„œ ì´ë¦„ë³€ê²½
+                //Á¶ÇÕÃ¢ ½½·Ô 2ÀÇ ´Ü¼­ ÀÌ¸§º¯°æ
                 combineSlot2Name.text = curClue2.name;
 
-                //curCombineItem2Infoì•ˆì˜ keyê°’ì„ ë¹„ì›€
+                //curCombineItem2Info¾ÈÀÇ key°ªÀ» ºñ¿ò
                 curCombineItem2Info = null;
 
-                //curCombineClue2Infoì— ì‚¬ìš©ì¤‘ì¸ ë‹¨ì„œì˜ ì •ë³´ë¥¼ ë„˜ê¹€
+                //curCombineClue2Info¿¡ »ç¿ëÁßÀÎ ´Ü¼­ÀÇ Á¤º¸¸¦ ³Ñ±è
                 curCombineClue2Info = curClue2;
             }
             #endregion
         }
 
-        //ì¡°í•© ìŠ¬ë¡¯1ê³¼ ìŠ¬ë¡¯2 ì•ˆì˜ ì•„ì´í…œë“¤ì´ ì¡´ì¬í•˜ê³ .
+        //Á¶ÇÕ ½½·Ô1°ú ½½·Ô2 ¾ÈÀÇ ¾ÆÀÌÅÛµéÀÌ Á¸ÀçÇÏ°í.
         if (curCombineItem1Info != null && curCombineItem2Info != null)
         {
-            //1ë²ˆ ìŠ¬ë¡¯ê³¼ 2ë²ˆìŠ¬ë¡¯ì˜ ì•„ì´í…œì´ ê°™ê³  2ë²ˆìŠ¬ë¡¯ì„ ì‚¬ìš©ì¤‘ì´ë¼ë©´
+            //1¹ø ½½·Ô°ú 2¹ø½½·ÔÀÇ ¾ÆÀÌÅÛÀÌ °°°í 2¹ø½½·ÔÀ» »ç¿ëÁßÀÌ¶ó¸é
             if ((curCombineItem1Info.key == curCombineItem2Info.key) && combineSlot2_Using)
             {
-                Debug.Log("1ë²ˆìŠ¬ë¡¯ ë¹„ìš°ê¸°");
-                //ì¡°í•© ìŠ¬ë¡¯ ì•„ì´í…œ 1ë²ˆì„ ë¹„ìš´ë‹¤.
+                Debug.Log("1¹ø½½·Ô ºñ¿ì±â");
+                //Á¶ÇÕ ½½·Ô ¾ÆÀÌÅÛ 1¹øÀ» ºñ¿î´Ù.
                 EmptyCombineSlot1Item();
             }
         }
 
-        //ì¡°í•© ìŠ¬ë¡¯1ê³¼ ìŠ¬ë¡¯2 ì•ˆì˜ ì•„ì´í…œë“¤ì´ ì¡´ì¬í•˜ê³ .
+        //Á¶ÇÕ ½½·Ô1°ú ½½·Ô2 ¾ÈÀÇ ¾ÆÀÌÅÛµéÀÌ Á¸ÀçÇÏ°í.
         if (curCombineItem1Info != null && curCombineItem2Info != null)
         {
-            //1ë²ˆ ìŠ¬ë¡¯ê³¼ 2ë²ˆìŠ¬ë¡¯ì˜ ì•„ì´í…œì´ ê°™ê³  1ë²ˆìŠ¬ë¡¯ì„ ì‚¬ìš©ì¤‘ì´ë¼ë©´
+            //1¹ø ½½·Ô°ú 2¹ø½½·ÔÀÇ ¾ÆÀÌÅÛÀÌ °°°í 1¹ø½½·ÔÀ» »ç¿ëÁßÀÌ¶ó¸é
             if ((curCombineItem1Info.key == curCombineItem2Info.key) && combineSlot1_Using)
             {
-                Debug.Log("2ë²ˆìŠ¬ë¡¯ ë¹„ìš°ê¸°");
+                Debug.Log("2¹ø½½·Ô ºñ¿ì±â");
 
-                //ì¡°í•© ìŠ¬ë¡¯ ì•„ì´í…œ 2ë²ˆì„ ë¹„ìš´ë‹¤.
+                //Á¶ÇÕ ½½·Ô ¾ÆÀÌÅÛ 2¹øÀ» ºñ¿î´Ù.
                 EmptyCombineSlot2Item();
             }
         }
 
-        //ì¡°í•© ìŠ¬ë¡¯1ê³¼ ìŠ¬ë¡¯2 ì•ˆì˜ ë‹¨ì„œë“¤ì´ ì¡´ì¬í•˜ê³ .
+        //Á¶ÇÕ ½½·Ô1°ú ½½·Ô2 ¾ÈÀÇ ´Ü¼­µéÀÌ Á¸ÀçÇÏ°í.
         if (curCombineClue1Info != null && curCombineClue2Info != null)
         {
-            //1ë²ˆ ìŠ¬ë¡¯ê³¼ 2ë²ˆìŠ¬ë¡¯ì˜ ë‹¨ì„œê°€ ê°™ê³  1ë²ˆìŠ¬ë¡¯ì„ ì‚¬ìš©ì¤‘ì´ë¼ë©´
+            //1¹ø ½½·Ô°ú 2¹ø½½·ÔÀÇ ´Ü¼­°¡ °°°í 1¹ø½½·ÔÀ» »ç¿ëÁßÀÌ¶ó¸é
             if ((curCombineClue1Info.key == curCombineClue2Info.key) && combineSlot2_Using)
             {
-                Debug.Log("1ë²ˆìŠ¬ë¡¯ ë¹„ìš°ê¸°");
+                Debug.Log("1¹ø½½·Ô ºñ¿ì±â");
 
-                //ì¡°í•© ìŠ¬ë¡¯ ë‹¨ì„œ 2ë²ˆì„ ë¹„ìš´ë‹¤.
+                //Á¶ÇÕ ½½·Ô ´Ü¼­ 2¹øÀ» ºñ¿î´Ù.
                 EmptyCombineSlot1Clue();
             }
         }
 
-        //ì¡°í•© ìŠ¬ë¡¯1ê³¼ ìŠ¬ë¡¯2 ì•ˆì˜ ë‹¨ì„œë“¤ì´ ì¡´ì¬í•˜ê³ .
+        //Á¶ÇÕ ½½·Ô1°ú ½½·Ô2 ¾ÈÀÇ ´Ü¼­µéÀÌ Á¸ÀçÇÏ°í.
         if (curCombineClue1Info != null && curCombineClue2Info != null)
         {
-            //1ë²ˆ ìŠ¬ë¡¯ê³¼ 2ë²ˆìŠ¬ë¡¯ì˜ ë‹¨ì„œê°€ ê°™ê³  1ë²ˆìŠ¬ë¡¯ì„ ì‚¬ìš©ì¤‘ì´ë¼ë©´
+            //1¹ø ½½·Ô°ú 2¹ø½½·ÔÀÇ ´Ü¼­°¡ °°°í 1¹ø½½·ÔÀ» »ç¿ëÁßÀÌ¶ó¸é
             if ((curCombineClue1Info.key == curCombineClue2Info.key) && combineSlot1_Using)
             {
-                Debug.Log("2ë²ˆìŠ¬ë¡¯ ë¹„ìš°ê¸°");
+                Debug.Log("2¹ø½½·Ô ºñ¿ì±â");
 
-                //ì¡°í•© ìŠ¬ë¡¯ ë‹¨ì„œ 2ë²ˆì„ ë¹„ìš´ë‹¤.
+                //Á¶ÇÕ ½½·Ô ´Ü¼­ 2¹øÀ» ºñ¿î´Ù.
                 EmptyCombineSlot2Clue();
             }
         }
@@ -564,298 +564,293 @@ public class ObjectManager : MonoBehaviour
         //Save();
     }
 
-    //ì˜¤ë¸Œì íŠ¸ ì°½ì—ì„œì˜ Tab í´ë¦­
+    //¿ÀºêÁ§Æ® Ã¢¿¡¼­ÀÇ Tab Å¬¸¯
     public void TabClick(string tabName)
     {
-        //í´ë¦­í•œ íƒ€ì…ì— ë§ì¶°ì„œ ì˜¤ë¸Œì íŠ¸ ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
+        //Å¬¸¯ÇÑ Å¸ÀÔ¿¡ ¸ÂÃç¼­ ¿ÀºêÁ§Æ® ¸®½ºÆ® ºÒ·¯¿À±â
         curType = tabName;
 
         if (curType == "Item")
         {
-            //ì•„ì´í…œ ì°½ ìŠ¬ë¡¯
+            //¾ÆÀÌÅÛ Ã¢ ½½·Ô
             for (int i = 0; i < slot.Length; i++)
             {
-                //ìŠ¬ë¡¯ì´ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸
+                //½½·ÔÀÌ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
                 bool isExist = i < curItemList.Count;
-                //ì—†ëŠ” ìŠ¬ë¡¯ ë¹„í™œì„±í™”
+                //¾ø´Â ½½·Ô ºñÈ°¼ºÈ­
                 slot[i].SetActive(isExist);
-                //Textë³´ì´ê¸°
+                //Textº¸ÀÌ±â
                 slot[i].GetComponentInChildren<Text>().text = isExist ? curItemList[i].name : "";
 
-                //ìŠ¬ë¡¯ì´ ì¡´ì¬í•œë‹¤ë©´
+                //½½·ÔÀÌ Á¸ÀçÇÑ´Ù¸é
                 if (isExist)
                 {
-                    //ì´ë¯¸ì§€êµì²´
+                    //ÀÌ¹ÌÁö±³Ã¼
                     objectImage[i].sprite = itemSprite[allItemList.FindIndex(x => x.name == curItemList[i].name)];
                     usingImage[i].SetActive(curItemList[i].isUsing);
                 }
             }
-            //ë‹¨ì„œ ë²„íŠ¼ ì´ë¯¸ì§€ ì–´ë‘¡ê²Œ
+            //´Ü¼­ ¹öÆ° ÀÌ¹ÌÁö ¾îµÓ°Ô
             uiManagerScr.ChangeClueTapColor();
         }
 
         else if (curType == "Clue")
         {
-            //ë‹¨ì„œ ìŠ¬ë¡¯
+            //´Ü¼­ ½½·Ô
             for (int i = 0; i < slot.Length; i++)
             {
-                //ìŠ¬ë¡¯ì´ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸
+                //½½·ÔÀÌ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
                 bool isExist = i < curClueList.Count;
-                //ì—†ëŠ” ìŠ¬ë¡¯ ë¹„í™œì„±í™”
+                //¾ø´Â ½½·Ô ºñÈ°¼ºÈ­
                 slot[i].SetActive(isExist);
-                //Textë³´ì´ê¸°
+                //Textº¸ÀÌ±â
                 slot[i].GetComponentInChildren<Text>().text = isExist ? curClueList[i].name : "";
 
-                //ìŠ¬ë¡¯ì´ ì¡´ì¬í•œë‹¤ë©´
+                //½½·ÔÀÌ Á¸ÀçÇÑ´Ù¸é
                 if (isExist)
                 {
-                    //ì´ë¯¸ì§€êµì²´
+                    //ÀÌ¹ÌÁö±³Ã¼
                     objectImage[i].sprite = clueSprite[allClueList.FindIndex(x => x.name == curClueList[i].name)];
                     usingImage[i].SetActive(curClueList[i].isUsing);
                 }
             }
-            //ì•„ì´í…œ ë²„íŠ¼ ì´ë¯¸ì§€ ì–´ë‘¡ê²Œ
+            //¾ÆÀÌÅÛ ¹öÆ° ÀÌ¹ÌÁö ¾îµÓ°Ô
             uiManagerScr.ChangeItemTapColor();
         }
     }
 
-    //ì¡°í•©ì°½ì—ì„œì˜ Tab í´ë¦­
+    //Á¶ÇÕÃ¢¿¡¼­ÀÇ Tab Å¬¸¯
     public void TabClick2(string tabName)
     {
-        //í´ë¦­í•œ íƒ€ì…ì— ë§ì¶°ì„œ ì˜¤ë¸Œì íŠ¸ ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
+        //Å¬¸¯ÇÑ Å¸ÀÔ¿¡ ¸ÂÃç¼­ ¿ÀºêÁ§Æ® ¸®½ºÆ® ºÒ·¯¿À±â
         curType = tabName;
 
         if (curType == "Item")
         {
-            //ì¡°í•©ì°½ì˜ ì•„ì´í…œ ìŠ¬ë¡¯
+            //Á¶ÇÕÃ¢ÀÇ ¾ÆÀÌÅÛ ½½·Ô
             for (int i = 0; i < slot2.Length; i++)
             {
-                //ìŠ¬ë¡¯ì´ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸
+                //½½·ÔÀÌ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
                 bool isExist = i < curItemList2.Count;
-                //ì—†ëŠ” ìŠ¬ë¡¯ ë¹„í™œì„±í™”
+                //¾ø´Â ½½·Ô ºñÈ°¼ºÈ­
                 slot2[i].SetActive(isExist);
-                //Textë³´ì´ê¸°
+                //Textº¸ÀÌ±â
                 slot2[i].GetComponentInChildren<Text>().text = isExist ? curItemList2[i].name : "";
 
-                //ìŠ¬ë¡¯ì´ ì¡´ì¬í•œë‹¤ë©´
+                //½½·ÔÀÌ Á¸ÀçÇÑ´Ù¸é
                 if (isExist)
                 {
-                    //ì´ë¯¸ì§€êµì²´
+                    //ÀÌ¹ÌÁö±³Ã¼
                     objectImage2[i].sprite = itemSprite[allItemList.FindIndex(x => x.name == curItemList2[i].name)];
                     //usingImage2[i].SetActive(curItemList2[i].isUsing);
                 }
             }
 
-            //ë‹¨ì„œ ë²„íŠ¼ ì´ë¯¸ì§€ ì–´ë‘¡ê²Œ
+            //´Ü¼­ ¹öÆ° ÀÌ¹ÌÁö ¾îµÓ°Ô
             uiManagerScr.ChangeCombineClueTapColor();
         }
 
         else if (curType == "Clue")
         {
-            //ì¡°í•©ì°½ ë‹¨ì„œ ìŠ¬ë¡¯
+            //Á¶ÇÕÃ¢ ´Ü¼­ ½½·Ô
             for (int i = 0; i < slot2.Length; i++)
             {
-                //ìŠ¬ë¡¯ì´ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸
+                //½½·ÔÀÌ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
                 bool isExist = i < curClueList2.Count;
-                //ì—†ëŠ” ìŠ¬ë¡¯ ë¹„í™œì„±í™”
+                //¾ø´Â ½½·Ô ºñÈ°¼ºÈ­
                 slot2[i].SetActive(isExist);
-                //Textë³´ì´ê¸°
+                //Textº¸ÀÌ±â
                 slot2[i].GetComponentInChildren<Text>().text = isExist ? curClueList2[i].name : "";
 
-                //ìŠ¬ë¡¯ì´ ì¡´ì¬í•œë‹¤ë©´
+                //½½·ÔÀÌ Á¸ÀçÇÑ´Ù¸é
                 if (isExist)
                 {
-                    //ì´ë¯¸ì§€êµì²´
+                    //ÀÌ¹ÌÁö±³Ã¼
                     objectImage2[i].sprite = clueSprite[allClueList.FindIndex(x => x.name == curClueList2[i].name)];
                     //usingImage2[i].SetActive(curClueList2[i].isUsing);
                 }
             }
-            //ì•„ì´í…œ ë²„íŠ¼ ì´ë¯¸ì§€ ì–´ë‘¡ê²Œ
+            //¾ÆÀÌÅÛ ¹öÆ° ÀÌ¹ÌÁö ¾îµÓ°Ô
             uiManagerScr.ChangeCombineItemTapColor();
         }
     }
 
-    //Data ì €ì¥
+    //Data ÀúÀå
     public void Save(int _slotNum)
     {
-        //Json ì•„ì´í…œ ë°ì´í„° ì •ì˜
+        //Json ¾ÆÀÌÅÛ µ¥ÀÌÅÍ Á¤ÀÇ
         string jItemdata = JsonUtility.ToJson(new Serialization<Item>(allItemList));
 
-        //json ì•„ì´í…œ íŒŒì¼ ì €ì¥
+        //json ¾ÆÀÌÅÛ ÆÄÀÏ ÀúÀå
         File.WriteAllText(itemfilePath + _slotNum.ToString(), jItemdata);
 
-        //Json ë‹¨ì„œ ë°ì´í„° ì •ì˜
+        //Json ´Ü¼­ µ¥ÀÌÅÍ Á¤ÀÇ
         string jCluedata = JsonUtility.ToJson(new Serialization<Clue>(allClueList));
 
-        //json ë‹¨ì„œ íŒŒì¼ ì €ì¥
+        //json ´Ü¼­ ÆÄÀÏ ÀúÀå
         File.WriteAllText(cluefilePath + _slotNum.ToString(), jCluedata);
 
-        //í˜„ì¬ ë³´ìœ ì¤‘ì¸ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ Json
+        //ÇöÀç º¸À¯ÁßÀÎ ¾ÆÀÌÅÛ ¸®½ºÆ® Json
         string jcurItmeData = JsonUtility.ToJson(new Serialization<Item>(curItemList));
 
-        //í˜„ì¬ ë³´ìœ ì¤‘ì¸ ì•„ì´í…œ JsonData íŒŒì¼ ìƒì„±
+        //ÇöÀç º¸À¯ÁßÀÎ ¾ÆÀÌÅÛ JsonData ÆÄÀÏ »ı¼º
         File.WriteAllText(curItemfilePath + _slotNum.ToString(), jcurItmeData);
 
-        //í˜„ì¬ ë³´ìœ ì¤‘ì¸ ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸ Json
+        //ÇöÀç º¸À¯ÁßÀÎ ´Ü¼­ ¸®½ºÆ® Json
         string jcurClueData = JsonUtility.ToJson(new Serialization<Clue>(curClueList));
 
-        //í˜„ì¬ ë³´ìœ ì¤‘ì¸ ë‹¨ì„œ JsonData íŒŒì¼ ìƒì„±
+        //ÇöÀç º¸À¯ÁßÀÎ ´Ü¼­ JsonData ÆÄÀÏ »ı¼º
         File.WriteAllText(curCluefilePath + _slotNum.ToString(), jcurClueData);
 
-        //í˜„ì¬ ë³´ìœ ì¤‘ì¸ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
+        //ÇöÀç º¸À¯ÁßÀÎ ¾ÆÀÌÅÛ ¸®½ºÆ® ºÒ·¯¿À±â
         TabClick(curType);
-        //ì¡°í•©ì°½ì—ì„œ í˜„ì¬ ë³´ìœ ì¤‘ì¸ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
+        //Á¶ÇÕÃ¢¿¡¼­ ÇöÀç º¸À¯ÁßÀÎ ¾ÆÀÌÅÛ ¸®½ºÆ® ºÒ·¯¿À±â
         TabClick2(curType);
     }
 
-    //Data ë¶ˆëŸ¬ì˜¤ê¸°
+    //Data ºÒ·¯¿À±â
     public void Load(int _slotNum)
     {
         if(_slotNum <= 2)
         {
-            //ì•„ì´í…œ Json ë°ì´í„° ì •ì˜
+            //¾ÆÀÌÅÛ Json µ¥ÀÌÅÍ Á¤ÀÇ
             string jItemdata = File.ReadAllText(itemfilePath + _slotNum.ToString());
 
-            //ì•„ì´í…œ JsoníŒŒì¼ë¡œë¶€í„° ë°ì´í„° ì—­ì§ë ¬í™”(Load)
+            //¾ÆÀÌÅÛ JsonÆÄÀÏ·ÎºÎÅÍ µ¥ÀÌÅÍ ¿ªÁ÷·ÄÈ­(Load)
             myItemList = JsonUtility.FromJson<Serialization<Item>>(jItemdata).target;
 
-            //ë‹¨ì„œ Json ë°ì´í„° ì •ì˜
+            //´Ü¼­ Json µ¥ÀÌÅÍ Á¤ÀÇ
             string jCluedata = File.ReadAllText(cluefilePath + _slotNum.ToString());
-            //ë‹¨ì„œ JsoníŒŒì¼ë¡œë¶€í„° ë°ì´í„° ì—­ì§ë ¬í™”(Load)
+            //´Ü¼­ JsonÆÄÀÏ·ÎºÎÅÍ µ¥ÀÌÅÍ ¿ªÁ÷·ÄÈ­(Load)
             myClueList = JsonUtility.FromJson<Serialization<Clue>>(jCluedata).target;
 
-            //ë³´ìœ ì¤‘ì¸ ì•„ì´í…œ Json ì½ì–´ì˜¤ê¸°
+            //º¸À¯ÁßÀÎ ¾ÆÀÌÅÛ Json ÀĞ¾î¿À±â
             string jcurItemData = File.ReadAllText(curItemfilePath + _slotNum.ToString());
 
-            //curItemListì— jcurItemData ê°±ì‹ 
+            //curItemList¿¡ jcurItemData °»½Å
             curItemList = JsonUtility.FromJson<Serialization<Item>>(jcurItemData).target;
             curItemList2 = JsonUtility.FromJson<Serialization<Item>>(jcurItemData).target;
 
-            //ë³´ìœ ì¤‘ì¸ ë‹¨ì„œ Json ì½ì–´ì˜¤ê¸°
+            //º¸À¯ÁßÀÎ ´Ü¼­ Json ÀĞ¾î¿À±â
             string jcurClueData = File.ReadAllText(curCluefilePath + _slotNum.ToString());
 
-            //curClueListì— jcurClueData ê°±ì‹ 
+            //curClueList¿¡ jcurClueData °»½Å
             curClueList = JsonUtility.FromJson<Serialization<Clue>>(jcurClueData).target;
             curClueList2 = JsonUtility.FromJson<Serialization<Clue>>(jcurClueData).target;
 
-            //ì¥ì°©ì¤‘ì¸ ì•„ì´í…œ
+            //ÀåÂøÁßÀÎ ¾ÆÀÌÅÛ
             Item usingItem = curItemList.Find(x => x.isUsing == true);
-            //ì¥ì°©ì¤‘ì¸ ë‹¨ì„œ
+            //ÀåÂøÁßÀÎ ´Ü¼­
             Clue usingClue = curClueList.Find(x => x.isUsing == true);
 
-            //ì¥ì°©ì¤‘ì¸ ì•„ì´í…œì´ ìˆë‹¤ë©´
+            //ÀåÂøÁßÀÎ ¾ÆÀÌÅÛÀÌ ÀÖ´Ù¸é
             if (usingItem != null)
             {
-                //ì•„ì´í…œ ì´ë¯¸ì§€ ë³€ê²½
+                //¾ÆÀÌÅÛ ÀÌ¹ÌÁö º¯°æ
                 equitObjectSprite.sprite = itemSprite[usingItem.indexNum];
-                //ì¥ì°© ìŠ¬ë¡¯ í…ìŠ¤íŠ¸ ë¹„ìš°ê¸°
+                //ÀåÂø ½½·Ô ÅØ½ºÆ® ºñ¿ì±â
                 text_EquipSlot.text = "";
             }
 
-            //ì¥ì°©ì¤‘ì¸ ë‹¨ì„œê°€ ìˆë‹¤ë©´
+            //ÀåÂøÁßÀÎ ´Ü¼­°¡ ÀÖ´Ù¸é
             else if (usingClue != null)
             {
-                //ë‹¨ì„œ ì´ë¯¸ì§€ ë³€ê²½
+                //´Ü¼­ ÀÌ¹ÌÁö º¯°æ
                 equitObjectSprite.sprite = clueSprite[usingClue.indexNum];
 
-                //ì¥ì°© ìŠ¬ë¡¯ í…ìŠ¤íŠ¸ ë³€ê²½
+                //ÀåÂø ½½·Ô ÅØ½ºÆ® º¯°æ
                 text_EquipSlot.text = usingClue.name;
             }
 
             else
             {
-                //ë‹¨ì„œ ì´ë¯¸ì§€ ë³€ê²½
+                //´Ü¼­ ÀÌ¹ÌÁö º¯°æ
                 equitObjectSprite.sprite = sprite_NoneImage;
 
-                //ì¥ì°© ìŠ¬ë¡¯ í…ìŠ¤íŠ¸ ë³€ê²½
+                //ÀåÂø ½½·Ô ÅØ½ºÆ® º¯°æ
                 text_EquipSlot.text = "";
             }
 
-            //í˜„ì¬ ë³´ìœ ì¤‘ì¸ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
+            //ÇöÀç º¸À¯ÁßÀÎ ¾ÆÀÌÅÛ ¸®½ºÆ® ºÒ·¯¿À±â
             TabClick(curType);
-            //ì¡°í•©ì°½ì—ì„œ í˜„ì¬ ë³´ìœ ì¤‘ì¸ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
+            //Á¶ÇÕÃ¢¿¡¼­ ÇöÀç º¸À¯ÁßÀÎ ¾ÆÀÌÅÛ ¸®½ºÆ® ºÒ·¯¿À±â
             TabClick2(curType);
         }
         
     }
 
-    //Keyë¥¼ í†µí•´ì„œ ì•„ì´í…œ ì–»ê¸°
+    //Key¸¦ ÅëÇØ¼­ ¾ÆÀÌÅÛ ¾ò±â
     public void GetItem(int _key)
     {
-        //Debug.Log("GetItem ì‹œì‘");
+        //Debug.Log("GetItem ½ÃÀÛ");
 
-        //í•´ë‹¹ Keyë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” ê²½ìš°
+        //ÇØ´ç Key¸¦ °¡Áø ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â °æ¿ì
         if (myItemList.Find(x => x.key == _key) != null)
         {
-            //Debug.Log("ifë¬¸ í†µê³¼");
+            //Debug.Log("if¹® Åë°ú");
 
             Item GetItem = myItemList.Find(x => x.key == _key);
             Item CheckItem = curItemList.Find(x => x.key == _key);
 
-            //í•´ë‹¹ ì•„ì´í…œì„ ë³´ìœ ì¤‘ì´ì§€ ì•Šë‹¤ë©´
+            //ÇØ´ç ¾ÆÀÌÅÛÀ» º¸À¯ÁßÀÌÁö ¾Ê´Ù¸é
             if(CheckItem == null)
             {
-                //Debug.Log($"{_key}ë²ˆ ì•„ì´í…œ íšë“");
+                //Debug.Log($"{_key}¹ø ¾ÆÀÌÅÛ È¹µæ");
                 curItemList.Add(myItemList.Find(x => x.key == _key));
                 curItemList2.Add(myItemList.Find(x => x.key == _key));
                 TabClick(curType);
                 TabClick2(curType);
 
 
-                //ë´‡ì§ì„ íšë“í•œ ìƒíƒœë¼ë©´
+                //º¿ÁüÀ» È¹µæÇÑ »óÅÂ¶ó¸é
                 if (ObjectControll.instance.getBotzime)
                 {
-                    //Debug.Log("í† ìŠ¤íŠ¸ë©”ì„¸ì§€ ì‹¤í–‰");
-                    //í† ìŠ¤íŠ¸ ë©”ì„¸ì§€ ì‹¤í–‰
+                    //Debug.Log("Åä½ºÆ®¸Ş¼¼Áö ½ÇÇà");
+                    //Åä½ºÆ® ¸Ş¼¼Áö ½ÇÇà
                     toastMessageScr.ToastMessageStart();
 
-                    //í† ìŠ¤íŠ¸ ë©”ì„¸ì§€ ì •ë³´ê°’ ë„˜ê²¨ì£¼ê¸°
-                    toastMessageScr.ToastMessageInfo_Chage($"{GetItem.name} íšë“", itemSprite[GetItem.indexNum], GetItem.name);
+                    //Åä½ºÆ® ¸Ş¼¼Áö Á¤º¸°ª ³Ñ°ÜÁÖ±â
+                    toastMessageScr.ToastMessageInfo_Chage($"{GetItem.name} È¹µæ", itemSprite[GetItem.indexNum], GetItem.name);
                 }
             }
         }
             
     }
 
-    //Keyë¥¼ í†µí•´ì„œ ì•„ì´í…œ ì‚­ì œ
+    //Key¸¦ ÅëÇØ¼­ ¾ÆÀÌÅÛ »èÁ¦
     public void RemoveItem(int _key)
     {
-        //í•´ë‹¹ Keyë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” ê²½ìš°
+        //ÇØ´ç Key¸¦ °¡Áø ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â °æ¿ì
         if (curItemList.Find(x => x.key == _key) != null)
         {
-            //ì œê±°í•  ì•„ì´í…œ
+            //Á¦°ÅÇÒ ¾ÆÀÌÅÛ
             Item Item = curItemList.Find(x => x.key == _key);
 
-            Debug.Log($"{_key} ì•„ì´í…œ ì‚­ì œ");
+            Debug.Log($"{_key} ¾ÆÀÌÅÛ »èÁ¦");
             curItemList.Remove(curItemList.Find(x => x.key == _key));
             curItemList2.Remove(curItemList2.Find(x => x.key == _key));
             TabClick(curType);
             TabClick2(curType);
 
-            //ì¥ì°©ì¤‘ì¸ ì•„ì´í…œì„ ì œê±°í–ˆì„ê²½ìš°
+            //ÀåÂøÁßÀÎ ¾ÆÀÌÅÛÀ» Á¦°ÅÇßÀ»°æ¿ì
             if(equitObjectSprite.sprite == itemSprite[Item.indexNum])
             {
-                //ì¥ì°©ì¤‘ì¸ ì•„ì´í…œ ì´ë¯¸ì§€ ë¹„ìš°ê¸°
+                //ÀåÂøÁßÀÎ ¾ÆÀÌÅÛ ÀÌ¹ÌÁö ºñ¿ì±â
                 equitObjectSprite.sprite = sprite_NoneImage;
             }
         }
     }
 
-    //Keyë¥¼ í†µí•´ì„œ ë‹¨ì„œ ì–»ê¸°
+    //Key¸¦ ÅëÇØ¼­ ´Ü¼­ ¾ò±â
     public void GetClue(int _key)
     {
-        //í•´ë‹¹ Keyë¥¼ ê°€ì§„ ë‹¨ì„œê°€ ì¡´ì¬í•˜ëŠ” ê²½ìš°
+        //ÇØ´ç Key¸¦ °¡Áø ´Ü¼­°¡ Á¸ÀçÇÏ´Â °æ¿ì
         if (myClueList.Find(x => x.key == _key) != null)
         {
             Clue GetClue = myClueList.Find(x => x.key == _key);
             Clue CheckClue = curClueList.Find(x => x.key == _key);
 
-            // ê¸€ììƒ‰ìƒ ë°”ê¿€ ì´ë¦„ ë°›ì„ ë³€ìˆ˜
-            string GetClueName;
-
-            GetClueName = "<color=#850000>" + GetClue.name + "</color>";
-
-            //ë§Œì•½ í•´ë‹¹ ë‹¨ì„œë¥¼ ë³´ìœ ì¤‘ì´ì§€ ì•Šë‹¤ë©´
+            //¸¸¾à ÇØ´ç ´Ü¼­¸¦ º¸À¯ÁßÀÌÁö ¾Ê´Ù¸é
             if (CheckClue == null)
             {
                 curClueList.Add(myClueList.Find(x => x.key == _key));
@@ -865,30 +860,29 @@ public class ObjectManager : MonoBehaviour
 
                 isGetClue = true;
 
-                //í† ìŠ¤íŠ¸ ë©”ì„¸ì§€ ì‹¤í–‰
+                //Åä½ºÆ® ¸Ş¼¼Áö ½ÇÇà
                 toastMessageScr.ToastMessageStart();
 
-                //í† ìŠ¤íŠ¸ ë©”ì„¸ì§€ ì •ë³´ê°’ ë„˜ê²¨ì£¼ê¸°
-                toastMessageScr.ToastMessageInfo_Chage($"{GetClue.name} íšë“", clueSprite[GetClue.indexNum], GetClue.name);
-                //toastMessageScr.ToastMessageInfo_Chage($"{GetClueName} íšë“", clueSprite[GetClue.indexNum], GetClueName);
+                //Åä½ºÆ® ¸Ş¼¼Áö Á¤º¸°ª ³Ñ°ÜÁÖ±â
+                toastMessageScr.ToastMessageInfo_Chage($"{GetClue.name} È¹µæ", clueSprite[GetClue.indexNum], GetClue.name);
             }
 
-            // ë°°ì˜ ì¶œí•­ ë‹¨ì„œ íšë“ ì—¬ë¶€ í™•ì¸
+            // ¹èÀÇ ÃâÇ× ´Ü¼­ È¹µæ ¿©ºÎ È®ÀÎ
             else if(_key == 2017)
 			{
-                Debug.Log("ë‹¨ì„œ 2017 ì¡´ì¬í•¨");
+                Debug.Log("´Ü¼­ 2017 Á¸ÀçÇÔ");
                 isGetClue_2017 = true;
 			}
         }
     }
 
-    //Keyë¥¼ í†µí•´ì„œ ë‹¨ì„œ ì‚­ì œ
+    //Key¸¦ ÅëÇØ¼­ ´Ü¼­ »èÁ¦
     public void RemoveClue(int _key)
     {
-        //í•´ë‹¹ Keyë¥¼ ê°€ì§„ ë‹¨ì„œê°€ ì¡´ì¬í•˜ëŠ” ê²½ìš°
+        //ÇØ´ç Key¸¦ °¡Áø ´Ü¼­°¡ Á¸ÀçÇÏ´Â °æ¿ì
         if (curClueList.Find(x => x.key == _key) != null)
         {
-            //ì œê±°í•  ë‹¨ì„œ
+            //Á¦°ÅÇÒ ´Ü¼­
             Clue clue = curClueList.Find(x => x.key == _key);
 
             curClueList.Remove(curClueList.Find(x => x.key == _key));
@@ -896,399 +890,399 @@ public class ObjectManager : MonoBehaviour
             TabClick(curType);
             TabClick2(curType);
 
-            //ì œê±°í•  ë‹¨ì„œë¥¼ ì¥ì°©ì¤‘ì¼ ê²½ìš°
+            //Á¦°ÅÇÒ ´Ü¼­¸¦ ÀåÂøÁßÀÏ °æ¿ì
             if(equitObjectSprite.sprite == clueSprite[clue.indexNum])
             {
-                //ì¥ì°©ì¤‘ì¸ ë‹¨ì„œ ì´ë¯¸ì§€ ì œê±°
+                //ÀåÂøÁßÀÎ ´Ü¼­ ÀÌ¹ÌÁö Á¦°Å
                 equitObjectSprite.sprite = sprite_NoneImage;
             }
         }
     }
 
-    //ì¡°í•©ì°½ ìŠ¬ë¡¯ í´ë¦­
+    //Á¶ÇÕÃ¢ ½½·Ô Å¬¸¯
     public void CombineSlot(int slotNum)
     {
-        //1ë²ˆìŠ¬ë¡¯ì´ ì‚¬ìš©ì¤‘ì´ì§€ ì•Šê³  ëˆŒë €ì„ ê²½ìš°
+        //1¹ø½½·ÔÀÌ »ç¿ëÁßÀÌÁö ¾Ê°í ´­·¶À» °æ¿ì
         if (slotNum == 1 && !combineSlot1_Using)
         {
-            //ìŠ¬ë¡¯ 1ì˜ Spriteë¥¼ UsingSpriteë¡œ êµì²´
+            //½½·Ô 1ÀÇ Sprite¸¦ UsingSprite·Î ±³Ã¼
             image_CombineSlot1.sprite = sprite_UsingSlot;
-            //ìŠ¬ë¡¯ 2ì˜ Spriteë¥¼ ì›ë˜ ì´ë¯¸ì§€ë¡œ ë³€ê²½
+            //½½·Ô 2ÀÇ Sprite¸¦ ¿ø·¡ ÀÌ¹ÌÁö·Î º¯°æ
             image_CombineSlot2.sprite = sprite_Slot;
 
-            ////1ë²ˆ ì¡°í•©ì°½ ì‚¬ìš©ì¤‘
+            ////1¹ø Á¶ÇÕÃ¢ »ç¿ëÁß
             Invoke("CombineSlot1True", 0.1f);
-            //2ë²ˆ ì¡°í•©ì°½ ì‚¬ìš© ì·¨ì†Œ
+            //2¹ø Á¶ÇÕÃ¢ »ç¿ë Ãë¼Ò
             combineSlot2_Using = false;
         }
 
-        //2ë²ˆ ìŠ¬ë¡¯ì´ ì‚¬ìš©ì¤‘ì´ì§€ ì•Šê³  ëˆŒë €ì„ ê²½ìš°
+        //2¹ø ½½·ÔÀÌ »ç¿ëÁßÀÌÁö ¾Ê°í ´­·¶À» °æ¿ì
         else if (slotNum == 2 && !combineSlot2_Using)
         {
-            //ìŠ¬ë¡¯ 2ì˜ Spriteë¥¼ UsingSpriteë¡œ êµì²´
+            //½½·Ô 2ÀÇ Sprite¸¦ UsingSprite·Î ±³Ã¼
             image_CombineSlot2.sprite = sprite_UsingSlot;
-            //ìŠ¬ë¡¯ 1ì˜ Spriteë¥¼ ì›ë˜ ì´ë¯¸ì§€ë¡œ ë³€ê²½
+            //½½·Ô 1ÀÇ Sprite¸¦ ¿ø·¡ ÀÌ¹ÌÁö·Î º¯°æ
             image_CombineSlot1.sprite = sprite_Slot;
 
-            //2ë²ˆ ì¡°í•©ì°½ ì‚¬ìš©ì¤‘
+            //2¹ø Á¶ÇÕÃ¢ »ç¿ëÁß
             Invoke("CombineSlot2True", 0.1f);
-            //1ë²ˆ ì¡°í•©ì°½ ì‚¬ìš© ì·¨ì†Œ
+            //1¹ø Á¶ÇÕÃ¢ »ç¿ë Ãë¼Ò
             combineSlot1_Using = false;
         }
 
-        //ìŠ¬ë¡¯1ì´ ì‚¬ìš©ì¤‘ì¸ë° í•œë²ˆ ë” ëˆŒë €ì„ ê²½ìš°
+        //½½·Ô1ÀÌ »ç¿ëÁßÀÎµ¥ ÇÑ¹ø ´õ ´­·¶À» °æ¿ì
         if (slotNum == 1 && combineSlot1_Using)
         {
-            //ìŠ¬ë¡¯ 1ë²ˆ ì‚¬ìš© ì·¨ì†Œ
+            //½½·Ô 1¹ø »ç¿ë Ãë¼Ò
             combineSlot1_Using = false;
-            //ìŠ¬ë¡¯ 1ì˜ Spriteë¥¼ ì›ë˜ ì´ë¯¸ì§€ë¡œ ë³€ê²½
+            //½½·Ô 1ÀÇ Sprite¸¦ ¿ø·¡ ÀÌ¹ÌÁö·Î º¯°æ
             image_CombineSlot1.sprite = sprite_Slot;
         }
 
-        //ìŠ¬ë¡¯2ê°€ ì‚¬ìš©ì¤‘ì¸ë° í•œë²ˆ ë” ëˆŒë €ì„ ê²½ìš°
+        //½½·Ô2°¡ »ç¿ëÁßÀÎµ¥ ÇÑ¹ø ´õ ´­·¶À» °æ¿ì
         else if (slotNum == 2 && combineSlot2_Using)
         {
-            //ìŠ¬ë¡¯ 2ë²ˆ ì‚¬ìš© ì·¨ì†Œ
+            //½½·Ô 2¹ø »ç¿ë Ãë¼Ò
             combineSlot2_Using = false;
-            //ìŠ¬ë¡¯ 2ì˜ Spriteë¥¼ ì›ë˜ ì´ë¯¸ì§€ë¡œ ë³€ê²½
+            //½½·Ô 2ÀÇ Sprite¸¦ ¿ø·¡ ÀÌ¹ÌÁö·Î º¯°æ
             image_CombineSlot2.sprite = sprite_Slot;
         }
     }
 
-    //ì¡°í•© ë²„íŠ¼ì„ ëˆŒë €ì„ ê²½ìš°
+    //Á¶ÇÕ ¹öÆ°À» ´­·¶À» °æ¿ì
     public void CombineButton()
     {
 
-        //ìŠ¬ë¡¯ 1: Item, ìŠ¬ë¡¯ 2: Item
+        //½½·Ô 1: Item, ½½·Ô 2: Item
         #region
         if (curCombineItem1Info != null && curCombineItem2Info != null)
         {
             if (curCombineItem1Info.key != 0 && curCombineItem2Info.key != 0)
             {
-                Debug.Log("ì•„ì´í…œë¼ë¦¬ì˜ ì¡°í•©");
-                //ìŠ¬ë¡¯1,ìŠ¬ë¡¯2ì˜ Keyì˜ í•©
+                Debug.Log("¾ÆÀÌÅÛ³¢¸®ÀÇ Á¶ÇÕ");
+                //½½·Ô1,½½·Ô2ÀÇ KeyÀÇ ÇÕ
                 int sumKeyValue = curCombineItem1Info.key + curCombineItem2Info.key;
 
-                //ìŠ¬ë¡¯1,ìŠ¬ë¡¯2ì˜ Typeì˜ í•©
+                //½½·Ô1,½½·Ô2ÀÇ TypeÀÇ ÇÕ
                 string slotSumType = curCombineItem1Info.type + curCombineItem2Info.type;
 
-                //í•©ì³ì§„ ì˜¤ë¸Œì íŠ¸ì˜ Type
+                //ÇÕÃÄÁø ¿ÀºêÁ§Æ®ÀÇ Type
                 string sumObjectType = "";
 
-                //myItemListì—ì„œ í•´ë‹¹ SumKeyê°’ì„ ê°€ì§„ ì•„ì´í…œì´ ìˆì„ê²½ìš°
+                //myItemList¿¡¼­ ÇØ´ç SumKey°ªÀ» °¡Áø ¾ÆÀÌÅÛÀÌ ÀÖÀ»°æ¿ì
                 if (myItemList.Find(x => x.key == sumKeyValue) != null)
                 {
                     Item sumItem = myItemList.Find(x => x.key == sumKeyValue);
-                    //í•©ì³ì§„ ì•„ì´í…œì˜ Type
+                    //ÇÕÃÄÁø ¾ÆÀÌÅÛÀÇ Type
                     sumObjectType = sumItem.type;
                 }
 
-                //Sumkeyë¡œ ì°¾ì€ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì´ ìŠ¬ë¡¯ì°½ì˜ ë‘ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì„ ë”í•œ ê°’ê³¼ ê°™ì„ê²½ìš°.
+                //Sumkey·Î Ã£Àº ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀÌ ½½·ÔÃ¢ÀÇ µÎ ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀ» ´õÇÑ °ª°ú °°À»°æ¿ì.
                 if (sumObjectType == slotSumType)
                 {
-                    //í•´ë‹¹ Keyê°’ì„ ê°€ì§„ ì•„ì´í…œ íšë“
+                    //ÇØ´ç Key°ªÀ» °¡Áø ¾ÆÀÌÅÛ È¹µæ
                     GetItem(sumKeyValue);
 
-                    //ì¡°í•©ì— ì‚¬ìš©ëœ ì˜¤ë¸Œì íŠ¸ ì œê±°
+                    //Á¶ÇÕ¿¡ »ç¿ëµÈ ¿ÀºêÁ§Æ® Á¦°Å
                     RemoveItem(curCombineItem1Info.key);
                     RemoveItem(curCombineItem2Info.key);
 
-                    //ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+                    //½½·Ô ºñ¿ì±â
                     EmptyCombineSlot();
 
-                    //ì¡°í•©ì°½ Textí‘œì‹œ
-                    contentText2.text = "ì¡°í•© ì„±ê³µ!";
+                    //Á¶ÇÕÃ¢ TextÇ¥½Ã
+                    contentText2.text = "Á¶ÇÕ ¼º°ø!";
                 }
 
-                //ì¡°í•©ëœ ì•„ì´í…œì´ ì¡´ì¬í•˜ì§€ ì•Šë‹¤ë©´
+                //Á¶ÇÕµÈ ¾ÆÀÌÅÛÀÌ Á¸ÀçÇÏÁö ¾Ê´Ù¸é
                 else if (sumObjectType == "")
                 {
-                    Debug.Log("í…ìŠ¤íŠ¸ ë„£ì—ˆìŒ");
+                    Debug.Log("ÅØ½ºÆ® ³Ö¾úÀ½");
 
-                    //ì¡°í•© ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+                    //Á¶ÇÕ ½½·Ô ºñ¿ì±â
                     EmptyCombineSlot();
 
-                    contentText2.text = "ì¡°í•© ì‹¤íŒ¨!";
+                    contentText2.text = "Á¶ÇÕ ½ÇÆĞ!";
                 }
             }
         }
         #endregion
 
-        //ìŠ¬ë¡¯ 1: Clue, ìŠ¬ë¡¯ 2: Clue
+        //½½·Ô 1: Clue, ½½·Ô 2: Clue
         #region
         if (curCombineClue1Info != null && curCombineClue2Info != null)
         {
             if (curCombineClue1Info.key != 0 && curCombineClue2Info.key != 0)
             {
-                Debug.Log("ë‹¨ì„œë¼ë¦¬ì˜ ì¡°í•©");
+                Debug.Log("´Ü¼­³¢¸®ÀÇ Á¶ÇÕ");
 
-                //ìŠ¬ë¡¯1,ìŠ¬ë¡¯2ì˜ Keyì˜ í•©
+                //½½·Ô1,½½·Ô2ÀÇ KeyÀÇ ÇÕ
                 int sumKeyValue = curCombineClue1Info.key + curCombineClue2Info.key;
 
-                //ìŠ¬ë¡¯1,ìŠ¬ë¡¯2ì˜ Typeì˜ í•©
+                //½½·Ô1,½½·Ô2ÀÇ TypeÀÇ ÇÕ
                 string slotSumType = "";
 
-                #region ì˜ˆì™¸ì²˜ë¦¬
-                //ë§Œì•½ ì¡°í•©ìŠ¬ë¡¯ 1ë²ˆ,2ë²ˆì˜ í‚¤ê°’ì´ 2022,4023ì´ë¼ë©´
+                #region ¿¹¿ÜÃ³¸®
+                //¸¸¾à Á¶ÇÕ½½·Ô 1¹ø,2¹øÀÇ Å°°ªÀÌ 2022,4023ÀÌ¶ó¸é
                 if((curCombineClue1Info.key == 2022 || curCombineClue1Info.key == 4023) && 
                     (curCombineClue2Info.key == 2022 || curCombineClue2Info.key == 4023))
                 {
-                    Debug.Log("ë°”ë‹¤ì— ë¹ ì§„ ì²­ì´");
-                    //ìŠ¬ë¡¯1, ìŠ¬ë¡¯2ì˜ Typeì˜ í•©
+                    Debug.Log("¹Ù´Ù¿¡ ºüÁø Ã»ÀÌ");
+                    //½½·Ô1, ½½·Ô2ÀÇ TypeÀÇ ÇÕ
                     slotSumType = "ClueClue";
                 }
 
-                //ë§Œì•½ ì¡°í•©ìŠ¬ë¡¯ 1ë²ˆ,2ë²ˆì˜ í‚¤ê°’ì´ 2022,4023ì´ë¼ë©´
+                //¸¸¾à Á¶ÇÕ½½·Ô 1¹ø,2¹øÀÇ Å°°ªÀÌ 2022,4023ÀÌ¶ó¸é
                 if ((curCombineClue1Info.key == 2012 || curCombineClue1Info.key == 2011) &&
                     (curCombineClue2Info.key == 2012 || curCombineClue2Info.key == 2011))
                 {
-                    Debug.Log("ê³µì–‘ë¯¸ë¥¼ êµ¬í•œ ë°©ë²•");
-                    //ìŠ¬ë¡¯1, ìŠ¬ë¡¯2ì˜ Typeì˜ í•©
+                    Debug.Log("°ø¾ç¹Ì¸¦ ±¸ÇÑ ¹æ¹ı");
+                    //½½·Ô1, ½½·Ô2ÀÇ TypeÀÇ ÇÕ
                     slotSumType = "ClueClue";
-                    //ì¡°í•© í‚¤ ê°’ì€ 9001
+                    //Á¶ÇÕ Å° °ªÀº 9001
                     sumKeyValue = 9001;
                 }
 
-                //ë§Œì•½ ì¡°í•©ìŠ¬ë¡¯ 1ë²ˆ,2ë²ˆì˜ í‚¤ê°’ì´ 2022,4023ì´ë¼ë©´
+                //¸¸¾à Á¶ÇÕ½½·Ô 1¹ø,2¹øÀÇ Å°°ªÀÌ 2022,4023ÀÌ¶ó¸é
                 if ((curCombineClue1Info.key == 2022 || curCombineClue1Info.key == 9001) &&
                     (curCombineClue2Info.key == 9001 || curCombineClue2Info.key == 2022))
                 {
-                    Debug.Log("ë°”ë‹¤ì— ë°”ì³ì§ˆ ì œë¬¼");
-                    //ìŠ¬ë¡¯1, ìŠ¬ë¡¯2ì˜ Typeì˜ í•©
+                    Debug.Log("¹Ù´Ù¿¡ ¹ÙÃÄÁú Á¦¹°");
+                    //½½·Ô1, ½½·Ô2ÀÇ TypeÀÇ ÇÕ
                     slotSumType = "ClueClue";
-                    //ì¡°í•© í‚¤ ê°’ì€ 9001
+                    //Á¶ÇÕ Å° °ªÀº 9001
                     sumKeyValue = 6045;
                 }
 
-                //ë§Œì•½ ì¡°í•©ìŠ¬ë¡¯ 1ë²ˆ,2ë²ˆì˜ ë‹¨ì„œì˜ Typeì´ ClueClue ë¼ë©´
+                //¸¸¾à Á¶ÇÕ½½·Ô 1¹ø,2¹øÀÇ ´Ü¼­ÀÇ TypeÀÌ ClueClue ¶ó¸é
                 else if (curCombineClue1Info.type == "ClueClue" && curCombineClue2Info.type == "ClueClue")
                 {
-                    //ìŠ¬ë¡¯1,ìŠ¬ë¡¯2ì˜ Typeì˜ í•©
+                    //½½·Ô1,½½·Ô2ÀÇ TypeÀÇ ÇÕ
                     slotSumType = "ClueClue";
                 }
 
-                //ê·¸ì™¸ì˜ ê²½ìš°
+                //±×¿ÜÀÇ °æ¿ì
                 else
                 {
-                    //ìŠ¬ë¡¯1,ìŠ¬ë¡¯2ì˜ Typeì˜ í•©
+                    //½½·Ô1,½½·Ô2ÀÇ TypeÀÇ ÇÕ
                     slotSumType = curCombineClue1Info.type + curCombineClue2Info.type;
                 }
 
-                //ë§Œì•½ ì¡°í•©ìŠ¬ë¡¯ 1ë²ˆì˜,2ë²ˆì˜ ë‹¨ì„œê°€ 2001 ë˜ëŠ” 2016ì¼ ê²½ìš°
+                //¸¸¾à Á¶ÇÕ½½·Ô 1¹øÀÇ,2¹øÀÇ ´Ü¼­°¡ 2001 ¶Ç´Â 2016ÀÏ °æ¿ì
                 if((curCombineClue1Info.key == 2001 || curCombineClue1Info.key == 2016) && 
                     (curCombineClue2Info.key == 2001 || curCombineClue2Info.key == 2016))
                 {
-                    //ì¡°í•© í‚¤ ê°’ì€ 9000
+                    //Á¶ÇÕ Å° °ªÀº 9000
                     sumKeyValue = 9000;
                 }
                 #endregion
 
-                //í•©ì³ì§„ ì˜¤ë¸Œì íŠ¸ì˜ Type
+                //ÇÕÃÄÁø ¿ÀºêÁ§Æ®ÀÇ Type
                 string sumObjectType = "";
 
-                Debug.Log($"ì¡°í•©ëœ ë‹¨ì„œì˜ í‚¤ê°’ {sumKeyValue}");
-                Debug.Log($"ì¡°í•©ëœ ë‹¨ì„œì˜ íƒ€ì…ê°’ {slotSumType}");
+                Debug.Log($"Á¶ÇÕµÈ ´Ü¼­ÀÇ Å°°ª {sumKeyValue}");
+                Debug.Log($"Á¶ÇÕµÈ ´Ü¼­ÀÇ Å¸ÀÔ°ª {slotSumType}");
 
-                //myItemListì—ì„œ í•´ë‹¹ SumKeyê°’ì„ ê°€ì§„ ë‹¨ì„œ ìˆì„ê²½ìš°
+                //myItemList¿¡¼­ ÇØ´ç SumKey°ªÀ» °¡Áø ´Ü¼­ ÀÖÀ»°æ¿ì
                 if (myClueList.Find(x => x.key == sumKeyValue) != null)
                 {
-                    Debug.Log("í•´ë‹¹ ë‹¨ì„œê°€ ë°ì´í„°ì— ìˆìŒ");
+                    Debug.Log("ÇØ´ç ´Ü¼­°¡ µ¥ÀÌÅÍ¿¡ ÀÖÀ½");
                     Clue sumClue = myClueList.Find(x => x.key == sumKeyValue);
-                    //í•©ì³ì§„ ë‹¨ì„œì˜ Type
+                    //ÇÕÃÄÁø ´Ü¼­ÀÇ Type
                     sumObjectType = sumClue.type;
-                    Debug.Log($"í•©ì³ì§„ ë‹¨ì„œì˜ Type: {sumObjectType}");
+                    Debug.Log($"ÇÕÃÄÁø ´Ü¼­ÀÇ Type: {sumObjectType}");
                 }
 
-                //Sumkeyë¡œ ì°¾ì€ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì´ ìŠ¬ë¡¯ì°½ì˜ ë‘ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì„ ë”í•œ ê°’ê³¼ ê°™ì„ê²½ìš°.
+                //Sumkey·Î Ã£Àº ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀÌ ½½·ÔÃ¢ÀÇ µÎ ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀ» ´õÇÑ °ª°ú °°À»°æ¿ì.
                 if (sumObjectType == slotSumType)
                 {
-                    //í•´ë‹¹ Keyê°’ì„ ê°€ì§„ ë‹¨ì„œ íšë“
+                    //ÇØ´ç Key°ªÀ» °¡Áø ´Ü¼­ È¹µæ
                     GetClue(sumKeyValue);
 
-                    //ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+                    //½½·Ô ºñ¿ì±â
                     EmptyCombineSlot();
 
-                    //ì¡°í•©ì°½ Textí‘œì‹œ
-                    contentText2.text = "ì¡°í•© ì„±ê³µ!";
+                    //Á¶ÇÕÃ¢ TextÇ¥½Ã
+                    contentText2.text = "Á¶ÇÕ ¼º°ø!";
                 }
 
-                //ì¡°í•©ëœ ë‹¨ì„œê°€ ì¡´ì¬í•˜ì§€ ì•Šë‹¤ë©´
+                //Á¶ÇÕµÈ ´Ü¼­°¡ Á¸ÀçÇÏÁö ¾Ê´Ù¸é
                 else if (sumObjectType == "")
                 {
-                    Debug.Log("í…ìŠ¤íŠ¸ ë„£ì—ˆìŒ");
+                    Debug.Log("ÅØ½ºÆ® ³Ö¾úÀ½");
 
-                    //ì¡°í•© ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+                    //Á¶ÇÕ ½½·Ô ºñ¿ì±â
                     EmptyCombineSlot();
 
-                    contentText2.text = "ì¡°í•© ì‹¤íŒ¨!";
+                    contentText2.text = "Á¶ÇÕ ½ÇÆĞ!";
                 }
             }
         }
         #endregion
 
-        //ìŠ¬ë¡¯ 1: Item, ìŠ¬ë¡¯ 2: Clue
+        //½½·Ô 1: Item, ½½·Ô 2: Clue
         #region
         if (curCombineItem1Info != null && curCombineClue2Info != null)
         {
             if (curCombineItem1Info.key != 0 && curCombineClue2Info.key != 0)
             {
-                Debug.Log("ì•„ì´í…œê³¼ ë‹¨ì„œì˜ ì¡°í•©");
+                Debug.Log("¾ÆÀÌÅÛ°ú ´Ü¼­ÀÇ Á¶ÇÕ");
 
-                //ìŠ¬ë¡¯1,ìŠ¬ë¡¯2ì˜ Keyì˜ í•©
+                //½½·Ô1,½½·Ô2ÀÇ KeyÀÇ ÇÕ
                 int sumKeyValue = curCombineItem1Info.key + curCombineClue2Info.key;
 
-                //ìŠ¬ë¡¯1,ìŠ¬ë¡¯2ì˜ Typeì˜ í•©
+                //½½·Ô1,½½·Ô2ÀÇ TypeÀÇ ÇÕ
                 string slotSumType = curCombineItem1Info.type + curCombineClue2Info.type;
 
-                //í•©ì³ì§„ ì˜¤ë¸Œì íŠ¸ì˜ Type
+                //ÇÕÃÄÁø ¿ÀºêÁ§Æ®ÀÇ Type
                 string sumObjectType = "";
 
-                //myItemListì—ì„œ í•´ë‹¹ SumKeyê°’ì„ ê°€ì§„ ì•„ì´í…œ ìˆì„ê²½ìš°
+                //myItemList¿¡¼­ ÇØ´ç SumKey°ªÀ» °¡Áø ¾ÆÀÌÅÛ ÀÖÀ»°æ¿ì
                 if (myItemList.Find(x => x.key == sumKeyValue) != null)
                 {
                     Item sumItem = myItemList.Find(x => x.key == sumKeyValue);
-                    //í•©ì³ì§„ ë‹¨ì„œì˜ Type
+                    //ÇÕÃÄÁø ´Ü¼­ÀÇ Type
                     sumObjectType = sumItem.type;
 
-                    //Sumkeyë¡œ ì°¾ì€ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì´ ìŠ¬ë¡¯ì°½ì˜ ë‘ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì„ ë”í•œ ê°’ê³¼ ê°™ì„ê²½ìš°.
+                    //Sumkey·Î Ã£Àº ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀÌ ½½·ÔÃ¢ÀÇ µÎ ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀ» ´õÇÑ °ª°ú °°À»°æ¿ì.
                     if (sumObjectType == slotSumType && sumItem.key != 0)
                     {
-                        Debug.Log("ì•„ì´í…œìœ¼ë¡œ ìƒì„±ë¨");
-                        //í•´ë‹¹ Keyê°’ì„ ê°€ì§„ ë‹¨ì„œ íšë“
+                        Debug.Log("¾ÆÀÌÅÛÀ¸·Î »ı¼ºµÊ");
+                        //ÇØ´ç Key°ªÀ» °¡Áø ´Ü¼­ È¹µæ
                         GetItem(sumKeyValue);
 
-                        //ì¡°í•©ì— ì‚¬ìš©ëœ ì˜¤ë¸Œì íŠ¸ ì œê±°
+                        //Á¶ÇÕ¿¡ »ç¿ëµÈ ¿ÀºêÁ§Æ® Á¦°Å
                         RemoveItem(curCombineItem1Info.key);
                         RemoveClue(curCombineClue2Info.key);
 
-                        //ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+                        //½½·Ô ºñ¿ì±â
                         EmptyCombineSlot();
 
-                        //ì¡°í•©ì°½ Textí‘œì‹œ
-                        contentText2.text = "ì¡°í•© ì„±ê³µ!";
+                        //Á¶ÇÕÃ¢ TextÇ¥½Ã
+                        contentText2.text = "Á¶ÇÕ ¼º°ø!";
                     }
                 }
 
-                //myClueListì—ì„œ í•´ë‹¹ SumKeyê°’ì„ ê°€ì§„ ë‹¨ì„œê°€ ìˆì„ê²½ìš°
+                //myClueList¿¡¼­ ÇØ´ç SumKey°ªÀ» °¡Áø ´Ü¼­°¡ ÀÖÀ»°æ¿ì
                 else if (myClueList.Find(x => x.key == sumKeyValue) != null)
                 {
                     Clue sumClue = myClueList.Find(x => x.key == sumKeyValue);
-                    //í•©ì³ì§„ ë‹¨ì„œì˜ Type
+                    //ÇÕÃÄÁø ´Ü¼­ÀÇ Type
                     sumObjectType = sumClue.type;
 
-                    //Sumkeyë¡œ ì°¾ì€ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì´ ìŠ¬ë¡¯ì°½ì˜ ë‘ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì„ ë”í•œ ê°’ê³¼ ê°™ì„ê²½ìš°.
+                    //Sumkey·Î Ã£Àº ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀÌ ½½·ÔÃ¢ÀÇ µÎ ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀ» ´õÇÑ °ª°ú °°À»°æ¿ì.
                     if (sumObjectType == slotSumType && sumClue.key != 0)
                     {
-                        Debug.Log("ë‹¨ì„œë¡œ ìƒì„±ë¨");
+                        Debug.Log("´Ü¼­·Î »ı¼ºµÊ");
 
-                        //í•´ë‹¹ Keyê°’ì„ ê°€ì§„ ë‹¨ì„œ íšë“
+                        //ÇØ´ç Key°ªÀ» °¡Áø ´Ü¼­ È¹µæ
                         GetClue(sumKeyValue);
 
-                        //ì¡°í•©ì— ì‚¬ìš©ëœ ì˜¤ë¸Œì íŠ¸ ì œê±°
+                        //Á¶ÇÕ¿¡ »ç¿ëµÈ ¿ÀºêÁ§Æ® Á¦°Å
                         RemoveItem(curCombineItem1Info.key);
                         RemoveClue(curCombineClue2Info.key);
 
-                        //ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+                        //½½·Ô ºñ¿ì±â
                         EmptyCombineSlot();
 
-                        //ì¡°í•©ì°½ Textí‘œì‹œ
-                        contentText2.text = "ì¡°í•© ì„±ê³µ!";
+                        //Á¶ÇÕÃ¢ TextÇ¥½Ã
+                        contentText2.text = "Á¶ÇÕ ¼º°ø!";
                     }
                 }
 
-                //ì¡°í•©ëœ ë‹¨ì„œê°€ ì¡´ì¬í•˜ì§€ ì•Šë‹¤ë©´
+                //Á¶ÇÕµÈ ´Ü¼­°¡ Á¸ÀçÇÏÁö ¾Ê´Ù¸é
                 if (sumObjectType == "")
                 {
-                    Debug.Log("í…ìŠ¤íŠ¸ ë„£ì—ˆìŒ");
+                    Debug.Log("ÅØ½ºÆ® ³Ö¾úÀ½");
 
-                    //ì¡°í•© ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+                    //Á¶ÇÕ ½½·Ô ºñ¿ì±â
                     EmptyCombineSlot();
 
-                    contentText2.text = "ì¡°í•© ì‹¤íŒ¨!";
+                    contentText2.text = "Á¶ÇÕ ½ÇÆĞ!";
                 }
             }
         }
         #endregion
 
-        //ìŠ¬ë¡¯ 1: Clue, ìŠ¬ë¡¯ 2: Item
+        //½½·Ô 1: Clue, ½½·Ô 2: Item
         #region
         if (curCombineClue1Info != null && curCombineItem2Info != null)
         {
             if (curCombineClue1Info.key != 0 && curCombineItem2Info.key != 0)
             {
-                Debug.Log("ë‹¨ì„œì™€ ì•„ì´í…œì˜ ì¡°í•©");
+                Debug.Log("´Ü¼­¿Í ¾ÆÀÌÅÛÀÇ Á¶ÇÕ");
 
-                //ìŠ¬ë¡¯1,ìŠ¬ë¡¯2ì˜ Keyì˜ í•©
+                //½½·Ô1,½½·Ô2ÀÇ KeyÀÇ ÇÕ
                 int sumKeyValue = curCombineClue1Info.key + curCombineItem2Info.key;
 
-                //ìŠ¬ë¡¯1,ìŠ¬ë¡¯2ì˜ Typeì˜ í•©
+                //½½·Ô1,½½·Ô2ÀÇ TypeÀÇ ÇÕ
                 string slotSumType = curCombineItem2Info.type + curCombineClue1Info.type;
 
-                //í•©ì³ì§„ ì˜¤ë¸Œì íŠ¸ì˜ Type
+                //ÇÕÃÄÁø ¿ÀºêÁ§Æ®ÀÇ Type
                 string sumObjectType = "";
 
-                //myItemListì—ì„œ í•´ë‹¹ SumKeyê°’ì„ ê°€ì§„ ì•„ì´í…œ ìˆì„ê²½ìš°
+                //myItemList¿¡¼­ ÇØ´ç SumKey°ªÀ» °¡Áø ¾ÆÀÌÅÛ ÀÖÀ»°æ¿ì
                 if (myItemList.Find(x => x.key == sumKeyValue) != null)
                 {
                     Item sumItem = myItemList.Find(x => x.key == sumKeyValue);
-                    //í•©ì³ì§„ ë‹¨ì„œì˜ Type
+                    //ÇÕÃÄÁø ´Ü¼­ÀÇ Type
                     sumObjectType = sumItem.type;
 
-                    //Sumkeyë¡œ ì°¾ì€ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì´ ìŠ¬ë¡¯ì°½ì˜ ë‘ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì„ ë”í•œ ê°’ê³¼ ê°™ì„ê²½ìš°.
+                    //Sumkey·Î Ã£Àº ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀÌ ½½·ÔÃ¢ÀÇ µÎ ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀ» ´õÇÑ °ª°ú °°À»°æ¿ì.
                     if (sumObjectType == slotSumType && sumItem.key != 0)
                     {
-                        Debug.Log("ì•„ì´í…œìœ¼ë¡œ ìƒì„±ë¨");
-                        //í•´ë‹¹ Keyê°’ì„ ê°€ì§„ ë‹¨ì„œ íšë“
+                        Debug.Log("¾ÆÀÌÅÛÀ¸·Î »ı¼ºµÊ");
+                        //ÇØ´ç Key°ªÀ» °¡Áø ´Ü¼­ È¹µæ
                         GetItem(sumKeyValue);
 
-                        //ì¡°í•©ì— ì‚¬ìš©ëœ ì˜¤ë¸Œì íŠ¸ ì œê±°
+                        //Á¶ÇÕ¿¡ »ç¿ëµÈ ¿ÀºêÁ§Æ® Á¦°Å
                         RemoveClue(curCombineClue1Info.key);
                         RemoveItem(curCombineItem2Info.key);
 
-                        //ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+                        //½½·Ô ºñ¿ì±â
                         EmptyCombineSlot();
 
-                        //ì¡°í•©ì°½ Textí‘œì‹œ
-                        contentText2.text = "ì¡°í•© ì„±ê³µ!";
+                        //Á¶ÇÕÃ¢ TextÇ¥½Ã
+                        contentText2.text = "Á¶ÇÕ ¼º°ø!";
                     }
                 }
 
-                //myClueListì—ì„œ í•´ë‹¹ SumKeyê°’ì„ ê°€ì§„ ë‹¨ì„œê°€ ìˆì„ê²½ìš°
+                //myClueList¿¡¼­ ÇØ´ç SumKey°ªÀ» °¡Áø ´Ü¼­°¡ ÀÖÀ»°æ¿ì
                 else if (myClueList.Find(x => x.key == sumKeyValue) != null)
                 {
                     Clue sumClue = myClueList.Find(x => x.key == sumKeyValue);
-                    //í•©ì³ì§„ ë‹¨ì„œì˜ Type
+                    //ÇÕÃÄÁø ´Ü¼­ÀÇ Type
                     sumObjectType = sumClue.type;
 
-                    //Sumkeyë¡œ ì°¾ì€ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì´ ìŠ¬ë¡¯ì°½ì˜ ë‘ ì˜¤ë¸Œì íŠ¸ì˜ íƒ€ì…ì„ ë”í•œ ê°’ê³¼ ê°™ì„ê²½ìš°.
+                    //Sumkey·Î Ã£Àº ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀÌ ½½·ÔÃ¢ÀÇ µÎ ¿ÀºêÁ§Æ®ÀÇ Å¸ÀÔÀ» ´õÇÑ °ª°ú °°À»°æ¿ì.
                     if (sumObjectType == slotSumType && sumClue.key != 0)
                     {
-                        Debug.Log("ë‹¨ì„œë¡œ ìƒì„±ë¨");
+                        Debug.Log("´Ü¼­·Î »ı¼ºµÊ");
 
-                        //í•´ë‹¹ Keyê°’ì„ ê°€ì§„ ë‹¨ì„œ íšë“
+                        //ÇØ´ç Key°ªÀ» °¡Áø ´Ü¼­ È¹µæ
                         GetClue(sumKeyValue);
 
-                        //ì¡°í•©ì— ì‚¬ìš©ëœ ì˜¤ë¸Œì íŠ¸ ì œê±°
+                        //Á¶ÇÕ¿¡ »ç¿ëµÈ ¿ÀºêÁ§Æ® Á¦°Å
                         RemoveClue(curCombineClue1Info.key);
                         RemoveItem(curCombineItem2Info.key);
 
-                        //ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+                        //½½·Ô ºñ¿ì±â
                         EmptyCombineSlot();
 
-                        //ì¡°í•©ì°½ Textí‘œì‹œ
-                        contentText2.text = "ì¡°í•© ì„±ê³µ!";
+                        //Á¶ÇÕÃ¢ TextÇ¥½Ã
+                        contentText2.text = "Á¶ÇÕ ¼º°ø!";
                     }
                 }
 
-                //ì¡°í•©ëœ ë‹¨ì„œê°€ ì¡´ì¬í•˜ì§€ ì•Šë‹¤ë©´
+                //Á¶ÇÕµÈ ´Ü¼­°¡ Á¸ÀçÇÏÁö ¾Ê´Ù¸é
                 if (sumObjectType == "")
                 {
-                    Debug.Log("í…ìŠ¤íŠ¸ ë„£ì—ˆìŒ");
+                    Debug.Log("ÅØ½ºÆ® ³Ö¾úÀ½");
 
-                    //ì¡°í•© ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+                    //Á¶ÇÕ ½½·Ô ºñ¿ì±â
                     EmptyCombineSlot();
 
-                    contentText2.text = "ì¡°í•© ì‹¤íŒ¨!";
+                    contentText2.text = "Á¶ÇÕ ½ÇÆĞ!";
                 }
             }
         }
@@ -1296,109 +1290,109 @@ public class ObjectManager : MonoBehaviour
         #endregion
     }
 
-    //ì¡°í•© ìŠ¬ë¡¯ ë¹„ìš°ê¸°
+    //Á¶ÇÕ ½½·Ô ºñ¿ì±â
     private void EmptyCombineSlot()
     {
-        //ì¡°í•©ì°½ 2ê°œì˜ ì‚¬ìš©ì„ ì¤‘ì§€
+        //Á¶ÇÕÃ¢ 2°³ÀÇ »ç¿ëÀ» ÁßÁö
         combineSlot1_Using = false;
         combineSlot2_Using = false;
 
-        //ì¡°í•©ì°½ ì•ˆì˜ ì •ë³´ë“¤ì˜ Keyê°’ì„ ë¹„ì›Œì¤Œ
+        //Á¶ÇÕÃ¢ ¾ÈÀÇ Á¤º¸µéÀÇ Key°ªÀ» ºñ¿öÁÜ
         curCombineItem1Info = null;
         curCombineItem2Info = null;
         curCombineClue1Info = null;
         curCombineClue2Info = null;
 
-        //ì¡°í•©ì°½ ìŠ¬ë¡¯ì˜ ì˜¤ë¸Œì íŠ¸ ì´ë¯¸ì§€ ì œê±°
+        //Á¶ÇÕÃ¢ ½½·ÔÀÇ ¿ÀºêÁ§Æ® ÀÌ¹ÌÁö Á¦°Å
         image_CombineSlot1Item.sprite = sprite_NoneImage;
         image_CombineSlot2Item.sprite = sprite_NoneImage;
 
-        //ì¡°í•©ì°½ ìŠ¬ë¡¯ì˜ Text ì œê±°
+        //Á¶ÇÕÃ¢ ½½·ÔÀÇ Text Á¦°Å
         combineSlot1Name.text = "";
         combineSlot2Name.text = "";
 
-        //ì¡°í•©ì°½ ìŠ¬ë¡¯ì˜ ì‚¬ìš©ì´ë¯¸ì§€ ì´ˆê¸°í™”
+        //Á¶ÇÕÃ¢ ½½·ÔÀÇ »ç¿ëÀÌ¹ÌÁö ÃÊ±âÈ­
         image_CombineSlot1.sprite = sprite_Slot;
         image_CombineSlot2.sprite = sprite_Slot;
 
-        //Textì°½ ë¦¬ì…‹
-        contentText2.text = "ì´ê³³ì€ ì¡°í•©ì°½ì…ë‹ˆë‹¤.";
+        //TextÃ¢ ¸®¼Â
+        contentText2.text = "ÀÌ°÷Àº Á¶ÇÕÃ¢ÀÔ´Ï´Ù.";
     }
 
 
-    //ì¡°í•© ìŠ¬ë¡¯ 1ë²ˆì„ Trueë¡œ ë°”ê¿”ì£¼ëŠ” ë©”ì„œë“œ
+    //Á¶ÇÕ ½½·Ô 1¹øÀ» True·Î ¹Ù²ãÁÖ´Â ¸Ş¼­µå
     private void CombineSlot1True()
     {
         combineSlot1_Using = true;
     }
 
-    //ì¡°í•© ìŠ¬ë¡¯ 2ë²ˆì„ Trueë¡œ ë°”ê¿”ì£¼ëŠ” ë©”ì„œë“œ
+    //Á¶ÇÕ ½½·Ô 2¹øÀ» True·Î ¹Ù²ãÁÖ´Â ¸Ş¼­µå
     private void CombineSlot2True()
     {
         combineSlot2_Using = true;
     }
 
 
-    //ì¡°í•©ìŠ¬ë¡¯ 1ë²ˆì˜ ì•„ì´í…œì„ ë¹„ìš°ëŠ” ë©”ì„œë“œ
+    //Á¶ÇÕ½½·Ô 1¹øÀÇ ¾ÆÀÌÅÛÀ» ºñ¿ì´Â ¸Ş¼­µå
     private void EmptyCombineSlot1Item()
     {
-        //1ë²ˆ ì •ë³´ê°’ì„ ì§€ìš´ë‹¤
+        //1¹ø Á¤º¸°ªÀ» Áö¿î´Ù
         curCombineItem1Info = null;
-        //1ë²ˆ ìŠ¬ë¡¯ì˜ ì•„ì´í…œ ì´ë¯¸ì§€ë¥¼ ì§€ìš´ë‹¤.
+        //1¹ø ½½·ÔÀÇ ¾ÆÀÌÅÛ ÀÌ¹ÌÁö¸¦ Áö¿î´Ù.
         image_CombineSlot1Item.sprite = sprite_NoneImage;
-        //1ë²ˆ ìŠ¬ë¡¯ì˜ ì•„ì´í…œ ì´ë¦„ì„ ì§€ìš´ë‹¤
+        //1¹ø ½½·ÔÀÇ ¾ÆÀÌÅÛ ÀÌ¸§À» Áö¿î´Ù
         combineSlot1Name.text = "";
     }
 
-    //ì¡°í•©ìŠ¬ë¡¯ 2ë²ˆì˜ ì•„ì´í…œì„ ë¹„ìš°ëŠ” ë©”ì„œë“œ
+    //Á¶ÇÕ½½·Ô 2¹øÀÇ ¾ÆÀÌÅÛÀ» ºñ¿ì´Â ¸Ş¼­µå
     private void EmptyCombineSlot2Item()
     {
-        //2ë²ˆ ì •ë³´ê°’ì„ ì§€ìš´ë‹¤
+        //2¹ø Á¤º¸°ªÀ» Áö¿î´Ù
         curCombineItem2Info = null;
-        //2ë²ˆ ìŠ¬ë¡¯ì˜ ì•„ì´í…œ ì´ë¯¸ì§€ë¥¼ ì§€ìš´ë‹¤.
+        //2¹ø ½½·ÔÀÇ ¾ÆÀÌÅÛ ÀÌ¹ÌÁö¸¦ Áö¿î´Ù.
         image_CombineSlot2Item.sprite = sprite_NoneImage;
-        //2ë²ˆ ìŠ¬ë¡¯ì˜ ì•„ì´í…œ ì´ë¦„ì„ ì§€ìš´ë‹¤
+        //2¹ø ½½·ÔÀÇ ¾ÆÀÌÅÛ ÀÌ¸§À» Áö¿î´Ù
         combineSlot2Name.text = "";
     }
 
-    //ì¡°í•©ìŠ¬ë¡¯ 1ë²ˆì˜ ë‹¨ì„œë¥¼ ë¹„ìš°ëŠ” ë©”ì„œë“œ
+    //Á¶ÇÕ½½·Ô 1¹øÀÇ ´Ü¼­¸¦ ºñ¿ì´Â ¸Ş¼­µå
     private void EmptyCombineSlot1Clue()
     {
-        //1ë²ˆ ì •ë³´ê°’ì„ ì§€ìš´ë‹¤
+        //1¹ø Á¤º¸°ªÀ» Áö¿î´Ù
         curCombineClue1Info = null;
-        //1ë²ˆ ìŠ¬ë¡¯ì˜ ë‹¨ì„œ ì´ë¯¸ì§€ë¥¼ ì§€ìš´ë‹¤.
+        //1¹ø ½½·ÔÀÇ ´Ü¼­ ÀÌ¹ÌÁö¸¦ Áö¿î´Ù.
         image_CombineSlot1Item.sprite = sprite_NoneImage;
-        //1ë²ˆ ìŠ¬ë¡¯ì˜ ë‹¨ì„œ ì´ë¦„ì„ ì§€ìš´ë‹¤
+        //1¹ø ½½·ÔÀÇ ´Ü¼­ ÀÌ¸§À» Áö¿î´Ù
         combineSlot1Name.text = "";
     }
 
-    //ì¡°í•©ìŠ¬ë¡¯ 2ë²ˆì˜ ë‹¨ì„œë¥¼ ë¹„ìš°ëŠ” ë©”ì„œë“œ
+    //Á¶ÇÕ½½·Ô 2¹øÀÇ ´Ü¼­¸¦ ºñ¿ì´Â ¸Ş¼­µå
     private void EmptyCombineSlot2Clue()
     {
-        //2ë²ˆ ì •ë³´ê°’ì„ ì§€ìš´ë‹¤
+        //2¹ø Á¤º¸°ªÀ» Áö¿î´Ù
         curCombineClue2Info = null;
-        //2ë²ˆ ìŠ¬ë¡¯ì˜ ë‹¨ì„œ ì´ë¯¸ì§€ë¥¼ ì§€ìš´ë‹¤.
+        //2¹ø ½½·ÔÀÇ ´Ü¼­ ÀÌ¹ÌÁö¸¦ Áö¿î´Ù.
         image_CombineSlot2Item.sprite = sprite_NoneImage;
-        //2ë²ˆ ìŠ¬ë¡¯ì˜ ë‹¨ì„œ ì´ë¦„ì„ ì§€ìš´ë‹¤
+        //2¹ø ½½·ÔÀÇ ´Ü¼­ ÀÌ¸§À» Áö¿î´Ù
         combineSlot2Name.text = "";
     }
 
-    //ì¡°í•© ìŠ¬ë¡¯ 1ë²ˆì— ì˜¤ë¸Œì íŠ¸ ë„£ê¸°
+    //Á¶ÇÕ ½½·Ô 1¹ø¿¡ ¿ÀºêÁ§Æ® ³Ö±â
     public void InputCombinSlot1(int _slotNum)
     {
-        //í˜„ì¬ Item Tapì¼ ê²½ìš°
+        //ÇöÀç Item TapÀÏ °æ¿ì
         if (curType == "Item")
         {
-            //ì¡°í•© ìŠ¬ë¡¯ 1ë²ˆì— ì•„ì´í…œ ì´ë¯¸ì§€ ë³€ê²½
+            //Á¶ÇÕ ½½·Ô 1¹ø¿¡ ¾ÆÀÌÅÛ ÀÌ¹ÌÁö º¯°æ
             image_CombineSlot1Item.sprite = itemSprite[curItemList2[_slotNum].indexNum];
 
-            //ì¡°í•© ìŠ¬ë¡¯ 1ë²ˆ ì´ë¦„ ë°”ê¾¸ê¸°
+            //Á¶ÇÕ ½½·Ô 1¹ø ÀÌ¸§ ¹Ù²Ù±â
             combineSlot1Name.text = curItemList2[_slotNum].name;
 
-            //ì¡°í•© ìŠ¬ë¡¯ 1ë²ˆì— ì •ë³´ ë„£ê¸°
+            //Á¶ÇÕ ½½·Ô 1¹ø¿¡ Á¤º¸ ³Ö±â
             curCombineItem1Info = curItemList2[_slotNum];
 
-            //ì¡°í•© ë‹¨ì„œ 1ë²ˆ ì •ë³´ ë¹„ìš°ê¸°
+            //Á¶ÇÕ ´Ü¼­ 1¹ø Á¤º¸ ºñ¿ì±â
             curCombineClue1Info = null;
 
 
@@ -1406,88 +1400,88 @@ public class ObjectManager : MonoBehaviour
             {
                 if (curCombineItem1Info.key == curCombineItem2Info.key)
                 {
-                    //2ë²ˆ ìŠ¬ë¡¯ ì•„ì´í…œ ë¹„ìš°ê¸°
+                    //2¹ø ½½·Ô ¾ÆÀÌÅÛ ºñ¿ì±â
                     EmptyCombineSlot2Item();
                 }
             }
         }
 
-        //í˜„ì¬ Clue Tapì¼ ê²½ìš°
+        //ÇöÀç Clue TapÀÏ °æ¿ì
         else if (curType == "Clue")
         {
-            //ì¡°í•© ìŠ¬ë¡¯ 1ë²ˆì— ë‹¨ì„œ ì´ë¯¸ì§€ ë³€ê²½
+            //Á¶ÇÕ ½½·Ô 1¹ø¿¡ ´Ü¼­ ÀÌ¹ÌÁö º¯°æ
             image_CombineSlot1Item.sprite = clueSprite[curClueList2[_slotNum].indexNum];
 
-            //ì¡°í•© ìŠ¬ë¡¯ 1ë²ˆ ì´ë¦„ ë°”ê¾¸ê¸°
+            //Á¶ÇÕ ½½·Ô 1¹ø ÀÌ¸§ ¹Ù²Ù±â
             combineSlot1Name.text = curClueList2[_slotNum].name;
 
-            //ì¡°í•© ìŠ¬ë¡¯ 1ë²ˆì— ì •ë³´ ë„£ê¸°
+            //Á¶ÇÕ ½½·Ô 1¹ø¿¡ Á¤º¸ ³Ö±â
             curCombineClue1Info = curClueList2[_slotNum];
 
-            //ì¡°í•© ì•„ì´í…œ 1ë²ˆ ì •ë³´ ë¹„ìš°ê¸°
+            //Á¶ÇÕ ¾ÆÀÌÅÛ 1¹ø Á¤º¸ ºñ¿ì±â
             curCombineItem1Info = null;
 
             if (curCombineClue1Info != null && curCombineClue2Info != null)
             {
-                //ì¡°í•© ìŠ¬ë¡¯ 1ë²ˆ,2ë²ˆì˜ ë‹¨ì„œê°€ ê°™ì„ ê²½ìš°
+                //Á¶ÇÕ ½½·Ô 1¹ø,2¹øÀÇ ´Ü¼­°¡ °°À» °æ¿ì
                 if (curCombineClue1Info.key == curCombineClue2Info.key)
                 {
-                    //2ë²ˆ ìŠ¬ë¡¯ ë‹¨ì„œ ë¹„ìš°ê¸°
+                    //2¹ø ½½·Ô ´Ü¼­ ºñ¿ì±â
                     EmptyCombineSlot2Clue();
                 }
             }
         }
     }
 
-    //ì¡°í•© ìŠ¬ë¡¯ 2ë²ˆì— ì˜¤ë¸Œì íŠ¸ ë„£ê¸°
+    //Á¶ÇÕ ½½·Ô 2¹ø¿¡ ¿ÀºêÁ§Æ® ³Ö±â
     public void InputCombinSlot2(int _slotNum)
     {
         if (curType == "Item")
         {
-            //ì¡°í•© ìŠ¬ë¡¯ 2ë²ˆì— ì•„ì´í…œ ì´ë¯¸ì§€ ë³€ê²½
+            //Á¶ÇÕ ½½·Ô 2¹ø¿¡ ¾ÆÀÌÅÛ ÀÌ¹ÌÁö º¯°æ
             image_CombineSlot2Item.sprite = itemSprite[curItemList2[_slotNum].indexNum];
 
-            //ì¡°í•© ìŠ¬ë¡¯ 2ë²ˆ ì´ë¦„ ë°”ê¾¸ê¸°
+            //Á¶ÇÕ ½½·Ô 2¹ø ÀÌ¸§ ¹Ù²Ù±â
             combineSlot2Name.text = curItemList2[_slotNum].name;
 
-            //ì¡°í•© ìŠ¬ë¡¯ 2ë²ˆì— ì •ë³´ ë„£ê¸°
+            //Á¶ÇÕ ½½·Ô 2¹ø¿¡ Á¤º¸ ³Ö±â
             curCombineItem2Info = curItemList2[_slotNum];
 
-            //ì¡°í•© ë‹¨ì„œ 2ë²ˆ ì •ë³´ ë¹„ìš°ê¸°
+            //Á¶ÇÕ ´Ü¼­ 2¹ø Á¤º¸ ºñ¿ì±â
             curCombineClue2Info = null;
 
             if (curCombineItem1Info != null && curCombineItem2Info != null)
             {
-                //ì¡°í•© ìŠ¬ë¡¯ 1ë²ˆ,2ë²ˆì— ê°™ì€ ì•„ì´í…œì´ ë“¤ì–´ìˆì„ê²½ìš°
+                //Á¶ÇÕ ½½·Ô 1¹ø,2¹ø¿¡ °°Àº ¾ÆÀÌÅÛÀÌ µé¾îÀÖÀ»°æ¿ì
                 if (curCombineItem1Info.key == curCombineItem2Info.key)
                 {
-                    //1ë²ˆ ìŠ¬ë¡¯ ì•„ì´í…œ ë¹„ìš°ê¸°
+                    //1¹ø ½½·Ô ¾ÆÀÌÅÛ ºñ¿ì±â
                     EmptyCombineSlot1Item();
                 }
             }
         }
 
-        //í˜„ì¬ Clue Tapì¼ ê²½ìš°
+        //ÇöÀç Clue TapÀÏ °æ¿ì
         else if (curType == "Clue")
         {
-            //ì¡°í•© ìŠ¬ë¡¯ 2ë²ˆì— ë‹¨ì„œ ì´ë¯¸ì§€ ë³€ê²½
+            //Á¶ÇÕ ½½·Ô 2¹ø¿¡ ´Ü¼­ ÀÌ¹ÌÁö º¯°æ
             image_CombineSlot2Item.sprite = clueSprite[curClueList2[_slotNum].indexNum];
 
-            //ì¡°í•© ìŠ¬ë¡¯ 2ë²ˆ ì´ë¦„ ë°”ê¾¸ê¸°
+            //Á¶ÇÕ ½½·Ô 2¹ø ÀÌ¸§ ¹Ù²Ù±â
             combineSlot2Name.text = curClueList2[_slotNum].name;
 
-            //ì¡°í•© ìŠ¬ë¡¯ 2ë²ˆì— ì •ë³´ ë„£ê¸°
+            //Á¶ÇÕ ½½·Ô 2¹ø¿¡ Á¤º¸ ³Ö±â
             curCombineClue2Info = curClueList2[_slotNum];
 
-            //ì¡°í•© ì•„ì´í…œ 2ë²ˆ ì •ë³´ ë¹„ìš°ê¸°
+            //Á¶ÇÕ ¾ÆÀÌÅÛ 2¹ø Á¤º¸ ºñ¿ì±â
             curCombineItem2Info = null;
 
             if (curCombineClue1Info != null && curCombineClue2Info != null)
             {
-                //ì¡°í•© ìŠ¬ë¡¯ 1ë²ˆ,2ë²ˆì˜ ë‹¨ì„œê°€ ê°™ì„ ê²½ìš°
+                //Á¶ÇÕ ½½·Ô 1¹ø,2¹øÀÇ ´Ü¼­°¡ °°À» °æ¿ì
                 if (curCombineClue1Info.key == curCombineClue2Info.key)
                 {
-                    //1ë²ˆ ìŠ¬ë¡¯ ë‹¨ì„œ ë¹„ìš°ê¸°
+                    //1¹ø ½½·Ô ´Ü¼­ ºñ¿ì±â
                     EmptyCombineSlot1Clue();
                 }
             }
@@ -1495,42 +1489,42 @@ public class ObjectManager : MonoBehaviour
     }
 
 
-    //ì¥ì°©í•œ ì˜¤ë¸Œì íŠ¸ì˜ Key ê°’ì„ ë°˜í™˜í•´ì£¼ëŠ” ë©”ì„œë“œ (ê°’ì´ ìˆìœ¼ë©´ keyê°’, ì—†ìœ¼ë©´ 0)
+    //ÀåÂøÇÑ ¿ÀºêÁ§Æ®ÀÇ Key °ªÀ» ¹İÈ¯ÇØÁÖ´Â ¸Ş¼­µå (°ªÀÌ ÀÖÀ¸¸é key°ª, ¾øÀ¸¸é 0)
     public int GetEquipObjectKey()
     {
-        //ë³´ìœ ì¤‘ì¸ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´
+        //º¸À¯ÁßÀÎ ¾ÆÀÌÅÛ ¸®½ºÆ®°¡ ºñ¾îÀÖÁö ¾Ê´Ù¸é
         if (curItemList != null)
         {
-            //ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œ í´ë˜ìŠ¤ ë„£ê¸°
+            //»ç¿ëÁßÀÎ ¾ÆÀÌÅÛ Å¬·¡½º ³Ö±â
             Item usingItem = curItemList.Find(x => x.isUsing == true);
 
-            //ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œì´ ìˆì—ˆë‹¤ë©´
+            //»ç¿ëÁßÀÎ ¾ÆÀÌÅÛÀÌ ÀÖ¾ú´Ù¸é
             if (usingItem != null)
             {
-                //ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œ í‚¤ê°’ ë°˜í™˜
+                //»ç¿ëÁßÀÎ ¾ÆÀÌÅÛ Å°°ª ¹İÈ¯
                 return usingItem.key;
             }
         }
 
-        //ë³´ìœ ì¤‘ì¸ ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´
+        //º¸À¯ÁßÀÎ ´Ü¼­ ¸®½ºÆ®°¡ ºñ¾îÀÖÁö ¾Ê´Ù¸é
         if (curClueList != null)
         {
-            //ì‚¬ìš©ì¤‘ì¸ ë‹¨ì„œ í´ë˜ìŠ¤ ë„£ê¸°
+            //»ç¿ëÁßÀÎ ´Ü¼­ Å¬·¡½º ³Ö±â
             Clue usingclue = curClueList.Find(x => x.isUsing == true);
 
-            //ì‚¬ìš©ì¤‘ì¸ ë‹¨ì„œê°€ ìˆì—ˆë‹¤ë©´
+            //»ç¿ëÁßÀÎ ´Ü¼­°¡ ÀÖ¾ú´Ù¸é
             if (usingclue != null)
             {
-                //ì‚¬ìš©ì¤‘ì¸ ë‹¨ì„œ í‚¤ê°’ ë°˜í™˜
+                //»ç¿ëÁßÀÎ ´Ü¼­ Å°°ª ¹İÈ¯
                 return usingclue.key;
             }
         }
 
-        //ì‚¬ìš©ì¤‘ì¸ ì˜¤ë¸Œì íŠ¸ê°€ ì—†ì„ ê²½ìš°
+        //»ç¿ëÁßÀÎ ¿ÀºêÁ§Æ®°¡ ¾øÀ» °æ¿ì
         return 0;
     }
 
-    //ëª¨ë“  ì•„ì´í…œ íšë“í•˜ê¸°
+    //¸ğµç ¾ÆÀÌÅÛ È¹µæÇÏ±â
     public void GetAllItem()
     {
         for (int i = 0; i < allItemList.Count; i++)
@@ -1539,7 +1533,7 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
-    //ëª¨ë“  ë‹¨ì„œ íšë“í•˜ê¸°
+    //¸ğµç ´Ü¼­ È¹µæÇÏ±â
     public void GetAllClue()
     {
         for (int i = 0; i < allClueList.Count; i++)
@@ -1548,10 +1542,10 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
-    //ë³´ìœ  ì¤‘ì¸ ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
+    //º¸À¯ ÁßÀÎ ´Ü¼­ ¸®½ºÆ® Ãâ·Â
     public int GetClueKey()
     {
-        //ë³´ìœ ì¤‘ì¸ ë‹¨ì„œ ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´
+        //º¸À¯ÁßÀÎ ´Ü¼­ ¸®½ºÆ®°¡ ºñ¾îÀÖÁö ¾Ê´Ù¸é
         if (curClueList != null)
         {
             for (int i = 0; i < myClueList.Count; i++)
@@ -1567,7 +1561,7 @@ public class ObjectManager : MonoBehaviour
         return 0;
     }
 
-    //ë³´ìœ  ì¤‘ì¸ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
+    //º¸À¯ ÁßÀÎ ¾ÆÀÌÅÛ ¸®½ºÆ® Ãâ·Â
     public int Show_ItemList()
     {
         for (int i = 0; i< curItemList.Count; ++i)
@@ -1579,48 +1573,48 @@ public class ObjectManager : MonoBehaviour
         return 0;
     }
 
-    //í•´ë‹¹ ë‹¨ì„œë¥¼ ë³´ìœ ì¤‘ì¸ì§€ í™•ì¸í•´ì£¼ëŠ” ë©”ì„œë“œ
+    //ÇØ´ç ´Ü¼­¸¦ º¸À¯ÁßÀÎÁö È®ÀÎÇØÁÖ´Â ¸Ş¼­µå
     public bool GetClue_Check(int _clueKey)
     {
-        //ì°¾ì€ ë‹¨ì„œë¥¼ ë„£ì„ í´ë˜ìŠ¤
+        //Ã£Àº ´Ü¼­¸¦ ³ÖÀ» Å¬·¡½º
         Clue findClue = curClueList.Find(x => x.key == _clueKey);
 
-        //ë§Œì•½ í•´ë‹¹ í‚¤ê°’ì„ ê°€ì§„ ì•„ì´í…œì´ ì¡´ì¬í• ê²½ìš°
+        //¸¸¾à ÇØ´ç Å°°ªÀ» °¡Áø ¾ÆÀÌÅÛÀÌ Á¸ÀçÇÒ°æ¿ì
         if(findClue != null)
         {
-            //Debug.Log($"{_clueKey}ë‹¨ì„œë¥¼ ë³´ìœ í•˜ê³  ìˆìŠµë‹ˆë‹¤.");
+            //Debug.Log($"{_clueKey}´Ü¼­¸¦ º¸À¯ÇÏ°í ÀÖ½À´Ï´Ù.");
             return true;    
         }
 
-        //ê°€ì§€ê³  ìˆì§€ ì•Šì„ê²½ìš°
+        //°¡Áö°í ÀÖÁö ¾ÊÀ»°æ¿ì
         else
         {
-            //Debug.Log($"{_clueKey}ë‹¨ì„œë¥¼ ë³´ìœ í•˜ê³  ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.");
+            //Debug.Log($"{_clueKey}´Ü¼­¸¦ º¸À¯ÇÏ°í ÀÖÁö ¾Ê½À´Ï´Ù.");
 
-            //false ë°˜í™˜
+            //false ¹İÈ¯
             return false;
         } 
     }
 
-    //í•´ë‹¹ ì•„ì´í…œì„ ë³´ìœ ì¤‘ì¸ì§€ í™•ì¸í•´ì£¼ëŠ” ë©”ì„œë“œ
+    //ÇØ´ç ¾ÆÀÌÅÛÀ» º¸À¯ÁßÀÎÁö È®ÀÎÇØÁÖ´Â ¸Ş¼­µå
     public bool GetItem_Check(int _itemKey)
     {
-        //ì°¾ì€ ì•„ì´í…œì„ ë„£ì„ í´ë˜ìŠ¤
+        //Ã£Àº ¾ÆÀÌÅÛÀ» ³ÖÀ» Å¬·¡½º
         Item finditem = curItemList.Find(x => x.key == _itemKey);
 
-        //ë§Œì•½ í•´ë‹¹ í‚¤ê°’ì„ ê°€ì§„ ì•„ì´í…œì´ ì¡´ì¬í• ê²½ìš°
+        //¸¸¾à ÇØ´ç Å°°ªÀ» °¡Áø ¾ÆÀÌÅÛÀÌ Á¸ÀçÇÒ°æ¿ì
         if (finditem != null)
         {
-            //Debug.Log($"{_itemKey}ë‹¨ì„œë¥¼ ë³´ìœ í•˜ê³  ìˆìŠµë‹ˆë‹¤.");
+            //Debug.Log($"{_itemKey}´Ü¼­¸¦ º¸À¯ÇÏ°í ÀÖ½À´Ï´Ù.");
             return true;
         }
 
-        //ê°€ì§€ê³  ìˆì§€ ì•Šì„ê²½ìš°
+        //°¡Áö°í ÀÖÁö ¾ÊÀ»°æ¿ì
         else
         {
-            //Debug.Log($"{_itemKey}ë‹¨ì„œë¥¼ ë³´ìœ í•˜ê³  ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.");
+            //Debug.Log($"{_itemKey}´Ü¼­¸¦ º¸À¯ÇÏ°í ÀÖÁö ¾Ê½À´Ï´Ù.");
 
-            //false ë°˜í™˜
+            //false ¹İÈ¯
             return false;
         }
     }

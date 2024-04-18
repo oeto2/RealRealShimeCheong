@@ -1,4 +1,4 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class Trigger_NPC : MonoBehaviour
 {
-    //NPCì™€ ì ‘ì´‰í–ˆëŠ”ì§€
+    //NPC¿Í Á¢ÃËÇß´ÂÁö
     [SerializeField] private bool isTouchNPC;
     [SerializeField] private Dialogue NPCDalogue;
     private ITalkable _ITalkable;
 
     [Header("Dialogue State")]
-    //ëŒ€í™”ë¥¼ í•  ìˆ˜ ìˆëŠ”ì§€
+    //´ëÈ­¸¦ ÇÒ ¼ö ÀÖ´ÂÁö
     [SerializeField] private float reTalkDelayTime = 0.5f;
     [SerializeField] private bool enableTalk = true;
 
@@ -28,31 +28,31 @@ public class Trigger_NPC : MonoBehaviour
         {
             if (isTouchNPC && !DialogManager.instance.remainSentence && enableTalk)
             {
-                Debug.Log("NPC ëŒ€ì‚¬ ì‹¤í–‰");
+                Debug.Log("NPC ´ë»ç ½ÇÇà");
 
-                //ë‹¤ì´ì–¼ë¡œê·¸ UI
+                //´ÙÀÌ¾ó·Î±× UI
                 NPCDalogue.DialogueCanvas.SetActive(true);
 
-                //ëŒ€ì‚¬ ì¶œë ¥
+                //´ë»ç Ãâ·Â
                 StartCoroutine(_ITalkable.TextPractice());
             }
 
-            //ëŒ€í™” ì¢…ë£Œ
+            //´ëÈ­ Á¾·á
             else if (DialogManager.instance.isSentenceEnd)
             {
-                Debug.Log("NPC ëŒ€í™” ì¢…ë£Œ");
-                //í”Œë ˆì´ì–´ ì´ë™ì œí•œ í•´ì œ
+                Debug.Log("NPC ´ëÈ­ Á¾·á");
+                //ÇÃ·¹ÀÌ¾î ÀÌµ¿Á¦ÇÑ ÇØÁ¦
                 NPCDalogue.controller_scr.TalkEnd();
 
                 NPCDalogue.DialogueCanvas.SetActive(false);
                 StopAllCoroutines();
                 StartCoroutine(ReTalkDealay());
 
-                //ë‚¨ì€ëŒ€í™” ì—†ìŒ
+                //³²Àº´ëÈ­ ¾øÀ½
                 DialogManager.instance.remainSentence = false;
-                //ëŒ€í™” ë
+                //´ëÈ­ ³¡
                 DialogManager.instance.isSentenceEnd = false;
-                //í…ìŠ¤íŠ¸ ë¹„ìš°ê¸°
+                //ÅØ½ºÆ® ºñ¿ì±â
                 DialogManager.instance.writerText = "";
             }
         }
