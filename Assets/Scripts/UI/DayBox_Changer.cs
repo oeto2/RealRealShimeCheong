@@ -13,10 +13,6 @@ public class DayBox_Changer : MonoBehaviour
     private void Awake()
     {
         DayBoxUI = GetComponent<Image>();
-    }
-
-    private void Start()
-    {
         TimeManager.instance.NextDayEvent += RefreshDayBoxes_Image;
         DataManager.instance.LoadEvent += RefreshDayBoxes_Image;
     }
@@ -26,8 +22,6 @@ public class DayBox_Changer : MonoBehaviour
     {
         int time = TimeManager.instance.int_DayCount - 1;
         
-        Debug.Log($"³¯Â¥ : {time}");
-
         if (time < 16)
         {
             DayBoxUI.sprite = DayBoxes[time];

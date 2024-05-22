@@ -120,11 +120,9 @@ public class UIManager : MonoBehaviour
     public Image itemTapImage;
     public Image itemTapImage2;
 
-
     //Clue Tap Button Image
     public Image clueTapImage;
     public Image clueTapImage2;
-
 
     //Save Slot Place Name text
     public Text[] text_SavePlaceName;
@@ -205,14 +203,14 @@ public class UIManager : MonoBehaviour
 
         totalSlotNum = text_LoadPlaceName.Length;
 
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            if(instance != this)
+            if (instance != this)
             {
                 Destroy(this.gameObject);
             }
@@ -312,7 +310,7 @@ public class UIManager : MonoBehaviour
         {
             //옵션창 소리 재생
             EffectSoundManager.instance.PlayOnOptionSound();
-            
+
             //옵션창 보여주기
             gameObject_Option.SetActive(true);
 
@@ -621,14 +619,11 @@ public class UIManager : MonoBehaviour
 
         //세이브 슬롯 캘린더 UI 변경
         ChangeSlotUICalendar(_slotNum, curSaveUIData.day - 1);
-
-        //Debug.Log("TimeManager PlayeTime : " + timeManagerScr.GetPlayTimeText());
     }
 
     //슬롯에 UI 데이터 보여주기
     public void ShowUiDataToSlot()
     {
-        //Debug.Log("ShowUiDataToSlot");
         if (text_LoadPlaceName != null)
         {
             for (int i = 0; i < text_SavePlaceName.Length; i++)
@@ -636,8 +631,6 @@ public class UIManager : MonoBehaviour
                 //만약 i번째 슬롯에 해당하는 SaveData jsonFile이 존재한다면
                 if (File.Exists(saveFilePath + i.ToString()) == true)
                 {
-                    //Debug.Log("슬롯 Ui데이터 갱신" + i.ToString());
-
                     //파일 읽어오기
                     string jLoadData = File.ReadAllText(saveFilePath + i.ToString());
 
@@ -649,11 +642,6 @@ public class UIManager : MonoBehaviour
                     //로드슬롯의 장소 UI Text 변경
                     text_LoadPlaceName[i].text = curLoadUiData.placeName;
 
-                    ////저장슬롯의 날짜 UI Text 변경
-                    //text_SaveDayCount[i].text = curLoadUiData.day;
-                    ////로드슬롯의 날짜 UI Text 변경
-                    //text_LoadDayCount[i].text = curLoadUiData.day;
-
                     //저장슬롯의 플레이타임 UI Text 변경
                     text_SavePlayTime[i].text = curLoadUiData.playTimeText;
                     //로드슬롯의 날짜 UI Text 변경
@@ -664,24 +652,14 @@ public class UIManager : MonoBehaviour
                     //로드슬롯의 해시계 Ui image 변경
                     image_LoadSunClock[i].sprite = sprite_AllSunClock[curLoadUiData.sunClockNum];
 
-                    if(curLoadUiData.day <= 3)
-                    {
-                        //저장슬롯의 캘린더 UI image 변경
-                        image_SaveUICalendar[i].sprite = sprite_AllCalendar[curLoadUiData.day - 1];
-                        //로드슬롯의 캘린더 UI image 변경
-                        image_LoadUICalendar[i].sprite = sprite_AllCalendar[curLoadUiData.day - 1];
-                    }
-                    else
-                    {
-                        //저장슬롯의 캘린더 UI image 변경
-                        image_SaveUICalendar[i].sprite = sprite_AllCalendar[2];
-                        //로드슬롯의 캘린더 UI image 변경
-                        image_LoadUICalendar[i].sprite = sprite_AllCalendar[2];
-                    }
+                    int spriteNum = ((curLoadUiData.day - 1) * 5) - 1;
+                    if (spriteNum < 0)
+                        spriteNum = 0;
 
-
-                    ////플레이타임 변경
-                    //timeManagerScr.SetPlayTimeSec(curLoadUiData.playTimeSec);
+                    //저장슬롯의 캘린더 UI image 변경
+                    image_SaveUICalendar[i].sprite = sprite_AllCalendar[spriteNum];
+                    //로드슬롯의 캘린더 UI image 변경
+                    image_LoadUICalendar[i].sprite = sprite_AllCalendar[spriteNum];
                 }
             }
         }
@@ -690,7 +668,7 @@ public class UIManager : MonoBehaviour
     //UI 데이터 불러오기(플레이임, 해시계 UI)
     public void Load(int _slotNum)
     {
-        if(_slotNum <= 2)
+        if (_slotNum <= 2)
         {
             //파일 읽어오기
             string jLoadData = File.ReadAllText(saveFilePath + _slotNum.ToString());
@@ -705,7 +683,7 @@ public class UIManager : MonoBehaviour
             image_CurSunClock.sprite = sprite_AllSunClock[curLoadUiData2.sunClockNum];
             Debug.Log($"해시계 이미지변경 : {curLoadUiData2.sunClockNum}");
         }
-       
+
     }
 
     //현재 해시계 이미지 구하기
@@ -788,7 +766,7 @@ public class UIManager : MonoBehaviour
     public bool SentenceCondition()
     {
         //아이템, 지도, 옵션창이 켜져있지 않은 상태여야 함
-        if(!gameObject_ItemWindow.activeSelf && !gameObject_MapWindow.activeSelf && !gameObject_Option.activeSelf)
+        if (!gameObject_ItemWindow.activeSelf && !gameObject_MapWindow.activeSelf && !gameObject_Option.activeSelf)
         {
             sentenceCondition = true;
             return true;

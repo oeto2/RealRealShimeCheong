@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System;
-using Unity.VisualScripting;
 
 public class DataManager : MonoBehaviour
 {
@@ -44,7 +43,6 @@ public class DataManager : MonoBehaviour
     //이벤트들
     public event Action LoadEvent;
     public event Action SaveEvent;
-
     private void Awake()
     {
         instance = this;
@@ -198,7 +196,6 @@ public class DataManager : MonoBehaviour
         yield return new WaitForSeconds(int_LodingTime);
 
         gameObject_Loading.SetActive(false);
-        
     }
 
     //세이브 슬롯 클릭
@@ -222,6 +219,7 @@ public class DataManager : MonoBehaviour
             gameObjcet_LoadCheckWindow.SetActive(true);
         }    
     }
+
     public void CallSaveEvent()
     {
         SaveEvent?.Invoke();

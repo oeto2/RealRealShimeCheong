@@ -113,7 +113,7 @@ public class TitleManager : MonoBehaviour
     public void LoadMainScene()
     {
         //TextScnene 불러오기
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("MainScene");
     }
 
     //Load 확인 창 띄우기
@@ -196,9 +196,13 @@ public class TitleManager : MonoBehaviour
                   
                     //로드슬롯의 해시계 Ui image 변경
                     image_LoadSunClock[i].sprite = sprite_AllSunClock[curLoadUiData.sunClockNum];
-                 
+
+                    int spriteNum = ((curLoadUiData.day - 1) * 5) - 1;
+                    if(spriteNum < 0)
+                        spriteNum = 0;
+
                     //로드슬롯의 캘린더 UI image 변경
-                    image_LoadUICalendar[i].sprite = sprite_AllCalendar[curLoadUiData.day - 1];
+                    image_LoadUICalendar[i].sprite = sprite_AllCalendar[spriteNum];
                 }
             }
         }

@@ -560,7 +560,6 @@ public class TimeManager : MonoBehaviour
     #region 배경 칼라 변경
     public void ObumbrateObject(Color32 _curObjectColor)
     {
-
         //아침에 증가되야하는 값 = (255 - 시작 RGB값) / 아침시간
         int pluseValue_moring = (int)MathF.Truncate((255 - startRGBValue.r) / 35);
 
