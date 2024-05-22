@@ -416,8 +416,6 @@ public class TimeManager : MonoBehaviour
     //데이터 저장
     public void Save(int _slotNum)
     {
-        //Debug.Log("Save TimeManagerData");
-
         //저장할 데이터 넣기
         curTimeSaveData = new TimeSaveData(float_RealTime, int_DayCount, curObjectRGB.r, realTimeStop);
 

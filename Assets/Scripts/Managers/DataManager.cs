@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
@@ -50,7 +49,6 @@ public class DataManager : MonoBehaviour
     {
         instance = this;
     }
-
     private void Start()
     {
         //타이틀 화면으로 부터 데이터 받기
@@ -224,7 +222,6 @@ public class DataManager : MonoBehaviour
             gameObjcet_LoadCheckWindow.SetActive(true);
         }    
     }
-
     public void CallSaveEvent()
     {
         SaveEvent?.Invoke();

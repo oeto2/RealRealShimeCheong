@@ -100,7 +100,6 @@ public class GameLoadData
     public int herbEventState;
 }
 
-
 public class GameManager : MonoBehaviour
 {
     //외부 스크립트
@@ -226,12 +225,7 @@ public class GameManager : MonoBehaviour
 
         saveFilePath = Application.persistentDataPath + "/GameManagerDataText.txt";
     }
-
-    private void Start()
-    {
-    }
-
-
+    
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.J))
@@ -280,11 +274,6 @@ public class GameManager : MonoBehaviour
         }
         bool_isAction = true;
         talkIndex++;
-    }
-
-    void Dialog(int id, bool bool_isNPC)
-    {
-
     }
 
     //플레이어 귀환
@@ -366,7 +355,6 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-
             //장작
             if (curGameLoadData.getJangjack)
             {
@@ -409,7 +397,6 @@ public class GameManager : MonoBehaviour
                 dialogBoatManScr.boatMan2_Show = true;
             }
         }
-
     }
 
     //현재 장소 이름 구하는 메서드

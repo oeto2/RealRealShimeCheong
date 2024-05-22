@@ -1,0 +1,253 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aaf7e65e183541409de41bc78947c30, type: 3}
+  m_Name: S_clue_data_table
+  m_EditorClassIdentifier: 
+  Clue_Table:
+  - _id: 2000
+    _objectType: 1
+    _name: "\uD5A5\uB9AC \uB301\uC758 \uC218\uC591\uB538"
+    _comment: "\uC2EC\uCCAD\uC774\uAC00 \uC774\uD2C0 \uC804\uC5D0 \uD5A5\uB9AC \uB301\uC758
+      \uC218\uC591\uB538\uB85C \uB4E4\uC5B4\uAC14\uB2E4."
+    _isUsing: 0
+    _indexNum: 0
+  - _id: 2001
+    _objectType: 1
+    _name: "\uCCAD\uC774\uC758 \uAC70\uC9D3\uB9D0"
+    _comment: "\uC2EC\uCCAD\uC774\uAC00 \uD5A5\uB9AC \uB301\uC758 \uC218\uC591\uB538\uB85C
+      \uB4E4\uC5B4\uAC04\uB2E4\uB294 \uAC70\uC9D3\uB9D0\uC744 \uD588\uB2E4."
+    _isUsing: 0
+    _indexNum: 1
+  - _id: 2002
+    _objectType: 1
+    _name: "\uCCAD\uC774\uC758 \uD589\uBC29"
+    _comment: "\uAC70\uC9C0\uAC00 \uC774\uB974\uAE30\uB97C, \uCCAD\uC774\uB97C \uBABB
+      \uBCF8 \uC9C0 \uC774\uD2C0\uC774 \uB418\uC5C8\uB2E4\uACE0 \uD55C\uB2E4. \uC5B4\uB514\uC5D0
+      \uBA38\uBB3C\uB800\uC744\uC9C0 \uCC3E\uC544\uBCF4\uC790."
+    _isUsing: 0
+    _indexNum: 2
+  - _id: 2003
+    _objectType: 1
+    _name: "\uCCAD\uC774\uC640 \uC7A5\uD130"
+    _comment: "\uADC0\uB355 \uC5B4\uBA48 \uC774\uB974\uAE30\uB97C, \uCCAD\uC774\uAC00
+      \uC0AC\uB77C\uC9C0\uAE30 \uC804 \uC7A5\uD130\uC5D0 \uC790\uC8FC \uBA38\uBB3C\uB800\uB2E4\uACE0
+      \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 3
+  - _id: 2004
+    _objectType: 1
+    _name: "\uCCAD\uC774\uC640 \uC0AC\uB0B4"
+    _comment: "\uAC70\uC9C0\uAC00 \uC774\uB974\uAE30\uB97C, \uCCAD\uC774\uAC00 \uC5B4\uB5A4
+      \uC0AC\uB0B4\uC640 \uC790\uC8FC \uD568\uAED8 \uC788\uC5C8\uB2E4\uACE0 \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 4
+  - _id: 2005
+    _objectType: 1
+    _name: "\uB204\uAD70\uAC00\uC758 \uC544\uB4E4"
+    _comment: "\uAC70\uC9C0\uAC00 \uC774\uB974\uAE30\uB97C, \uCCAD\uC774\uAC00 \uD568\uAED8
+      \uC788\uB358 \uB0A8\uC790\uB294 \uB204\uAD70\uAC00\uC758 \uC544\uB4E4\uC774\uB77C\uACE0
+      \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 5
+  - _id: 2006
+    _objectType: 1
+    _name: "\uC1A1\uB098\uB77C \uC0C1\uC778\uACFC \uCCAD\uC774"
+    _comment: "\uBE91\uB355 \uC5B4\uBA48\uC774 \uC774\uB974\uAE30\uB97C, \uCCAD\uC774\uAC00
+      \uC1A1\uB098\uB77C \uC0C1\uC778\uACFC \uC774\uC57C\uAE30\uD558\uB294 \uAC83\uC744
+      \uBCF4\uC558\uB2E4\uACE0 \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 6
+  - _id: 2007
+    _objectType: 1
+    _name: "\uC2B9\uB824\uC640 \uCCAD\uC774"
+    _comment: "\uADC0\uB355 \uC5B4\uBA48\uC774 \uC774\uB974\uAE30\uB97C, \uC2B9\uB824\uC640
+      \uCCAD\uC774\uAC00 \uC774\uC57C\uAE30\uD558\uB294 \uAC83\uC744 \uBCF4\uC558\uB2E4\uACE0
+      \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 7
+  - _id: 2008
+    _objectType: 1
+    _name: "\uC2B9\uB824\uC758 \uB9C8\uC74C"
+    _comment: "\uBE91\uB355 \uC5B4\uBA48\uC774 \uC774\uB974\uAE30\uB97C, \uCCAD\uC774\uAC00
+      \uC1A1\uB098\uB77C \uC0C1\uC778\uACFC \uC774\uC57C\uAE30\uD558\uB294 \uAC83\uC744
+      \uBCF4\uC558\uB2E4\uACE0 \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 8
+  - _id: 2009
+    _objectType: 1
+    _name: "\uCCAD\uC774\uC758 \uB3C4\uC6C0"
+    _comment: "\uC1A1\uB098\uB77C \uC0C1\uC778\uC774 \uC774\uB974\uAE30\uB97C, \uCCAD\uC774\uC5D0\uAC8C
+      \uACE0\uB9C8\uC6CC\uD55C\uB2E4. \uCCAD\uC774\uC5D0\uAC8C \uBB34\uC2A8 \uB3C4\uC6C0\uC744
+      \uBC1B\uC740 \uAC78\uAE4C?"
+    _isUsing: 0
+    _indexNum: 9
+  - _id: 2010
+    _objectType: 1
+    _name: "\uACF5\uC591\uBBF8 \uC0BC\uBC31 \uC11D"
+    _comment: "\uC2B9\uB824\uC5D0\uAC8C \uC778\uC0AC\uB97C \uD588\uB354\uB2C8, \uACF5\uC591\uBBF8
+      \uC0BC\uBC31 \uC11D\uC744 \uC2DC\uC8FC\uD574 \uACE0\uB9D9\uB2E4\uACE0 \uD558\uC600\uB2E4.
+      \uB208\uC740 \uC5B8\uC81C \uB730 \uC218 \uC788\uB294\uC9C0.."
+    _isUsing: 0
+    _indexNum: 10
+  - _id: 2011
+    _objectType: 1
+    _name: "\uACF5\uC591\uBBF8\uC758 \uCD9C\uCC98"
+    _comment: "\uCCAD\uC774\uAC00 \uB098\uB97C \uC704\uD574 \uACF5\uC591\uBBF8\uB97C
+      \uB9C8\uB828\uD588\uB2E4. \uADF8 \uB9CE\uC740 \uC300\uC744 \uC5B4\uB514\uC11C
+      \uAD6C\uD55C \uAC83\uC77C\uAE4C.."
+    _isUsing: 0
+    _indexNum: 11
+  - _id: 2012
+    _objectType: 1
+    _name: "\uCCAD\uC774\uC758 \uAC70\uB798"
+    _comment: "\uBC43\uC0AC\uACF5\uC774 \uC774\uB974\uAE30\uB97C, \uCCAD\uC774\uC640
+      \uC1A1\uB098\uB77C \uC0C1\uC778\uC758 \uAC70\uB798 \uC7A5\uBA74\uC744 \uBAA9\uACA9\uD588\uB2E4\uACE0
+      \uD55C\uB2E4. \uCCAD\uC774\uAC00 \uC300\uC744 \uC694\uAD6C\uD588\uB2E4\uB294\uB370\u2026"
+    _isUsing: 0
+    _indexNum: 12
+  - _id: 2013
+    _objectType: 1
+    _name: "\uD5A5\uB9AC \uB301 \uC14B\uC9F8 \uC544\uB4E4"
+    _comment: "\uD5A5\uB9AC \uB301 \uBD80\uC778\uC774 \uC774\uB974\uAE30\uB97C, \uC14B\uC9F8
+      \uC544\uB4E4\uC740 \uC774\uD2C0 \uC804\uC5D0 \uACFC\uAC70 \uC2DC\uD5D8\uC744
+      \uBCF4\uB7EC \uB5A0\uB0AC\uB2E4\uACE0 \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 13
+  - _id: 2014
+    _objectType: 1
+    _name: "\uC7A0\uC7A0\uD574\uC838\uC57C \uD560 \uBB3C\uC0B4"
+    _comment: "\uC1A1\uB098\uB77C \uC0C1\uC778\uC774 \uC774\uB974\uAE30\uB97C, \uC5BC\uB978
+      \uBB3C\uC0B4\uC774 \uC7A0\uC7A0\uD574\uC9C0\uAE38 \uBC14\uB77C\uACE0 \uC788\uB2E4."
+    _isUsing: 0
+    _indexNum: 14
+  - _id: 2015
+    _objectType: 1
+    _name: "\uCCAD\uC774\uAC00 \uC0AC\uAC04 \uAC83"
+    _comment: "\uC7A5\uC0AC\uAFBC\uC774 \uC774\uB974\uAE30\uB97C, \uCCAD\uC774\uAC00
+      \uBB34\uC5B8\uAC00 \uC0C0\uB2E4\uACE0 \uD55C\uB2E4. \uC7A5\uC0AC\uAFBC\uACFC
+      \uAC70\uB798\uB97C \uD574\uBCF4\uC790."
+    _isUsing: 0
+    _indexNum: 15
+  - _id: 2016
+    _objectType: 1
+    _name: "\uC9DA\uC2E0\uC744 \uC0AC\uAC04 \uCCAD\uC774"
+    _comment: "\uC7A5\uC0AC\uAFBC\uC774 \uC774\uB974\uAE30\uB97C, \uCCAD\uC774\uAC00
+      \uC9DA\uC2E0\uC744 \uC804\uBD80 \uC0C0\uB2E4\uACE0 \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 16
+  - _id: 2017
+    _objectType: 1
+    _name: "\uBC30\uC758 \uCD9C\uD56D"
+    _comment: "\uD5A5\uB9AC \uB301 \uBD80\uC778\uC774 \uC774\uB974\uAE30\uB97C, \uBC30\uAC00
+      \uB2E4\uC2DC \uB728\uB294 \uB54C\uB97C \uC54C\uC544\uBD10\uB2EC\uB77C\uACE0
+      \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 17
+  - _id: 2018
+    _objectType: 1
+    _name: "\uB178\uC810\uC758 \uB2E8\uACE8"
+    _comment: "\uC7A5\uC0AC\uAFBC\uC774 \uC774\uB974\uAE30\uB97C, \uC14B\uC9F8 \uC544\uB4E4\uC774
+      \uB178\uC810\uC758 \uB2E8\uACE8\uC774\uB77C\uACE0 \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 18
+  - _id: 2019
+    _objectType: 1
+    _name: "\uB728\uC9C0 \uC54A\uB294 \uBC30"
+    _comment: "\uBC43\uC0AC\uACF5\uC774 \uC774\uB974\uAE30\uB97C, \uBB3C\uC0B4\uB85C
+      \uC778\uD574 \uC9C0\uAE08\uC740 \uBC30\uAC00 \uB730 \uC218 \uC5C6\uB2E4\uACE0
+      \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 19
+  - _id: 2020
+    _objectType: 1
+    _name: "\uC0AC\uACF5\uC5D0\uAC8C \uC788\uC5C8\uB358 \uC77C"
+    _comment: "\uADC0\uB355 \uC5B4\uBA48\uC774 \uC774\uB974\uAE30\uB97C, \uC774\uD2C0
+      \uC804\uC5D0 \uC0AC\uACF5\uC774 \uD070 \uC18C\uB9AC\uB97C \uCCE4\uB2E4\uACE0
+      \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 20
+  - _id: 2021
+    _objectType: 1
+    _name: "\uC0AC\uACF5\uC758 \uBB3C\uAC74"
+    _comment: "\uBC43\uC0AC\uACF5\uC774 \uC0C1\uC778\uB4E4\uC5D0\uAC8C\uC11C \uC790\uC2E0\uC758
+      \uBB3C\uAC74\uC744 \uCC3E\uC544\uC640\uB2EC\uB77C\uACE0 \uD588\uB2E4."
+    _isUsing: 0
+    _indexNum: 21
+  - _id: 2022
+    _objectType: 1
+    _name: "\uBC43\uAE38\uC744 \uC7A0\uC7AC\uC6B8 \uBC29\uBC95"
+    _comment: "\uBC43\uC0AC\uACF5\uC774 \uC774\uB974\uAE30\uB97C, \uC1A1 \uC0C1\uC778\uB4E4\uC774
+      \uBC43\uAE38\uC744 \uC7A0\uC7AC\uC6B8 \uBC29\uBC95\uC744 \uC544\uB294 \uAC83
+      \uAC19\uB2E4\uACE0 \uD55C\uB2E4."
+    _isUsing: 0
+    _indexNum: 22
+  - _id: 2023
+    _objectType: 1
+    _name: "3\uC6D4 \uBCF4\uB984\uB0A0"
+    _comment: "\uADC0\uB355 \uC5B4\uBA48\uC774 \uC8FC\uB9C9 \uB4B7\uAC04\uC5D0\uC11C
+      \uC5FF\uB4E4\uC740 \uC774\uC57C\uAE30\uC774\uB2E4. \uC704\uD5D8\uD574\uBCF4\uC774\uB2C8
+      \uBAB8\uC744 \uC0AC\uB9AC\uB77C\uACE0 \uD588\uB2E4."
+    _isUsing: 0
+    _indexNum: 23
+  - _id: 9001
+    _objectType: 2
+    _name: "\uACF5\uC591\uBBF8\uB97C \uAD6C\uD55C \uBC29\uBC95"
+    _comment: "\uCCAD\uC774\uAC00 \uC1A1\uB098\uB77C \uC0C1\uC778\uACFC \uAC70\uB798\uB97C
+      \uD574 \uACF5\uC591\uBBF8 \uC0BC\uBC31 \uC11D\uC744 \uB9C8\uB828\uD55C \uAC83
+      \uAC19\uB2E4. \uBB34\uC5C7\uC744 \uBE4C\uBBF8\uB85C \uAC70\uB798\uD55C \uAC78\uAE4C?"
+    _isUsing: 0
+    _indexNum: 24
+  - _id: 4015
+    _objectType: 2
+    _name: "\uCCAD\uC774\uAC00 \uC0AC\uB77C\uC9C4 \uB0A0"
+    _comment: "\uCCAD\uC774\uC640 \uD5A5\uB9AC \uB301 \uC14B\uC9F8 \uC544\uB4E4\uC774
+      \uC0AC\uB77C\uC9C4 \uB0A0\uC9DC\uAC00 \uACB9\uCE5C\uB2E4. \uADF8\uB0A0\uC5D0\uB294
+      \uBB34\uC2A8 \uC77C\uC774 \uC788\uC5C8\uB358 \uAC78\uAE4C?"
+    _isUsing: 0
+    _indexNum: 25
+  - _id: 4017
+    _objectType: 2
+    _name: "\uCCAD\uC774\uC640 \uADF8\uC758 \uAD00\uACC4"
+    _comment: "\uCCAD\uC774\uC640 \uD5A5\uB9AC \uB301 \uC14B\uC9F8\uC758 \uAD00\uACC4\uAC00
+      \uAD81\uAE08\uD558\uB2E4. \uB458\uC758 \uBAA8\uC2B5\uC744 \uBAA9\uACA9\uD588\uB2E4\uB294\uB370.."
+    _isUsing: 0
+    _indexNum: 26
+  - _id: 8032
+    _objectType: 2
+    _name: "\uD568\uAED8 \uC0AC\uB77C\uC9C4 \uB450 \uC0AC\uB78C"
+    _comment: "\uCCAD\uC774\uC640 \uD5A5\uB9AC \uB301 \uC14B\uC9F8\uAC00 \uD568\uAED8
+      \uC0AC\uB77C\uC9C4 \uAC83 \uAC19\uB2E4. \uACFC\uC5F0 \uC5B5\uCE21\uC77C\uAE4C?"
+    _isUsing: 0
+    _indexNum: 27
+  - _id: 4033
+    _objectType: 2
+    _name: "\uBB34\uC5ED\uC758 \uC911\uB2E8"
+    _comment: "\uBB3C\uC0B4\uC774 \uAC70\uC138\uACE0, \uBC30\uAC00 \uB728\uC9C0 \uC54A\uB294\uB2E4.
+      \uC544\uB9C8\uB3C4 \uBB34\uC5ED\uC774 \uC911\uB2E8\uB418\uC5C8\uC744 \uAC83\uC774\uB2E4."
+    _isUsing: 0
+    _indexNum: 28
+  - _id: 9000
+    _objectType: 2
+    _name: "\uCCAD\uC774\uC758 \uAC00\uCD9C"
+    _comment: "\uCCAD\uC774\uAC00 \uAC70\uC9D3\uB9D0\uC744 \uD588\uACE0, \uC9DA\uC2E0\uC744
+      \uC804\uBD80 \uC0C0\uB2E4. \uCCAD\uC774\uB294 \uAC00\uCD9C\uC744 \uD588\uB2E4.
+      \u2026..\uBD84\uBA85 \uB204\uAD70\uAC00\uC758 \uACC4\uB7B5\uC77C \uAC83\uC774\uB2E4."
+    _isUsing: 0
+    _indexNum: 29
+  - _id: 6045
+    _objectType: 2
+    _name: "\uBC14\uB2E4\uC5D0 \uBC14\uCCD0\uC9C8 \uC81C\uBB3C"
+    _comment: "\uB098\uC05C \uC0DD\uAC01\uC740 \uD558\uC9C0 \uC54A\uC73C\uB824 \uD588\uAC74\uB9CC,
+      \uC790\uAFB8 \uC88B\uC9C0 \uC54A\uC740 \uC608\uAC10\uC774 \uB290\uAEF4\uC9C4\uB2E4.
+      \uC81C\uBC1C \uC544\uB2C8\uAE38."
+    _isUsing: 0
+    _indexNum: 30

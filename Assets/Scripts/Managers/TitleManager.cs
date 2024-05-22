@@ -13,7 +13,6 @@ public enum LoadSceneState
     Slot3, //3번 슬롯
     Nomal, //처음부터
 }
-
 public class TitleManager : MonoBehaviour
 {
     //싱글톤 패턴
@@ -174,7 +173,6 @@ public class TitleManager : MonoBehaviour
     //슬롯에 UI 데이터 보여주기
     public void ShowUiDataToSlot()
     {
-        //Debug.Log("ShowUiDataToSlot");
         if (text_LoadPlaceName != null)
         {
             for (int i = 0; i < text_LoadPlaceName.Length; i++)
@@ -201,7 +199,6 @@ public class TitleManager : MonoBehaviour
                  
                     //로드슬롯의 캘린더 UI image 변경
                     image_LoadUICalendar[i].sprite = sprite_AllCalendar[curLoadUiData.day - 1];
-
                 }
             }
         }
