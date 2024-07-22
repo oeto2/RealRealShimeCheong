@@ -8,7 +8,7 @@ public class CombineCtrl : MonoBehaviour
     public UIManager uimanagerScr;
 
     //오브젝트에 접근했는지 확인하는 flag
-    private bool isCloser;
+    [SerializeField] private bool isCloser;
 
     //Z키 오브젝트
     public GameObject gameObject_Zkey;
@@ -16,9 +16,9 @@ public class CombineCtrl : MonoBehaviour
     private void Update()
     {
         //오브젝트와 충돌중이고 Z키를 눌렀을경우
-        if (isCloser && Input.GetKeyDown(KeyCode.Z) &&
-            (uimanagerScr.tutorialManagerScr.events == TutorialEvents.Done || uimanagerScr.tutorialManagerScr.events == TutorialEvents.PassOneDay))
+        if (isCloser && Input.GetKeyDown(KeyCode.Z) && uimanagerScr.tutorialManagerScr.events >= TutorialEvents.TalkToHyang)
         {
+            Debug.Log("조합창 실행");
             //조합창 실행
             uimanagerScr.CombineWindowLaunch();
         }
@@ -56,6 +56,6 @@ public class CombineCtrl : MonoBehaviour
 
         //Z키 끄기
         gameObject_Zkey.SetActive(false);
-       
+
     }
 }

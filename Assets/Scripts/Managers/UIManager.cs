@@ -618,7 +618,7 @@ public class UIManager : MonoBehaviour
         ShowUiDataToSlot();
 
         //세이브 슬롯 캘린더 UI 변경
-        ChangeSlotUICalendar(_slotNum, curSaveUIData.day - 1);
+        ChangeSlotUICalendar(_slotNum, curSaveUIData.day);
     }
 
     //슬롯에 UI 데이터 보여주기
@@ -716,8 +716,11 @@ public class UIManager : MonoBehaviour
     //Slot UI 캘린더 스프라이트 이미지 변경
     public void ChangeSlotUICalendar(int _slotNum, int _day)
     {
-        image_SaveUICalendar[_slotNum].sprite = sprite_AllCalendar[_day];
-        image_LoadUICalendar[_slotNum].sprite = sprite_AllCalendar[_day];
+        //캘린더 이미지 인덱스 구하기
+        int calendarIdex = _day == 1 ? 0 : ((_day - 1) * 5) - 1 ;
+
+        image_SaveUICalendar[_slotNum].sprite = sprite_AllCalendar[calendarIdex]; 
+        image_LoadUICalendar[_slotNum].sprite = sprite_AllCalendar[calendarIdex];
     }
 
 

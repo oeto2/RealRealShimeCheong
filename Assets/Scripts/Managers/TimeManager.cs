@@ -117,7 +117,7 @@ public class TimeManager : MonoBehaviour
     public TimeSaveData curTimeSaveData;
 
     //저장 파일 위치
-    private string saveFilePath;
+    [SerializeField] private string saveFilePath;
 
     //불러올 데이터 클래스
     public TimeLoadData curTimeLoadData;

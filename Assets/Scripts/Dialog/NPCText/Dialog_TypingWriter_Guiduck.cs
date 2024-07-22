@@ -198,6 +198,7 @@ public class Dialog_TypingWriter_Guiduck : Dialogue, ITalkable
             //2021 : »ç°øÀÇ ¹°°Ç
             else if (ObjectManager.instance.GetEquipObjectKey() == 2021)
             {
+                Debug.Log("±Í´ö¾î¸Ø »ç°ø¹°°Ç");
                 yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[208].npc_name, dialogdb.NPC_01[208].comment));
             }
             //2023 : 3¿ù º¸¸§³¯
@@ -270,7 +271,7 @@ public class Dialog_TypingWriter_Guiduck : Dialogue, ITalkable
             //1011 : »ç°øÀÇ ¹°°Ç
             else if (ObjectManager.instance.GetEquipObjectKey() == 1011)
             {
-                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[338].npc_name, dialogdb.NPC_01[338].comment));
+                yield return StartCoroutine(DialogManager.instance.ItemClueChat(dialogdb.NPC_01[339].npc_name, dialogdb.NPC_01[339].comment));
             }
             //1012 : º²Â¤
             else if (ObjectManager.instance.GetEquipObjectKey() == 1012)
